@@ -9,6 +9,10 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
+import {
+    FiLogOut
+} from "react-icons/fi"
+
 export function VerticalNavbar(){
     const SideBarList = [
         { path: "", icon: <FaFacebookF />, name: "Dashboard",},
@@ -62,7 +66,7 @@ export function VerticalNavbar(){
 
                         <Link  href="/">
                             <a className="flex items-center p-4 text-white hover:bg-gray-800 rounded-xl" href="#">
-                                <FaLinkedinIn />
+                                <FiLogOut size={30} />
                                 <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Log Out</span>
                             </a>
                         </Link>
