@@ -20,16 +20,16 @@ export function VerticalNavbar(){
         { path: "", icon: <FaYoutube />, name: "Display Category" },
     ];
 	const router = useRouter();
-    const [sideBar , setsideBar] = useState(false);
+    const [sideBar , setsideBar] = useState(true);
     const handleSideBar = () => {
         setsideBar(!sideBar);
     };
     console.log(sideBar)
 	return(
-            <div className={`w-2/4 lg:w-1/4 flex ${sideBar ? "w-1/12" : "w-1/4"}`}>
+            <div className={`flex ${sideBar ? "w-1/12" : "w-1/4"}`}>
                 <nav className="w-full h-screen flex flex-col h-full py-8 px-4 overflow-auto bg-gray-900">
                     <div className="flex justify-between ml-5">
-                        <h1 className={`hidden lg:flex text-2xl font-bold text-white ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
+                        <h1 className={`text-2xl font-bold text-white ${sideBar ? "flex" : "hidden"}`}>Admin Page</h1>
                         <button onClick={handleSideBar} className="text-white hover:text-gray-300 focus:outline-none">
                             <AiOutlineMenu size={40} />
                         </button>
@@ -43,7 +43,7 @@ export function VerticalNavbar(){
                                             className="flex items-center text-xl p-4 text-white rounded-xl"
                                         >
                                             {side.icon}
-                                            <span className={`ml-4 font-semibold ${sideBar ? 'hidden' : 'flex' } `}>
+                                            <span className={`ml-4 font-semibold ${sideBar ? 'flex' : 'hidden' } `}>
                                                 {side.name}
                                             </span>
                                         </a>
