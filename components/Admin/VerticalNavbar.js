@@ -40,7 +40,7 @@ export function VerticalNavbar(){
                                 <li className="mb-4" key={index}>
                                     <Link  href={side.path}>
                                         <a  target="_blank" rel="noreferrer" 
-                                            className="flex items-center text-xl p-4 text-white rounded-xl"
+                                            className="flex items-center p-4 text-xl p-4 text-white rounded-xl"
                                         >
                                             {side.icon}
                                             <span className={`ml-4 font-semibold ${sideBar ? 'hidden' : 'flex' } `}>
@@ -56,14 +56,14 @@ export function VerticalNavbar(){
                         <Link  href="/">
                             <a className="flex items-center p-4 text-gray-300 hover:bg-gray-800 rounded-xl" href="#">
                                 <FaLinkedinIn />
-                                <span className={`text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Profile</span>
+                                <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Profile</span>
                             </a>
                         </Link>
 
                         <Link  href="/">
                             <a className="flex items-center p-4 text-gray-300 hover:bg-gray-800 rounded-xl" href="#">
                                 <FaLinkedinIn />
-                                <span className={`text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Log Out</span>
+                                <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Log Out</span>
                             </a>
                         </Link>
                     </div>
