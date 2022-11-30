@@ -26,10 +26,10 @@ export function VerticalNavbar(){
     };
     console.log(sideBar)
 	return(
-            <div className={`hidden lg:flex ${sideBar ? "w-1/12" : "w-1/4"}`}>
+            <div className={`w-2/4 lg:w-1/4 flex ${sideBar ? "w-1/12" : "w-1/4"}`}>
                 <nav className="w-full h-screen flex flex-col h-full py-8 px-4 overflow-auto bg-gray-900">
                     <div className="flex justify-between ml-5">
-                        <h1 className={`text-2xl font-bold text-white ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
+                        <h1 className={`hidden lg:flex text-2xl font-bold text-white ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
                         <button onClick={handleSideBar} className="text-white hover:text-gray-300 focus:outline-none">
                             <AiOutlineMenu size={40} />
                         </button>
