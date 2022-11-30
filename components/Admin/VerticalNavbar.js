@@ -26,7 +26,7 @@ export function VerticalNavbar(){
     };
     console.log(sideBar)
 	return(
-            <div className={`flex ${sideBar ? "w-1/12" : "w-1/4"}`}>
+            <div className={`flex ${sideBar ? "w-24" : "w-96"}`}>
                 <nav className="w-full h-screen flex flex-col h-full py-8 px-4 overflow-auto bg-gray-900">
                     <div className="flex justify-between ml-5">
                         <h1 className={`text-2xl font-bold text-white ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
@@ -52,7 +52,7 @@ export function VerticalNavbar(){
                             ))}
                         </ul>
                     </div>
-                    <div className={`mt-auto flex ${sideBar ? "flex-col" : "flex-row"}`}>
+                    <div className={`mt-auto flex ${sideBar ? "flex-col" : "flex-col"}`}>
                         <a className="flex items-center p-4 text-gray-300 hover:bg-gray-800 rounded-xl" href="#">
                             <span className="mx-4 text-lg font-semibold">Settings</span>
                         </a>
