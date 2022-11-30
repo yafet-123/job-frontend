@@ -9,9 +9,8 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
-import {
-    FiLogOut
-} from "react-icons/fi"
+import { FiLogOut } from "react-icons/fi"
+import { BiDownArrow } from "react-icons/bi"
 
 export function VerticalNavbar(){
     const SideBarList = [
@@ -30,7 +29,7 @@ export function VerticalNavbar(){
     };
     console.log(sideBar)
 	return(
-            <div className={`flex ${sideBar ? "w-32" : "w-96"}`}>
+            <div className={`flex ${sideBar ? "w-24" : "w-96"}`}>
                 <nav className="w-full h-screen flex flex-col h-full py-8 px-4 overflow-auto bg-gray-900">
                     <div className="flex justify-between ml-5">
                         <h1 className={`text-2xl font-bold text-white ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
@@ -53,8 +52,6 @@ export function VerticalNavbar(){
                                             <span className={`ml-4 font-semibold ${sideBar ? 'hidden' : 'flex' } `}>
                                                 {side.name}
                                             </span>
-                                            <FaLinkedinIn size={25} className="ml-4"/>
-
                                         </a>
                                     </Link>
                                 </li>

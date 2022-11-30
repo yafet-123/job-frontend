@@ -1,6 +1,6 @@
 import { Hero } from "../components/Hero";
 import { VerticalNavbar } from "../components/Admin/VerticalNavbar";
-
+import { DashBoard } from "../components/Admin/DashBoard";
 
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
@@ -19,7 +19,7 @@ export default function Admin({categories}) {
     <div className="flex bg-gray-700">
       <VerticalNavbar />
       <div className="flex-1">
-
+        <DashBoard />
       </div>
     </div>
   );
