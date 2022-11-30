@@ -18,7 +18,7 @@ export default function Admin({categories}) {
   return (
     <div className="flex bg-gray-700">
       <VerticalNavbar />
-      <div class="w-3/4 ">
+      <div className="flex-1">
 
       </div>
     </div>
