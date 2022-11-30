@@ -35,7 +35,7 @@ export function VerticalNavbar(){
                     <div className="flex justify-between ml-5">
                         <h1 className={`text-2xl font-bold text-white ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
                         <button onClick={handleSideBar} className="text-white hover:text-gray-300 focus:outline-none">
-                            <AiOutlineMenu size={40} />
+                            <AiOutlineMenu size={30} />
                         </button>
                     </div>
                     <div className="mt-10">
