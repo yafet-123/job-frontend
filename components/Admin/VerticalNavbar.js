@@ -55,13 +55,13 @@ export function VerticalNavbar(){
                     <div className={`mt-auto flex ${sideBar ? "flex-col" : "flex-col"}`}>
                         <Link  href="/">
                             <a className="flex items-center p-4 text-gray-300 hover:bg-gray-800 rounded-xl" href="#">
-                                <span className="mx-4 text-lg font-semibold">Settings</span>
+                                <span className="text-lg font-semibold">Settings</span>
                             </a>
                         </Link>
 
                         <Link  href="/">
                             <a className="flex items-center p-4 text-gray-300 hover:bg-gray-800 rounded-xl" href="#">
-                                <span className="mx-4 text-lg font-semibold">Log Out</span>
+                                <span className="text-lg font-semibold">Log Out</span>
                             </a>
                         </Link>
                     </div>
