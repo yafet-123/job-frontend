@@ -59,14 +59,14 @@ export function VerticalNavbar(){
                     <div className={`mt-auto flex flex-col`}>
                         <Link  href="/">
                             <a className="flex items-center p-4 text-white hover:bg-gray-800 rounded-xl" href="#">
-                                <FaLinkedinIn size={30} />
+                                <FaLinkedinIn size={25} />
                                 <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Profile</span>
                             </a>
                         </Link>
 
                         <Link  href="/">
                             <a className="flex items-center p-4 text-white hover:bg-gray-800 rounded-xl" href="#">
-                                <FiLogOut size={30} />
+                                <FiLogOut size={25} />
                                 <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Log Out</span>
                             </a>
                         </Link>
