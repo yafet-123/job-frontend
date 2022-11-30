@@ -15,13 +15,13 @@ import {
 
 export function VerticalNavbar(){
     const SideBarList = [
-        { path: "", icon: <FaFacebookF />, name: "Dashboard",},
-        { path: "", icon: <FaFacebookF />, name: "Add User",},
-        { path: "", icon: <FaTwitter />, name: "Display User" },
-        { path: "", icon: <FaLinkedinIn />, name: "Add Job" },
-        { path: "", icon: <FaYoutube />, name: "Display Job" },
-        { path: "", icon: <FaLinkedinIn />, name: "Add Category" },
-        { path: "", icon: <FaYoutube />, name: "Display Category" },
+        { path: "", icon: <FaFacebookF size={25}/>, name: "Dashboard",},
+        { path: "", icon: <FaFacebookF size={25}/>, name: "Add User",},
+        { path: "", icon: <FaTwitter size={25}/>, name: "Display User" },
+        { path: "", icon: <FaLinkedinIn size={25}/>, name: "Add Job" },
+        { path: "", icon: <FaYoutube size={25}/>, name: "Display Job" },
+        { path: "", icon: <FaLinkedinIn size={25}/>, name: "Add Category" },
+        { path: "", icon: <FaYoutube size={25}/>, name: "Display Category" },
     ];
 	const router = useRouter();
     const [sideBar , setsideBar] = useState(true);
@@ -59,7 +59,7 @@ export function VerticalNavbar(){
                     <div className={`mt-auto flex flex-col`}>
                         <Link  href="/">
                             <a className="flex items-center p-4 text-white hover:bg-gray-800 rounded-xl" href="#">
-                                <FaLinkedinIn />
+                                <FaLinkedinIn size={30} />
                                 <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Profile</span>
                             </a>
                         </Link>
