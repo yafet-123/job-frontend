@@ -82,12 +82,33 @@ export default async(req, res) => {
             Apply:data.Apply,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate,
-            userName:data.User.UserName
+            userName:data.User.UserName,
             CategoryName:data.Category.CategoryName
         }))
 
         res.json(AllData)
-    } else if (type == 4)
+    } else if (type == 4){
+        const searchData = await prisma.Location.findMany({
+            where: {
+                LocationName: {
+                    contains: searchName,
+                    mode: "insensitive",
+                },
+            },
+            include:{
+                User:{
+                    select:{
+                        UserName:true
+                    }
+                },
+                Category:{
+                    select:{
+                        CategoryName:true
+                    }
+                }
+            }
+        })
+    }
 
 
 }

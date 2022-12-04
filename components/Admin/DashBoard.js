@@ -29,17 +29,24 @@ export function DashBoard() {
     return (
         <div className="">
             <div className="flex items-center justify-center mt-10">
-                <input 
-                    className="shadow appearance-none border w-5/12 py-4 px-3 text-xl text-black leading-tight focus:outline-none focus:shadow-outline" 
-                    id="username" 
-                    type="text"
-                    placeholder="Search"
-                    value={getSearchValue}
-                    onChange={(e) => setgetSearchValue(e.target.value)}
-                />
-                <div className="">
+                <div className="relative">
+                    <input 
+                        id="search" 
+                        type="text" 
+                        className="block w-96 px-3 text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " 
+                        value={getSearchValue}
+                        onChange={(e) => setgetSearchValue(e.target.value)}
+                    />
+                    <label 
+                        for="floating_outlined" 
+                        className="absolute text-xl text-black dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                    >
+                        Search
+                    </label>
+                </div>
+                <div className="mx-2">
                     <div className="dropdown inline-block relative">
-                        <button className="w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center">
+                        <button className="flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center">
                             <span className="mr-1">Search</span>
                             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
                         </button>
