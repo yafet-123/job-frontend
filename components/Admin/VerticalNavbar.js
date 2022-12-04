@@ -16,7 +16,7 @@ export function VerticalNavbar({onChange}){
     const SideBarList = [
         { title: "dashboard", icon: <FaFacebookF size={25}/>, name: "Dashboard",},
         { title: "addUser", icon: <FaFacebookF size={25}/>, name: "Add User",},
-        { title: "", icon: <FaTwitter size={25}/>, name: "Display User" },
+        { title: "displayUser", icon: <FaTwitter size={25}/>, name: "Display User" },
         { title: "addJob", icon: <FaLinkedinIn size={25}/>, name: "Add Job" },
         { title: "", icon: <FaYoutube size={25}/>, name: "Display Job" },
         { title: "addCategory", icon: <FaLinkedinIn size={25}/>, name: "Add Category" },

@@ -1,6 +1,7 @@
 import { VerticalNavbar } from "../components/Admin/VerticalNavbar";
 import { DashBoard } from "../components/Admin/DashBoard";
 import { AddUser } from "../components/Admin/AddUser";
+import { DisplayUser } from "../components/Admin/DisplayUser";
 import { AddCategory } from "../components/Admin/AddCategory";
 import { AddJob } from "../components/Admin/AddJob";
 
@@ -9,7 +10,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function getServerSideProps(){
-  const users = await prisma.User.findMany();
+  const Allusers = await prisma.User.findMany({orderBy : {user_id:'desc'}});
   const categories = await prisma.Category.findMany({orderBy : {category_id:'asc'}})
   const jobs = await prisma.Job.findMany({
     orderBy: {
@@ -43,23 +44,16 @@ export async function getServerSideProps(){
   }))
   const reversejob = Alljobs.reverse();
 
-  const AllUser = users.map((data)=>({
-      user_id:data.user_id,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      UserName:data.UserName
-  }))
-
   return{
     props:{
-      ALlusers:JSON.parse(JSON.stringify(AllUser)),
+      Allusers:JSON.parse(JSON.stringify(Allusers)),
       Allcategories:JSON.parse(JSON.stringify(categories)),
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
     }
   }
 }
 
-export default function Admin({ALlusers,Allcategories, Alljobs }) {
+export default function Admin({Allusers,Allcategories, Alljobs }) {
   const [selected , setselected] = useState("dashboard")
   function handleChange(newValue) {
       setselected(newValue);
@@ -72,6 +66,7 @@ export default function Admin({ALlusers,Allcategories, Alljobs }) {
       <div className="flex-1">
         { selected == "dashboard" && <DashBoard />}
         { selected == "addUser" && <AddUser />}
+        { selected == "displayUser" && <DisplayUser users={Allusers}/>}
         { selected == "addCategory" && <AddCategory />}
         { selected == "addJob" && <AddJob categories={Allcategories}/>}
       </div>
