@@ -1,5 +1,6 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
+import moment from 'moment';
 
 export function DisplayUser({users}) {
     console.log(users)
@@ -11,7 +12,7 @@ export function DisplayUser({users}) {
                         <div className="flex flex-col">
                             <h1 className="flex justify-between my-5 font-bold text-lg md:text-xl">
                                 Id 
-                                <span className="font-normal font-medium">{user.user_id}</span>
+                                <span className="font-normal font-medium text-left">{user.user_id}</span>
                             </h1>
 
                             <h1 className="flex justify-between my-5 font-bold text-lg md:text-xl ">
@@ -21,7 +22,9 @@ export function DisplayUser({users}) {
 
                             <h1 className="flex justify-between my-5 font-bold text-lg md:text-xl">
                                 Email 
-                                <span className="font-normal font-medium">{user.email}</span>
+                                <span className={ `font-normal font-medium ${user.email ? " " : "text-red-800"}`}>
+                                    { user.email ? user.email : "No Email Address" }
+                                </span>
                             </h1>
 
                             <h1 className="flex justify-between my-5 font-bold text-lg md:text-xl">
@@ -30,13 +33,13 @@ export function DisplayUser({users}) {
                             </h1>
                         
                             <h1 className="flex justify-between my-5 font-bold text-lg md:text-xl">
-                                Email 
-                                <span className="font-normal font-medium">{user.CreatedDate}</span>
+                                Created Date 
+                                <span className="font-normal font-medium">{moment(user.CreatedDate).utc().format('YYYY-MM-DD')}</span>
                             </h1>
 
                             <h1 className="flex justify-between my-5 font-bold text-lg md:text-xl">
-                                Password 
-                                <span className="font-normal font-medium">{user.ModifiedDate}</span>
+                                Modified Date 
+                                <span className="font-normal font-medium">{moment(user.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
                             </h1>
                         </div>
                     </div>

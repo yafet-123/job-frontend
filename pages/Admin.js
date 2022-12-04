@@ -10,7 +10,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function getServerSideProps(){
-  const Allusers = await prisma.User.findMany({orderBy : {user_id:'desc'}});
+  const Allusers = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
   const categories = await prisma.Category.findMany({orderBy : {category_id:'asc'}})
   const jobs = await prisma.Job.findMany({
     orderBy: {
