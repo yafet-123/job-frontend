@@ -6,20 +6,23 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function getStaticProps(){
+  const locations = await prisma.Location.findMany();
   const categories = await prisma.Category.findMany();
   return{
     props:{
-      categories:JSON.parse(JSON.stringify(categories))
+      categories:JSON.parse(JSON.stringify(categories)),
+      locations:JSON.parse(JSON.stringify(locations))
     }
   }
 }
 
-export default function Home({categories}) {
+export default function Home({categories, locations}) {
+  console.log(locations)
   return (
     <div className="">
       <Hero />
       <LatestJobs />
-      <SearchJobs categories={categories} />
+      <SearchJobs categories={categories} locations={locations} />
     </div>
   );
 }

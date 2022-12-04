@@ -12,20 +12,34 @@ import { AiOutlineSearch, AiOutlineFacebook } from "react-icons/ai";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-export default function SearchJobs() {
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+
+export async function getStaticProps(){
+  const categories = await prisma.Category.findMany();
+  const locations = await prisma.Location.findMany();
+  return{
+    props:{
+      categories:JSON.parse(JSON.stringify(categories)),
+      locations:JSON.parse(JSON.stringify(locations))
+    }
+  }
+}
+
+export default function SearchJobs({categories, locations}) {
   const [jobs, setJobs] = useState("latest");
   const router = useRouter()
   return (
     <section className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-gray-200">
       <div className="flex h-16 w-full mb-10 border rounded-10 px-10">
-          <div className="h-full w-full bg-white text-black pl-5 flex items-center justify-center border rounded-xl">
-            <AiOutlineSearch size={20} />
-            <input className="flex-1 outline-none pl-5 h-full text-lg" />
-            <p className="h-full text-lg md:text-2xl text-white bg-yellow-600 px-1 md:px-2 flex items-center justify-center border rounded-xl">
-              Search
-            </p>
-          </div>
+        <div className="h-full w-full bg-white text-black pl-5 flex items-center justify-center border rounded-xl">
+          <AiOutlineSearch size={20} />
+          <input className="flex-1 outline-none pl-5 h-full text-lg" />
+          <p className="h-full text-lg md:text-2xl text-white bg-yellow-600 px-1 md:px-2 flex items-center justify-center border rounded-xl">
+            Search
+          </p>
         </div>
+      </div>
       <h1 className="font-light text-2xl md:text-3xl lg:text-4xl capitalize mb-5 text-center">
         Search and Find Jobs in Ethiopia
       </h1>
@@ -70,7 +84,7 @@ export default function SearchJobs() {
 
             {jobs == "location" && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
-                {JobsByLocation.map((data, index) => (
+                {locations.map((data, index) => (
                   <button
                     className="w-full flex items-center mb-3 group hover:bg-gray-200 px-4 py-2"
                     key={index}
@@ -78,17 +92,17 @@ export default function SearchJobs() {
                     onClick = {()=>{
                       router.push({
                         pathname:"/JobsByLocation",
-                        query:{location:data.location, howmany:data.howmany, image:data.image}
+                        query:{location:data.LocationName, howmany:78, image:data.Image}
                       })
                     }}
                   >
-                    <Image src={data.image} width={50} height={50} alt="image that will be displayed" />
+                    <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
                     <div className="flex flex-col ml-10">
                       <h1 className="font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
-                        jobs in {data.location}
+                        jobs in {data.LocationName}
                       </h1>
                       <h1 className="text-left text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
-                        {data.howmany}
+                        78
                       </h1>
                     </div>
                   </button>
@@ -97,8 +111,8 @@ export default function SearchJobs() {
             )}
 
             {jobs == "category" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
-                {LatestJobsList.map((data, index) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
+                {categories.map((data, index) => (
                   <button
                     className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2"
                     key={index}
@@ -110,8 +124,8 @@ export default function SearchJobs() {
                       })
                     }}
                   >
-                    <h1 className="font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
-                      Accounting finance
+                    <h1 className="text-left font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
+                      {data.CategoryName}
                     </h1>
                     <h1 className="px-5 py-2 border rounded-xl border-gray-200 text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
                       89

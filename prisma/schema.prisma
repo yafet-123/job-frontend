@@ -24,8 +24,7 @@ model Job {
   job_id          Int           @id @default(autoincrement())
   CompanyName     String        @db.VarChar(255)
   Image           String?       @db.VarChar(255)
-  JobsType        String        @db.VarChar(255)
-  Location        String        @db.VarChar(255)
+  JobsType        String        @db.VarChar(255)          
   CareerLevel     String        @db.VarChar(255)
   EmploymentType  String        @db.VarChar(255)
   Salary          String        @db.VarChar(255)
@@ -36,13 +35,25 @@ model Job {
   CreatedDate     DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate    DateTime?     @default(now()) @db.Timestamptz(6)
   user_id         Int
+  location_id     Int
   User            User          @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  Location        Location      @relation(fields: [location_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction)
   JobCategory     JobCategory[]
+}
+
+model Location {
+  location_id     Int           @id @default(autoincrement())
+  LocationName    String        @db.VarChar(255)
+  Image           String?       @db.VarChar(255)
+  CreatedDate     DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate    DateTime?     @default(now()) @db.Timestamptz(6)
+  Job          Job[]
 }
 
 model User {
   user_id      Int           @id @default(autoincrement())
   UserName     String        @unique @db.VarChar(255)
+  email        String?       @db.VarChar(255)
   Password     String        @db.VarChar(255)
   CreatedDate  DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate DateTime?     @default(now()) @db.Timestamptz(6)

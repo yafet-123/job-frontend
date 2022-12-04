@@ -5,9 +5,11 @@ import { BiCategory } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
 import { useState } from "react";
 import { JobsByLocation } from "../data/JobsByLocation";
-export function SearchJobs({categories}) {
+import Image from 'next/image'
+
+
+export function SearchJobs({categories, locations}) {
   const [jobs, setJobs] = useState("category");
-  console.log(categories);
   return (
     <div className="flex flex-col w-full h-full py-20 px-0 md:px-32">
       <h1 className="font-light text-2xl md:text-3xl lg:text-4xl capitalize mb-5 text-center md:text-left px-7 md:px-0">
@@ -35,18 +37,28 @@ export function SearchJobs({categories}) {
               </div>
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
-                {JobsByLocation.map((data, index) => (
-                  <div
-                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2"
+                {locations.map((data, index) => (
+                  <button
+                    className="w-full flex items-center mb-3 group hover:bg-gray-200 px-4 py-2"
                     key={index}
+                    type = "button"
+                    onClick = {()=>{
+                      router.push({
+                        pathname:"/JobsByLocation",
+                        query:{location:data.LocationName, howmany:78, image:data.Image}
+                      })
+                    }}
                   >
-                    <h1 className="font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
-                      jobs in {data.location}
-                    </h1>
-                    <h1 className="px-5 py-2 border rounded-xl border-gray-200 text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
-                      {data.howmany}
-                    </h1>
-                  </div>
+                    <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                    <div className="flex flex-col ml-10">
+                      <h1 className="font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
+                        jobs in {data.LocationName}
+                      </h1>
+                      <h1 className="text-left text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
+                        98
+                      </h1>
+                    </div>
+                  </button>
                 ))}
               </div>
             )}
