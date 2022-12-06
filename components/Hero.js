@@ -13,9 +13,9 @@ export function Hero() {
           Better Job. Better Talent
         </h1>
         <div className="flex mb-2">
-          <button className={`text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "job" ? " bg-green-400 " : "" } p-4  rounded-xl`} onClick={() => setsearch("job")}>Jobs</button>
-          <button className={`text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "companies" ? " bg-yellow-400 " : "" } p-4 rounded-xl`} onClick={() => setsearch("companies")}>Companies</button>
-          <button className={`text-xl md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} onClick={() => router.push("/AdvanceSearch")}>Advance Search</button>
+          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "job" ? " bg-green-400 " : "" } p-4  rounded-xl`} onClick={() => setsearch("job")}>Jobs</button>
+          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "companies" ? " bg-yellow-400 " : "" } p-4 rounded-xl`} onClick={() => setsearch("companies")}>Companies</button>
+          <button className={`text-black text-xl md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} onClick={() => router.push("/AdvanceSearch")}>Advance Search</button>
         </div>
 
         { search == "job" ? (
@@ -24,7 +24,7 @@ export function Hero() {
                 <AiOutlineSearch size={20} />
               </div>
 
-              <input className="flex-1 outline-none pl-1 md:pl-6 text-lg" />
+              <input className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
               <button className="text-lg md:text-2xl text-white bg-green-400 px-2 md:px-3 flex items-center justify-center">
                 Search
               </button>
@@ -36,7 +36,7 @@ export function Hero() {
                 <AiOutlineSearch size={20} />
               </div>
 
-              <input className="flex-1 outline-none pl-1 md:pl-6 text-lg" />
+              <input className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
               <p className="text-lg md:text-2xl text-white bg-yellow-400 px-2 md:px-3 flex items-center justify-center">
                 Search
               </p>
