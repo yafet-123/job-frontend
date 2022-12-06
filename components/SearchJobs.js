@@ -26,10 +26,10 @@ export function SearchJobs({categories, locations}) {
                     className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2"
                     key={index}
                   >
-                    <h1 className="font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
+                    <h1 className="text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
                       {data.CategoryName}
                     </h1>
-                    <h1 className="px-5 py-2 border rounded-xl border-gray-200 text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
+                    <h1 className="text-black dark:text-white px-5 py-2 border rounded-xl border-gray-200 text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
                       89
                     </h1>
                   </div>
@@ -51,10 +51,10 @@ export function SearchJobs({categories, locations}) {
                   >
                     <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
                     <div className="flex flex-col ml-10">
-                      <h1 className="font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
+                      <h1 className="text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
                         jobs in {data.LocationName}
                       </h1>
-                      <h1 className="text-left text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
+                      <h1 className="text-black dark:text-white text-left text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
                         98
                       </h1>
                     </div>
@@ -70,8 +70,8 @@ export function SearchJobs({categories, locations}) {
             onClick={(e) => setJobs("category")}
             className={
               jobs == "category"
-                ? "py-3 bg-white px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white -ml-1"
-                : "py-3 bg-gray-200 px-6 border border-slate-300 flex items-center hover:bg-white hover:text-blue-400"
+                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-slate-700 -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-800 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
             <BiCategory size={20} />
@@ -83,8 +83,8 @@ export function SearchJobs({categories, locations}) {
             onClick={(e) => setJobs("location")}
             className={
               jobs == "location"
-                ? "py-3 bg-white px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white -ml-1"
-                : "py-3 bg-gray-200 px-6 border border-slate-300 flex items-center hover:bg-white hover:text-blue-400"
+                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-slate-800 -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-800 px-6 border border-slate-300 dark:border-slate-800 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
             <GoLocation size={20} />
