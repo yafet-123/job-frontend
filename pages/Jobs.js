@@ -11,7 +11,6 @@ import { GovernmentJobs } from "../data/GovernmentJobs";
 import { AiOutlineSearch, AiOutlineFacebook } from "react-icons/ai";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
@@ -30,22 +29,23 @@ export default function SearchJobs({categories, locations}) {
   const [jobs, setJobs] = useState("latest");
   const router = useRouter()
   return (
-    <section className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-gray-200">
-      <div className="flex h-16 w-full mb-10 border rounded-10 px-10">
-        <div className="h-full w-full bg-white text-black pl-5 flex items-center justify-center border rounded-xl">
-          <AiOutlineSearch size={20} />
-          <input className="flex-1 outline-none pl-5 h-full text-lg" />
-          <p className="h-full text-lg md:text-2xl text-white bg-yellow-600 px-1 md:px-2 flex items-center justify-center border rounded-xl">
-            Search
-          </p>
-        </div>
+    <section className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-gray-200 dark:bg-slate-700">
+      <div className="flex justify-between items-center h-16 w-full mb-10 px-10">
+        <h1 className="text-black dark:text-white font-light text-2xl md:text-3xl lg:text-4xl capitalize mb-5 text-center">
+          Search and Find Jobs in Ethiopia
+        </h1>
+
+        <button 
+          className={`text-black dark:text-white text-black text-xl md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} 
+          onClick={() => router.push("/AdvanceSearch")}
+        >
+          Advance Search
+        </button>
       </div>
-      <h1 className="font-light text-2xl md:text-3xl lg:text-4xl capitalize mb-5 text-center">
-        Search and Find Jobs in Ethiopia
-      </h1>
+  
       <hr className="w-full bg-gray-200 mb-5" />
-      <div className="flex w-full h-full lg:h-[45rem] bg-white border rounded-xl p-2">
-        <div className="flex-1 border rounded-xl shadow-2xl shadow-sky-200 border-slate-300 p-5">
+      <div className="flex w-full h-full lg:h-[45rem] bg-white dark:bg-slate-800 border rounded-xl p-2">
+        <div className="flex-1 border rounded-xl shadow-2xl shadow-sky-200 border-slate-300 dark:border-slate-800 p-5">
           <div className="w-full h-full overflow-y-scroll">
             {jobs == "latest" && (
               <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5 py-10">
@@ -62,18 +62,18 @@ export default function SearchJobs({categories, locations}) {
                     }}
                   >
                     <div className="flex flex-col">
-                      <h1 className="font-normal text-lg text-blue-500 group-hover:text-orange-500 text-left">
+                      <h1 className="font-normal text-lg text-blue-500 dark:text-white  group-hover:text-orange-500 text-left">
                         {data.job}
                       </h1>
-                      <h1 className="font-light text-sm group-hover:text-orange-500 text-left">
+                      <h1 className="font-light text-sm text-black dark:text-white group-hover:text-orange-500 text-left">
                         {data.company}
                       </h1>
                     </div>
                     <div className="flex flex-col">
-                      <h1 className="font-light text-xs md:text-lg text-right group-hover:text-orange-500">
+                      <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-orange-500">
                         {data.createDate}
                       </h1>
-                      <h1 className="font-light text-xs md:text-lg text-right group-hover:text-orange-500">
+                      <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-orange-500">
                         {data.location}
                       </h1>
                     </div>
@@ -98,10 +98,10 @@ export default function SearchJobs({categories, locations}) {
                   >
                     <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
                     <div className="flex flex-col ml-10">
-                      <h1 className="font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
+                      <h1 className="text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
                         jobs in {data.LocationName}
                       </h1>
-                      <h1 className="text-left text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
+                      <h1 className="text-black dark:text-white text-left text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
                         78
                       </h1>
                     </div>
@@ -124,10 +124,10 @@ export default function SearchJobs({categories, locations}) {
                       })
                     }}
                   >
-                    <h1 className="text-left font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
+                    <h1 className="text-left text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
                       {data.CategoryName}
                     </h1>
-                    <h1 className="px-5 py-2 border rounded-xl border-gray-200 text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
+                    <h1 className="px-5 py-2 text-black dark:text-white border rounded-xl border-gray-200 text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
                       89
                     </h1>
                   </button>
@@ -141,8 +141,8 @@ export default function SearchJobs({categories, locations}) {
             onClick={(e) => setJobs("latest")}
             className={
               jobs == "latest"
-                ? "py-3 bg-white px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white -ml-1"
-                : "py-3 bg-gray-200 px-6 border border-slate-300 flex items-center hover:bg-white hover:text-blue-400"
+                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
             <FaClock size={20} />
@@ -155,8 +155,8 @@ export default function SearchJobs({categories, locations}) {
             onClick={(e) => setJobs("category")}
             className={
               jobs == "category"
-                ? "py-3 bg-white px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white -ml-1"
-                : "py-3 bg-gray-200 px-6 border border-slate-300 flex items-center hover:bg-white hover:text-blue-400"
+                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
             <BiCategory size={20} />
@@ -168,8 +168,8 @@ export default function SearchJobs({categories, locations}) {
             onClick={(e) => setJobs("location")}
             className={
               jobs == "location"
-                ? "py-3 bg-white px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white -ml-1"
-                : "py-3 bg-gray-200 px-6 border border-slate-300 flex items-center hover:bg-white hover:text-blue-400"
+                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
             <GoLocation size={20} />

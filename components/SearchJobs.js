@@ -70,8 +70,8 @@ export function SearchJobs({categories, locations}) {
             onClick={(e) => setJobs("category")}
             className={
               jobs == "category"
-                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-slate-700 -ml-1"
-                : "py-3 bg-gray-200 dark:bg-slate-800 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
+                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
             <BiCategory size={20} />
@@ -83,8 +83,8 @@ export function SearchJobs({categories, locations}) {
             onClick={(e) => setJobs("location")}
             className={
               jobs == "location"
-                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-slate-800 -ml-1"
-                : "py-3 bg-gray-200 dark:bg-slate-800 px-6 border border-slate-300 dark:border-slate-800 flex items-center hover:bg-white hover:text-blue-400"
+                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-800 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
             <GoLocation size={20} />
