@@ -27,13 +27,13 @@ export default function AdvanceSearch() {
   }
 
   return (
-    <section className="flex flex-col w-full h-screen bg-gray-200">
+    <section className="flex flex-col w-full h-screen bg-gray-200 dark:bg-slate-700">
       <div className="max-w-2xl mx-auto mt-10 w-full px-10 md:px-0">
-      	<div className="flex h-16 w-full border rounded-xl ">
+      	<div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 border rounded-2xl">
           <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
             <AiOutlineSearch size={20} />
           </div>
-          <input className="flex-1 outline-none pl-1 md:pl-6 text-lg" />
+          <input className="bg-white dark:bg-slate-800 flex-1 outline-none pl-1 md:pl-6 text-lg" />
         </div>
 
         <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-10">
