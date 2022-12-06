@@ -22,7 +22,7 @@ export default function Courses() {
                   query:{title:data.title}
                 })
               }}
-	    				className="py-3 border rounded-3xl w-52 text-xl font-bold bg-white"
+	    				className="py-3 border rounded-3xl w-52 text-xl font-bold bg-white text-black"
 	    			>
 	    				Learn {data.title}
 	    			</button>
