@@ -2,17 +2,14 @@ import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
-import { BsFillPersonLinesFill } from "react-icons/bs";
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube} from "react-icons/fa";
+import { BsFillPersonLinesFill, BsMoonStars, BsSun } from "react-icons/bs";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useTheme } from 'next-themes';
 
 export function Navbar() {
+  const { theme, setTheme } = useTheme();
   const [nav, setNav] = useState(false);
   const [shadow, setShadow] = useState(false);
   const [NavabarText, setNavabarText] = useState("Home");
@@ -71,6 +68,18 @@ export function Navbar() {
               </Link>
             ))}
           </div>
+
+          <button
+            className="w-8 h-8 bg-blue-100 rounded-lg dark:bg-slate-800 flex items-center justify-center hover:ring-2 ring-blue-400 transition-all duration-300 focus:outline-none"
+            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            aria-label="Toggle Dark Mode"
+          >
+            {theme === 'light' ? (
+              <BsSun className="text-blue-500 w-5 h-5" />
+            ) : (
+              <BsMoonStars className="text-blue-400 w-5 h-5" />
+            )}
+          </button>
         </div>
         
         <div onClick={handleNav} className="lg:hidden float-right">
