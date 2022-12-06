@@ -46,7 +46,7 @@ export function Navbar() {
   ];
 
   return (
-    <div className={ shadow ? "bg-gray-200 w-full h-24 py-5 fixed z-50 shadow-xl z-[100] ease-in-out duration-300": "bg-white w-full h-24 py-5"}>
+    <div className={ shadow ? "bg-gray-200 dark:bg-slate-800 w-full h-24 py-5 fixed z-50 shadow-xl z-[100] ease-in-out duration-300": "bg-white dark:bg-slate-800 w-full h-24 py-5"}>
       <div className="flex flex-row justify-between items-center px-11 md:px-20">
         <Image src="/images/vercel.svg" width={100} height={60} alt="hulu jobs" />
         <div className="flex flex-1 flex-row items-center">
@@ -59,8 +59,8 @@ export function Navbar() {
                     router.pathname == navbar.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == navbar.path ) || 
                     ( router.pathname == "/JobsByCategory" && "/Jobs" == navbar.path ) || ( router.pathname == "/JobsByLocation" && "/Jobs" == navbar.path ) ||
                     ( router.pathname == "/Course" && "/Courses" == navbar.path )
-                      ? "border-b-4 border-blue-800 ml-20 text-2xl font-light text-black"
-                      : "ml-20 text-2xl font-light text-black hover:border-b-4 border-blue-800"
+                      ? "border-b-4 border-blue-800 dark:border-white ml-20 text-2xl font-light text-black dark:text-white"
+                      : "ml-20 text-2xl font-light text-black dark:text-white hover:border-b-4 border-blue-800"
                   }
                 >
                   {navbar.text}
@@ -69,19 +69,18 @@ export function Navbar() {
             ))}
           </div>
 
-          <button
-            className="w-8 h-8 bg-blue-100 rounded-lg dark:bg-slate-800 flex items-center justify-center hover:ring-2 ring-blue-400 transition-all duration-300 focus:outline-none"
-            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-            aria-label="Toggle Dark Mode"
-          >
-            {theme === 'light' ? (
-              <BsSun className="text-blue-500 w-5 h-5" />
-            ) : (
-              <BsMoonStars className="text-blue-400 w-5 h-5" />
-            )}
-          </button>
         </div>
-        
+        <button
+          className="hidden lg:flex dark:bg-slate-800 flex items-center justify-center transition-all duration-300 focus:outline-none"
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          aria-label="Toggle Dark Mode"
+        >
+          {theme === 'light' ? (
+            <BsSun className="text-blue-500 w-8 h-8" />
+          ) : (
+            <BsMoonStars className="text-blue-400 w-8 h-8" />
+          )}
+        </button>
         <div onClick={handleNav} className="lg:hidden float-right">
           <AiOutlineMenu size={30} />
         </div>
@@ -96,8 +95,8 @@ export function Navbar() {
         <div
           className={
             nav
-              ? " fixed left-0 top-0 w-[80%] sm:w-[60%] md:w-[45%] h-screen bg-white py-5 px-2 ease-in duration-500"
-              : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
+              ? "dark:bg-slate-800 fixed left-0 top-0 w-[80%] sm:w-[60%] md:w-[45%] h-screen bg-white py-5 px-2 ease-in duration-500"
+              : "dark:bg-slate-800 fixed left-[-100%] top-0 p-10 ease-in duration-500"
           }
         >
           <div>
@@ -113,11 +112,23 @@ export function Navbar() {
                   />
                 </a>
               </Link>
+
+              <button
+                className="dark:bg-slate-800 flex items-center justify-center transition-all duration-300 focus:outline-none"
+                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                aria-label="Toggle Dark Mode"
+              >
+                {theme === 'light' ? (
+                  <BsSun className="text-blue-500 w-8 h-8" />
+                ) : (
+                  <BsMoonStars className="text-blue-400 w-8 h-8" />
+                )}
+              </button>
               <div
                 onClick={handleNav}
-                className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer"
+                className="dark:text-white rounded-full shadow-lg shadow-gray-400 p-35 cursor-pointer"
               >
-                <AiOutlineClose size={10} />
+                <AiOutlineClose size={20} />
               </div>
             </div>
           </div>
@@ -129,8 +140,8 @@ export function Navbar() {
                     onClick={() => setNav(false)}
                     className={
                       router.pathname == navbar.path
-                        ? "border-b-4 border-blue-800 ml-2 text-lg font-light text-black w-[40%] mb-5"
-                        : "ml-2 text-lg font-light text-black hover:border-b-4 border-blue-800 w-[40%] mb-5"
+                        ? "border-b-4 border-blue-800 dark:border-white ml-2 text-lg font-light text-black dark:text-white w-[40%] mb-5"
+                        : "ml-2 text-lg font-light text-black dark:text-white hover:border-b-4 border-blue-800 dark:border-white w-[40%] mb-5"
                       }
                   >
                     {navbar.text}
