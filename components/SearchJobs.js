@@ -11,13 +11,13 @@ import Image from 'next/image'
 export function SearchJobs({categories, locations}) {
   const [jobs, setJobs] = useState("category");
   return (
-    <div className="flex flex-col w-full h-full py-20 px-0 md:px-32">
+    <div className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-white dark:bg-slate-700">
       <h1 className="font-light text-2xl md:text-3xl lg:text-4xl capitalize mb-5 text-center md:text-left px-7 md:px-0">
         Search and Find Jobs in Ethiopia
       </h1>
       <hr className="w-full bg-gray-200 mb-5" />
       <div className="flex w-full h-full lg:h-[45rem] p-2">
-        <div className="flex-1 border rounded-xl shadow-2xl shadow-sky-200 border-slate-300 p-5">
+        <div className="flex-1 border rounded-xl shadow-2xl shadow-sky-200 border-slate-300 p-5 bg-white dark:bg-slate-800">
           <div className="w-full h-full overflow-y-scroll">
             {jobs == "category" ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
