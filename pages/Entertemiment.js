@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player'
 import { AdeyMirafOne } from '../data/Entertemiment/AdeyMirafOne'
 export default function Entertemiment(){
 	return(
-		<section className="flex flex-col w-full h-full bg-gray-300">
+		<section className="flex flex-col w-full h-full bg-gray-300 dark:bg-slate-700">
 			<div className="flex flex-col p-5 pb-20">
 				<div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
 					{AdeyMirafOne.map((data,index)=>(
