@@ -17,7 +17,7 @@ export function DashBoard() {
     
 
     async function handleSearch(e){
-        const data = await axios.post(`api/searchPatient`,{
+        const data = await axios.post(`api/searchAdmin`,{
             "searchName": getSearchValue,
             "type": e
         }).then(function (response) {
@@ -27,19 +27,19 @@ export function DashBoard() {
         });
     }
     return (
-        <div className="">
-            <div className="flex items-center justify-center mt-10">
-                <div className="relative">
+        <div className="max-w-7xl mx-auto mt-10">
+            <div className="flex my-10 w-full">
+                <div className="relative flex-1">
                     <input 
                         id="search" 
                         type="text" 
-                        className="block w-96 px-3 text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " 
+                        className="block w-full px-3 text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " 
                         value={getSearchValue}
                         onChange={(e) => setgetSearchValue(e.target.value)}
                     />
                     <label 
-                        for="floating_outlined" 
-                        className="absolute text-xl text-black dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        htmlFor="floating_outlined" 
+                        className="absolute text-2xl text-black dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                     >
                         Search
                     </label>

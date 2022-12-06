@@ -13,6 +13,8 @@
     "ace-builds": "^1.12.5",
     "axios": "^1.2.0",
     "bcryptjs": "^2.4.3",
+    "http-status-codes": "^2.2.0",
+    "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
     "next": "12.3.1",
     "react": "18.2.0",

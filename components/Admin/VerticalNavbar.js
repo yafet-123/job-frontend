@@ -29,8 +29,8 @@ export function VerticalNavbar({onChange}){
     };
     console.log(sideBar)
 	return(
-            <div className={`flex ${sideBar ? "w-24" : "w-96"}`}>
-                <nav className="w-full h-screen flex flex-col h-full py-8 px-4 overflow-auto bg-gray-400">
+            <div className={`flex h-screen ${sideBar ? "w-24" : "w-96"}`}>
+                <nav className="w-full h-screen flex flex-col py-8 px-4 overflow-auto bg-gray-400">
                     <div className="flex justify-between ml-5">
                         <h1 className={`text-2xl font-bold text-black ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
                         <button 

@@ -10,7 +10,7 @@ export function LatestJobs() {
           <AiOutlineClockCircle size={30} />
           <span className="ml-5">Latest Jobs</span>
         </div>
-        <Link href="">
+        <Link href="/Jobs">
           <a className="font-bold text-lg md:text-xl lg:text-2xl text-white p-4 bg-blue-700 capitalize border rounded-2xl">
             view all jobs
           </a>

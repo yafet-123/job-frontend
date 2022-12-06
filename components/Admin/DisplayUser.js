@@ -28,11 +28,6 @@ export function DisplayUser({users}) {
                             </h1>
 
                             <h1 className="flex justify-between my-5 font-bold text-lg md:text-xl">
-                                Password 
-                                <span className="font-normal font-medium">{user.Password}</span>
-                            </h1>
-                        
-                            <h1 className="flex justify-between my-5 font-bold text-lg md:text-xl">
                                 Created Date 
                                 <span className="font-normal font-medium">{moment(user.CreatedDate).utc().format('YYYY-MM-DD')}</span>
                             </h1>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
+import axios from 'axios';
 
 export function AddUser() {
     const [UserName, setUserName] =useState("")
@@ -7,10 +8,11 @@ export function AddUser() {
     const [password,setpassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
 
-    async function handleSearch(e){
-        const data = await axios.post(`api/searchPatient`,{
-            "searchName": getSearchValue,
-            "type": e
+    async function register(){
+        const data = await axios.post(`api/registerUser`,{
+            'UserName':UserName,
+            'Password':password,
+            'email':email
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -31,7 +33,7 @@ export function AddUser() {
                         onChange={(e) => setUserName(e.target.value)}
                     />
                     <label 
-                        for="floating_outlined" 
+                        htmlFor="floating_outlined" 
                         className="absolute text-xl text-black dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                     >
                         UserName
@@ -47,7 +49,7 @@ export function AddUser() {
                         onChange={(e) => setemail(e.target.value)}
                     />
                     <label 
-                        for="floating_outlined" 
+                        htmlFor="floating_outlined" 
                         className="absolute text-xl text-black dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                     >
                         Email
@@ -63,7 +65,7 @@ export function AddUser() {
                         onChange={(e) => setpassword(e.target.value)}
                     />
                     <label 
-                        for="floating_outlined" 
+                        htmlFor="floating_outlined" 
                         className="absolute text-xl text-black dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                     >
                         Password
@@ -79,7 +81,7 @@ export function AddUser() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <label 
-                        for="floating_outlined" 
+                        htmlFor="floating_outlined" 
                         className="absolute text-xl text-black dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                     >
                         Confirm Password
@@ -88,6 +90,7 @@ export function AddUser() {
             </div>
 
             <button 
+                onClick={()=> register()}
                 className="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl px-4 py-4 text-center inline-flex items-center"
             >
                 Submit
