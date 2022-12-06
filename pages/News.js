@@ -5,8 +5,8 @@ import { NewsTemplate } from "../data/NewsTemplate.js"
 
 export default function News() {
   return (
-    <section className="flex flex-col w-full h-full px-0 md:px-24 bg-gray-200">
-      <div className="bg-white py-10 px-10 w-full h-full">      
+    <section className="flex flex-col w-full h-full px-0 md:px-24 bg-gray-200 dark:bg-slate-700">
+      <div className="bg-white dark:bg-slate-800 py-10 px-10 w-full h-full">      
         <Image 
           src="/images/news.jpg" 
           width={2000} 
@@ -30,7 +30,7 @@ export default function News() {
                 <h1 className="text-left w-full uppercase text-3xl font-medium my-5">
                   {data.title}
                 </h1>
-                <p className="font-sans text-black text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full h-40 text-ellipsis overflow-hidden">
+                <p className="font-sans text-black dark:text-white text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full h-40 text-ellipsis overflow-hidden">
                   {data.description}
                 </p>
                 <button className="text-center capitalize text-lg font-bold p-5 bg-blue-700 hover:bg-gray-200 border rounded-xl w-1/2 text-white hover:text-blue-700">
