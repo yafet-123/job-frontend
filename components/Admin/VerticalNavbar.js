@@ -30,12 +30,12 @@ export function VerticalNavbar({onChange}){
     console.log(sideBar)
 	return(
             <div className={`flex h-screen ${sideBar ? "w-24" : "w-96"}`}>
-                <nav className="w-full h-screen flex flex-col py-8 px-4 overflow-auto bg-gray-400">
+                <nav className="w-full h-screen flex flex-col py-8 px-4 overflow-auto bg-gray-400 dark:bg-slate-800">
                     <div className="flex justify-between ml-5">
-                        <h1 className={`text-2xl font-bold text-black ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
+                        <h1 className={`text-2xl font-bold text-black dark:text-white ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
                         <button 
                             onClick={handleSideBar} 
-                            className={`text-black hover:text-white focus:outline-none ${ sideBar ? "flex justify-center items-center" : ""} `}
+                            className={`text-black dark:text-white hover:text-white focus:outline-none ${ sideBar ? "flex justify-center items-center" : ""} `}
                         >
                             <AiOutlineMenu size={35} />
                         </button>
@@ -49,7 +49,7 @@ export function VerticalNavbar({onChange}){
                                             onChange(side.title)
                         
                                         }}
-                                        className="w-full flex items-center p-4 text-xl p-4 text-black hover:bg-white rounded-xl"
+                                        className="w-full flex items-center p-4 text-xl p-4 text-black dark:text-white hover:bg-white dark:hover:text-slate-800 rounded-xl"
                                     >
                                             {side.icon}
                                             <span className={`ml-4 font-semibold ${sideBar ? 'hidden' : 'flex' } `}>

@@ -69,7 +69,7 @@ export default function Admin({Allusers,Allcategories, Alljobs }) {
 
   console.log(Allcategories)
   return (
-    <div className="flex bg-gray-200">
+    <div className="flex bg-gray-200 dark:bg-slate-700">
       <VerticalNavbar onChange={handleChange} />
       <div className="flex-1">
         { selected == "dashboard" && <DashBoard />}
