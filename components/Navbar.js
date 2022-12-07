@@ -7,6 +7,7 @@ import { BsFillPersonLinesFill, BsMoonStars, BsSun } from "react-icons/bs";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTheme } from 'next-themes';
+import ThemeToggler from './ThemeToggler';
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -70,17 +71,7 @@ export function Navbar() {
           </div>
 
         </div>
-        <button
-          className="hidden lg:flex dark:bg-slate-800 flex items-center justify-center transition-all duration-300 focus:outline-none"
-          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          aria-label="Toggle Dark Mode"
-        >
-          {theme === 'light' ? (
-            <BsSun className="text-blue-500 w-8 h-8" />
-          ) : (
-            <BsMoonStars className="text-blue-400 w-8 h-8" />
-          )}
-        </button>
+        <ThemeToggler />
         <div onClick={handleNav} className="lg:hidden float-right">
           <AiOutlineMenu size={30} />
         </div>
@@ -113,17 +104,7 @@ export function Navbar() {
                 </a>
               </Link>
 
-              <button
-                className="dark:bg-slate-800 flex items-center justify-center transition-all duration-300 focus:outline-none"
-                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                aria-label="Toggle Dark Mode"
-              >
-                {theme === 'light' ? (
-                  <BsSun className="text-blue-500 w-8 h-8" />
-                ) : (
-                  <BsMoonStars className="text-blue-400 w-8 h-8" />
-                )}
-              </button>
+              <ThemeToggler />
               <div
                 onClick={handleNav}
                 className="dark:text-white rounded-full shadow-lg shadow-gray-400 p-35 cursor-pointer"
