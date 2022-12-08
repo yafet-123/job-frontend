@@ -41,7 +41,7 @@ export function DashBoard() {
     return (
         <div className="mt-10 mx-10">
             <div className="max-w-7xl mx-auto ">
-                <div className="flex my-10 w-full">
+                <div className="flex flex-col lg:flex-row my-10 w-full">
                     <div className="relative flex-1">
                         <input 
                             id="search" 
@@ -57,7 +57,7 @@ export function DashBoard() {
                             Search
                         </label>
                     </div>
-                    <div className="mx-2">
+                    <div className="mx-2 mt-5 lg:mt-0 flex items-center justify-center">
                         <div className="dropdown inline-block relative">
                             <button className="flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center">
                                 <span className="mr-1">Search</span>
@@ -128,6 +128,8 @@ export function DashBoard() {
                     ))}
                 </div>
             </div> }
+
+
         </div>
   );
 }
