@@ -20,7 +20,7 @@ export function VerticalNavbar({onChange}){
         { title: "addJob", icon: <FaLinkedinIn size={25}/>, name: "Add Job" },
         { title: "", icon: <FaYoutube size={25}/>, name: "Display Job" },
         { title: "addCategory", icon: <FaLinkedinIn size={25}/>, name: "Add Category" },
-        { title: "", icon: <FaYoutube size={25}/>, name: "Display Category" },
+        { title: "displayCategory", icon: <FaYoutube size={25}/>, name: "Display Category" },
     ];
 	const router = useRouter();
     const [sideBar , setsideBar] = useState(true);

@@ -3,7 +3,7 @@ import { useState,useEffect, useContext} from 'react'
 import moment from 'moment';
 
 export function DisplayCategory({categories}) {
-    console.log(users)
+    console.log(categories)
     return (
         <div className="m-2 lg:m-20">
             <div className="overflow-auto rounded-lg shadow hidden md:block">
@@ -53,26 +53,26 @@ export function DisplayCategory({categories}) {
                         </tbody>
                     </table>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {categories.map((data,index)=>(
-                        <div class="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                        <div className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                             <div>
-                                <p class="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
+                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
                             </div>
-                            <div class="text-lg text-gray-700 dark:text-white font-bold">
+                            <div className="text-lg text-gray-700 dark:text-white font-bold">
                                 Category Name : {data.CategoryName}
                             </div>
-                            <div class="text-lg text-gray-700 dark:text-white font-bold">
+                            <div className="text-lg text-gray-700 dark:text-white font-bold">
                                 Created By : {data.userName}
                             </div>
-                            <div class="text-sm text-black dark:text-white">
+                            <div className="text-sm text-black dark:text-white">
                               createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
                             </div>
-                            <div class="text-sm text-black dark:text-white">
+                            <div className="text-sm text-black dark:text-white">
                               Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                             </div>
 
-                            <div class="flex items-center justify-between text-sm">
+                            <div className="flex items-center justify-between text-sm">
                                 <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit
                                 </button>

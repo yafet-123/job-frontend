@@ -4,6 +4,7 @@ import { AddUser } from "../components/Admin/AddUser";
 import { DisplayUser } from "../components/Admin/DisplayUser";
 import { AddCategory } from "../components/Admin/AddCategory";
 import { AddJob } from "../components/Admin/AddJob";
+import { DisplayCategory } from "../components/Admin/DisplayCategory";
 
 import { useState,useEffect} from 'react'
 import { PrismaClient } from '@prisma/client'
@@ -76,7 +77,7 @@ export default function Admin({Allusers,Allcategories, Alljobs }) {
         { selected == "addUser" && <AddUser />}
         { selected == "displayUser" && <DisplayUser users={Allusers}/>}
         { selected == "addCategory" && <AddCategory />}
-        { selected == "displayCategory" && <AddCategory categories={Allcategories}/>}
+        { selected == "displayCategory" && <DisplayCategory categories={Allcategories}/>}
         { selected == "addJob" && <AddJob categories={Allcategories}/>}
       </div>
     </div>
