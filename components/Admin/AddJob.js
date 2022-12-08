@@ -12,7 +12,8 @@ export function AddJob({categories}) {
     const [EmploymentType, setEmploymentType] = useState("")
     const [Salary, setSalary] = useState("")
     const [Apply, setApply] = useState("")
-
+    const options = [{name: 'Option 1️⃣', id: 1},{name: 'Option 2️⃣', id: 2}]
+    console.log(categoryId)
     return (
         <div className="max-w-7xl mx-auto mt-10">
             <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">Add Job</h1>
@@ -145,10 +146,10 @@ export function AddJob({categories}) {
                     onSearch={function noRefCheck(){}}
                     onSelect={(e)=>{
                         e.map((data,index)=>(
-                           setCategoryId([...categoryId, data.id])
+                           setCategoryId([...categoryId, data.category_id])
                         ))
                     }}
-                    options={categories}
+                    options={options}
                 />
             </div>
 
