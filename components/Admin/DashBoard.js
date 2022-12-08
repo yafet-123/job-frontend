@@ -2,6 +2,7 @@ import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import axios from 'axios';
 import moment from 'moment';
+import Image from 'next/image'
 
 export function DashBoard() {
     const [getSearchValue,setgetSearchValue] = useState("")
@@ -234,9 +235,9 @@ export function DashBoard() {
                                     </td>
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {data.LocationName}
+                                        <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
                                     </td>
-                                    
+
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                                     </td>
@@ -267,11 +268,13 @@ export function DashBoard() {
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {searchValue.map((data,index)=>(
                         <div class="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
-                            <div>
-                                <p class="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
-                            </div>
-                            <div class="text-lg text-gray-700 dark:text-white font-bold">
-                                Category Name : {data.CategoryName}
+                            <div class="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                                <div>
+                                    <p class="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
+                                </div>
+                                <div class="text-lg text-gray-700 dark:text-white font-bold">
+                                    Category Name : {data.LocationName}
+                                </div
                             </div>
                             <div class="text-lg text-gray-700 dark:text-white font-bold">
                                 Created By : {data.userName}
