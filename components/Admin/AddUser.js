@@ -23,7 +23,7 @@ export function AddUser() {
     return (
         <div className="max-w-7xl mx-auto mt-10">
             <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">Add User</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-10 mx-2">
                 <div className="relative">
                     <input 
                         id="username" 

@@ -5,7 +5,7 @@ import moment from 'moment';
 export function DisplayUser({users}) {
     console.log(users)
     return (
-        <div className="m-20">
+        <div className="m-2 lg:m-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 { users.map((user,index)=>(
                     <div className="bg-white dark:bg-slate-800 p-5 border rounded-2xl" key={index}>
