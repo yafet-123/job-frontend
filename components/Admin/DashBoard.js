@@ -110,20 +110,20 @@ export function DashBoard() {
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {searchValue.map((data,index)=>(
                         <div class="bg-white space-y-3 p-4 rounded-lg shadow">
-                        <div class="flex items-center justify-between text-sm">
-                          <div>
-                            <p class="text-lg text-blue-500 font-bold hover:underline">{data.user_id}</p>
-                          </div>
-                          <div class="text-lg text-gray-700 font-bold">
-                            User Name : {data.UserName}
-                          </div>
-                        </div>
-                        <div class="text-sm text-gray-700">
-                          Kring New Fit office chair, mesh + PU, black
-                        </div>
-                        <div class="text-sm font-medium text-black">
-                          $200.00
-                        </div>
+                            <div class="flex items-center justify-between text-sm">
+                              <div>
+                                <p class="text-lg text-blue-500 font-bold hover:underline">{data.user_id}</p>
+                              </div>
+                              <div class="text-lg text-gray-700 font-bold">
+                                User Name : {data.UserName}
+                              </div>
+                            </div>
+                            <div class="text-sm text-black">
+                              createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                            </div>
+                            <div class="text-sm text-black">
+                              Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                            </div>
                         </div>
                     ))}
                 </div>
