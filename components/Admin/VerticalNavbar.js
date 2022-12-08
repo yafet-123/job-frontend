@@ -35,7 +35,7 @@ export function VerticalNavbar({onChange}){
                         <h1 className={`text-2xl font-bold text-black dark:text-white ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
                         <button 
                             onClick={handleSideBar} 
-                            className={`text-black dark:text-white hover:text-slate-800 focus:outline-none ${ sideBar ? "flex justify-center items-center" : ""} `}
+                            className={`hidden lg:flex text-black dark:text-white hover:text-slate-800 focus:outline-none ${ sideBar ? "flex justify-center items-center" : ""} `}
                         >
                             <AiOutlineMenu size={35} />
                         </button>

@@ -71,7 +71,9 @@ export function Navbar() {
           </div>
 
         </div>
-        <ThemeToggler />
+        <div className="hidden lg:flex">
+          <ThemeToggler />
+        </div>
         <div onClick={handleNav} className="lg:hidden float-right">
           <AiOutlineMenu size={30} />
         </div>
@@ -104,7 +106,9 @@ export function Navbar() {
                 </a>
               </Link>
 
-              <ThemeToggler />
+              <div className="flex lg:hidden">
+                <ThemeToggler />
+              </div>
               <div
                 onClick={handleNav}
                 className="dark:text-white rounded-full shadow-lg shadow-gray-400 p-35 cursor-pointer"
