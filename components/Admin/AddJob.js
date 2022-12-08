@@ -137,8 +137,11 @@ export function AddJob({categories}) {
                     placeholder="Dead Line"
                 />
 
+            </div>
+
+            <div>
                 <Multiselect
-                    displayValue="Name"
+                    displayValue="CategoryName"
                     placeholder = "Category"
                     className="block w-full px-3 text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                     onKeyPressFn={function noRefCheck(){}}
@@ -149,7 +152,7 @@ export function AddJob({categories}) {
                            setCategoryId([...categoryId, data.category_id])
                         ))
                     }}
-                    options={options}
+                    options={categories}
                 />
             </div>
 
