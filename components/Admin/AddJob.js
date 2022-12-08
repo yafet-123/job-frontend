@@ -1,5 +1,6 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
+import Multiselect from 'multiselect-react-dropdown';
 
 export function AddJob({categories}) {
     const [CompanyName, setCompanyName] = useState("")
@@ -132,8 +133,6 @@ export function AddJob({categories}) {
                     type="date"
                     placeholder="Dead Line"
                 />
-
-                
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-10">
