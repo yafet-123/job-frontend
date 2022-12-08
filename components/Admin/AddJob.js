@@ -133,6 +133,16 @@ export function AddJob({categories}) {
                     type="date"
                     placeholder="Dead Line"
                 />
+
+                <Multiselect
+                    displayValue="Name"
+                    placeholder = "Category"
+                    onKeyPressFn={function noRefCheck(){}}
+                    onRemove={function noRefCheck(){}}
+                    onSearch={function noRefCheck(){}}
+                    
+                    options={categories}
+                />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-10">
