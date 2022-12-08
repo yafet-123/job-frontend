@@ -12,7 +12,16 @@ const prisma = new PrismaClient()
 
 export async function getServerSideProps(){
   const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
-  const categories = await prisma.Category.findMany({orderBy : {category_id:'asc'}})
+  const categories = await prisma.Category.findMany({
+    include:{
+      User:{
+          select:{
+              UserName:true
+          }
+      }
+    }
+  })
+  
   const jobs = await prisma.Job.findMany({
     orderBy: {
       job_id:"asc"
@@ -25,6 +34,14 @@ export async function getServerSideProps(){
       }
     } 
   })
+
+  const Allcategories = categories.map((data)=>({
+      category_id:data.category_id,
+      CategoryName:data.CategoryName,
+      CreatedDate:data.CreatedDate,
+      ModifiedDate:data.ModifiedDate,
+      userName:data.User.UserName
+  }))
 
   const Allusers = users.map((data)=>({
       user_id:data.user_id,
@@ -56,7 +73,7 @@ export async function getServerSideProps(){
   return{
     props:{
       Allusers:JSON.parse(JSON.stringify(Allusers)),
-      Allcategories:JSON.parse(JSON.stringify(categories)),
+      Allcategories:JSON.parse(JSON.stringify(Allcategories)),
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
     }
   }

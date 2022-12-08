@@ -39,7 +39,7 @@ export default async(req, res) => {
                 }
             }
         })
-        console.log(searchData)
+        
         const AllData = searchData.map((data)=>({
             category_id:data.category_id,
             CategoryName:data.CategoryName,
