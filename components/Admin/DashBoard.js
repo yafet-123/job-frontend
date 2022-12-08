@@ -268,14 +268,17 @@ export function DashBoard() {
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {searchValue.map((data,index)=>(
                         <div class="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
-                            <div class="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                            <div class="flex items-center justify-between text-sm">
                                 <div>
                                     <p class="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
                                 </div>
-                                <div class="text-lg text-gray-700 dark:text-white font-bold">
-                                    Category Name : {data.LocationName}
-                                </div
+                                <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
                             </div>
+
+                            <div class="text-lg text-gray-700 dark:text-white font-bold">
+                                Category Name : {data.LocationName}
+                            </div>
+
                             <div class="text-lg text-gray-700 dark:text-white font-bold">
                                 Created By : {data.userName}
                             </div>
