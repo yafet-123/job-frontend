@@ -45,9 +45,11 @@ model Location {
   location_id     Int           @id @default(autoincrement())
   LocationName    String        @db.VarChar(255)
   Image           String?       @db.VarChar(255)
+  user_id         Int
   CreatedDate     DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate    DateTime?     @default(now()) @db.Timestamptz(6)
-  Job          Job[]
+  Job             Job[]
+  User            User          @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model User {
@@ -60,6 +62,7 @@ model User {
   Category     Category[]
   JobCategory  JobCategory[]
   Job          Job[]
+  Location     Location[]
 }
 
 model JobCategory {

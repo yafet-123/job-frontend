@@ -101,13 +101,19 @@ export default async(req, res) => {
                         UserName:true
                     }
                 },
-                Category:{
-                    select:{
-                        CategoryName:true
-                    }
-                }
             }
         })
+
+        const AllData = searchData.map((data)=>({
+            location_id:data.location_id,
+            LocationName:data.LocationName,
+            Image:data.Image,
+            CreatedDate:data.CreatedDate,
+            ModifiedDate:data.ModifiedDate,
+            userName:data.User.UserName,
+        }))
+
+        res.json(AllData)
     }
 
 
