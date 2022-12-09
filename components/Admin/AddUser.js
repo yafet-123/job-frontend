@@ -1,8 +1,9 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import axios from 'axios';
+import moment from 'moment';
 
-export function AddUser() {
+export function AddUser({users}) {
     const [UserName, setUserName] =useState("")
     const [email, setemail] = useState("")
     const [password,setpassword] = useState("")
@@ -102,30 +103,35 @@ export function AddUser() {
                         <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
                             <tr>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Category Name</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">User Name</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Email</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                            {categories.map((data,index)=>(
+                            {users.map((data,index)=>(
                                 <tr key={index} className="bg-white dark:bg-slate-900">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.category_id}</p>
+                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.user_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {data.CategoryName}
+                                        {data.UserName}
                                     </td>
+
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                        <h1 className="text-black dark:text-white flex justify-between my-5 font-bold text-lg md:text-xl">
+                                            <span className={ `font-normal font-medium ${data.email ? " " : "text-red-800"}`}>
+                                                { data.email ? data.email : "No Email Address" }
+                                            </span>
+                                        </h1>
+                                    </td>
+
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
-                                    </td>
-
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {data.userName}
                                     </td>
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
@@ -145,17 +151,24 @@ export function AddUser() {
                     </table>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                    {categories.map((data,index)=>(
+                    {users.map((data,index)=>(
                         <div className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                             <div>
-                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
+                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.user_id}</p>
                             </div>
                             <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                Category Name : {data.CategoryName}
+                                User Name : {data.UserName}
                             </div>
                             <div className="text-lg text-gray-700 dark:text-white font-bold">
                                 Created By : {data.userName}
                             </div>
+
+                            <div className="text-lg text-gray-700 dark:text-white font-bold">
+                                Email : <span className={ `font-normal font-medium ${data.email ? " " : "text-red-800"}`}>
+                                            { data.email ? data.email : "No Email Address" }
+                                        </span>
+                            </div>
+
                             <div className="text-sm text-black dark:text-white">
                               createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
                             </div>
