@@ -6,6 +6,23 @@ import { CiTwitter } from "react-icons/ci";
 export function Hero() {
   const [search,setsearch] = useState("job")
   const router = useRouter();
+  async function handleSearch(e){
+    const data = await axios.post(`api/searchAdmin`,{
+        "searchName": getSearchValue,
+        "type": e
+    }).then(function (response) {
+      const objOneData = response.data
+          if(Array.isArray(objOneData)){
+              setsearchValue(objOneData)
+          }else{
+              const values = []
+              values.push(objOneData)
+              setsearchValue(values)
+          }
+      }).catch(function (error) {
+          console.log(error);
+      });
+  }
   return (
     <div className="hero-background w-full h-[30rem] lg:h-[40rem] flex justify-center items-center">
       <div className="flex flex-col w-full md:w-[40rem] h-96 px-5">
@@ -25,7 +42,7 @@ export function Hero() {
               </div>
 
               <input className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
-              <button className="text-lg md:text-2xl text-white bg-green-400 px-2 md:px-3 flex items-center justify-center">
+              <button onClick={()=> handleSearch(1)} className="text-lg md:text-2xl text-white bg-green-400 px-2 md:px-3 flex items-center justify-center">
                 Search
               </button>
             </div>
@@ -37,9 +54,9 @@ export function Hero() {
               </div>
 
               <input className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
-              <p className="text-lg md:text-2xl text-white bg-yellow-400 px-2 md:px-3 flex items-center justify-center">
+              <button onClick={()=> handleSearch(1)} className="text-lg md:text-2xl text-white bg-yellow-400 px-2 md:px-3 flex items-center justify-center">
                 Search
-              </p>
+              </button>
             </div>
           )
         }

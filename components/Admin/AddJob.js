@@ -1,6 +1,7 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import Multiselect from 'multiselect-react-dropdown';
+import DatePicker from "react-datepicker";
 
 export function AddJob({categories}) {
     console.log(categories)
@@ -12,7 +13,8 @@ export function AddJob({categories}) {
     const [EmploymentType, setEmploymentType] = useState("")
     const [Salary, setSalary] = useState("")
     const [Apply, setApply] = useState("")
-    const options = [{name: 'Option 1️⃣', id: 1},{name: 'Option 2️⃣', id: 2}]
+    const [startDate, setStartDate] = useState(new Date());
+
     console.log(categoryId)
     return (
         <div className="max-w-7xl mx-auto mt-10">
@@ -127,25 +129,22 @@ export function AddJob({categories}) {
                     />
                     <label 
                         htmlFor="floating_outlined" 
-                        className="absolute text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-transparent px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        className="absolute text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                     >
                         Apply
                     </label>
                 </div>
 
-                <input 
-                    className="w-full px-3 text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
-                    id="DeadLine" 
-                    type="date"
-                    placeholder="Dead Line"
-                />
+
+                
+
             </div>
 
             <div>
                 <Multiselect
                     displayValue="CategoryName"
                     placeholder = "Category"
-                    className="w-full px-3 text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+                    className="w-full px-3 text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-black dark:bg-slate-700 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                     onKeyPressFn={function noRefCheck(){}}
                     onRemove={function noRefCheck(){}}
                     onSearch={function noRefCheck(){}}
