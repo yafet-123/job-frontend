@@ -18,35 +18,37 @@ export function AddCategory({categories}) {
     }
 
     return (
-        <div className="max-w-7xl mx-auto mt-10">
-            <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">Category</h1>
-            <div className="flex flex-col lg:flex-row my-10 w-full px-2">
-                <div className="relative flex-1">
-                    <input 
-                        id="Category" 
-                        type="text" 
-                        className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                        value={category}
-                        onChange={(e) => setcategory(e.target.value)}
-                    />
-                    <label 
-                        htmlFor="floating_outlined" 
-                        className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                    >
-                        Category
-                    </label>
-                </div>
-                <div className="mx-2 mt-5 lg:mt-0 flex items-center justify-center">
-                    <button 
-                        onClick={()=> registerCategory() }
-                        className="mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
-                    >
-                        Submit
-                    </button>
+        <div className="">
+            <div className="max-w-7xl mx-auto mt-10">
+                <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">Category</h1>
+                <div className="flex flex-col lg:flex-row my-10 w-full px-2">
+                    <div className="relative flex-1">
+                        <input 
+                            id="Category" 
+                            type="text" 
+                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            value={category}
+                            onChange={(e) => setcategory(e.target.value)}
+                        />
+                        <label 
+                            htmlFor="floating_outlined" 
+                            className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >
+                            Category
+                        </label>
+                    </div>
+                    <div className="mx-2 mt-5 lg:mt-0 flex items-center justify-center">
+                        <button 
+                            onClick={()=> registerCategory() }
+                            className="mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
+                        >
+                            Submit
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div className="p-2">
+            <div className="m-5">
                 <div className="overflow-auto rounded-lg shadow hidden md:block">
                     <table className="w-full">
                         <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
@@ -96,7 +98,7 @@ export function AddCategory({categories}) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {categories.map((data,index)=>(
-                        <div className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                             <div>
                                 <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
                             </div>
