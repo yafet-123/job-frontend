@@ -134,10 +134,6 @@ export function AddJob({categories}) {
                         Apply
                     </label>
                 </div>
-
-
-                
-
             </div>
 
             <div>
