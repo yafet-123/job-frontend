@@ -93,7 +93,7 @@ export default function Admin({Allusers,Allcategories, Alljobs }) {
         { selected == "dashboard" && <DashBoard />}
         { selected == "addUser" && <AddUser />}
         { selected == "displayUser" && <DisplayUser users={Allusers}/>}
-        { selected == "addCategory" && <AddCategory />}
+        { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
         { selected == "displayCategory" && <DisplayCategory categories={Allcategories}/>}
         { selected == "addJob" && <AddJob categories={Allcategories}/>}
       </div>
