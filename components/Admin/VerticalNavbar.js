@@ -1,10 +1,9 @@
 import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
-import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlineUser } from "react-icons/ai";
+import { MdOutlineCategory } from "react-icons/md";
 import Link from 'next/link'
 import {
-  FaFacebookF,
-  FaLinkedinIn,
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
@@ -14,11 +13,11 @@ import { BiDownArrow } from "react-icons/bi"
 
 export function VerticalNavbar({onChange}){
     const SideBarList = [
-        { title: "dashboard", icon: <FaFacebookF size={25}/>, name: "Dashboard",},
-        { title: "addUser", icon: <FaFacebookF size={25}/>, name: "Add User",},
-        { title: "addJob", icon: <FaLinkedinIn size={25}/>, name: "Add Job" },
+        { title: "dashboard", icon: <AiFillDashboard size={25}/>, name: "Dashboard",},
+        { title: "addUser", icon: <AiOutlineUser size={25}/>, name: "User",},
+        { title: "addJob", icon: <FaTwitter size={25}/>, name: "Add Job" },
         { title: "", icon: <FaYoutube size={25}/>, name: "Display Job" },
-        { title: "addCategory", icon: <FaLinkedinIn size={25}/>, name: "Add Category" },
+        { title: "addCategory", icon: <MdOutlineCategory size={25}/>, name: "Category" },
     ];
 	const router = useRouter();
     const [sideBar , setsideBar] = useState(true);
@@ -61,7 +60,7 @@ export function VerticalNavbar({onChange}){
                     <div className={`mt-auto flex flex-col`}>
                         <Link  href="/">
                             <a className="flex items-center p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl" href="#">
-                                <FaLinkedinIn size={25} />
+                                <FaTwitter size={25} />
                                 <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Profile</span>
                             </a>
                         </Link>
