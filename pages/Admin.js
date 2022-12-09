@@ -92,7 +92,6 @@ export default function Admin({Allusers,Allcategories, Alljobs }) {
       <div className="flex-1">
         { selected == "dashboard" && <DashBoard />}
         { selected == "addUser" && <AddUser users={Allusers}/>}
-        { selected == "displayUser" && <DisplayUser users={Allusers}/>}
         { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
         { selected == "addJob" && <AddJob categories={Allcategories}/>}
       </div>
