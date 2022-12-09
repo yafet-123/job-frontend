@@ -19,7 +19,7 @@ export function AddCategory() {
     return (
         <div className="max-w-7xl mx-auto mt-10">
             <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">Add Category</h1>
-            <div className="flex my-10 w-full">
+            <div className="flex flex-col lg:flex-row my-10 w-full">
                 <div className="relative flex-1">
                     <input 
                         id="Category" 
@@ -35,12 +35,14 @@ export function AddCategory() {
                         Category
                     </label>
                 </div>
-                <button 
-                    onClick={()=> registerCategory() }
-                    className="mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
-                >
-                    Submit
-                </button>
+                <div className="mx-2 mt-5 lg:mt-0 flex items-center justify-center">
+                    <button 
+                        onClick={()=> registerCategory() }
+                        className="mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
+                    >
+                        Submit
+                    </button>
+                </div>
             </div>
 
             
