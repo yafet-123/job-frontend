@@ -22,82 +22,86 @@ export function AddUser({users}) {
     }
 
     return (
-        <div className="max-w-7xl mx-auto mt-10">
-            <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">Add User</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-10 mx-2">
-                <div className="relative">
-                    <input 
-                        id="username" 
-                        type="text" 
-                        className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                        value={UserName}
-                        onChange={(e) => setUserName(e.target.value)}
-                    />
-                    <label 
-                        htmlFor="floating_outlined" 
-                        className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                    >
-                        UserName
-                    </label>
+        <div className="">
+            <div className="max-w-7xl mx-auto mt-10">
+                <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">User</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-10 mx-2">
+                    <div className="relative">
+                        <input 
+                            id="username" 
+                            type="text" 
+                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            value={UserName}
+                            onChange={(e) => setUserName(e.target.value)}
+                        />
+                        <label 
+                            htmlFor="floating_outlined" 
+                            className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >
+                            UserName
+                        </label>
+                    </div>
+
+                    <div className="relative">
+                        <input 
+                            id="email" 
+                            type="email" 
+                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            value={email}
+                            onChange={(e) => setemail(e.target.value)}
+                        />
+                        <label 
+                            htmlFor="floating_outlined" 
+                            className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >
+                            Email
+                        </label>
+                    </div>
+
+                    <div className="relative">
+                        <input 
+                            id="password" 
+                            type="password" 
+                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            value={password}
+                            onChange={(e) => setpassword(e.target.value)}
+                        />
+                        <label 
+                            htmlFor="floating_outlined" 
+                            className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >
+                            Password
+                        </label>
+                    </div>
+
+                    <div className="relative">
+                        <input 
+                            id="ConfirmPassword" 
+                            type="password" 
+                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                        <label 
+                            htmlFor="floating_outlined" 
+                            className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >
+                            Confirm Password
+                        </label>
+                    </div>
                 </div>
 
-                <div className="relative">
-                    <input 
-                        id="email" 
-                        type="email" 
-                        className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                        value={email}
-                        onChange={(e) => setemail(e.target.value)}
-                    />
-                    <label 
-                        htmlFor="floating_outlined" 
-                        className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                <div className="mx-2 mt-5 lg:mt-0 flex justify-end">
+                    <button 
+                        onClick={()=> register()}
+                        className="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl p-4 text-center inline-flex items-center"
                     >
-                        Email
-                    </label>
-                </div>
-
-                <div className="relative">
-                    <input 
-                        id="password" 
-                        type="password" 
-                        className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                        value={password}
-                        onChange={(e) => setpassword(e.target.value)}
-                    />
-                    <label 
-                        htmlFor="floating_outlined" 
-                        className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                    >
-                        Password
-                    </label>
-                </div>
-
-                <div className="relative">
-                    <input 
-                        id="ConfirmPassword" 
-                        type="password" 
-                        className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                    <label 
-                        htmlFor="floating_outlined" 
-                        className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                    >
-                        Confirm Password
-                    </label>
+                        Submit
+                    </button>
                 </div>
             </div>
 
-            <button 
-                onClick={()=> register()}
-                className="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl px-4 py-4 text-center inline-flex items-center"
-            >
-                Submit
-            </button>
-
-            <div className="m-2 lg:m-20">
+            <div className="m-5">
                 <div className="overflow-auto rounded-lg shadow hidden md:block">
                     <table className="w-full">
                         <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
@@ -150,7 +154,7 @@ export function AddUser({users}) {
                         </tbody>
                     </table>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:hidden">
                     {users.map((data,index)=>(
                         <div className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                             <div>
