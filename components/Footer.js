@@ -1,12 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
+import { useRouter } from "next/router";
 export function Footer() {
   const socialMediaLinks = [
     { path: <FaFacebookF size={20} /> },
@@ -26,9 +22,10 @@ export function Footer() {
     { link: "Mission/Vision", path: "/ MissionAndVision" },
     { link: "Our Team", path: "" },
   ];
+  const router = useRouter();
 
   return (
-    <footer className="bg-blue-400 dark:bg-slate-600 w-full">
+    <footer className={ router.pathname == "/Login" ? "hidden" : "bg-blue-400 dark:bg-slate-600 w-full"}>
       <div className="flex flex-col lg:flex-row justify-between p-10 bg-blue-500 dark:bg-slate-800">
         <div className="flex flex-col items-center justify-between space-y-5 md:items-start w-full md:w-1/4 mb-10 md:mb-0">
           <div className="">
