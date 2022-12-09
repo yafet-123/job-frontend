@@ -3,10 +3,7 @@ import { useRouter } from 'next/router'
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlineUser } from "react-icons/ai";
 import { MdOutlineCategory } from "react-icons/md";
 import Link from 'next/link'
-import {
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaTwitter, FaYoutube } from "react-icons/fa";
 
 import { FiLogOut } from "react-icons/fi"
 import { BiDownArrow } from "react-icons/bi"
@@ -24,7 +21,6 @@ export function VerticalNavbar({onChange}){
     const handleSideBar = () => {
         setsideBar(!sideBar);
     };
-    console.log(sideBar)
 	return(
             <div className={`flex h-screen ${sideBar ? "w-24" : "w-96"}`}>
                 <nav className="w-full h-screen flex flex-col py-8 px-4 overflow-auto bg-white dark:bg-slate-800">
