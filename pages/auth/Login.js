@@ -1,21 +1,25 @@
 import React, {useState} from "react";
 import Image from "next/image";
 import axios from 'axios';
+import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
+import { useRouter } from 'next/router'
+import {signIn} from 'next-auth/react'
 
 export default function Login() {
   const [UserName , setUserName] = useState("")
   const [Password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
-
+  const router = useRouter()
   async function handleLogin(){
-    const data = await axios.post(`api/login`,{
-        "username": UserName,
-        "password": Password
-    }).then(function (response) {
-        console.log(response)
-    }).catch(function (error) {
-        console.log(error);
-    });
+   
+    const res = await signIn("Credentials",{
+      username: UserName,
+      password: Password,
+      redirect: false
+    })
+
+    console.log(res)
+    
   }
 
   return (
@@ -33,9 +37,9 @@ export default function Login() {
             <form>
               <div className="relative mb-5">
                 <input 
-                    id="CompanyName" 
+                    id="UserName" 
                     type="text" 
-                    className="block w-full px-3 text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                    className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                     value={UserName}
                     onChange={(e) => setUserName(e.target.value)}
                 />
@@ -48,7 +52,7 @@ export default function Login() {
               </div>
               <div className="relative mb-5 flex items-center border-2 border-black rounded-xl">
                 <input 
-                    id="CompanyName" 
+                    id="Password" 
                     type={showPassword ? 'text' : 'password' }
                     className="block border-none w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                     value={Password}
@@ -66,7 +70,7 @@ export default function Login() {
                   className="rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer " 
                   htmlFor="toggle"
                 >
-                  {showPassword ? 'hide' : 'show' }
+                  {showPassword ? <AiOutlineEye size={30}/> : <AiOutlineEyeInvisible size={30} /> }
                 </label>
               </div>
               <div className="flex justify-between items-center mb-6">
