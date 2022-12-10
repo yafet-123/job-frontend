@@ -115,7 +115,6 @@ export function AddJob({categories}) {
                         Salary
                     </label>
                 </div>
-
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-10">

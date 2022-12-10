@@ -3,6 +3,18 @@ import Image from "next/image";
 export default function Login() {
   const [UserName , setUserName] = useState("")
   const [Password, setPassword] = useState("")
+
+  async function handleLogin(){
+    const data = await axios.post(`api/login`,{
+        "username": UserName,
+        "password": Password
+    }).then(function (response) {
+        console.log(response)
+    }).catch(function (error) {
+        console.log(error);
+    });
+  }
+
   return (
     <section className="h-screen">
       <div className="px-6 h-full text-gray-800">
@@ -31,7 +43,6 @@ export default function Login() {
                     User Name
                 </label>
               </div>
-
               <div className="relative mb-5">
                 <input 
                     id="CompanyName" 
@@ -54,13 +65,14 @@ export default function Login() {
                     className="form-check-input appearance-none h-6 w-6 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                     id="exampleCheck2"
                   />
-                  <label className="form-check-label inline-block text-gray-800 text-lg" for="exampleCheck2">Remember me</label>
+                  <label className="form-check-label inline-block text-gray-800 text-lg" htmlFor="exampleCheck2">Remember me</label>
                 </div>
                 <a href="#!" className="text-gray-800 text-lg">Forgot password?</a>
               </div>
 
               <div className="text-center lg:text-left">
                 <button
+                  onClick={()=> handleLogin()}
                   type="button"
                   className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
