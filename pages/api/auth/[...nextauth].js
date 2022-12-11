@@ -2,17 +2,19 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import jwt from "jsonwebtoken"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-const authOptions = {
+export default NextAuth({
     session:{
         strategy:"jwt",
     },
     providers:[
         CredentialsProvider({
-            type: "Credentials",
-            credentials: {},
+            name: "Credentials",
+            credentials: {
+                
+            },
             authorize(credentials, req) {
                 const {username, password} = credentials
-                // console.log(credentials)
+                console.log(credentials)
                 // const data = await axios.post(`/api/login`,{
                 //     "username": username,
                 //     "password": password
@@ -22,7 +24,7 @@ const authOptions = {
                 //     throw new Error('Invalid Credentials')
                 // });
 
-                if (user !== "yafet" || password !== "1234"){
+                if (username !== "yafet" || password !== "1234"){
                     throw new Error('Invalid Credentials')
                 }
 
@@ -30,13 +32,11 @@ const authOptions = {
                     id:"1234",
                     name:"yafet",
 
-                },
+                };
             },
         }),
     ],
     pages:{
-        signIn: "/auth/Login",
+        signIn: "/auth/signin",
     }
-}
-
-export default NextAuth(authOptions)
+})

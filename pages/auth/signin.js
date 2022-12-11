@@ -4,18 +4,39 @@ import axios from 'axios';
 import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
 import { useRouter } from 'next/router'
 import {signIn} from 'next-auth/react'
+import { getCsrfToken } from "next-auth/react"
+import { getSession, useSession } from "next-auth/react";
 
-export default function Login() {
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  console.log(session)
+  if (session) {
+    return {
+      redirect: {
+        destination: '/Admin',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+    },
+  }
+}
+
+export default function Signin({csrfToken}) {
   const [UserName , setUserName] = useState("")
   const [Password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const router = useRouter()
+
   async function handleLogin(){
    
-    const res = await signIn("Credentials",{
+    const res = await signIn(csrfToken,{
       username: UserName,
       password: Password,
-      redirect: false
+      
     })
 
     console.log(res)
@@ -35,6 +56,7 @@ export default function Login() {
           </div>
           <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
             <form>
+              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
               <div className="relative mb-5">
                 <input 
                     id="UserName" 
