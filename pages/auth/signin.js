@@ -9,7 +9,6 @@ import { getSession, useSession } from "next-auth/react";
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
-  console.log(session)
   if (session) {
     return {
       redirect: {
@@ -31,12 +30,12 @@ export default function Signin({csrfToken}) {
   const [showPassword, setShowPassword] = useState(false)
   const router = useRouter()
 
-  async function handleLogin(){
-   
-    const res = await signIn(csrfToken,{
+  async function handleLogin(e){
+    e.preventDefault()
+    const res = await signIn("Credentials",{
       username: UserName,
       password: Password,
-      
+      redirect: false
     })
 
     console.log(res)
@@ -55,7 +54,7 @@ export default function Signin({csrfToken}) {
             />
           </div>
           <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-            <form>
+            <form onSubmit={ handleLogin }>
               <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
               <div className="relative mb-5">
                 <input 
@@ -108,13 +107,11 @@ export default function Signin({csrfToken}) {
               </div>
 
               <div className="text-center lg:text-left">
-                <button
-                  onClick={()=> handleLogin()}
-                  type="button"
+                <input
+                  type="submit"
+                  value="Login"
                   className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                >
-                  Login
-                </button>
+                />
               </div>
             </form>
           </div>

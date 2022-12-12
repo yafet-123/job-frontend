@@ -8,13 +8,12 @@ export default NextAuth({
     },
     providers:[
         CredentialsProvider({
-            name: "Credentials",
-            credentials: {
-                
-            },
+            type: "Credentials",
+            credentials: {},
             authorize(credentials, req) {
-                const {username, password} = credentials
+                const {username,password} = credentials;
                 console.log(credentials)
+                // console.log("username")
                 // const data = await axios.post(`/api/login`,{
                 //     "username": username,
                 //     "password": password
@@ -38,5 +37,5 @@ export default NextAuth({
     ],
     pages:{
         signIn: "/auth/signin",
-    }
+    },
 })
