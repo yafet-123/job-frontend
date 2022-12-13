@@ -1,122 +1,137 @@
-import React, {useState} from "react";
-import Image from "next/image";
-import axios from 'axios';
-import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
-import { useRouter } from 'next/router'
-import {signIn} from 'next-auth/react'
-import { getCsrfToken } from "next-auth/react"
-import { getSession, useSession } from "next-auth/react";
+import { useState } from 'react';
+import { signIn, getCsrfToken } from 'next-auth/react';
+import { Formik, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { useRouter } from 'next/router';
+
+export default function SignIn({ csrfToken }) {
+  const router = useRouter();
+  const [error, setError] = useState(null);
+
+  return (
+    <>
+      <Formik
+        initialValues={{ email: '', password: '', tenantKey: '' }}
+        validationSchema={Yup.object({
+          email: Yup.string()
+            .max(30, 'Must be 30 characters or less')
+            .email('Invalid email address')
+            .required('Please enter your email'),
+          password: Yup.string().required('Please enter your password'),
+          tenantKey: Yup.string()
+            .max(20, 'Must be 20 characters or less')
+            .required('Please enter your organization name'),
+        })}
+        onSubmit={async (values, { setSubmitting }) => {
+          const res = await signIn('credentials', {
+            redirect: false,
+            email: values.email,
+            password: values.password,
+            tenantKey: values.tenantKey,
+            callbackUrl: `${window.location.origin}`,
+          });
+          if (res?.error) {
+            setError(res.error);
+          } else {
+            setError(null);
+          }
+          if (res.url) router.push(res.url);
+          setSubmitting(false);
+        }}
+      >
+        {(formik) => (
+          <form onSubmit={formik.handleSubmit}>
+            <div 
+            className="bg-red-400 flex flex-col items-center 
+            justify-center min-h-screen py-2 shadow-lg">
+              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <input
+                  name="csrfToken"
+                  type="hidden"
+                  defaultValue={csrfToken}
+                />
+
+                <div className="text-red-400 text-md text-center rounded p-2">
+                  {error}
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="email"
+                    className="uppercase text-sm text-gray-600 font-bold"
+                  >
+                    Email
+                    <Field
+                      name="email"
+                      aria-label="enter your email"
+                      aria-required="true"
+                      type="text"
+                      className="w-full bg-gray-300 text-gray-900 mt-2 p-3"
+                    />
+                  </label>
+
+                  <div className="text-red-600 text-sm">
+                    <ErrorMessage name="email" />
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <label
+                    htmlFor="password"
+                    className="uppercase text-sm text-gray-600 font-bold"
+                  >
+                    password
+                    <Field
+                      name="password"
+                      aria-label="enter your password"
+                      aria-required="true"
+                      type="password"
+                      className="w-full bg-gray-300 text-gray-900 mt-2 p-3"
+                    />
+                  </label>
+
+                  <div className="text-red-600 text-sm">
+                    <ErrorMessage name="password" />
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <label
+                    htmlFor="tenantKey"
+                    className="uppercase text-sm text-gray-600 font-bold"
+                  >
+                    Tenant
+                    <Field
+                      name="tenantKey"
+                      aria-label="enter your Tenant"
+                      aria-required="true"
+                      type="text"
+                      className="w-full bg-gray-300 text-gray-900 mt-2 p-3"
+                    />
+                  </label>
+
+                  <div className="text-red-600 text-sm">
+                    <ErrorMessage name="tenantKey" />
+                  </div>
+                </div>
+                <div className="flex items-center justify-center">
+                  <button
+                    type="submit"
+                    className="bg-green-400 text-gray-100 p-3 rounded-lg w-full"
+                  >
+                    {formik.isSubmitting ? 'Please wait...' : 'Sign In'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        )}
+      </Formik>
+    </>
+  );
+}
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context)
-  if (session) {
-    return {
-      redirect: {
-        destination: '/Admin',
-        permanent: false,
-      },
-    }
-  }
   return {
     props: {
       csrfToken: await getCsrfToken(context),
     },
-  }
-}
-
-export default function Signin({csrfToken}) {
-  const [UserName , setUserName] = useState("")
-  const [Password, setPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const router = useRouter()
-
-  async function handleLogin(e){
-    e.preventDefault()
-    const res = await signIn("Credentials",{
-      username: UserName,
-      password: Password,
-      redirect: false
-    })
-
-    console.log(res)
-    
-  }
-
-  return (
-    <section className="h-screen">
-      <div className="px-6 h-full text-gray-800">
-        <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
-          <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-              className="w-full"
-              alt="Sample image"
-            />
-          </div>
-          <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-            <form onSubmit={ handleLogin }>
-              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-              <div className="relative mb-5">
-                <input 
-                    id="UserName" 
-                    type="text" 
-                    className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                    value={UserName}
-                    onChange={(e) => setUserName(e.target.value)}
-                />
-                <label 
-                    htmlFor="floating_outlined" 
-                    className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                >
-                    User Name
-                </label>
-              </div>
-              <div className="relative mb-5 flex items-center border-2 border-black rounded-xl">
-                <input 
-                    id="Password" 
-                    type={showPassword ? 'text' : 'password' }
-                    className="block border-none w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                    value={Password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <label 
-                    htmlFor="floating_outlined" 
-                    className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                >
-                    Password
-                </label>
-
-                <label
-                  onClick={()=>setShowPassword(!showPassword)}
-                  className="rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer " 
-                  htmlFor="toggle"
-                >
-                  {showPassword ? <AiOutlineEye size={30}/> : <AiOutlineEyeInvisible size={30} /> }
-                </label>
-              </div>
-              <div className="flex justify-between items-center mb-6">
-                <div className="form-group form-check flex justify-between items-center">
-                  <input
-                    type="checkbox"
-                    className="form-check-input appearance-none h-6 w-6 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                    id="exampleCheck2"
-                  />
-                  <label className="form-check-label inline-block text-gray-800 text-lg" htmlFor="exampleCheck2">Remember me</label>
-                </div>
-                <a href="#!" className="text-gray-800 text-lg">Forgot password?</a>
-              </div>
-
-              <div className="text-center lg:text-left">
-                <input
-                  type="submit"
-                  value="Login"
-                  className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  };
 }

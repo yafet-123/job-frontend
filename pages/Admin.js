@@ -5,7 +5,7 @@ import { DisplayUser } from "../components/Admin/DisplayUser";
 import { AddCategory } from "../components/Admin/AddCategory";
 import { AddJob } from "../components/Admin/AddJob";
 import { DisplayCategory } from "../components/Admin/DisplayCategory";
-
+import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
@@ -81,11 +81,11 @@ export async function getServerSideProps(){
 
 export default function Admin({Allusers,Allcategories, Alljobs }) {
   const [selected , setselected] = useState("dashboard")
+  const { status, data } = useSession();
+  console.log(data)
   function handleChange(newValue) {
       setselected(newValue);
   }
-
-  console.log(Allcategories)
   return (
     <div className="flex bg-gray-200 dark:bg-slate-700">
       <VerticalNavbar onChange={handleChange} />
