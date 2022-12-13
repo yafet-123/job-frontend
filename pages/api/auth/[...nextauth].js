@@ -13,6 +13,7 @@ export default NextAuth({
                     username: credentials.username,
                     password: credentials.password,
                 };
+                console.log(payload.username)
                 let user
                 const res = await axios.post(`http://localhost:3000/api/login`,{
                     "username": payload.username,
@@ -31,6 +32,26 @@ export default NextAuth({
     secret: process.env.JWT_SECRET,
     pages: {
         signIn: '/auth/signin',
+    },
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                return {
+                    ...token,
+                    accessToken: user.token,
+                    refreshToken: user.refreshToken,
+                };
+            }
+            return token;
+        },
+
+        async session({ session, token }) {
+            session.user.accessToken = token.accessToken;
+            session.user.refreshToken = token.refreshToken;
+            session.user.accessTokenExpires = token.accessTokenExpires;
+            console.log(session)
+            return session;
+        },
     },
     
 });

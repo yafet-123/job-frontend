@@ -10,7 +10,7 @@ import { useState,useEffect} from 'react'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 import { NextPage } from "next";
-
+import { useRouter } from 'next/router'
 
 export async function getServerSideProps(){
   const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
@@ -84,13 +84,15 @@ export async function getServerSideProps(){
 export default function Admin({Allusers,Allcategories, Alljobs }) {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
+  const router = useRouter();
   useEffect(() => {
-    if (status === "unauthenticated") Router.replace("/auth/signin");
+    if (status === "unauthenticated") router.replace("/auth/signin");
   }, [status]);
   function handleChange(newValue) {
       setselected(newValue);
   }
-  return (
+  if (status === "authenticated")
+    return (
     <div className="flex bg-gray-200 dark:bg-slate-700">
       <VerticalNavbar onChange={handleChange} />
       <div className="flex-1">
@@ -101,4 +103,5 @@ export default function Admin({Allusers,Allcategories, Alljobs }) {
       </div>
     </div>
   );
+
 }

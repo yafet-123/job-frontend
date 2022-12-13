@@ -21,6 +21,7 @@ export default function SignIn({ csrfToken }) {
                         redirect: false,
                         username: values.username,
                         password: values.password,
+                        callbacks: "/Admin"
                     });
                     console.log(res)
                     if (res?.error) {
