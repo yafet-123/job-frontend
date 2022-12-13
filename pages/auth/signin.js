@@ -76,7 +76,7 @@ export default function SignIn({ csrfToken }) {
                             <div className="flex items-center justify-center">
                                 <button
                                     type="submit"
-                                    className={formik.isSubmitting ? '"bg-green-400 text-gray-100 p-3 rounded-lg w-full"' : 'bg-green-800'} 
+                                    className={formik.isSubmitting ? 'bg-green-200 text-gray-100 p-3 rounded-lg w-full' : 'bg-green-600 text-gray-100 p-3 rounded-lg w-full'} 
                                 >
                                     {formik.isSubmitting ? 'Please wait...' : 'Sign In'}
                                 </button>
