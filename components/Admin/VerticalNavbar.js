@@ -4,7 +4,7 @@ import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlin
 import { MdOutlineCategory } from "react-icons/md";
 import Link from 'next/link'
 import { FaTwitter, FaYoutube } from "react-icons/fa";
-
+import { useSession, signIn, signOut  } from "next-auth/react";
 import { FiLogOut } from "react-icons/fi"
 import { BiDownArrow } from "react-icons/bi"
 
@@ -17,10 +17,12 @@ export function VerticalNavbar({onChange}){
         { title: "addCategory", icon: <MdOutlineCategory size={25}/>, name: "Category" },
     ];
 	const router = useRouter();
+    const { status, data } = useSession();
     const [sideBar , setsideBar] = useState(true);
     const handleSideBar = () => {
         setsideBar(!sideBar);
     };
+    console.log(data)
 	return(
             <div className={`flex h-screen ${sideBar ? "w-24" : "w-96"}`}>
                 <nav className="w-full h-screen flex flex-col py-8 px-4 overflow-auto bg-white dark:bg-slate-800">
@@ -57,16 +59,19 @@ export function VerticalNavbar({onChange}){
                         <Link  href="/">
                             <a className="flex items-center p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl" href="#">
                                 <FaTwitter size={25} />
-                                <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Profile</span>
+                                <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>{data.user.name}</span>
                             </a>
                         </Link>
 
-                        <Link  href="/">
-                            <a className="flex items-center p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl" href="#">
-                                <FiLogOut size={25} />
-                                <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Log Out</span>
-                            </a>
-                        </Link>
+                        
+                        <button 
+                            onClick={() => signOut({
+                                callbackUrl: '/auth/signin'
+                            })} 
+                            className="flex items-center p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl" href="#">
+                            <FiLogOut size={25} />
+                            <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Log Out</span>
+                        </button>
                     </div>
                 </nav>
             </div>
