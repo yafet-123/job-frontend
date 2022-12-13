@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 export default function SignIn({ csrfToken }) {
   const router = useRouter();
   const [error, setError] = useState(null);
-  console.log(error)
   return (
     <>
       <Formik
@@ -26,6 +25,7 @@ export default function SignIn({ csrfToken }) {
             password: values.password,
             callbackUrl: `/Admin`,
           });
+          console.log(res)
           if (res?.error) {
             setError(res.error);
           } else {
