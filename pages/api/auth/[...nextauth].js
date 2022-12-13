@@ -49,7 +49,6 @@ export default NextAuth({
             session.user.accessToken = token.accessToken;
             session.user.refreshToken = token.refreshToken;
             session.user.accessTokenExpires = token.accessTokenExpires;
-            console.log(session)
             return session;
         },
     },
