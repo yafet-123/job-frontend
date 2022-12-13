@@ -53,9 +53,6 @@ export function Navbar() {
         <Image src="/images/vercel.svg" width={100} height={60} alt="hulu jobs" />
         <div className="flex flex-1 flex-row items-center">
           <div className="hidden lg:flex items-center">
-            <button onClick={()=>(
-              signIn()
-            )}>Login</button>
             {NavbarTopic.map((navbar, index) => (
               <Link key={index} href={navbar.path}>
                 <a

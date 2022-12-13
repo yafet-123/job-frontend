@@ -26,14 +26,13 @@ export default NextAuth({
         };
 
         console.log(payload.password)
-        const res = await axios.post(`/api/login`,{
+        const res = await axios.post(`http://localhost:3000/api/login`,{
             "username": payload.username,
             "password": payload.password
         }).then(function (response) {
             return response.data
         }).catch(function (error) {
-            // throw new Error('Invalid Credentials')
-            console.log(error)
+            throw new Error('Invalid Credentials')
         });
       },
     }),
