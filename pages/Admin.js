@@ -9,6 +9,8 @@ import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
+import { NextPage } from "next";
+
 
 export async function getServerSideProps(){
   const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
@@ -82,7 +84,9 @@ export async function getServerSideProps(){
 export default function Admin({Allusers,Allcategories, Alljobs }) {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
-  console.log(data)
+  useEffect(() => {
+    if (status === "unauthenticated") Router.replace("/auth/signin");
+  }, [status]);
   function handleChange(newValue) {
       setselected(newValue);
   }
