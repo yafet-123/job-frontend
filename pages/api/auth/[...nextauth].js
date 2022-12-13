@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import axios from 'axios';
 
 export default NextAuth({
   providers: [
@@ -14,7 +15,7 @@ export default NextAuth({
         username: {
           label: 'username',
           type: 'text',
-          placeholder: 'yafet',
+          placeholder: '',
         },
         password: { label: 'Password', type: 'password' },
       },
@@ -24,34 +25,23 @@ export default NextAuth({
           password: credentials.password,
         };
 
-        const res = await fetch('http://localhost:5000/api/tokens', {
-          method: 'POST',
-          body: JSON.stringify(payload),
-          headers: {
-            'Content-Type': 'application/json',
-            tenant: credentials.tenantKey,
-            'Accept-Language': 'en-US',
-          },
+        console.log(payload.password)
+        const res = await axios.post(`/api/login`,{
+            "username": payload.username,
+            "password": payload.password
+        }).then(function (response) {
+            return response.data
+        }).catch(function (error) {
+            // throw new Error('Invalid Credentials')
+            console.log(error)
         });
-
-        const user = await res.json();
-        if (!res.ok) {
-          throw new Error(user.exception);
-        }
-        // If no error and we have user data, return it
-        if (res.ok && user) {
-          return user;
-        }
-
-        // Return null if user data could not be retrieved
-        return null;
       },
     }),
     // ...add more providers here
   ],
   secret: process.env.JWT_SECRET,
   pages: {
-    signIn: '/login',
+    signIn: '/auth/signin',
   },
   callbacks: {
     async jwt({ token, user, account }) {
