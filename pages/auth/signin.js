@@ -52,38 +52,36 @@ export default function SignIn({ csrfToken }) {
                                     />
                                 </label>
 
-                              <div className="text-red-600 text-sm">
-                                <ErrorMessage name="email" />
-                              </div>
+                                <div className="text-red-600 text-sm">
+                                    <ErrorMessage name="email" />
+                                </div>
                             </div>
                             <div className="mb-6">
-                              <label
-                                htmlFor="password"
-                                className="uppercase text-sm text-gray-600 font-bold"
-                              >
-                                password
-                                <Field
-                                  name="password"
-                                  aria-label="enter your password"
-                                  aria-required="true"
-                                  type="password"
-                                  className="w-full bg-gray-300 text-gray-900 mt-2 p-3"
-                                />
-                              </label>
+                                <label htmlFor="password" className="uppercase text-sm text-gray-600 font-bold">
+                                    password
+                                    <Field
+                                        name="password"
+                                        aria-label="enter your password"
+                                        aria-required="true"
+                                        type="password"
+                                        className="w-full bg-gray-300 text-gray-900 mt-2 p-3"
+                                    />
+                                </label>
 
-                              <div className="text-red-600 text-sm">
-                                <ErrorMessage name="password" />
-                              </div>
+                                <div className="text-red-600 text-sm">
+                                    <ErrorMessage name="password" />
+                                </div>
                             </div>
+
                             <div className="flex items-center justify-center">
-                              <button
-                                type="submit"
-                                className="bg-green-400 text-gray-100 p-3 rounded-lg w-full"
-                              >
-                                {formik.isSubmitting ? 'Please wait...' : 'Sign In'}
-                              </button>
+                                <button
+                                    type="submit"
+                                    className={formik.isSubmitting ? '"bg-green-400 text-gray-100 p-3 rounded-lg w-full"' : 'bg-green-800'} 
+                                >
+                                    {formik.isSubmitting ? 'Please wait...' : 'Sign In'}
+                                </button>
                             </div>
-                          </div>
+                        </div>
                     </div>
                   </form>
                 )}
