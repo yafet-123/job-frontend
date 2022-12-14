@@ -42,6 +42,11 @@ export default NextAuth({
                     refreshToken: user.refreshToken,
                 };
             }
+
+            if (user?.role) {
+                token.role = user.role;
+            }
+
             return token;
         },
 

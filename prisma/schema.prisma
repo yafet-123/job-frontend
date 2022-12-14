@@ -57,6 +57,7 @@ model User {
   UserName     String        @unique @db.VarChar(255)
   email        String?       @db.VarChar(255)
   Password     String        @db.VarChar(255)
+  role         String?       @db.VarChar(255)
   CreatedDate  DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate DateTime?     @default(now()) @db.Timestamptz(6)
   Category     Category[]
