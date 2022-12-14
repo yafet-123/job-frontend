@@ -25,6 +25,7 @@ export default async(req, res) => {
 	const Jobdata = await prisma.Job.create({
 		data:{
 			CompanyName,
+			Image,
 			JobsType,
 			Location,
 			CareerLevel,
@@ -38,5 +39,15 @@ export default async(req, res) => {
 			location_id: Number(LocationId)
 		}
 	});
+
+	for (let j = 0; j < categoryId.length; j++) {
+	  	const jobcategory = await prisma.JobCategory.create({
+		    data:{
+		      user_id : Number(user_id),
+		      category_id : Number(categoryId[j]),
+		      job_id : Number(job_id)
+		    }
+	  	})
+	}
 	
 }
