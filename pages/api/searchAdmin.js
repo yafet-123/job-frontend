@@ -62,11 +62,6 @@ export default async(req, res) => {
                     select:{
                         UserName:true
                     }
-                },
-                Category:{
-                    select:{
-                        CategoryName:true
-                    }
                 }
             }
         })
@@ -82,8 +77,7 @@ export default async(req, res) => {
             Apply:data.Apply,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate,
-            userName:data.User.UserName,
-            CategoryName:data.Category.CategoryName
+            userName:data.User.UserName
         }))
 
         res.json(AllData)
