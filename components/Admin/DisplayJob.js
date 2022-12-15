@@ -1,6 +1,7 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import moment from 'moment';
+import { AiOutlineEye } from 'react-icons/ai'
 
 export function DisplayJob({jobs}) {
     console.log(jobs)
@@ -12,11 +13,13 @@ export function DisplayJob({jobs}) {
                         <tr>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Name</th>
+                          <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Jobs Type</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Employment Type</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">DeadLine</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
+                          
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
@@ -27,6 +30,9 @@ export function DisplayJob({jobs}) {
                                 </td>
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                     {data.CompanyName}
+                                </td>
+                                <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    {data.JobsType}
                                 </td>
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                     {data.EmploymentType}
@@ -40,11 +46,14 @@ export function DisplayJob({jobs}) {
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                     {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                                 </td>
-
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                     {data.userName}
                                 </td>
-                                
+                                <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap flex justify-center">
+                                    <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
+                                        <AiOutlineEye size={30} />
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -54,10 +63,19 @@ export function DisplayJob({jobs}) {
                 {jobs.map((data,index)=>(
                     <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                         <div>
-                            <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
+                            <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.job_id}</p>
                         </div>
                         <div className="text-lg text-gray-700 dark:text-white font-bold">
-                            Category Name : {data.CategoryName}
+                            Company Name : {data.CompanyName}
+                        </div>
+                        <div className="text-lg text-gray-700 dark:text-white font-bold">
+                            Job Type : {data.JobsType}
+                        </div>
+                        <div className="text-lg text-gray-700 dark:text-white font-bold">
+                            Employment Type : {data.EmploymentType}
+                        </div>
+                        <div className="text-lg text-black dark:text-white font-bold">
+                          DeadLine : {moment(data.DeadLine).utc().format('YYYY-MM-DD')}
                         </div>
                         <div className="text-lg text-gray-700 dark:text-white font-bold">
                             Created By : {data.userName}
@@ -70,12 +88,8 @@ export function DisplayJob({jobs}) {
                         </div>
 
                         <div className="flex items-center justify-between text-sm">
-                            <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                Edit
-                            </button>
-
-                            <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
-                                Delete
+                            <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-blue-500 rounded">
+                                <AiOutlineEye size={30} />
                             </button>
                         </div>
                     </div>
