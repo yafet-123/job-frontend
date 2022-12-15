@@ -2,6 +2,7 @@ import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import Multiselect from 'multiselect-react-dropdown';
 import DatePicker from "react-datepicker";
+import axios from 'axios';
 
 export function AddJob({categories}) {
     const [typechange , settypechange] = useState(true)
@@ -18,9 +19,9 @@ export function AddJob({categories}) {
     const [startDate, setStartDate] = useState(new Date());
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
-    console.log(typechange)
+    console.log(DeadLine)
 
-    async function register(){
+    async function AddJob(){
         const data = await axios.post(`api/addjob`,{
             "CompanyName":CompanyName,
             "Image":Image,
@@ -28,8 +29,8 @@ export function AddJob({categories}) {
             "CareerLevel":CareerLevel,
             "EmploymentType":EmploymentType,
             "Salary":Salary,
-            "JobsDescreption":JobsDescreption,
-            "JobsRequirement":JobsRequirement,
+            "JobsDescreption":Description,
+            "JobsRequirement":Requirement,
             "DeadLine":DeadLine,
             "Apply":Apply,
             "user_id":17,
@@ -163,11 +164,11 @@ export function AddJob({categories}) {
 
                     <div className="relative mb-5">
                         <input 
-                            id="Apply" 
+                            id="DeadLine" 
                             type={typechange ? "text" : "date"} 
                             className="block w-full px-3 text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                            value={Apply}
-                            onChange={(e) => setApply(e.target.value)}
+                            value={DeadLine}
+                            onChange={(e) => setDeadLine(e.target.value)}
                             onClick = {()=> settypechange(false)}
                         />
                         <label 
@@ -249,6 +250,7 @@ export function AddJob({categories}) {
                 </div>
 
                 <button 
+                    onClick={()=> AddJob()}
                     className="mb-10 float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl rounded-lg px-4 py-4 text-center inline-flex items-center"
                 >
                     Submit
