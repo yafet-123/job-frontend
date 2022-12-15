@@ -45,9 +45,11 @@ export default async(req, res) => {
 		    data:{
 		      user_id : Number(user_id),
 		      category_id : Number(categoryId[j]),
-		      job_id : Number(job_id)
+		      job_id : Number(Jobdata.job_id)
 		    }
 	  	})
 	}
+
+	res.json(Jobdata)
 	
 }
