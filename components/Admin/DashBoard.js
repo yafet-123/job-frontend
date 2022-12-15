@@ -48,7 +48,7 @@ export function DashBoard() {
                         <input 
                             id="search" 
                             type="text" 
-                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            className="block w-full px-3 text-xl text-black dark:text-white bg-gray-200 py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={getSearchValue}
                             onChange={(e) => setgetSearchValue(e.target.value)}
                         />

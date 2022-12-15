@@ -8,6 +8,8 @@ export function AddUser({users}) {
     const [email, setemail] = useState("")
     const [password,setpassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [deletemodalOn, setdeleteModalOn] = useState(false);
+    const [deletechoice, setdeleteChoice] = useState(false)
 
     async function register(){
         const data = await axios.post(`api/registerUser`,{
@@ -21,8 +23,22 @@ export function AddUser({users}) {
         });
     }
 
+    const clickedFordelete = () => {
+        setdeleteModalOn(true)
+    }
+
+    const handleOKClickFordelete = () => {
+        setdeleteChoice(true)
+        setdeleteModalOn(false)
+    }
+      
+    const handleCancelClickFordelete = () => {
+        setdeleteChoice(false)
+        setdeleteModalOn(false)
+    }
+
     return (
-        <div className="mx-10">
+        <div className="lg:mx-10">
             <div className="max-w-7xl mx-auto mt-10">
                 <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">User</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-10 mx-2">
@@ -145,7 +161,10 @@ export function AddUser({users}) {
                                     </td>
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                        <button 
+                                            onClick={clickedFordelete}
+                                            className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                                        >
                                             Delete
                                         </button>
                                     </td>
@@ -156,7 +175,7 @@ export function AddUser({users}) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:hidden">
                     {users.map((data,index)=>(
-                        <div className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                        <div className=" bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                             <div>
                                 <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.user_id}</p>
                             </div>
@@ -185,7 +204,10 @@ export function AddUser({users}) {
                                     Edit
                                 </button>
 
-                                <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                <button
+                                    onClick={clickedFordelete} 
+                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                                >
                                     Delete
                                 </button>
                             </div>
@@ -193,6 +215,21 @@ export function AddUser({users}) {
                     ))}
                 </div>
             </div>
+
+            {deletemodalOn && 
+                <div className="bg-gray-200 opacity-90 fixed inset-0 z-50   ">
+                    <div className="flex h-screen justify-center items-center ">
+                        <div className="flex-col justify-center bg-white py-24 px-24 border-4 border-sky-500 rounded-xl ">
+                            <div className="flex text-xl text-zinc-600 font-bold mb-10" >Are you sure You want to delete User ?</div>
+                            <div className="flex">
+                                <button onClick={handleOKClickFordelete} className=" rounded px-4 py-2 text-white  bg-green-400 ">Yes</button>
+                                <button onClick={handleCancelClickFordelete} className="rounded px-4 py-2 ml-4 text-white bg-blue-500 ">No</button>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            }
+
         </div>
     );
 }
