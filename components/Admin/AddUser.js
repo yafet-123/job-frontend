@@ -11,7 +11,6 @@ export function AddUser({users}) {
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [deletechoice, setdeleteChoice] = useState(false)
     const [id,setid] = useState()
-    console.log(id)
     async function register(){
         const data = await axios.post(`api/registerUser`,{
             'UserName':UserName,
