@@ -24,16 +24,12 @@ export function AddUser({users}) {
         });
     }
 
-    const clickedFordelete = (e) => {
+    const clickedFordelete = () => {
         setdeleteModalOn(true)
-        setid(e)
     }
 
-    const handleOKClickFordelete = () => {
-        const data = await axios.post(`api/deleteuser/${id}`,{
-            'UserName':UserName,
-            'Password':password,
-            'email':email
+    const handleOKClickFordelete = async() => {
+        const data = await axios.delete(`api/deleteuser/${id}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -173,7 +169,10 @@ export function AddUser({users}) {
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         <button 
-                                            onClick={clickedFordelete(data.user_id)}
+                                            onClick={() => {
+                                                clickedFordelete()
+                                                setid(data.user_id)
+                                            }}
                                             className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
                                         >
                                             Delete
@@ -228,13 +227,13 @@ export function AddUser({users}) {
             </div>
 
             {deletemodalOn && 
-                <div className="bg-gray-200 opacity-90 fixed inset-0 z-50   ">
+                <div className="bg-gray-200 dark:bg-slate-800 opacity-90 fixed inset-0 z-50   ">
                     <div className="flex h-screen justify-center items-center ">
-                        <div className="flex-col justify-center bg-white py-24 px-24 border-4 border-sky-500 rounded-xl ">
-                            <div className="flex text-xl text-zinc-600 font-bold mb-10" >Are you sure You want to delete User ?</div>
+                        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
+                            <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Are you sure You want to delete User ?</div>
                             <div className="flex">
-                                <button onClick={handleOKClickFordelete} className=" rounded px-4 py-2 text-white  bg-green-400 ">Yes</button>
-                                <button onClick={handleCancelClickFordelete} className="rounded px-4 py-2 ml-4 text-white bg-blue-500 ">No</button>
+                                <button onClick={handleOKClickFordelete} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                                <button onClick={handleCancelClickFordelete} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
                             </div>
                          </div>
                     </div>
