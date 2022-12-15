@@ -10,7 +10,8 @@ export function AddUser({users}) {
     const [confirmPassword, setConfirmPassword] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [deletechoice, setdeleteChoice] = useState(false)
-
+    const [id,setid] = useState()
+    console.log(id)
     async function register(){
         const data = await axios.post(`api/registerUser`,{
             'UserName':UserName,
@@ -23,11 +24,21 @@ export function AddUser({users}) {
         });
     }
 
-    const clickedFordelete = () => {
+    const clickedFordelete = (e) => {
         setdeleteModalOn(true)
+        setid(e)
     }
 
     const handleOKClickFordelete = () => {
+        const data = await axios.post(`api/deleteuser/${id}`,{
+            'UserName':UserName,
+            'Password':password,
+            'email':email
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
         setdeleteChoice(true)
         setdeleteModalOn(false)
     }
@@ -162,7 +173,7 @@ export function AddUser({users}) {
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         <button 
-                                            onClick={clickedFordelete}
+                                            onClick={clickedFordelete(data.user_id)}
                                             className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
                                         >
                                             Delete
