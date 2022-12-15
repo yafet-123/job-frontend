@@ -13,7 +13,7 @@ export function VerticalNavbar({onChange}){
         { title: "dashboard", icon: <AiFillDashboard size={25}/>, name: "Dashboard",},
         { title: "addUser", icon: <AiOutlineUser size={25}/>, name: "User",},
         { title: "addJob", icon: <FaTwitter size={25}/>, name: "Add Job" },
-        { title: "", icon: <FaYoutube size={25}/>, name: "Display Job" },
+        { title: "displayJob", icon: <FaYoutube size={25}/>, name: "Display Job" },
         { title: "addCategory", icon: <MdOutlineCategory size={25}/>, name: "Category" },
     ];
 	const router = useRouter();

@@ -2,6 +2,7 @@ import { VerticalNavbar } from "../components/Admin/VerticalNavbar";
 import { DashBoard } from "../components/Admin/DashBoard";
 import { AddUser } from "../components/Admin/AddUser";
 import { DisplayUser } from "../components/Admin/DisplayUser";
+import { DisplayJob } from "../components/Admin/DisplayJob";
 import { AddCategory } from "../components/Admin/AddCategory";
 import { AddJob } from "../components/Admin/AddJob";
 import { DisplayCategory } from "../components/Admin/DisplayCategory";
@@ -37,6 +38,8 @@ export async function getServerSideProps(){
     } 
   })
 
+
+
   const Allcategories = categories.map((data)=>({
       category_id:data.category_id,
       CategoryName:data.CategoryName,
@@ -66,10 +69,11 @@ export async function getServerSideProps(){
     JobsRequirement:data.JobsRequirement,
     DeadLine:data.DeadLine,
     Apply:data.Apply,
-    user:data.User.UserName,
+    userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate
   }))
+  
   const reversejob = Alljobs.reverse();
 
   return{
@@ -99,6 +103,7 @@ export default function Admin({Allusers,Allcategories, Alljobs }) {
         { selected == "dashboard" && <DashBoard />}
         { selected == "addUser" && <AddUser users={Allusers}/>}
         { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
+        { selected == "displayJob" && <DisplayJob jobs={Alljobs}/>}
         { selected == "addJob" && <AddJob categories={Allcategories}/>}
       </div>
     </div>
