@@ -5,10 +5,10 @@ import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
 export default async(req, res) => {
-	const {deleteuser} = req.params
-	console.log(deleteuser)
+	const {deleteuserid} = req.query
+	console.log(req.query)
 	const data = await prisma.User.delete({
-		where:{user_id:Number(deleteuser)},
+		where:{user_id:Number(deleteuserid)},
 	});
 	res.json(data)
 }
