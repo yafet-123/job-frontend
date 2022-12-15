@@ -61,8 +61,8 @@ export function Navbar() {
                     router.pathname == navbar.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == navbar.path ) || 
                     ( router.pathname == "/JobsByCategory" && "/Jobs" == navbar.path ) || ( router.pathname == "/JobsByLocation" && "/Jobs" == navbar.path ) ||
                     ( router.pathname == "/Course" && "/Courses" == navbar.path )
-                      ? "border-b-4 border-blue-800 dark:border-white ml-20 text-2xl font-light text-black dark:text-white"
-                      : "ml-20 text-2xl font-light text-black dark:text-white hover:border-b-4 border-blue-800"
+                      ? "border-b-4 border-blue-800 dark:border-white md:ml-5 lg:ml-10 text-2xl font-light text-black dark:text-white"
+                      : "md:ml-5 lg:ml-20 text-2xl font-light text-black dark:text-white hover:border-b-4 border-blue-800"
                   }
                 >
                   {navbar.text}
@@ -72,7 +72,7 @@ export function Navbar() {
           </div>
 
         </div>
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex ml-10">
           <ThemeToggler />
         </div>
         <div onClick={handleNav} className="lg:hidden float-right">
