@@ -10,7 +10,7 @@ export function AddUser({users}) {
     const [confirmPassword, setConfirmPassword] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [deletechoice, setdeleteChoice] = useState(false)
-    const [id,setid] = useState()
+    const [deleteuserid,setdeleteuserid] = useState()
     async function register(){
         const data = await axios.post(`api/registerUser`,{
             'UserName':UserName,
@@ -28,7 +28,7 @@ export function AddUser({users}) {
     }
 
     const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/deleteuser/${id}`,{
+        const data = await axios.delete(`api/${deleteuserid}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -170,7 +170,7 @@ export function AddUser({users}) {
                                         <button 
                                             onClick={() => {
                                                 clickedFordelete()
-                                                setid(data.user_id)
+                                                setdeleteuserid(data.user_id)
                                             }}
                                             className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
                                         >
