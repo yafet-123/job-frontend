@@ -19,8 +19,7 @@ export function AddJob({categories}) {
     const [startDate, setStartDate] = useState(new Date());
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
-    console.log(DeadLine)
-
+  
     async function AddJob(){
         const data = await axios.post(`api/addjob`,{
             "CompanyName":CompanyName,
@@ -31,7 +30,7 @@ export function AddJob({categories}) {
             "Salary":Salary,
             "JobsDescreption":Description,
             "JobsRequirement":Requirement,
-            "DeadLine":DeadLine,
+            "DeadLine":new Date(DeadLine).toISOString(),
             "Apply":Apply,
             "user_id":17,
             "categoryId":categoryId,
