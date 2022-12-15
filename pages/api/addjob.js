@@ -27,7 +27,7 @@ export default async(req, res) => {
 			CompanyName,
 			Image,
 			JobsType,
-			Location,
+			Location:Number(LocationId),
 			CareerLevel,
 			EmploymentType,
 			Salary,
