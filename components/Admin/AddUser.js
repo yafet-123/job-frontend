@@ -12,6 +12,8 @@ export function AddUser({users}) {
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deleteuserid,setdeleteuserid] = useState()
     const [updateuserid,setupdateuserid] = useState()
+    const [updateemail, setupdateemail] = useState("")
+    const [updateusername,setupdateusername] = useState("")
     async function register(){
         const data = await axios.post(`api/registerUser`,{
             'UserName':UserName,
@@ -182,6 +184,8 @@ export function AddUser({users}) {
                                             onClick={() => {
                                                 clickedForupdate()
                                                 setupdateuserid(data.user_id)
+                                                setupdateusername(data.UserName)
+                                                setupdateemail(data.email)
                                             }} 
                                             className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                             Edit
@@ -235,6 +239,8 @@ export function AddUser({users}) {
                                     onClick={() => {
                                         clickedForupdate()
                                         setupdateuserid(data.user_id)
+                                        setupdateusername(data.UserName)
+                                        setupdateemail(data.email)
                                     }}  
                                     className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit
@@ -269,12 +275,44 @@ export function AddUser({users}) {
             {updatemodalOn && 
                 <div className="bg-gray-200 dark:bg-slate-800 opacity-90 fixed inset-0 z-50   ">
                     <div className="flex h-screen justify-center items-center ">
-                        <div className="flex-col justify-center bg-white dark:bg-slate-500 px-24 border-4 border-sky-500 rounded-xl ">
-                            <p className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white text-right">zjs</p>
+                        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
                             <div className="flex text-center text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Update User</div>
-                            <div className="flex pb-10">
-                                <button onClick={handleOKClickFordelete} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
-                                <button onClick={handleCancelClickFordelete} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                            <div className="flex flex-col justify-between items-center">
+                                <div className="relative mb-10">
+                                    <input 
+                                        id="username" 
+                                        type="text" 
+                                        className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                                        value={updateusername}
+                                        onChange={(e) => setupdateusername(e.target.value)}
+                                    />
+                                    <label 
+                                        htmlFor="floating_outlined" 
+                                        className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent dark:bg-transparent px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                                    >
+                                        Username
+                                    </label>
+                                </div>
+
+                                <div className="relative mb-10">
+                                    <input 
+                                        id="email" 
+                                        type="email" 
+                                        className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                                        value={updateemail}
+                                        onChange={(e) => setupdateemail(e.target.value)}
+                                    />
+                                    <label 
+                                        htmlFor="floating_outlined" 
+                                        className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent dark:bg-transparent px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                                    >
+                                        Email
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="flex">
+                                <button onClick={handleCancelClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                                <button onClick={handleCancelClickForupdate} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
                             </div>
                          </div>
                     </div>
