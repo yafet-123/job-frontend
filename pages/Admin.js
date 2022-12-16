@@ -5,6 +5,7 @@ import { DisplayUser } from "../components/Admin/DisplayUser";
 import { DisplayJob } from "../components/Admin/DisplayJob";
 import { AddCategory } from "../components/Admin/AddCategory";
 import { AddJob } from "../components/Admin/AddJob";
+import { AddLocation } from "../components/Admin/AddLocation";
 import { DisplayCategory } from "../components/Admin/DisplayCategory";
 import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
