@@ -5,6 +5,11 @@ import moment from 'moment';
 
 export function AddCategory({categories}) {
     const [category, setcategory] = useState("")
+    const [deletemodalOn, setdeleteModalOn] = useState(false);
+    const [updatemodalOn, setupdateModalOn] = useState(false);
+    const [deletecategoryid,setdeletecategoryid] = useState()
+    const [updatecategoryid,setupdatecategoryid] = useState()
+    const [updatecategoryname,setupdatecategoryname] = useState("")
 
     async function registerCategory(){
         const data = await axios.post(`api/addCtegory`,{
@@ -15,6 +20,45 @@ export function AddCategory({categories}) {
         }).catch(function (error) {
             console.log(error);
         });
+    }
+
+    const clickedFordelete = () => {
+        setdeleteModalOn(true)
+    }
+
+    const clickedForupdate = () => {
+        setupdateModalOn(true)
+    }
+
+    const handleOKClickFordelete = async() => {
+        const data = await axios.delete(`api/${deletecategoryid}`,{
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+        setdeleteModalOn(false)
+        router.reload()
+    }
+    
+    const handleOKClickForupdate = async() => {
+        const data = await axios.patch(`api/updateUser/${updatecategoryid}`,{
+            "CategoryName": updatecategoryname
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+        setupdateModalOn(false)
+        router.reload()
+    }
+      
+    const handleCancelClickFordelete = () => {
+        setdeleteModalOn(false)
+    }
+
+    const handleCancelClickForupdate = () => {
+        setupdateModalOn(false)
     }
 
     return (
@@ -81,13 +125,24 @@ export function AddCategory({categories}) {
                                     </td>
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                        <button
+                                            onClick={() => {
+                                                clickedForupdate()
+                                                setupdatecategoryid(data.category_id)
+                                                setupdatecategoryname(data.CategoryName)
+                                            }}
+                                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                             Edit
                                         </button>
                                     </td>
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                        <button 
+                                            onClick={() => {
+                                                clickedFordelete()
+                                                setdeletecategoryid(data.category_id)
+                                            }}
+                                            className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                                             Delete
                                         </button>
                                     </td>
