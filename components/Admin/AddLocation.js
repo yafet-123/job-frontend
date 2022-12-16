@@ -125,7 +125,7 @@ export function AddLocation({locations}) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                            {categories.map((data,index)=>(
+                            {locations.map((data,index)=>(
                                 <tr key={index} className="bg-white dark:bg-slate-900">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.category_id}</p>

@@ -78,7 +78,7 @@ export async function getServerSideProps(){
 
   return{
     props:{
-      Alllocations:JSON.parse(JSON.stringify(locations))
+      Alllocations:JSON.parse(JSON.stringify(locations)),
       Allusers:JSON.parse(JSON.stringify(Allusers)),
       Allcategories:JSON.parse(JSON.stringify(Allcategories)),
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
