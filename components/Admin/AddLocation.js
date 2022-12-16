@@ -14,9 +14,9 @@ export function AddLocation({locations}) {
     const [updatecategoryid,setupdatecategoryid] = useState()
     const [updatecategoryname,setupdatecategoryname] = useState("")
 
-    async function registerCategory(){
-        const data = await axios.post(`api/addCtegory`,{
-            "CategoryName": category,
+    async function registerLocation(){
+        const data = await axios.post(`api/addlocation`,{
+            "LocationName": LocationName,
             "user_id": 20
         }).then(function (response) {
             console.log(response.data);
