@@ -11,9 +11,9 @@ export function AddLocation({locations}) {
     const [LocationName, setLocationName] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
-    const [deletecategoryid,setdeletecategoryid] = useState()
-    const [updatecategoryid,setupdatecategoryid] = useState()
-    const [updatecategoryname,setupdatecategoryname] = useState("")
+    const [deletelocationid,setdeletelocationid] = useState()
+    const [updatelocationid,setupdatelocationid] = useState()
+    const [updatelocationname,setupdatelocationname] = useState("")
 
     async function registerLocation(){
         const data = await axios.post(`api/addlocation`,{
@@ -36,7 +36,7 @@ export function AddLocation({locations}) {
     }
 
     const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/deletecategory/${deletecategoryid}`,{
+        const data = await axios.delete(`api/deletelocation/${deletelocationid}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -47,8 +47,8 @@ export function AddLocation({locations}) {
     }
     
     const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/updateCategory/${updatecategoryid}`,{
-            "CategoryName": updatecategoryname
+        const data = await axios.patch(`api/updatelocation/${updatelocationid}`,{
+            "LocationName": updatelocationname
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -158,8 +158,8 @@ export function AddLocation({locations}) {
                                         <button
                                             onClick={() => {
                                                 clickedForupdate()
-                                                setupdatecategoryid(data.category_id)
-                                                setupdatecategoryname(data.CategoryName)
+                                                setupdatelocationid(data.location_id)
+                                                setupdatelocationname(data.LocationName)
                                             }}
                                             className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                             Edit
@@ -170,7 +170,7 @@ export function AddLocation({locations}) {
                                         <button 
                                             onClick={() => {
                                                 clickedFordelete()
-                                                setdeletecategoryid(data.category_id)
+                                                setdeletelocationid(data.location_id)
                                             }}
                                             className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                                             Delete
@@ -209,11 +209,22 @@ export function AddLocation({locations}) {
                             </div>
 
                             <div className="flex items-center justify-between text-sm">
-                                <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                <button 
+                                    onClick={() => {
+                                        clickedForupdate()
+                                        setupdatelocationid(data.location_id)
+                                        setupdatelocationname(data.LocationName)
+                                    }}
+                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit
                                 </button>
 
-                                <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                <button 
+                                    onClick={() => {
+                                        clickedFordelete()
+                                        setdeletelocationid(data.location_id)
+                                    }}
+                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                                     Delete
                                 </button>
                             </div>
