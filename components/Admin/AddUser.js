@@ -2,8 +2,10 @@ import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import axios from 'axios';
 import moment from 'moment';
+import { useRouter } from 'next/router'
 
 export function AddUser({users}) {
+    const router = useRouter();
     const [UserName, setUserName] =useState("")
     const [email, setemail] = useState("")
     const [password,setpassword] = useState("")
@@ -24,6 +26,7 @@ export function AddUser({users}) {
         }).catch(function (error) {
             console.log(error);
         });
+        router.reload()
     }
 
     const clickedFordelete = () => {
@@ -42,8 +45,9 @@ export function AddUser({users}) {
             console.log(error);
         });
         setdeleteModalOn(false)
+        router.reload()
     }
-    console.log(updateuserid)
+    
     const handleOKClickForupdate = async() => {
         const data = await axios.patch(`api/updateUser/${updateuserid}`,{
             "UserName": updateusername,
@@ -54,6 +58,7 @@ export function AddUser({users}) {
             console.log(error);
         });
         setupdateModalOn(false)
+        router.reload()
     }
       
     const handleCancelClickFordelete = () => {
