@@ -43,9 +43,11 @@ export function AddUser({users}) {
         });
         setdeleteModalOn(false)
     }
-
+    console.log(updateuserid)
     const handleOKClickForupdate = async() => {
-        const data = await axios.delete(`api/${deleteuserid}`,{
+        const data = await axios.update(`api/${updateuserid}`,{
+            "UserName": updateusername,
+            "email": updateemail
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -311,7 +313,7 @@ export function AddUser({users}) {
                                 </div>
                             </div>
                             <div className="flex">
-                                <button onClick={handleCancelClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                                <button onClick={handleOKClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
                                 <button onClick={handleCancelClickForupdate} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
                             </div>
                          </div>
