@@ -8,7 +8,7 @@ export default async(req, res) => {
 	const {updateuserid} = req.query
 	const {UserName,email} = req.body
 	const data = await prisma.User.update({
-		where:{user_id:Number(id)},
+		where:{user_id:Number(updateuserid)},
 		data:{
 			UserName,
 			email
