@@ -45,7 +45,7 @@ export function AddUser({users}) {
     }
     console.log(updateuserid)
     const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/${updateuserid}`,{
+        const data = await axios.patch(`api/updateUser/${updateuserid}`,{
             "UserName": updateusername,
             "email": updateemail
         }).then(function (response) {

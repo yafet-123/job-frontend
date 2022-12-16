@@ -6,7 +6,7 @@ import { StatusCodes } from "http-status-codes";
 
 export default async(req, res) => {
 	const {updateuserid} = req.query
-	console.log(req.query)
+	console.log(updateuserid)
 	const {UserName, email} = req.body
 	console.log(req.body)
 	const data = await prisma.User.update({
