@@ -38,7 +38,7 @@ export function AddUser({users}) {
     }
 
     const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/${deleteuserid}`,{
+        const data = await axios.delete(`api/deleteuser/${deleteuserid}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {

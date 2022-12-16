@@ -34,7 +34,7 @@ export function AddCategory({categories}) {
     }
 
     const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/${deletecategoryid}`,{
+        const data = await axios.delete(`api/deletecategory/${deletecategoryid}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
