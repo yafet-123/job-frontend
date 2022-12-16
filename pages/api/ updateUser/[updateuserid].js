@@ -6,11 +6,9 @@ import { StatusCodes } from "http-status-codes";
 
 export default async(req, res) => {
 	const {updateuserid} = req.query
-	console.log(updateuserid)
-	const {UserName, email} = req.body
-	console.log(req.body)
+	const {UserName,email} = req.body
 	const data = await prisma.User.update({
-		where:{user_id:Number(updateuserid)},
+		where:{user_id:Number(id)},
 		data:{
 			UserName,
 			email
