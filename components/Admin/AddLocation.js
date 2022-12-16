@@ -190,9 +190,9 @@ export function AddLocation({locations}) {
                                 </div>
 
                                 { data.image == null ? 
-                                            <p>No Image</p> :
-                                            <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
-                                        }
+                                    <p>No Image</p> :
+                                    <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                                }
                             </div>
 
                             <div className="text-lg text-gray-700 dark:text-white font-bold">
