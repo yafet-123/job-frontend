@@ -118,7 +118,7 @@ export function AddLocation({locations}) {
                         <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
                             <tr>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Category Name</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Location Name</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
@@ -128,10 +128,10 @@ export function AddLocation({locations}) {
                             {locations.map((data,index)=>(
                                 <tr key={index} className="bg-white dark:bg-slate-900">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.category_id}</p>
+                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.location_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {data.CategoryName}
+                                        {data.LocationName}
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}

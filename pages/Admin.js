@@ -40,6 +40,15 @@ export async function getServerSideProps(){
     } 
   })
 
+  const Alllocations = locations.map((data)=>({
+      location_id:data.location_id,
+      LocationName:data.LocationName,
+      Image:data.Image,
+      CreatedDate:data.CreatedDate,
+      ModifiedDate:data.ModifiedDate,
+      userName:data.User.UserName
+  }))
+
   const Allcategories = categories.map((data)=>({
       category_id:data.category_id,
       CategoryName:data.CategoryName,
@@ -78,7 +87,7 @@ export async function getServerSideProps(){
 
   return{
     props:{
-      Alllocations:JSON.parse(JSON.stringify(locations)),
+      Alllocations:JSON.parse(JSON.stringify(Alllocations)),
       Allusers:JSON.parse(JSON.stringify(Allusers)),
       Allcategories:JSON.parse(JSON.stringify(Allcategories)),
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
