@@ -9,8 +9,9 @@ export function AddUser({users}) {
     const [password,setpassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);
-    const [deletechoice, setdeleteChoice] = useState(false)
+    const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deleteuserid,setdeleteuserid] = useState()
+    const [updateuserid,setupdateuserid] = useState()
     async function register(){
         const data = await axios.post(`api/registerUser`,{
             'UserName':UserName,
@@ -27,6 +28,10 @@ export function AddUser({users}) {
         setdeleteModalOn(true)
     }
 
+    const clickedForupdate = () => {
+        setupdateModalOn(true)
+    }
+
     const handleOKClickFordelete = async() => {
         const data = await axios.delete(`api/${deleteuserid}`,{
         }).then(function (response) {
@@ -34,13 +39,25 @@ export function AddUser({users}) {
         }).catch(function (error) {
             console.log(error);
         });
-        setdeleteChoice(true)
         setdeleteModalOn(false)
+    }
+
+    const handleOKClickForupdate = async() => {
+        const data = await axios.delete(`api/${deleteuserid}`,{
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+        setupdateModalOn(false)
     }
       
     const handleCancelClickFordelete = () => {
-        setdeleteChoice(false)
         setdeleteModalOn(false)
+    }
+
+    const handleCancelClickForupdate = () => {
+        setupdateModalOn(false)
     }
 
     return (
@@ -161,7 +178,12 @@ export function AddUser({users}) {
                                     </td>
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                        <button
+                                            onClick={() => {
+                                                clickedForupdate()
+                                                setupdateuserid(data.user_id)
+                                            }} 
+                                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                             Edit
                                         </button>
                                     </td>
@@ -184,7 +206,7 @@ export function AddUser({users}) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:hidden">
                     {users.map((data,index)=>(
-                        <div className=" bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                        <div key={index} className=" bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                             <div>
                                 <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.user_id}</p>
                             </div>
@@ -209,7 +231,12 @@ export function AddUser({users}) {
                             </div>
 
                             <div className="flex items-center justify-between text-sm">
-                                <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                <button
+                                    onClick={() => {
+                                        clickedForupdate()
+                                        setupdateuserid(data.user_id)
+                                    }}  
+                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit
                                 </button>
 
@@ -231,6 +258,21 @@ export function AddUser({users}) {
                         <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
                             <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Are you sure You want to delete User ?</div>
                             <div className="flex">
+                                <button onClick={handleOKClickFordelete} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                                <button onClick={handleCancelClickFordelete} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            }
+
+            {updatemodalOn && 
+                <div className="bg-gray-200 dark:bg-slate-800 opacity-90 fixed inset-0 z-50   ">
+                    <div className="flex h-screen justify-center items-center ">
+                        <div className="flex-col justify-center bg-white dark:bg-slate-500 px-24 border-4 border-sky-500 rounded-xl ">
+                            <p className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white text-right">zjs</p>
+                            <div className="flex text-center text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Update User</div>
+                            <div className="flex pb-10">
                                 <button onClick={handleOKClickFordelete} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
                                 <button onClick={handleCancelClickFordelete} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
                             </div>
