@@ -41,7 +41,7 @@ export function AddCategory({categories}) {
             console.log(error);
         });
         setdeleteModalOn(false)
-        
+        router.reload()
     }
     
     const handleOKClickForupdate = async() => {
@@ -53,7 +53,7 @@ export function AddCategory({categories}) {
             console.log(error);
         });
         setupdateModalOn(false)
-        
+        router.reload()
     }
       
     const handleCancelClickFordelete = () => {
