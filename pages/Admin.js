@@ -16,7 +16,15 @@ import { useRouter } from 'next/router'
 
 export async function getServerSideProps(){
   const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
-  const locations = await prisma.Location.findMany();
+  const locations = await prisma.Location.findMany({
+    include:{
+      User:{
+          select:{
+              UserName:true
+          }
+      }
+    }
+  });
   const categories = await prisma.Category.findMany({
     include:{
       User:{

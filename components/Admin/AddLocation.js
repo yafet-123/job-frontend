@@ -3,6 +3,7 @@ import { useState,useEffect, useContext} from 'react'
 import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 export function AddLocation({locations}) {
     const router = useRouter();
@@ -103,7 +104,7 @@ export function AddLocation({locations}) {
 
                     
                     <button 
-                        onClick={()=> registerCategory() }
+                        onClick={()=> registerLocation() }
                         className="float-right mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
                     >
                         Submit
@@ -119,6 +120,7 @@ export function AddLocation({locations}) {
                             <tr>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Location Name</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Image</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
@@ -132,6 +134,10 @@ export function AddLocation({locations}) {
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.LocationName}
+                                    </td>
+
+                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                        <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
@@ -172,13 +178,18 @@ export function AddLocation({locations}) {
                     </table>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                    {categories.map((data,index)=>(
+                    {locations.map((data,index)=>(
                         <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
-                            <div>
-                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
+                            <div className="flex justify-between items-center">
+                                <div>
+                                    <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
+                                </div>
+
+                                <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
                             </div>
+
                             <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                Category Name : {data.CategoryName}
+                                Category Name : {data.LocationName}
                             </div>
                             <div className="text-lg text-gray-700 dark:text-white font-bold">
                                 Created By : {data.userName}
