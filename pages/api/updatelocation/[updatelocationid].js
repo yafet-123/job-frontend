@@ -6,11 +6,11 @@ import { StatusCodes } from "http-status-codes";
 
 export default async(req, res) => {
 	const {updatelocationid} = req.query
-	const {CategoryName} = req.body
-	const data = await prisma.Category.update({
-		where:{category_id:Number(updatelocationid)},
+	const {LocationName} = req.body
+	const data = await prisma.Location.update({
+		where:{location_id:Number(updatelocationid)},
 		data:{
-			CategoryName
+			LocationName
 		},
 	});
 	res.json(data)
