@@ -4,7 +4,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/router'
 
-export function AddCategory({categories}) {
+export function AddLocation({categories}) {
     const router = useRouter();
     const [category, setcategory] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);

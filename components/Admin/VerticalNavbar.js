@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlineUser } from "react-icons/ai";
-import { MdOutlineCategory } from "react-icons/md";
+import { MdOutlineCategory, MdLocationOn } from "react-icons/md";
 import Link from 'next/link'
 import { FaTwitter, FaYoutube } from "react-icons/fa";
 import { useSession, signIn, signOut  } from "next-auth/react";
@@ -15,6 +15,7 @@ export function VerticalNavbar({onChange}){
         { title: "addJob", icon: <FaTwitter size={25}/>, name: "Add Job" },
         { title: "displayJob", icon: <FaYoutube size={25}/>, name: "Display Job" },
         { title: "addCategory", icon: <MdOutlineCategory size={25}/>, name: "Category" },
+        { title: "addlocation", icon: <MdLocationOn size={25}/>, name: "Location" },
     ];
 	const router = useRouter();
     const { status, data } = useSession();
