@@ -7,6 +7,7 @@ import Image from 'next/image'
 
 export function AddLocation({locations}) {
     const router = useRouter();
+    console.log(locations)
     const [LocationName, setLocationName] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
@@ -137,7 +138,10 @@ export function AddLocation({locations}) {
                                     </td>
 
                                      <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                                        { data.image == null ? 
+                                            <p>No Image</p> :
+                                            <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                                        }
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
@@ -185,7 +189,10 @@ export function AddLocation({locations}) {
                                     <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
                                 </div>
 
-                                <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                                { data.image == null ? 
+                                            <p>No Image</p> :
+                                            <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                                        }
                             </div>
 
                             <div className="text-lg text-gray-700 dark:text-white font-bold">
