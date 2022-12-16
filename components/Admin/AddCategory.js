@@ -2,8 +2,10 @@ import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import axios from 'axios';
 import moment from 'moment';
+import { useRouter } from 'next/router'
 
 export function AddCategory({categories}) {
+    const router = useRouter();
     const [category, setcategory] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
@@ -20,6 +22,7 @@ export function AddCategory({categories}) {
         }).catch(function (error) {
             console.log(error);
         });
+        router.reload()
     }
 
     const clickedFordelete = () => {
@@ -38,11 +41,11 @@ export function AddCategory({categories}) {
             console.log(error);
         });
         setdeleteModalOn(false)
-        router.reload()
+        
     }
     
     const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/updateUser/${updatecategoryid}`,{
+        const data = await axios.patch(`api/updateCategory/${updatecategoryid}`,{
             "CategoryName": updatecategoryname
         }).then(function (response) {
             console.log(response.data);
@@ -50,7 +53,7 @@ export function AddCategory({categories}) {
             console.log(error);
         });
         setupdateModalOn(false)
-        router.reload()
+        
     }
       
     const handleCancelClickFordelete = () => {
