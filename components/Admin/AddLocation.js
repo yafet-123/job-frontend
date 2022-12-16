@@ -4,9 +4,9 @@ import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/router'
 
-export function AddLocation({categories}) {
+export function AddLocation({locations}) {
     const router = useRouter();
-    const [category, setcategory] = useState("")
+    const [LocationName, setLocationName] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deletecategoryid,setdeletecategoryid] = useState()
@@ -68,7 +68,7 @@ export function AddLocation({categories}) {
         <div className="">
             <div className="max-w-7xl mx-auto mt-10">
                 <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">Location</h1>
-                <div className="flex flex-col lg:flex-row my-10 w-full px-2">
+                <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1">
                         <input 
                             id="LocationName" 
@@ -92,7 +92,7 @@ export function AddLocation({categories}) {
                                 className="flex flex-col items-center justify-center w-full h-64 border-2 border-black border rounded-lg cursor-pointer bg-transparent dark:hover:bg-bray-800 dark:bg-slate-700 hover:bg-gray-100 dark:border-black dark:hover:border-gray-500 dark:hover:bg-gray-600"
                             >
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <p className="text-lg text-black dark:text-white mb-5">Upload Company Image</p>
+                                    <p className="text-lg text-black dark:text-white mb-5">Upload Location Image</p>
                                     <svg aria-hidden="true" className="w-10 h-10 mb-3 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                                     <p className="mb-2 text-sm text-black dark:text-white"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                 </div>
@@ -101,14 +101,14 @@ export function AddLocation({categories}) {
                         </div>
                     </div>
 
-                    <div className="mx-2 mt-5 lg:mt-0 flex items-center justify-center">
-                        <button 
-                            onClick={()=> registerCategory() }
-                            className="mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
-                        >
-                            Submit
-                        </button>
-                    </div>
+                    
+                    <button 
+                        onClick={()=> registerCategory() }
+                        className="float-right mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
+                    >
+                        Submit
+                    </button>
+                    
                 </div>
             </div>
 

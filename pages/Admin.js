@@ -16,6 +16,7 @@ import { useRouter } from 'next/router'
 
 export async function getServerSideProps(){
   const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
+  const locations = await prisma.Location.findMany();
   const categories = await prisma.Category.findMany({
     include:{
       User:{
@@ -38,8 +39,6 @@ export async function getServerSideProps(){
       }
     } 
   })
-
-
 
   const Allcategories = categories.map((data)=>({
       category_id:data.category_id,
@@ -79,6 +78,7 @@ export async function getServerSideProps(){
 
   return{
     props:{
+      Alllocations:JSON.parse(JSON.stringify(locations))
       Allusers:JSON.parse(JSON.stringify(Allusers)),
       Allcategories:JSON.parse(JSON.stringify(Allcategories)),
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
@@ -86,7 +86,7 @@ export async function getServerSideProps(){
   }
 }
 
-export default function Admin({Allusers,Allcategories, Alljobs }) {
+export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
   const router = useRouter();
@@ -106,7 +106,7 @@ export default function Admin({Allusers,Allcategories, Alljobs }) {
         { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
         { selected == "displayJob" && <DisplayJob jobs={Alljobs}/>}
         { selected == "addJob" && <AddJob categories={Allcategories}/>}
-        { selected == "addlocation" && <AddLocation categories={Allcategories}/>}
+        { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
       </div>
     </div>
   );
