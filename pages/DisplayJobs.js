@@ -15,7 +15,7 @@ export default function DisplayJobs() {
 
 		      	<div className="flex flex-col border rounded-xl p-5 text-black text-lg font-bold">
 		      		<p>Posted</p>
-		      		<p>02 Nov</p>
+		      		<p>02 November</p>
 		      	</div>
       		</div>
 
