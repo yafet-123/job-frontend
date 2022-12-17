@@ -81,7 +81,7 @@ export function AddCategory({categories}) {
                             htmlFor="floating_outlined" 
                             className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
-                            Category
+                            Categories
                         </label>
                     </div>
                     <div className="mx-2 mt-5 lg:mt-0 flex items-center justify-center">
