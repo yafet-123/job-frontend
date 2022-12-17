@@ -65,7 +65,7 @@ export function AddLocation({locations}) {
     const handleCancelClickForupdate = () => {
         setupdateModalOn(false)
     }
-
+    console.log(locations[13].Image)
     return (
         <div className="">
             <div className="max-w-7xl mx-auto mt-10">
@@ -138,10 +138,7 @@ export function AddLocation({locations}) {
                                     </td>
 
                                      <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        { data.image == null ? 
-                                            <p>No Image</p> :
-                                            <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
-                                        }
+                                        <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
@@ -189,9 +186,10 @@ export function AddLocation({locations}) {
                                     <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
                                 </div>
 
-                                { data.image == null ? 
+                                { ! data.image ? 
                                     <p>No Image</p> :
                                     <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                                    
                                 }
                             </div>
 
