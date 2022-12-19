@@ -3,8 +3,10 @@ import { useState,useEffect, useContext} from 'react'
 import Multiselect from 'multiselect-react-dropdown';
 import DatePicker from "react-datepicker";
 import axios from 'axios';
+import { useRouter } from 'next/router'
 
 export function AddJob({categories, locations}) {
+    const router = useRouter();
     const [typechange , settypechange] = useState(true)
     const [CompanyName, setCompanyName] = useState("")
     const [Image, setImage] = useState("")
@@ -37,9 +39,11 @@ export function AddJob({categories, locations}) {
             "LocationId":Location
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             console.log(error);
         });
+
     }
 
     return (
