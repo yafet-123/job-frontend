@@ -13,19 +13,54 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
+import moment from 'moment';
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
   const categories = await prisma.Category.findMany();
   const locations = await prisma.Location.findMany();
+  const jobs = await prisma.Job.findMany({
+    orderBy: {
+      job_id:"asc"
+    },
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      }
+    } 
+  });
+
+  const Alljobs = jobs.map((data)=>({
+    job_id:data.job_id,
+    CompanyName:data.CompanyName,
+    Image:data.Image,
+    JobsType:data.JobsType,
+    Location:data.Location,
+    CareerLevel:data.CareerLevel,
+    EmploymentType:data.EmploymentType,
+    Salary:data.Salary,
+    JobsDescreption:data.JobsDescreption,
+    JobsRequirement:data.JobsRequirement,
+    DeadLine:data.DeadLine,
+    Apply:data.Apply,
+    userName:data.User.UserName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate
+  }))
+  
+  const reversejob = Alljobs.reverse();
+
   return{
     props:{
       categories:JSON.parse(JSON.stringify(categories)),
-      locations:JSON.parse(JSON.stringify(locations))
+      locations:JSON.parse(JSON.stringify(locations)),
+      latestjobs:JSON.parse(JSON.stringify(reversejob)),
     }
   }
 }
 
-export default function SearchJobs({categories, locations}) {
+export default function SearchJobs({categories, locations, latestjobs}) {
   const [jobs, setJobs] = useState("latest");
   const router = useRouter()
   return (
@@ -49,7 +84,7 @@ export default function SearchJobs({categories, locations}) {
           <div className="w-full h-full overflow-y-scroll">
             {jobs == "latest" && (
               <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5 py-10">
-                {LatestJobsList.map((data, index) => (
+                {latestjobs.map((data, index) => (
                   <button
                     className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2"
                     key={index}
@@ -63,18 +98,18 @@ export default function SearchJobs({categories, locations}) {
                   >
                     <div className="flex flex-col">
                       <h1 className="font-normal text-lg text-blue-500 dark:text-white  group-hover:text-orange-500 text-left">
-                        {data.job}
+                        {data.JobsType}
                       </h1>
                       <h1 className="font-light text-sm text-black dark:text-white group-hover:text-orange-500 text-left">
-                        {data.company}
+                        {data.CompanyName}
                       </h1>
                     </div>
                     <div className="flex flex-col">
                       <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-orange-500">
-                        {data.createDate}
+                        {moment(data.createDate).utc().format('YYYY-MM-DD')}
                       </h1>
                       <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-orange-500">
-                        {data.location}
+                        {data.Location}
                       </h1>
                     </div>
                   </button>
@@ -96,7 +131,7 @@ export default function SearchJobs({categories, locations}) {
                       })
                     }}
                   >
-                    <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                    <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                     <div className="flex flex-col ml-10">
                       <h1 className="text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
                         jobs in {data.LocationName}
