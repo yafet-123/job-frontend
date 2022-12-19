@@ -122,7 +122,7 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) 
         { selected == "addUser" && <AddUser users={Allusers}/>}
         { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
         { selected == "displayJob" && <DisplayJob jobs={Alljobs}/>}
-        { selected == "addJob" && <AddJob categories={Allcategories}/>}
+        { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
         { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
       </div>
     </div>

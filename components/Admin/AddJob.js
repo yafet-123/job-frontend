@@ -4,7 +4,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import DatePicker from "react-datepicker";
 import axios from 'axios';
 
-export function AddJob({categories}) {
+export function AddJob({categories, locations}) {
     const [typechange , settypechange] = useState(true)
     const [CompanyName, setCompanyName] = useState("")
     const [Image, setImage] = useState("")
