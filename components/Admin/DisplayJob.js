@@ -24,7 +24,7 @@ export function DisplayJob({jobs}) {
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                         {jobs.map((data,index)=>(
-                            <tr key={index} className="bg-white dark:bg-slate-900">
+                            <tr key={index} className="bg-white dark:bg-slate-900 w-full">
                                 <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                     <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.job_id}</p>
                                 </td>
@@ -32,7 +32,9 @@ export function DisplayJob({jobs}) {
                                     {data.CompanyName}
                                 </td>
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                    {data.JobsType}
+                                    <p className="w-full overflow-hidden">
+                                        {data.JobsType}
+                                    </p>
                                 </td>
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                     {data.EmploymentType}
