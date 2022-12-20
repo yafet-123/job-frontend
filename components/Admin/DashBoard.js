@@ -91,7 +91,7 @@ export function DashBoard() {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {searchValue.map((data,index)=>(
-                                <tr key={index} className="bg-white dark:bg-slate-900">
+                                <tr key={index} className="even:bg-white odd:bg-gray-100 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.user_id}</p>
                                     </td>
@@ -145,7 +145,7 @@ export function DashBoard() {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {searchValue.map((data,index)=>(
-                                <tr key={index} className="bg-white dark:bg-slate-900">
+                                <tr key={index} className="even:bg-white odd:bg-gray-100 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.category_id}</p>
                                     </td>
@@ -230,7 +230,7 @@ export function DashBoard() {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {searchValue.map((data,index)=>(
-                                <tr key={index} className="bg-white dark:bg-slate-900">
+                                <tr key={index} className="even:bg-white odd:bg-gray-100 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.job_id}</p>
                                     </td>
@@ -318,7 +318,7 @@ export function DashBoard() {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {searchValue.map((data,index)=>(
-                                <tr key={index} className="bg-white dark:bg-slate-900">
+                                <tr key={index} className="even:bg-white odd:bg-gray-100 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.location_id}</p>
                                     </td>
@@ -327,7 +327,7 @@ export function DashBoard() {
                                     </td>
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                                        <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                                     </td>
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
@@ -364,7 +364,7 @@ export function DashBoard() {
                                 <div>
                                     <p class="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
                                 </div>
-                                <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                                <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                             </div>
 
                             <div class="text-lg text-gray-700 dark:text-white font-bold">
