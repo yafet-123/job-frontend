@@ -22,6 +22,16 @@ export async function getServerSideProps(context){
 					UserName:true,
 				},
 			},
+			Location:{
+				select:{
+					LocationName:true,
+				},
+			},
+			JobCategory:{
+				select:{
+					category_id:true
+				}
+			}
 		},
 
 	});
@@ -30,7 +40,7 @@ export async function getServerSideProps(context){
 		CompanyName:data.CompanyName,
 		Image:data.Image,
 		JobsType:data.JobsType,
-		Location:data.Location,
+		Location:data.Location.LocationName,
 		CareerLevel:data.CareerLevel,
 		EmploymentType:data.EmploymentType,
 		Salary:data.Salary,
@@ -39,6 +49,7 @@ export async function getServerSideProps(context){
 		DeadLine:data.DeadLine,
 		Apply:data.Apply,
 		user:data.User.UserName,
+		categories:data.JobCategory.category_id,
 		CreatedDate:data.CreatedDate,
 		ModifiedDate:data.ModifiedDate
 	}
@@ -71,7 +82,7 @@ export default function DisplayJobs({job}) {
 	      	<ul className="mx-20 mt-10">
 	      		<li className="flex flex-row justify-between w-full mb-5">
 	      			<h1 className="text-xl font-bold capitalize text-left w-1/2">category:</h1>
-	      			<p className="text-lg text-left w-1/2"> Development and Project Management</p>
+	      			<p className="text-lg text-left w-1/2">{job.categories}</p>
 	      		</li>
 
 	      		<li className="flex flex-row justify-between w-full mb-5">
