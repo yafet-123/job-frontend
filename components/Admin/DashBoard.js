@@ -109,21 +109,21 @@ export function DashBoard() {
                         </tbody>
                     </table>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {searchValue.map((data,index)=>(
-                        <div class="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
-                            <div class="flex items-center justify-between text-sm">
+                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                            <div className="flex items-center justify-between text-sm">
                               <div>
-                                <p class="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.user_id}</p>
+                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.user_id}</p>
                               </div>
-                              <div class="text-lg text-gray-700 dark:text-white font-bold">
+                              <div className="text-lg text-gray-700 dark:text-white font-bold">
                                 User Name : {data.UserName}
                               </div>
                             </div>
-                            <div class="text-sm text-black dark:text-white">
+                            <div className="text-sm text-black dark:text-white">
                               createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
                             </div>
-                            <div class="text-sm text-black dark:text-white">
+                            <div className="text-sm text-black dark:text-white">
                               Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                             </div>
                         </div>
@@ -179,26 +179,26 @@ export function DashBoard() {
                         </tbody>
                     </table>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {searchValue.map((data,index)=>(
-                        <div class="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                             <div>
-                                <p class="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
+                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
                             </div>
-                            <div class="text-lg text-gray-700 dark:text-white font-bold">
+                            <div className="text-lg text-gray-700 dark:text-white font-bold">
                                 Category Name : {data.CategoryName}
                             </div>
-                            <div class="text-lg text-gray-700 dark:text-white font-bold">
+                            <div className="text-lg text-gray-700 dark:text-white font-bold">
                                 Created By : {data.userName}
                             </div>
-                            <div class="text-sm text-black dark:text-white">
+                            <div className="text-sm text-black dark:text-white">
                               createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
                             </div>
-                            <div class="text-sm text-black dark:text-white">
+                            <div className="text-sm text-black dark:text-white">
                               Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                             </div>
 
-                            <div class="flex items-center justify-between text-sm">
+                            <div className="flex items-center justify-between text-sm">
                                 <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit
                                 </button>
@@ -220,7 +220,6 @@ export function DashBoard() {
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Name</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Jobs Type</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Employment Type</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">DeadLine</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
@@ -237,11 +236,10 @@ export function DashBoard() {
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.CompanyName}
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {data.JobsType}
-                                    </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {data.EmploymentType}
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
+                                        <p className="w-full overflow-hidden">
+                                            {data.JobsType}
+                                        </p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.DeadLine).utc().format('YYYY-MM-DD')}
@@ -357,31 +355,31 @@ export function DashBoard() {
                         </tbody>
                     </table>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {searchValue.map((data,index)=>(
-                        <div class="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
-                            <div class="flex items-center justify-between text-sm">
+                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                            <div className="flex items-center justify-between text-sm">
                                 <div>
-                                    <p class="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
+                                    <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
                                 </div>
                                 <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                             </div>
 
-                            <div class="text-lg text-gray-700 dark:text-white font-bold">
+                            <div className="text-lg text-gray-700 dark:text-white font-bold">
                                 Category Name : {data.LocationName}
                             </div>
 
-                            <div class="text-lg text-gray-700 dark:text-white font-bold">
+                            <div className="text-lg text-gray-700 dark:text-white font-bold">
                                 Created By : {data.userName}
                             </div>
-                            <div class="text-sm text-black dark:text-white">
+                            <div className="text-sm text-black dark:text-white">
                               createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
                             </div>
-                            <div class="text-sm text-black dark:text-white">
+                            <div className="text-sm text-black dark:text-white">
                               Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                             </div>
 
-                            <div class="flex items-center justify-between text-sm">
+                            <div className="flex items-center justify-between text-sm">
                                 <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit
                                 </button>
