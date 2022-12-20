@@ -27,6 +27,11 @@ export async function getServerSideProps(){
         select:{
           UserName:true
         }
+      },
+      Location:{
+        select:{
+          LocationName:true
+        }
       }
     } 
   });
@@ -36,7 +41,7 @@ export async function getServerSideProps(){
     CompanyName:data.CompanyName,
     Image:data.Image,
     JobsType:data.JobsType,
-    Location:data.Location,
+    Location:data.Location.LocationName,
     CareerLevel:data.CareerLevel,
     EmploymentType:data.EmploymentType,
     Salary:data.Salary,
@@ -86,25 +91,25 @@ export default function SearchJobs({categories, locations, latestjobs}) {
               <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5 py-10">
                 {latestjobs.map((data, index) => (
                   <button
-                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2 even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800"
+                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2 w-full"
                     key={index}
                     type = "button"
                     onClick = {()=>{
                       router.push({
                         pathname:"/DisplayJobs",
-                        query:{location:data.location, howmany:data.howmany, image:data.image}
+                        query:{job_id:job_id}
                       })
                     }}
                   >
-                    <div className="flex flex-col">
-                      <h1 className="font-normal text-lg text-blue-500 dark:text-white  group-hover:text-orange-500 text-left">
+                    <div className="flex flex-col w-3/4">
+                      <h1 className="font-normal text-lg text-blue-500 dark:text-white group-hover:text-orange-500 text-left">
                         {data.JobsType}
                       </h1>
                       <h1 className="font-light text-sm text-black dark:text-white group-hover:text-orange-500 text-left">
                         {data.CompanyName}
                       </h1>
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col items-center justify-center w-1/4">
                       <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-orange-500">
                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                       </h1>
