@@ -4,9 +4,13 @@ import { JobRequirement } from "../data/JobRequirement";
 import { TopAndBottomOfDisplayJobs } from "../components/TopAndBottomOfDisplayJobs";
 import axios from "axios";
 import { useRouter } from 'next/router'
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+import moment from 'moment'
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
-  const {id} = query.job_id
+  const id = query.job_id
+
 	const data = await prisma.Job.findUnique({
 		where:{
 			job_id: Number(id),
@@ -54,13 +58,13 @@ export default function DisplayJobs({job}) {
       	<div className="flex flex-col bg-white p-5 pb-20">
       		<div className="flex justify-between items-center mt-10 mx-5">
 		      	<div className="flex flex-col w-3/4">
-		      		<h1 className="text-black text-3xl capitalize font-bold mb-2">Sales Officer</h1>
-		      		<p className="text-gray-500 text-lg font-bold w-3/4">Job by Vittorio Chemical Industries PLC</p>
+		      		<h1 className="text-black text-3xl capitalize font-bold mb-2">{job.JobsType}</h1>
+		      		<p className="text-gray-500 text-lg font-bold w-3/4">Job by {job.CompanyName}</p>
 		      	</div>
 
-		      	<div className="flex flex-col border rounded-xl p-5 text-black text-lg font-bold">
-		      		<p>Posted</p>
-		      		<p>02 November</p>
+		      	<div className="flex flex-col border rounded-xl text-black text-lg font-bold">
+		      		<p className="bg-sky-500 text-center text-white">Posted</p>
+		      		<p className="p-5">{moment(job.ModifiedDate).utc().format('dddd, MMM Y')}</p>
 		      	</div>
       		</div>
 
