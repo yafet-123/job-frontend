@@ -86,7 +86,7 @@ export default function SearchJobs({categories, locations, latestjobs}) {
               <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5 py-10">
                 {latestjobs.map((data, index) => (
                   <button
-                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2"
+                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2 even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800"
                     key={index}
                     type = "button"
                     onClick = {()=>{
