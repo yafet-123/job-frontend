@@ -14,7 +14,6 @@ export default async(req, res) => {
         })
 
         let AllData =[]
-        console.log(searchData)
         searchData !== null ? AllData = searchData.map((data)=>({
             user_id:data.user_id,
             UserName:data.UserName,

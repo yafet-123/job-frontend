@@ -3,6 +3,7 @@ const prisma = new PrismaClient()
 
 export default async(req, res) => {
     const { searchName, type } = req.body
+    console.log(req.body)
     if (type == 1) {
         const searchData = await prisma.User.findMany({
             where: {
@@ -13,17 +14,14 @@ export default async(req, res) => {
             },
         })
 
-       let AllData =[]
-
-        searchData !== null ? AllData = searchData.map((data)=>({
+        const AllData = searchData.map((data)=>({
             user_id:data.user_id,
             UserName:data.UserName,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate
-        })) : AllData;
-        console.log(AllData)
-        res.json(AllData)
+        }))
 
+        res.json(AllData)
 
     } else if(type == 2){
         const searchData = await prisma.Category.findMany({
