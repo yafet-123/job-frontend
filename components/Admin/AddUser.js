@@ -163,7 +163,7 @@ export function AddUser({users}) {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {users.map((data,index)=>(
-                                <tr key={index} className="bg-white dark:bg-slate-900">
+                                <tr key={index} className="even:bg-white odd:bg-gray-100 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.user_id}</p>
                                     </td>
