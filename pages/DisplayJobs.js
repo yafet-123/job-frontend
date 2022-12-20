@@ -75,24 +75,24 @@ export async function getServerSideProps(context){
 }
 
 export default function DisplayJobs({job, categories}) {
-	console.log(job)
+	console.log(categories)
   return (
-    <section className="flex flex-col w-full h-full px-0 md:px-32 bg-gray-200">
+    <section className="flex flex-col w-full h-full px-0 md:px-32 bg-gray-200 dark:bg-slate-700 p-5">
       	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply}/>
-      	<div className="flex flex-col bg-white p-5 pb-20">
+      	<div className="flex flex-col bg-white p-5 pb-20 bg-white dark:bg-slate-600">
       		<div className="flex justify-between items-center mt-10 mx-5">
 		      	<div className="flex flex-col w-3/4">
-		      		<h1 className="text-black text-3xl capitalize font-bold mb-2">{job.JobsType}</h1>
-		      		<p className="text-gray-500 text-lg font-bold w-3/4">Job by {job.CompanyName}</p>
+		      		<h1 className="text-black text-3xl capitalize font-bold mb-2 text-black dark:text-white">{job.JobsType}</h1>
+		      		<p className="text-lg font-bold w-3/4 text-gray-500 dark:text-gray-400">Job by {job.CompanyName}</p>
 		      	</div>
 
-		      	<div className="flex flex-col border rounded-xl text-black text-lg font-bold">
+		      	<div className="flex flex-col border rounded-xl text-black dark:text-white text-lg font-bold">
 		      		<p className="bg-sky-500 text-center text-white">Posted</p>
 		      		<p className="p-5">{moment(job.ModifiedDate).utc().format('dddd, MMM Y')}</p>
 		      	</div>
       		</div>
 
-	      	<ul className="mx-20 mt-10">
+	      	<ul className="mx-20 mt-10 text-black dark:text-white">
 	      		<li className="flex flex-row justify-between w-full mb-5">
 	      			<h1 className="text-xl font-bold capitalize text-left w-1/2">category:</h1>
 	      			<div className="grid grid-cols-2 gap-5 w-1/2">
