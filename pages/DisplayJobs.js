@@ -14,7 +14,6 @@ export async function getServerSideProps(context){
 	const data = await prisma.Job.findUnique({
 		where:{
 			job_id: Number(id),
-
 		},
 		include:{
 			User:{
@@ -27,15 +26,24 @@ export async function getServerSideProps(context){
 					LocationName:true,
 				},
 			},
-			JobCategory:{
-				select:{
-					category_id:true
-				}
-			}
 		},
 
 	});
-	console.log(data)
+
+	const categoriesdata = await prisma.JobCategory.findMany({
+		where:{
+			job_id: Number(id),
+		},
+
+		include:{
+			Category:{
+				select:{
+					CategoryName:true,
+				},
+			},
+		},
+	})
+	
 	const onedata = {
 		job_id:data.job_id,
 		CompanyName:data.CompanyName,
@@ -50,23 +58,27 @@ export async function getServerSideProps(context){
 		DeadLine:data.DeadLine,
 		Apply:data.Apply,
 		user:data.User.UserName,
-		categories:data.JobCategory.category_id,
 		CreatedDate:data.CreatedDate,
 		ModifiedDate:data.ModifiedDate
 	}
 
+	const Allcategories = categoriesdata.map((data)=>({
+    CategoryName:data.Category.CategoryName,
+  }))
+
   return{
     props:{
       job:JSON.parse(JSON.stringify(onedata)),
+      categories:JSON.parse(JSON.stringify(Allcategories)),
     }
   }
 }
 
-export default function DisplayJobs({job}) {
+export default function DisplayJobs({job, categories}) {
 	console.log(job)
   return (
     <section className="flex flex-col w-full h-full px-0 md:px-32 bg-gray-200">
-      	<TopAndBottomOfDisplayJobs />
+      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply}/>
       	<div className="flex flex-col bg-white p-5 pb-20">
       		<div className="flex justify-between items-center mt-10 mx-5">
 		      	<div className="flex flex-col w-3/4">
@@ -83,7 +95,11 @@ export default function DisplayJobs({job}) {
 	      	<ul className="mx-20 mt-10">
 	      		<li className="flex flex-row justify-between w-full mb-5">
 	      			<h1 className="text-xl font-bold capitalize text-left w-1/2">category:</h1>
-	      			<p className="text-lg text-left w-1/2">{job.categories}</p>
+	      			<div className="grid grid-cols-2 gap-5 w-1/2">
+		      			{ categories.map((data,index)=>(
+		      				<p key={index} className="text-lg text-left ">{data.CategoryName}</p>
+		      			))}
+		      		</div>
 	      		</li>
 
 	      		<li className="flex flex-row justify-between w-full mb-5">
@@ -122,8 +138,7 @@ export default function DisplayJobs({job}) {
 	      		<div dangerouslySetInnerHTML={{ __html: job.Apply }} />
 	      	</div>
       	</div>
-      	
-      	
+      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply}/>
     </section>
   );
 }
