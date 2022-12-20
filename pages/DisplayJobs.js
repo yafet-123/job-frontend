@@ -35,6 +35,7 @@ export async function getServerSideProps(context){
 		},
 
 	});
+	console.log(data)
 	const onedata = {
 		job_id:data.job_id,
 		CompanyName:data.CompanyName,
