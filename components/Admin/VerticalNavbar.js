@@ -1,19 +1,19 @@
 import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
-import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlineUser, AiOutlineFolderAdd } from "react-icons/ai";
 import { MdOutlineCategory, MdLocationOn } from "react-icons/md";
 import Link from 'next/link'
-import { FaTwitter, FaYoutube } from "react-icons/fa";
 import { useSession, signIn, signOut  } from "next-auth/react";
 import { FiLogOut } from "react-icons/fi"
 import { BiDownArrow } from "react-icons/bi"
+import { BsDisplay } from 'react-icons/bs'
 
 export function VerticalNavbar({onChange}){
     const SideBarList = [
         { title: "dashboard", icon: <AiFillDashboard size={25}/>, name: "Dashboard",},
         { title: "addUser", icon: <AiOutlineUser size={25}/>, name: "User",},
-        { title: "addJob", icon: <FaTwitter size={25}/>, name: "Add Job" },
-        { title: "displayJob", icon: <FaYoutube size={25}/>, name: "Display Job" },
+        { title: "addJob", icon: <AiOutlineFolderAdd size={25}/>, name: "Add Job" },
+        { title: "displayJob", icon: <BsDisplay size={25}/>, name: "Display Job" },
         { title: "addCategory", icon: <MdOutlineCategory size={25}/>, name: "Category" },
         { title: "addlocation", icon: <MdLocationOn size={25}/>, name: "Location" },
     ];
@@ -59,7 +59,7 @@ export function VerticalNavbar({onChange}){
                     <div className={`mt-auto flex flex-col`}>
                         <Link  href="/">
                             <a className="flex items-center p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl" href="#">
-                                <FaTwitter size={25} />
+                                <BsDisplay size={25} />
                                 <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>{data.user.name}</span>
                             </a>
                         </Link>
