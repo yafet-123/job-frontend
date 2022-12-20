@@ -6,16 +6,14 @@ import { AiOutlineEye } from 'react-icons/ai'
 export function DisplayJob({jobs}) {
     console.log(jobs)
     return (
-        <div className="m-2 lg:m-20">
-            <div className="overflow-auto rounded-lg shadow hidden md:block">
+        <div className="m-5">
+            <div className="overflow-auto rounded-lg shadow hidden lg:block">
                 <table className="w-full">
                     <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
                         <tr>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Name</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Jobs Type</th>
-                          <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Employment Type</th>
-                          <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">DeadLine</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
                           <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
@@ -31,16 +29,10 @@ export function DisplayJob({jobs}) {
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                     {data.CompanyName}
                                 </td>
-                                <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                <td className="p-3 text-lg text-gray-700 dark:text-white">
                                     <p className="w-full overflow-hidden">
                                         {data.JobsType}
                                     </p>
-                                </td>
-                                <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                    {data.EmploymentType}
-                                </td>
-                                <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                    {moment(data.DeadLine).utc().format('YYYY-MM-DD')}
                                 </td>
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                     {moment(data.createDate).utc().format('YYYY-MM-DD')}
@@ -61,7 +53,7 @@ export function DisplayJob({jobs}) {
                     </tbody>
                 </table>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
                 {jobs.map((data,index)=>(
                     <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                         <div>
