@@ -87,38 +87,38 @@ export default function DisplayJobs({job}) {
 
 	      		<li className="flex flex-row justify-between w-full mb-5">
 	      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Location:</h1>
-	      			<p className="text-lg text-left w-1/2">Diredawa (Siti Zone, Somali region) </p>
+	      			<p className="text-lg text-left w-1/2">{job.Location}</p>
 	      		</li>
 
 	      		<li className="flex flex-row justify-between w-full mb-5">
 	      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
-	      			<p className="text-lg text-left w-1/2"> Mid Level ( 2+ - 5 years experience)</p>
+	      			<p className="text-lg text-left w-1/2">{job.CareerLevel}</p>
 	      		</li>
 
 	      		<li className="flex flex-row justify-between w-full mb-5">
 	      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Employment Type:</h1>
-	      			<p className="text-lg text-left w-1/2"> Full time</p>
+	      			<p className="text-lg text-left w-1/2">{job.EmploymentType}</p>
 	      		</li>
 
 	      		<li className="flex flex-row justify-between w-full mb-5">
 	      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Salary:</h1>
-	      			<p className="text-lg text-left w-1/2">Negotiable</p>
+	      			<p className="text-lg text-left w-1/2">{job.Salary}</p>
 	      		</li>
 	      	</ul>
 
 	      	<div className="flex flex-col justify-between mt-10 mx-5">
 	      		<h1 className="text-blue-700 capitalize text-3xl font-bold mb-2">job descreption</h1>
-	      		<div dangerouslySetInnerHTML={{ __html: JobRequirement }} />
+	      		<div dangerouslySetInnerHTML={{ __html: job.JobsDescreption }} />
 	      	</div>
 
 	      	<div className="flex flex-col justify-between mt-10 mx-5">
 	      		<h1 className="text-blue-700 capitalize text-3xl font-bold mb-2">job requirement</h1>
-	      		<div dangerouslySetInnerHTML={{ __html: JobRequirement }} />
+	      		<div dangerouslySetInnerHTML={{ __html: job.JobsRequirement }} />
 	      	</div>
 
 	      	<div className="flex flex-col justify-between mt-10 mx-5">
 	      		<h1 className="text-blue-700 capitalize text-3xl font-bold mb-2">How to Apply</h1>
-	      		<div dangerouslySetInnerHTML={{ __html: JobRequirement }} />
+	      		<div dangerouslySetInnerHTML={{ __html: job.Apply }} />
 	      	</div>
       	</div>
       	
