@@ -2,7 +2,52 @@ import React from "react";
 import Link from "next/link";
 import { JobRequirement } from "../data/JobRequirement";
 import { TopAndBottomOfDisplayJobs } from "../components/TopAndBottomOfDisplayJobs";
-export default function DisplayJobs() {
+import axios from "axios";
+import { useRouter } from 'next/router'
+export async function getServerSideProps(context){
+  const {params,req,res,query} = context
+  const {id} = query.job_id
+	const data = await prisma.Job.findUnique({
+		where:{
+			job_id: Number(id),
+
+		},
+		include:{
+			User:{
+				select:{
+					UserName:true,
+				},
+			},
+		},
+
+	});
+	const onedata = {
+		job_id:data.job_id,
+		CompanyName:data.CompanyName,
+		Image:data.Image,
+		JobsType:data.JobsType,
+		Location:data.Location,
+		CareerLevel:data.CareerLevel,
+		EmploymentType:data.EmploymentType,
+		Salary:data.Salary,
+		JobsDescreption:data.JobsDescreption,
+		JobsRequirement:data.JobsRequirement,
+		DeadLine:data.DeadLine,
+		Apply:data.Apply,
+		user:data.User.UserName,
+		CreatedDate:data.CreatedDate,
+		ModifiedDate:data.ModifiedDate
+	}
+
+  return{
+    props:{
+      job:JSON.parse(JSON.stringify(onedata)),
+    }
+  }
+}
+
+export default function DisplayJobs({job}) {
+	console.log(job)
   return (
     <section className="flex flex-col w-full h-full px-0 md:px-32 bg-gray-200">
       	<TopAndBottomOfDisplayJobs />
