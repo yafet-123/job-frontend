@@ -123,7 +123,7 @@ export default function DisplayJobs({job, categories}) {
 	      		</li>
 	      	</ul>
 
-	      	<div className="flex flex-col justify-between mt-10 mx-5">
+	      	<div className="flex flex-col justify-between mt-10 mx-5 ">
 	      		<h1 className="text-blue-700 capitalize text-3xl font-bold mb-2">job descreption</h1>
 	      		<div dangerouslySetInnerHTML={{ __html: job.JobsDescreption }} />
 	      	</div>
