@@ -40,9 +40,9 @@ export async function getServerSideProps(context){
   });
 
   const latestjobs = await prisma.Job.findMany({
-  	take:5,
+  	take:-5,
     orderBy: {
-      ModifiedDate:"asc"
+      CreatedDate:"asc"
     },
     include:{
       Location:{
@@ -53,7 +53,7 @@ export async function getServerSideProps(context){
     } 
   });
 
-  const Alllatestjobs = jobsByLocation.map((data)=>({
+  const Alllatestjobs = latestjobs.map((data)=>({
     job_id:data.job_id,
     CompanyName:data.CompanyName,
     JobsType:data.JobsType,
@@ -90,13 +90,14 @@ export async function getServerSideProps(context){
 
   return{
     props:{
+    	Alllatestjobs:JSON.parse(JSON.stringify(Alllatestjobs)),
     	jobsbylocation:JSON.parse(JSON.stringify(reversejob)),
       locations:JSON.parse(JSON.stringify(Alllocations)),
     }
   }
 }
 
-export default function JobsByLocationPage({locations, jobsbylocation}) {
+export default function JobsByLocationPage({locations, jobsbylocation, Alllatestjobs}) {
 	const router = useRouter();
   const { location, howmany, image } = router.query
   return (
@@ -209,23 +210,23 @@ export default function JobsByLocationPage({locations, jobsbylocation}) {
       			</div>
 
 			      <div className="md:max-w-7xl md:mx-auto bg-gray-200 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
-			        {LatestJobsList.map((data, index) => (
+			        {Alllatestjobs.map((data, index) => (
 			          <Link href="/" key={index}>
 			            <a className="flex justify-around items-center mb-5 even:bg-white px-10 py-5 group">
 			              <div className="flex flex-col w-1/2">
 			                <h1 className="font-bold text-lg text-blue-500 group-hover:text-orange-500">
-			                  {data.job}
+			                  {data.JobsType}
 			                </h1>
 			                <h1 className="font-light md:text-sm text-blue-500 group-hover:text-orange-500">
-			                  {data.company}
+			                  {data.CompanyName}
 			                </h1>
 			              </div>
 			              <div className="flex flex-col w-1/2">
 			                <h1 className="font-light text-lg text-blue-500 text-right group-hover:text-orange-500">
-			                  {data.createDate}
+			                  {data.CreatedDate}
 			                </h1>
 			                <h1 className="font-light text-lg text-blue-500 text-right group-hover:text-orange-500">
-			                  {data.location}
+			                  {data.Location}
 			                </h1>
 			              </div>
 			            </a>
