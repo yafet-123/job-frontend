@@ -145,7 +145,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
       		</div>
       		<div className="flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2">
       			{ jobsbylocation == "" ? 
-      				<h1 className="">
+      				<h1 className="text-black dark:text-white text-xl font-bold text-center italic">
       					There is No job in posted {location}
       				</h1>
       			:
