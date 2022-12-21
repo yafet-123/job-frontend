@@ -153,8 +153,8 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 		      				<p className="text-lg text-blue-500">Posted: {moment(data.ModifiedDate).utc().format('MMM DD')}</p>
 	      				</div>
 
-		      			<div className="flex flex-col-reverse md:flex-row  items-center">
-			      			<ul className="mt-10">
+		      			<div className="flex flex-col-reverse md:flex-row items-center">
+			      			<ul className="mt-10 w-3/4">
 					      		<li className="flex flex-row justify-between w-full mb-5">
 					      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
 					      			<p className="text-lg text-left w-1/2">{data.CompanyName}</p>
@@ -180,13 +180,15 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 			      		</div>
 
 			      		<p className="text-lg font-normal mb-5">
-			      			Collect proformas from suppliers and price negotiation  Negotiate price while receiving 
-			      			Priorate purchases Deliver products to storekeeper on time and in good quality Cross-check 
-			      			prices from different suppliers  Proper checking of invoices for tin number and amount  
-			      			Identify fake suppliers with the right ones  Perform purchases in honest and trustworthy
+			      			{data.JobsDescreption}
 			      		</p>
 
-			      		<Link href="/DisplayJobs">
+			      		<Link 
+			      			href={{
+            				pathname: '/DisplayJobs',
+            				query:{job_id:data.job_id}
+          				}}
+			      		>
 			      			<a className="my-5 text-yellow-600 text-xl">
 			      				view detail
 			      			</a>
@@ -218,7 +220,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 			          	key={index}
 			          >
 			            <a className="flex justify-around items-center mb-5 even:bg-white px-5 py-5 group">
-			              <div className="flex flex-col w-1/2">
+			              <div className="flex flex-col w-3/4">
 			                <h1 className="font-bold text-sm text-blue-500 group-hover:text-orange-500">
 			                  {data.JobsType}
 			                </h1>
@@ -226,7 +228,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 			                  {data.CompanyName}
 			                </h1>
 			              </div>
-			              <div className="flex flex-col w-1/2">
+			              <div className="flex flex-col w-1/4">
 			                <h1 className="font-light text-sm text-blue-500 text-right group-hover:text-orange-500">
 			                  {moment(data.CreatedDate).utc().format('MMM DD YYYY')}
 			                </h1>
