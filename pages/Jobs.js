@@ -49,6 +49,7 @@ export async function getServerSideProps(){
     JobsRequirement:data.JobsRequirement,
     DeadLine:data.DeadLine,
     Apply:data.Apply,
+    location_id:data.location_id,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate
@@ -133,7 +134,7 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/JobsByLocation",
-                        query:{location:data.LocationName, howmany:78, image:data.Image}
+                        query:{location:data.LocationName, howmany:78, image:data.Image, location_id:data.location_id}
                       })
                     }}
                   >

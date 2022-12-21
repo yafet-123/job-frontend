@@ -13,23 +13,67 @@ import axios from 'axios';
 const prisma = new PrismaClient()
 import moment from 'moment';
 
-export async function getServerSideProps(){
+export async function getServerSideProps(context){
+	const {params,req,res,query} = context
+  const location_id = query.location_id
+
   const locations = await prisma.Location.findMany()
+  const jobs = await prisma.Job.findMany({
+  	where:{
+  		location_id: Number(location_id)
+  	},
+    orderBy: {
+      job_id:"asc"
+    },
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      Location:{
+        select:{
+          LocationName:true
+        }
+      }
+    } 
+  });
+
+  const Alljobs = jobs.map((data)=>({
+    job_id:data.job_id,
+    CompanyName:data.CompanyName,
+    Image:data.Image,
+    JobsType:data.JobsType,
+    Location:data.Location.LocationName,
+    CareerLevel:data.CareerLevel,
+    EmploymentType:data.EmploymentType,
+    Salary:data.Salary,
+    JobsDescreption:data.JobsDescreption,
+    JobsRequirement:data.JobsRequirement,
+    DeadLine:data.DeadLine,
+    Apply:data.Apply,
+    location_id:data.location_id,
+    userName:data.User.UserName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate
+  }))
   
+  const reversejob = Alljobs.reverse();
   const Alllocations = locations.map((data)=>({
       location_id:data.location_id,
       LocationName:data.LocationName,
-      Image:data.Image,
+      Image:data.Image
   }))
 
   return{
     props:{
+    	jobs:JSON.parse(JSON.stringify(reversejob)),
       locations:JSON.parse(JSON.stringify(Alllocations)),
     }
   }
 }
 
-export default function JobsByLocationPage({locations}) {
+export default function JobsByLocationPage({locations, jobs}) {
 	const router = useRouter();
   const { location, howmany, image } = router.query
   return (
@@ -68,7 +112,7 @@ export default function JobsByLocationPage({locations}) {
                       })
                     }}
 	      					>
-	      						<Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
+	      						<Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={25} height={25} alt="image that will be displayed" />
 		      					<h1 className="font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 ml-5">
 		                	jobs in {data.LocationName}
 		                </h1>
@@ -77,102 +121,55 @@ export default function JobsByLocationPage({locations}) {
 	      			</div>
       		</div>
       		<div className="flex flex-col w-full lg:w-2/4 bg-white p-3 lg:border-l-2">
-      			<div className="flex flex-col w-full bg-gray-200 mb-10 p-3 border rounded-lg">
-      				<div className="flex justify-between items-center">
-      					<Link href="/DisplayJobs">
-      						<a className="text-2xl text-blue-600 font-bold">Job Type: Purchasing Officer</a>
-      					</Link>
-	      				<p className="text-lg text-blue-500">Posted: Today</p>
-      				</div>
+      			{ jobs.map((data,index)=>(
+	      			<div className="flex flex-col w-full bg-gray-200 mb-10 p-3 border rounded-lg">
+	      				<div className="flex justify-between items-center">
+	      					<Link href="/DisplayJobs">
+	      						<a className="text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
+	      					</Link>
+		      				<p className="text-lg text-blue-500">Posted: {moment(data.ModifiedDate).utc().format('MMM DD')}</p>
+	      				</div>
 
-	      			<div className="flex flex-col-reverse md:flex-row justify-between items-center">
-		      			<ul className="mt-10">
-				      		<li className="flex flex-row justify-between w-full mb-5">
-				      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
-				      			<p className="text-lg text-left w-1/2"> Holland Dairy P.L.C</p>
-				      		</li>
+		      			<div className="flex flex-col-reverse md:flex-row  items-center">
+			      			<ul className="mt-10">
+					      		<li className="flex flex-row justify-between w-full mb-5">
+					      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
+					      			<p className="text-lg text-left w-1/2">{data.CompanyName}</p>
+					      		</li>
 
-				      		<li className="flex flex-row justify-between w-full mb-5">
-				      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Location:</h1>
-				      			<p className="text-lg text-left w-1/2">Addis Ababa</p>
-				      		</li>
+					      		<li className="flex flex-row justify-between w-full mb-5">
+					      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Location:</h1>
+					      			<p className="text-lg text-left w-1/2">{data.Location}</p>
+					      		</li>
 
-				      		<li className="flex flex-row justify-between w-full mb-5">
-				      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
-				      			<p className="text-lg text-left w-1/2">Junior Level (1+ - 2 years experience)</p>
-				      		</li>
+					      		<li className="flex flex-row justify-between w-full mb-5">
+					      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
+					      			<p className="text-lg text-left w-1/2">{data.CareerLevel}</p>
+					      		</li>
 
-				      		<li className="flex flex-row justify-between w-full mb-5">
-				      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
-				      			<p className="text-lg text-left w-1/2">Nov 10, 2022</p>
-				      		</li>
-		      			</ul>
+					      		<li className="flex flex-row justify-between w-full mb-5">
+					      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
+					      			<p className="text-lg text-left w-1/2">{moment(data.DeadLine).utc().format('MMM DD')}</p>
+					      		</li>
+			      			</ul>
 
-		      			 <Image src="/images/vercel.svg" width={100} height={100} alt="image" />
-		      		</div>
+			      			 <Image src="/images/vercel.svg" width={100} height={100} alt="image" />
+			      		</div>
 
-		      		<p className="text-lg font-normal mb-5">
-		      			Collect proformas from suppliers and price negotiation  Negotiate price while receiving 
-		      			Priorate purchases Deliver products to storekeeper on time and in good quality Cross-check 
-		      			prices from different suppliers  Proper checking of invoices for tin number and amount  
-		      			Identify fake suppliers with the right ones  Perform purchases in honest and trustworthy
-		      		</p>
+			      		<p className="text-lg font-normal mb-5">
+			      			Collect proformas from suppliers and price negotiation  Negotiate price while receiving 
+			      			Priorate purchases Deliver products to storekeeper on time and in good quality Cross-check 
+			      			prices from different suppliers  Proper checking of invoices for tin number and amount  
+			      			Identify fake suppliers with the right ones  Perform purchases in honest and trustworthy
+			      		</p>
 
-		      		<Link href="/DisplayJobs">
-		      			<a className="my-5 text-yellow-600 text-xl">
-		      				view detail
-		      			</a>
-		      		</Link>
-      			</div>
-
-      			<div className="flex flex-col w-full bg-gray-200 mb-10 p-3 border rounded-lg">
-      				<div className="flex justify-between items-center">
-	      				<Link href="/DisplayJobs">
-      						<a className="text-2xl text-blue-600 font-bold">Job Type: Purchasing Officer</a>
-      					</Link>
-	      				<p className="text-lg text-blue-500">Posted: Today</p>
-      				</div>
-
-	      			<div className="flex flex-col-reverse md:flex-row justify-between items-center">
-		      			<ul className="mt-10">
-				      		<li className="flex flex-row justify-between w-full mb-5">
-				      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
-				      			<p className="text-lg text-left w-1/2"> Holland Dairy P.L.C</p>
-				      		</li>
-
-				      		<li className="flex flex-row justify-between w-full mb-5">
-				      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Location:</h1>
-				      			<p className="text-lg text-left w-1/2">Addis Ababa</p>
-				      		</li>
-
-				      		<li className="flex flex-row justify-between w-full mb-5">
-				      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
-				      			<p className="text-lg text-left w-1/2">Junior Level (1+ - 2 years experience)</p>
-				      		</li>
-
-				      		<li className="flex flex-row justify-between w-full mb-5">
-				      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
-				      			<p className="text-lg text-left w-1/2">Nov 10, 2022</p>
-				      		</li>
-		      			</ul>
-
-		      			 <Image src="/images/vercel.svg" width={100} height={100} alt="image"/>
-		      		</div>
-
-		      		<p className="text-lg font-normal mb-5">
-		      			Collect proformas from suppliers and price negotiation  Negotiate price while receiving 
-		      			Priorate purchases Deliver products to storekeeper on time and in good quality Cross-check 
-		      			prices from different suppliers  Proper checking of invoices for tin number and amount  
-		      			Identify fake suppliers with the right ones  Perform purchases in honest and trustworthy
-		      		</p>
-
-		      		<Link href="/DisplayJobs">
-		      			<a className="my-5 text-yellow-600 text-xl">
-		      				view detail
-		      			</a>
-		      		</Link>
-
-      			</div>
+			      		<Link href="/DisplayJobs">
+			      			<a className="my-5 text-yellow-600 text-xl">
+			      				view detail
+			      			</a>
+			      		</Link>
+	      			</div>
+      			))}
       		</div>
 
       		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg">
