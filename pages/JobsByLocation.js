@@ -9,6 +9,46 @@ import { LatestJobsList } from "../data/LatestJobs"
 import { JobsByLocation } from "../data/JobsByLocation";
 import { useRouter } from 'next/router'
 
+export async function getServerSideProps(){
+  const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
+  const locations = await prisma.Location.findMany({
+    include:{
+      User:{
+          select:{
+              UserName:true
+          }
+      }
+    }
+  });
+
+  const categories = await prisma.Category.findMany({
+    include:{
+      User:{
+          select:{
+              UserName:true
+          }
+      }
+    }
+  })
+  
+  const Allcategories = categories.map((data)=>({
+      category_id:data.category_id,
+      CategoryName:data.CategoryName,
+      CreatedDate:data.CreatedDate,
+      ModifiedDate:data.ModifiedDate,
+      userName:data.User.UserName
+  }))
+
+  return{
+    props:{
+      Alllocations:JSON.parse(JSON.stringify(Alllocations)),
+      Allusers:JSON.parse(JSON.stringify(Allusers)),
+      Allcategories:JSON.parse(JSON.stringify(Allcategories)),
+      Alljobs:JSON.parse(JSON.stringify(reversejob)),
+    }
+  }
+}
+
 export default function JobsByLocationPage() {
 	const router = useRouter();
   const { location, howmany, image } = router.query
