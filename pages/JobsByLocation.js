@@ -180,7 +180,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 			      		</div>
 
 			      		<p className="text-lg font-normal mb-5">
-			      			{data.JobsDescreption}
+			      			<div dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
 			      		</p>
 
 			      		<Link 
