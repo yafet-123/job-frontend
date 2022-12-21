@@ -100,17 +100,17 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	const router = useRouter();
   const { location, howmany, image } = router.query
   return (
-    <section className="bg-gray-200 flex flex-col w-full h-full py-20 px-0 md:px-32">
-    	<div className="flex flex-col bg-white w-full h-full px-5 py-5 border rounded-xl">
-    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10">
+    <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-32">
+    	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full px-5 py-5 border rounded-xl dark:border-slate-800">
+    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-white dark:bg-slate-800">
     			<div className="flex flex-col lg:flex-row mb-5 mt-10">
     				<Image src={image} width={100} height={100} alt="image" className="rounded-2xl" />
 	    			<h1 className="lg:ml-5 text-blue-700 text-3xl lg:text-5xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">Jobs in {location}</h1>
     			</div>
     			<div className="flex flex-col lg:flex-row mb-10 mt-10">
     				<div className="flex flex-col mr-5 mb-10 lg:mb-0">
-    					<p className="text-3xl text-gray-600 font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
-    					<p className="text-2xl text-black font-bold capitalize text-center">2,739,551 </p>
+    					<p className="text-3xl text-gray-600 dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
+    					<p className="text-2xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>
     				</div>
 
     				<div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-blue-500 text-white p-5">
@@ -120,10 +120,10 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
     			</div>
     		</div>
     	
-      	<div className="flex flex-col md:flex-row w-full">
-      		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3">
-      				<h1 className="text-2xl text-black font-bold capitalize text-center mb-10">Jobs in ethopia</h1>
-      				<div className="flex flex-col h-96 lg:h-[40rem] overflow-y-scroll bg-gray-200 p-3">
+      	<div className="flex flex-col md:flex-row w-full bg-white dark:bg-slate-800">
+      		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3 dark:bg-slate-800">
+      				<h1 className="text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs in ethopia</h1>
+      				<div className="flex flex-col h-96 lg:h-[40rem] overflow-y-scroll bg-gray-200 dark:bg-slate-700 p-3">
 	      				{locations.map((data, index) => (
 	      					<button 
 	      						className="flex items-center group hover:bg-white py-2 mb-5" 
@@ -131,7 +131,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	      						onClick = {()=>{
                       router.push({
                         pathname:"/JobsByLocation",
-                        query:{location:data.location, howmany:data.howmany, image:data.image}
+                        query:{location:data.LocationName, howmany:data.howmany, image:data.Image, location_id:data.location_id}
                       })
                     }}
 	      					>
