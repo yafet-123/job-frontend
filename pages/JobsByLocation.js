@@ -40,9 +40,8 @@ export async function getServerSideProps(context){
   });
 
   const latestjobs = await prisma.Job.findMany({
-  	take:-5,
     orderBy: {
-      CreatedDate:"asc"
+      CreatedDate:"desc"
     },
     include:{
       Location:{
@@ -212,20 +211,20 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 			      <div className="md:max-w-7xl md:mx-auto bg-gray-200 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
 			        {Alllatestjobs.map((data, index) => (
 			          <Link href="/" key={index}>
-			            <a className="flex justify-around items-center mb-5 even:bg-white px-10 py-5 group">
+			            <a className="flex justify-around items-center mb-5 even:bg-white px-5 py-5 group">
 			              <div className="flex flex-col w-1/2">
-			                <h1 className="font-bold text-lg text-blue-500 group-hover:text-orange-500">
+			                <h1 className="font-bold text-sm text-blue-500 group-hover:text-orange-500">
 			                  {data.JobsType}
 			                </h1>
-			                <h1 className="font-light md:text-sm text-blue-500 group-hover:text-orange-500">
+			                <h1 className="font-light md:text-xs text-blue-500 group-hover:text-orange-500">
 			                  {data.CompanyName}
 			                </h1>
 			              </div>
 			              <div className="flex flex-col w-1/2">
-			                <h1 className="font-light text-lg text-blue-500 text-right group-hover:text-orange-500">
-			                  {data.CreatedDate}
+			                <h1 className="font-light text-sm text-blue-500 text-right group-hover:text-orange-500">
+			                  {moment(data.CreatedDate).utc().format('MMM DD')}
 			                </h1>
-			                <h1 className="font-light text-lg text-blue-500 text-right group-hover:text-orange-500">
+			                <h1 className="font-light text-sm text-blue-500 text-right group-hover:text-orange-500">
 			                  {data.Location}
 			                </h1>
 			              </div>
