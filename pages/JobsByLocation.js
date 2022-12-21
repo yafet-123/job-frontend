@@ -8,48 +8,27 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { LatestJobsList } from "../data/LatestJobs"
 import { JobsByLocation } from "../data/JobsByLocation";
 import { useRouter } from 'next/router'
+import { PrismaClient } from '@prisma/client'
+import axios from 'axios';
+const prisma = new PrismaClient()
+import moment from 'moment';
 
 export async function getServerSideProps(){
-  const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
-  const locations = await prisma.Location.findMany({
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  });
-
-  const categories = await prisma.Category.findMany({
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  })
+  const locations = await prisma.Location.findMany()
   
-  const Allcategories = categories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
+  const Alllocations = locations.map((data)=>({
+      location_id:data.location_id,
+      LocationName:data.LocationName
   }))
 
   return{
     props:{
-      Alllocations:JSON.parse(JSON.stringify(Alllocations)),
-      Allusers:JSON.parse(JSON.stringify(Allusers)),
-      Allcategories:JSON.parse(JSON.stringify(Allcategories)),
-      Alljobs:JSON.parse(JSON.stringify(reversejob)),
+      locations:JSON.parse(JSON.stringify(Alllocations)),
     }
   }
 }
 
-export default function JobsByLocationPage() {
+export default function JobsByLocationPage({locations}) {
 	const router = useRouter();
   const { location, howmany, image } = router.query
   return (
@@ -77,7 +56,7 @@ export default function JobsByLocationPage() {
       		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3">
       				<h1 className="text-2xl text-black font-bold capitalize text-center mb-10">Jobs in ethopia</h1>
       				<div className="flex flex-col h-96 lg:h-[40rem] overflow-y-scroll bg-gray-200 p-3">
-	      				{JobsByLocation.map((data, index) => (
+	      				{locations.map((data, index) => (
 	      					<button 
 	      						className="flex items-center group hover:bg-white py-2 mb-5" 
 	      						key={index}
@@ -88,9 +67,9 @@ export default function JobsByLocationPage() {
                       })
                     }}
 	      					>
-	      						<Image src={data.image} width={25} height={25} alt="image" />
+	      						<Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
 		      					<h1 className="font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 ml-5">
-		                	jobs in {data.location}
+		                	jobs in {data.LocationName}
 		                </h1>
 		              </button>
 	      				))}
