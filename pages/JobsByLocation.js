@@ -18,7 +18,7 @@ export async function getServerSideProps(context){
   const location_id = query.location_id
 
   const locations = await prisma.Location.findMany()
-  const jobs = await prisma.Job.findMany({
+  const jobsByLocation = await prisma.Job.findMany({
   	where:{
   		location_id: Number(location_id)
   	},
@@ -39,7 +39,30 @@ export async function getServerSideProps(context){
     } 
   });
 
-  const Alljobs = jobs.map((data)=>({
+  const latestjobs = await prisma.Job.findMany({
+  	take:5,
+    orderBy: {
+      ModifiedDate:"asc"
+    },
+    include:{
+      Location:{
+        select:{
+          LocationName:true
+        }
+      }
+    } 
+  });
+
+  const Alllatestjobs = jobsByLocation.map((data)=>({
+    job_id:data.job_id,
+    CompanyName:data.CompanyName,
+    JobsType:data.JobsType,
+    Location:data.Location.LocationName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate
+  }))
+
+  const Alljobs = jobsByLocation.map((data)=>({
     job_id:data.job_id,
     CompanyName:data.CompanyName,
     Image:data.Image,
@@ -67,13 +90,13 @@ export async function getServerSideProps(context){
 
   return{
     props:{
-    	jobs:JSON.parse(JSON.stringify(reversejob)),
+    	jobsbylocation:JSON.parse(JSON.stringify(reversejob)),
       locations:JSON.parse(JSON.stringify(Alllocations)),
     }
   }
 }
 
-export default function JobsByLocationPage({locations, jobs}) {
+export default function JobsByLocationPage({locations, jobsbylocation}) {
 	const router = useRouter();
   const { location, howmany, image } = router.query
   return (
@@ -121,7 +144,7 @@ export default function JobsByLocationPage({locations, jobs}) {
 	      			</div>
       		</div>
       		<div className="flex flex-col w-full lg:w-2/4 bg-white p-3 lg:border-l-2">
-      			{ jobs.map((data,index)=>(
+      			{ jobsbylocation.map((data,index)=>(
 	      			<div className="flex flex-col w-full bg-gray-200 mb-10 p-3 border rounded-lg">
 	      				<div className="flex justify-between items-center">
 	      					<Link href="/DisplayJobs">
