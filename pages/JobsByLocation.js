@@ -143,9 +143,9 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	      				))}
 	      			</div>
       		</div>
-      		<div className="flex flex-col w-full lg:w-2/4 bg-white p-3 lg:border-l-2">
+      		<div className="flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2">
       			{ jobsbylocation.map((data,index)=>(
-	      			<div className="flex flex-col w-full bg-gray-200 mb-10 p-3 border rounded-lg">
+	      			<div className="flex flex-col w-full bg-gray-200 dark:bg-slate-700 mb-10 p-3 border rounded-lg">
 	      				<div className="flex justify-between items-center">
 	      					<Link href="/DisplayJobs">
 	      						<a className="text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
@@ -196,10 +196,9 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	      			</div>
       			))}
       		</div>
-
-      		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg">
+      		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800">
       			<div className="flex justify-between items-center p-10 md:p-0">
-			        <div className="flex items-center font-bold text-xl text-black capitalize">
+			        <div className="flex items-center font-bold text-xl text-black dark:text-white capitalize">
 			          <AiOutlineClockCircle size={20} />
 			          <span className="ml-5">Latest Jobs</span>
 			        </div>
@@ -210,7 +209,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 			        </Link>
       			</div>
 
-			      <div className="md:max-w-7xl md:mx-auto bg-gray-200 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
+			      <div className="md:max-w-7xl md:mx-auto bg-gray-200 dark:bg-slate-800 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
 			        {Alllatestjobs.map((data, index) => (
 			          <Link 
 			          	href={{
@@ -219,7 +218,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
           				}}
 			          	key={index}
 			          >
-			            <a className="flex justify-around items-center mb-5 even:bg-white px-5 py-5 group">
+			            <a className="flex justify-around items-center mb-5 even:bg-white even:dark:bg-slate-600 px-5 py-5 group">
 			              <div className="flex flex-col w-3/4">
 			                <h1 className="font-bold text-sm text-blue-500 group-hover:text-orange-500">
 			                  {data.JobsType}
