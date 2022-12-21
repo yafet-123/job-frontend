@@ -144,57 +144,65 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	      			</div>
       		</div>
       		<div className="flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2">
-      			{ jobsbylocation.map((data,index)=>(
-	      			<div className="flex flex-col w-full bg-gray-200 dark:bg-slate-700 mb-10 p-3 border rounded-lg">
-	      				<div className="flex justify-between items-center">
-	      					<Link href="/DisplayJobs">
-	      						<a className="text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
-	      					</Link>
-		      				<p className="text-lg text-blue-500">Posted: {moment(data.ModifiedDate).utc().format('MMM DD')}</p>
-	      				</div>
+      			{ jobsbylocation == "" ? 
+      				<h1 className="">
+      					There is No job in posted {location}
+      				</h1>
+      			:
+	      			<div>
+		      			{ jobsbylocation.map((data,index)=>(
+			      			<div className="flex flex-col w-full bg-gray-200 dark:bg-slate-700 mb-10 p-3 border rounded-lg">
+			      				<div className="flex justify-between items-center">
+			      					<Link href="/DisplayJobs">
+			      						<a className="text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
+			      					</Link>
+				      				<p className="text-lg text-blue-500">Posted: {moment(data.ModifiedDate).utc().format('MMM DD')}</p>
+			      				</div>
 
-		      			<div className="flex flex-col-reverse md:flex-row items-center">
-			      			<ul className="mt-10 w-3/4">
-					      		<li className="flex flex-row justify-between w-full mb-5">
-					      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
-					      			<p className="text-lg text-left w-1/2">{data.CompanyName}</p>
-					      		</li>
+				      			<div className="flex flex-col-reverse md:flex-row items-center">
+					      			<ul className="mt-10 w-3/4">
+							      		<li className="flex flex-row justify-between w-full mb-5">
+							      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
+							      			<p className="text-lg text-left w-1/2">{data.CompanyName}</p>
+							      		</li>
 
-					      		<li className="flex flex-row justify-between w-full mb-5">
-					      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Location:</h1>
-					      			<p className="text-lg text-left w-1/2">{data.Location}</p>
-					      		</li>
+							      		<li className="flex flex-row justify-between w-full mb-5">
+							      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Location:</h1>
+							      			<p className="text-lg text-left w-1/2">{data.Location}</p>
+							      		</li>
 
-					      		<li className="flex flex-row justify-between w-full mb-5">
-					      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
-					      			<p className="text-lg text-left w-1/2">{data.CareerLevel}</p>
-					      		</li>
+							      		<li className="flex flex-row justify-between w-full mb-5">
+							      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
+							      			<p className="text-lg text-left w-1/2">{data.CareerLevel}</p>
+							      		</li>
 
-					      		<li className="flex flex-row justify-between w-full mb-5">
-					      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
-					      			<p className="text-lg text-left w-1/2">{moment(data.DeadLine).utc().format('MMM DD')}</p>
-					      		</li>
-			      			</ul>
+							      		<li className="flex flex-row justify-between w-full mb-5">
+							      			<h1 className="text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
+							      			<p className="text-lg text-left w-1/2">{moment(data.DeadLine).utc().format('MMM DD')}</p>
+							      		</li>
+					      			</ul>
 
-			      			 <Image src="/images/vercel.svg" width={100} height={100} alt="image" />
-			      		</div>
+					      			 <Image src="/images/vercel.svg" width={100} height={100} alt="image" />
+					      		</div>
 
-			      		<p className="text-lg font-normal mb-5 h-36 overflow-hidden">
-			      			<div dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
-			      		</p>
+					      		<p className="text-lg font-normal mb-5 h-36 overflow-hidden">
+					      			<div dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
+					      		</p>
 
-			      		<Link 
-			      			href={{
-            				pathname: '/DisplayJobs',
-            				query:{job_id:data.job_id}
-          				}}
-			      		>
-			      			<a className="my-5 text-yellow-600 text-xl">
-			      				view detail
-			      			</a>
-			      		</Link>
+					      		<Link 
+					      			href={{
+		            				pathname: '/DisplayJobs',
+		            				query:{job_id:data.job_id}
+		          				}}
+					      		>
+					      			<a className="my-5 text-yellow-600 text-xl">
+					      				view detail
+					      			</a>
+					      		</Link>
+			      			</div>
+		      			))}
 	      			</div>
-      			))}
+      			}
       		</div>
       		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800">
       			<div className="flex justify-between items-center p-10 md:p-0">
