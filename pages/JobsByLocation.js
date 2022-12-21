@@ -18,7 +18,8 @@ export async function getServerSideProps(){
   
   const Alllocations = locations.map((data)=>({
       location_id:data.location_id,
-      LocationName:data.LocationName
+      LocationName:data.LocationName,
+      Image:data.Image,
   }))
 
   return{
