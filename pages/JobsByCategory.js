@@ -9,6 +9,89 @@ import { LatestJobsList } from "../data/LatestJobs"
 import { JobsByLocation } from "../data/JobsByLocation";
 import { useRouter } from 'next/router'
 
+export async function getServerSideProps(context){
+	const {params,req,res,query} = context
+  const location_id = query.location_id
+
+  const locations = await prisma.Location.findMany()
+  const jobsByLocation = await prisma.Job.findMany({
+  	where:{
+  		location_id: Number(location_id)
+  	},
+    orderBy: {
+      job_id:"asc"
+    },
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      Location:{
+        select:{
+          LocationName:true
+        }
+      }
+    } 
+  });
+
+  const latestjobs = await prisma.Job.findMany({
+    orderBy: {
+      CreatedDate:"desc"
+    },
+    include:{
+      Location:{
+        select:{
+          LocationName:true
+        }
+      }
+    } 
+  });
+
+  const Alllatestjobs = latestjobs.map((data)=>({
+    job_id:data.job_id,
+    CompanyName:data.CompanyName,
+    JobsType:data.JobsType,
+    Location:data.Location.LocationName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate
+  }))
+
+  const Alljobs = jobsByLocation.map((data)=>({
+    job_id:data.job_id,
+    CompanyName:data.CompanyName,
+    Image:data.Image,
+    JobsType:data.JobsType,
+    Location:data.Location.LocationName,
+    CareerLevel:data.CareerLevel,
+    EmploymentType:data.EmploymentType,
+    Salary:data.Salary,
+    JobsDescreption:data.JobsDescreption,
+    JobsRequirement:data.JobsRequirement,
+    DeadLine:data.DeadLine,
+    Apply:data.Apply,
+    location_id:data.location_id,
+    userName:data.User.UserName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate
+  }))
+  
+  const reversejob = Alljobs.reverse();
+  const Alllocations = locations.map((data)=>({
+      location_id:data.location_id,
+      LocationName:data.LocationName,
+      Image:data.Image
+  }))
+
+  return{
+    props:{
+    	Alllatestjobs:JSON.parse(JSON.stringify(Alllatestjobs)),
+    	jobsbylocation:JSON.parse(JSON.stringify(reversejob)),
+      locations:JSON.parse(JSON.stringify(Alllocations)),
+    }
+  }
+}
+
 export default function JobsByCategory() {
 	const router = useRouter();
 	const { category, howmany } = router.query
