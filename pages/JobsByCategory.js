@@ -121,7 +121,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	      						onClick = {()=>{
                       router.push({
                         pathname:"/JobsByCategory",
-                        query:{category:"Computer Science", howmany:data.howmany}
+                        query:{category:data.CategoryName, howmany:data.howmany, category_id: data.category_id}
                       })
                     }}
 	      					>
@@ -139,7 +139,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
       		<div className="flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2">
       			{ jobsbycategory == "" ? 
       				<h1 className="text-black dark:text-white text-xl font-bold text-center italic">
-      					There is No job posted in {category}
+      					There is No job posted in {category} Category
       				</h1>
       			:
 	      			<div>
