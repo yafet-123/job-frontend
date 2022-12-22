@@ -414,8 +414,6 @@ export function DashBoard() {
                 :
                 <h1 className="text-black dark:text-white text-xl font-bold text-center italic">{error}</h1>
             }
-
-
         </div>
   );
 }
