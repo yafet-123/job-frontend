@@ -5,6 +5,8 @@ import { AiOutlineEye } from 'react-icons/ai'
 
 export function DisplayJob({jobs}) {
     const [viewmodalOn, setviewModalOn] = useState(false);
+    const [deletemodalOn, setdeleteModalOn] = useState(false);
+    const [deletejobid,setdeletejobid] = useState()
     const [dataposttojob, setdataposttojob] = useState()
     const [view,setview] = useState()
 
@@ -15,7 +17,25 @@ export function DisplayJob({jobs}) {
     const handleCancelClickForview = () => {
         setviewModalOn(false)
     }
-    console.log(dataposttojob)
+
+    const clickedFordelete = () => {
+        setdeleteModalOn(true)
+    }
+
+    const handleOKClickFordelete = async() => {
+        const data = await axios.delete(`api/deletelocation/${deletelocationid}`,{
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+        setdeleteModalOn(false)
+        router.reload()
+    }
+
+    const handleCancelClickFordelete = () => {
+        setdeleteModalOn(false)
+    }
     return (
         <div className="m-5">
             <div>
@@ -212,6 +232,21 @@ export function DisplayJob({jobs}) {
                     </div>
                 </div>
             }
+
+            {deletemodalOn && 
+                <div className="bg-gray-200 dark:bg-slate-800 opacity-90 fixed inset-0 z-50   ">
+                    <div className="flex h-screen justify-center items-center ">
+                        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
+                            <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Are you sure You want to delete Category Name ?</div>
+                            <div className="flex">
+                                <button onClick={handleOKClickFordelete} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                                <button onClick={handleCancelClickFordelete} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            }
+
         </div>
     );
 }
