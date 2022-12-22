@@ -23,7 +23,7 @@ export function DisplayJob({jobs}) {
     }
 
     const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/deletelocation/${deletejobid}`,{
+        const data = await axios.delete(`api/deletejob/${deletejobid}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
