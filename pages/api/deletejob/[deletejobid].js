@@ -5,10 +5,10 @@ import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
 export default async(req, res) => {
-	const {deletelocationid} = req.query
+	const {deletejobid} = req.query
 	console.log(req.query)
-	const data = await prisma.Location.delete({
-		where:{location_id:Number(deletelocationid)},
+	const data = await prisma.Job.delete({
+		where:{location_id:Number(deletejobid)},
 	});
 	res.json(data)
 }
