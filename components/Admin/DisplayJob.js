@@ -5,6 +5,7 @@ import { AiOutlineEye } from 'react-icons/ai'
 
 export function DisplayJob({jobs}) {
     const [viewmodalOn, setviewModalOn] = useState(false);
+    const [dataposttojob, setdataposttojob] = useState()
     const [view,setview] = useState()
 
     const clickedForview = () => {
@@ -14,7 +15,7 @@ export function DisplayJob({jobs}) {
     const handleCancelClickForview = () => {
         setviewModalOn(false)
     }
-
+    console.log(dataposttojob)
     return (
         <div className="m-5">
             <div>
@@ -58,7 +59,7 @@ export function DisplayJob({jobs}) {
                                         <button
                                             onClick={() => {
                                                 clickedForview()
-                                                
+                                                setdataposttojob(data)
                                             }}
                                             className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
                                             <AiOutlineEye size={30} />
