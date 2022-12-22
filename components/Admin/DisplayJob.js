@@ -116,13 +116,58 @@ export function DisplayJob({jobs}) {
             {viewmodalOn && 
                 <div className="bg-gray-200 dark:bg-slate-800 opacity-90 fixed inset-0 z-50">
                     <div className="flex h-screen justify-center items-center ">
-                        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
-                            <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white">Detail Job</div>
+                        <div className="flex-col w-full h-full m-10 justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
+                            <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white text-center">Detail Job</div>
                             <div className="flex flex-col justify-between">
-                                <div className="flex flex-row justify-between items-center">
-                                    <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{dataposttojob.job_id}</p>
-                                    <h1>{dataposttojob.userName}</h1>
-                                    <h1>{dataposttojob.EmploymentType}</h1>
+                                <div className="grid grid-cols-1 lg:grid-cols-3 mb-5">
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">Id</span>
+                                        <span className="text-lg text-black dark:text-white">{dataposttojob.job_id}</span>
+                                    </h1>
+
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">Company Name</span>
+                                        <span className="text-lg text-black dark:text-white">{dataposttojob.CompanyName}</span>
+                                    </h1>
+                                    
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3 text-right">Jobs Type</span>
+                                        <span className="text-lg text-black dark:text-white text-right">{dataposttojob.JobsType}</span>
+                                    </h1>
+                                </div>
+
+                                <div className="grid grid-cols-1 lg:grid-cols-3 mb-5">
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">Career Level</span>
+                                        <span className="text-lg text-black dark:text-white">{dataposttojob.CareerLevel}</span>
+                                    </h1>
+
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">Employment Type</span>
+                                        <span className="text-lg text-black dark:text-white">{dataposttojob.EmploymentType}</span>
+                                    </h1>
+                                    
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3 text-right">Salary</span>
+                                        <span className="text-lg text-black dark:text-white text-right">{dataposttojob.Salary}</span>
+                                    </h1>
+                                </div>
+
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-5">
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">DeadLine</span>
+                                        <span className="text-lg text-black dark:text-white">{dataposttojob.DeadLine}</span>
+                                    </h1>
+
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">Apply</span>
+                                        <span className="text-lg text-black dark:text-white">{dataposttojob.Apply}</span>
+                                    </h1>
+                                    
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3 text-right">Location</span>
+                                        <span className="text-lg text-black dark:text-white text-right">{dataposttojob.Location}</span>
+                                    </h1>
                                 </div>
                             </div>
                             <div className="flex">

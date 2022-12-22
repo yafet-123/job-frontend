@@ -43,6 +43,11 @@ export async function getServerSideProps(){
         select:{
           UserName:true
         }
+      },
+      Location:{
+        select:{
+          LocationName:true
+        }
       }
     } 
   })
