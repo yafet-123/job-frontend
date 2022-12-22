@@ -34,7 +34,6 @@ export async function getServerSideProps(){
       }
     }
   })
-  
   const jobs = await prisma.Job.findMany({
     orderBy: {
       job_id:"asc"
