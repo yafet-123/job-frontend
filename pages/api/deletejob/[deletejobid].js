@@ -8,7 +8,7 @@ export default async(req, res) => {
 	const {deletejobid} = req.query
 	console.log(req.query)
 	const data = await prisma.Job.delete({
-		where:{location_id:Number(deletejobid)},
+		where:{job_id:Number(deletejobid)},
 	});
 	res.json(data)
 }
