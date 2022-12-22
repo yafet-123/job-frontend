@@ -4,7 +4,17 @@ import moment from 'moment';
 import { AiOutlineEye } from 'react-icons/ai'
 
 export function DisplayJob({jobs}) {
-    const [deletemodalOn, setdeleteModalOn] = useState(false);
+    const [viewmodalOn, setviewModalOn] = useState(false);
+    const [view,setview] = useState()
+
+    const clickedForview = () => {
+        setviewModalOn(true)
+    }
+
+    const handleCancelClickForview = () => {
+        setviewModalOn(false)
+    }
+
     return (
         <div className="m-5">
             <div className="overflow-auto rounded-lg shadow hidden lg:block">
@@ -46,8 +56,8 @@ export function DisplayJob({jobs}) {
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap flex justify-center">
                                     <button
                                         onClick={() => {
-                                            clickedFordelete()
-                                            setdeletecategoryid(data.category_id)
+                                            clickedForview()
+                                            
                                         }}
                                         className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
                                         <AiOutlineEye size={30} />
@@ -94,6 +104,19 @@ export function DisplayJob({jobs}) {
                     </div>
                 ))}
             </div>
+
+            {viewmodalOn && 
+                <div className="bg-gray-200 dark:bg-slate-800 opacity-90 fixed inset-0 z-50">
+                    <div className="flex h-screen justify-center items-center ">
+                        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
+                            <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Are you sure You want to delete Category Name ?</div>
+                            <div className="flex">
+                                <button onClick={handleCancelClickForview} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-  );
+    );
 }
