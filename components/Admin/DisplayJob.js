@@ -120,6 +120,7 @@ export function DisplayJob({jobs}) {
                             <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white">Detail Job</div>
                             <div className="flex flex-col justify-between">
                                 <div className="flex flex-row justify-between items-center">
+                                    <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{dataposttojob.job_id}</p>
                                     <h1>{dataposttojob.userName}</h1>
                                     <h1>{dataposttojob.EmploymentType}</h1>
                                 </div>
