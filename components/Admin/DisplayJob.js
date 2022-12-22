@@ -114,11 +114,28 @@ export function DisplayJob({jobs}) {
             </div>
 
             {viewmodalOn && 
-                <div className="bg-gray-200 dark:bg-slate-800 opacity-90 fixed inset-0 z-50">
+                <div className="bg-gray-200 dark:bg-slate-800 opacity-97 fixed inset-0 z-50">
                     <div className="flex h-screen justify-center items-center ">
                         <div className="flex-col w-full h-full m-10 justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
                             <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white text-center">Detail Job</div>
                             <div className="flex flex-col justify-between">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 mb-5">
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">Created Date</span>
+                                        <span className="text-lg text-black dark:text-white">{moment(dataposttojob.CreatedDate).utc().format('YYYY-MM-DD')}</span>
+                                    </h1>
+
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">Modified Date</span>
+                                        <span className="text-lg text-black dark:text-white">{moment(dataposttojob.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
+                                    </h1>
+                                    
+                                    <h1 className="flex flex-col font-bold hover:underline">
+                                        <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3 text-right">Created By</span>
+                                        <span className="text-lg text-black dark:text-white text-right">{dataposttojob.userName}</span>
+                                    </h1>
+                                </div>
+
                                 <div className="grid grid-cols-1 lg:grid-cols-3 mb-5">
                                     <h1 className="flex flex-col font-bold hover:underline">
                                         <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">Id</span>
@@ -156,7 +173,7 @@ export function DisplayJob({jobs}) {
                                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-5">
                                     <h1 className="flex flex-col font-bold hover:underline">
                                         <span className="text-left text-xl text-blue-500 dark:text-blue-500 mb-3">DeadLine</span>
-                                        <span className="text-lg text-black dark:text-white">{dataposttojob.DeadLine}</span>
+                                        <span className="text-lg text-black dark:text-white">{moment(dataposttojob.DeadLine).utc().format('YYYY-MM-DD')}</span>
                                     </h1>
 
                                     <h1 className="flex flex-col font-bold hover:underline">

@@ -82,7 +82,7 @@ export async function getServerSideProps(){
     CompanyName:data.CompanyName,
     Image:data.Image,
     JobsType:data.JobsType,
-    Location:data.Location,
+    Location:data.Location.LocationName,
     CareerLevel:data.CareerLevel,
     EmploymentType:data.EmploymentType,
     Salary:data.Salary,
