@@ -2,8 +2,11 @@ import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import moment from 'moment';
 import { AiOutlineEye } from 'react-icons/ai'
+import axios from 'axios';
+import { useRouter } from 'next/router'
 
 export function DisplayJob({jobs}) {
+    const router = useRouter();
     const [viewmodalOn, setviewModalOn] = useState(false);
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [deletejobid,setdeletejobid] = useState()
