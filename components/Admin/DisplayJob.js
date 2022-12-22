@@ -23,7 +23,7 @@ export function DisplayJob({jobs}) {
     }
 
     const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/deletelocation/${deletelocationid}`,{
+        const data = await axios.delete(`api/deletelocation/${deletejobid}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -225,7 +225,14 @@ export function DisplayJob({jobs}) {
                             </div>
                             <div className="flex float-right">
                                 <button onClick={handleCancelClickForview} className="rounded px-4 py-4 ml-4 text-white bg-green-400 hover:bg-green-600">Edit</button>
-                                <button onClick={handleCancelClickForview} className="rounded px-4 py-4 ml-4 text-white bg-red-400 hover:bg-red-600">Delete</button>
+                                <button onClick={() => {
+                                        clickedFordelete()
+                                        setdeletejobid(dataposttojob.job_id)
+                                    }} 
+                                    className="rounded px-4 py-4 ml-4 text-white bg-red-400 hover:bg-red-600"
+                                >
+                                    Delete
+                                </button>
                                 <button onClick={handleCancelClickForview} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">Cancel</button>
                             </div>
                         </div>
