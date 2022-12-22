@@ -58,9 +58,9 @@ export default function JobsByCategory({categories,Alllatestjobs}) {
 	const router = useRouter();
 	const { category, howmany } = router.query
   return (
-    <section className="bg-gray-200 flex flex-col w-full h-full py-20 px-0 md:px-32">
-    	<div className="flex flex-col bg-white w-full h-full px-5 py-10 border rounded-xl">
-	    	<h1 className="text-black text-3xl capitalize font-bold mb-10">{howmany} {category} Jobs</h1>
+    <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-32">
+    	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full px-5 py-10 border rounded-xl">
+	    	<h1 className="text-black dark:text-white text-3xl capitalize font-bold mb-10">{howmany} {category} Jobs</h1>
       	<div className="flex flex-col md:flex-row w-full ">
       		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3 dark:bg-slate-800">
       			<h1 className="text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs By Category</h1>
@@ -87,7 +87,7 @@ export default function JobsByCategory({categories,Alllatestjobs}) {
 	      				))}
 	      			</div>
       		</div>
-      		<div className="flex flex-col w-full lg:w-3/4 bg-white p-3 lg:border-l-2">
+      		<div className="flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2">
       			<div className="flex flex-col w-full bg-gray-200 mb-10 p-3 border rounded-lg">
       				<div className="flex justify-between items-center">
 	      				<Link href="/DisplayJobs">
