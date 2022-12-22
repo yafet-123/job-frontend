@@ -99,7 +99,12 @@ export function DisplayJob({jobs}) {
                             </div>
 
                             <div className="flex items-center justify-between text-sm">
-                                <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-blue-500 rounded">
+                                <button 
+                                    onClick={() => {
+                                        clickedForview()
+                                        setdataposttojob(data)
+                                    }}
+                                    className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-blue-500 rounded">
                                     <AiOutlineEye size={30} />
                                 </button>
                             </div>
@@ -113,6 +118,12 @@ export function DisplayJob({jobs}) {
                     <div className="flex h-screen justify-center items-center ">
                         <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
                             <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white">Detail Job</div>
+                            <div className="flex flex-col justify-between">
+                                <div className="flex flex-row justify-between items-center">
+                                    <h1>{dataposttojob.userName}</h1>
+                                    <h1>{dataposttojob.EmploymentType}</h1>
+                                </div>
+                            </div>
                             <div className="flex">
                                 <button onClick={handleCancelClickForview} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
                             </div>
