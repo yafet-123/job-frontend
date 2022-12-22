@@ -18,7 +18,7 @@ export function DisplayJob({jobs, categories}) {
     const [view,setview] = useState()
 
     const [typechange , settypechange] = useState(true)
-    const [CompanyName, setCompanyName] = useState()
+    const [CompanyName, setCompanyName] = useState("")
     const [Image, setImage] = useState("")
     const [JobsType, setJobsType] = useState("")
     const [Location, setLocation] = useState("")
@@ -271,6 +271,7 @@ export function DisplayJob({jobs, categories}) {
                                     onClick={() => {
                                         clickedForupdate()
                                         setupdatejobid(dataposttojob.job_id)
+                                        setCompanyName(dataposttojob.job_id)
                                     }}
                                     className="rounded px-4 py-4 ml-4 text-white bg-green-400 hover:bg-green-600"
                                 >
@@ -307,7 +308,7 @@ export function DisplayJob({jobs, categories}) {
 
             {updatemodalOn && 
                 <div className="bg-gray-200 dark:bg-slate-800 opacity-95 fixed inset-0 z-50 h-full  ">
-                    <div className="flex h-full justify-center items-center overflow-y-scroll">
+                    <div className="flex h-full justify-center items-center">
                         <div className="flex-col w-full h-full mx-20 justify-center bg-gray-50 dark:bg-slate-500 py-5 px-24 border-4 border-sky-500 rounded-xl ">
                             <h1 className="text-2xl text-zinc-600 font-bold mb-3 dark:text-white text-center">Update Job</h1>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-3">
