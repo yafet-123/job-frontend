@@ -8,33 +8,17 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { LatestJobsList } from "../data/LatestJobs"
 import { JobsByLocation } from "../data/JobsByLocation";
 import { useRouter } from 'next/router'
+import { PrismaClient } from '@prisma/client'
+import axios from 'axios';
+const prisma = new PrismaClient()
+import moment from 'moment';
 
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
   const location_id = query.location_id
 
-  const locations = await prisma.Location.findMany()
-  const jobsByLocation = await prisma.Job.findMany({
-  	where:{
-  		location_id: Number(location_id)
-  	},
-    orderBy: {
-      job_id:"asc"
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      Location:{
-        select:{
-          LocationName:true
-        }
-      }
-    } 
-  });
-
+  const categories = await prisma.Category.findMany()
+  
   const latestjobs = await prisma.Job.findMany({
     orderBy: {
       CreatedDate:"desc"
@@ -56,55 +40,32 @@ export async function getServerSideProps(context){
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate
   }))
-
-  const Alljobs = jobsByLocation.map((data)=>({
-    job_id:data.job_id,
-    CompanyName:data.CompanyName,
-    Image:data.Image,
-    JobsType:data.JobsType,
-    Location:data.Location.LocationName,
-    CareerLevel:data.CareerLevel,
-    EmploymentType:data.EmploymentType,
-    Salary:data.Salary,
-    JobsDescreption:data.JobsDescreption,
-    JobsRequirement:data.JobsRequirement,
-    DeadLine:data.DeadLine,
-    Apply:data.Apply,
-    location_id:data.location_id,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate
-  }))
   
-  const reversejob = Alljobs.reverse();
-  const Alllocations = locations.map((data)=>({
-      location_id:data.location_id,
-      LocationName:data.LocationName,
-      Image:data.Image
+  const Allcategories = categories.map((data)=>({
+      category_id:data.category_id,
+      CategoryName:data.CategoryName,
   }))
 
   return{
     props:{
     	Alllatestjobs:JSON.parse(JSON.stringify(Alllatestjobs)),
-    	jobsbylocation:JSON.parse(JSON.stringify(reversejob)),
-      locations:JSON.parse(JSON.stringify(Alllocations)),
+      categories:JSON.parse(JSON.stringify(Allcategories)),
     }
   }
 }
 
-export default function JobsByCategory() {
+export default function JobsByCategory({categories,Alllatestjobs}) {
 	const router = useRouter();
 	const { category, howmany } = router.query
   return (
     <section className="bg-gray-200 flex flex-col w-full h-full py-20 px-0 md:px-32">
     	<div className="flex flex-col bg-white w-full h-full px-5 py-10 border rounded-xl">
 	    	<h1 className="text-black text-3xl capitalize font-bold mb-10">{howmany} {category} Jobs</h1>
-    	
       	<div className="flex flex-col md:flex-row w-full ">
-      		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3">
-      			<h1 className="text-2xl text-black font-bold capitalize text-center mb-10">Jobs By Category</h1>
-      				<div className="flex flex-col h-96 lg:h-[40rem] overflow-y-scroll bg-gray-200 p-3">
-	      				{JobsByLocation.map((data, index) => (
+      		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3 dark:bg-slate-800">
+      			<h1 className="text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs By Category</h1>
+      				<div className="flex flex-col h-96 lg:h-[40rem] overflow-y-scroll bg-gray-200 dark:bg-slate-700 p-3">
+	      				{categories.map((data, index) => (
 	      					<button 
 	      						className="flex items-center justify-between group hover:bg-white py-2 mb-5 px-2" 
 	      						key={index}
@@ -116,7 +77,7 @@ export default function JobsByCategory() {
                     }}
 	      					>
 		      					<h1 className="text-left font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
-		                	Accounting and Finance
+		                	{data.CategoryName}
 		                </h1>
 
 		                <h1 className="text-left text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
@@ -227,9 +188,9 @@ export default function JobsByCategory() {
 		      		<hr className="w-full bg-blue-900 mb-5" />
       			</div>
       		</div>
-      		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg">
+      		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800">
       			<div className="flex justify-between items-center p-10 md:p-0">
-			        <div className="flex items-center font-bold text-xl text-black capitalize">
+			        <div className="flex items-center font-bold text-xl text-black dark:text-white capitalize">
 			          <AiOutlineClockCircle size={20} />
 			          <span className="ml-5">Latest Jobs</span>
 			        </div>

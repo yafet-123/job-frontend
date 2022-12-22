@@ -118,8 +118,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
     					<p className="text-xl font-bold capitalize">{howmany}</p>
     				</div>
     			</div>
-    		</div>
-    	
+    		</div>	
       	<div className="flex flex-col md:flex-row w-full bg-white dark:bg-slate-800">
       		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3 dark:bg-slate-800">
       				<h1 className="text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs in ethopia</h1>

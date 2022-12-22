@@ -162,7 +162,7 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/JobsByCategory",
-                        query:{category:"Accounting", howmany:"89"}
+                        query:{category: data.CategoryName, howmany:"89", category_id: data.category_id}
                       })
                     }}
                   >
