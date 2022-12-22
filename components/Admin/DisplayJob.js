@@ -203,7 +203,7 @@ export function DisplayJob({jobs}) {
                                     </h1>
                                 </div>
                             </div>
-                            <div className="flex">
+                            <div className="flex float-right">
                                 <button onClick={handleCancelClickForview} className="rounded px-4 py-4 ml-4 text-white bg-green-400 hover:bg-green-600">Edit</button>
                                 <button onClick={handleCancelClickForview} className="rounded px-4 py-4 ml-4 text-white bg-red-400 hover:bg-red-600">Delete</button>
                                 <button onClick={handleCancelClickForview} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">Cancel</button>
