@@ -174,11 +174,22 @@ export function AddCategory({categories}) {
                             </div>
 
                             <div className="flex items-center justify-between text-sm">
-                                <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                <button
+                                    onClick={() => {
+                                        clickedForupdate()
+                                        setupdatecategoryid(data.category_id)
+                                        setupdatecategoryname(data.CategoryName)
+                                    }} 
+                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit
                                 </button>
 
-                                <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                <button
+                                    onClick={() => {
+                                        clickedFordelete()
+                                        setdeletecategoryid(data.category_id)
+                                    }}  
+                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                                     Delete
                                 </button>
                             </div>

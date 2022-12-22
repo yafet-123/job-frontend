@@ -4,7 +4,7 @@ import moment from 'moment';
 import { AiOutlineEye } from 'react-icons/ai'
 
 export function DisplayJob({jobs}) {
-    console.log(jobs)
+    const [deletemodalOn, setdeleteModalOn] = useState(false);
     return (
         <div className="m-5">
             <div className="overflow-auto rounded-lg shadow hidden lg:block">
@@ -44,7 +44,12 @@ export function DisplayJob({jobs}) {
                                     {data.userName}
                                 </td>
                                 <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap flex justify-center">
-                                    <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
+                                    <button
+                                        onClick={() => {
+                                            clickedFordelete()
+                                            setdeletecategoryid(data.category_id)
+                                        }}
+                                        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
                                         <AiOutlineEye size={30} />
                                     </button>
                                 </td>
