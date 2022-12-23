@@ -60,7 +60,7 @@ export function DisplayJob({jobs, categories}) {
     }
 
     const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/updateCategory/${updatecategoryid}`,{
+        const data = await axios.patch(`api/updatejob/${updatejobid}`,{
             "CategoryName": updatecategoryname
         }).then(function (response) {
             console.log(response.data);
@@ -295,7 +295,10 @@ export function DisplayJob({jobs, categories}) {
                             </div>
                             <div className="flex float-right">
                                 <button 
-                                    onClick={() => handleingUpdateChange(dataposttojob) }
+                                    onClick={
+                                        () => handleingUpdateChange(dataposttojob) 
+                                        setupdatejobid(dataposttojob.job_id)
+                                    }
                                     className="rounded px-4 py-4 ml-4 text-white bg-green-400 hover:bg-green-600"
                                 >
                                     Edit
