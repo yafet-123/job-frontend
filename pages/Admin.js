@@ -1,7 +1,6 @@
 import { VerticalNavbar } from "../components/Admin/VerticalNavbar";
 import { DashBoard } from "../components/Admin/DashBoard";
 import { AddUser } from "../components/Admin/AddUser";
-import { DisplayUser } from "../components/Admin/DisplayUser";
 import { DisplayJob } from "../components/Admin/DisplayJob";
 import { AddCategory } from "../components/Admin/AddCategory";
 import { AddJob } from "../components/Admin/AddJob";
