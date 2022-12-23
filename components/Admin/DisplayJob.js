@@ -48,8 +48,6 @@ export function DisplayJob({jobs, categories}) {
         setupdateModalOn(true)
     }
 
-    console.log(categoryId)
-
     const handleOKClickFordelete = async() => {
         const data = await axios.delete(`api/deletejob/${deletejobid}`,{
         }).then(function (response) {
@@ -79,9 +77,14 @@ export function DisplayJob({jobs, categories}) {
 
     const handleCancelClickForupdate = () => {
         setupdateModalOn(false)
+        setCategoryId([])
     }
 
-    function handleingUpdateChange(){
+
+    function handleingUpdateChange(dataposttojob){
+        let categories = [] 
+        console.log(dataposttojob)
+        categories = dataposttojob.categories
         clickedForupdate()
         setupdatejobid(dataposttojob.job_id)
         setCompanyName(dataposttojob.CompanyName)
@@ -94,10 +97,15 @@ export function DisplayJob({jobs, categories}) {
         setRequirement(dataposttojob.JobsRequirement)
         setDeadLine(dataposttojob.DeadLine)
         setApply(dataposttojob.Apply)
-        setCategoryId(dataposttojob.categories)
+
+        for (let j = 0; j < categories.length; j++) {
+            setCategoryId(categoryId => [...categoryId, categories[j].category_id])
+        }
+        
     }
 
-    console.log(dataposttojob)
+    console.log(categoryId)
+    
     return (
         <div className="m-5">
             <div>
@@ -287,7 +295,7 @@ export function DisplayJob({jobs, categories}) {
                             </div>
                             <div className="flex float-right">
                                 <button 
-                                    onClick={(dataposttojob) => handleingUpdateChange(dataposttojob) }
+                                    onClick={() => handleingUpdateChange(dataposttojob) }
                                     className="rounded px-4 py-4 ml-4 text-white bg-green-400 hover:bg-green-600"
                                 >
                                     Edit
@@ -496,7 +504,7 @@ export function DisplayJob({jobs, categories}) {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-3">
                                 <Multiselect
                                     displayValue="CategoryName"
-                                    placeholder = "Category"
+                                    placeholder = "updated Category"
                                     className="w-full px-3 text-xl text-black h-64 bg-gray-50 py-4 border-2 border-black rounded-xl appearance-none dark:text-black dark:bg-slate-500 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                                     onKeyPressFn={function noRefCheck(){}}
                                     onRemove={function noRefCheck(){}}
