@@ -48,10 +48,12 @@ export async function getServerSideProps(){
         select:{
           LocationName:true
         }
-      }
+      },
+      JobCategory:true
     } 
   })
 
+  console.log(jobs)
   const Alllocations = locations.map((data)=>({
       location_id:data.location_id,
       LocationName:data.LocationName,
@@ -92,7 +94,10 @@ export async function getServerSideProps(){
     Apply:data.Apply,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate
+    ModifiedDate:data.ModifiedDate,
+    category_id:data.JobCategory.map((data,ibdex)=>(
+      
+    ))
   }))
   
   const reversejob = Alljobs.reverse();
@@ -110,6 +115,7 @@ export async function getServerSideProps(){
 export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
+  console.log(Alljobs)
   const router = useRouter();
   useEffect(() => {
     if (status === "unauthenticated") router.replace("/auth/signin");
@@ -125,7 +131,7 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) 
         { selected == "dashboard" && <DashBoard />}
         { selected == "addUser" && <AddUser users={Allusers}/>}
         { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
-        { selected == "displayJob" && <DisplayJob jobs={Alljobs}/>}
+        { selected == "displayJob" && <DisplayJob jobs={Alljobs} categories={Allcategories}/>}
         { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
         { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
       </div>

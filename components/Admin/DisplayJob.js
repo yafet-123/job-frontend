@@ -79,6 +79,7 @@ export function DisplayJob({jobs, categories}) {
         setupdateModalOn(false)
     }
 
+    console.log(dataposttojob)
     return (
         <div className="m-5">
             <div>
@@ -271,7 +272,17 @@ export function DisplayJob({jobs, categories}) {
                                     onClick={() => {
                                         clickedForupdate()
                                         setupdatejobid(dataposttojob.job_id)
-                                        setCompanyName(dataposttojob.job_id)
+                                        setCompanyName(dataposttojob.CompanyName)
+                                        setJobsType(dataposttojob.JobsType)
+                                        setLocation(dataposttojob.Location)
+                                        setCareerLevel(dataposttojob.CareerLevel)
+                                        setEmploymentType(dataposttojob.EmploymentType)
+                                        setSalary(dataposttojob.Salary)
+                                        setDescription(dataposttojob.JobsDescreption)
+                                        setRequirement(dataposttojob.JobsRequirement)
+                                        setDeadLine(dataposttojob.DeadLine)
+                                        setApply(dataposttojob.Apply)
+                                        setCategoryId(dataposttojob.category_id)
                                     }}
                                     className="rounded px-4 py-4 ml-4 text-white bg-green-400 hover:bg-green-600"
                                 >
