@@ -68,8 +68,9 @@ export async function getServerSideProps(context){
   const categories = await prisma.Category.findMany()
   
   const latestjobs = await prisma.Job.findMany({
+  	take:-5,
     orderBy: {
-      CreatedDate:"desc"
+      ModifiedDate:"desc"
     },
     include:{
       Location:{
