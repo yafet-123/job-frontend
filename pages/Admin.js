@@ -48,7 +48,12 @@ export async function getServerSideProps(){
           LocationName:true
         }
       },
-      JobCategory:true
+      JobCategory:{
+        select:{
+          category_id:true,
+          CategoryName:true,
+        }
+      },
     } 
   })
 
@@ -94,7 +99,7 @@ export async function getServerSideProps(){
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
-    
+    categories:data.JobCategory
   }))
   
   const reversejob = Alljobs.reverse();

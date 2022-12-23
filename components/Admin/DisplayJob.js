@@ -48,6 +48,8 @@ export function DisplayJob({jobs, categories}) {
         setupdateModalOn(true)
     }
 
+    console.log(categoryId)
+
     const handleOKClickFordelete = async() => {
         const data = await axios.delete(`api/deletejob/${deletejobid}`,{
         }).then(function (response) {
@@ -282,7 +284,7 @@ export function DisplayJob({jobs, categories}) {
                                         setRequirement(dataposttojob.JobsRequirement)
                                         setDeadLine(dataposttojob.DeadLine)
                                         setApply(dataposttojob.Apply)
-                                        setCategoryId(dataposttojob.category_id)
+                                        setCategoryId(dataposttojob.categories)
                                     }}
                                     className="rounded px-4 py-4 ml-4 text-white bg-green-400 hover:bg-green-600"
                                 >
