@@ -95,9 +95,7 @@ export async function getServerSideProps(){
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
-    category_id:data.JobCategory.map((data,ibdex)=>(
-      
-    ))
+    
   }))
   
   const reversejob = Alljobs.reverse();
