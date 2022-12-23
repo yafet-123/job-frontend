@@ -70,7 +70,7 @@ export async function getServerSideProps(context){
   const latestjobs = await prisma.Job.findMany({
   	take:-5,
     orderBy: {
-      ModifiedDate:"desc"
+      ModifiedDate:"asc"
     },
     include:{
       Location:{
@@ -95,10 +95,12 @@ export async function getServerSideProps(context){
       CategoryName:data.CategoryName,
   }))
 
+  const reversejoblatest = Alllatestjobs.reverse();
+
   return{
     props:{
     	jobsbycategory:JSON.parse(JSON.stringify(reversejob)),
-    	Alllatestjobs:JSON.parse(JSON.stringify(Alllatestjobs)),
+    	Alllatestjobs:JSON.parse(JSON.stringify(reversejoblatest)),
       categories:JSON.parse(JSON.stringify(Allcategories)),
     }
   }
