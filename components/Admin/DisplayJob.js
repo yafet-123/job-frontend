@@ -296,8 +296,11 @@ export function DisplayJob({jobs, categories}) {
                             <div className="flex float-right">
                                 <button 
                                     onClick={
-                                        () => handleingUpdateChange(dataposttojob) 
-                                        setupdatejobid(dataposttojob.job_id)
+                                        () => { 
+                                            handleingUpdateChange(dataposttojob) 
+                                            setupdatejobid(dataposttojob.job_id)
+                                        }
+                                        
                                     }
                                     className="rounded px-4 py-4 ml-4 text-white bg-green-400 hover:bg-green-600"
                                 >
