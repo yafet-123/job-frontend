@@ -51,7 +51,7 @@ export async function getServerSideProps(){
       JobCategory:{
         select:{
           category_id:true,
-          CategoryName:true,
+          
         }
       },
     } 

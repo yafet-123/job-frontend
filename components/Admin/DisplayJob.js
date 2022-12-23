@@ -81,6 +81,22 @@ export function DisplayJob({jobs, categories}) {
         setupdateModalOn(false)
     }
 
+    function handleingUpdateChange(){
+        clickedForupdate()
+        setupdatejobid(dataposttojob.job_id)
+        setCompanyName(dataposttojob.CompanyName)
+        setJobsType(dataposttojob.JobsType)
+        setLocation(dataposttojob.Location)
+        setCareerLevel(dataposttojob.CareerLevel)
+        setEmploymentType(dataposttojob.EmploymentType)
+        setSalary(dataposttojob.Salary)
+        setDescription(dataposttojob.JobsDescreption)
+        setRequirement(dataposttojob.JobsRequirement)
+        setDeadLine(dataposttojob.DeadLine)
+        setApply(dataposttojob.Apply)
+        setCategoryId(dataposttojob.categories)
+    }
+
     console.log(dataposttojob)
     return (
         <div className="m-5">
@@ -272,19 +288,7 @@ export function DisplayJob({jobs, categories}) {
                             <div className="flex float-right">
                                 <button 
                                     onClick={() => {
-                                        clickedForupdate()
-                                        setupdatejobid(dataposttojob.job_id)
-                                        setCompanyName(dataposttojob.CompanyName)
-                                        setJobsType(dataposttojob.JobsType)
-                                        setLocation(dataposttojob.Location)
-                                        setCareerLevel(dataposttojob.CareerLevel)
-                                        setEmploymentType(dataposttojob.EmploymentType)
-                                        setSalary(dataposttojob.Salary)
-                                        setDescription(dataposttojob.JobsDescreption)
-                                        setRequirement(dataposttojob.JobsRequirement)
-                                        setDeadLine(dataposttojob.DeadLine)
-                                        setApply(dataposttojob.Apply)
-                                        setCategoryId(dataposttojob.categories)
+                                        
                                     }}
                                     className="rounded px-4 py-4 ml-4 text-white bg-green-400 hover:bg-green-600"
                                 >
