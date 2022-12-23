@@ -89,7 +89,7 @@ export async function getServerSideProps(context){
   }))
 
   const reversejoblatest = Alllatestjobs.reverse();
-  
+
   return{
     props:{
     	Alllatestjobs:JSON.parse(JSON.stringify(reversejoblatest)),
@@ -187,9 +187,10 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 					      			 <Image src="/images/vercel.svg" width={100} height={100} alt="image" />
 					      		</div>
 
-					      		<p className="text-lg font-normal mb-5 h-36 overflow-hidden">
-					      			<div dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
-					      		</p>
+					      			<div 
+					      				className="text-lg font-normal mb-5 h-36 overflow-hidden" 
+					      				dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} 
+					      			/>
 
 					      		<Link 
 					      			href={{
