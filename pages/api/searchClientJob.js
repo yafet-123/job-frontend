@@ -38,9 +38,9 @@ export default async(req, res) => {
         res.json(AllData)
 
     } else if(type == 2){
-        const searchData = await prisma.Category.findMany({
+        const searchData = await prisma.Job.findMany({
             where: {
-                CategoryName: {
+                JobsType: {
                     contains: searchName,
                     mode: "insensitive",
                 },
@@ -53,10 +53,16 @@ export default async(req, res) => {
                 }
             }
         })
-        
+
         const AllData = searchData.map((data)=>({
-            category_id:data.category_id,
-            CategoryName:data.CategoryName,
+            job_id:data.job_id,
+            CompanyName:data.CompanyName,
+            JobsType:data.JobsType,
+            CareerLevel:data.CareerLevel,
+            EmploymentType:data.EmploymentType,
+            Salary:data.Salary,
+            DeadLine:data.DeadLine,
+            Apply:data.Apply,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate,
             userName:data.User.UserName
