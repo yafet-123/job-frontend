@@ -31,12 +31,12 @@ export function Hero() {
   return (
     <div className="hero-background w-full h-[30rem] lg:h-[40rem] flex justify-center items-center">
       <div className="flex flex-col w-full md:w-[40rem] h-96 px-5">
-        <h1 className={`text-4xl mb-5 font-bold md:text-4xl lg:text-5xl ${ search == "Job" ? " text-green-900 " : "text-yellow-900" } `}>
+        <h1 className={`text-4xl mb-5 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-900 " : "text-yellow-900" } `}>
           Better Job. Better Talent
         </h1>
         <div className="flex mb-2">
-          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "job" ? " bg-green-400 text-white" : "" } p-4  rounded-xl`} onClick={() => setsearch("job")}>Jobs</button>
-          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "companies" ? " bg-yellow-400 text-white" : "" } p-4 rounded-xl`} onClick={() => setsearch("companies")}>Companies</button>
+          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-5 ${ search == "job" ? " bg-green-400 text-white" : "" } p-4  rounded-xl`} onClick={() => setsearch("job")}>Jobs</button>
+          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-5 ${ search == "companies" ? " bg-yellow-400 text-white" : "" } p-4 rounded-xl`} onClick={() => setsearch("companies")}>Companies</button>
           <button className={`text-black text-xl md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} onClick={() => router.push("/AdvanceSearch")}>Advance Search</button>
         </div>
 
