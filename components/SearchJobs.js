@@ -6,10 +6,11 @@ import { GoLocation } from "react-icons/go";
 import { useState } from "react";
 import { JobsByLocation } from "../data/JobsByLocation";
 import Image from 'next/image'
-
+import { useRouter } from 'next/router'
 
 export function SearchJobs({categories, locations}) {
   const [jobs, setJobs] = useState("category");
+  const router = useRouter();
   return (
     <div className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-white dark:bg-slate-700">
       <h1 className="font-light text-2xl md:text-3xl lg:text-4xl capitalize mb-5 text-center md:text-left px-7 md:px-0">
@@ -45,11 +46,11 @@ export function SearchJobs({categories, locations}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/JobsByLocation",
-                        query:{location:data.LocationName, howmany:78, image:data.Image}
+                        query:{location:data.LocationName, howmany:78, image:data.Image, location_id:data.location_id}
                       })
                     }}
                   >
-                    <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
+                    <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                     <div className="flex flex-col ml-10">
                       <h1 className="text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
                         jobs in {data.LocationName}
