@@ -15,7 +15,7 @@ export default function AdvanceSearch() {
   const [type,settype] = useState()
   const advanceSearchList = [
     { type:1 , name: "Job Type" , style: "bg-blue-400", styleHover:"bg-blue-800"},
-    { type:2 , name: "Job Name" , style: "bg-green-400", styleHover:"bg-blue-400" },
+    { type:2 , name: "CareerLevel" , style: "bg-green-400", styleHover:"bg-blue-400" },
     { type:3 , name: "Company Name" , style: "bg-red-400", styleHover:"bg-red-800" },
   ];
 

@@ -40,7 +40,7 @@ export default async(req, res) => {
     } else if(type == 2){
         const searchData = await prisma.Job.findMany({
             where: {
-                JobsType: {
+                CareerLevel: {
                     contains: searchName,
                     mode: "insensitive",
                 },
