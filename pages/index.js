@@ -8,7 +8,7 @@ const prisma = new PrismaClient()
 export async function getStaticProps(){
   const locations = await prisma.Location.findMany();
   const categories = await prisma.Category.findMany();
-  const jobs = await prisma.Job.findMany({ 
+  const latestjobs = await prisma.Job.findMany({ 
     take:-5,
     orderBy: {
       ModifiedDate:"asc"
@@ -27,7 +27,7 @@ export async function getStaticProps(){
     } 
   });
 
-  const Alljobs = jobs.map((data)=>({
+  const Alllatestjobs = latestjobs.map((data)=>({
     job_id:data.job_id,
     CompanyName:data.CompanyName,
     Image:data.Image,
@@ -46,13 +46,13 @@ export async function getStaticProps(){
     ModifiedDate:data.ModifiedDate
   }))
   
-  const reversejob = Alljobs.reverse();
+  const latestreversejob = Alllatestjobs.reverse();
 
   return{
     props:{
       categories:JSON.parse(JSON.stringify(categories)),
       locations:JSON.parse(JSON.stringify(locations)),
-      latestjobs:JSON.parse(JSON.stringify(reversejob)),
+      latestjobs:JSON.parse(JSON.stringify(latestreversejob)),
     }
   }
 }
