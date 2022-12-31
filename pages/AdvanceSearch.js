@@ -48,6 +48,10 @@ export default function AdvanceSearch() {
           ))}
         </div>
       </div>
+
+      <div className="">
+        
+      </div>
     </section>
   );
 }

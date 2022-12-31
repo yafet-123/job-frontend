@@ -4,8 +4,13 @@ import { FaFacebookF,FaLinkedinIn,FaTwitter,FaYoutube} from "react-icons/fa";
 import { useRouter } from 'next/router'
 import { CiTwitter } from "react-icons/ci";
 export function Hero() {
-  const [search,setsearch] = useState("job")
+  const [search,setsearch] = useState("Job")
+  console.log(search)
   const router = useRouter();
+  const SearchList = [
+    { type: 1, name: "Job",},
+    { type: 2, name: "Companies",},
+  ];
   async function handleSearch(e){
     const data = await axios.post(`api/searchAdmin`,{
         "searchName": getSearchValue,
@@ -26,16 +31,16 @@ export function Hero() {
   return (
     <div className="hero-background w-full h-[30rem] lg:h-[40rem] flex justify-center items-center">
       <div className="flex flex-col w-full md:w-[40rem] h-96 px-5">
-        <h1 className={`text-4xl mb-5 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-900 " : "text-yellow-900" } `}>
+        <h1 className={`text-4xl mb-5 font-bold md:text-4xl lg:text-5xl ${ search == "Job" ? " text-green-900 " : "text-yellow-900" } `}>
           Better Job. Better Talent
         </h1>
         <div className="flex mb-2">
-          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "job" ? " bg-green-400 " : "" } p-4  rounded-xl`} onClick={() => setsearch("job")}>Jobs</button>
-          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "companies" ? " bg-yellow-400 " : "" } p-4 rounded-xl`} onClick={() => setsearch("companies")}>Companies</button>
+          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "job" ? " bg-green-400 text-white" : "" } p-4  rounded-xl`} onClick={() => setsearch("job")}>Jobs</button>
+          <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-10 ${ search == "companies" ? " bg-yellow-400 text-white" : "" } p-4 rounded-xl`} onClick={() => setsearch("companies")}>Companies</button>
           <button className={`text-black text-xl md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} onClick={() => router.push("/AdvanceSearch")}>Advance Search</button>
         </div>
 
-        { search == "job" ? (
+        { search == "Job" ? (
             <div className="flex h-16 w-full">
               <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
                 <AiOutlineSearch size={20} />
