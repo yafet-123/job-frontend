@@ -9,6 +9,7 @@ export async function getStaticProps(){
   const locations = await prisma.Location.findMany();
   const categories = await prisma.Category.findMany();
   const jobs = await prisma.Job.findMany({ 
+    take:-5,
     orderBy: {
       ModifiedDate:"asc"
     },
