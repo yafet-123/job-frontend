@@ -48,7 +48,7 @@ export default function AdvanceSearch() {
   console.log(searchValue)
 
   return (
-    <section className="flex flex-col w-full h-screen bg-gray-200 dark:bg-slate-700">
+    <div className="flex flex-col bg-gray-200 dark:bg-slate-700">
       <div className="max-w-2xl mx-auto my-10 w-full px-10 md:px-0">
       	<div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 border rounded-2xl">
           <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
@@ -142,6 +142,6 @@ export default function AdvanceSearch() {
         :
         <h1 className="text-black dark:text-white text-xl font-bold text-center italic">{error}</h1>
       }
-    </section>
+    </div>
   );
 }
