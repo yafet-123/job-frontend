@@ -30,6 +30,8 @@ export default async(req, res) => {
             Salary:data.Salary,
             DeadLine:data.DeadLine,
             Apply:data.Apply,
+            JobsDescreption:data.JobsDescreption,
+    		JobsRequirement:data.JobsRequirement,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate,
             userName:data.User.UserName
@@ -63,6 +65,8 @@ export default async(req, res) => {
             Salary:data.Salary,
             DeadLine:data.DeadLine,
             Apply:data.Apply,
+            JobsDescreption:data.JobsDescreption,
+    		JobsRequirement:data.JobsRequirement,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate,
             userName:data.User.UserName
@@ -95,6 +99,8 @@ export default async(req, res) => {
             Salary:data.Salary,
             DeadLine:data.DeadLine,
             Apply:data.Apply,
+            JobsDescreption:data.JobsDescreption,
+    		JobsRequirement:data.JobsRequirement,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate,
             userName:data.User.UserName

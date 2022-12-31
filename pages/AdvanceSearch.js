@@ -48,7 +48,7 @@ export default function AdvanceSearch() {
   console.log(searchValue)
 
   return (
-    <section className="flex flex-col w-full h-full bg-gray-200 dark:bg-slate-700">
+    <section className="flex flex-col w-full h-screen bg-gray-200 dark:bg-slate-700">
       <div className="max-w-2xl mx-auto my-10 w-full px-10 md:px-0">
       	<div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 border rounded-2xl">
           <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
@@ -83,9 +83,9 @@ export default function AdvanceSearch() {
                 No data can be found
             </h1>
             :
-            <div className="md:max-w-7xl md:mx-auto flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2">
+            <div className=" flex flex-col w-full lg:w-full bg-gray-200 dark:bg-slate-700 p-3 lg:border-l-2 px-5 lg:px-20">
               {searchValue.map((data, index) => (
-                <div className="flex flex-col w-full bg-gray-200 dark:bg-slate-700 mb-10 p-3 border rounded-lg">
+                <div className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
                     <div className="flex justify-between items-center">
                       <Link href="/DisplayJobs">
                         <a className="text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
