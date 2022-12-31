@@ -48,7 +48,7 @@ export default function AdvanceSearch() {
   console.log(searchValue)
 
   return (
-    <section className="flex flex-col w-full h-screen bg-gray-200 dark:bg-slate-700">
+    <section className="flex flex-col w-full h-full bg-gray-200 dark:bg-slate-700">
       <div className="max-w-2xl mx-auto my-10 w-full px-10 md:px-0">
       	<div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 border rounded-2xl">
           <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
@@ -83,36 +83,58 @@ export default function AdvanceSearch() {
                 No data can be found
             </h1>
             :
-            <div className="md:max-w-7xl md:mx-auto bg-gray-200 dark:bg-slate-800 w-full h-[40rem] border dark:border-slate-800 rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
+            <div className="md:max-w-7xl md:mx-auto flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2">
               {searchValue.map((data, index) => (
-                <button
-                  className="flex justify-around items-center mb-5 even:bg-white dark:bg-slate-700 px-10 py-5 group"
-                  key={index}
-                  type = "button"
-                  onClick = {()=>{
-                    router.push({
-                      pathname:"/DisplayJobs",
-                      query:{job_id:data.job_id}
-                    })
-                  }}
-                >
-                  <div className="flex flex-col w-1/2">
-                    <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-blue-500 dark:text-white group-hover:text-orange-500">
-                      {data.JobsType}
-                    </h1>
-                    <h1 className="text-left font-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white group-hover:text-orange-500">
-                      {data.CompanyName}
-                    </h1>
+                <div className="flex flex-col w-full bg-gray-200 dark:bg-slate-700 mb-10 p-3 border rounded-lg">
+                    <div className="flex justify-between items-center">
+                      <Link href="/DisplayJobs">
+                        <a className="text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
+                      </Link>
+                      <p className="text-lg text-blue-500">Posted: {moment(data.ModifiedDate).utc().format('MMM DD')}</p>
+                    </div>
+
+                    <div className="flex flex-col-reverse md:flex-row items-center">
+                      <ul className="mt-10 w-3/4">
+                        <li className="flex flex-row justify-between w-full mb-5">
+                          <h1 className="text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
+                          <p className="text-lg text-left w-1/2">{data.CompanyName}</p>
+                        </li>
+
+                        <li className="flex flex-row justify-between w-full mb-5">
+                          <h1 className="text-xl font-bold capitalize text-left w-1/2">Location:</h1>
+                          <p className="text-lg text-left w-1/2">{data.Location}</p>
+                        </li>
+
+                        <li className="flex flex-row justify-between w-full mb-5">
+                          <h1 className="text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
+                          <p className="text-lg text-left w-1/2">{data.CareerLevel}</p>
+                        </li>
+
+                        <li className="flex flex-row justify-between w-full mb-5">
+                          <h1 className="text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
+                          <p className="text-lg text-left w-1/2">{moment(data.DeadLine).utc().format('MMM DD')}</p>
+                        </li>
+                      </ul>
+
+                       <Image src="/images/vercel.svg" width={100} height={100} alt="image" />
+                    </div>
+
+                    <div 
+                      className="text-lg font-normal mb-5 h-36 overflow-hidden" 
+                      dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} 
+                    />
+
+                    <Link 
+                      href={{
+                        pathname: '/DisplayJobs',
+                        query:{job_id:data.job_id}
+                      }}
+                    >
+                      <a className="my-5 text-yellow-600 text-xl">
+                        view detail
+                      </a>
+                    </Link>
                   </div>
-                  <div className="flex flex-col w-1/2">
-                    <h1 className="font-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white text-right group-hover:text-orange-500">
-                      {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                    </h1>
-                    <h1 className="font-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white text-right group-hover:text-orange-500">
-                      {data.Location}
-                    </h1>
-                  </div>
-                </button>
               ))}
             </div>
           }
