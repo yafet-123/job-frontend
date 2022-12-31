@@ -8,20 +8,60 @@ const prisma = new PrismaClient()
 export async function getStaticProps(){
   const locations = await prisma.Location.findMany();
   const categories = await prisma.Category.findMany();
+  const jobs = await prisma.Job.findMany({ 
+    orderBy: {
+      ModifiedDate:"asc"
+    },
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      Location:{
+        select:{
+          LocationName:true
+        }
+      }
+    } 
+  });
+
+  const Alljobs = jobs.map((data)=>({
+    job_id:data.job_id,
+    CompanyName:data.CompanyName,
+    Image:data.Image,
+    JobsType:data.JobsType,
+    Location:data.Location.LocationName,
+    CareerLevel:data.CareerLevel,
+    EmploymentType:data.EmploymentType,
+    Salary:data.Salary,
+    JobsDescreption:data.JobsDescreption,
+    JobsRequirement:data.JobsRequirement,
+    DeadLine:data.DeadLine,
+    Apply:data.Apply,
+    location_id:data.location_id,
+    userName:data.User.UserName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate
+  }))
+  
+  const reversejob = Alljobs.reverse();
+
   return{
     props:{
       categories:JSON.parse(JSON.stringify(categories)),
-      locations:JSON.parse(JSON.stringify(locations))
+      locations:JSON.parse(JSON.stringify(locations)),
+      latestjobs:JSON.parse(JSON.stringify(reversejob)),
     }
   }
 }
 
-export default function Home({categories, locations}) {
+export default function Home({categories, locations, latestjobs}) {
   console.log(locations)
   return (
     <div className="">
       <Hero />
-      <LatestJobs />
+      <LatestJobs latestjobs={latestjobs} />
       <SearchJobs categories={categories} locations={locations} />
     </div>
   );
