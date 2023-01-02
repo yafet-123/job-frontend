@@ -29,7 +29,7 @@ export function Hero() {
       });
   }
   return (
-    <div className="hero-background w-full h-[30rem] lg:h-[40rem] flex justify-center items-center">
+    <div className="hero-background brightness-100 w-full h-[30rem] lg:h-[40rem] flex justify-center items-center">
       <div className="flex flex-col w-full md:w-[40rem] h-96 px-5">
         <h1 className={`text-4xl mb-5 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-900 " : "text-yellow-900" } `}>
           Better Job. Better Talent
