@@ -1,5 +1,5 @@
 import Image from 'next/future/image';
-import AboutUsHeroImageOne from '../public/images/AboutUsImage.jpg';
+import AboutUsHeroImageOne from '../public/images/aboutBackground.jpg';
 
 export const OurVision =  () => {
   return (
