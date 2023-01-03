@@ -7,12 +7,15 @@ import axios from 'axios';
 import moment from 'moment';
 
 export default function AdvanceSearch() {
+  const router = useRouter();
+  const { searchName } = router.query
+  const { searchtype } = router.query
+  console.log(searchName)
 	const [selected , setselected] = useState("")
   const [error , seterror] = useState("")
-  const [getSearchValue,setgetSearchValue] = useState("")
-	const router = useRouter();
+  const [getSearchValue,setgetSearchValue] = useState(searchName)
   const [searchValue,setsearchValue] = useState([])
-  const [type,settype] = useState()
+  const [type,settype] = useState(searchtype)
   const advanceSearchList = [
     { type:1 , name: "Job Type" , style: "bg-blue-400", styleHover:"bg-blue-800"},
     { type:2 , name: "CareerLevel" , style: "bg-green-400", styleHover:"bg-blue-400" },
@@ -22,8 +25,7 @@ export default function AdvanceSearch() {
   ];
 
   useEffect(()=>{
-    settype()
-    setsearchValue()
+    handleSearch()
   },[])
 
   async function handleSearch(){
@@ -92,8 +94,8 @@ export default function AdvanceSearch() {
             </h1>
             :
             <div className=" flex flex-col w-full lg:w-full bg-gray-200 dark:bg-slate-700 p-3 lg:border-l-2 px-5 lg:px-20">
-              {searchValue.map((data, index) => (
-                <div className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
+              {searchValue?.map((data, index) => (
+                <div key={index} className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
                     <div className="flex justify-between items-center">
                       <Link href="/DisplayJobs">
                         <a className="text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>

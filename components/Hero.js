@@ -73,7 +73,7 @@ export function Hero() {
                 <button 
                   onClick={()=> router.push({
                     pathname: '/AdvanceSearch',
-                    query: { searchName: searchValue, type: 1 },
+                    query: { searchName: searchValue, searchtype: 1 },
                   })} 
                   className="text-lg md:text-2xl text-white bg-green-400 px-2 md:px-3 flex items-center justify-center"
                 >
@@ -94,7 +94,7 @@ export function Hero() {
                 <button
                   onClick={()=> router.push({
                     pathname: '/AdvanceSearch',
-                    query: { searchName: searchValue, type: 3 },
+                    query: { searchName: searchValue, searchtype: 3 },
                   })} 
                   className="text-lg md:text-2xl text-white bg-green-400 px-2 md:px-3 flex items-center justify-center"
                 >
