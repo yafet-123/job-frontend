@@ -19,7 +19,6 @@ export function Footer() {
 
   const aboutUsLinks = [
     { link: "About", path: "/About" },
-    { link: "Mission/Vision", path: "/MissionAndVision" },
     { link: "Our Team", path: "" },
   ];
   const router = useRouter();

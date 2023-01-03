@@ -61,8 +61,8 @@ export function Navbar() {
                     router.pathname == navbar.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == navbar.path ) || 
                     ( router.pathname == "/JobsByCategory" && "/Jobs" == navbar.path ) || ( router.pathname == "/JobsByLocation" && "/Jobs" == navbar.path ) ||
                     ( router.pathname == "/Course" && "/Courses" == navbar.path )
-                      ? "border-b-4 border-blue-800 dark:border-white md:ml-5 lg:ml-10 text-2xl font-bold text-white dark:text-white"
-                      : "md:ml-5 lg:ml-20 text-2xl font-bold text-white dark:text-white hover:border-b-4 border-blue-800"
+                      ? "border-b-4 border-white dark:border-white md:ml-5 lg:ml-10 text-2xl font-bold text-white dark:text-white"
+                      : "md:ml-5 lg:ml-20 text-2xl font-bold text-white dark:text-white hover:border-b-4 border-white"
                   }
                 >
                   {navbar.text}
@@ -126,8 +126,8 @@ export function Navbar() {
                     onClick={() => setNav(false)}
                     className={
                       router.pathname == navbar.path
-                        ? "border-b-4 border-blue-800 dark:border-white ml-2 text-lg font-light text-black dark:text-white w-[40%] mb-5"
-                        : "ml-2 text-lg font-light text-black dark:text-white hover:border-b-4 border-blue-800 dark:border-white w-[40%] mb-5"
+                        ? "border-b-4 border-white ml-2 text-lg font-light text-black dark:text-white w-[40%] mb-5"
+                        : "ml-2 text-lg font-light text-black dark:text-white hover:border-b-4 border-white w-[40%] mb-5"
                       }
                   >
                     {navbar.text}
