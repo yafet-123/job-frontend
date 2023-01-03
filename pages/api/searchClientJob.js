@@ -108,9 +108,9 @@ export default async(req, res) => {
 
         res.json(AllData)
     } else if (type == 4){
-        const searchData = await prisma.Location.findMany({
+        const searchData = await prisma.Job.findMany({
             where: {
-                LocationName: {
+                EmploymentType: {
                     contains: searchName,
                     mode: "insensitive",
                 },
@@ -125,12 +125,19 @@ export default async(req, res) => {
         })
 
         const AllData = searchData.map((data)=>({
-            location_id:data.location_id,
-            LocationName:data.LocationName,
-            Image:data.Image,
+            job_id:data.job_id,
+            CompanyName:data.CompanyName,
+            JobsType:data.JobsType,
+            CareerLevel:data.CareerLevel,
+            EmploymentType:data.EmploymentType,
+            Salary:data.Salary,
+            DeadLine:data.DeadLine,
+            Apply:data.Apply,
+            JobsDescreption:data.JobsDescreption,
+            JobsRequirement:data.JobsRequirement,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate,
-            userName:data.User.UserName,
+            userName:data.User.UserName
         }))
 
         res.json(AllData)
