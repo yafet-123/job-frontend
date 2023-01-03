@@ -7,10 +7,11 @@ import { CiTwitter } from "react-icons/ci";
 import AboutUsHeroImageOne from '../public/images/bgImage1.avif';
 
 export function Hero() {
-  const [search,setsearch] = useState("Job")
+  const [search,setsearch] = useState("job")
   const router = useRouter();
+  const [searchValue, setsearchValue] = useState("")
   const SearchList = [
-    { type: 1, name: "Job",},
+    { type: 1, name: "job Type",},
     { type: 2, name: "Companies",},
   ];
   async function handleSearch(e){
@@ -44,19 +45,38 @@ export function Hero() {
             Better Job. Better Talent
           </h1>
           <div className="flex mb-2">
-            <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-5 ${ search == "job" ? " bg-green-400 text-white" : "" } p-4  rounded-xl`} onClick={() => setsearch("job")}>Jobs</button>
-            <button className={`text-black text-xl md:text-2xl lg:text-3xl mr-5 ${ search == "companies" ? " bg-yellow-400 text-white" : "" } p-4 rounded-xl`} onClick={() => setsearch("companies")}>Companies</button>
-            <button className={`text-black text-xl md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} onClick={() => router.push("/AdvanceSearch")}>Advance Search</button>
+            <button 
+              className={`text-black text-xl md:text-2xl lg:text-3xl mr-5 ${ search == "job" ? " bg-green-400 text-white" : "" } p-4  rounded-xl`} 
+              onClick={() => setsearch("job")}
+            >Job Type</button>
+            <button 
+              className={`text-black text-xl md:text-2xl lg:text-3xl mr-5 ${ search == "companies" ? " bg-yellow-400 text-white" : "" } p-4 rounded-xl`} 
+              onClick={() => setsearch("companies")}
+            >Companies</button>
+            <button 
+              className={`text-black text-xl md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} 
+              onClick={() => router.push("/AdvanceSearch")}
+            >Advance Search</button>
           </div>
 
           { search == "Job" ? (
               <div className="flex h-16">
-                <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
+                <div 
+                  className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
                   <AiOutlineSearch size={20} />
                 </div>
 
-                <input className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
-                <button onClick={()=> handleSearch(1)} className="text-lg md:text-2xl text-white bg-green-400 px-2 md:px-3 flex items-center justify-center">
+                <input 
+                  value={searchValue}                            
+                  onChange={(e) => setsearchValue(e.target.value)}
+                  className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
+                <button 
+                  onClick={()=> router.push({
+                    pathname: '/AdvanceSearch',
+                    query: { searchName: searchValue, type: 1 },
+                  })} 
+                  className="text-lg md:text-2xl text-white bg-green-400 px-2 md:px-3 flex items-center justify-center"
+                >
                   Search
                 </button>
               </div>
@@ -67,8 +87,17 @@ export function Hero() {
                   <AiOutlineSearch size={20} />
                 </div>
 
-                <input className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
-                <button onClick={()=> handleSearch(1)} className="text-lg md:text-2xl text-white bg-yellow-400 px-2 md:px-3 flex items-center justify-center">
+                <input 
+                  value={searchValue}
+                  onChange={(e) => setsearchValue(e.target.value)}
+                  className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
+                <button
+                  onClick={()=> router.push({
+                    pathname: '/AdvanceSearch',
+                    query: { searchName: searchValue, type: 3 },
+                  })} 
+                  className="text-lg md:text-2xl text-white bg-green-400 px-2 md:px-3 flex items-center justify-center"
+                >
                   Search
                 </button>
               </div>

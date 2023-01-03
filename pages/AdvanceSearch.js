@@ -21,16 +21,19 @@ export default function AdvanceSearch() {
     
   ];
 
-  async function handleSearch(e){
-    settype(e)
-    setsearchValue([])
+  useEffect(()=>{
+    settype()
+    setsearchValue()
+  },[])
+
+  async function handleSearch(){
     if(getSearchValue == ""){
         seterror("Please Insert a value")
         setsearchValue([])
     }else{
       const data = await axios.post(`api/searchClientJob`,{
           "searchName": getSearchValue,
-          "type": e
+          "type": type
       }).then(function (response) {
         const objOneData = response.data
         if(Array.isArray(objOneData)){
@@ -70,7 +73,10 @@ export default function AdvanceSearch() {
           {advanceSearchList.map((search, index) => (
             <button 
               key={index}
-              onClick={()=> handleSearch(search.type)}
+              onClick={()=> {
+                handleSearch()
+                settype(search.type)
+              }}
               className={`py-2 py-5 text-lg hover:${search.styleHover} md:text-2xl text-white px-2 md:px-3 flex items-center justify-center border rounded-2xl ${search.style}`}
             >
               Search by {search.name}
