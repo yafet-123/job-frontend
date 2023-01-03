@@ -48,7 +48,7 @@ export function Navbar() {
   ];
 
   return (
-    <div className={ shadow ? "bg-gray-200 dark:bg-slate-800 w-full h-24 py-5 fixed z-50 shadow-xl z-[100] ease-in-out duration-300": "bg-white dark:bg-slate-800 w-full h-24 py-5" && router.pathname == "/auth/signin" ? "hidden" : "py-5"}>
+    <div className={ shadow ? "bg-[#165248] dark:bg-slate-800 w-full py-5 fixed shadow-xl z-[100] ease-in-out duration-300": "bg-[#165248] dark:bg-slate-800 w-full h-24 py-5" && router.pathname == "/auth/signin" ? "hidden" : "bg-[#165248] py-5"}>
       <div className="flex flex-row justify-between items-center px-11 md:px-20">
         <Image src="/images/vercel.svg" width={100} height={60} alt="hulu jobs" />
         <div className="flex flex-1 flex-row items-center">
@@ -61,8 +61,8 @@ export function Navbar() {
                     router.pathname == navbar.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == navbar.path ) || 
                     ( router.pathname == "/JobsByCategory" && "/Jobs" == navbar.path ) || ( router.pathname == "/JobsByLocation" && "/Jobs" == navbar.path ) ||
                     ( router.pathname == "/Course" && "/Courses" == navbar.path )
-                      ? "border-b-4 border-blue-800 dark:border-white md:ml-5 lg:ml-10 text-2xl font-light text-black dark:text-white"
-                      : "md:ml-5 lg:ml-20 text-2xl font-light text-black dark:text-white hover:border-b-4 border-blue-800"
+                      ? "border-b-4 border-blue-800 dark:border-white md:ml-5 lg:ml-10 text-2xl font-bold text-white dark:text-white"
+                      : "md:ml-5 lg:ml-20 text-2xl font-bold text-white dark:text-white hover:border-b-4 border-blue-800"
                   }
                 >
                   {navbar.text}
