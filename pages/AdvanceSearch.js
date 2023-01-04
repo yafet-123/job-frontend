@@ -21,7 +21,7 @@ export default function AdvanceSearch() {
     { type:2 , name: "CareerLevel" , style: "bg-green-400", styleHover:"bg-blue-400" },
     { type:3 , name: "Company Name" , style: "bg-red-400", styleHover:"bg-red-800" },
     { type:4 , name: "Employment Type" , style: "bg-sky-400", styleHover:"bg-sky-800" },
-    { type:5 , name: "Employment Type" , style: "bg-orange-400", styleHover:"bg-orange-800" },
+    { type:5 , name: "Career Level" , style: "bg-orange-400", styleHover:"bg-orange-800" },
     
   ];
 

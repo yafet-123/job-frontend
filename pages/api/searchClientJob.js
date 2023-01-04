@@ -141,6 +141,40 @@ export default async(req, res) => {
         }))
 
         res.json(AllData)
+    }else if (type == 5){
+        const searchData = await prisma.Job.findMany({
+            where: {
+                CareerLevel: {
+                    contains: searchName,
+                    mode: "insensitive",
+                },
+            },
+            include:{
+                User:{
+                    select:{
+                        UserName:true
+                    }
+                },
+            }
+        })
+
+        const AllData = searchData.map((data)=>({
+            job_id:data.job_id,
+            CompanyName:data.CompanyName,
+            JobsType:data.JobsType,
+            CareerLevel:data.CareerLevel,
+            EmploymentType:data.EmploymentType,
+            Salary:data.Salary,
+            DeadLine:data.DeadLine,
+            Apply:data.Apply,
+            JobsDescreption:data.JobsDescreption,
+            JobsRequirement:data.JobsRequirement,
+            CreatedDate:data.CreatedDate,
+            ModifiedDate:data.ModifiedDate,
+            userName:data.User.UserName
+        }))
+
+        res.json(AllData)
     }
 
 
