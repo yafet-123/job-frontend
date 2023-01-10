@@ -5,7 +5,7 @@ import Image from 'next/image'
 import {InterviewQuestionAndAnswer} from '../../data/InterviewQuestionAndAnswer'
 export function JobInterview(){
 	return(
-		<section className="flex flex-col w-full h-full px-0 bg-gray-50">
+		<section className="flex flex-col w-full h-full px-0 bg-gray-50 dark:bg-slate-800">
 			<div className="py-20 px-10">
 				<h1 className="font-bold text-3xl md:text-4xl lg:text-5xl capitalize mb-5 text-center">
 					Job Interview Tips
@@ -16,7 +16,7 @@ export function JobInterview(){
 					height={750}
 					alt="interview"
 				/>				
-				<p className="font-sans text-black text-left text-xl antialiased not-italic tracking-wide leading-relaxed my-5 w-full">
+				<p className="font-sans text-black dark:text-white text-left text-xl antialiased not-italic tracking-wide leading-relaxed my-5 w-full">
 					<span className="text-2xl font-bold">Job Interviews</span> are a great way for an employer to get to know more about you and determine whether or 
 					not you are right for an open position. However, all too often, young professionals overlook the 
 					fact that interviews are also a time to gauge whether they will fit in and find success at the 
@@ -31,7 +31,7 @@ export function JobInterview(){
 							Pre-Interview Research
 						</h3>
 
-						<p className="font-sans text-black text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full">
+						<p className="font-sans text-black dark:text-white text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full">
 							Research and analyze the position and the company before the interview in effort to 
 							determine whether or not there is a fit.  Take the time to prepare your own thoughtful 
 							questions for interviewers to respond to during the interview so that you are able to 
@@ -44,7 +44,7 @@ export function JobInterview(){
 							Interview
 						</h3>
 
-						<p className="font-sans text-black text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full">
+						<p className="font-sans text-black dark:text-white text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full">
 							Most interviews have a schedule – which makes it easier to follow along and prepare.  
 							The employer will talk about their organization, ask about your skills and experience 
 							and what you have to offer.  A sample problem or situation may be offered for you to 
@@ -53,7 +53,7 @@ export function JobInterview(){
 							usually be offered. If not, ask for one. 
 						</p>
 
-						<p className="font-sans text-black text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full">
+						<p className="font-sans text-black dark:text-white text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full">
 							When asked a question during an interview remember to keep your answers short. While it is 
 							true that you should answer many of the questions in a precise manner, there are 
 							also instances where you have to give detailed and somewhat longer answers. 
@@ -64,7 +64,7 @@ export function JobInterview(){
 							minutes. You can practice this by rehearsing verbal presentations of key qualifications 
 							in your resume. 
 						</p>	
-						<p className="font-sans text-black text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full">
+						<p className="font-sans text-black dark:text-white text-left text-xl antialiased not-italic tracking-wide leading-relaxed mb-5 w-full">
 							Be ready to convey your relevant skills, interests, and goals. Practice explaining your 
 							strengths and accomplishments ahead of time and have your elevator pitch ready.  If they 
 							ask you what your salary expectation, it is a good idea to know the starting salary range 
@@ -79,7 +79,7 @@ export function JobInterview(){
 
 						<ul className="">
 							{ InterviewQuestionAndAnswer.map((data,index)=>(
-								<li key={index} className="list-decimal font-sans text-black text-left text-xl antialiased not-italic tracking-wide leading-relaxed my-5 w-full">
+								<li key={index} className="list-decimal font-sans text-black dark:text-white text-left text-xl antialiased not-italic tracking-wide leading-relaxed my-5 w-full">
 									<span className="font-semibold text-2xl block mb-5">{data.question}</span> 
 									<span className="font-semibold text-2xl mr-5"> How to answer:</span>
 									{data.answer}

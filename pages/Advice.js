@@ -33,7 +33,7 @@ export default function Advice() {
   }
 
   return (
-    <section className="flex flex-col w-full h-full bg-white">
+    <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600">
     	<div className="flex lg:hidden w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
     		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
           <MdOutlineSubject size={30} /> 
@@ -44,16 +44,14 @@ export default function Advice() {
         </button>
     	</div>
     	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20">
-    		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 overflow-y-scroll">
-    			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} />
-          
+    		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 dark:bg-slate-700 overflow-y-scroll">
+    			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} /> 
     		</div>
 
-    		<div className="w-full lg:w-3/4 h-full border bg-gray-50">
+    		<div className="w-full lg:w-3/4 h-full border dark:border-none bg-gray-50 dark:bg-slate-800">
     			{ title == "Carer Advice For job seeker" && selected == "How To Write Cv" && <HowToWriteCv />}
           { title == "Carer Advice For job seeker" && selected == "Job Interview" && <JobInterview />}
           { title == "Carer Advice For job seeker" && selected == "Job Search Tips" && <JobSearchTips />}
-
     		</div>
     	</div>
 
@@ -67,7 +65,7 @@ export default function Advice() {
         <div
           className={
             adviceList
-              ? "fixed left-0 top-0 w-[75%] sm:w-[70%] md:w-[70%] h-screen bg-white py-10 ease-in duration-500"
+              ? "fixed left-0 top-0 w-[75%] sm:w-[70%] md:w-[70%] h-screen bg-white dark:bg-slate-800 py-10 ease-in duration-500"
               : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
           }
         >
@@ -90,7 +88,7 @@ export default function Advice() {
       <div
         className={
           advices
-            ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 z-10"
+            ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 dark:bg-slate-800 z-10"
             : ""
         }
       >
