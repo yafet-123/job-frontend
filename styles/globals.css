@@ -2,34 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.hero-background {
-  background-image: url("../public/images/bgImage1.avif");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.news-background {
-  background-image: url("../public/images/bgImage2.avif");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.mission-vision-background {
-  background-image: url("../public/images/bgImage4.avif");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.about-background {
-  background-image: url("../public/images/aboutBackground.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .dropdown:hover .dropdown-menu {
   display: block;
 }

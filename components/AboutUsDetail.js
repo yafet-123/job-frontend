@@ -12,9 +12,7 @@ export const AboutUsDetail = () => {
             We are Hulu Media
           </h3>
           <p className="mt-5 lg:mt-20 w-full lg:w-3/4 text-sm lg:text-2xl text-center lg:text-left font-sans leading-8 font-bold text-[#165248] hover:text-[#94BB3C]">
-            Ecotravel Ethiopia was founded to offer environmentally-friendly
-            tours. Our commitment is as reflected in our name offering tours
-            with a softer footprint.
+            አንቀዕ፣ አንቀጽ
           </p>
         </div>
 
