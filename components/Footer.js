@@ -15,12 +15,9 @@ export function Footer() {
     { link: "Home" },
     { link: "Course" },
     { link: "Advices" },
+    { link: "About", path: "/About" },
   ];
 
-  const aboutUsLinks = [
-    { link: "About", path: "/About" },
-    { link: "Our Team", path: "" },
-  ];
   const router = useRouter();
 
   return (
@@ -55,24 +52,13 @@ export function Footer() {
             })}
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 w-full lg:w-3/4">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 w-full lg:w-3/4">
           <div className="flex flex-col space-y-2 text-white justify-center items-center">
             <h1 className="text-2xl font-bold">Quick Links</h1>
             {quickLinks.map((links, index) => {
               return (
                 <Link key={index} href="#">
                   <a className="text-lg hover:text-orange-500">{links.link}</a>
-                </Link>
-              );
-            })}
-          </div>
-
-          <div className="flex flex-col space-y-2 text-white justify-center items-center">
-            <h1 className="text-2xl font-bold">About Us</h1>
-            {aboutUsLinks.map((links, index) => {
-              return (
-                <Link key={index} href={links.path}>
-                  <a className=" text-lg hover:text-orange-500">{links.link}</a>
                 </Link>
               );
             })}
