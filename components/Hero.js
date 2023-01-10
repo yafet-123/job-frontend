@@ -36,7 +36,7 @@ export function Hero() {
       <div className="relative">
         <Image
           src={AboutUsHeroImageOne}
-          className="w-full h-[40rem] object-cover lg:object-cover brightness-35 dark:brightness-75"
+          className="w-full h-[40rem] object-cover lg:object-cover brightness-75 dark:brightness-50"
           priority
           alt="Navbar"
         />
