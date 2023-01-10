@@ -7,7 +7,7 @@ import {AdviceHead} from '../data/AdviceHead'
 export default function Advices() {
 	const router = useRouter()
   return (
-    <section className="flex flex-col w-full lg:h-screen px-5 md:px-10 bg-gray-300 dark:bg-slate-700">
+    <section className="flex flex-col w-full lg:h-screen px-5 md:px-10 bg-gray-300 dark:bg-slate-700 pt-32">
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10">
         { AdviceHead.map((data,index)=>(
           <button 

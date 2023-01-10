@@ -6,7 +6,7 @@ import {CourseHead} from '../data/courseHead'
 export default function Courses() {
 	const router = useRouter()
   return (
-    <section className="flex flex-col w-full h-full px-0 md:px-32  bg-gray-300 dark:bg-slate-700">
+    <section className="flex flex-col w-full h-full px-0 md:px-32  bg-gray-300 dark:bg-slate-700 pt-20">
     	<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white dark:bg-slate-800">
     		{ CourseHead.map((data,index)=>(
 	    		<div 

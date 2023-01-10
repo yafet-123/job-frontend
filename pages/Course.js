@@ -43,7 +43,7 @@ export default function Course() {
   }
 
   return (
-    <section className="flex flex-col w-full h-full bg-white">
+    <section className="flex flex-col w-full h-full bg-white pt-24">
     	<div className="w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
     		<div onClick={handleChapter} className="md:hidden text-white z-10">
           <MdOutlineSubject size={30} /> 

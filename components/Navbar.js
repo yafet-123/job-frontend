@@ -26,18 +26,6 @@ export function Navbar() {
     setNav(!nav);
   };
 
-  useEffect(() => {
-    // when it will scrolldown greater than 90 it will have navbar will change it style
-    const handleShadow = () => {
-      if (window.scrollY >= 90) {
-        setShadow(true);
-      } else {
-        setShadow(false);
-      }
-    };
-    window.addEventListener("scroll", handleShadow);
-  }, []);
-
   const NavbarTopic = [
     { path: "/", text: "Home" },
     { path: "/Jobs", text: "Jobs" },
@@ -48,7 +36,7 @@ export function Navbar() {
   ];
 
   return (
-    <div className={ shadow ? "bg-[#165248] dark:bg-slate-800 w-full py-5 fixed shadow-xl z-[100] ease-in-out duration-300": "bg-[#165248] dark:bg-slate-800 w-full h-24 py-5" && router.pathname == "/auth/signin" ? "hidden" : "bg-[#165248] dark:bg-slate-800 py-5"}>
+    <div className={ router.pathname == "/auth/signin" ? "hidden" : "fixed bg-[#165248] dark:bg-slate-800 w-full py-5 shadow-xl z-[100] ease-in-out duration-300"}>
       <div className="flex flex-row justify-between items-center px-11 md:px-20">
         <Image src="/images/vercel.svg" width={100} height={60} alt="hulu jobs" />
         <div className="flex flex-1 flex-row items-center">

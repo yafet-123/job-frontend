@@ -71,7 +71,7 @@ export default function SearchJobs({categories, locations, latestjobs}) {
   console.log(latestjobs[0].job_id)
   const router = useRouter()
   return (
-    <section className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-gray-200 dark:bg-slate-700">
+    <section className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-gray-200 dark:bg-slate-700 pt-32">
       <div className="flex justify-between items-center h-16 w-full mb-10 px-10">
         <h1 className="text-black dark:text-white font-light text-2xl md:text-3xl lg:text-4xl capitalize mb-5 text-center">
           Search and Find Jobs in Ethiopia
