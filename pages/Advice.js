@@ -33,7 +33,7 @@ export default function Advice() {
   }
 
   return (
-    <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600 pb-16">
+    <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600 pt-20">
     	<div className="flex lg:hidden w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
     		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
           <MdOutlineSubject size={30} /> 
@@ -43,8 +43,8 @@ export default function Advice() {
           <span className="ml-5 font-bold text-xl hover:text-blue-400">Advices</span>
         </button>
     	</div>
-    	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20">
-    		<div className="hidden lg:flex w-1/4 h-full bg-gray-200 dark:bg-slate-700 fixed overflow-y-scroll">
+    	<div className=" h-full px-0 md:px-20">
+    		<div className="hidden lg:flex w-1/4 h-full bg-gray-200 dark:bg-slate-700 overflow-y-scroll lg:fixed z-50">
     			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} /> 
     		</div>
 
