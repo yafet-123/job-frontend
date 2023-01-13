@@ -5,8 +5,8 @@ import { NewsTemplate } from "../data/NewsTemplate.js"
 
 export default function News() {
   return (
-    <section className="flex flex-col w-full h-full px-0 md:px-24 bg-gray-200 dark:bg-slate-700 pt-20">
-      <div className="bg-white dark:bg-slate-800 py-10 px-10 w-full h-full">      
+    <section className="flex flex-col w-full h-full px-0 md:px-24 bg-gray-200 dark:bg-slate-700 ">
+      <div className="bg-white dark:bg-slate-800 py-10 px-10 w-full h-full pt-32">      
         <Image 
           src="/images/news.jpg" 
           width={2000} 

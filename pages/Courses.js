@@ -6,8 +6,8 @@ import {CourseHead} from '../data/courseHead'
 export default function Courses() {
 	const router = useRouter()
   return (
-    <section className="flex flex-col w-full h-full px-0 md:px-32  bg-gray-300 dark:bg-slate-700 pt-20">
-    	<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white dark:bg-slate-800">
+    <section className="flex flex-col w-full h-full px-0 md:px-32  bg-gray-300 dark:bg-slate-700">
+    	<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white dark:bg-slate-800 pt-20">
     		{ CourseHead.map((data,index)=>(
 	    		<div 
 	    			className={`flex flex-col justify-center items-center mb-10 mx-2 lg:m-20 p-10 rounded-xl ${data.backgroundColor}`} 

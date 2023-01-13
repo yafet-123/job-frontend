@@ -60,7 +60,7 @@ export async function getStaticProps(){
 export default function Home({categories, locations, latestjobs}) {
   console.log(locations)
   return (
-    <div className="pt-10">
+    <div className="">
       <Hero />
       <LatestJobs latestjobs={latestjobs} />
       <SearchJobs categories={categories} locations={locations} />

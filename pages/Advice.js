@@ -43,8 +43,8 @@ export default function Advice() {
           <span className="ml-5 font-bold text-xl hover:text-blue-400">Advices</span>
         </button>
     	</div>
-    	<div className=" h-full px-0 md:px-20">
-    		<div className="hidden lg:flex w-1/4 h-full bg-gray-200 dark:bg-slate-700 overflow-y-scroll lg:fixed z-50">
+    	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20">
+    		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 dark:bg-slate-700 overflow-y-scroll z-50">
     			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} /> 
     		</div>
 
