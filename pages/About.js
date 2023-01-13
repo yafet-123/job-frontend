@@ -9,9 +9,6 @@ export default function About() {
     <div className="flex flex-col">
       <AboutUsHero />
       <AboutUsDetail />
-      <FollowingTheDream />
-      <OurMission />
-      <OurVision />
     </div>
   );
 }
