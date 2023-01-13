@@ -12,9 +12,9 @@ export function Footer() {
   ];
 
   const quickLinks = [
-    { link: "Home", path:"/About" },
-    { link: "Course", path:"/About" },
-    { link: "Advices", path:"/About" },
+    { link: "Home", path:"/" },
+    { link: "Course", path:"/" },
+    { link: "Advices", path:"/" },
     { link: "About", path: "/About" },
   ];
 
@@ -57,7 +57,7 @@ export function Footer() {
             <h1 className="text-2xl font-bold">Quick Links</h1>
             {quickLinks.map((links, index) => {
               return (
-                <Link key={index} href="#">
+                <Link key={index} href={links.path}>
                   <a className="text-lg hover:text-orange-500">{links.link}</a>
                 </Link>
               );
