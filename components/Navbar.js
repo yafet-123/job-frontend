@@ -1,10 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from "react-icons/ai";
-import { FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube} from "react-icons/fa";
-import { BsFillPersonLinesFill, BsMoonStars, BsSun } from "react-icons/bs";
 import Link from "next/link";
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { useRouter } from "next/router";
 import { useTheme } from 'next-themes';
 import ThemeToggler from './ThemeToggler';
@@ -12,138 +10,89 @@ import {signIn} from 'next-auth/react'
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
-  const [nav, setNav] = useState(false);
-  const [shadow, setShadow] = useState(false);
-  const [NavabarText, setNavabarText] = useState("Home");
-  const MainList = [
-    { path: "", icon: <FaFacebookF />, style: "bg-blue-900",},
-    { path: "", icon: <FaTwitter />, style: "bg-blue-500" },
-    { path: "", icon: <FaLinkedinIn />, style: "bg-blue-700" },
-    { path: "", icon: <FaYoutube />, style: "bg-red-500" },
-  ];
+  const [open, setOpen] = useState(false);
+
   const router = useRouter();
   const handleNav = () => {
     setNav(!nav);
   };
 
   const NavbarTopic = [
-    { path: "/", text: "Home" },
-    { path: "/Jobs", text: "Jobs" },
-    { path: "/Entertemiment", text: "Entertemiment" },
-    { path: "/Courses", text: "Courses" },
-    { path: "/Advices", text: "Advices" },
-    { path: "/News", text: "News"}
+    { path: "/", name: "Home" },
+    { path: "/Jobs", name: "Jobs" },
+    { path: "/Entertemiment", name: "Entertemiment" },
+    { path: "/Courses", name: "Courses" },
+    { path: "/Advices", name: "Advices" },
+    { path: "/News", name: "News"}
   ];
 
   return (
-    <div className={ router.pathname == "/auth/signin" ? "hidden" : "bg-opacity-80 fixed bg-[#165248] dark:bg-slate-800 w-full py-5 shadow-xl z-[100] ease-in-out duration-300"}>
-      <div className="flex flex-row justify-between items-center px-11 md:px-20">
-        <Image src="/images/vercel.svg" width={100} height={60} alt="hulu jobs" />
-        <div className="flex flex-1 flex-row items-center">
-          <div className="hidden lg:flex items-center">
-            {NavbarTopic.map((navbar, index) => (
-              <Link key={index} href={navbar.path}>
-                <a
-                  onClick={(e) => setNavabarText(navbar.text)}
-                  className={
-                    router.pathname == navbar.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == navbar.path ) || 
-                    ( router.pathname == "/JobsByCategory" && "/Jobs" == navbar.path ) || ( router.pathname == "/JobsByLocation" && "/Jobs" == navbar.path ) ||
-                    ( router.pathname == "/Course" && "/Courses" == navbar.path )
-                      ? "border-b-4 border-white dark:border-white md:ml-5 lg:ml-10 text-2xl font-bold text-white dark:text-white"
-                      : "md:ml-5 lg:ml-20 text-2xl font-bold text-white dark:text-white hover:border-b-4 border-white"
-                  }
+    <nav
+      className={ router.pathname == "/auth/signin" ? "hidden" : "w-full bg-[#165248] bg-opacity-80 dark:bg-slate-800 lg:h-[100px] top-0 fixed z-50"}
+    >
+      <div className="lg:justify-between justify-around lg:px-4 mx-10 items-center lg:flex lg:py-[10px] ">
+        <div className="flex items-center justify-between py-3 ">
+          <Link href="/">
+            <Image
+              src="/images/vercel.svg"
+              width={100} height={60}
+              alt="Navbar"
+            />
+          </Link>
+          <div className="lg:hidden ">
+            <button
+              className="p-2  text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+              onClick={() => setOpen(!open)}
+            >
+              {open === true ? (
+                <AiOutlineClose color="white" size={30} />
+              ) : (
+                <AiOutlineMenu color="white" size={30} />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div
+            className={`flex-1 justify-self-center pb-3 mt-8 lg:block lg:pb-0 lg:mt-0 ${
+              open ? 'flex' : 'hidden'
+            }`}
+          >
+            <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-8 lg:space-y-0">
+              {NavbarTopic.map((link) => (
+                <li
+                  key={link.name}
+                  className="md:ml-6 text-md font-medium md:my-0 my-7"
                 >
-                  {navbar.text}
-                </a>
-              </Link>
-            ))}
-          </div>
-
-        </div>
-        <div className="hidden lg:flex ml-10">
-          <ThemeToggler />
-        </div>
-        <div onClick={handleNav} className="lg:hidden float-right">
-          <AiOutlineMenu size={30} />
-        </div>
-      </div>
-      <div
-        className={
-          nav
-            ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 z-50"
-            : ""
-        }
-      >
-        <div
-          className={
-            nav
-              ? "dark:bg-slate-800 fixed left-0 top-0 w-[80%] sm:w-[60%] md:w-[45%] h-screen bg-white py-5 px-2 ease-in duration-500"
-              : "dark:bg-slate-800 fixed left-[-100%] top-0 p-10 ease-in duration-500"
-          }
-        >
-          <div>
-            <div className="flex justify-between items-center w-full h-full px-2 2xl:px-16">
-              <Link href="/">
-                <a>
-                  <Image
-                    src="/images/vercel.svg"
-                    alt="hulu jobs"
-                    width="100"
-                    height="50"
-                    className="cursor-pointer"
-                  />
-                </a>
-              </Link>
-
-              <div className="flex lg:hidden">
-                <ThemeToggler />
-              </div>
-              <div
-                onClick={handleNav}
-                className="dark:text-white rounded-full shadow-lg shadow-gray-400 p-35 cursor-pointer"
-              >
-                <AiOutlineClose size={20} />
-              </div>
-            </div>
-          </div>
-          <div className="py-4 flex flex-col">
-            <ul className="uppercase">
-              {NavbarTopic.map((navbar, index) => (
-                <Link key={index} href={navbar.path}>
-                  <li
-                    onClick={() => setNav(false)}
-                    className={
-                      router.pathname == navbar.path
-                        ? "border-b-4 border-white ml-2 text-lg font-light text-black dark:text-white w-[40%] mb-5"
-                        : "ml-2 text-lg font-light text-black dark:text-white hover:border-b-4 border-white w-[40%] mb-5"
+                  <Link href={link.path}>
+                    <a
+                      onClick={(e) => setNavabarText(link.text)}
+                      className={
+                        router.pathname == link.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == link.path ) || 
+                        ( router.pathname == "/JobsByCategory" && "/Jobs" == link.path ) || ( router.pathname == "/JobsByLocation" && "/Jobs" == navbar.path ) ||
+                        ( router.pathname == "/Course" && "/Courses" == link.path )
+                          ? "border-b-4 border-white dark:border-white md:ml-2 lg:ml-3 text-2xl font-bold text-white dark:text-white"
+                          : "md:ml-2 lg:ml-3 text-2xl font-bold text-white dark:text-white hover:border-b-4 border-white"
                       }
-                  >
-                    {navbar.text}
-                  </li>
-                </Link>
-              ))}
-            </ul>
-            <div className="pt-40">
-              <p className="uppercase tracking-widest text-[#5651e5]">
-                Let&#39;s Connect
-              </p>
-              <div className="flex items-center justify-between max-w-[330px] m-auto py-4">
-                {MainList.map((main, index) => (
-                  <Link key={index} href={main.path}>
-                    <a target="_blank" rel="noreferrer">
-                      <div
-                        className={`${main.style} text-white rounded-full shadow-lg shadow-gray-400 p-4 hover:w-20 transition-all duration-1000 transform-cpu cursor-pointer hover:brightness-110 flex items-center justify-center`}
-                      >
-                        {main.icon}
-                      </div>
+                    >
+                      {link.name}
                     </a>
                   </Link>
-                ))}
+                </li>
+              ))}
+
+              <button className="bg-[white] dark:text-[#000] text-primaryColor font-bold font-sans py-2 px-6 rounded md:ml-8 shadow-lg hover:text-secondaryColor hover:scale-105 duration-500">
+                CALL NOW
+              </button>
+
+              <div className="flex ">
+                <ThemeToggler />
               </div>
-            </div>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

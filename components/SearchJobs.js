@@ -17,8 +17,8 @@ export function SearchJobs({categories, locations}) {
         Search and Find Jobs in Ethiopia
       </h1>
       <hr className="w-full bg-gray-200 mb-5" />
-      <div className="flex w-full h-full lg:h-[45rem] p-2">
-        <div className="flex-1 border rounded-xl shadow-2xl shadow-sky-200 border-slate-300 p-5 bg-white dark:bg-slate-800">
+      <div className="flex w-full h-[30rem] lg:h-[45rem] p-2">
+        <div className="w-[75%] flex-1 border rounded-xl shadow-2xl shadow-sky-200 border-slate-300 p-5 bg-white dark:bg-slate-800">
           <div className="w-full h-full overflow-y-scroll">
             {jobs == "category" ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
@@ -66,16 +66,18 @@ export function SearchJobs({categories, locations}) {
           </div>
         </div>
 
-        <ul className="mt-5">
+        <ul className="w-[15%] mt-5">
           <li
             onClick={(e) => setJobs("category")}
             className={
               jobs == "category"
-                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
-                : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
+                ? "w-full py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
+                : "w-full py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
-            <BiCategory size={20} />
+            <span className="font-bold text-2xl">
+              <BiCategory />
+            </span>
             <span className="hidden lg:inline-flex text-xl ml-3">
               Jobs by Category
             </span>
@@ -88,7 +90,9 @@ export function SearchJobs({categories, locations}) {
                 : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-800 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
-            <GoLocation size={20} />
+            <span className="font-bold text-2xl"> 
+              <GoLocation />
+            </span>
             <span className="hidden lg:inline-flex text-xl ml-3">
               Jobs by Location
             </span>
