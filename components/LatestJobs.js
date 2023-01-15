@@ -8,13 +8,13 @@ export function LatestJobs({latestjobs}) {
   const router = useRouter()
   return (
     <section className="w-full h-[50rem] md:p-20 bg-gray-100 dark:bg-slate-800 flex flex-col brightness-100">
-      <div className="flex justify-between items-center p-10 md:p-0">
-        <div className="flex items-center font-bold text-xl md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
+      <div className="flex justify-between items-center py-10 px-2 lg:px-0">
+        <div className="flex items-center font-bold text-md md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
           <AiOutlineClockCircle size={30} />
           <span className="ml-5">Latest Jobs</span>
         </div>
         <Link href="/Jobs">
-          <a className="font-bold text-lg md:text-xl lg:text-2xl text-white p-4 bg-blue-700 capitalize border rounded-2xl">
+          <a className="font-bold text-sm md:text-xl lg:text-2xl text-white p-3 lg:p-4 bg-blue-700 capitalize border rounded-2xl">
             view all jobs
           </a>
         </Link>

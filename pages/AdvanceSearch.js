@@ -56,8 +56,8 @@ export default function AdvanceSearch() {
   console.log(searchValue)
 
   return (
-    <div className="flex flex-col bg-gray-200 dark:bg-slate-700">
-      <div className="max-w-2xl mx-auto my-10 w-full px-10 md:px-0">
+    <div className="flex flex-col bg-gray-200 dark:bg-slate-700 pt-32">
+      <div className="max-w-2xl mx-auto my-10 w-full md:px-0">
       	<div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 border rounded-2xl">
           <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
             <AiOutlineSearch size={20} />
@@ -72,7 +72,7 @@ export default function AdvanceSearch() {
         </div>
       </div>
 
-      <div className="mx-10 lg:mx-52 mt-10 grid grid-cols-2 md:grid-cols-3 gap-10">
+      <div className="mx-2 lg:mx-52 mt-10 grid grid-cols-2 md:grid-cols-3 gap-10">
           {advanceSearchList.map((search, index) => (
             <button 
               key={index}
@@ -94,36 +94,36 @@ export default function AdvanceSearch() {
                 No data can be found
             </h1>
             :
-            <div className=" flex flex-col w-full lg:w-full bg-gray-200 dark:bg-slate-700 p-3 lg:border-l-2 px-5 lg:px-20">
+            <div className=" flex flex-col w-full lg:w-full bg-gray-200 dark:bg-slate-700 p-3 lg:border-l-2 px-3 lg:px-20">
               {searchValue?.map((data, index) => (
                 <div key={index} className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
                     <div className="flex justify-between items-center">
                       <Link href="/DisplayJobs">
-                        <a className="text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
+                        <a className="text-sm lg:text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
                       </Link>
-                      <p className="text-lg text-blue-500">Posted: {moment(data.ModifiedDate).utc().format('MMM DD')}</p>
+                      <p className="text-xs lg:text-lg text-blue-500">Posted: {moment(data.ModifiedDate).utc().format('MMM DD')}</p>
                     </div>
 
-                    <div className="flex flex-col-reverse md:flex-row items-center">
-                      <ul className="mt-10 w-3/4">
-                        <li className="flex flex-row justify-between w-full mb-5">
-                          <h1 className="text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
-                          <p className="text-lg text-left w-1/2">{data.CompanyName}</p>
+                    <div className="flex flex-col-reverse md:flex-row">
+                      <ul className="mt-10 w-full lg:w-3/4">
+                        <li className="flex flex-row justify-between items-center w-full mb-5">
+                          <h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
+                          <p className="text-xs lg:text-lg text-left w-1/2">{data.CompanyName}</p>
                         </li>
 
-                        <li className="flex flex-row justify-between w-full mb-5">
-                          <h1 className="text-xl font-bold capitalize text-left w-1/2">Location:</h1>
-                          <p className="text-lg text-left w-1/2">{data.Location}</p>
+                        <li className="flex flex-row justify-between items-center w-full mb-5">
+                          <h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Location:</h1>
+                          <p className="text-xs lg:text-lg text-left w-1/2">{data.Location}</p>
                         </li>
 
-                        <li className="flex flex-row justify-between w-full mb-5">
-                          <h1 className="text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
-                          <p className="text-lg text-left w-1/2">{data.CareerLevel}</p>
+                        <li className="flex flex-row justify-between items-center w-full mb-5">
+                          <h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
+                          <p className="text-xs lg:text-lg text-left w-1/2">{data.CareerLevel}</p>
                         </li>
 
-                        <li className="flex flex-row justify-between w-full mb-5">
-                          <h1 className="text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
-                          <p className="text-lg text-left w-1/2">{moment(data.DeadLine).utc().format('MMM DD')}</p>
+                        <li className="flex flex-row justify-between items-center w-full mb-5">
+                          <h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
+                          <p className="text-xs lg:text-lg text-left w-1/2">{moment(data.DeadLine).utc().format('MMM DD')}</p>
                         </li>
                       </ul>
 
@@ -131,7 +131,7 @@ export default function AdvanceSearch() {
                     </div>
 
                     <div 
-                      className="text-lg font-normal mb-5 h-36 overflow-hidden" 
+                      className="text-sm lg:text-lg font-normal mb-5 h-36 overflow-hidden" 
                       dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} 
                     />
 
@@ -141,7 +141,7 @@ export default function AdvanceSearch() {
                         query:{job_id:data.job_id}
                       }}
                     >
-                      <a className="my-5 text-yellow-600 text-xl">
+                      <a className="my-5 text-yellow-600 text-sm lg:text-xl">
                         view detail
                       </a>
                     </Link>

@@ -60,20 +60,20 @@ export function Hero() {
           </div>
 
           { search == "Job" ? (
-              <div className="flex h-16 w-full">
-                <div className="w-[10%] h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
+              <div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
+                <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
                   <AiOutlineSearch size={20} />
                 </div>
                 <input 
                   value={searchValue}                            
                   onChange={(e) => setsearchValue(e.target.value)}
-                  className="w-[50%] bg-white outline-none md:pl-6 text-sm lg:text-lg" />
+                  className="flex-1 bg-white outline-none md:pl-6 text-sm lg:text-lg" />
                 <button 
                   onClick={()=> router.push({
                     pathname: '/AdvanceSearch',
                     query: { searchName: searchValue, searchtype: 1 },
                   })} 
-                  className="w-[10%] text-sm md:text-xl text-white bg-green-400 lg:px-3 flex items-center justify-center"
+                  className="text-xs md:text-xl text-white bg-green-400 lg:px-3 flex items-center justify-center"
                 >
                   Search
                 </button>
