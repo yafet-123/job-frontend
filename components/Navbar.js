@@ -11,7 +11,7 @@ import {signIn} from 'next-auth/react'
 export function Navbar() {
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
-
+  const [NavabarText,setNavabarText] = useState("")
   const router = useRouter();
   const handleNav = () => {
     setNav(!nav);
@@ -81,10 +81,6 @@ export function Navbar() {
                   </Link>
                 </li>
               ))}
-
-              <button className="bg-[white] dark:text-[#000] text-primaryColor font-bold font-sans py-2 px-6 rounded md:ml-8 shadow-lg hover:text-secondaryColor hover:scale-105 duration-500">
-                CALL NOW
-              </button>
 
               <div className="flex ">
                 <ThemeToggler />

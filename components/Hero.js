@@ -40,17 +40,17 @@ export function Hero() {
           priority
           alt="Hero"
         />
-        <div className="px-2 absolute top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[40%]">
-          <h1 className={`text-4xl mb-5 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-900 " : "text-yellow-900" } `}>
+        <div className="absolute top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[40%]">
+          <h1 className={`px-3 text-2xl mb-5 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-900 " : "text-yellow-900" } `}>
             Better Job. Better Talent
           </h1>
-          <div className="flex flex-col lg:flex-row mb-2">
+          <div className="flex flex-col lg:flex-row mb-2 px-3">
             <button 
-              className={`text-black text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "job" ? " bg-green-400 text-white" : "" } p-4  rounded-xl`} 
+              className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "job" ? "bg-green-400 text-white" : "text-black" } p-4  rounded-xl`} 
               onClick={() => setsearch("job")}
             >Job Type</button>
             <button 
-              className={`text-black text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "companies" ? " bg-yellow-400 text-white" : "" } p-4 rounded-xl`} 
+              className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "companies" ? "bg-yellow-400 text-white" : "text-black" } p-4 rounded-xl`} 
               onClick={() => setsearch("companies")}
             >Companies</button>
             <button 
@@ -60,22 +60,20 @@ export function Hero() {
           </div>
 
           { search == "Job" ? (
-              <div className="flex h-16">
-                <div 
-                  className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
+              <div className="flex h-16 w-full">
+                <div className="w-[10%] h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
                   <AiOutlineSearch size={20} />
                 </div>
-
                 <input 
                   value={searchValue}                            
                   onChange={(e) => setsearchValue(e.target.value)}
-                  className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
+                  className="w-[50%] bg-white outline-none md:pl-6 text-sm lg:text-lg" />
                 <button 
                   onClick={()=> router.push({
                     pathname: '/AdvanceSearch',
                     query: { searchName: searchValue, searchtype: 1 },
                   })} 
-                  className="text-md md:text-xl text-white bg-green-400 px-1 md:px-3 flex items-center justify-center"
+                  className="w-[10%] text-sm md:text-xl text-white bg-green-400 lg:px-3 flex items-center justify-center"
                 >
                   Search
                 </button>
@@ -86,7 +84,6 @@ export function Hero() {
                 <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
                   <AiOutlineSearch size={20} />
                 </div>
-
                 <input 
                   value={searchValue}
                   onChange={(e) => setsearchValue(e.target.value)}
