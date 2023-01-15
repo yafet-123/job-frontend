@@ -123,17 +123,17 @@ export default function DisplayJobs({job, categories}) {
 	      		</li>
 	      	</ul>
 
-	      	<div className="flex flex-col justify-between mt-10 mx-5 ">
+	      	<div className="flex flex-col justify-between mt-10 mx-2 lg:mx-5 ">
 	      		<h1 className="text-blue-700 capitalize text-xl lg:text-3xl font-bold mb-2">job descreption</h1>
 	      		<div className="text-md lg:text-xl font-normal mb-5 h-36 overflow-hidden" dangerouslySetInnerHTML={{ __html: job.JobsDescreption }} />
 	      	</div>
 
-	      	<div className="flex flex-col justify-between mt-10 mx-5">
+	      	<div className="flex flex-col justify-between mt-10 mx-2 lg:mx-5">
 	      		<h1 className="text-blue-700 capitalize text-xl lg:text-3xl font-bold mb-2">job requirement</h1>
 	      		<div className="text-md lg:text-xl font-normal mb-5 h-36 overflow-hidden" dangerouslySetInnerHTML={{ __html: job.JobsRequirement }} />
 	      	</div>
 
-	      	<div className="flex flex-col justify-between mt-10 mx-5">
+	      	<div className="flex flex-col justify-between mt-10 mx-2 lg:mx-5">
 	      		<h1 className="text-blue-700 capitalize text-xl lg:text-3xl font-bold mb-2">How to Apply</h1>
 	      		<div className="text-md lg:text-xl font-normal mb-5 h-36 overflow-hidden" dangerouslySetInnerHTML={{ __html: job.Apply }} />
 	      	</div>

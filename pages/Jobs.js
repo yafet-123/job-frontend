@@ -72,13 +72,13 @@ export default function SearchJobs({categories, locations, latestjobs}) {
   const router = useRouter()
   return (
     <section className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-gray-200 dark:bg-slate-700 pt-32">
-      <div className="flex justify-between items-center h-16 w-full mb-10 px-10">
-        <h1 className="text-black dark:text-white font-light text-2xl md:text-3xl lg:text-4xl capitalize mb-5 text-center">
+      <div className="flex flex-col lg:flex-row justify-between items-center h-16 w-full mb-10 px-10">
+        <h1 className="text-black dark:text-white font-light text-md md:text-3xl lg:text-4xl capitalize lg:mb-5 text-center">
           Search and Find Jobs in Ethiopia
         </h1>
 
         <button 
-          className={`text-black dark:text-white text-black text-xl md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} 
+          className={`text-black dark:text-white text-black text-md md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} 
           onClick={() => router.push("/AdvanceSearch")}
         >
           Advance Search
@@ -86,14 +86,15 @@ export default function SearchJobs({categories, locations, latestjobs}) {
       </div>
   
       <hr className="w-full bg-gray-200 mb-5" />
-      <div className="flex w-full h-full lg:h-[45rem] bg-white dark:bg-slate-800 border rounded-xl p-2">
-        <div className="flex-1 border rounded-xl shadow-2xl shadow-sky-200 border-slate-300 dark:border-slate-800 p-5">
+
+      <div className="flex w-full h-[25rem] lg:h-[45rem] bg-white dark:bg-slate-800 border rounded-xl p-2">
+        <div className="flex-1 border rounded-xl shadow-2xl shadow-sky-200 border-slate-300 dark:border-slate-800 lg:p-5">
           <div className="w-full h-full overflow-y-scroll">
             {jobs == "latest" && (
               <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5 py-10">
                 {latestjobs.map((data, index) => (
                   <button
-                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2 w-full"
+                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-2 lg:px-4 py-2 w-full"
                     key={index}
                     type = "button"
                     onClick = {()=>{
@@ -103,15 +104,15 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                       })
                     }}
                   >
-                    <div className="flex flex-col w-3/4">
-                      <h1 className="font-normal text-lg text-blue-500 dark:text-white group-hover:text-orange-500 text-left">
+                    <div className="flex flex-col w-2/4 lg:w-3/4">
+                      <h1 className="font-normal text-sm lg:text-lg text-blue-500 dark:text-white group-hover:text-orange-500 text-left">
                         {data.JobsType}
                       </h1>
-                      <h1 className="font-light text-sm text-black dark:text-white group-hover:text-orange-500 text-left">
+                      <h1 className="font-light text-xs lg:text-sm text-black dark:text-white group-hover:text-orange-500 text-left">
                         {data.CompanyName}
                       </h1>
                     </div>
-                    <div className="flex flex-col items-center justify-center w-1/4">
+                    <div className="flex flex-col items-center justify-center w-1/4 lg:w-1/4">
                       <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-orange-500">
                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                       </h1>
