@@ -10,7 +10,6 @@ export default function AdvanceSearch() {
   const router = useRouter();
   const { searchName } = router.query
   const { searchtype } = router.query
-  console.log(searchName)
 	const [selected , setselected] = useState("")
   const [error , seterror] = useState("")
   const [getSearchValue,setgetSearchValue] = useState(searchName)
@@ -24,6 +23,8 @@ export default function AdvanceSearch() {
     { type:5 , name: "Career Level" , style: "bg-orange-400", styleHover:"bg-orange-800" },
     
   ];
+
+  console.log(getSearchValue)
 
   useEffect(()=>{
     handleSearch()
