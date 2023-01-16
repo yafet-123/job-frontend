@@ -157,7 +157,7 @@ export default function SearchJobs({categories, locations, latestjobs}) {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
                 {categories.map((data, index) => (
                   <button
-                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2"
+                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-2 lg:px-4 py-2"
                     key={index}
                     type = "button"
                     onClick = {()=>{
@@ -167,10 +167,10 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                       })
                     }}
                   >
-                    <h1 className="text-left text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
+                    <h1 className="text-left text-black dark:text-white font-normal text-xs md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
                       {data.CategoryName}
                     </h1>
-                    <h1 className="px-5 py-2 text-black dark:text-white border rounded-xl border-gray-200 text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
+                    <h1 className="px-2 lg:px-5 py-2 text-black dark:text-white border rounded-xl border-gray-200 text-blue-800 font-bold text-xs md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
                       89
                     </h1>
                   </button>
