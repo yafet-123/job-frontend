@@ -14,6 +14,7 @@ export function Hero() {
     { type: 1, name: "job Type",},
     { type: 2, name: "Companies",},
   ];
+
   async function handleSearch(e){
     const data = await axios.post(`api/searchAdmin`,{
         "searchName": getSearchValue,
@@ -31,6 +32,8 @@ export function Hero() {
           console.log(error);
       });
   }
+
+
   return (
     <div className="w-full h-[40rem] relative">
       <div className="">
@@ -54,7 +57,7 @@ export function Hero() {
               onClick={() => setsearch("companies")}
             >Companies</button>
             <button 
-              className={`text-black text-xl md:text-2xl lg:text-3xl focus:bg-red-400 p-4 rounded-xl`} 
+              className={`text-black text-xl md:text-2xl lg:text-3xl focus:text-white focus:bg-red-400 p-4 rounded-xl`} 
               onClick={() => router.push("/AdvanceSearch")}
             >Advance Search</button>
           </div>
