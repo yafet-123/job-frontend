@@ -103,7 +103,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	const router = useRouter();
   const { location, howmany, image } = router.query
   return (
-    <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-32">
+    <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-32 py-28">
     	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full px-5 py-5 border rounded-xl dark:border-slate-800">
     		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-white dark:bg-slate-800">
     			<div className="flex flex-col lg:flex-row mb-5 mt-10">
