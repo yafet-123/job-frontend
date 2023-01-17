@@ -146,7 +146,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 		      				))}
 		      			</div>
 	      		</div>
-	      		<div className="flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2 px-3 lg:px-20">
+	      		<div className="flex flex-col w-full lg:w-3/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2 px-3 lg:px-20">
 	      			{ jobsbylocation == "" ? 
 	      				<h1 className="text-black dark:text-white text-lg lg:text-xl font-bold text-center italic">
 	      					There is No job posted in {location}
@@ -218,7 +218,6 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 			          </a>
 			        </Link>
       			</div>
-
 			      <div className="md:max-w-7xl md:mx-auto bg-gray-200 dark:bg-slate-800 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
 			        {Alllatestjobs.map((data, index) => (
 			          <Link 

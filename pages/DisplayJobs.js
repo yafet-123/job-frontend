@@ -77,7 +77,7 @@ export async function getServerSideProps(context){
 export default function DisplayJobs({job, categories}) {
 	console.log(categories)
   return (
-    <section className="flex flex-col w-full h-full px-0 md:px-32 bg-gray-200 dark:bg-slate-700 p-5">
+    <section className="flex flex-col w-full h-full px-0 md:px-32 bg-gray-200 dark:bg-slate-700 p-5 pt-32">
       	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply}/>
       	<div className="flex flex-col bg-white p-5 pb-20 bg-white dark:bg-slate-600">
       		<div className="flex justify-between items-center mt-10 mx-0 lg:mx-5">
