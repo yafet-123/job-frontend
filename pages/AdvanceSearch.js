@@ -95,7 +95,7 @@ export default function AdvanceSearch() {
                 No data can be found
             </h1>
             :
-            <div className=" flex flex-col w-full lg:w-full bg-gray-200 dark:bg-slate-700 p-3 lg:border-l-2 px-3 lg:px-20">
+            <div className="flex flex-col w-full bg-gray-200 dark:bg-slate-700 p-3 lg:border-l-2 px-3 lg:px-20">
               {searchValue?.map((data, index) => (
                 <div key={index} className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
                     <div className="flex justify-between items-center">

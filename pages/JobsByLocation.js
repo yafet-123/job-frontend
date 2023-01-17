@@ -104,7 +104,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
   const { location, howmany, image } = router.query
   return (
     <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-32 py-28">
-    	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full px-5 py-5 border rounded-xl dark:border-slate-800">
+    	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full lg:px-5 py-5 border rounded-xl dark:border-slate-800">
     		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-white dark:bg-slate-800">
     			<div className="flex flex-col lg:flex-row mb-5 mt-10">
     				<Image src={image} width={100} height={100} alt="image" className="rounded-2xl" />
@@ -146,7 +146,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 		      				))}
 		      			</div>
 	      		</div>
-	      		<div className="flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2">
+	      		<div className="flex flex-col w-full lg:w-2/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2 px-3 lg:px-20">
 	      			{ jobsbylocation == "" ? 
 	      				<h1 className="text-black dark:text-white text-lg lg:text-xl font-bold text-center italic">
 	      					There is No job posted in {location}
