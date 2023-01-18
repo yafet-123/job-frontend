@@ -126,7 +126,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
       		<div className="flex flex-col-reverse lg:flex-row w-full">
 	      		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3 dark:bg-slate-800">
 	      				<h1 className="text-lg md:text-xl lg:text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs in ethopia</h1>
-	      				<div className="flex flex-col h-96 lg:h-[40rem] overflow-y-scroll bg-gray-200 dark:bg-slate-700 p-3">
+	      				<div className="flex flex-col h-[20rem] lg:h-[40rem] overflow-y-scroll bg-gray-200 dark:bg-slate-700 p-3">
 		      				{locations.map((data, index) => (
 		      					<button 
 		      						className="flex items-center group hover:bg-white py-2 mb-5" 
