@@ -66,19 +66,19 @@ export function SearchJobs({categories, locations}) {
           </div>
         </div>
 
-        <ul className="w-[15%] mt-5">
+        <ul className="mt-5">
           <li
             onClick={(e) => setJobs("category")}
             className={
               jobs == "category"
-                ? "w-full py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
-                : "w-full py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
+                ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
-            <span className="font-bold text-2xl">
+            <span className="font-bold text-md lg:text-lg">
               <BiCategory />
             </span>
-            <span className="hidden lg:inline-flex text-xl ml-3">
+            <span className="hidden lg:inline-flex text-xl ml-2 lg:ml-3">
               Jobs by Category
             </span>
           </li>
@@ -87,10 +87,10 @@ export function SearchJobs({categories, locations}) {
             className={
               jobs == "location"
                 ? "py-3 bg-white dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-blue-400 border-x-white dark:border-none -ml-1"
-                : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-800 flex items-center hover:bg-white hover:text-blue-400"
+                : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
-            <span className="font-bold text-2xl"> 
+            <span className="font-bold text-md lg:text-lg"> 
               <GoLocation />
             </span>
             <span className="hidden lg:inline-flex text-xl ml-3">

@@ -188,7 +188,9 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                 : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
-            <FaClock size={20} />
+            <span className="font-bold text-md lg:text-lg">
+              <FaClock />
+            </span>
             <span className="hidden lg:inline-flex text-xl ml-3 capitalize">
               View latest jobs
             </span>
@@ -202,7 +204,9 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                 : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
-            <BiCategory size={20} />
+            <span className="font-bold text-md lg:text-lg">
+              <BiCategory />
+            </span>
             <span className="hidden lg:inline-flex text-xl ml-3">
               Jobs by Category
             </span>
@@ -215,7 +219,9 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                 : "py-3 bg-gray-200 dark:bg-slate-600 px-6 border border-slate-300 dark:border-slate-700 flex items-center hover:bg-white hover:text-blue-400"
             }
           >
-            <GoLocation size={20} />
+            <span className="font-bold text-md lg:text-lg">
+              <GoLocation />
+            </span>
             <span className="hidden lg:inline-flex text-xl ml-3">
               Jobs by Location
             </span>
