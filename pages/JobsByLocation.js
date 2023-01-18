@@ -103,22 +103,22 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	const router = useRouter();
   const { location, howmany, image } = router.query
   return (
-    <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-32 py-28">
+    <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-24 py-28">
     	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full lg:px-5 py-5 border rounded-xl dark:border-slate-800">
     		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-white dark:bg-slate-800">
     			<div className="flex flex-col lg:flex-row mb-5 mt-10">
     				<Image src={image} width={100} height={100} alt="image" className="rounded-2xl" />
-	    			<h1 className="lg:ml-5 text-blue-700 text-3xl lg:text-5xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">Jobs in {location}</h1>
+	    			<h1 className="lg:ml-5 text-blue-700 text-xl md:text-3xl lg:text-5xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">Jobs in {location}</h1>
     			</div>
     			<div className="flex flex-col lg:flex-row mb-10 mt-10">
     				<div className="flex flex-col mr-5 mb-10 lg:mb-0">
-    					<p className="text-3xl text-gray-600 dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
-    					<p className="text-2xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>
+    					<p className="text-lg text-3xl text-gray-600 dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
+    					<p className="text-md text-2xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>
     				</div>
 
-    				<div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-blue-500 text-white p-5">
-    					<p className="text-3xl font-bold capitalize">Jobs</p>
-    					<p className="text-xl font-bold capitalize">{howmany}</p>
+    				<div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-blue-500 text-white p-3 lg:p-5">
+    					<p className="text-lg lg:text-3xl font-bold capitalize">Jobs</p>
+    					<p className="text-md lg:text-xl font-bold capitalize">{howmany}</p>
     				</div>
     			</div>
     		</div>	
@@ -207,18 +207,18 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	      		</div>
 	      	</div>
       		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800">
-      			<div className="flex justify-between items-center p-10 md:p-0">
-			        <div className="flex items-center font-bold text-xl text-black dark:text-white capitalize">
+      			<div className="flex justify-between items-center py-10 px-2 lg:px-0">
+			        <div className="flex items-center font-bold text-md md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
 			          <AiOutlineClockCircle size={20} />
 			          <span className="ml-5">Latest Jobs</span>
 			        </div>
 			        <Link href="">
-			          <a className="font-bold text-lg text-white p-4 bg-blue-700 capitalize border rounded-2xl">
+			          <a className="font-bold text-sm md:text-xl lg:text-2xl text-white p-3 lg:p-4 bg-blue-700 capitalize border rounded-2xl">
 			            view all jobs
 			          </a>
 			        </Link>
       			</div>
-			      <div className="md:max-w-7xl md:mx-auto bg-gray-200 dark:bg-slate-800 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
+			      <div className="md:max-w-7xl md:mx-auto bg-gray-200 dark:bg-slate-800 w-full h-[40rem] border dark:border-slate-800 rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
 			        {Alllatestjobs.map((data, index) => (
 			          <Link 
 			          	href={{
@@ -229,18 +229,18 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 			          >
 			            <a className="flex justify-around items-center mb-5 even:bg-white even:dark:bg-slate-600 px-5 py-5 group">
 			              <div className="flex flex-col w-3/4">
-			                <h1 className="font-bold text-sm text-blue-500 group-hover:text-orange-500">
+			                <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-blue-500 dark:text-white group-hover:text-orange-500">
 			                  {data.JobsType}
 			                </h1>
-			                <h1 className="font-light md:text-xs text-blue-500 group-hover:text-orange-500">
+			                <h1 className="text-left font-light text-xs md:text-lg lg:text-xl text-blue-500 dark:text-white group-hover:text-orange-500">
 			                  {data.CompanyName}
 			                </h1>
 			              </div>
 			              <div className="flex flex-col w-1/4">
-			                <h1 className="font-light text-sm text-blue-500 text-right group-hover:text-orange-500">
+			                <h1 className="font-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white text-right group-hover:text-orange-500">
 			                  {moment(data.CreatedDate).utc().format('MMM DD YYYY')}
 			                </h1>
-			                <h1 className="font-light text-sm text-blue-500 text-right group-hover:text-orange-500">
+			                <h1 className="font-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white text-right group-hover:text-orange-500">
 			                  {data.Location}
 			                </h1>
 			              </div>
