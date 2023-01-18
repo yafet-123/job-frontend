@@ -200,7 +200,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	      			}
 	      		</div>
 	      	</div>
-      		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800">
+      		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800 mt-5">
       			<div className="flex justify-between items-center p-2 md:p-0">
 			        <div className="flex items-center font-bold text-md lg:text-xl text-black dark:text-white capitalize">
 			          <AiOutlineClockCircle size={20} />
