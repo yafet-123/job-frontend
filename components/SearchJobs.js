@@ -24,7 +24,7 @@ export function SearchJobs({categories, locations}) {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
                 {categories.map((data, index) => (
                   <div
-                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-4 py-2"
+                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 lg:px-4 py-2"
                     key={index}
                   >
                     <h1 className="text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
@@ -37,10 +37,10 @@ export function SearchJobs({categories, locations}) {
                 ))}
               </div>
             ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
                 {locations.map((data, index) => (
                   <button
-                    className="w-full flex items-center mb-3 group hover:bg-gray-200 px-4 py-2"
+                    className="w-full flex items-center mb-3 group hover:bg-gray-200 px-2 lg:px-4 py-2"
                     key={index}
                     type = "button"
                     onClick = {()=>{
@@ -51,12 +51,12 @@ export function SearchJobs({categories, locations}) {
                     }}
                   >
                     <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
-                    <div className="flex flex-col ml-10">
-                      <h1 className="text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
+                    <div className="flex flex-col items-center ml-5 lg:ml-10">
+                      <h1 className="text-black dark:text-white font-normal text-xs md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
                         jobs in {data.LocationName}
                       </h1>
-                      <h1 className="text-black dark:text-white text-left text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
-                        98
+                      <h1 className="text-black dark:text-white text-left text-blue-800 font-bold text-xs md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
+                        78
                       </h1>
                     </div>
                   </button>
