@@ -111,12 +111,12 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	    			<h1 className="lg:ml-5 text-blue-700 text-xl md:text-3xl lg:text-5xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">Jobs in {location}</h1>
     			</div>
     			<div className="flex flex-col lg:flex-row mb-10 mt-10">
-    				<div className="flex flex-col mr-5 mb-10 lg:mb-0">
-    					<p className="text-lg text-3xl text-gray-600 dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
-    					<p className="text-md text-2xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>
+    				<div className="flex flex-col lg:mr-5 mb-10 lg:mb-0">
+    					<p className="text-lg lg:text-3xl text-gray-600 dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
+    					<p className="text-md lg:text-2xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>
     				</div>
 
-    				<div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-blue-500 text-white p-3 lg:p-5">
+    				<div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-blue-500 text-white p-2 lg:p-5">
     					<p className="text-lg lg:text-3xl font-bold capitalize">Jobs</p>
     					<p className="text-md lg:text-xl font-bold capitalize">{howmany}</p>
     				</div>
@@ -208,12 +208,12 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	      	</div>
       		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800">
       			<div className="flex justify-between items-center py-10 px-2 lg:px-0">
-			        <div className="flex items-center font-bold text-md md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
+			        <div className="flex items-center font-bold text-sm md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
 			          <AiOutlineClockCircle size={20} />
-			          <span className="ml-5">Latest Jobs</span>
+			          <span className="ml-3 lg:ml-5">Latest Jobs</span>
 			        </div>
 			        <Link href="">
-			          <a className="font-bold text-sm md:text-xl lg:text-2xl text-white p-3 lg:p-4 bg-blue-700 capitalize border rounded-2xl">
+			          <a className="font-bold text-sm md:text-xl lg:text-2xl text-white p-2 lg:p-4 bg-blue-700 capitalize border rounded-2xl">
 			            view all jobs
 			          </a>
 			        </Link>
