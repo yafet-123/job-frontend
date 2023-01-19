@@ -210,7 +210,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
       			<div className="flex justify-between items-center py-10 px-2 lg:px-0">
 			        <div className="flex items-center font-bold text-sm md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
 			          <AiOutlineClockCircle size={20} />
-			          <span className="ml-3 lg:ml-5">Latest Jobs</span>
+			          <span className="ml-2 lg:ml-5">Latest Jobs</span>
 			        </div>
 			        <Link href="">
 			          <a className="font-bold text-sm md:text-xl lg:text-2xl text-white p-2 lg:p-4 bg-blue-700 capitalize border rounded-2xl">

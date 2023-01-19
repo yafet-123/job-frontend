@@ -112,7 +112,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
   return (
     <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-24 py-28">
     	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full lg:px-5 py-5 border rounded-xl dark:border-slate-800">
-	    	<h1 className="lg:ml-5 text-blue-700 text-lg md:text-3xl lg:text-5xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">{howmany} {category} Jobs</h1>
+	    	<h1 className="lg:ml-5 text-blue-700 text-lg md:text-3xl lg:text-5xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left mb-10">{howmany} {category} Jobs</h1>
       	<div className="flex flex-col md:flex-row w-full bg-white dark:bg-slate-800">
       		<div className="flex flex-col-reverse lg:flex-row w-full">
 	      		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3 dark:bg-slate-800">
@@ -204,7 +204,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
       			<div className="flex justify-between items-center p-2 md:p-0">
 			        <div className="flex items-center font-bold text-md lg:text-xl text-black dark:text-white capitalize">
 			          <AiOutlineClockCircle size={20} />
-			          <span className="ml-5">Latest Jobs</span>
+			          <span className="ml-2 lg:ml-5">Latest Jobs</span>
 			        </div>
 			        <Link href="">
 			          <a className="font-bold text-sm md:text-md lg:text-lg text-white p-2 lg:p-4 bg-blue-700 capitalize border rounded-2xl">

@@ -23,17 +23,24 @@ export function SearchJobs({categories, locations}) {
             {jobs == "category" ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
                 {categories.map((data, index) => (
-                  <div
-                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 lg:px-4 py-2"
+                  <button
+                    className="flex justify-between items-center mb-3 group hover:bg-gray-200 px-2 lg:px-4 py-2 w-full"
                     key={index}
+                    type = "button"
+                    onClick = {()=>{
+                      router.push({
+                        pathname:"/JobsByCategory",
+                        query:{category: data.CategoryName, howmany:"89", category_id: data.category_id}
+                      })
+                    }}
                   >
-                    <h1 className="text-black dark:text-white font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
+                    <h1 className="w-2/4 lg:w-3/4 text-left text-black dark:text-white font-normal text-xs md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
                       {data.CategoryName}
                     </h1>
-                    <h1 className="text-black dark:text-white px-5 py-2 border rounded-xl border-gray-200 text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
+                    <h1 className="w-1/4 px-2 lg:px-5 py-2 text-black dark:text-white border rounded-xl border-gray-200 text-blue-800 font-bold text-xs md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
                       89
                     </h1>
-                  </div>
+                  </button>
                 ))}
               </div>
             ) : (
