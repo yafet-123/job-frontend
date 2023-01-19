@@ -17,7 +17,7 @@ export default function AdvanceSearch() {
   const [type,settype] = useState(searchtype)
   const advanceSearchList = [
     { type:1 , name: "Job Type" , style: "bg-blue-400", styleHover:"bg-blue-800"},
-    { type:2 , name: "CareerLevel" , style: "bg-green-400", styleHover:"bg-blue-400" },
+    { type:2 , name: "CareerLevel" , style: "bg-green-400", styleHover:"bg-[#232323]" },
     { type:3 , name: "Company Name" , style: "bg-red-400", styleHover:"bg-red-800" },
     { type:4 , name: "Employment Type" , style: "bg-sky-400", styleHover:"bg-sky-800" },
     { type:5 , name: "Career Level" , style: "bg-orange-400", styleHover:"bg-orange-800" },
@@ -76,12 +76,12 @@ export default function AdvanceSearch() {
       <div className="mx-2 lg:mx-52 mt-10 grid grid-cols-2 md:grid-cols-3 gap-10">
           {advanceSearchList.map((search, index) => (
             <button 
-              key={index}
+              key={search.type}
               onClick={()=> {
                 handleSearch()
                 settype(search.type)
               }}
-              className={`py-2 py-5 text-lg hover:${search.styleHover} md:text-2xl text-white px-2 md:px-3 flex items-center justify-center border rounded-2xl ${search.style}`}
+              className={`py-2 py-5 text-lg ${search.style} hover:${search.styleHover} md:text-2xl text-white px-2 md:px-3 flex items-center justify-center border rounded-2xl`}
             >
               Search by {search.name}
             </button>
