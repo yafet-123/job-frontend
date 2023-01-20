@@ -3,7 +3,7 @@ import { useState,useEffect, useContext} from 'react'
 import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/router'
-
+import {DeleteUser} from './DeleteUser.js'
 export function AddUser({users}) {
     const router = useRouter();
     const [UserName, setUserName] =useState("")
@@ -37,16 +37,6 @@ export function AddUser({users}) {
         setupdateModalOn(true)
     }
 
-    const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/deleteuser/${deleteuserid}`,{
-        }).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
-        setdeleteModalOn(false)
-        router.reload()
-    }
 
     const handleOKClickForupdate = async() => {
         const data = await axios.patch(`api/updateUser/${updateuserid}`,{
@@ -59,10 +49,6 @@ export function AddUser({users}) {
         });
         setupdateModalOn(false)
         router.reload()
-    }
-      
-    const handleCancelClickFordelete = () => {
-        setdeleteModalOn(false)
     }
 
     const handleCancelClickForupdate = () => {
@@ -269,17 +255,7 @@ export function AddUser({users}) {
             </div>
 
             {deletemodalOn && 
-                <div className="bg-gray-200 dark:bg-slate-800 opacity-90 fixed inset-0 z-50   ">
-                    <div className="flex h-screen justify-center items-center ">
-                        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
-                            <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Are you sure You want to delete User ?</div>
-                            <div className="flex">
-                                <button onClick={handleOKClickFordelete} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
-                                <button onClick={handleCancelClickFordelete} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
-                            </div>
-                         </div>
-                    </div>
-                </div>
+                <DeleteUser setdeleteModalOn={setdeleteModalOn} />
             }
 
             {updatemodalOn && 

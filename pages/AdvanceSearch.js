@@ -16,11 +16,11 @@ export default function AdvanceSearch() {
   const [searchValue,setsearchValue] = useState([])
   const [type,settype] = useState(searchtype)
   const advanceSearchList = [
-    { type:1 , name: "Job Type" , style: "bg-blue-400", styleHover:"bg-blue-800"},
-    { type:2 , name: "CareerLevel" , style: "bg-green-400", styleHover:"bg-[#232323]" },
-    { type:3 , name: "Company Name" , style: "bg-red-400", styleHover:"bg-red-800" },
-    { type:4 , name: "Employment Type" , style: "bg-sky-400", styleHover:"bg-sky-800" },
-    { type:5 , name: "Career Level" , style: "bg-orange-400", styleHover:"bg-orange-800" },
+    { type:1 , name: "Job Type" , styleHover:"bg-green-800" , style: "bg-blue-400"},
+    { type:2 , name: "CareerLevel", styleHover:"bg-green-800" , style: "bg-green-400"},
+    { type:3 , name: "Company Name" , styleHover:"bg-red-800" , style: "bg-red-400" },
+    { type:4 , name: "Employment Type" , styleHover:"bg-sky-800" , style: "bg-sky-400" },
+    { type:5 , name: "Career Level" , styleHover:"bg-orange-800" , style: "bg-orange-400" },
     
   ];
 

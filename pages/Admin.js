@@ -119,17 +119,17 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) 
   const { status, data } = useSession();
   console.log(Alljobs)
   const router = useRouter();
-  useEffect(() => {
-    if (status === "unauthenticated") router.replace("/auth/signin");
-  }, [status]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") router.replace("/auth/signin");
+  // }, [status]);
   function handleChange(newValue) {
       setselected(newValue);
   }
-  if (status === "authenticated")
+  // if (status === "authenticated")
     return (
     <div className="flex bg-gray-100 dark:bg-slate-700">
       <VerticalNavbar onChange={handleChange} />
-      <div className="flex-1">
+      <div className="flex-1 pt-32">
         { selected == "dashboard" && <DashBoard />}
         { selected == "addUser" && <AddUser users={Allusers}/>}
         { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
