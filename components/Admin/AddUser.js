@@ -40,7 +40,7 @@ export function AddUser({users}) {
     }
 
     return (
-        <div className="lg:mx-10 h-full">
+        <div className="px-0 lg:px-10 h-full">
             <div className="max-w-7xl mx-auto mt-10">
                 <h1 className="text-black dark:text-white text-4xl font-bold text-center italic">User</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-10 mx-2">
@@ -48,13 +48,13 @@ export function AddUser({users}) {
                         <input 
                             id="username" 
                             type="text" 
-                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={UserName}
                             onChange={(e) => setUserName(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             UserName
                         </label>
@@ -64,13 +64,13 @@ export function AddUser({users}) {
                         <input 
                             id="email" 
                             type="email" 
-                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={email}
                             onChange={(e) => setemail(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Email
                         </label>
@@ -80,13 +80,13 @@ export function AddUser({users}) {
                         <input 
                             id="password" 
                             type="password" 
-                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={password}
                             onChange={(e) => setpassword(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Password
                         </label>
@@ -96,13 +96,13 @@ export function AddUser({users}) {
                         <input 
                             id="ConfirmPassword" 
                             type="password" 
-                            className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Confirm Password
                         </label>
@@ -119,7 +119,7 @@ export function AddUser({users}) {
                 </div>
             </div>
 
-            <div className="m-5">
+            <div className="p-2 lg:p-5">
                 <div className="overflow-auto rounded-lg shadow hidden md:block">
                     <table className="w-full">
                         <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
@@ -187,7 +187,7 @@ export function AddUser({users}) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:hidden">
                     {users.map((data,index)=>(
-                        <div key={index} className=" bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                        <div key={index} className=" bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow whitespace-pre-line">
                             <div>
                                 <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.user_id}</p>
                             </div>
@@ -198,10 +198,10 @@ export function AddUser({users}) {
                                 Created By : {data.userName}
                             </div>
 
-                            <div className="text-lg text-gray-700 dark:text-white font-bold">
+                            <div className="text-md lg:text-lg text-gray-700 dark:text-white font-bold text-ellipsis">
                                 Email : <span className={ `font-normal font-medium ${data.email ? " " : "text-red-800"}`}>
-                                            { data.email ? data.email : "No Email Address" }
-                                        </span>
+                                    { data.email ? data.email : "No Email Address" }
+                                </span>
                             </div>
 
                             <div className="text-sm text-black dark:text-white">
