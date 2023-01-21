@@ -6,9 +6,12 @@ import Image from 'next/image'
 import { AiOutlineEye } from 'react-icons/ai'
 import {DeleteCategory} from './DeleteCategory'
 import {UpdateCategory} from './UpdateCategory'
+import {ViewIndividualjob} from './ViewIndividualjob'
 
 export function DashBoard() {
     const [getSearchValue,setgetSearchValue] = useState("")
+    const [dataposttojob, setdataposttojob] = useState()
+    const [viewmodalOnforjob, setviewModalOnforjob] = useState(false);
     const [searchValue,setsearchValue] = useState([])
     const [error , seterror] = useState("")
     const [type,settype] = useState()
@@ -27,7 +30,10 @@ export function DashBoard() {
     // const searchaxios = axios.create({
     //     baseURL : api,
     // })
-    
+     
+    const clickedForview = () => {
+        setviewModalOnforjob(true)
+    }   
 
     async function handleSearch(e){
         settype(e)
@@ -317,7 +323,12 @@ export function DashBoard() {
                                                         {data.userName}
                                                     </td>
                                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap flex justify-center">
-                                                        <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
+                                                        <button 
+                                                            onClick={() => {
+                                                                clickedForview()
+                                                                setdataposttojob(data)
+                                                            }}
+                                                            className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
                                                             <AiOutlineEye size={30} />
                                                         </button>
                                                     </td>
@@ -355,18 +366,23 @@ export function DashBoard() {
                                                 <span className="text-lg">Created By : </span> 
                                                 <span className="text-sm ">{data.userName} </span> 
                                             </div>
-                                            <div className="text-black dark:text-white">
+                                            <div className="text-black font-bold dark:text-white">
                                                 <span className="text-lg">createDate : </span> 
                                                 <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')} </span> 
                                             </div>
-                                            <div className="text-black dark:text-white">
+                                            <div className="text-black font-bold dark:text-white">
                                                 <span className="text-lg">Modified Date : </span> 
                                                 <span className="text-sm ">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')} </span>
                                                
                                             </div>
 
                                             <div className="flex items-center justify-between text-sm">
-                                                <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-blue-500 rounded">
+                                                <button 
+                                                    onClick={() => {
+                                                        clickedForview()
+                                                        setdataposttojob(data)
+                                                    }}
+                                                    className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-blue-500 rounded">
                                                     <AiOutlineEye size={30} />
                                                 </button>
                                             </div>
@@ -482,6 +498,10 @@ export function DashBoard() {
 
             {updatemodalOnforcategory && 
                 <UpdateCategory setupdateModalOn={setupdateModalOnforcategory} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
+            }
+
+            {viewmodalOnforjob && 
+                <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOnforjob} />
             }
         </div>
   );
