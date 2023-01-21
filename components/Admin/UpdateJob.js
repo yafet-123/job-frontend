@@ -1,4 +1,32 @@
 export function UpdateJob(){
+    const handleOKClickForupdate = async() => {
+        const data = await axios.patch(`api/updatejob/${updatejobid}`,{
+            "CompanyName":CompanyName,
+            "Image":Image,
+            "JobsType":JobsType,
+            "CareerLevel":CareerLevel,
+            "EmploymentType":EmploymentType,
+            "Salary":Salary,
+            "JobsDescreption":Description,
+            "JobsRequirement":Requirement,
+            "DeadLine":new Date(DeadLine).toISOString(),
+            "Apply":Apply,
+            "categoryId":categoryId,
+            "LocationId":Location
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+        setupdateModalOn(false)
+        router.reload()
+    }
+
+    const handleCancelClickForupdate = () => {
+        setupdateModalOn(false)
+        setCategoryId([])
+    }
+    
     return(
         <div className="bg-gray-200 dark:bg-slate-800 opacity-95 fixed inset-0 z-50 h-full  ">
             <div className="flex h-full justify-center items-center">

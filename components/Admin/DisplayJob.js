@@ -32,41 +32,6 @@ export function DisplayJob({jobs, categories}) {
         setviewModalOn(true)
     }
 
-    
-
-    const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/updatejob/${updatejobid}`,{
-            "CompanyName":CompanyName,
-            "Image":Image,
-            "JobsType":JobsType,
-            "CareerLevel":CareerLevel,
-            "EmploymentType":EmploymentType,
-            "Salary":Salary,
-            "JobsDescreption":Description,
-            "JobsRequirement":Requirement,
-            "DeadLine":new Date(DeadLine).toISOString(),
-            "Apply":Apply,
-            "categoryId":categoryId,
-            "LocationId":Location
-        }).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
-        setupdateModalOn(false)
-        router.reload()
-    }
-
-    
-
-    const handleCancelClickForupdate = () => {
-        setupdateModalOn(false)
-        setCategoryId([])
-    }
-
-
-    
-
     console.log(categoryId)
     
     return (
