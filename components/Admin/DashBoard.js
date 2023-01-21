@@ -10,6 +10,11 @@ export function DashBoard() {
     const [searchValue,setsearchValue] = useState([])
     const [error , seterror] = useState("")
     const [type,settype] = useState()
+    const [deletemodalOnforcategory, setdeleteModalOnforcategory] = useState(false);
+    const [updatemodalOnforcategory, setupdateModalOnforcategory] = useState(false);
+    const [deletecategoryid,setdeletecategoryid] = useState()
+    const [updatecategoryid,setupdatecategoryid] = useState()
+    const [updatecategoryname,setupdatecategoryname] = useState("")
     const SearchList = [
         { type: 1, name: "User",},
         { type: 2, name: "Category",},
@@ -25,7 +30,7 @@ export function DashBoard() {
     async function handleSearch(e){
         settype(e)
         if(getSearchValue == ""){
-            seterror("Please Insert new Value")
+            seterror("Please Insert a Value")
         }else{
             const data = await axios.post(`api/searchAdmin`,{
                 "searchName": getSearchValue,
@@ -46,7 +51,15 @@ export function DashBoard() {
             });
         }
     }
-    console.log(searchValue)
+    
+    const clickedFordelete = () => {
+        setdeleteModalOnforcategory(true)
+    }
+
+    const clickedForupdate = () => {
+        setupdateModalOnforcategory(true)
+    }
+
     return (
         <div className="mt-10 mx-3 lg:mx-10 h-full">
             <div className="max-w-7xl mx-auto ">
@@ -55,27 +68,27 @@ export function DashBoard() {
                         <input 
                             id="search" 
                             type="text" 
-                            className="block w-full px-2 lg:px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            className="block w-full px-2 lg:px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={getSearchValue}
                             onChange={(e) => setgetSearchValue(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute text-lg lg:text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Search
                         </label>
                     </div>
-                    <div className="mx-2 mt-5 lg:mt-0 flex items-center justify-center">
+                    <div className="lg:mx-2 mt-5 lg:mt-0 flex items-center justify-center">
                         <div className="dropdown inline-block relative">
-                            <button className="flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center">
+                            <button className="flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-md lg:text-xl px-2 lg:px-4 py-4 text-center inline-flex items-center">
                                 <span className="mr-1">Search</span>
                                 <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
                             </button>
                             <ul className="dropdown-menu absolute hidden text-black pt-1">
                                 {SearchList.map((search, index) => (
                                     <li className="" key={index}>
-                                        <button onClick={()=> handleSearch(search.type)} className="text-left text-xl w-32 bg-white hover:bg-gray-400 py-2 px-2">
+                                        <button onClick={()=> handleSearch(search.type)} className="text-left text-md lg:text-xl w-32 bg-white hover:bg-gray-400 py-2 px-2">
                                             By {search.name}
                                         </button>
                                     </li>
@@ -89,63 +102,76 @@ export function DashBoard() {
             { error == "" ? 
                 <div>
                     { searchValue == "" ? 
-                        <h1 className="text-black dark:text-white text-xl font-bold text-center italic">
+                        <h1 className="text-black dark:text-white text-md lg:text-xl font-bold text-center italic">
                             No data can be found
                         </h1>
                         :
                         <div>
-                            { type == 1 && <div className="my-5">
-                                <div className="overflow-auto rounded-lg shadow hidden md:block">
-                                    <table className="w-full">
-                                        <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
-                                            <tr>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">User Id</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">User Name</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-gray-100">
-                                            {searchValue.map((data,index)=>(
-                                                <tr key={index} className="even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
-                                                    <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.user_id}</p>
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {data.UserName}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
-                                                    </td>
+                            { type == 1 && 
+                                <div className="my-5">
+                                    <div className="overflow-auto rounded-lg shadow hidden md:block">
+                                        <table className="w-full">
+                                            <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
+                                                <tr>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">User Id</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">User Name</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                                    {searchValue.map((data,index)=>(
-                                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
-                                            <div className="flex items-center justify-between text-sm">
-                                              <div>
-                                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.user_id}</p>
-                                              </div>
-                                              <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                User Name : {data.UserName}
-                                              </div>
+                                            </thead>
+                                            <tbody className="divide-y divide-gray-100">
+                                                {searchValue.map((data,index)=>(
+                                                    <tr key={index} className="even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
+                                                        <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
+                                                            <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.user_id}</p>
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {data.UserName}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                                        {searchValue.map((data,index)=>(
+                                            <div key={index} className=" bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow overflow-scroll">
+                                                <div>
+                                                    <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                                        <span className="text-lg">Id : </span> 
+                                                        <span className="text-sm ">{data.user_id}</span>
+                                                    </p>
+                                                </div>
+                                                <div className="text-gray-700 dark:text-white font-bold">
+                                                    <span className="text-lg">User Name : </span>
+                                                    <span className="text-md">{data.UserName} </span>
+                                                </div>
+
+                                                <div className="text-md lg:text-lg text-gray-700 dark:text-white font-bold break-words ">
+                                                    Email : <span className={ `font-normal font-medium ${data.email ? " " : "text-red-800"}`}>
+                                                        { data.email ? data.email : "No Email Address" }
+                                                    </span>
+                                                </div>
+
+                                                <div className="text-black font-bold dark:text-white">
+                                                  <span className="text-lg">createDate : </span>
+                                                  <span className="text-sm">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
+                                                </div>
+                                                <div className="text-black font-bold dark:text-white">
+                                                  <span className="text-lg">Modified Date : </span>
+                                                  <span className="text-sm">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
+                                                </div>
                                             </div>
-                                            <div className="text-sm text-black dark:text-white">
-                                              createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                                            </div>
-                                            <div className="text-sm text-black dark:text-white">
-                                              Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div> }
+                                        ))}
+                                    </div>
+                                </div> 
+                            }
 
                             { type == 2 && <div className="my-5">
                                 <div className="overflow-auto rounded-lg shadow hidden md:block">
@@ -199,23 +225,37 @@ export function DashBoard() {
                                     {searchValue.map((data,index)=>(
                                         <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                                             <div>
-                                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
+                                                <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                                    <span className="text-lg">Id : </span> 
+                                                    <span className="text-sm ">{data.category_id}</span>
+                                                </p>
                                             </div>
-                                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                Category Name : {data.CategoryName}
+                                            <div className="text-gray-700 dark:text-white font-bold">
+                                                <span className="text-lg">Category Name : </span>
+                                                <span className="text-sm ">{data.CategoryName}</span>
                                             </div>
-                                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                Created By : {data.userName}
+                                            <div className="text-gray-700 dark:text-white font-bold">
+                                                <span className="text-lg">Created By : </span>
+                                                <span className="text-sm ">{data.userName}</span>
                                             </div>
-                                            <div className="text-sm text-black dark:text-white">
-                                              createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                                            <div className="text-black dark:text-white">
+                                                <span className="text-lg">createDate : </span>
+                                                <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
                                             </div>
-                                            <div className="text-sm text-black dark:text-white">
+                                            <div className="text-black dark:text-white">
+                                                <span className="text-lg">Id : </span>
                                               Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                                             </div>
 
                                             <div className="flex items-center justify-between text-sm">
-                                                <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                <button
+                                                    onClick={() => {
+                                                        clickedForupdate()
+                                                        setupdatecategoryid(data.category_id)
+                                                        setupdatecategoryname(data.CategoryName) 
+                                                    }}
+                                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                                                >
                                                     Edit
                                                 </button>
 
@@ -412,7 +452,15 @@ export function DashBoard() {
                     }
                 </div>
                 :
-                <h1 className="text-black dark:text-white text-xl font-bold text-center italic">{error}</h1>
+                <h1 className="text-black dark:text-white text-md lg:text-xl font-bold text-center italic">{error}</h1>
+            }
+
+            {deletemodalOnforcategory && 
+                jmn
+            }
+
+            {updatemodalOnforcategory && 
+              khy   
             }
         </div>
   );

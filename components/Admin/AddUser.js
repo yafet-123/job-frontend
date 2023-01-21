@@ -187,28 +187,31 @@ export function AddUser({users}) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:hidden">
                     {users.map((data,index)=>(
-                        <div key={index} className=" bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow whitespace-pre-line">
+                        <div key={index} className=" bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow overflow-scroll">
                             <div>
-                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.user_id}</p>
+                                <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                    <span className="text-lg">Id : </span> 
+                                    <span className="text-sm ">{data.user_id}</span>
+                                </p>
                             </div>
-                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                User Name : {data.UserName}
-                            </div>
-                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                Created By : {data.userName}
+                            <div className="text-gray-700 dark:text-white font-bold">
+                                <span className="text-lg">User Name : </span>
+                                <span className="text-md">{data.UserName} </span>
                             </div>
 
-                            <div className="text-md lg:text-lg text-gray-700 dark:text-white font-bold text-ellipsis">
+                            <div className="text-md lg:text-lg text-gray-700 dark:text-white font-bold break-words ">
                                 Email : <span className={ `font-normal font-medium ${data.email ? " " : "text-red-800"}`}>
                                     { data.email ? data.email : "No Email Address" }
                                 </span>
                             </div>
 
-                            <div className="text-sm text-black dark:text-white">
-                              createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                            <div className="text-black font-bold dark:text-white">
+                              <span className="text-lg">createDate : </span>
+                              <span className="text-sm">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
                             </div>
-                            <div className="text-sm text-black dark:text-white">
-                              Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                            <div className="text-black font-bold dark:text-white">
+                              <span className="text-lg">Modified Date : </span>
+                              <span className="text-sm">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
                             </div>
 
                             <div className="flex items-center justify-between text-sm">

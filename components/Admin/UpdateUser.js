@@ -1,4 +1,4 @@
-export function UpdateUser({setdeleteModalOn}) {
+export function UpdateUser({setupdateModalOn}) {
 	const handleOKClickForupdate = async() => {
         const data = await axios.patch(`api/updateUser/${updateuserid}`,{
             "UserName": updateusername,

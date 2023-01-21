@@ -17,6 +17,7 @@ export default async(req, res) => {
         const AllData = searchData.map((data)=>({
             user_id:data.user_id,
             UserName:data.UserName,
+            email:data.email,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate
         }))
