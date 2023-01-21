@@ -21,7 +21,7 @@ export default async(req, res) => {
 		categoryId,
 		LocationId
 	} = req.body
-
+	console.log(req.body)
 	const data = await prisma.Job.update({
 		where:{job_id:Number(updatejobid)},
 		data:{
@@ -36,11 +36,9 @@ export default async(req, res) => {
 			JobsRequirement,
 			DeadLine,
 			Apply,
-			location_id: Number(LocationId),
-			JobCategory:{
-				create: createJobCategory
-			}
+			
 		}
 	});
+
 	res.json(data)
 }

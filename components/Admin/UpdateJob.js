@@ -23,6 +23,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
     
     useEffect(()=>{
         let categories = [] 
+        console.log(categories)
         categories = dataposttojob.categories
         setupdatejobid(dataposttojob.job_id)
         setCompanyName(dataposttojob.CompanyName)
@@ -43,6 +44,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
     },[])
     
     const handleOKClickForupdate = async() => {
+
         const data = await axios.patch(`api/updatejob/${updatejobid}`,{
             "CompanyName":CompanyName,
             "Image":Image,
@@ -55,14 +57,14 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
             "DeadLine":new Date(DeadLine).toISOString(),
             "Apply":Apply,
             "categoryId":categoryId,
-            "LocationId":Location
+            "LocationId":2
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
             console.log(error);
         });
         setupdateModalOn(false)
-        router.reload()
+        
     }
 
     const handleCancelClickForupdate = () => {
@@ -73,8 +75,8 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
     return(
         <div className="bg-gray-200 dark:bg-slate-800 opacity-95 fixed inset-0 z-50 h-full  ">
             <div className="flex h-full justify-center items-center">
-                <div className="flex-col w-full h-full mx-20 justify-center bg-gray-50 dark:bg-slate-500 py-5 px-24 border-4 border-sky-500 rounded-xl ">
-                    <h1 className="text-2xl text-zinc-600 font-bold mb-3 dark:text-white text-center">Update Job</h1>
+                <div className="overflow-y-scroll lg:overflow-none flex-col w-full h-full mx-2 lg:mx-20 justify-center bg-gray-50 dark:bg-slate-500 py-5 px-5 lg:px-10 border-4 border-sky-500 rounded-xl ">
+                    <h1 className="text-xl lg:text-2xl text-zinc-600 font-bold mb-10 dark:text-white text-center">Update Job</h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-3">
                         <div className="relative mb-5">
                             <input 

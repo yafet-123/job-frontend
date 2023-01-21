@@ -39,7 +39,7 @@ export function AddCategory({categories}) {
     
 
     return (
-        <div className="">
+        <div className="px-0 lg:px-10 h-full">
             <div className="max-w-7xl mx-auto mt-10">
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Category</h1>
                 <div className="flex flex-col lg:flex-row my-10 w-full px-2">

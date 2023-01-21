@@ -66,7 +66,7 @@ export function AddLocation({locations}) {
         setupdateModalOn(false)
     }
     return (
-        <div className="">
+        <div className="px-0 lg:px-10 h-full">
             <div className="max-w-7xl mx-auto mt-10">
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Location</h1>
                 <div className="flex flex-col my-10 w-full px-2">
@@ -178,7 +178,7 @@ export function AddLocation({locations}) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {locations.map((data,index)=>(
-                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div className="flex justify-between items-center">
                                 <div>
                                     <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
