@@ -4,6 +4,8 @@ import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import {DeleteLocation} from './DeleteLocation'
+import {UpdateLocation} from './UpdateLocation'
 
 export function AddLocation({locations}) {
     const router = useRouter();
@@ -35,36 +37,6 @@ export function AddLocation({locations}) {
         setupdateModalOn(true)
     }
 
-    const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/deletelocation/${deletelocationid}`,{
-        }).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
-        setdeleteModalOn(false)
-        router.reload()
-    }
-    
-    const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/updatelocation/${updatelocationid}`,{
-            "LocationName": updatelocationname
-        }).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
-        setupdateModalOn(false)
-        router.reload()
-    }
-      
-    const handleCancelClickFordelete = () => {
-        setdeleteModalOn(false)
-    }
-
-    const handleCancelClickForupdate = () => {
-        setupdateModalOn(false)
-    }
     return (
         <div className="px-0 lg:px-10 h-full">
             <div className="max-w-7xl mx-auto mt-10">
@@ -112,7 +84,7 @@ export function AddLocation({locations}) {
                 </div>
             </div>
 
-            <div className="m-5">
+            <div className="m-2 lg:m-5">
                 <div className="overflow-auto rounded-lg shadow hidden md:block">
                     <table className="w-full">
                         <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
@@ -181,27 +153,30 @@ export function AddLocation({locations}) {
                         <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
+                                    <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                        <span className="text-lg">Id : </span> 
+                                        <span className="text-sm ">{data.location_id}</span>
+                                    </p>
                                 </div>
 
-                                { ! data.image ? 
-                                    <p>No Image</p> :
-                                    <Image src={data.Image} width={50} height={50} alt="image that will be displayed" />
-                                    
-                                }
+                                <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                             </div>
 
-                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                Category Name : {data.LocationName}
+                            <div className="font-bold text-gray-700 dark:text-white">
+                                <span className="text-lg">Category Name : </span> 
+                                <span className="text-sm ">{data.LocationName}</span>
                             </div>
-                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                Created By : {data.userName}
+                            <div className="font-bold text-gray-700 dark:text-white">
+                                <span className="text-lg">Created By : </span> 
+                                <span className="text-sm ">{data.userName}</span>
                             </div>
-                            <div className="text-sm text-black dark:text-white">
-                              createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                            <div className="font-bold text-black dark:text-white">
+                                <span className="text-lg">createDate : </span> 
+                                <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
                             </div>
-                            <div className="text-sm text-black dark:text-white">
-                              Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                            <div className="font-bold text-black dark:text-white">
+                                <span className="text-lg">Modified Date : </span> 
+                                <span className="text-sm ">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
                             </div>
 
                             <div className="flex items-center justify-between text-sm">
@@ -230,48 +205,11 @@ export function AddLocation({locations}) {
             </div>
 
             {deletemodalOn && 
-                <div className="bg-gray-200 dark:bg-slate-800 opacity-90 fixed inset-0 z-50   ">
-                    <div className="flex h-screen justify-center items-center ">
-                        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
-                            <div className="flex text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Are you sure You want to delete Category Name ?</div>
-                            <div className="flex">
-                                <button onClick={handleOKClickFordelete} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
-                                <button onClick={handleCancelClickFordelete} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
-                            </div>
-                         </div>
-                    </div>
-                </div>
+                <DeleteLocation setdeleteModalOn={setdeleteModalOn} deletelocationid={deletelocationid} />
             }
 
             {updatemodalOn && 
-                <div className="bg-gray-200 dark:bg-slate-800 opacity-95 fixed inset-0 z-50   ">
-                    <div className="flex h-screen justify-center items-center ">
-                        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-24 px-24 border-4 border-sky-500 rounded-xl ">
-                            <div className="flex text-center text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Update Category</div>
-                            <div className="flex flex-col justify-between items-center">
-                                <div className="relative mb-10">
-                                    <input 
-                                        id="LocationName" 
-                                        type="text" 
-                                        className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                                        value={updatelocationname}
-                                        onChange={(e) => setupdatelocationname(e.target.value)}
-                                    />
-                                    <label 
-                                        htmlFor="floating_outlined" 
-                                        className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-500 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                                    >
-                                        Location Name
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <button onClick={handleOKClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
-                                <button onClick={handleCancelClickForupdate} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
-                            </div>
-                         </div>
-                    </div>
-                </div>
+                <UpdateLocation setupdateModalOn={setupdateModalOn} updatelocationname={updatelocationname} setupdatelocationname={setupdatelocationname} />
             }
         </div>
   );

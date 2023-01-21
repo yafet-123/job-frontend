@@ -7,6 +7,8 @@ import { AiOutlineEye } from 'react-icons/ai'
 import {DeleteCategory} from './DeleteCategory'
 import {UpdateCategory} from './UpdateCategory'
 import {ViewIndividualjob} from './ViewIndividualjob'
+import {DeleteLocation} from './DeleteLocation'
+import {UpdateLocation} from './UpdateLocation'
 
 export function DashBoard() {
     const [getSearchValue,setgetSearchValue] = useState("")
@@ -19,7 +21,13 @@ export function DashBoard() {
     const [updatemodalOnforcategory, setupdateModalOnforcategory] = useState(false);
     const [deletecategoryid,setdeletecategoryid] = useState()
     const [updatecategoryid,setupdatecategoryid] = useState()
+    const [deletelocationid,setdeletelocationid] = useState()
+    const [updatelocationid,setupdatelocationid] = useState()
+    const [updatelocationname,setupdatelocationname] = useState("")
     const [updatecategoryname,setupdatecategoryname] = useState("")
+    const [deletemodalOnforlocation, setdeleteModalOnforlocation] = useState(false);
+    const [updatemodalOnforlocation, setupdateModalOnforlocation] = useState(false);
+
     const SearchList = [
         { type: 1, name: "User",},
         { type: 2, name: "Category",},
@@ -66,6 +74,14 @@ export function DashBoard() {
 
     const clickedForupdate = () => {
         setupdateModalOnforcategory(true)
+    }
+
+    const clickedFordeleteforlocation = () => {
+        setdeleteModalOnforlocation(true)
+    }
+
+    const clickedForupdateforlocation = () => {
+        setupdateModalOnforlocation(true)
     }
 
     return (
@@ -448,36 +464,51 @@ export function DashBoard() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                                     {searchValue.map((data,index)=>(
                                         <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
-                                            <div className="flex items-center justify-between text-sm">
+                                            <div className="flex justify-between items-center">
                                                 <div>
-                                                    <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">
+                                                    <p className="text-blue-500 dark:text-white font-bold hover:underline">
                                                         <span className="text-lg">Id : </span> 
-                                                        <span className="text-sm "> {data.location_id}</span>
+                                                        <span className="text-sm ">{data.location_id}</span>
                                                     </p>
                                                 </div>
+
                                                 <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                                             </div>
 
-                                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                Category Name : {data.LocationName}
+                                            <div className="font-bold text-gray-700 dark:text-white">
+                                                <span className="text-lg">Category Name : </span> 
+                                                <span className="text-sm ">{data.LocationName}</span>
                                             </div>
-
-                                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                Created By : {data.userName}
+                                            <div className="font-bold text-gray-700 dark:text-white">
+                                                <span className="text-lg">Created By : </span> 
+                                                <span className="text-sm ">{data.userName}</span>
                                             </div>
-                                            <div className="text-sm text-black dark:text-white">
-                                              createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                                            <div className="font-bold text-black dark:text-white">
+                                                <span className="text-lg">createDate : </span> 
+                                                <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
                                             </div>
-                                            <div className="text-sm text-black dark:text-white">
-                                              Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                                            <div className="font-bold text-black dark:text-white">
+                                                <span className="text-lg">Modified Date : </span> 
+                                                <span className="text-sm ">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
                                             </div>
 
                                             <div className="flex items-center justify-between text-sm">
-                                                <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                <button 
+                                                    onClick={() => {
+                                                        clickedForupdateforlocation()
+                                                        setupdatelocationid(data.location_id)
+                                                        setupdatelocationname(data.LocationName)
+                                                    }}
+                                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                                     Edit
                                                 </button>
 
-                                                <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                <button 
+                                                    onClick={() => {
+                                                        clickedFordeleteforlocation()
+                                                        setdeletelocationid(data.location_id)
+                                                    }}
+                                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                                                     Delete
                                                 </button>
                                             </div>
@@ -502,6 +533,14 @@ export function DashBoard() {
 
             {viewmodalOnforjob && 
                 <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOnforjob} />
+            }
+
+            { deletemodalOnforlocation && 
+                <DeleteLocation setdeleteModalOn={setdeleteModalOnforlocation} deletelocationid={deletelocationid} />
+            }
+
+            { updatemodalOnforlocation && 
+                <UpdateLocation setupdateModalOn={setupdateModalOnforlocation} updatelocationname={updatelocationname} setupdatelocationname={setupdatelocationname} />
             }
         </div>
   );
