@@ -1,3 +1,4 @@
+import axios from 'axios';
 export function DeleteUser({setdeleteModalOn,deleteuserid}) {
 	const handleOKClickFordelete = async() => {
         const data = await axios.delete(`api/deleteuser/${deleteuserid}`,{

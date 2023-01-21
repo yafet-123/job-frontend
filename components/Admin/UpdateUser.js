@@ -1,3 +1,4 @@
+import axios from 'axios';
 export function UpdateUser({setupdateModalOn}) {
 	const handleOKClickForupdate = async() => {
         const data = await axios.patch(`api/updateUser/${updateuserid}`,{

@@ -69,7 +69,7 @@ export function AddCategory({categories}) {
                 </div>
             </div>
 
-            <div className="m-5">
+            <div className="m-2 lg:m-5">
                 <div className="overflow-auto rounded-lg shadow hidden md:block">
                     <table className="w-full">
                         <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
@@ -130,21 +130,28 @@ export function AddCategory({categories}) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                     {categories.map((data,index)=>(
-                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div>
-                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
+                                <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                    <span className="text-lg">Id : </span> 
+                                    <span className="text-sm ">{data.category_id}</span>
+                                </p>
                             </div>
-                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                Category Name : {data.CategoryName}
+                            <div className="text-gray-700 dark:text-white font-bold">
+                                <span className="text-lg">Category Name : </span>
+                                <span className="text-sm ">{data.CategoryName}</span>
                             </div>
-                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                Created By : {data.userName}
+                            <div className="text-gray-700 dark:text-white font-bold">
+                                <span className="text-lg">Created By : </span>
+                                <span className="text-sm ">{data.userName}</span>
                             </div>
-                            <div className="text-sm text-black dark:text-white">
-                              createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                            <div className="text-black font-bold dark:text-white">
+                                <span className="text-lg">createDate : </span>
+                                <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
                             </div>
-                            <div className="text-sm text-black dark:text-white">
-                              Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                            <div className="text-black font-bold dark:text-white">
+                                <span className="text-lg">Modified Date : </span>
+                                <span className="text-sm">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
                             </div>
 
                             <div className="flex items-center justify-between text-sm">
@@ -177,7 +184,7 @@ export function AddCategory({categories}) {
             }
 
             {updatemodalOn && 
-                <UpdateCategory setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname}/>
+                <UpdateCategory setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
             }
         </div>
   );

@@ -4,6 +4,8 @@ import axios from 'axios';
 import moment from 'moment';
 import Image from 'next/image'
 import { AiOutlineEye } from 'react-icons/ai'
+import {DeleteCategory} from './DeleteCategory'
+import {UpdateCategory} from './UpdateCategory'
 
 export function DashBoard() {
     const [getSearchValue,setgetSearchValue] = useState("")
@@ -61,7 +63,7 @@ export function DashBoard() {
     }
 
     return (
-        <div className="mt-10 mx-3 lg:mx-10 h-full">
+        <div className="mt-10 mx-1 lg:mx-3 lg:mx-10 h-full">
             <div className="max-w-7xl mx-auto ">
                 <div className="flex flex-col lg:flex-row my-10 w-full">
                     <div className="relative flex-1">
@@ -223,7 +225,7 @@ export function DashBoard() {
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                                     {searchValue.map((data,index)=>(
-                                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                                             <div>
                                                 <p className="text-blue-500 dark:text-white font-bold hover:underline">
                                                     <span className="text-lg">Id : </span> 
@@ -238,13 +240,13 @@ export function DashBoard() {
                                                 <span className="text-lg">Created By : </span>
                                                 <span className="text-sm ">{data.userName}</span>
                                             </div>
-                                            <div className="text-black dark:text-white">
+                                            <div className="text-black font-bold dark:text-white">
                                                 <span className="text-lg">createDate : </span>
                                                 <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
                                             </div>
-                                            <div className="text-black dark:text-white">
-                                                <span className="text-lg">Id : </span>
-                                              Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                                            <div className="text-black font-bold dark:text-white">
+                                                <span className="text-lg">Modified Date : </span>
+                                                <span className="text-sm">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
                                             </div>
 
                                             <div className="flex items-center justify-between text-sm">
@@ -259,7 +261,12 @@ export function DashBoard() {
                                                     Edit
                                                 </button>
 
-                                                <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                <button
+                                                    onClick={() => {
+                                                        clickedFordelete()
+                                                        setdeletecategoryid(data.category_id)
+                                                    }} 
+                                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                                                     Delete
                                                 </button>
                                             </div>
@@ -323,28 +330,39 @@ export function DashBoard() {
                                     {searchValue.map((data,index)=>(
                                         <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                                             <div>
-                                                <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.job_id}</p>
+                                                <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                                    <span className="text-lg">Id : </span> 
+                                                    <span className="text-sm ">{data.job_id} </span>
+                                                </p>
+                                            </div>
+                                            <div className="text-gray-700 dark:text-white font-bold">
+                                                <span className="text-lg">Company Name : </span> 
+                                                <span className="text-sm ">{data.CompanyName} </span>
+                                            </div>
+                                            <div className="text-gray-700 dark:text-white font-bold">
+                                                <span className="text-lg">Job Type : </span> 
+                                                <span className="text-sm ">{data.JobsType} </span> 
+                                            </div>
+                                            <div className="text-gray-700 dark:text-white font-bold">
+                                                <span className="text-lg">Employment Type : </span> 
+                                                <span className="text-sm ">{data.EmploymentType} </span>
+                                            </div>
+                                            <div className="text-black dark:text-white font-bold">
+                                                <span className="text-lg">DeadLine : </span> 
+                                                <span className="text-sm ">{moment(data.DeadLine).utc().format('YYYY-MM-DD')} </span>
                                             </div>
                                             <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                Company Name : {data.CompanyName}
+                                                <span className="text-lg">Created By : </span> 
+                                                <span className="text-sm ">{data.userName} </span> 
                                             </div>
-                                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                Job Type : {data.JobsType}
+                                            <div className="text-black dark:text-white">
+                                                <span className="text-lg">createDate : </span> 
+                                                <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')} </span> 
                                             </div>
-                                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                Employment Type : {data.EmploymentType}
-                                            </div>
-                                            <div className="text-lg text-black dark:text-white font-bold">
-                                              DeadLine : {moment(data.DeadLine).utc().format('YYYY-MM-DD')}
-                                            </div>
-                                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                Created By : {data.userName}
-                                            </div>
-                                            <div className="text-sm text-black dark:text-white">
-                                              createDate : {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                                            </div>
-                                            <div className="text-sm text-black dark:text-white">
-                                              Modified Date : {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                                            <div className="text-black dark:text-white">
+                                                <span className="text-lg">Modified Date : </span> 
+                                                <span className="text-sm ">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')} </span>
+                                               
                                             </div>
 
                                             <div className="flex items-center justify-between text-sm">
@@ -413,10 +431,13 @@ export function DashBoard() {
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                                     {searchValue.map((data,index)=>(
-                                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                                             <div className="flex items-center justify-between text-sm">
                                                 <div>
-                                                    <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.location_id}</p>
+                                                    <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">
+                                                        <span className="text-lg">Id : </span> 
+                                                        <span className="text-sm "> {data.location_id}</span>
+                                                    </p>
                                                 </div>
                                                 <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                                             </div>
@@ -456,11 +477,11 @@ export function DashBoard() {
             }
 
             {deletemodalOnforcategory && 
-                jmn
+                <DeleteCategory setdeleteModalOn={setdeleteModalOnforcategory} deletecategoryid={deletecategoryid}/>
             }
 
             {updatemodalOnforcategory && 
-              khy   
+                <UpdateCategory setupdateModalOn={setupdateModalOnforcategory} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
             }
         </div>
   );
