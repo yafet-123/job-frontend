@@ -4,7 +4,6 @@ import moment from 'moment';
 import { AiOutlineEye } from 'react-icons/ai'
 import axios from 'axios';
 import { useRouter } from 'next/router'
-import Multiselect from 'multiselect-react-dropdown';
 import {ViewIndividualjob} from './ViewIndividualjob'
 
 export function DisplayJob({jobs, categories}) {
@@ -13,26 +12,10 @@ export function DisplayJob({jobs, categories}) {
     const [dataposttojob, setdataposttojob] = useState()
     const [view,setview] = useState()
 
-    const [typechange , settypechange] = useState(true)
-    const [CompanyName, setCompanyName] = useState("")
-    const [Image, setImage] = useState("")
-    const [JobsType, setJobsType] = useState("")
-    const [Location, setLocation] = useState("")
-    const [CareerLevel, setCareerLevel] = useState("")
-    const [categoryId,setCategoryId] = useState([])
-    const [EmploymentType, setEmploymentType] = useState("")
-    const [Salary, setSalary] = useState("")
-    const [Apply, setApply] = useState("")
-    const [DeadLine, setDeadLine] = useState("")
-    const [startDate, setStartDate] = useState(new Date());
-    const [Description , setDescription] = useState("")
-    const [Requirement , setRequirement] = useState("")
-
     const clickedForview = () => {
         setviewModalOn(true)
     }
 
-    console.log(categoryId)
     
     return (
         <div className="m-2 lg:m-5">
@@ -142,7 +125,7 @@ export function DisplayJob({jobs, categories}) {
             </div>
 
             {viewmodalOn && 
-                <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOn} />
+                <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOn} categories={categories} />
             }
 
             

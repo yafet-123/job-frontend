@@ -4,34 +4,10 @@ import {UpdateJob} from './UpdateJob'
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 
-export function ViewIndividualjob({dataposttojob, setviewModalOn}) {
+export function ViewIndividualjob({dataposttojob, setviewModalOn, categories}) {
 	const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deletejobid,setdeletejobid] = useState()
-    const [updatejobid,setupdatejobid] = useState()
-
-	function handleingUpdateChange(dataposttojob){
-        let categories = [] 
-        console.log(dataposttojob)
-        categories = dataposttojob.categories
-        clickedForupdate()
-        setupdatejobid(dataposttojob.job_id)
-        setCompanyName(dataposttojob.CompanyName)
-        setJobsType(dataposttojob.JobsType)
-        setLocation(dataposttojob.Location)
-        setCareerLevel(dataposttojob.CareerLevel)
-        setEmploymentType(dataposttojob.EmploymentType)
-        setSalary(dataposttojob.Salary)
-        setDescription(dataposttojob.JobsDescreption)
-        setRequirement(dataposttojob.JobsRequirement)
-        setDeadLine(dataposttojob.DeadLine)
-        setApply(dataposttojob.Apply)
-
-        for (let j = 0; j < categories.length; j++) {
-            setCategoryId(categoryId => [...categoryId, categories[j].category_id])
-        }
-        
-    }
 
     const handleCancelClickForview = () => {
         setviewModalOn(false)
@@ -139,8 +115,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn}) {
                         <button 
                             onClick={
                                 () => { 
-                                    handleingUpdateChange(dataposttojob) 
-                                    setupdatejobid(dataposttojob.job_id)
+                                    clickedForupdate()
                                 }
                             }
                             className="rounded px-2 lg:px-4 py-4 ml-2 lg:ml-4 text-white bg-green-400 hover:bg-green-600"
@@ -171,7 +146,11 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn}) {
             }
 
             {updatemodalOn && 
-                <UpdateJob />
+                <UpdateJob 
+                    setupdateModalOn={setupdateModalOn} 
+                    dataposttojob={dataposttojob}
+                    categories={categories}
+                />
             }
 
         </div>

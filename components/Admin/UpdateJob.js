@@ -1,4 +1,47 @@
-export function UpdateJob(){
+import axios from 'axios';
+import { useRouter } from 'next/router'
+import { useState , useEffect } from 'react'
+import Multiselect from 'multiselect-react-dropdown';
+export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
+    const [typechange , settypechange] = useState(true)
+    const router = useRouter();
+    const [updatejobid,setupdatejobid] = useState()
+    const [CompanyName, setCompanyName] = useState("")
+    const [Image, setImage] = useState("")
+    const [JobsType, setJobsType] = useState("")
+    const [Location, setLocation] = useState("")
+    const [CareerLevel, setCareerLevel] = useState("")
+    const [categoryId,setCategoryId] = useState([])
+    const [EmploymentType, setEmploymentType] = useState("")
+    const [Salary, setSalary] = useState("")
+    const [Apply, setApply] = useState("")
+    const [DeadLine, setDeadLine] = useState("")
+    const [startDate, setStartDate] = useState(new Date());
+    const [Description , setDescription] = useState("")
+    const [Requirement , setRequirement] = useState("")
+
+    
+    useEffect(()=>{
+        let categories = [] 
+        categories = dataposttojob.categories
+        setupdatejobid(dataposttojob.job_id)
+        setCompanyName(dataposttojob.CompanyName)
+        setJobsType(dataposttojob.JobsType)
+        setLocation(dataposttojob.Location)
+        setCareerLevel(dataposttojob.CareerLevel)
+        setEmploymentType(dataposttojob.EmploymentType)
+        setSalary(dataposttojob.Salary)
+        setDescription(dataposttojob.JobsDescreption)
+        setRequirement(dataposttojob.JobsRequirement)
+        setDeadLine(dataposttojob.DeadLine)
+        setApply(dataposttojob.Apply)
+
+        for (let j = 0; j < categories.length; j++) {
+            setCategoryId(categoryId => [...categoryId, categories[j].category_id])
+        }
+        
+    },[])
+    
     const handleOKClickForupdate = async() => {
         const data = await axios.patch(`api/updatejob/${updatejobid}`,{
             "CompanyName":CompanyName,
@@ -26,7 +69,7 @@ export function UpdateJob(){
         setupdateModalOn(false)
         setCategoryId([])
     }
-    
+
     return(
         <div className="bg-gray-200 dark:bg-slate-800 opacity-95 fixed inset-0 z-50 h-full  ">
             <div className="flex h-full justify-center items-center">
