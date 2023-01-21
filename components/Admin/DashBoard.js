@@ -540,7 +540,7 @@ export function DashBoard() {
             }
 
             { updatemodalOnforlocation && 
-                <UpdateLocation setupdateModalOn={setupdateModalOnforlocation} updatelocationname={updatelocationname} setupdatelocationname={setupdatelocationname} />
+                <UpdateLocation updatelocationid={updatelocationid} setupdateModalOn={setupdateModalOnforlocation} updatelocationname={updatelocationname} setupdatelocationname={setupdatelocationname} />
             }
         </div>
   );

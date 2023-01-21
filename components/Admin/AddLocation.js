@@ -209,7 +209,7 @@ export function AddLocation({locations}) {
             }
 
             {updatemodalOn && 
-                <UpdateLocation setupdateModalOn={setupdateModalOn} updatelocationname={updatelocationname} setupdatelocationname={setupdatelocationname} />
+                <UpdateLocation updatelocationid={updatelocationid} setupdateModalOn={setupdateModalOn} updatelocationname={updatelocationname} setupdatelocationname={setupdatelocationname} />
             }
         </div>
   );

@@ -1,5 +1,7 @@
 import axios from 'axios';
-export function UpdateLocation({setupdateModalOn, updatelocationname, setupdatelocationname }) {
+import { useRouter } from 'next/router'
+export function UpdateLocation({setupdateModalOn, updatelocationid, updatelocationname, setupdatelocationname }) {
+    const router = useRouter();
 	const handleOKClickForupdate = async() => {
         const data = await axios.patch(`api/updatelocation/${updatelocationid}`,{
             "LocationName": updatelocationname
