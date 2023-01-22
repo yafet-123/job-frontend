@@ -9,6 +9,8 @@ import {UpdateCategory} from './UpdateCategory'
 import {ViewIndividualjob} from './ViewIndividualjob'
 import {DeleteLocation} from './DeleteLocation'
 import {UpdateLocation} from './UpdateLocation'
+import {DeleteUser} from './DeleteUser.js'
+import {UpdateUser} from './UpdateUser.js'
 
 export function DashBoard() {
     const [getSearchValue,setgetSearchValue] = useState("")
@@ -27,7 +29,12 @@ export function DashBoard() {
     const [updatecategoryname,setupdatecategoryname] = useState("")
     const [deletemodalOnforlocation, setdeleteModalOnforlocation] = useState(false);
     const [updatemodalOnforlocation, setupdateModalOnforlocation] = useState(false);
-
+    const [deleteuserid,setdeleteuserid] = useState()
+    const [updateuserid,setupdateuserid] = useState()
+    const [updateemail, setupdateemail] = useState("")
+    const [updateusername,setupdateusername] = useState("")
+    const [deletemodalOnforuser, setdeleteModalOnforuser] = useState(false);
+    const [updatemodalOnforuser, setupdateModalOnforuser] = useState(false);
     const SearchList = [
         { type: 1, name: "User",},
         { type: 2, name: "Category",},
@@ -67,7 +74,15 @@ export function DashBoard() {
             });
         }
     }
-    
+
+    const clickedFordeleteforuser = () => {
+        setdeleteModalOnforuser(true)
+    }
+
+    const clickedForupdateforuser = () => {
+        setupdateModalOnforuser(true)
+    }
+
     const clickedFordelete = () => {
         setdeleteModalOnforcategory(true)
     }
@@ -158,6 +173,30 @@ export function DashBoard() {
                                                         <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                                             {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                                                         </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            <button
+                                                                onClick={() => {
+                                                                    clickedForupdateforuser()
+                                                                    setupdateuserid(data.user_id)
+                                                                    setupdateusername(data.UserName)
+                                                                    setupdateemail(data.email)
+                                                                }} 
+                                                                className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                                Edit
+                                                            </button>
+                                                        </td>
+
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            <button 
+                                                                onClick={() => {
+                                                                    clickedFordeleteforuser()
+                                                                    setdeleteuserid(data.user_id)
+                                                                }}
+                                                                className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                                                            >
+                                                                Delete
+                                                            </button>
+                                                        </td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -191,331 +230,360 @@ export function DashBoard() {
                                                   <span className="text-lg">Modified Date : </span>
                                                   <span className="text-sm">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
                                                 </div>
+                                                <div className="flex items-center justify-between text-sm">
+                                                    <button
+                                                        onClick={() => {
+                                                            clickedForupdateforuser()
+                                                            setupdateuserid(data.user_id)
+                                                            setupdateusername(data.UserName)
+                                                            setupdateemail(data.email)
+                                                        }}  
+                                                        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                        Edit
+                                                    </button>
+
+                                                    <button
+                                                        onClick={() => {
+                                                            clickedFordeleteforuser()
+                                                            setdeleteuserid(data.user_id)
+                                                        }} 
+                                                        className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
                                 </div> 
                             }
 
-                            { type == 2 && <div className="my-5">
-                                <div className="overflow-auto rounded-lg shadow hidden md:block">
-                                    <table className="w-full">
-                                        <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
-                                            <tr>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Category Name</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-gray-100">
-                                            {searchValue.map((data,index)=>(
-                                                <tr key={index} className="even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
-                                                    <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.category_id}</p>
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {data.CategoryName}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
-                                                    </td>
-
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {data.userName}
-                                                    </td>
-
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                                            Edit
-                                                        </button>
-                                                    </td>
-
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
-                                                            Delete
-                                                        </button>
-                                                    </td>
+                            { type == 2 && 
+                                <div className="my-5">
+                                    <div className="overflow-auto rounded-lg shadow hidden md:block">
+                                        <table className="w-full">
+                                            <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
+                                                <tr>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Category Name</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                                    {searchValue.map((data,index)=>(
-                                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
-                                            <div>
-                                                <p className="text-blue-500 dark:text-white font-bold hover:underline">
-                                                    <span className="text-lg">Id : </span> 
-                                                    <span className="text-sm ">{data.category_id}</span>
-                                                </p>
-                                            </div>
-                                            <div className="text-gray-700 dark:text-white font-bold">
-                                                <span className="text-lg">Category Name : </span>
-                                                <span className="text-sm ">{data.CategoryName}</span>
-                                            </div>
-                                            <div className="text-gray-700 dark:text-white font-bold">
-                                                <span className="text-lg">Created By : </span>
-                                                <span className="text-sm ">{data.userName}</span>
-                                            </div>
-                                            <div className="text-black font-bold dark:text-white">
-                                                <span className="text-lg">createDate : </span>
-                                                <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
-                                            </div>
-                                            <div className="text-black font-bold dark:text-white">
-                                                <span className="text-lg">Modified Date : </span>
-                                                <span className="text-sm">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
-                                            </div>
+                                            </thead>
+                                            <tbody className="divide-y divide-gray-100">
+                                                {searchValue.map((data,index)=>(
+                                                    <tr key={index} className="even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
+                                                        <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
+                                                            <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.category_id}</p>
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {data.CategoryName}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                                                        </td>
 
-                                            <div className="flex items-center justify-between text-sm">
-                                                <button
-                                                    onClick={() => {
-                                                        clickedForupdate()
-                                                        setupdatecategoryid(data.category_id)
-                                                        setupdatecategoryname(data.CategoryName) 
-                                                    }}
-                                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-                                                >
-                                                    Edit
-                                                </button>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {data.userName}
+                                                        </td>
 
-                                                <button
-                                                    onClick={() => {
-                                                        clickedFordelete()
-                                                        setdeletecategoryid(data.category_id)
-                                                    }} 
-                                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div> }
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            <button 
+                                                                className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                                Edit
+                                                            </button>
+                                                        </td>
 
-                            { type == 3 && <div className="my-5">
-                                <div className="overflow-auto rounded-lg shadow hidden md:block">
-                                    <table className="w-full">
-                                        <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
-                                            <tr>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Name</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Jobs Type</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">DeadLine</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
-                                              
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-gray-100">
-                                            {searchValue.map((data,index)=>(
-                                                <tr key={index} className="even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
-                                                    <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.job_id}</p>
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {data.CompanyName}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
-                                                        <p className="w-full overflow-hidden">
-                                                            {data.JobsType}
-                                                        </p>
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {moment(data.DeadLine).utc().format('YYYY-MM-DD')}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {data.userName}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap flex justify-center">
-                                                        <button 
-                                                            onClick={() => {
-                                                                clickedForview()
-                                                                setdataposttojob(data)
-                                                            }}
-                                                            className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
-                                                            <AiOutlineEye size={30} />
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                                    {searchValue.map((data,index)=>(
-                                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
-                                            <div>
-                                                <p className="text-blue-500 dark:text-white font-bold hover:underline">
-                                                    <span className="text-lg">Id : </span> 
-                                                    <span className="text-sm ">{data.job_id} </span>
-                                                </p>
-                                            </div>
-                                            <div className="text-gray-700 dark:text-white font-bold">
-                                                <span className="text-lg">Company Name : </span> 
-                                                <span className="text-sm ">{data.CompanyName} </span>
-                                            </div>
-                                            <div className="text-gray-700 dark:text-white font-bold">
-                                                <span className="text-lg">Job Type : </span> 
-                                                <span className="text-sm ">{data.JobsType} </span> 
-                                            </div>
-                                            <div className="text-gray-700 dark:text-white font-bold">
-                                                <span className="text-lg">Employment Type : </span> 
-                                                <span className="text-sm ">{data.EmploymentType} </span>
-                                            </div>
-                                            <div className="text-black dark:text-white font-bold">
-                                                <span className="text-lg">DeadLine : </span> 
-                                                <span className="text-sm ">{moment(data.DeadLine).utc().format('YYYY-MM-DD')} </span>
-                                            </div>
-                                            <div className="text-lg text-gray-700 dark:text-white font-bold">
-                                                <span className="text-lg">Created By : </span> 
-                                                <span className="text-sm ">{data.userName} </span> 
-                                            </div>
-                                            <div className="text-black font-bold dark:text-white">
-                                                <span className="text-lg">createDate : </span> 
-                                                <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')} </span> 
-                                            </div>
-                                            <div className="text-black font-bold dark:text-white">
-                                                <span className="text-lg">Modified Date : </span> 
-                                                <span className="text-sm ">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')} </span>
-                                               
-                                            </div>
-
-                                            <div className="flex items-center justify-between text-sm">
-                                                <button 
-                                                    onClick={() => {
-                                                        clickedForview()
-                                                        setdataposttojob(data)
-                                                    }}
-                                                    className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-blue-500 rounded">
-                                                    <AiOutlineEye size={30} />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div> }
-
-                            { type == 4 && <div className="my-5">
-                                <div className="overflow-auto rounded-lg shadow hidden md:block">
-                                    <table className="w-full">
-                                        <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
-                                            <tr>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Location Name</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Image</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
-                                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-gray-100">
-                                            {searchValue.map((data,index)=>(
-                                                <tr key={index} className="even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
-                                                    <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.location_id}</p>
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {data.LocationName}
-                                                    </td>
-
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
-                                                    </td>
-
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                                                    </td>
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
-                                                    </td>
-
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        {data.userName}
-                                                    </td>
-
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                                            Edit
-                                                        </button>
-                                                    </td>
-
-                                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                        <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
-                                                            Delete
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                                    {searchValue.map((data,index)=>(
-                                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
-                                            <div className="flex justify-between items-center">
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                                        {searchValue.map((data,index)=>(
+                                            <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                                                 <div>
                                                     <p className="text-blue-500 dark:text-white font-bold hover:underline">
                                                         <span className="text-lg">Id : </span> 
-                                                        <span className="text-sm ">{data.location_id}</span>
+                                                        <span className="text-sm ">{data.category_id}</span>
                                                     </p>
                                                 </div>
+                                                <div className="text-gray-700 dark:text-white font-bold">
+                                                    <span className="text-lg">Category Name : </span>
+                                                    <span className="text-sm ">{data.CategoryName}</span>
+                                                </div>
+                                                <div className="text-gray-700 dark:text-white font-bold">
+                                                    <span className="text-lg">Created By : </span>
+                                                    <span className="text-sm ">{data.userName}</span>
+                                                </div>
+                                                <div className="text-black font-bold dark:text-white">
+                                                    <span className="text-lg">createDate : </span>
+                                                    <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
+                                                </div>
+                                                <div className="text-black font-bold dark:text-white">
+                                                    <span className="text-lg">Modified Date : </span>
+                                                    <span className="text-sm">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
+                                                </div>
 
-                                                <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
-                                            </div>
+                                                <div className="flex items-center justify-between text-sm">
+                                                    <button
+                                                        onClick={() => {
+                                                            clickedForupdate()
+                                                            setupdatecategoryid(data.category_id)
+                                                            setupdatecategoryname(data.CategoryName) 
+                                                        }}
+                                                        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                                                    >
+                                                        Edit
+                                                    </button>
 
-                                            <div className="font-bold text-gray-700 dark:text-white">
-                                                <span className="text-lg">Category Name : </span> 
-                                                <span className="text-sm ">{data.LocationName}</span>
+                                                    <button
+                                                        onClick={() => {
+                                                            clickedFordelete()
+                                                            setdeletecategoryid(data.category_id)
+                                                        }} 
+                                                        className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                        Delete
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div className="font-bold text-gray-700 dark:text-white">
-                                                <span className="text-lg">Created By : </span> 
-                                                <span className="text-sm ">{data.userName}</span>
-                                            </div>
-                                            <div className="font-bold text-black dark:text-white">
-                                                <span className="text-lg">createDate : </span> 
-                                                <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
-                                            </div>
-                                            <div className="font-bold text-black dark:text-white">
-                                                <span className="text-lg">Modified Date : </span> 
-                                                <span className="text-sm ">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
-                                            </div>
+                                        ))}
+                                    </div>
+                                </div> 
+                            }
 
-                                            <div className="flex items-center justify-between text-sm">
-                                                <button 
-                                                    onClick={() => {
-                                                        clickedForupdateforlocation()
-                                                        setupdatelocationid(data.location_id)
-                                                        setupdatelocationname(data.LocationName)
-                                                    }}
-                                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                                    Edit
-                                                </button>
+                            { type == 3 && 
+                                <div className="my-5">
+                                    <div className="overflow-auto rounded-lg shadow hidden md:block">
+                                        <table className="w-full">
+                                            <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
+                                                <tr>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Name</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Jobs Type</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">DeadLine</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
+                                                  
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-gray-100">
+                                                {searchValue.map((data,index)=>(
+                                                    <tr key={index} className="even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
+                                                        <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
+                                                            <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.job_id}</p>
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {data.CompanyName}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white">
+                                                            <p className="w-full overflow-hidden">
+                                                                {data.JobsType}
+                                                            </p>
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {moment(data.DeadLine).utc().format('YYYY-MM-DD')}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {data.userName}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap flex justify-center">
+                                                            <button 
+                                                                onClick={() => {
+                                                                    clickedForview()
+                                                                    setdataposttojob(data)
+                                                                }}
+                                                                className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
+                                                                <AiOutlineEye size={30} />
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                                        {searchValue.map((data,index)=>(
+                                            <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                                                <div>
+                                                    <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                                        <span className="text-lg">Id : </span> 
+                                                        <span className="text-sm ">{data.job_id} </span>
+                                                    </p>
+                                                </div>
+                                                <div className="text-gray-700 dark:text-white font-bold">
+                                                    <span className="text-lg">Company Name : </span> 
+                                                    <span className="text-sm ">{data.CompanyName} </span>
+                                                </div>
+                                                <div className="text-gray-700 dark:text-white font-bold">
+                                                    <span className="text-lg">Job Type : </span> 
+                                                    <span className="text-sm ">{data.JobsType} </span> 
+                                                </div>
+                                                <div className="text-gray-700 dark:text-white font-bold">
+                                                    <span className="text-lg">Employment Type : </span> 
+                                                    <span className="text-sm ">{data.EmploymentType} </span>
+                                                </div>
+                                                <div className="text-black dark:text-white font-bold">
+                                                    <span className="text-lg">DeadLine : </span> 
+                                                    <span className="text-sm ">{moment(data.DeadLine).utc().format('YYYY-MM-DD')} </span>
+                                                </div>
+                                                <div className="text-lg text-gray-700 dark:text-white font-bold">
+                                                    <span className="text-lg">Created By : </span> 
+                                                    <span className="text-sm ">{data.userName} </span> 
+                                                </div>
+                                                <div className="text-black font-bold dark:text-white">
+                                                    <span className="text-lg">createDate : </span> 
+                                                    <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')} </span> 
+                                                </div>
+                                                <div className="text-black font-bold dark:text-white">
+                                                    <span className="text-lg">Modified Date : </span> 
+                                                    <span className="text-sm ">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')} </span>
+                                                   
+                                                </div>
 
-                                                <button 
-                                                    onClick={() => {
-                                                        clickedFordeleteforlocation()
-                                                        setdeletelocationid(data.location_id)
-                                                    }}
-                                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
-                                                    Delete
-                                                </button>
+                                                <div className="flex items-center justify-between text-sm">
+                                                    <button 
+                                                        onClick={() => {
+                                                            clickedForview()
+                                                            setdataposttojob(data)
+                                                        }}
+                                                        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-blue-500 rounded">
+                                                        <AiOutlineEye size={30} />
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div> }
+                                        ))}
+                                    </div>
+                                </div> 
+                            }
+
+                            { type == 4 && 
+                                <div className="my-5">
+                                    <div className="overflow-auto rounded-lg shadow hidden md:block">
+                                        <table className="w-full">
+                                            <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
+                                                <tr>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Location Name</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Image</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
+                                                  <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-gray-100">
+                                                {searchValue.map((data,index)=>(
+                                                    <tr key={index} className="even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
+                                                        <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
+                                                            <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.location_id}</p>
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {data.LocationName}
+                                                        </td>
+
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
+                                                        </td>
+
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                                                        </td>
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
+                                                        </td>
+
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            {data.userName}
+                                                        </td>
+
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                                Edit
+                                                            </button>
+                                                        </td>
+
+                                                        <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                                            <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                                        {searchValue.map((data,index)=>(
+                                            <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
+                                                <div className="flex justify-between items-center">
+                                                    <div>
+                                                        <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                                            <span className="text-lg">Id : </span> 
+                                                            <span className="text-sm ">{data.location_id}</span>
+                                                        </p>
+                                                    </div>
+
+                                                    <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
+                                                </div>
+
+                                                <div className="font-bold text-gray-700 dark:text-white">
+                                                    <span className="text-lg">Category Name : </span> 
+                                                    <span className="text-sm ">{data.LocationName}</span>
+                                                </div>
+                                                <div className="font-bold text-gray-700 dark:text-white">
+                                                    <span className="text-lg">Created By : </span> 
+                                                    <span className="text-sm ">{data.userName}</span>
+                                                </div>
+                                                <div className="font-bold text-black dark:text-white">
+                                                    <span className="text-lg">createDate : </span> 
+                                                    <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
+                                                </div>
+                                                <div className="font-bold text-black dark:text-white">
+                                                    <span className="text-lg">Modified Date : </span> 
+                                                    <span className="text-sm ">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
+                                                </div>
+
+                                                <div className="flex items-center justify-between text-sm">
+                                                    <button 
+                                                        onClick={() => {
+                                                            clickedForupdateforlocation()
+                                                            setupdatelocationid(data.location_id)
+                                                            setupdatelocationname(data.LocationName)
+                                                        }}
+                                                        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                        Edit
+                                                    </button>
+
+                                                    <button 
+                                                        onClick={() => {
+                                                            clickedFordeleteforlocation()
+                                                            setdeletelocationid(data.location_id)
+                                                        }}
+                                                        className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div> 
+                            }
                         </div>
                     }
                 </div>
@@ -537,6 +605,14 @@ export function DashBoard() {
 
             { deletemodalOnforlocation && 
                 <DeleteLocation setdeleteModalOn={setdeleteModalOnforlocation} deletelocationid={deletelocationid} />
+            }
+
+            {deletemodalOnforuser && 
+                <DeleteUser setdeleteModalOn={setdeleteModalOnforuser} deleteuserid={deleteuserid}/>
+            }
+
+            {updatemodalOnforuser && 
+                <UpdateUser setupdateModalOn={setupdateModalOnforuser} updateuserid={updateuserid} updateemail={updateemail} updateusername={updateusername} setupdateemail={setupdateemail} setupdateusername={setupdateusername} />
             }
 
             { updatemodalOnforlocation && 
