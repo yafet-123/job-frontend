@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router'
-export function DeleteLocation({setdeleteModalOn,deletejobid}) {
+export function DeleteLocation({setdeleteModalOn,deletelocationid}) {
     const router = useRouter();
 	const handleOKClickFordelete = async() => {
         const data = await axios.delete(`api/deletelocation/${deletelocationid}`,{
