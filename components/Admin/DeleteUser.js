@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { useRouter } from 'next/router'
 export function DeleteUser({setdeleteModalOn,deleteuserid}) {
+    const router = useRouter();
 	const handleOKClickFordelete = async() => {
         const data = await axios.delete(`api/deleteuser/${deleteuserid}`,{
         }).then(function (response) {
