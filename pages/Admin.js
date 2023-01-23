@@ -63,6 +63,7 @@ export async function getServerSideProps(){
     } 
   })
 
+  
   console.log(jobs)
   const Alllocations = locations.map((data)=>({
       location_id:data.location_id,
