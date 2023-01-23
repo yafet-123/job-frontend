@@ -57,7 +57,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
             "DeadLine":new Date(DeadLine).toISOString(),
             "Apply":Apply,
             "categoryId":categoryId,
-            "LocationId":2
+            "LocationId": 77
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -73,7 +73,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
     }
 
     return(
-        <div className="bg-gray-200 dark:bg-slate-800 opacity-95 fixed inset-0 z-50 h-full  ">
+        <div className="bg-gray-200 dark:bg-slate-800 opacity-95 fixed inset-0 z-50 h-full">
             <div className="flex h-full justify-center items-center">
                 <div className="overflow-y-scroll lg:overflow-none flex-col w-full h-full mx-2 lg:mx-20 justify-center bg-gray-50 dark:bg-slate-500 py-5 px-5 lg:px-10 border-4 border-sky-500 rounded-xl ">
                     <h1 className="text-xl lg:text-2xl text-zinc-600 font-bold mb-10 dark:text-white text-center">Update Job</h1>

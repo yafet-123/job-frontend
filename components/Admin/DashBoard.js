@@ -12,7 +12,7 @@ import {UpdateLocation} from './UpdateLocation'
 import {DeleteUser} from './DeleteUser.js'
 import {UpdateUser} from './UpdateUser.js'
 
-export function DashBoard() {
+export function DashBoard({categories}) {
     const [getSearchValue,setgetSearchValue] = useState("")
     const [dataposttojob, setdataposttojob] = useState()
     const [viewmodalOnforjob, setviewModalOnforjob] = useState(false);
@@ -600,7 +600,7 @@ export function DashBoard() {
             }
 
             {viewmodalOnforjob && 
-                <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOnforjob} />
+                <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOnforjob} categories={categories} />
             }
 
             { deletemodalOnforlocation && 
