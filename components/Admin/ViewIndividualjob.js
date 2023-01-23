@@ -4,7 +4,7 @@ import {UpdateJob} from './UpdateJob'
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 
-export function ViewIndividualjob({dataposttojob, setviewModalOn, categories}) {
+export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, locations}) {
     
 	const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
@@ -151,6 +151,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories}) {
                     setupdateModalOn={setupdateModalOn} 
                     dataposttojob={dataposttojob}
                     categories={categories}
+                    locations={locations}
                 />
             }
 

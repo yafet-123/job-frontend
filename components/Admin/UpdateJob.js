@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import { useState , useEffect } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
-export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
+export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, locations}){
     const [typechange , settypechange] = useState(true)
     const router = useRouter();
     const [updatejobid,setupdatejobid] = useState()
@@ -55,7 +55,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
             "DeadLine":new Date(DeadLine).toISOString(),
             "Apply":Apply,
             "categoryId":categoryId,
-            "LocationId": 77
+            "LocationId": Location
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -108,14 +108,25 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
                             </label>
                         </div>
 
-                        <div className="relative mb-5">
-                            <input 
+                        <div class="relative mb-5">
+                            <select
                                 id="Location" 
-                                type="text" 
-                                className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                                name="select"
+                                value=""
                                 value={Location}
                                 onChange={(e) => setLocation(e.target.value)}
-                            />
+                                className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            >
+                                { locations.map((data,index) => (
+                                    <option
+                                        // { Location == data.LocationName ? selected : "" }  
+                                        className="bg-gray-50 dark:bg-slate-500 text-black dark:text-white" 
+                                        value={data.location_id}
+                                    >
+                                        {data.LocationName}
+                                    </option>
+                                ))}
+                            </select>
                             <label 
                                 htmlFor="floating_outlined" 
                                 className="absolute text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-50 dark:bg-slate-500 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"

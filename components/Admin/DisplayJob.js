@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import {ViewIndividualjob} from './ViewIndividualjob'
 
-export function DisplayJob({jobs, categories}) {
+export function DisplayJob({jobs, categories, locations}) {
     const router = useRouter();
     const [viewmodalOn, setviewModalOn] = useState(false);
     const [dataposttojob, setdataposttojob] = useState()
@@ -125,7 +125,7 @@ export function DisplayJob({jobs, categories}) {
             </div>
 
             {viewmodalOn && 
-                <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOn} categories={categories} />
+                <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOn} categories={categories} locations={locations} />
             }
 
             
