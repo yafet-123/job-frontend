@@ -28,7 +28,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
         setupdatejobid(dataposttojob.job_id)
         setCompanyName(dataposttojob.CompanyName)
         setJobsType(dataposttojob.JobsType)
-        setLocation(dataposttojob.Location)
+        setLocation(dataposttojob.location_id)
         setCareerLevel(dataposttojob.CareerLevel)
         setEmploymentType(dataposttojob.EmploymentType)
         setSalary(dataposttojob.Salary)
@@ -118,8 +118,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
                                 className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             >
                                 { locations.map((data,index) => (
-                                    <option
-                                        // { Location == data.LocationName ? selected : "" }  
+                                    <option 
                                         className="bg-gray-50 dark:bg-slate-500 text-black dark:text-white" 
                                         value={data.location_id}
                                     >
@@ -256,6 +255,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-3">
                         <Multiselect
                             displayValue="CategoryName"
+                            selectedValues={categoryId}
                             placeholder = "updated Category"
                             className="w-full px-3 text-xl text-black h-64 bg-gray-50 py-4 border-2 border-black rounded-xl appearance-none dark:text-black dark:bg-slate-500 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                             onKeyPressFn={function noRefCheck(){}}

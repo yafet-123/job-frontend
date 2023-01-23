@@ -21,7 +21,15 @@ export default async(req, res) => {
 		categoryId,
 		LocationId
 	} = req.body
-	console.log(req.body)
+
+	let createJobCategory = []
+
+	for (let j = 0; j < categoryId.length; j++) {
+		createJobCategory.push({
+			category_id : Number(categoryId[j]),
+		})
+	}
+
 	const data = await prisma.Job.update({
 		where:{job_id:Number(updatejobid)},
 		data:{
@@ -36,7 +44,9 @@ export default async(req, res) => {
 			JobsRequirement,
 			DeadLine,
 			Apply,
-			
+			JobCategory:{
+				create: createJobCategory
+			}
 		}
 	});
 
