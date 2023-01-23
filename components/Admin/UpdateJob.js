@@ -37,9 +37,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories}){
         setDeadLine(dataposttojob.DeadLine)
         setApply(dataposttojob.Apply)
 
-        for (let j = 0; j < categories.length; j++) {
-            setCategoryId(categoryId => [...categoryId, categories[j].category_id])
-        }
+        
         
     },[])
     
