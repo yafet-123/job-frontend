@@ -16,7 +16,6 @@ export function DisplayJob({jobs, categories, locations}) {
         setviewModalOn(true)
     }
 
-    
     return (
         <div className="m-2 lg:m-5">
             <div>

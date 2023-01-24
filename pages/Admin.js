@@ -67,12 +67,7 @@ export async function getServerSideProps(){
       },
     } 
   })
-
-  for(var i=0; i <= jobs.length; i++){
-    console.log(i)
-  }
   
-
   const Alllocations = locations.map((data)=>({
       location_id:data.location_id,
       LocationName:data.LocationName,
@@ -115,7 +110,7 @@ export async function getServerSideProps(){
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
-    categories:data.JobCategory[0].Category,
+    categories:data.JobCategory,
 
   }))
   
@@ -134,6 +129,7 @@ export async function getServerSideProps(){
 export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
+  // console.log(jobCategory)
   const router = useRouter();
   // useEffect(() => {
   //   if (status === "unauthenticated") router.replace("/auth/signin");

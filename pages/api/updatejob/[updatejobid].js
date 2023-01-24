@@ -30,6 +30,8 @@ export default async(req, res) => {
 		})
 	}
 
+	console.log(createJobCategory)
+
 	const data = await prisma.Job.update({
 		where:{job_id:Number(updatejobid)},
 		data:{
@@ -44,11 +46,26 @@ export default async(req, res) => {
 			JobsRequirement,
 			DeadLine,
 			Apply,
-			JobCategory:{
-				create: createJobCategory
-			}
 		}
 	});
+
+	const dataOne = await prisma.JobCategory.upsert({
+		where:{job_id:Number(updatejobid)},
+		create: {
+		    author: 'author',
+		    JobCategory: {
+		      connectOrCreate: createJobCategory,
+		    },
+		},
+		
+		update: {
+		    JobCategory: { connectOrCreate: categories },
+		},
+		
+	})
+
+
+
 
 	res.json(data)
 }

@@ -19,12 +19,11 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     const [startDate, setStartDate] = useState(new Date());
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
+    const category = []
 
-    
     useEffect(()=>{
-        let categories = [] 
-        console.log(categories)
-        categories = dataposttojob.categories
+        console.log(dataposttojob)
+        category.push(dataposttojob.categories)
         setupdatejobid(dataposttojob.job_id)
         setCompanyName(dataposttojob.CompanyName)
         setJobsType(dataposttojob.JobsType)
@@ -36,7 +35,10 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
         setRequirement(dataposttojob.JobsRequirement)
         setDeadLine(dataposttojob.DeadLine)
         setApply(dataposttojob.Apply)
-
+        // for(var i=0; i<category.length;i++){
+        //     console.log(category[i].Category)
+        //     setCategoryId(category => [...categoryId,category[i].Category])
+        // } 
         
         
     },[])
@@ -108,7 +110,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
                             </label>
                         </div>
 
-                        <div class="relative mb-5">
+                        <div className="relative mb-5">
                             <select
                                 id="Location" 
                                 name="select"
