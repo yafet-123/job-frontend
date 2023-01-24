@@ -22,15 +22,7 @@ export default async(req, res) => {
 		LocationId
 	} = req.body
 
-	let createJobCategory = []
-
-	for (let j = 0; j < categoryId.length; j++) {
-		createJobCategory.push({
-			category_id : Number(categoryId[j]),
-		})
-	}
-
-	console.log(createJobCategory)
+	console.log(categoryId)
 
 	const data = await prisma.Job.update({
 		where:{job_id:Number(updatejobid)},
@@ -49,21 +41,20 @@ export default async(req, res) => {
 		}
 	});
 
-	const dataOne = await prisma.JobCategory.upsert({
+	const deletecategorydata = await prisma.JobCategory.deleteMany({
 		where:{job_id:Number(updatejobid)},
-		create: {
-		    author: 'author',
-		    JobCategory: {
-		      connectOrCreate: createJobCategory,
-		    },
-		},
-		
-		update: {
-		    JobCategory: { connectOrCreate: categories },
-		},
-		
-	})
+	});
+	
 
+	for (let j = 0; j < categoryId.length; j++) {
+	  	const jobcategory = await prisma.JobCategory.create({
+		    data:{
+		      user_id : Number(user_id),
+		      category_id : Number(categoryId[j]),
+		      job_id : Number(updatejobid)
+		    }
+	  	})
+	}
 
 
 

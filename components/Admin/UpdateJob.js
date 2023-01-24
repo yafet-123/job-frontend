@@ -57,7 +57,8 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
             "DeadLine":new Date(DeadLine).toISOString(),
             "Apply":Apply,
             "categoryId":categoryId,
-            "LocationId": Location
+            "LocationId": Location,
+            "user_id":17,
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {

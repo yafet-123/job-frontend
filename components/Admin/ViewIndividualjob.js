@@ -9,6 +9,9 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
 	const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deletejobid,setdeletejobid] = useState()
+    const [category, setcategory] = useState(dataposttojob.categories)
+    const [categorydata, setcategorydata] = useState([])
+    console.log(category)
 
     const handleCancelClickForview = () => {
         setviewModalOn(false)
@@ -94,6 +97,13 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                             </h1>
                         </div>
 
+
+                        <div className="grid grid-cols-1 gap-10 mb-5">
+                            <h1 className="flex flex-col font-bold hover:underline">
+                                <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-left">Categories</span>
+                                <span className="text-xs lg:text-lg text-black dark:text-white text-left break-words"></span>
+                            </h1>
+                        </div>
                        	<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-5">
                             <h1 className="flex flex-col font-bold">
                                	<span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">JobsDescreption</span>
