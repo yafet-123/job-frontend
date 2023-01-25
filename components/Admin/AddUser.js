@@ -5,8 +5,12 @@ import moment from 'moment';
 import { useRouter } from 'next/router'
 import {DeleteUser} from './DeleteUser.js'
 import {UpdateUser} from './UpdateUser.js'
+import {FiEye, FiEyeOff} from 'react-icons/fi'
 
 export function AddUser({users}) {
+    const [typepassword, setTypepassword] = useState('password');
+    const [typepasswordconfirm, setTypepasswordconfirm] = useState('password');
+
     const router = useRouter();
     const [UserName, setUserName] =useState("")
     const [email, setemail] = useState("")
@@ -18,17 +22,20 @@ export function AddUser({users}) {
     const [updateuserid,setupdateuserid] = useState()
     const [updateemail, setupdateemail] = useState("")
     const [updateusername,setupdateusername] = useState("")
-    async function register(){
+
+    async function register(e){
+        e.preventDefault();
         const data = await axios.post(`api/registerUser`,{
             'UserName':UserName,
             'Password':password,
             'email':email
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             console.log(error);
         });
-        router.reload()
+                
     }
 
     const clickedFordelete = () => {
@@ -41,15 +48,16 @@ export function AddUser({users}) {
 
     return (
         <div className="px-0 lg:px-10 h-full">
-            <div className="max-w-7xl mx-auto mt-10">
+            <form className="max-w-7xl mx-auto mt-10" onSubmit={register} >
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">User</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-10 mx-2">
                     <div className="relative">
                         <input 
                             id="username" 
                             type="text" 
-                            className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={UserName}
+                            required
+                            className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             onChange={(e) => setUserName(e.target.value)}
                         />
                         <label 
@@ -64,10 +72,12 @@ export function AddUser({users}) {
                         <input 
                             id="email" 
                             type="email" 
+                            required
                             className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={email}
                             onChange={(e) => setemail(e.target.value)}
                         />
+
                         <label 
                             htmlFor="floating_outlined" 
                             className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
@@ -79,11 +89,23 @@ export function AddUser({users}) {
                     <div className="relative">
                         <input 
                             id="password" 
-                            type="password" 
+                            required
+                            type={typepassword}
                             className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={password}
                             onChange={(e) => setpassword(e.target.value)}
                         />
+                        <div className="absolute right-10 text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-1/2">
+                            {typepassword==="password"?(
+                                <span className='icon-span' onClick={()=>setTypepassword("text")}>
+                                  <FiEye size={30} />
+                                </span>
+                            ):(
+                                <span className='icon-span' onClick={()=>setTypepassword("password")}>
+                                  <FiEyeOff size={30} />
+                                </span>
+                            )}
+                        </div>
                         <label 
                             htmlFor="floating_outlined" 
                             className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
@@ -95,11 +117,23 @@ export function AddUser({users}) {
                     <div className="relative">
                         <input 
                             id="ConfirmPassword" 
-                            type="password" 
+                            required
+                            type={typepasswordconfirm}
                             className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
+                        <div className="absolute right-10 text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-1/2">
+                            {typepasswordconfirm==="password"?(
+                                <span className='icon-span' onClick={()=>setTypepasswordconfirm("text")}>
+                                  <FiEye size={30} />
+                                </span>
+                            ):(
+                                <span className='icon-span' onClick={()=>setTypepasswordconfirm("password")}>
+                                  <FiEyeOff size={30} />
+                                </span>
+                            )}
+                        </div>
                         <label 
                             htmlFor="floating_outlined" 
                             className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
@@ -111,13 +145,14 @@ export function AddUser({users}) {
 
                 <div className="mx-2 mt-5 lg:mt-0 flex justify-end">
                     <button 
-                        onClick={()=> register()}
                         className="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl p-4 text-center inline-flex items-center"
                     >
                         Submit
                     </button>
                 </div>
-            </div>
+            </form>
+
+            
 
             <div className="p-2 lg:p-5">
                 <div className="overflow-auto rounded-lg shadow hidden md:block">

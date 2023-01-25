@@ -149,7 +149,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 		      			<div>
 			      			{ jobsbycategory.map((data,index)=>(
 				      			<div className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
-				      				<div className="flex justify-between items-center">
+				      				<div className="flex justify-between items-center mb-5">
 				      					<Link href="/DisplayJobs">
 				      						<a className="text-sm lg:text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
 				      					</Link>
@@ -179,7 +179,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 								      		</li>
 						      			</ul>
 
-						      			 <Image src="/images/vercel.svg" width={100} height={100} alt="image" />
+						      			<Image src={data.Image == null ? image : data.Image} width={100} height={100} alt="image" required className="my-5" />
 						      		</div>
 
 						      		<div className="text-sm lg:text-lg font-normal mb-5 h-36 overflow-hidden" dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
