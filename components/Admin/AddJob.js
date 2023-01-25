@@ -21,46 +21,45 @@ export function AddJob({categories, locations}) {
     const [startDate, setStartDate] = useState(new Date());
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
-  
+    const [imagesecureUrl, setimagesecureUrl] = useState("")
     async function AddJob(){
         const formData = new FormData();
+        
+        formData.append('file', Image)
 
-        for (const image of Image){
-            formData.append('file', image)
-        }
+        formData.append('upload_preset', 'my_upload')
 
-        formData('my_upload', my_upload)
-
-        const imageUpload = await fetch(`https://api.cloudinary.com/v1_1/Yafet Addisu/image/upload`,{
+        const imageUpload = await fetch(`https://api.cloudinary.com/v1_1/df7hlpjcj/image/upload`,{
             method:'POST',
             body: formData
         }).then(r=>r.json())
-        // const data = await axios.post(`api/addjob`,{
-        //     "CompanyName":CompanyName,
-        //     "Image":Image,
-        //     "JobsType":JobsType,
-        //     "CareerLevel":CareerLevel,
-        //     "EmploymentType":EmploymentType,
-        //     "Salary":Salary,
-        //     "JobsDescreption":Description,
-        //     "JobsRequirement":Requirement,
-        //     "DeadLine":new Date(DeadLine).toISOString(),
-        //     "Apply":Apply,
-        //     "user_id":17,
-        //     "categoryId":categoryId,
-        //     "LocationId":Location
-        // }).then(function (response) {
-        //     console.log(response.data);
-        //     router.reload()
-        // }).catch(function (error) {
-        //     console.log(error);
-        // });
+        setimagesecureUrl(imageUpload.secure_url)
+        const data = await axios.post(`api/addjob`,{
+            "CompanyName":CompanyName,
+            "Image":imagesecureUrl,
+            "JobsType":JobsType,
+            "CareerLevel":CareerLevel,
+            "EmploymentType":EmploymentType,
+            "Salary":Salary,
+            "JobsDescreption":Description,
+            "JobsRequirement":Requirement,
+            "DeadLine":new Date(DeadLine).toISOString(),
+            "Apply":Apply,
+            "user_id":17,
+            "categoryId":categoryId,
+            "LocationId":Location
+        }).then(function (response) {
+            console.log(response.data);
+            router.reload()
+        }).catch(function (error) {
+            console.log(error);
+        });
 
     }
 
     return (
-        <div className="px-0 lg:px-0">
-            <div className="max-w-7xl mx-auto mt-10 h-full pb-10">
+        <div className="px-0 lg:px-10">
+            <div className="max-w-7xl mx-auto mt-10">
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Add Job</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10 mx-2">
                     <div className="relative mb-5">
@@ -105,7 +104,8 @@ export function AddJob({categories, locations}) {
                             className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                         >
                             { locations.map((data,index) => (
-                                <option 
+                                <option
+                                    key={index} 
                                     className="bg-gray-50 dark:bg-slate-500 text-black dark:text-white" 
                                     value={data.location_id}
                                 >
