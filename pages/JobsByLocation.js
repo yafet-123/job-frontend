@@ -185,7 +185,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 								      		</li>
 						      			</ul>
 
-						      			 <Image src="/images/vercel.svg" width={100} height={100} alt="image" />
+						      			 <Image src={data.Image == null ? image : data.Image} width={100} height={100} alt="image" />
 						      		</div>
 
 						      		<div className="text-sm lg:text-lg font-normal mb-5 h-36 overflow-hidden" dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />

@@ -23,26 +23,38 @@ export function AddJob({categories, locations}) {
     const [Requirement , setRequirement] = useState("")
   
     async function AddJob(){
-        const data = await axios.post(`api/addjob`,{
-            "CompanyName":CompanyName,
-            "Image":Image,
-            "JobsType":JobsType,
-            "CareerLevel":CareerLevel,
-            "EmploymentType":EmploymentType,
-            "Salary":Salary,
-            "JobsDescreption":Description,
-            "JobsRequirement":Requirement,
-            "DeadLine":new Date(DeadLine).toISOString(),
-            "Apply":Apply,
-            "user_id":17,
-            "categoryId":categoryId,
-            "LocationId":Location
-        }).then(function (response) {
-            console.log(response.data);
-            router.reload()
-        }).catch(function (error) {
-            console.log(error);
-        });
+        const formData = new FormData();
+
+        for (const image of Image){
+            formData.append('file', image)
+        }
+
+        formData('my_upload', my_upload)
+
+        const imageUpload = await fetch(`https://api.cloudinary.com/v1_1/Yafet Addisu/image/upload`,{
+            method:'POST',
+            body: formData
+        }).then(r=>r.json())
+        // const data = await axios.post(`api/addjob`,{
+        //     "CompanyName":CompanyName,
+        //     "Image":Image,
+        //     "JobsType":JobsType,
+        //     "CareerLevel":CareerLevel,
+        //     "EmploymentType":EmploymentType,
+        //     "Salary":Salary,
+        //     "JobsDescreption":Description,
+        //     "JobsRequirement":Requirement,
+        //     "DeadLine":new Date(DeadLine).toISOString(),
+        //     "Apply":Apply,
+        //     "user_id":17,
+        //     "categoryId":categoryId,
+        //     "LocationId":Location
+        // }).then(function (response) {
+        //     console.log(response.data);
+        //     router.reload()
+        // }).catch(function (error) {
+        //     console.log(error);
+        // });
 
     }
 
@@ -83,7 +95,7 @@ export function AddJob({categories, locations}) {
                         </label>
                     </div>
 
-                    <div class="relative mb-5">
+                    <div className="relative mb-5">
                         <select
                             id="Location" 
                             name="select"
@@ -257,7 +269,7 @@ export function AddJob({categories, locations}) {
                                 <svg aria-hidden="true" className="w-10 h-10 mb-3 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                                 <p className="mb-2 text-xs lg:text-sm text-black dark:text-white"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                             </div>
-                            <input id="dropzone-file" type="file" className="hidden" />
+                            <input id="dropzone-file" type="file" className="hidden" onChange={(e) => setImage(e.target.files[0])} />
                         </label>
                     </div>
                 </div>

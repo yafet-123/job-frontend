@@ -13,6 +13,11 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
     const [categorydata, setcategorydata] = useState([])
     console.log(category)
 
+    // for (var i=0;i<category.length;i++){
+    //     setcategorydata((categorydata) => [...categorydata, category[i].Category])
+    // }
+
+    // console.log(categorydata)
     const handleCancelClickForview = () => {
         setviewModalOn(false)
     }
