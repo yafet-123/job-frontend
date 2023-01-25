@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 export function CourseSideBar({title,onChange, handleChapter}){
 	const router = useRouter();
 	return(
-		<div className="w-full">
+		<div className="w-full h-full dark:bg-slate-700">
 			{ title == "CSS" && (
               <div className="flex flex-col">
                 <h1 className="w-full font-bold text-xl lg:text-3xl hover:text-orange-500 text-left lg:text-center px-5 lg:px-20 mt-5">CSS Tutorial</h1>

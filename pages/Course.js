@@ -43,7 +43,7 @@ export default function Course() {
   }
 
   return (
-    <section className="flex flex-col w-full h-full bg-white pt-24">
+    <section className="flex flex-col w-full h-full bg-white pt-24 dark:bg-slate-800">
     	<div className="w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
     		<div onClick={handleChapter} className="md:hidden text-white z-10">
           <MdOutlineSubject size={30} /> 
@@ -74,12 +74,12 @@ export default function Course() {
           <span className="ml-5 font-bold text-xl hover:text-blue-400">Courses</span>
         </button>
     	</div>
-    	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20">
-    		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 overflow-y-scroll">
+    	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20 ">
+    		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 overflow-y-scroll sticky top-0 bottom-0">
     			<CourseSideBar title={title} onChange={handleChange} handleChapter={handleChapter} />
     		</div>
 
-    		<div className="w-full lg:w-3/4 h-full border bg-gray-50">
+    		<div className="w-full lg:w-3/4 h-full border bg-gray-50 dark:bg-slate-600">
     			{ title == "HTML" && selected == "Home" && <HtmlHome />}
     			{ title == "HTML" && selected == "Introduction" && <HtmlIntroduction />}
     			{ title == "HTML" && selected == "Editors" && <HtmlEditors />}

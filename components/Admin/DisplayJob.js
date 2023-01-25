@@ -5,6 +5,7 @@ import { AiOutlineEye } from 'react-icons/ai'
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import {ViewIndividualjob} from './ViewIndividualjob'
+import Image from 'next/image'
 
 export function DisplayJob({jobs, categories, locations}) {
     const router = useRouter();
@@ -24,10 +25,10 @@ export function DisplayJob({jobs, categories, locations}) {
                         <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
                             <tr>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Logo</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Name</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Jobs Type</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
                               
                             </tr>
@@ -39,6 +40,9 @@ export function DisplayJob({jobs, categories, locations}) {
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.job_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                        <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
+                                    </td>
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.CompanyName}
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white">
@@ -48,9 +52,6 @@ export function DisplayJob({jobs, categories, locations}) {
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                                    </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.userName}
@@ -73,11 +74,13 @@ export function DisplayJob({jobs, categories, locations}) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
                     {jobs.map((data,index)=>(
                         <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
-                            <div>
+                            <div className="flex justify-between items-center">
                                 <p className="text-blue-500 dark:text-white font-bold hover:underline">
                                     <span className="text-lg">Id : </span> 
                                     <span className="text-sm ">{data.job_id} </span>
                                 </p>
+
+                                <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
                             </div>
                             <div className="text-gray-700 dark:text-white font-bold">
                                 <span className="text-lg">Company Name : </span> 
