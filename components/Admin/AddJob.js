@@ -34,6 +34,7 @@ export function AddJob({categories, locations}) {
             body: formData
         }).then(r=>r.json())
         setimagesecureUrl(imageUpload.secure_url)
+
         const data = await axios.post(`api/addjob`,{
             "CompanyName":CompanyName,
             "Image":imagesecureUrl,
