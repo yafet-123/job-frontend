@@ -15,7 +15,15 @@ import { prisma } from '../util/db.server.js'
 import moment from 'moment';
 
 export async function getServerSideProps(){
-  const categories = await prisma.Category.findMany();
+  const categories = await prisma.Category.findMany({
+    include:{
+       _count:{
+        select:{
+          JobCategory:true
+        }
+      },
+    }
+  });
   const locations = await prisma.Location.findMany({
     include:{
        _count:{
@@ -170,7 +178,7 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/JobsByCategory",
-                        query:{category: data.CategoryName, howmany:"89", category_id: data.category_id}
+                        query:{category: data.CategoryName, howmany:data._count.JobCategory, category_id: data.category_id}
                       })
                     }}
                   >
@@ -178,7 +186,7 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                       {data.CategoryName}
                     </h1>
                     <h1 className="w-1/4 px-2 lg:px-5 py-2 text-black dark:text-white border rounded-xl border-gray-200 text-blue-800 font-bold text-xs md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
-                      
+                      {data._count.JobCategory}
                     </h1>
                   </button>
                 ))}

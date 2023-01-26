@@ -7,8 +7,8 @@ import { useRouter } from 'next/router'
 export function LatestJobs({latestjobs}) {
   const router = useRouter()
   return (
-    <section className="w-full h-[50rem] md:p-20 bg-gray-100 dark:bg-slate-800 flex flex-col brightness-100">
-      <div className="flex justify-between items-center py-10 px-2 lg:px-0">
+    <section className="w-full h-[50rem] md:px-10 md:py-20 bg-gray-100 dark:bg-slate-800 flex flex-col brightness-100">
+      <div className="flex justify-between items-center py-10 px-2 lg:px-10">
         <div className="flex items-center font-bold text-md md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
           <AiOutlineClockCircle size={30} />
           <span className="ml-5">Latest Jobs</span>

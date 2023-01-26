@@ -108,11 +108,11 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
     <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-24 py-28">
     	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full lg:px-5 py-5 border rounded-xl dark:border-slate-800">
     		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-white dark:bg-slate-800">
-    			<div className="flex flex-col lg:flex-row mb-5 mt-10">
+    			<div className="flex flex-col items-center lg:flex-row mb-5 mt-10">
     				<Image src={image} width={100} height={100} alt="image" className="rounded-2xl" />
 	    			<h1 className="lg:ml-5 text-blue-700 text-xl md:text-3xl lg:text-5xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">Jobs in {location}</h1>
     			</div>
-    			<div className="flex flex-col lg:flex-row mb-10 mt-10">
+    			<div className="flex flex-col items-center lg:flex-row mb-10 mt-10">
     				<div className="flex flex-col lg:mr-5 mb-10 lg:mb-0">
     					<p className="text-lg lg:text-3xl text-gray-600 dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
     					<p className="text-md lg:text-2xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>
@@ -148,7 +148,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 		      				))}
 		      			</div>
 	      		</div>
-	      		<div className="flex flex-col w-full lg:w-3/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2 px-3 lg:px-20">
+	      		<div className="flex flex-col w-full lg:w-3/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2 px-3 lg:px-10">
 	      			{ jobsbylocation == "" ? 
 	      				<h1 className="text-black dark:text-white text-lg lg:text-xl font-bold text-center italic">
 	      					There is No job posted in {location}
@@ -187,7 +187,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 								      		</li>
 						      			</ul>
 
-						      			 <Image src={data.Image == null ? image : data.Image} width={100} height={100} alt="image" required />
+						      			 <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={100} height={100} alt="image" required />
 						      		</div>
 
 						      		<div className="text-sm lg:text-lg font-normal mb-5 h-36 overflow-hidden" dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
@@ -208,7 +208,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 	      			}
 	      		</div>
 	      	</div>
-      		<div className="flex flex-col w-full lg:w-1/4 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800">
+      		<div className="flex flex-col w-full lg:w-4/12 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800">
       			<div className="flex justify-between items-center py-10 px-2 lg:px-0">
 			        <div className="flex items-center font-bold text-sm md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
 			          <AiOutlineClockCircle size={20} />
