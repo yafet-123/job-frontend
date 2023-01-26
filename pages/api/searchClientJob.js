@@ -1,5 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { prisma } from '../../util/db.server.js'
 
 export default async(req, res) => {
     const { searchName, type } = req.body
