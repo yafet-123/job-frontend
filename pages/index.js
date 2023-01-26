@@ -2,8 +2,7 @@ import { Hero } from "../components/Hero";
 import { LatestJobs } from "../components/LatestJobs";
 import { SearchJobs } from "../components/SearchJobs";
 
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { prisma } from './db'
 
 export async function getStaticProps(){
   const locations = await prisma.Location.findMany({
@@ -19,7 +18,7 @@ export async function getStaticProps(){
     include:{
        _count:{
         select:{
-          User:true
+          JobCategory:true
         }
       },
     }

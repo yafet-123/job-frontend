@@ -22,7 +22,7 @@ export async function getServerSideProps(context){
   		JobCategory:{
   			every: {
 	  			Category:{
-	  				category_id: Number(category_id)
+	  				category_id: Number(255)
 	  			}
 	  		}
   		}	

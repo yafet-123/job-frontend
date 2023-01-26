@@ -38,7 +38,7 @@ export function SearchJobs({categories, locations}) {
                       {data.CategoryName}
                     </h1>
                     <h1 className="w-1/4 px-2 lg:px-5 py-2 text-black dark:text-white border rounded-xl border-gray-200 text-blue-800 font-bold text-xs md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
-                      89
+                      {data._count.JobCategory}
                     </h1>
                   </button>
                 ))}

@@ -17,7 +17,15 @@ export async function getServerSideProps(context){
 	const {params,req,res,query} = context
   const location_id = query.location_id
 
-  const locations = await prisma.Location.findMany()
+  const locations = await prisma.Location.findMany({
+  	include:{
+       _count:{
+        select:{
+          Job:true
+        }
+      },
+    }
+  })
   const jobsByLocation = await prisma.Job.findMany({
   	where:{
   		location_id: Number(location_id)
@@ -82,11 +90,6 @@ export async function getServerSideProps(context){
   }))
   
   const reversejob = Alljobs.reverse();
-  const Alllocations = locations.map((data)=>({
-      location_id:data.location_id,
-      LocationName:data.LocationName,
-      Image:data.Image
-  }))
 
   const reversejoblatest = Alllatestjobs.reverse();
 
@@ -94,7 +97,7 @@ export async function getServerSideProps(context){
     props:{
     	Alllatestjobs:JSON.parse(JSON.stringify(reversejoblatest)),
     	jobsbylocation:JSON.parse(JSON.stringify(reversejob)),
-      locations:JSON.parse(JSON.stringify(Alllocations)),
+      locations:JSON.parse(JSON.stringify(locations)),
     }
   }
 }
@@ -134,7 +137,7 @@ export default function JobsByLocationPage({locations, jobsbylocation, Alllatest
 		      						onClick = {()=>{
 	                      router.push({
 	                        pathname:"/JobsByLocation",
-	                        query:{location:data.LocationName, howmany:data.howmany, image:data.Image, location_id:data.location_id}
+	                        query:{location:data.LocationName, howmany:data._count.Job, image:data.Image, location_id:data.location_id}
 	                      })
 	                    }}
 		      					>
