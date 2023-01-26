@@ -140,7 +140,7 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                     }}
                   >
                     <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
-                    <div className="flex flex-col items-center ml-10">
+                    <div className="flex flex-col ml-10">
                       <h1 className="text-black dark:text-white font-normal text-xs md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
                         jobs in {data.LocationName}
                       </h1>

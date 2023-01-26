@@ -58,12 +58,12 @@ export function SearchJobs({categories, locations}) {
                     }}
                   >
                     <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
-                    <div className="flex flex-col items-center ml-5 lg:ml-10">
+                    <div className="flex flex-col ml-5 lg:ml-10">
                       <h1 className="text-black dark:text-white font-normal text-xs md:text-lg lg:text-xl capitalize group-hover:text-orange-500 mb-5">
                         jobs in {data.LocationName}
                       </h1>
                       <h1 className="text-black dark:text-white text-left text-blue-800 font-bold text-xs md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
-                        78
+                        {data._count.Job}
                       </h1>
                     </div>
                   </button>

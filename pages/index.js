@@ -6,8 +6,18 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function getStaticProps(){
-  const locations = await prisma.Location.findMany();
-  const categories = await prisma.Category.findMany();
+  const locations = await prisma.Location.findMany({
+    include:{
+       _count:{
+        select:{
+          Job:true
+        }
+      },
+    }
+  });
+  const categories = await prisma.Category.findMany({
+    
+  });
   const latestjobs = await prisma.Job.findMany({ 
     take:-5,
     orderBy: {
@@ -19,6 +29,7 @@ export async function getStaticProps(){
           UserName:true
         }
       },
+
       Location:{
         select:{
           LocationName:true
@@ -26,6 +37,7 @@ export async function getStaticProps(){
       }
     } 
   });
+  console.log(locations)
 
   const Alllatestjobs = latestjobs.map((data)=>({
     job_id:data.job_id,
