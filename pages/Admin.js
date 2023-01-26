@@ -8,8 +8,7 @@ import { AddLocation } from "../components/Admin/AddLocation";
 import { DisplayCategory } from "../components/Admin/DisplayCategory";
 import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { prisma } from '../util/db.server.js'
 import { NextPage } from "next";
 import { useRouter } from 'next/router'
 

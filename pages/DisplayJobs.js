@@ -4,8 +4,7 @@ import { JobRequirement } from "../data/JobRequirement";
 import { TopAndBottomOfDisplayJobs } from "../components/TopAndBottomOfDisplayJobs";
 import axios from "axios";
 import { useRouter } from 'next/router'
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { prisma } from '../util/db.server.js'
 import moment from 'moment'
 export async function getServerSideProps(context){
   const {params,req,res,query} = context

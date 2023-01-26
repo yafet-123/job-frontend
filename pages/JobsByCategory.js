@@ -8,9 +8,8 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { LatestJobsList } from "../data/LatestJobs"
 import { JobsByLocation } from "../data/JobsByLocation";
 import { useRouter } from 'next/router'
-import { PrismaClient } from '@prisma/client'
 import axios from 'axios';
-const prisma = new PrismaClient()
+import { prisma } from '../util/db.server.js'
 import moment from 'moment';
 
 export async function getServerSideProps(context){

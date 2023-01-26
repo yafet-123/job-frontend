@@ -2,7 +2,7 @@ import { Hero } from "../components/Hero";
 import { LatestJobs } from "../components/LatestJobs";
 import { SearchJobs } from "../components/SearchJobs";
 
-import { prisma } from './db'
+import { prisma } from '../util/db.server.js'
 
 export async function getStaticProps(){
   const locations = await prisma.Location.findMany({

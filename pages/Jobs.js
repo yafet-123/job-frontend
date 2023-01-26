@@ -11,8 +11,7 @@ import { GovernmentJobs } from "../data/GovernmentJobs";
 import { AiOutlineSearch, AiOutlineFacebook } from "react-icons/ai";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { prisma } from '../util/db.server.js'
 import moment from 'moment';
 
 export async function getServerSideProps(){
