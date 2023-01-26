@@ -15,13 +15,14 @@ import moment from 'moment';
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
   const category_id = query.category_id
+  console.log(category_id)
 
   const jobsBycategories = await prisma.Job.findMany({
   	where:{
   		JobCategory:{
-  			every: {
+  			some: {
 	  			Category:{
-	  				category_id: Number(255)
+	  				category_id: Number(category_id)
 	  			}
 	  		}
   		}	
@@ -42,6 +43,8 @@ export async function getServerSideProps(context){
       }
     } 
   });
+
+  console.log(jobsBycategories)
 
   const Alljobs = jobsBycategories.map((data)=>({
     job_id:data.job_id,
@@ -147,7 +150,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	      			:
 		      			<div>
 			      			{ jobsbycategory.map((data,index)=>(
-				      			<div className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
+				      			<div key={index} className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
 				      				<div className="flex justify-between items-center mb-5">
 				      					<Link href="/DisplayJobs">
 				      						<a className="text-sm lg:text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
