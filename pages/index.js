@@ -16,7 +16,13 @@ export async function getStaticProps(){
     }
   });
   const categories = await prisma.Category.findMany({
-    
+    include:{
+       _count:{
+        select:{
+          User:true
+        }
+      },
+    }
   });
   const latestjobs = await prisma.Job.findMany({ 
     take:-5,
@@ -70,7 +76,7 @@ export async function getStaticProps(){
 }
 
 export default function Home({categories, locations, latestjobs}) {
-  console.log(locations)
+  console.log(categories)
   return (
     <div className="">
       <Hero />

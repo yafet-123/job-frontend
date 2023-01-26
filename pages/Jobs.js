@@ -17,7 +17,15 @@ import moment from 'moment';
 
 export async function getServerSideProps(){
   const categories = await prisma.Category.findMany();
-  const locations = await prisma.Location.findMany();
+  const locations = await prisma.Location.findMany({
+    include:{
+       _count:{
+        select:{
+          Job:true
+        }
+      },
+    }
+  });
   const jobs = await prisma.Job.findMany({ 
     orderBy: {
       ModifiedDate:"asc"
@@ -145,7 +153,7 @@ export default function SearchJobs({categories, locations, latestjobs}) {
                         jobs in {data.LocationName}
                       </h1>
                       <h1 className="text-black dark:text-white text-left text-blue-800 font-bold text-xs md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
-                        78
+                        {data._count.Job}
                       </h1>
                     </div>
                   </button>
