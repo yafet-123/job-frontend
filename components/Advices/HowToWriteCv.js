@@ -4,7 +4,7 @@ import Image from 'next/image'
 import {HowToWriteCvData} from '../../data/HowToWriteCvData'
 export function HowToWriteCv(){
 	return(
-		<section className="flex flex-col w-full h-full px-0 bg-gray-50 dark:bg-slate-800">
+		<section className="flex flex-col w-full h-full px-0 bg-gray-50 dark:bg-slate-700">
 			<div className="py-20 px-10">
 				<h1 className="font-bold text-3xl md:text-4xl lg:text-5xl capitalize mb-5 text-center">
 					How to Write a CV

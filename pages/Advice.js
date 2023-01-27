@@ -33,7 +33,7 @@ export default function Advice() {
   }
 
   return (
-    <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600 pt-20">
+    <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600 pt-24">
     	<div className="flex lg:hidden w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
     		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
           <MdOutlineSubject size={30} /> 
@@ -44,11 +44,11 @@ export default function Advice() {
         </button>
     	</div>
     	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20">
-    		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 dark:bg-slate-700 overflow-y-scroll z-50">
+    		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 dark:bg-slate-800 overflow-y-scroll sticky top-20 bottom-0">
     			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} /> 
     		</div>
 
-    		<div className="w-full lg:w-3/4 h-full border dark:border-none bg-gray-50 dark:bg-slate-800">
+    		<div className="w-full lg:w-3/4 h-full border dark:border-none bg-gray-50 dark:bg-slate-700">
     			{ title == "Carer Advice For job seeker" && selected == "How To Write Cv" && <HowToWriteCv />}
           { title == "Carer Advice For job seeker" && selected == "Job Interview" && <JobInterview />}
           { title == "Carer Advice For job seeker" && selected == "Job Search Tips" && <JobSearchTips />}
@@ -88,7 +88,7 @@ export default function Advice() {
       <div
         className={
           advices
-            ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 dark:bg-slate-800 z-10"
+            ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 dark:bg-slate-700 z-10"
             : ""
         }
       >
