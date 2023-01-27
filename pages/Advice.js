@@ -33,7 +33,7 @@ export default function Advice() {
   }
 
   return (
-    <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600 pt-24">
+    <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600 pt-24 lg:pt-24">
     	<div className="flex lg:hidden w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
     		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
           <MdOutlineSubject size={30} /> 
@@ -65,7 +65,7 @@ export default function Advice() {
         <div
           className={
             adviceList
-              ? "fixed left-0 top-0 w-[75%] sm:w-[70%] md:w-[70%] h-screen bg-white dark:bg-slate-800 py-10 ease-in duration-500"
+              ? "fixed left-0 top-0 w-[75%] sm:w-[70%] md:w-[70%] h-screen bg-white dark:bg-slate-800 py-20 ease-in duration-500"
               : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
           }
         >
@@ -106,8 +106,7 @@ export default function Advice() {
                 className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-10"
               >
                 <AiOutlineClose size={15} />
-              </div>
-            
+              </div> 
           </div>
           <div className="py-4 flex flex-col mt-10 w-full">
             { AdviceHead.map((data,index)=>(

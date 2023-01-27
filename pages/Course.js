@@ -98,15 +98,15 @@ export default function Course() {
     	<div
         className={
           chapter
-            ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 z-10"
+            ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10"
             : ""
         }
       >
         <div
           className={
             chapter
-              ? "fixed left-0 top-0 w-[75%] sm:w-[70%] md:w-[70%] h-screen bg-white py-10 ease-in duration-500"
-              : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
+              ? "fixed left-0 top-20 w-[75%] sm:w-[70%] md:w-[70%] h-screen bg-white py-10 ease-in duration-500"
+              : "fixed left-[-100%] top-20 p-10 ease-in duration-500"
           }
         >
           <div>
@@ -128,26 +128,24 @@ export default function Course() {
       <div
         className={
           course
-            ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 z-10"
+            ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10"
             : ""
         }
       >
         <div
           className={
             course
-              ? " fixed left-0 top-0 w-[75%] sm:w-[70%] md:w-[70%] h-screen bg-white py-10 ease-in duration-500"
+              ? "fixed right-0 top-20 w-[60%] h-screen bg-white py-10 ease-in duration-500 overflow-y-scroll"
               : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
           }
         >
           <div>
-            
               <div
                 onClick={handleCourse}
-                className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-10"
+                className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-left ml-3"
               >
                 <AiOutlineClose size={15} />
               </div>
-            
           </div>
           <div className="py-4 flex flex-col mt-10 w-full">
             { CourseHead.map((data,index)=>(
@@ -162,8 +160,8 @@ export default function Course() {
                 key={index} 
                 className={
                   router.query.title == data.title
-                    ? "w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500 hover:bg-gray-300 hover:text-orange-500"
-                    : "w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500"
+                    ? "w-full pl-5 mt-5 p-3 text-xl text-right font-normal text-black hover:bg-gray-300 hover:text-orange-500 hover:bg-gray-300 hover:text-orange-500"
+                    : "w-full pl-5 mt-5 p-3 text-xl text-right font-normal text-black hover:bg-gray-300 hover:text-orange-500"
                   }
               >
                 {data.title}
