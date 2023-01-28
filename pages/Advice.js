@@ -33,7 +33,7 @@ export default function Advice() {
   }
 
   return (
-    <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600 pt-24 lg:pt-24">
+    <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600 pt-24">
     	<div className="flex lg:hidden w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
     		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
           <MdOutlineSubject size={30} /> 
@@ -58,26 +58,24 @@ export default function Advice() {
     	<div
         className={
           adviceList
-            ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 z-10"
+            ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10"
             : ""
         }
       >
         <div
           className={
             adviceList
-              ? "fixed left-0 top-0 w-[75%] sm:w-[70%] md:w-[70%] h-screen bg-white dark:bg-slate-800 py-20 ease-in duration-500"
-              : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
+              ? "fixed left-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500"
+              : "fixed left-[-100%] top-20 p-10 ease-in duration-500"
           }
         >
           <div>
-            
               <div
                 onClick={handleAdviceList}
                 className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-5"
               >
                 <AiOutlineClose size={15} />
-              </div>
-            
+              </div> 
           </div>
           <div className="py-4 flex flex-col mt-10 w-full">
             <AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} />
@@ -88,14 +86,14 @@ export default function Advice() {
       <div
         className={
           advices
-            ? "md:hidden fixed left-0 top-0 w-full h-screen bg-black/70 dark:bg-slate-700 z-10"
+            ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 dark:bg-slate-700 z-10"
             : ""
         }
       >
         <div
           className={
             advices
-              ? " fixed left-0 top-0 w-[75%] sm:w-[70%] md:w-[70%] h-screen bg-white py-10 ease-in duration-500"
+              ? " fixed right-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500"
               : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
           }
         >
@@ -103,7 +101,7 @@ export default function Advice() {
             
               <div
                 onClick={handleadvices}
-                className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-10"
+                className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-left ml-3"
               >
                 <AiOutlineClose size={15} />
               </div> 

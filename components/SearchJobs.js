@@ -53,7 +53,7 @@ export function SearchJobs({categories, locations}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/JobsByLocation",
-                        query:{location:data.LocationName, howmany:78, image:data.Image, location_id:data.location_id}
+                        query:{location:data.LocationName, howmany:data._count.Job, image:data.Image, location_id:data.location_id}
                       })
                     }}
                   >
