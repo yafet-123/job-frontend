@@ -141,18 +141,20 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) 
   }
   // if (status === "authenticated")
     return (
-    <div className="flex bg-gray-100 dark:bg-slate-700">
-      <MainHeader title="Admin" />
-      <VerticalNavbar onChange={handleChange} data={data} />
-      <div className="flex-1 pt-32 ">
-        { selected == "dashboard" && <DashBoard categories={Allcategories} locations={Alllocations} />}
-        { selected == "addUser" && <AddUser users={Allusers}/>}
-        { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
-        { selected == "displayJob" && <DisplayJob jobs={Alljobs} categories={Allcategories} locations={Alllocations}/>}
-        { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
-        { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
-      </div>
-    </div>
+      <React.Fragment>
+        <MainHeader title="Admin" />
+        <div className="flex bg-gray-100 dark:bg-slate-700">
+          <VerticalNavbar onChange={handleChange} data={data} />
+          <div className="flex-1 pt-32 ">
+            { selected == "dashboard" && <DashBoard categories={Allcategories} locations={Alllocations} />}
+            { selected == "addUser" && <AddUser users={Allusers}/>}
+            { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
+            { selected == "displayJob" && <DisplayJob jobs={Alljobs} categories={Allcategories} locations={Alllocations}/>}
+            { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
+            { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
+          </div>
+        </div>
+      </React.Fragment>
   );
 
 }

@@ -7,10 +7,13 @@ import { MainHeader } from '../components/MainHeader';
 
 export default function About() {
   return (
-    <div className="flex flex-col">
+    <React.Fragment>
       <MainHeader title="About" />
-      <AboutUsHero />
-      <AboutUsDetail />
-    </div>
+      <div className="flex flex-col">
+        
+        <AboutUsHero />
+        <AboutUsDetail />
+      </div>
+    </React.Fragment>
   );
 }
