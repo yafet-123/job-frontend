@@ -3,7 +3,7 @@ import { LatestJobs } from "../components/LatestJobs";
 import { SearchJobs } from "../components/SearchJobs";
 
 import { prisma } from '../util/db.server.js'
-
+import { MainHeader } from '../components/MainHeader';
 export async function getStaticProps(){
   const locations = await prisma.Location.findMany({
     include:{
@@ -77,10 +77,13 @@ export async function getStaticProps(){
 export default function Home({categories, locations, latestjobs}) {
   console.log(categories)
   return (
-    <div className="">
-      <Hero />
-      <LatestJobs latestjobs={latestjobs} />
-      <SearchJobs categories={categories} locations={locations} />
-    </div>
+    <React.Fragment>
+      <MainHeader title="Home" />
+      <div className="">
+        <Hero />
+        <LatestJobs latestjobs={latestjobs} />
+        <SearchJobs categories={categories} locations={locations} />
+      </div>
+    </React.Fragment>
   );
 }
