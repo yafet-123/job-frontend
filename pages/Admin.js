@@ -11,6 +11,7 @@ import { useState,useEffect} from 'react'
 import { prisma } from '../util/db.server.js'
 import { NextPage } from "next";
 import { useRouter } from 'next/router'
+import { MainHeader } from '../components/MainHeader';
 
 export async function getServerSideProps(){
   const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
@@ -141,6 +142,7 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) 
   // if (status === "authenticated")
     return (
     <div className="flex bg-gray-100 dark:bg-slate-700">
+      <MainHeader title="Admin" />
       <VerticalNavbar onChange={handleChange} data={data} />
       <div className="flex-1 pt-32 ">
         { selected == "dashboard" && <DashBoard categories={Allcategories} locations={Alllocations} />}
