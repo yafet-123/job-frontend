@@ -4,11 +4,12 @@ import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
 export default async(req, res) => {
-	const {LocationName , user_id} = req.body;
+	const {LocationName , user_id, Image} = req.body;
 	const data = await prisma.Location.create({
 		data:{
 			LocationName,
-			user_id
+			user_id,
+			Image
 		},
 	});
 	res.json(data)

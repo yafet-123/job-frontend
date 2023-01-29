@@ -4,12 +4,13 @@ import Multiselect from 'multiselect-react-dropdown';
 import DatePicker from "react-datepicker";
 import axios from 'axios';
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 export function AddJob({categories, locations}) {
     const router = useRouter();
     const [typechange , settypechange] = useState(true)
     const [CompanyName, setCompanyName] = useState("")
-    const [Image, setImage] = useState()
+    const [image, setImage] = useState()
     const [JobsType, setJobsType] = useState("")
     const [Location, setLocation] = useState("")
     const [CareerLevel, setCareerLevel] = useState("")
@@ -22,10 +23,11 @@ export function AddJob({categories, locations}) {
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
     const [imagesecureUrl, setimagesecureUrl] = useState()
+    console.log(image)
     async function AddJob(){
         const formData = new FormData();
         
-        formData.append('file', Image)
+        formData.append('file', image)
 
         formData.append('upload_preset', 'my_upload')
 
@@ -34,7 +36,7 @@ export function AddJob({categories, locations}) {
             body: formData
         }).then(r=>r.json())
         setimagesecureUrl(imageUpload.secure_url)
-
+        console.log(imagesecureUrl)
         const data = await axios.post(`api/addjob`,{
             "CompanyName":CompanyName,
             "Image":imagesecureUrl,
@@ -276,6 +278,15 @@ export function AddJob({categories, locations}) {
                             <input id="dropzone-file" type="file" className="hidden" onChange={(e) => setImage(e.target.files[0])} />
                         </label>
                     </div>
+                </div>
+
+                <div className={image == null ? "hidden" : "flex justify-center items-center mb-10"}>
+                    <Image 
+                        src={image == null ? "/images/bgImage1.avif" :URL.createObjectURL(image)} 
+                        width={500} height={200} 
+                        alt="image that will be displayed" 
+                        className="w-full"
+                    />
                 </div>
 
                 <button 

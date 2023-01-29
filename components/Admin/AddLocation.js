@@ -16,17 +16,36 @@ export function AddLocation({locations}) {
     const [deletelocationid,setdeletelocationid] = useState()
     const [updatelocationid,setupdatelocationid] = useState()
     const [updatelocationname,setupdatelocationname] = useState("")
-
+    const [image, setImage] = useState()
+    const [imagesecureUrl, setimagesecureUrl] = useState()
+    const [saveUpload, setsaveUpload] = useState(false)
     async function registerLocation(){
-        const data = await axios.post(`api/addlocation`,{
-            "LocationName": LocationName,
-            "user_id": 20
-        }).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.log(error);
-        });
-        router.reload()
+        const formData = new FormData();
+        
+        formData.append('file', image)
+
+        formData.append('upload_preset', 'my_upload')
+
+        const imageUpload = await fetch(`https://api.cloudinary.com/v1_1/df7hlpjcj/image/upload`,{
+            method:'POST',
+            body: formData
+        }).then(r=>console.log(r))
+        console.log(imageUpload.secure_url)
+        
+
+        if(saveUpload){
+            const data = await axios.post(`api/addlocation`,{
+                "LocationName": LocationName,
+                "user_id": 20,
+                "Image":imagesecureUrl,
+            }).then(function (response) {
+                console.log(response.data);
+
+            }).catch(function (error) {
+                console.log(error);
+            });
+            
+        }
     }
 
     const clickedFordelete = () => {
@@ -69,11 +88,19 @@ export function AddLocation({locations}) {
                                     <svg aria-hidden="true" className="w-10 h-10 mb-3 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                                     <p className="mb-2 text-xs lg:text-sm text-black dark:text-white"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                 </div>
-                                <input id="dropzone-file" type="file" className="hidden" />
+                                <input id="dropzone-file" type="file" className="hidden" onChange={(e) => setImage(e.target.files[0])} />
                             </label>
                         </div>
                     </div>
 
+                    <div className={image == null ? "hidden" : "flex justify-center items-center mb-10"}>
+                        <Image 
+                            src={image == null ? "/images/bgImage1.avif" :URL.createObjectURL(image)} 
+                            width={500} height={200} 
+                            alt="image that will be displayed" 
+                            className="w-full"
+                        />
+                    </div>
                     
                     <button 
                         onClick={()=> registerLocation() }
