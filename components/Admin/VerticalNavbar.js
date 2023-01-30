@@ -55,10 +55,10 @@ export function VerticalNavbar({onChange, data}){
                             ))}
                         </ul>
                     </div>
-                    <div className={`mt-auto flex flex-col`}>
-                        <Link  href="/">
-                            <a className="flex items-center p-2 lg:p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl" href="#">
-                                <span><BsDisplay size={25} /></span>
+                    <div className="mt-auto flex flex-col">
+                        <Link href="/">
+                            <a className="flex items-center p-2 lg:p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl">
+                                <BsDisplay size={25} />
                             </a>
                         </Link>
 
