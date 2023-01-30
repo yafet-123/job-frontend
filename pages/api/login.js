@@ -49,6 +49,7 @@ export default async(req, res) => {
   	res.status(StatusCodes.OK).json({
     	userId: user.user_id,
     	name: user.UserName,
+    	role:user.role,
     	email:user.email,
     	token
   	});

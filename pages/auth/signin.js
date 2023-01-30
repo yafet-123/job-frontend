@@ -9,11 +9,11 @@ export default function SignIn({ csrfToken }) {
     const router = useRouter();
     const [error, setError] = useState(null);
     const { status, data } = useSession();
-    // useEffect(() => {
-    //     if (status === "authenticated") router.replace("/Admin");
-    // }, [status]);
+    useEffect(() => {
+        if (status === "authenticated") router.replace("/Admin");
+    }, [status]);
 
-    // if (status === "unauthenticated")
+    if (status === "unauthenticated")
         return (
             <>
                 <Formik
@@ -24,7 +24,6 @@ export default function SignIn({ csrfToken }) {
                     })}
                     onSubmit={async (values, { setSubmitting }) => {
                         const res = await signIn('credentials', {
-
                             username: values.username,
                             password: values.password,
                             callbackUrl: "/Admin"

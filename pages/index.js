@@ -1,9 +1,10 @@
 import { Hero } from "../components/Hero";
 import { LatestJobs } from "../components/LatestJobs";
 import { SearchJobs } from "../components/SearchJobs";
-
+import React from 'react'
 import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/MainHeader';
+import { useSession } from "next-auth/react";
 export async function getStaticProps(){
   const locations = await prisma.Location.findMany({
     include:{
@@ -75,7 +76,9 @@ export async function getStaticProps(){
 }
 
 export default function Home({categories, locations, latestjobs}) {
-  console.log(categories)
+  
+  const { status, data } = useSession();
+  console.log(status)
   return (
     <React.Fragment>
       <MainHeader title="Home" />
