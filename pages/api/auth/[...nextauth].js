@@ -40,6 +40,7 @@ export default NextAuth({
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
+                token.userId = user.userId;
                 token.accessToken = user.token;
                 token.role = user.role;
             }
@@ -49,6 +50,7 @@ export default NextAuth({
         async session({ session, token }) {
             session.user.accessToken = token.accessToken;
             session.user.refreshToken = token.refreshToken;
+            session.user.user_id = token.userId;
             session.user.role = token.role;
             session.user.accessTokenExpires = token.accessTokenExpires;
             

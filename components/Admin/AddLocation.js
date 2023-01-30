@@ -3,6 +3,7 @@ import { useState,useEffect, useContext} from 'react'
 import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/router'
+import { useSession } from "next-auth/react";
 import Image from 'next/image'
 import {DeleteLocation} from './DeleteLocation'
 import {UpdateLocation} from './UpdateLocation'
@@ -19,7 +20,10 @@ export function AddLocation({locations}) {
     const [image, setImage] = useState()
     const [imagesecureUrl, setimagesecureUrl] = useState()
     const [saveUpload, setsaveUpload] = useState(false)
-    async function registerLocation(){
+    const { status, data } = useSession();
+    const UserData = data.user;
+
+    async function imageUpload() {
         const formData = new FormData();
         
         formData.append('file', image)
@@ -29,23 +33,25 @@ export function AddLocation({locations}) {
         const imageUpload = await fetch(`https://api.cloudinary.com/v1_1/df7hlpjcj/image/upload`,{
             method:'POST',
             body: formData
-        }).then(r=>console.log(r))
-        console.log(imageUpload.secure_url)
-        
-
-        if(saveUpload){
-            const data = await axios.post(`api/addlocation`,{
-                "LocationName": LocationName,
-                "user_id": 20,
-                "Image":imagesecureUrl,
-            }).then(function (response) {
-                console.log(response.data);
-
-            }).catch(function (error) {
-                console.log(error);
-            });
+        }).then(r=>
+            r.json()
             
-        }
+        )
+        console.log(imageUpload)
+        setimagesecureUrl(imageUpload.secure_url)
+    }
+    
+    async function registerLocation(){
+        imageUpload()
+        const data = await axios.post(`api/addlocation`,{
+            "LocationName": LocationName,
+            "user_id": UserData.user_id,
+            "Image":imagesecureUrl,
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        }); 
     }
 
     const clickedFordelete = () => {

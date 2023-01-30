@@ -23,8 +23,8 @@ export function AddJob({categories, locations}) {
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
     const [imagesecureUrl, setimagesecureUrl] = useState()
-    console.log(image)
-    async function AddJob(){
+    
+    async function imageUpload() {
         const formData = new FormData();
         
         formData.append('file', image)
@@ -34,9 +34,17 @@ export function AddJob({categories, locations}) {
         const imageUpload = await fetch(`https://api.cloudinary.com/v1_1/df7hlpjcj/image/upload`,{
             method:'POST',
             body: formData
-        }).then(r=>r.json())
+        }).then(r=>
+            r.json()
+            
+        )
+        console.log(imageUpload)
         setimagesecureUrl(imageUpload.secure_url)
-        console.log(imagesecureUrl)
+    }
+
+    async function AddJob(){
+        imageUpload()
+        
         const data = await axios.post(`api/addjob`,{
             "CompanyName":CompanyName,
             "Image":imagesecureUrl,

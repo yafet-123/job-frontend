@@ -4,13 +4,14 @@ import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
 export default async(req, res) => {
-	const {UserName , Password, email} = req.body;
+	const {UserName , Password, email, role} = req.body;
 	console.log(UserName)
 	const data = await prisma.User.create({
 		data:{
 			UserName,
 			email,
-			Password:bcrypt.hashSync(Password, 8)	
+			Password:bcrypt.hashSync(Password, 8),
+			role
 		},
 	});
 

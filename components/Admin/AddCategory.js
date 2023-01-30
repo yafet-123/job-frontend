@@ -3,8 +3,10 @@ import { useState,useEffect, useContext} from 'react'
 import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/router'
+import { useSession } from "next-auth/react";
 import {DeleteCategory} from './DeleteCategory'
 import {UpdateCategory} from './UpdateCategory'
+
 export function AddCategory({categories}) {
     const router = useRouter();
     const [category, setcategory] = useState("")
@@ -13,17 +15,18 @@ export function AddCategory({categories}) {
     const [deletecategoryid,setdeletecategoryid] = useState()
     const [updatecategoryid,setupdatecategoryid] = useState()
     const [updatecategoryname,setupdatecategoryname] = useState("")
-
+    const { status, data } = useSession();
+    const UserData = data.user;
     async function registerCategory(){
         const data = await axios.post(`api/addCtegory`,{
             "CategoryName": category,
-            "user_id": 20
+            "user_id": UserData.user_id,
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
             console.log(error);
         });
-        router.reload()
+       
     }
 
     const clickedFordelete = () => {

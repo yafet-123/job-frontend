@@ -22,13 +22,14 @@ export function AddUser({users}) {
     const [updateuserid,setupdateuserid] = useState()
     const [updateemail, setupdateemail] = useState("")
     const [updateusername,setupdateusername] = useState("")
-
+    console.log(users)
     async function register(e){
         e.preventDefault();
         const data = await axios.post(`api/registerUser`,{
             'UserName':UserName,
             'Password':password,
-            'email':email
+            'email':email,
+            'role':'admin'
         }).then(function (response) {
             console.log(response.data);
             router.reload()
