@@ -28,11 +28,11 @@ export function Footer() {
             <Link href="/">
               <a>
                 <Image
-                  src="/images/vercel.svg"
+                  src="/images/logo.jpg"
                   className=""
                   alt=""
                   width={100}
-                  height={35}
+                  height={60}
                 />
               </a>
             </Link>
