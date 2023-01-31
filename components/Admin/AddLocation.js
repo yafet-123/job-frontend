@@ -18,7 +18,6 @@ export function AddLocation({locations}) {
     const [updatelocationid,setupdatelocationid] = useState()
     const [updatelocationname,setupdatelocationname] = useState("")
     const [image, setImage] = useState()
-    const [imagesecureUrl, setimagesecureUrl] = useState()
     const [saveUpload, setsaveUpload] = useState(false)
     const { status, data } = useSession();
     const [error,seterror] = useState("")
@@ -27,7 +26,7 @@ export function AddLocation({locations}) {
 
     async function imageUploadData() {
         const formData = new FormData();
-        
+        let imagesecureUrl = ""
         formData.append('file', image)
 
         formData.append('upload_preset', 'my_upload')
@@ -39,29 +38,28 @@ export function AddLocation({locations}) {
             r.json()
             
         )
-        await setimagesecureUrl(imageUpload.secure_url)
-        console.log(imagesecureUrl)
+        imagesecureUrl = imageUpload.secure_url
+        return imagesecureUrl
     }
 
     async function addLocation(){
-        console.log(imagesecureUrl)
+        const imageData = await imageUploadData()
         seterror("")
         const data = await axios.post(`api/addlocation`,{
             "LocationName": LocationName,
             "user_id": UserData.user_id,
-            "Image":imagesecureUrl,
+            "Image":imageData,
         }).then(function (response) {
             console.log(response.data);
-            
+            router.reload()
         }).catch(function (error) {
             seterror("Creating Location Failed")
-        }); 
+        });
     }
 
-    async function registerLocation(e){
-         e.preventDefault()
-        await imageUploadData()
-        await addLocation()
+    function registerLocation(e){
+        e.preventDefault()
+        addLocation()
     }
 
     const clickedFordelete = () => {

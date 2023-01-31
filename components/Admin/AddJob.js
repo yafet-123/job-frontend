@@ -22,7 +22,6 @@ export function AddJob({categories, locations}) {
     const [startDate, setStartDate] = useState(new Date());
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
-    const [imagesecureUrl, setimagesecureUrl] = useState()
     const [error,seterror] = useState("")
     const [active, setActive ] = useState(false)
     async function imageUploadData() {
