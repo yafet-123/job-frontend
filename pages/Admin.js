@@ -83,7 +83,7 @@ export async function getServerSideProps(){
       CategoryName:data.CategoryName,
       CreatedDate:data.CreatedDate,
       ModifiedDate:data.ModifiedDate,
-      // userName:data.User.UserName
+      userName:data.User.UserName
   }))
 
   const Allusers = users.map((data)=>({
