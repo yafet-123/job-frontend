@@ -13,6 +13,7 @@ import { NextPage } from "next";
 import { useRouter } from 'next/router'
 import { MainHeader } from '../components/MainHeader';
 import React from 'react'
+
 export async function getServerSideProps(){
   const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
   const locations = await prisma.Location.findMany({

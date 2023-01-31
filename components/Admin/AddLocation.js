@@ -21,6 +21,7 @@ export function AddLocation({locations}) {
     const [imagesecureUrl, setimagesecureUrl] = useState()
     const [saveUpload, setsaveUpload] = useState(false)
     const { status, data } = useSession();
+    const [error,seterror] = useState("")
     const UserData = data.user;
 
     async function imageUpload() {
@@ -43,6 +44,7 @@ export function AddLocation({locations}) {
     
     async function registerLocation(){
         imageUpload()
+        seterror("")
         const data = await axios.post(`api/addlocation`,{
             "LocationName": LocationName,
             "user_id": UserData.user_id,
@@ -50,7 +52,7 @@ export function AddLocation({locations}) {
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
-            console.log(error);
+            seterror("Creating Location Failed")
         }); 
     }
 
@@ -108,12 +110,18 @@ export function AddLocation({locations}) {
                         />
                     </div>
                     
-                    <button 
-                        onClick={()=> registerLocation() }
-                        className="float-right mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
-                    >
-                        Submit
-                    </button>     
+                    <div className="mx-2 my-5 lg:my-0 flex flex-col lg:flex-row justify-between">
+                        <h1 className="text-red-600 dark:text-red-400 text-md lg:text-2xl font-bold text-left mb-5 lg:mb-0">
+                            {error}
+                        </h1>
+
+                        <button 
+                            onClick={()=> registerLocation() }
+                            className="float-right mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
+                        >
+                            Submit
+                        </button>     
+                    </div>
                 </div>
             </div>
 
