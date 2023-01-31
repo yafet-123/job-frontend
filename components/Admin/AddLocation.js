@@ -23,8 +23,9 @@ export function AddLocation({locations}) {
     const { status, data } = useSession();
     const [error,seterror] = useState("")
     const UserData = data.user;
+    const [active, setActive] = useState(false)
 
-    async function imageUpload() {
+    async function imageUploadData() {
         const formData = new FormData();
         
         formData.append('file', image)
@@ -38,12 +39,12 @@ export function AddLocation({locations}) {
             r.json()
             
         )
-        console.log(imageUpload)
-        setimagesecureUrl(imageUpload.secure_url)
+        await setimagesecureUrl(imageUpload.secure_url)
+        console.log(imagesecureUrl)
     }
-    
-    async function registerLocation(){
-        imageUpload()
+
+    async function addLocation(){
+        console.log(imagesecureUrl)
         seterror("")
         const data = await axios.post(`api/addlocation`,{
             "LocationName": LocationName,
@@ -51,9 +52,16 @@ export function AddLocation({locations}) {
             "Image":imagesecureUrl,
         }).then(function (response) {
             console.log(response.data);
+            
         }).catch(function (error) {
             seterror("Creating Location Failed")
         }); 
+    }
+
+    async function registerLocation(e){
+         e.preventDefault()
+        await imageUploadData()
+        await addLocation()
     }
 
     const clickedFordelete = () => {
@@ -66,13 +74,14 @@ export function AddLocation({locations}) {
 
     return (
         <div className="px-0 lg:px-10 h-full">
-            <div className="max-w-7xl mx-auto mt-10">
+            <form className="max-w-7xl mx-auto mt-10" onSubmit={registerLocation}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Location</h1>
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1">
                         <input 
                             id="LocationName" 
                             type="text" 
+                            required
                             className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={LocationName}
                             onChange={(e) => setLocationName(e.target.value)}
@@ -116,14 +125,14 @@ export function AddLocation({locations}) {
                         </h1>
 
                         <button 
-                            onClick={()=> registerLocation() }
+                            onClick={()=> setActive(!active) }
                             className="float-right mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
                         >
                             Submit
                         </button>     
                     </div>
                 </div>
-            </div>
+            </form>
 
             <div className="m-2 lg:m-5">
                 <div className="overflow-auto rounded-lg shadow hidden md:block">

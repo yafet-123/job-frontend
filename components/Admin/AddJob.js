@@ -23,8 +23,9 @@ export function AddJob({categories, locations}) {
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
     const [imagesecureUrl, setimagesecureUrl] = useState()
-    
-    async function imageUpload() {
+    const [error,seterror] = useState("")
+    const [active, setActive ] = useState(false)
+    async function imageUploadData() {
         const formData = new FormData();
         
         formData.append('file', image)
@@ -38,13 +39,13 @@ export function AddJob({categories, locations}) {
             r.json()
             
         )
-        console.log(imageUpload)
-        setimagesecureUrl(imageUpload.secure_url)
+        await setimagesecureUrl(imageUpload.secure_url)
+        console.log(imagesecureUrl)
     }
 
-    async function AddJob(){
+    async function addJobData(){
         imageUpload()
-        
+        seterror("")
         const data = await axios.post(`api/addjob`,{
             "CompanyName":CompanyName,
             "Image":imagesecureUrl,
@@ -61,22 +62,28 @@ export function AddJob({categories, locations}) {
             "LocationId":Location
         }).then(function (response) {
             console.log(response.data);
-            router.reload()
+            
         }).catch(function (error) {
-            console.log(error);
+            seterror("Creating Job Failed")
         });
+    }
 
+    async function addJob(e){
+        e.preventDefault()
+        await imageUploadData()
+        await addJobData()
     }
 
     return (
         <div className="px-0 lg:px-10">
-            <div className="max-w-7xl mx-auto mt-10">
+            <form className="max-w-7xl mx-auto mt-10" onSubmit={addJob}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Add Job</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10 mx-2">
                     <div className="relative mb-5">
                         <input 
                             id="CompanyName" 
                             type="text" 
+                            required
                             className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={CompanyName}
                             onChange={(e) => setCompanyName(e.target.value)}
@@ -93,6 +100,7 @@ export function AddJob({categories, locations}) {
                         <input 
                             id="JobsType" 
                             type="text" 
+                            required
                             className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={JobsType}
                             onChange={(e) => setJobsType(e.target.value)}
@@ -109,12 +117,14 @@ export function AddJob({categories, locations}) {
                         <select
                             id="Location" 
                             name="select"
+                            required
                             onChange={(e) => setLocation(e.target.value)}
                             className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                         >
                             <option
                                 className="bg-gray-50 dark:bg-slate-500 text-black dark:text-white" 
                             >
+                         
                                 Insert A Location
                             </option>
                             { locations.map((data,index) => (
@@ -133,12 +143,13 @@ export function AddJob({categories, locations}) {
                         >
                             Location
                         </label>
-                        </div>
+                    </div>
 
                     <div className="relative mb-5">
                         <input 
                             id="CareerLevel" 
-                            type="text" 
+                            type="text"
+                            required 
                             className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={CareerLevel}
                             onChange={(e) => setCareerLevel(e.target.value)}
@@ -154,7 +165,8 @@ export function AddJob({categories, locations}) {
                     <div className="relative mb-5">
                         <input 
                             id="EmploymentType" 
-                            type="text" 
+                            type="text"
+                            required 
                             className="block w-full px-3 texxt-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={EmploymentType}
                             onChange={(e) => setEmploymentType(e.target.value)}
@@ -171,6 +183,7 @@ export function AddJob({categories, locations}) {
                         <input 
                             id="Salary" 
                             type="text" 
+                            required
                             className="block w-full px-3 texxt-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={Salary}
                             onChange={(e) => setSalary(e.target.value)}
@@ -188,7 +201,8 @@ export function AddJob({categories, locations}) {
                     <div className="relative mb-5">
                         <input 
                             id="Apply" 
-                            type="text" 
+                            type="text"
+                            required 
                             className="block w-full px-3 text-md lg:text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={Apply}
                             onChange={(e) => setApply(e.target.value)}
@@ -205,6 +219,7 @@ export function AddJob({categories, locations}) {
                         <input 
                             id="DeadLine" 
                             type={typechange ? "text" : "date"} 
+                            required
                             className="block w-full px-3 text-md lg:text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={DeadLine}
                             onChange={(e) => setDeadLine(e.target.value)}
@@ -225,6 +240,7 @@ export function AddJob({categories, locations}) {
                             id="Description" 
                             rows="10" 
                             cols="33"
+                            required
                             className="block w-full px-3 text-md lg:text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={Description}
                             onChange={(e) => setDescription(e.target.value)}
@@ -241,7 +257,8 @@ export function AddJob({categories, locations}) {
                         <textarea 
                             id="Requirement"
                             rows="10" 
-                            cols="33" 
+                            cols="33"
+                            required 
                             className="block w-full px-3 text-md lg:text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={Requirement}
                             onChange={(e) => setRequirement(e.target.value)}
@@ -297,13 +314,18 @@ export function AddJob({categories, locations}) {
                     />
                 </div>
 
-                <button 
-                    onClick={()=> AddJob()}
-                    className="mx-2 mb-10 float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-md lg:text-xl rounded-lg px-4 py-4 text-center inline-flex items-center"
-                >
-                    Submit
-                </button>
-            </div>
+                <div className="my-5 flex flex-col lg:flex-row justify-between">
+                    <h1 className="text-red-600 dark:text-red-400 text-md lg:text-2xl font-bold text-left mb-5 lg:mb-0">
+                        {error}
+                    </h1>
+
+                    <button 
+                        className="mx-2 mb-10 float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-md lg:text-xl rounded-lg px-4 py-4 text-center inline-flex items-center"
+                    >
+                        Submit
+                    </button>
+                </div>
+            </form>
         </div>
   );
 }
