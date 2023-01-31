@@ -1,5 +1,4 @@
 import { prisma } from '../../../util/db.server.js'
-const prisma = new PrismaClient()
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
