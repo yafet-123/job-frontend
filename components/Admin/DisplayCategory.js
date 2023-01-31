@@ -55,7 +55,7 @@ export function DisplayCategory({categories}) {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
                 {categories.map((data,index)=>(
-                    <div className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
+                    <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                         <div>
                             <p className="text-lg text-blue-500 dark:text-white font-bold hover:underline">{data.category_id}</p>
                         </div>

@@ -12,7 +12,7 @@ export default function SignIn({ csrfToken }) {
     const { status, data } = useSession();
     useEffect(() => {
         if (status === "authenticated") router.replace("/Admin");
-    }, [status]);
+    }, [status, router]);
 
     if (status === "unauthenticated")
         return (

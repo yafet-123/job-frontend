@@ -41,7 +41,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
         // } 
         
         
-    },[])
+    },[category,dataposttojob ])
     
     const handleOKClickForupdate = async() => {
 
@@ -115,13 +115,13 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
                             <select
                                 id="Location" 
                                 name="select"
-                                value=""
                                 value={Location}
                                 onChange={(e) => setLocation(e.target.value)}
                                 className="block w-full px-3 text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             >
                                 { locations.map((data,index) => (
-                                    <option 
+                                    <option
+                                        key={index} 
                                         className="bg-gray-50 dark:bg-slate-500 text-black dark:text-white" 
                                         value={data.location_id}
                                     >

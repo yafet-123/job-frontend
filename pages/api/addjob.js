@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
-export default async(req, res) => {
+export default async function(req, res){
 	const { 
 		CompanyName,
 		Image,
