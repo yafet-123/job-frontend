@@ -59,7 +59,7 @@ export function AddCategory({categories}) {
                             Categories
                         </label>
                     </div>
-                    <div className="my-5 flex justify-between">
+                    <div className="my-5 flex flex-col lg:flex-row justify-between">
                         <h1 className="text-red-600 dark:text-red-400 text-md lg:text-2xl font-bold text-left mb-5 lg:mb-0">
                             {error}
                         </h1>

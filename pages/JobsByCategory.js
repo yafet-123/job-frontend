@@ -266,6 +266,6 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	     		</div>
 	    	</div>
 	    </section>
-	  <React.Fragment>
+	  </React.Fragment>
   );
 }

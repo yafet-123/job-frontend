@@ -5,8 +5,6 @@ import { AiOutlineMenu } from "react-icons/ai";
 import Image from 'next/image'
 import { LatestJobs } from "../components/LatestJobs";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { LatestJobsList } from "../data/LatestJobs"
-import { JobsByLocation } from "../data/JobsByLocation";
 import { useRouter } from 'next/router'
 import axios from 'axios';
 import { prisma } from '../util/db.server.js'

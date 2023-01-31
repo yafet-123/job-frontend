@@ -83,7 +83,6 @@ export async function getServerSideProps(){
 
 export default function Jobs({categories, locations, latestjobs}) {
   const [jobs, setJobs] = useState("latest");
-  console.log(latestjobs[0].job_id)
   const router = useRouter()
   return (
     <React.Fragment>

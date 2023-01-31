@@ -29,7 +29,7 @@ export default function AdvanceSearch() {
 
   useEffect(()=>{
     handleSearch()
-  },[])
+  })
 
   async function handleSearch(){
     if(getSearchValue == ""){

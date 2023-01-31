@@ -4,7 +4,7 @@ import { FollowingTheDream } from '../components/FollowingTheDream';
 import { OurMission } from '../components/OurMission';
 import { OurVision } from '../components/OurVision';
 import { MainHeader } from '../components/MainHeader';
-
+import React from 'react'
 export default function About() {
   return (
     <React.Fragment>
