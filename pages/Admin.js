@@ -68,7 +68,7 @@ export async function getServerSideProps(){
       },
     } 
   })
-  
+  console.log(categories)
   const Alllocations = locations.map((data)=>({
       location_id:data.location_id,
       LocationName:data.LocationName,

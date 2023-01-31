@@ -24,9 +24,10 @@ export function AddJob({categories, locations}) {
     const [Requirement , setRequirement] = useState("")
     const [error,seterror] = useState("")
     const [active, setActive ] = useState(false)
+
     async function imageUploadData() {
         const formData = new FormData();
-        
+        let imagesecureUrl = ""
         formData.append('file', image)
 
         formData.append('upload_preset', 'my_upload')
@@ -38,16 +39,16 @@ export function AddJob({categories, locations}) {
             r.json()
             
         )
-        await setimagesecureUrl(imageUpload.secure_url)
-        console.log(imagesecureUrl)
+        imagesecureUrl = imageUpload.secure_url
+        return imagesecureUrls
     }
 
     async function addJobData(){
-        imageUpload()
+        const imageData = await imageUploadData()
         seterror("")
         const data = await axios.post(`api/addjob`,{
             "CompanyName":CompanyName,
-            "Image":imagesecureUrl,
+            "Image":imageData,
             "JobsType":JobsType,
             "CareerLevel":CareerLevel,
             "EmploymentType":EmploymentType,
@@ -69,8 +70,7 @@ export function AddJob({categories, locations}) {
 
     async function addJob(e){
         e.preventDefault()
-        await imageUploadData()
-        await addJobData()
+        addJobData()
     }
 
     return (
