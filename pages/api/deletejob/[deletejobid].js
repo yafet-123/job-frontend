@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
-export default async(req, res) => {
+export default async function handledeletejob(req, res){
 	const {deletejobid} = req.query
 	console.log(req.query)
 	const data = await prisma.Job.delete({

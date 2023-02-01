@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
-export default async(req, res) => {
+export default async function handleupdateuser(req, res){
 	const {updateuserid} = req.query
 	const {UserName,email} = req.body
 	const data = await prisma.User.update({
