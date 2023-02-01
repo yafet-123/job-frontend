@@ -10,7 +10,6 @@ import {FiEye, FiEyeOff} from 'react-icons/fi'
 export function AddUser({users}) {
     const [typepassword, setTypepassword] = useState('password');
     const [typepasswordconfirm, setTypepasswordconfirm] = useState('password');
-    console.log(users)
     const router = useRouter();
     const [UserName, setUserName] =useState("")
     const [email, setemail] = useState("")
