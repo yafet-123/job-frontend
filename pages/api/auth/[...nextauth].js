@@ -25,7 +25,7 @@ export default NextAuth({
                     user = response.data
                     
                 }).catch(function (error) {
-                    throw new Error('Invalid')
+                    throw new Error('Login Failed')
                 });
 
                 return user
