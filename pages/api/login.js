@@ -15,6 +15,7 @@ export default async function handleaddlogin(req, res){
     	},
   	});
   	// get the username
+  	console.log(user)
 
   	if (!user) {
     	throw new Error(`No ${username} can be found`);
@@ -33,7 +34,8 @@ export default async function handleaddlogin(req, res){
   	// it take the password from the user(first bcrypt it) and compare with incoming password
 
   	if (!isPasswordCorrect) {
-    	throw new Error("Invalid Credentials");
+
+    	throw new Error("Invalid");
   	}
 
   	// if the paswors is incorrect please through error
