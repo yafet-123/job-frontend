@@ -18,7 +18,7 @@ export default NextAuth({
                 };
                 
                 let user
-                const res = await axios.post(`http://job-frontend-main.vercel.app/api/login`,{
+                const res = await axios.post(`${process.env.NEXTAUTH_URL}/api/login`,{
                     "username": payload.username,
                     "password": payload.password
                 }).then(function (response) {
