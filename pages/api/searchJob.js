@@ -1,6 +1,6 @@
 import { prisma } from '../../util/db.server.js'
 
-export default async(req, res) => {
+export default async function handlesearchjob(req, res){
     const { searchName, type } = req.body
     if (type == 1) {
         const searchData = await prisma.User.findMany({

@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
-export default async(req, res) => {
+export default async function handleadduser(req, res){
 	const {UserName , Password, email, role} = req.body;
 	console.log(UserName)
 	const data = await prisma.User.create({

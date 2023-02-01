@@ -1,6 +1,6 @@
 import { prisma } from '../../util/db.server.js'
 
-export default async(req, res) => {
+export default async function handlesearchadmin(req, res){
     const { searchName, type } = req.body
     console.log(req.body)
     if (type == 1) {
