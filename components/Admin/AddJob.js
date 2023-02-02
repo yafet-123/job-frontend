@@ -40,7 +40,7 @@ export function AddJob({categories, locations}) {
             
         )
         imagesecureUrl = imageUpload.secure_url
-        return imagesecureUrls
+        return imagesecureUrl
     }
 
     async function addJobData(){
