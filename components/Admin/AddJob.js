@@ -60,7 +60,7 @@ export function AddJob({categories, locations}) {
             "JobsRequirement":Requirement,
             "DeadLine":new Date(DeadLine).toISOString(),
             "Apply":Apply,
-            "user_id":UserData.user_id,,
+            "user_id":UserData.user_id,
             "categoryId":categoryId,
             "LocationId":Location
         }).then(function (response) {
