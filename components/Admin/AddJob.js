@@ -5,12 +5,14 @@ import DatePicker from "react-datepicker";
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { useSession } from "next-auth/react";
 
 export function AddJob({categories, locations}) {
     const router = useRouter();
     const [typechange , settypechange] = useState(true)
     const [CompanyName, setCompanyName] = useState("")
     const [image, setImage] = useState()
+
     const [JobsType, setJobsType] = useState("")
     const [Location, setLocation] = useState("")
     const [CareerLevel, setCareerLevel] = useState("")
@@ -24,7 +26,8 @@ export function AddJob({categories, locations}) {
     const [Requirement , setRequirement] = useState("")
     const [error,seterror] = useState("")
     const [active, setActive ] = useState(false)
-
+    const { status, data } = useSession();
+    const UserData = data.user;
     async function imageUploadData() {
         const formData = new FormData();
         let imagesecureUrl = ""
@@ -57,7 +60,7 @@ export function AddJob({categories, locations}) {
             "JobsRequirement":Requirement,
             "DeadLine":new Date(DeadLine).toISOString(),
             "Apply":Apply,
-            "user_id":17,
+            "user_id":UserData.user_id,,
             "categoryId":categoryId,
             "LocationId":Location
         }).then(function (response) {
