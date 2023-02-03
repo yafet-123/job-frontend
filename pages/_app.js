@@ -10,6 +10,7 @@ import 'nprogress/nprogress.css'; //styles of nprogress
 Router.events.on('routeChangeStart', () => NProgress.start()); 
 Router.events.on('routeChangeComplete', () => NProgress.done()); 
 Router.events.on('routeChangeError', () => NProgress.done());
+import ReactDOM from "react-dom";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (

@@ -10,10 +10,11 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from 'next/dynamic'
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
-
-const Editor = dynamic(()=> import("react-draft-wysiwyg").then((module) => module.Editor),{
-    ssr:false,
+import 'react-quill/dist/quill.snow.css'
+const QuillNoSSRWrapper = dynamic(import('react-quill'), {  
+    ssr: false,
 })
+
 export function AddJob({categories, locations}) {
     const router = useRouter();
     const [typechange , settypechange] = useState(true)
@@ -35,10 +36,6 @@ export function AddJob({categories, locations}) {
     const [active, setActive ] = useState(false)
     const { status, data } = useSession();
     const UserData = data.user;
-
-    const [editorState ,seteditorState] = useState(EditorState.createEmpty())
-    const [editorState1 ,seteditorState1] = useState(EditorState.createEmpty())
-    const [editorState2 ,seteditorState2] = useState(EditorState.createEmpty())
 
     async function imageUploadData() {
         const formData = new FormData();
@@ -83,27 +80,39 @@ export function AddJob({categories, locations}) {
         });
     }
 
-    const onEditorStateChange = (editorState) => {
-        seteditorState(editorState);
-        setDescription(draftToHtml(convertToRaw(editorState.getCurrentContent())))
-    }
-
-    const onEditorStateChange1 = (editorState1) => {
-        seteditorState1(editorState1);
-        setRequirement(draftToHtml(convertToRaw(editorState1.getCurrentContent())))
-    }
-
-    const onEditorStateChange2 = (editorState2) => {
-        seteditorState2(editorState2);
-        setRequirement(draftToHtml(convertToRaw(editorState2.getCurrentContent())))
-    }
-
     console.log(Description)
 
     async function addJob(e){
         e.preventDefault()
         addJobData()
     }
+
+    const modules = {
+        toolbar: [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+            [{ 'direction': 'rtl' }],                         // text direction
+            
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean'] 
+        ],
+        clipboard: {
+            // toggle to add extra line breaks when pasting HTML:
+            matchVisual: false,
+        },
+    }
+    
 
     return (
         <div className="px-0 lg:px-10">
@@ -250,50 +259,34 @@ export function AddJob({categories, locations}) {
                     </div>
                 </div>
 
-                <div className="w-full">
+                <div className="w-full mb-10 mx-2">
                     <p  
-                        className="text-md lg:text-xl text-black dark:text-white mb-10 ml-2"
+                        className="text-md lg:text-xl text-black dark:text-white mb-5"
                     >
-                        Category
+                        Requirement
                     </p>
-                    <Editor 
-                        editorState={editorState}
-                        toolbarClassName="dark:!bg-slate-700 dark:!text-black flex!justify-center mx-auto !mx-2"
-                        wrapperClassName="dark:!text-white"
-                        editorClassName="dark:bg-slate-700 bg-white shaow-lg mb-12 border p-5 dark:text-white text-black !mx-2"
-                        onEditorStateChange={onEditorStateChange}
-                   />
+
+                    <QuillNoSSRWrapper value={Requirement} onChange={setRequirement} modules={modules} className="dark:!bg-white dark:!text-black" theme="snow" />
                 </div>
 
-                <div className="w-full">
+                <div className="w-full mb-10 mx-2">
                     <p  
-                        className="text-md lg:text-xl text-black dark:text-white mb-10 ml-2"
+                        className="text-md lg:text-xl text-black dark:text-white mb-5"
                     >
                         Description
                     </p>
 
-                    <Editor 
-                        editorState={editorState1}
-                        toolbarClassName="dark:!bg-slate-700 dark:text-white dark:!text-white flex!justify-center mx-auto !mx-2"
-                        wrapperClassName="dark:!text-white"
-                        editorClassName="dark:bg-slate-700 bg-white shaow-lg mb-12 border p-5 dark:text-white text-black !mx-2"
-                        onEditorStateChange={onEditorStateChange1}
-                   />
+                    <QuillNoSSRWrapper value={Description} onChange={setDescription} modules={modules} className="dark:!bg-white dark:!text-black" theme="snow" />
                 </div>
 
-                <div className="w-full">
+                <div className="w-full mb-10 mx-2">
                     <p  
-                        className="text-md lg:text-xl text-black dark:text-white mb-10 ml-2"
+                        className="text-md lg:text-xl text-black dark:text-white mb-5"
                     >
                         Apply
                     </p>
-                    <Editor 
-                        editorState={editorState2}
-                        toolbarClassName="dark:!bg-slate-700 dark:text-white dark:!text-white flex!justify-center mx-auto !mx-2"
-                        wrapperClassName="dark:!text-white"
-                        editorClassName="dark:bg-slate-700 bg-white shaow-lg mb-12 border p-5 dark:text-white text-black !mx-2"
-                        onEditorStateChange={onEditorStateChange2}
-                   />
+
+                    <QuillNoSSRWrapper value={Apply} onChange={setApply} modules={modules} className="dark:!bg-white dark:!text-black" theme="snow" />
                 </div>
 
                 <div className="mx-2">
