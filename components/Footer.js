@@ -28,11 +28,11 @@ export function Footer() {
             <Link href="/">
               <a>
                 <Image
-                  src="/images/logo.jpg"
+                  src="/images/logo.png"
                   className=""
                   alt=""
                   width={100}
-                  height={60}
+                  height={100}
                 />
               </a>
             </Link>
