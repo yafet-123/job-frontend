@@ -80,8 +80,11 @@ export function DisplayJob({jobs, categories, locations}) {
                                     <span className="text-sm ">{data.job_id} </span>
                                 </p>
 
-                                <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={50} height={50} alt="image that will be displayed" />
+                                
                             </div>
+
+                            <Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={500} height={500} alt="image that will be displayed" />
+                            
                             <div className="text-gray-700 dark:text-white font-bold">
                                 <span className="text-lg">Company Name : </span> 
                                 <span className="text-sm ">{data.CompanyName} </span>

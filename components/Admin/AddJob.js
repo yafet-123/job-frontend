@@ -6,7 +6,6 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useSession } from "next-auth/react";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from 'next/dynamic'
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
@@ -116,9 +115,9 @@ export function AddJob({categories, locations}) {
 
     return (
         <div className="px-0 lg:px-10">
-            <form className="max-w-7xl mx-auto mt-10" onSubmit={addJob}>
+            <form className="max-w-7xl lg:mx-auto mt-10" onSubmit={addJob}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Add Job</h1>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-10 mx-2">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-10 px-2">
                     <div className="relative mb-5">
                         <input 
                             id="CompanyName" 
@@ -186,7 +185,7 @@ export function AddJob({categories, locations}) {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 mx-2">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 px-2">
                     <div className="relative mb-5">
                         <input 
                             id="CareerLevel" 
@@ -222,7 +221,7 @@ export function AddJob({categories, locations}) {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 mx-2">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 px-2">
                     <div className="relative mb-5">
                         <input 
                             id="Salary" 
@@ -259,37 +258,37 @@ export function AddJob({categories, locations}) {
                     </div>
                 </div>
 
-                <div className="w-full mb-10 mx-2">
+                <div className="mb-10 ">
                     <p  
-                        className="text-md lg:text-xl text-black dark:text-white mb-5"
+                        className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
                     >
                         Requirement
                     </p>
 
-                    <QuillNoSSRWrapper value={Requirement} onChange={setRequirement} modules={modules} className="dark:!bg-white dark:!text-black" theme="snow" />
+                    <QuillNoSSRWrapper value={Requirement} onChange={setRequirement} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
                 </div>
 
-                <div className="w-full mb-10 mx-2">
+                <div className="mb-10 ">
                     <p  
-                        className="text-md lg:text-xl text-black dark:text-white mb-5"
+                        className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
                     >
                         Description
                     </p>
 
-                    <QuillNoSSRWrapper value={Description} onChange={setDescription} modules={modules} className="dark:!bg-white dark:!text-black" theme="snow" />
+                    <QuillNoSSRWrapper value={Description} onChange={setDescription} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
                 </div>
 
-                <div className="w-full mb-10 mx-2">
+                <div className="mb-10 ">
                     <p  
-                        className="text-md lg:text-xl text-black dark:text-white mb-5"
+                        className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
                     >
                         Apply
                     </p>
 
-                    <QuillNoSSRWrapper value={Apply} onChange={setApply} modules={modules} className="dark:!bg-white dark:!text-black" theme="snow" />
+                    <QuillNoSSRWrapper value={Apply} onChange={setApply} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
                 </div>
 
-                <div className="mx-2">
+                <div className="mb-10 ">
                     <Multiselect
                         displayValue="CategoryName"
                         placeholder = "Category"
@@ -306,21 +305,20 @@ export function AddJob({categories, locations}) {
                     />
                 </div>
 
-                <div className="grid grid-cols-1 gap-5 my-10 mx-2">
-                    <div className="flex items-center justify-center w-full">
-                        <label 
-                            htmlFor="dropzone-file" 
-                            className="flex flex-col items-center justify-center w-full h-64 border-2 border-black border rounded-lg cursor-pointer bg-transparent dark:hover:bg-bray-800 dark:bg-slate-700 hover:bg-gray-100 dark:border-black dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                        >
-                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                <p className="text-sm lg:text-lg text-black dark:text-white mb-5">Upload Company Image</p>
-                                <svg aria-hidden="true" className="w-10 h-10 mb-3 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                <p className="mb-2 text-xs lg:text-sm text-black dark:text-white"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                            </div>
-                            <input id="dropzone-file" type="file" className="hidden" onChange={(e) => setImage(e.target.files[0])} />
-                        </label>
-                    </div>
+                <div className="flex items-center justify-center w-full px-2">
+                    <label 
+                        htmlFor="dropzone-file" 
+                        className="flex flex-col items-center justify-center w-full h-64 border-2 border-black border rounded-lg cursor-pointer bg-transparent dark:hover:bg-bray-800 dark:bg-slate-700 hover:bg-gray-100 dark:border-black dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    >
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                            <p className="text-sm lg:text-lg text-black dark:text-white mb-5">Upload Company Image</p>
+                            <svg aria-hidden="true" className="w-10 h-10 mb-3 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                            <p className="mb-2 text-xs lg:text-sm text-black dark:text-white"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                        </div>
+                        <input id="dropzone-file" type="file" className="hidden" onChange={(e) => setImage(e.target.files[0])} />
+                    </label>
                 </div>
+                
 
                 <div className={image == null ? "hidden" : "flex justify-center items-center mb-10"}>
                     <Image 
@@ -331,7 +329,7 @@ export function AddJob({categories, locations}) {
                     />
                 </div>
 
-                <div className="my-5 flex flex-col lg:flex-row justify-between">
+                <div className="my-5 flex flex-col lg:flex-row justify-between px-5">
                     <h1 className="text-red-600 dark:text-red-400 text-md lg:text-2xl font-bold text-left mb-5 lg:mb-0">
                         {error}
                     </h1>
