@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Job" ALTER COLUMN "Apply" SET DATA TYPE TEXT;

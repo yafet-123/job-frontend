@@ -6,7 +6,14 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useSession } from "next-auth/react";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import dynamic from 'next/dynamic'
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 
+const Editor = dynamic(()=> import("react-draft-wysiwyg").then((module) => module.Editor),{
+    ssr:false,
+})
 export function AddJob({categories, locations}) {
     const router = useRouter();
     const [typechange , settypechange] = useState(true)
@@ -28,6 +35,11 @@ export function AddJob({categories, locations}) {
     const [active, setActive ] = useState(false)
     const { status, data } = useSession();
     const UserData = data.user;
+
+    const [editorState ,seteditorState] = useState(EditorState.createEmpty())
+    const [editorState1 ,seteditorState1] = useState(EditorState.createEmpty())
+    const [editorState2 ,seteditorState2] = useState(EditorState.createEmpty())
+
     async function imageUploadData() {
         const formData = new FormData();
         let imagesecureUrl = ""
@@ -65,11 +77,28 @@ export function AddJob({categories, locations}) {
             "user_id":UserData.user_id
         }).then(function (response) {
             console.log(response.data);
-            
+            router.reload()
         }).catch(function (error) {
             seterror("Creating Job Failed")
         });
     }
+
+    const onEditorStateChange = (editorState) => {
+        seteditorState(editorState);
+        setDescription(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+    }
+
+    const onEditorStateChange1 = (editorState1) => {
+        seteditorState1(editorState1);
+        setRequirement(draftToHtml(convertToRaw(editorState1.getCurrentContent())))
+    }
+
+    const onEditorStateChange2 = (editorState2) => {
+        seteditorState2(editorState2);
+        setRequirement(draftToHtml(convertToRaw(editorState2.getCurrentContent())))
+    }
+
+    console.log(Description)
 
     async function addJob(e){
         e.preventDefault()
@@ -80,7 +109,7 @@ export function AddJob({categories, locations}) {
         <div className="px-0 lg:px-10">
             <form className="max-w-7xl mx-auto mt-10" onSubmit={addJob}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Add Job</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10 mx-2">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-10 mx-2">
                     <div className="relative mb-5">
                         <input 
                             id="CompanyName" 
@@ -146,7 +175,9 @@ export function AddJob({categories, locations}) {
                             Location
                         </label>
                     </div>
+                </div>
 
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 mx-2">
                     <div className="relative mb-5">
                         <input 
                             id="CareerLevel" 
@@ -180,7 +211,9 @@ export function AddJob({categories, locations}) {
                             Employment Type
                         </label>
                     </div>
+                </div>
 
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 mx-2">
                     <div className="relative mb-5">
                         <input 
                             id="Salary" 
@@ -195,25 +228,6 @@ export function AddJob({categories, locations}) {
                             className="absolute texxt-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Salary
-                        </label>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-10 mx-2">
-                    <div className="relative mb-5">
-                        <input 
-                            id="Apply" 
-                            type="text"
-                            required 
-                            className="block w-full px-3 text-md lg:text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                            value={Apply}
-                            onChange={(e) => setApply(e.target.value)}
-                        />
-                        <label 
-                            htmlFor="floating_outlined" 
-                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >
-                            Apply
                         </label>
                     </div>
 
@@ -236,42 +250,50 @@ export function AddJob({categories, locations}) {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-10 mx-2">
-                    <div className="relative mb-5">
-                        <textarea 
-                            id="Description" 
-                            rows="10" 
-                            cols="33"
-                            required
-                            className="block w-full px-3 text-md lg:text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                            value={Description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                        <label 
-                            htmlFor="floating_outlined" 
-                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-10 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >
-                            Job Description
-                        </label>
-                    </div>
+                <div className="w-full">
+                    <p  
+                        className="text-md lg:text-xl text-black dark:text-white mb-10 ml-2"
+                    >
+                        Category
+                    </p>
+                    <Editor 
+                        editorState={editorState}
+                        toolbarClassName="dark:!bg-slate-700 dark:!text-black flex!justify-center mx-auto !mx-2"
+                        wrapperClassName="dark:!text-white"
+                        editorClassName="dark:bg-slate-700 bg-white shaow-lg mb-12 border p-5 dark:text-white text-black !mx-2"
+                        onEditorStateChange={onEditorStateChange}
+                   />
+                </div>
 
-                    <div className="relative mb-5">
-                        <textarea 
-                            id="Requirement"
-                            rows="10" 
-                            cols="33"
-                            required 
-                            className="block w-full px-3 text-md lg:text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                            value={Requirement}
-                            onChange={(e) => setRequirement(e.target.value)}
-                        />
-                        <label 
-                            htmlFor="floating_outlined" 
-                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-10 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >
-                            Jobs Requirement
-                        </label>
-                    </div>
+                <div className="w-full">
+                    <p  
+                        className="text-md lg:text-xl text-black dark:text-white mb-10 ml-2"
+                    >
+                        Description
+                    </p>
+
+                    <Editor 
+                        editorState={editorState1}
+                        toolbarClassName="dark:!bg-slate-700 dark:text-white dark:!text-white flex!justify-center mx-auto !mx-2"
+                        wrapperClassName="dark:!text-white"
+                        editorClassName="dark:bg-slate-700 bg-white shaow-lg mb-12 border p-5 dark:text-white text-black !mx-2"
+                        onEditorStateChange={onEditorStateChange1}
+                   />
+                </div>
+
+                <div className="w-full">
+                    <p  
+                        className="text-md lg:text-xl text-black dark:text-white mb-10 ml-2"
+                    >
+                        Apply
+                    </p>
+                    <Editor 
+                        editorState={editorState2}
+                        toolbarClassName="dark:!bg-slate-700 dark:text-white dark:!text-white flex!justify-center mx-auto !mx-2"
+                        wrapperClassName="dark:!text-white"
+                        editorClassName="dark:bg-slate-700 bg-white shaow-lg mb-12 border p-5 dark:text-white text-black !mx-2"
+                        onEditorStateChange={onEditorStateChange2}
+                   />
                 </div>
 
                 <div className="mx-2">
@@ -329,5 +351,5 @@ export function AddJob({categories, locations}) {
                 </div>
             </form>
         </div>
-  );
+    );
 }

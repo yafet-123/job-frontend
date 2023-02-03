@@ -32,7 +32,7 @@ model Job {
   JobsDescreption String?
   JobsRequirement String?
   DeadLine        DateTime      @db.Date
-  Apply           String        @db.VarChar(255)
+  Apply           String        
   CreatedDate     DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate    DateTime?     @default(now()) @db.Timestamptz(6)
   user_id         Int

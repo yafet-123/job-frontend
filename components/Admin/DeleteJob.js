@@ -1,5 +1,8 @@
 import axios from 'axios';
+import { useRouter } from 'next/router'
+
 export function DeleteJob({setdeleteModalOn,deletejobid}) {
+    const router = useRouter();
 	const handleOKClickFordelete = async() => {
         const data = await axios.delete(`api/deletejob/${deletejobid}`,{
         }).then(function (response) {
