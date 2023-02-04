@@ -6,15 +6,20 @@ import { MainHeader } from '../components/MainHeader';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import AboutUsImage from '../public/images/bgImage3.avif';
+import AboutUsImage1 from '../public/images/bgImage1.avif';
+import AboutUsImage2 from '../public/images/bgImage2.avif';
+import AboutUsImage3 from '../public/images/bgImage3.avif';
+import AboutUsImage4 from '../public/images/bgImage4.avif';
 
 export default function News() {
   var settings = {
     dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    slidesToScroll: 1,
+    autoplay: true
   };
   return (
     <React.Fragment>
@@ -24,7 +29,94 @@ export default function News() {
         <Slider {...settings}>
           <div className="!flex flex-col lg:flex-row h-full pl-5">
               <Image
-                src={AboutUsImage}
+                src={AboutUsImage1}
+                width={1000}
+                height={1000}
+                className="border border-black rounded-xl w-full"
+                alt="latest news image"
+              />
+
+              <div className="flex flex-col my-20 lg:mx-10">
+                <h3 className="mb-5">
+                  <span className="text-2xl font-bold text-black"> Category Name </span>
+                  <span className="font-normal text-lg text-gray-600">
+                     - Date of the post
+                  </span>
+                </h3>
+
+                <h1 className="text-xl lg:text-4xl font-extrabold text-black tracking-wide leading-snug lg:w-3/4">
+                  Your most unhappy customers are your greater source of learning.
+                </h1>
+
+                <p className="mt-5 leading-loose font-sans text-lg font-medium tracking-wide text-left text-slate-700">
+                  So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my 
+                  way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of 
+                  all living things but I tell you Jerry at that moment, I was a marine biologist.
+                </p>
+              </div>
+          </div>
+
+          <div className="!flex flex-col lg:flex-row h-full pl-5">
+              <Image
+                src={AboutUsImage2}
+                width={1000}
+                height={1000}
+                className="border border-black rounded-xl w-full"
+                alt="latest news image"
+              />
+
+              <div className="flex flex-col my-20 lg:mx-10">
+                <h3 className="mb-5">
+                  <span className="text-2xl font-bold text-black"> Category Name </span>
+                  <span className="font-normal text-lg text-gray-600">
+                     - Date of the post
+                  </span>
+                </h3>
+
+                <h1 className="text-xl lg:text-4xl font-extrabold text-black tracking-wide leading-snug lg:w-3/4">
+                  Your most unhappy customers are your greater source of learning.
+                </h1>
+
+                <p className="mt-5 leading-loose font-sans text-lg font-medium tracking-wide text-left text-slate-700">
+                  So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my 
+                  way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of 
+                  all living things but I tell you Jerry at that moment, I was a marine biologist.
+                </p>
+              </div>
+          </div>
+
+          <div className="!flex flex-col lg:flex-row h-full pl-5">
+              <Image
+                src={AboutUsImage3}
+                width={1000}
+                height={1000}
+                className="border border-black rounded-xl w-full"
+                alt="latest news image"
+              />
+
+              <div className="flex flex-col my-20 lg:mx-10">
+                <h3 className="mb-5">
+                  <span className="text-2xl font-bold text-black"> Category Name </span>
+                  <span className="font-normal text-lg text-gray-600">
+                     - Date of the post
+                  </span>
+                </h3>
+
+                <h1 className="text-xl lg:text-4xl font-extrabold text-black tracking-wide leading-snug lg:w-3/4">
+                  Your most unhappy customers are your greater source of learning.
+                </h1>
+
+                <p className="mt-5 leading-loose font-sans text-lg font-medium tracking-wide text-left text-slate-700">
+                  So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my 
+                  way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of 
+                  all living things but I tell you Jerry at that moment, I was a marine biologist.
+                </p>
+              </div>
+          </div>
+
+          <div className="!flex flex-col lg:flex-row h-full pl-5">
+              <Image
+                src={AboutUsImage4}
                 width={1000}
                 height={1000}
                 className="border border-black rounded-xl w-full"
