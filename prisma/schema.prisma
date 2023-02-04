@@ -77,5 +77,39 @@ model JobCategory {
   Category     Category  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
   Job          Job       @relation(fields: [job_id], references: [job_id], onDelete: Cascade, onUpdate: Cascade)
   User         User?     @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+}
 
+model News {
+  news_id                      Int           @id @default(autoincrement()) 
+  Header                       String?
+  Image                        String?       @db.VarChar(255)
+  ShortDescription             String?           
+  Description                  String?      
+  user_id                      Int
+  CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
+  User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
+  NewsCategoryRelationship     NewsCategoryRelationship[]
+}
+
+model NewsCategory {
+  category_id                   Int           @id @default(autoincrement())
+  CategoryName                  String        @db.VarChar(255)
+  user_id                       Int?
+  CreatedDate                   DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  User                          User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+  JobCategory                   JobCategory[]
+}
+
+model NewsCategoryRelationship{
+  news_category_id  Int           @id @default(autoincrement())
+  user_id           Int?
+  category_id       Int
+  news_id           Int
+  CreatedDate       DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate      DateTime?     @default(now()) @db.Timestamptz(6)
+  NewsCategory      NewsCategory  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
+  News              News          @relation(fields: [news_id], references: [news_id], onDelete: Cascade, onUpdate: Cascade)
+  User              User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
 }
