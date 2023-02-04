@@ -16,6 +16,7 @@ export function VerticalNavbar({onChange, data}){
         { title: "displayJob", icon: <BsDisplay size={25}/>, name: "Display Job" },
         { title: "addCategory", icon: <MdOutlineCategory size={25}/>, name: "Category" },
         { title: "addlocation", icon: <MdLocationOn size={25}/>, name: "Location" },
+        { title: "addnews", icon: <MdLocationOn size={25}/>, name: "News" },
     ];
 	const router = useRouter();
     const [sideBar , setsideBar] = useState(true);
