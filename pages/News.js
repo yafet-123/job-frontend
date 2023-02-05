@@ -146,9 +146,9 @@ export default function News() {
                   </h1>
 
                   <p className="mt-5 leading-loose font-sans text-sm lg:text-lg font-medium tracking-wide text-left dark:text-white text-slate-700">
-                    The <Image /> component accepts a number of additional properties beyond those which are required. This section describes 
+                    {`The <Image /> component accepts a number of additional properties beyond those which are required. This section describes 
                     the most commonly-used properties of the Image component. Find details about more rarely-used properties in the Advanced 
-                    Props section
+                    Props section`}
                   </p>
                 </div>
             </div>
