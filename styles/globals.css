@@ -6,15 +6,6 @@
   display: block;
 }
 
-.ql-toolbar .ql-stroke {
-    dark:!bg-white
-}
-
-.ql-toolbar .ql-fill {
-    fill: #fff;
-    stroke: none;
-}
-
-.ql-toolbar .ql-picker {
-    color: #fff;
+.slick-arrow{
+    color: white;
 }
