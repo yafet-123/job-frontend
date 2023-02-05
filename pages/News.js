@@ -26,8 +26,8 @@ export default function News() {
   return (
     <React.Fragment>
       <MainHeader title="News" />
-      <section className="w-full h-full bg-white dark:!bg-slate-700 py-32">
-        <div className="max-w-7xl mx-auto flex flex-col">
+      <section className="w-full h-full bg-white dark:!bg-slate-700 overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-3xl lg:text-7xl font-bold my-10 italic">Trending</h1>
           <Slider {...settings}>
             <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96">
