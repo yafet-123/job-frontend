@@ -155,7 +155,7 @@ export default function News() {
             </div>
           </Slider>
 
-          <div className="bg-white dark:bg-slate-700 py-5 px-2 lg:px-10 w-full h-full">      
+          <div className="bg-white dark:bg-slate-700 py-5 px-3 lg:px-10 w-full h-full">      
             <h1 className="text-center text-3xl lg:text-5xl font-bold my-5 italic">Latest News</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
               {NewsTemplate.map((data,index)=>(
@@ -167,7 +167,7 @@ export default function News() {
                     alt="latest news image"
                   />
                   <div className="w-full flex flex-col my-5">
-                    <h3 className="mb-5">
+                    <h3 className="my-5">
                       <span className="text-md lg:text-lg font-bold dark:text-white text-black"> Category Name </span>
                       <span className="font-normal text-sm lg:text-md dark:text-white text-gray-600">
                          - Date of the post
