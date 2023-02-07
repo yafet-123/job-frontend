@@ -44,7 +44,7 @@ export function AddNews() {
         return imagesecureUrl
     }
 
-    async function addLocation(){
+    async function addnews(){
         const imageData = await imageUploadData()
         seterror("")
         const data = await axios.post(`api/addlocation`,{
@@ -59,9 +59,9 @@ export function AddNews() {
         });
     }
 
-    function registerLocation(e){
+    function registerNews(e){
         e.preventDefault()
-        addLocation()
+        addnews()
     }
 
     const clickedFordelete = () => {
@@ -74,7 +74,7 @@ export function AddNews() {
 
     return (
         <div className="px-0 lg:px-10 h-full">
-            <form className="max-w-7xl mx-auto mt-10" onSubmit={registerLocation}>
+            <form className="max-w-7xl mx-auto mt-10" onSubmit={registerNews}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Location</h1>
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1">

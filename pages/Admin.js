@@ -154,6 +154,7 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) 
             { selected == "displayJob" && <DisplayJob jobs={Alljobs} categories={Allcategories} locations={Alllocations}/>}
             { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
             { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
+            { selected == "addnewscategory" && <AddNewsCategory />}
             { selected == "addnews" && <AddNews />}
           </div>
         </div>
