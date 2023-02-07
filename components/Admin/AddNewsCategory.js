@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import {DeleteCategory} from './DeleteCategory'
 import {UpdateCategory} from './UpdateCategory'
 
-export function AddNewsCategory() {
+export function AddNewsCategory({categories}) {
     const router = useRouter();
     const [category, setcategory] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);

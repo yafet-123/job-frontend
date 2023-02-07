@@ -5,6 +5,8 @@ import { DisplayJob } from "../components/Admin/DisplayJob";
 import { AddCategory } from "../components/Admin/AddCategory";
 import { AddJob } from "../components/Admin/AddJob";
 import { AddLocation } from "../components/Admin/AddLocation";
+import { AddNewsCategory } from "../components/Admin/AddNewsCategory";
+import { AddNews } from "../components/Admin/AddNews";
 import { DisplayCategory } from "../components/Admin/DisplayCategory";
 import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
@@ -144,11 +146,12 @@ export async function getServerSideProps(){
       Allusers:JSON.parse(JSON.stringify(Allusers)),
       Allcategories:JSON.parse(JSON.stringify(Allcategories)),
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
+      AllNewscategories:JSON.parse(JSON.stringify(AllNewscategories))
     }
   }
 }
 
-export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) {
+export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, AllNewscategories }) {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
   // console.log(jobCategory)
@@ -174,7 +177,7 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) 
             { selected == "displayJob" && <DisplayJob jobs={Alljobs} categories={Allcategories} locations={Alllocations}/>}
             { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
             { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
-            { selected == "addnewscategory" && <AddNewsCategory />}
+            { selected == "addnewscategory" && <AddNewsCategory categories={AllNewscategories} />}
             { selected == "addnews" && <AddNews categories={AllNewscategories} />}
           </div>
         </div>
