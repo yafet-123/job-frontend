@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 
 export default async function handleaddnewscategory(req, res){
 	const {CategoryName , user_id} = req.body;
-	const data = await prisma.Category.create({
+	const data = await prisma.NewsCategory.create({
 		data:{
 			CategoryName,
 			user_id
