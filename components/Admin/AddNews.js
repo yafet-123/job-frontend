@@ -10,7 +10,7 @@ import {UpdateLocation} from './UpdateLocation'
 
 export function AddNews({categories}) {
     const router = useRouter();
-    console.log(locations)
+    
     const [Header, setHeader] = useState("")
     const [ShortDescription, setShortDescription] = useState("")
     const [Description, setDescription] = useState("")
