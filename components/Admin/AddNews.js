@@ -7,6 +7,12 @@ import { useSession } from "next-auth/react";
 import Image from 'next/image'
 import {DeleteLocation} from './DeleteLocation'
 import {UpdateLocation} from './UpdateLocation'
+import Multiselect from 'multiselect-react-dropdown';
+import 'react-quill/dist/quill.snow.css'
+import dynamic from 'next/dynamic'
+const QuillNoSSRWrapper = dynamic(import('react-quill'), {  
+    ssr: false,
+})
 
 export function AddNews({categories}) {
     const router = useRouter();
@@ -26,6 +32,32 @@ export function AddNews({categories}) {
     const [error,seterror] = useState("")
     const UserData = data.user;
     const [active, setActive] = useState(false)
+
+    const modules = {
+        toolbar: [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+            [{ 'direction': 'rtl' }],                         // text direction
+            
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean'] 
+        ],
+        clipboard: {
+            // toggle to add extra line breaks when pasting HTML:
+            matchVisual: false,
+        },
+    }
 
     async function imageUploadData() {
         const formData = new FormData();
@@ -78,7 +110,7 @@ export function AddNews({categories}) {
 
     return (
         <div className="px-0 lg:px-10 h-full">
-            <form className="max-w-7xl mx-auto mt-10" onSubmit={registerNews}>
+            <form className="max-w-7xl mx-auto my-10" onSubmit={registerNews}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Location</h1>
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1">
@@ -94,11 +126,12 @@ export function AddNews({categories}) {
                             htmlFor="floating_outlined" 
                             className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
-                            Location Name
+                            Header
                         </label>
                     </div>
+                </div>
 
-                    <div className="mb-10 ">
+                <div className="my-10">
                         <Multiselect
                             displayValue="CategoryName"
                             placeholder = "Category"
@@ -172,7 +205,6 @@ export function AddNews({categories}) {
                             Submit
                         </button>     
                     </div>
-                </div>
             </form>
 
             
