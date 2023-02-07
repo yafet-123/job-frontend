@@ -14,6 +14,7 @@ export function AddNews() {
     const [Header, setHeader] = useState("")
     const [ShortDescription, setShortDescription] = useState("")
     const [Description, setDescription] = useState("")
+    const [categoryId, setCategoryId] = useState([])
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deletenewsid,setdeletenewsid] = useState()
@@ -47,10 +48,13 @@ export function AddNews() {
     async function addnews(){
         const imageData = await imageUploadData()
         seterror("")
-        const data = await axios.post(`api/addlocation`,{
+        const data = await axios.post(`api/addNews`,{
             "Header": Header,
+            "ShortDescription" : ShortDescription,
+            "Description" : Description,
             "user_id": UserData.user_id,
             "Image":imageData,
+            "categoryId" : categoryId
         }).then(function (response) {
             console.log(response.data);
             router.reload()
@@ -79,12 +83,12 @@ export function AddNews() {
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1">
                         <input 
-                            id="LocationName" 
+                            id="Header" 
                             type="text" 
                             required
                             className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                            value={LocationName}
-                            onChange={(e) => setLocationName(e.target.value)}
+                            value={Header}
+                            onChange={(e) => setHeader(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
@@ -92,6 +96,23 @@ export function AddNews() {
                         >
                             Location Name
                         </label>
+                    </div>
+
+                    <div className="mb-10 ">
+                        <Multiselect
+                            displayValue="CategoryName"
+                            placeholder = "Category"
+                            className="w-full px-1 lg:px-3 text-md lg:text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-black dark:bg-slate-700 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+                            onKeyPressFn={function noRefCheck(){}}
+                            onRemove={function noRefCheck(){}}
+                            onSearch={function noRefCheck(){}}
+                            onSelect={(e)=>{
+                                e.map((data,index)=>(
+                                   setCategoryId([...categoryId, data.category_id])
+                                ))
+                            }}
+                            options={categories}
+                        />
                     </div>
 
                     <div className="mb-10 ">

@@ -19,7 +19,7 @@ export function AddNewsCategory() {
     const [error,seterror] = useState("")
     const UserData = data.user;
     async function registerCategory(){
-        const data = await axios.post(`api/addCtegory`,{
+        const data = await axios.post(`api/addNewsCategory`,{
             "CategoryName": category,
             "user_id": UserData.user_id,
         }).then(function (response) {
