@@ -94,6 +94,26 @@ export function AddNews() {
                         </label>
                     </div>
 
+                    <div className="mb-10 ">
+                        <p  
+                            className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
+                        >
+                            Short Description
+                        </p>
+
+                        <QuillNoSSRWrapper value={ShortDescription} onChange={setShortDescription} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                    </div>
+
+                    <div className="mb-10 ">
+                        <p  
+                            className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
+                        >
+                            Description
+                        </p>
+
+                        <QuillNoSSRWrapper value={Description} onChange={setDescription} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                    </div>
+
                     <div className="grid grid-cols-1 gap-5 my-10">
                         <div className="flex items-center justify-center w-full">
                             <label 
