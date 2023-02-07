@@ -8,7 +8,7 @@ import Image from 'next/image'
 import {DeleteLocation} from './DeleteLocation'
 import {UpdateLocation} from './UpdateLocation'
 
-export function AddNews() {
+export function AddNews({categories}) {
     const router = useRouter();
     console.log(locations)
     const [Header, setHeader] = useState("")

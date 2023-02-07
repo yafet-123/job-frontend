@@ -40,6 +40,18 @@ export async function getServerSideProps(){
       }
     }
   })
+  const newscategories = await prisma.NewsCategory.findMany({
+    orderBy: {
+      category_id:"asc"
+    },
+    include:{
+      User:{
+          select:{
+              UserName:true
+          }
+      }
+    }
+  })
   const jobs = await prisma.Job.findMany({
     orderBy: {
       job_id:"asc"
@@ -68,7 +80,7 @@ export async function getServerSideProps(){
       },
     } 
   })
-  console.log(categories)
+
   const Alllocations = locations.map((data)=>({
       location_id:data.location_id,
       LocationName:data.LocationName,
@@ -79,6 +91,14 @@ export async function getServerSideProps(){
   }))
 
   const Allcategories = categories.map((data)=>({
+      category_id:data.category_id,
+      CategoryName:data.CategoryName,
+      CreatedDate:data.CreatedDate,
+      ModifiedDate:data.ModifiedDate,
+      userName:data.User.UserName
+  }))
+
+  const AllNewscategories = newscategories.map((data)=>({
       category_id:data.category_id,
       CategoryName:data.CategoryName,
       CreatedDate:data.CreatedDate,
@@ -155,7 +175,7 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations }) 
             { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
             { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
             { selected == "addnewscategory" && <AddNewsCategory />}
-            { selected == "addnews" && <AddNews />}
+            { selected == "addnews" && <AddNews categories={AllNewscategories} />}
           </div>
         </div>
       </React.Fragment>
