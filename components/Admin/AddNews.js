@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useRef } from "react"
 import { useState,useEffect, useContext} from 'react'
 import axios from 'axios';
 import moment from 'moment';
@@ -10,9 +10,20 @@ import {UpdateLocation} from './UpdateLocation'
 import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
-const QuillNoSSRWrapper = dynamic(import('react-quill'), {  
+
+const QuillNoSSRWrapper = dynamic(
+  async () => {
+    const QuillNoSSRWrapper = (await import("react-quill")).default
+
+    return ({
+      forwardedRef,
+      ...rest
+    }) => <QuillNoSSRWrapper ref={forwardedRef} {...rest} />
+  },
+  {
     ssr: false,
-})
+  },
+)
 
 export function AddNews({categories}) {
     const router = useRouter();
@@ -26,43 +37,65 @@ export function AddNews({categories}) {
     const [deletenewsid,setdeletenewsid] = useState()
     const [updatenewsid,setupdatenewsid] = useState()
     const [updatelocationname,setupdatelocationname] = useState("")
-    const [image, setImage] = useState()
+    const [images, setImage] = useState()
     const [saveUpload, setsaveUpload] = useState(false)
     const { status, data } = useSession();
     const [error,seterror] = useState("")
     const UserData = data.user;
     const [active, setActive] = useState(false)
 
-    const modules = {
-        toolbar: [
-            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-            ['blockquote', 'code-block'],
+    const quillRef = useRef(null)
+    const modules = useMemo(() => ({
+        toolbar: {
+            container: [
+                    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                    ['blockquote', 'code-block'],
 
-            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-            [{ 'direction': 'rtl' }],                         // text direction
+                    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                    [{ 'direction': 'rtl' }],                         // text direction
             
-            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
-            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-            [{ 'font': [] }],
-            [{ 'align': [] }],
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ 'font': [] }],
+                    [{ 'align': [] }],
 
-            ['clean'] 
-        ],
+                    ["link","image", "video"],
+                ],
+            handlers: {
+                image: imageHandler,
+            },
+        },
+
         clipboard: {
-            // toggle to add extra line breaks when pasting HTML:
             matchVisual: false,
         },
+    }),[])
+
+    function imageHandler() {
+        console.log(quillRef)
+        if (!quillRef.current) return
+        
+        const editor = quillRef.current.getEditor()
+        const range = editor.getSelection()
+        const value = prompt("Please enter the image URL")
+        console.log(value)
+        console.log(range)
+        console.log(editor)
+        if (value && range) {
+          editor.insertEmbed(range.index, "image", value, "user")
+        }
     }
+
 
     async function imageUploadData() {
         const formData = new FormData();
         let imagesecureUrl = ""
-        formData.append('file', image)
+        formData.append('file', images)
 
         formData.append('upload_preset', 'my_upload')
 
@@ -155,7 +188,7 @@ export function AddNews({categories}) {
                             Short Description
                         </p>
 
-                        <QuillNoSSRWrapper value={ShortDescription} onChange={setShortDescription} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                        <QuillNoSSRWrapper forwardedRef={quillRef} value={ShortDescription} onChange={setShortDescription} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
                     </div>
 
                     <div className="mb-10 ">
@@ -165,7 +198,7 @@ export function AddNews({categories}) {
                             Description
                         </p>
 
-                        <QuillNoSSRWrapper value={Description} onChange={setDescription} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                        <QuillNoSSRWrapper forwardedRef={quillRef} value={Description} onChange={setDescription} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
                     </div>
 
                     <div className="grid grid-cols-1 gap-5 my-10">
@@ -184,9 +217,9 @@ export function AddNews({categories}) {
                         </div>
                     </div>
 
-                    <div className={image == null ? "hidden" : "flex justify-center items-center mb-10"}>
+                    <div className={images == null ? "hidden" : "flex justify-center items-center mb-10"}>
                         <Image 
-                            src={image == null ? "/images/bgImage1.avif" :URL.createObjectURL(image)} 
+                            src={images == null ? "/images/bgImage1.avif" :URL.createObjectURL(images)} 
                             width={500} height={200} 
                             alt="image that will be displayed" 
                             className="w-full"

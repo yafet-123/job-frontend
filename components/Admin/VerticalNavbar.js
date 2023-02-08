@@ -2,6 +2,8 @@ import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlineUser, AiOutlineFolderAdd } from "react-icons/ai";
 import { MdOutlineCategory, MdLocationOn } from "react-icons/md";
+import { BsNewspaper } from 'react-icons/bs'
+import {GiNewspaper} from 'react-icons/gi'
 import Link from 'next/link'
 import { useSession, signIn, signOut  } from "next-auth/react";
 import { FiLogOut } from "react-icons/fi"
@@ -16,8 +18,8 @@ export function VerticalNavbar({onChange, data}){
         { title: "displayJob", icon: <BsDisplay size={25}/>, name: "Display Job" },
         { title: "addCategory", icon: <MdOutlineCategory size={25}/>, name: "Category" },
         { title: "addlocation", icon: <MdLocationOn size={25}/>, name: "Location" },
-        { title: "addnewscategory", icon: <MdLocationOn size={25}/>, name: "News Category" },
-        { title: "addnews", icon: <MdLocationOn size={25}/>, name: "News" },
+        { title: "addnewscategory", icon: <BsNewspaper size={25}/>, name: "News Category" },
+        { title: "addnews", icon: <GiNewspaper size={25}/>, name: "News" },
     ];
 	const router = useRouter();
     const [sideBar , setsideBar] = useState(true);
