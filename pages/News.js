@@ -12,7 +12,33 @@ import AboutUsImage3 from '../public/images/bgImage3.avif';
 import AboutUsImage4 from '../public/images/bgImage4.avif';
 
 export async function getServerSideProps(context){
-  const news = await prisma.News.findMany({orderBy : {ModifiedDate:'desc'}});
+  const news = await prisma.News.findMany({
+    orderBy : {
+      ModifiedDate:'desc'
+    },
+    NewsCategoryRelationship:{
+      include:{
+        NewsCategory:{
+          select:{
+            category_id:true,
+            CategoryName:true
+          }
+        }
+      }
+    },
+  });
+
+  const Alljobs = jobs.map((data)=>({
+    news_id:data.news_id,
+    Header:data.Header,
+    Image:data.Image,
+    ShortDescription:data.ShortDescription,
+    Description:data.Description,
+    userName:data.User.UserName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate,
+    Category:data.NewsCategoryRelationship
+  }))
 
   return{
     props:{
