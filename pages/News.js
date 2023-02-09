@@ -11,7 +11,17 @@ import AboutUsImage2 from '../public/images/bgImage2.avif';
 import AboutUsImage3 from '../public/images/bgImage3.avif';
 import AboutUsImage4 from '../public/images/bgImage4.avif';
 
-export default function News() {
+export async function getServerSideProps(context){
+  const news = await prisma.News.findMany({orderBy : {ModifiedDate:'desc'}});
+
+  return{
+    props:{
+      allnews:JSON.parse(JSON.stringify(allnews)),
+    }
+  }
+}
+
+export default function News({allnews}) {
   var settings = {
     dots: true,
     lazyLoad: true,
@@ -158,7 +168,7 @@ export default function News() {
           <div className="bg-white dark:bg-slate-700 py-5 px-3 lg:px-10 w-full h-full">      
             <h1 className="text-center text-3xl lg:text-5xl font-bold my-5 italic">Latest News</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
-              {NewsTemplate.map((data,index)=>(
+              {allnews.map((data,index)=>(
                 <div key={index} className="flex flex-col w-full h-full lg:mt-20 float-right">
                   <Image
                     src={AboutUsImage4}
