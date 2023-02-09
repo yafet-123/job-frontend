@@ -28,7 +28,7 @@ export async function getServerSideProps(context){
     },
   });
 
-  const Alljobs = jobs.map((data)=>({
+  const allnews = news.map((data)=>({
     news_id:data.news_id,
     Header:data.Header,
     Image:data.Image,
@@ -197,7 +197,7 @@ export default function News({allnews}) {
               {allnews.map((data,index)=>(
                 <div key={index} className="flex flex-col w-full h-full lg:mt-20 float-right">
                   <Image
-                    src={AboutUsImage4}
+                    src={data.Image}
                     layout="raw" 
                     className="!bg-cover w-full !h-64 border rounded-xl"
                     alt="latest news image"
@@ -211,13 +211,11 @@ export default function News({allnews}) {
                     </h3>
 
                     <h1 className="text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug">
-                      Your most customers are your greater source of learning.
+                      {data.Header}
                     </h1>
 
                     <p className="mt-5 leading-loose font-sans text-sm lg:text-md font-medium tracking-wide text-left dark:text-white text-slate-700">
-                      {`The component accepts a number of additional properties beyond those which are required. This section describes 
-                      the most commonly-used properties of the Image component. Find details about more rarely-used properties in the Advanced 
-                      Props section.`}
+                      {data.ShortDescription}
                     </p>
                   </div>
                 </div>
