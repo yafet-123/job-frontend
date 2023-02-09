@@ -10,6 +10,7 @@ import AboutUsImage1 from '../public/images/bgImage1.avif';
 import AboutUsImage2 from '../public/images/bgImage2.avif';
 import AboutUsImage3 from '../public/images/bgImage3.avif';
 import AboutUsImage4 from '../public/images/bgImage4.avif';
+import moment from 'moment';
 
 export async function getServerSideProps(context){
   const news = await prisma.News.findMany({
@@ -206,7 +207,7 @@ export default function News({allnews}) {
                     <h3 className="my-5">
                       <span className="text-md lg:text-lg font-bold dark:text-white text-black"> Category Name </span>
                       <span className="font-normal text-sm lg:text-md dark:text-white text-gray-600">
-                         - Date of the post
+                        {moment(data.CreatedDate).utc().format('YYYY-MM-DD')}
                       </span>
                     </h3>
 
