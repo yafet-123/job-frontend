@@ -75,35 +75,37 @@ export default function News({allnews}) {
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-3xl lg:text-7xl font-bold my-10 italic">Trending</h1>
           <Slider {...settings}>
-            <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
-                <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
-                  <Image
-                    src={AboutUsImage1}
-                    layout="fill" 
-                    className="!bg-cover w-full !h-full border rounded-xl"
-                    alt="latest news image"
-                  />
-                </div>
+            {allnews.map((data,index)=>(
+              <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
+                  <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
+                    <Image
+                      src={AboutUsImage1}
+                      layout="fill" 
+                      className="!bg-cover w-full !h-full border rounded-xl"
+                      alt="latest news image"
+                    />
+                  </div>
 
-                <div className="w-full lg:w-3/4 flex flex-col lg:mx-10 lg:pl-5">
-                  <h3 className="mb-5">
-                    <span className="text-lg lg:text-2xl font-bold dark:text-white text-black"> Category Name </span>
-                    <span className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
-                       - Date of the post
-                    </span>
-                  </h3>
+                  <div className="w-full lg:w-3/4 flex flex-col lg:mx-10 lg:pl-5">
+                    <h3 className="mb-5">
+                      <span className="text-lg lg:text-2xl font-bold dark:text-white text-black"> Category Name </span>
+                      <span className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
+                         - Date of the post
+                      </span>
+                    </h3>
 
-                  <h1 className="text-xl lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug lg:w-3/4">
-                    Your most customers are your greater source of learning.
-                  </h1>
+                    <h1 className="text-xl lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug lg:w-3/4">
+                      Your most customers are your greater source of learning.
+                    </h1>
 
-                  <p className="mt-5 leading-loose font-sans text-sm lg:text-lg font-medium tracking-wide text-left dark:text-white text-slate-700">
-                    {`So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my 
-                    way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of 
-                    all living things but I tell you Jerry at that moment, I was a marine biologist.`}
-                  </p>
-                </div>
-            </div>
+                    <p className="mt-5 leading-loose font-sans text-sm lg:text-lg font-medium tracking-wide text-left dark:text-white text-slate-700">
+                      {`So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my 
+                      way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of 
+                      all living things but I tell you Jerry at that moment, I was a marine biologist.`}
+                    </p>
+                  </div>
+              </div>
+              
           </Slider>
 
           <div className="bg-white dark:bg-slate-700 py-5 px-3 lg:px-10 w-full h-full">      
