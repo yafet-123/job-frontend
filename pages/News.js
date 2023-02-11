@@ -105,7 +105,7 @@ export default function News({allnews}) {
                     </p>
                   </div>
               </div>
-              
+            ))}
           </Slider>
 
           <div className="bg-white dark:bg-slate-700 py-5 px-3 lg:px-10 w-full h-full">      
