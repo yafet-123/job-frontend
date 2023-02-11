@@ -1,11 +1,12 @@
 import React from "react";
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import { NewsTemplate } from "../data/NewsTemplate.js"
 import { MainHeader } from '../components/MainHeader';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { prisma } from '../util/db.server.js'
 import AboutUsImage1 from '../public/images/bgImage1.avif';
 import AboutUsImage2 from '../public/images/bgImage2.avif';
 import AboutUsImage3 from '../public/images/bgImage3.avif';
@@ -17,16 +18,23 @@ export async function getServerSideProps(context){
     orderBy : {
       ModifiedDate:'desc'
     },
-    NewsCategoryRelationship:{
-      include:{
-        NewsCategory:{
-          select:{
-            category_id:true,
-            CategoryName:true
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      NewsCategoryRelationship:{
+        include:{
+          NewsCategory:{
+            select:{
+              category_id:true,
+              CategoryName:true
+            }
           }
         }
-      }
-    },
+      },
+    }
   });
 
   const allnews = news.map((data)=>({
@@ -67,11 +75,11 @@ export default function News({allnews}) {
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-3xl lg:text-7xl font-bold my-10 italic">Trending</h1>
           <Slider {...settings}>
-            <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96">
-                <div className="w-full lg:w-1/2 h-52 lg:!h-96">
+            <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
+                <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
                   <Image
                     src={AboutUsImage1}
-                    layout="raw" 
+                    layout="fill" 
                     className="!bg-cover w-full !h-full border rounded-xl"
                     alt="latest news image"
                   />
@@ -97,11 +105,11 @@ export default function News({allnews}) {
                 </div>
             </div>
 
-            <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96">
-                <div className="w-full lg:w-1/2 h-52 lg:!h-96">
+            <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
+                <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
                   <Image
                     src={AboutUsImage2}
-                    layout="raw" 
+                    layout="fill" 
                     className="!bg-cover w-full !h-full border rounded-xl"
                     alt="latest news image"
                   />
@@ -128,11 +136,11 @@ export default function News({allnews}) {
                 </div>
             </div>
 
-            <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96">
-                <div className="w-full lg:w-1/2 h-52 lg:!h-96">
+            <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
+                <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
                   <Image
                     src={AboutUsImage3}
-                    layout="raw" 
+                    layout="fill" 
                     className="!bg-cover w-full !h-full border rounded-xl"
                     alt="latest news image"
                   />
@@ -160,11 +168,11 @@ export default function News({allnews}) {
                 </div>
             </div>
 
-            <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96">
-                <div className="w-full lg:w-1/2 h-52 lg:!h-96">
+            <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
+                <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
                   <Image
                     src={AboutUsImage4}
-                    layout="raw" 
+                    layout="fill" 
                     className="!bg-cover w-full !h-full border rounded-xl"
                     alt="latest news image"
                   />
@@ -199,7 +207,8 @@ export default function News({allnews}) {
                 <div key={index} className="flex flex-col w-full h-full lg:mt-20 float-right">
                   <Image
                     src={data.Image}
-                    layout="raw" 
+                    width={200}
+                    height={200} 
                     className="!bg-cover w-full !h-64 border rounded-xl"
                     alt="latest news image"
                   />
@@ -215,9 +224,7 @@ export default function News({allnews}) {
                       {data.Header}
                     </h1>
 
-                    <p className="mt-5 leading-loose font-sans text-sm lg:text-md font-medium tracking-wide text-left dark:text-white text-slate-700">
-                      {data.ShortDescription}
-                    </p>
+                    <div  className="news_header !text-black dark:news_text mt-5 " dangerouslySetInnerHTML={{ __html: data.ShortDescription }} />
                   </div>
                 </div>
               ))}

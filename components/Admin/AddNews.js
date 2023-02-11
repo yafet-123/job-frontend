@@ -144,7 +144,7 @@ export function AddNews({categories}) {
     return (
         <div className="px-0 lg:px-10 h-full">
             <form className="max-w-7xl mx-auto my-10" onSubmit={registerNews}>
-                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Location</h1>
+                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Add News</h1>
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1">
                         <input 

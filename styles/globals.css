@@ -9,3 +9,12 @@
 .slick-prev:before, .slick-next:before {
     display: none !important;
 }
+
+.news_header h1,h2,h3,h4,h5,h6,p,strong,em{
+  background-color: transparent !important;
+  color:black !important;
+}
+
+.news_text h1,h2,h3,h4,h5,h6,p,strong,em{
+  color: white !important;
+}
