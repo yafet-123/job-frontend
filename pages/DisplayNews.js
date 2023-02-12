@@ -9,62 +9,42 @@ import moment from 'moment'
 import { MainHeader } from '../components/MainHeader';
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
-  const id = query.job_id
+  const id = query.news_id
 
 	const data = await prisma.News.findUnique({
 		where:{
-			job_id: Number(id),
+			news_id: Number(id),
 		},
 		include:{
-			User:{
-				select:{
-					UserName:true,
-				},
-			},
-			Location:{
-				select:{
-					LocationName:true,
-				},
-			},
-		},
-
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      NewsCategoryRelationship:{
+        include:{
+          NewsCategory:{
+            select:{
+              category_id:true,
+              CategoryName:true
+            }
+          }
+        }
+      },
+    }
 	});
-
-	const categoriesdata = await prisma.JobCategory.findMany({
-		where:{
-			job_id: Number(id),
-		},
-
-		include:{
-			Category:{
-				select:{
-					CategoryName:true,
-				},
-			},
-		},
-	})
 	
-	const onedata = {
-		job_id:data.job_id,
-		CompanyName:data.CompanyName,
-		Image:data.Image,
-		JobsType:data.JobsType,
-		Location:data.Location.LocationName,
-		CareerLevel:data.CareerLevel,
-		EmploymentType:data.EmploymentType,
-		Salary:data.Salary,
-		JobsDescreption:data.JobsDescreption,
-		JobsRequirement:data.JobsRequirement,
-		DeadLine:data.DeadLine,
-		Apply:data.Apply,
-		user:data.User.UserName,
-		CreatedDate:data.CreatedDate,
-		ModifiedDate:data.ModifiedDate
-	}
-
-	const Allcategories = categoriesdata.map((data)=>({
-    CategoryName:data.Category.CategoryName,
-  }))
+	const allnews = {
+    news_id:data.news_id,
+    Header:data.Header,
+    Image:data.Image,
+    ShortDescription:data.ShortDescription,
+    Description:data.Description,
+    userName:data.User.UserName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate,
+    Category:data.NewsCategoryRelationship
+  }
 
   return{
     props:{
