@@ -112,7 +112,16 @@ export default function News({allnews}) {
             <h1 className="text-center text-3xl lg:text-5xl font-bold my-5 italic">Latest News</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
               {allnews.map((data,index)=>(
-                <button key={index} className="flex flex-col w-full h-full lg:mt-20 float-right">
+                <button 
+                  key={index} 
+                  onClick = {()=>{
+                    router.push({
+                      pathname:"/DisplayNews",
+                      query:{news_id:data.news_id}
+                    })
+                  }}
+                  className="flex flex-col w-full h-full lg:mt-20 float-right"
+                >
                   <Image
                     src={data.Image}
                     width={200}
