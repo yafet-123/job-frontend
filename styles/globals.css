@@ -15,6 +15,11 @@
   color:black !important;
 }
 
-.news_text h1,h2,h3,h4,h5,h6,p,strong,em{
-  color: white !important;
+.news_text_dark h1,h2,h3,h4,h5,h6,p,strong,em{
+  color: rgb(203 213 225) !important;
 }
+
+/*.news_text h1,h2,h3,h4,h5,h6,p,strong,em{
+  color: black !important;
+}*/
+

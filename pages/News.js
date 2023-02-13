@@ -8,10 +8,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { prisma } from '../util/db.server.js'
 import AboutUsImage1 from '../public/images/bgImage1.avif';
-import AboutUsImage2 from '../public/images/bgImage2.avif';
-import AboutUsImage3 from '../public/images/bgImage3.avif';
-import AboutUsImage4 from '../public/images/bgImage4.avif';
 import moment from 'moment';
+import { useRouter } from 'next/router'
 
 export async function getServerSideProps(context){
   const news = await prisma.News.findMany({
@@ -68,15 +66,17 @@ export default function News({allnews}) {
     // slidesToScroll: 1,
     autoplay: true
   };
+  const router = useRouter()
+  console.log(allnews[0].Category[0].NewsCategory.CategoryName)
   return (
     <React.Fragment>
       <MainHeader title="News" />
       <section className="w-full h-full bg-white dark:!bg-slate-700 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
-          <h1 className="text-center text-3xl lg:text-7xl font-bold my-10 italic">Trending</h1>
+          <h1 className="text-center text-xl lg:text-5xl font-bold my-10">Trending</h1>
           <Slider {...settings}>
             {allnews.map((data,index)=>(
-              <div className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
+              <div key={index} className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
                   <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
                     <Image
                       src={AboutUsImage1}
@@ -88,17 +88,17 @@ export default function News({allnews}) {
 
                   <div className="w-full lg:w-3/4 flex flex-col lg:mx-10 lg:pl-5">
                     <h3 className="mb-5">
-                      <span className="text-lg lg:text-2xl font-bold dark:text-white text-black"> Category Name </span>
+                      <span className="text-lg lg:text-xl font-bold dark:text-white text-black"> Category Name </span>
                       <span className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
                          - Date of the post
                       </span>
                     </h3>
 
-                    <h1 className="text-xl lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug lg:w-3/4">
+                    <h1 className="text-xl lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug lg:w-3/4">
                       Your most customers are your greater source of learning.
                     </h1>
 
-                    <p className="mt-5 leading-loose font-sans text-sm lg:text-lg font-medium tracking-wide text-left dark:text-white text-slate-700">
+                    <p className="mt-5 leading-loose font-sans text-sm lg:text-lg font-medium tracking-wide text-left text-slate-700 dark:text-white">
                       {`So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my 
                       way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of 
                       all living things but I tell you Jerry at that moment, I was a marine biologist.`}
@@ -108,8 +108,8 @@ export default function News({allnews}) {
             ))}
           </Slider>
 
-          <div className="bg-white dark:bg-slate-700 py-5 px-3 lg:px-10 w-full h-full">      
-            <h1 className="text-center text-3xl lg:text-5xl font-bold my-5 italic">Latest News</h1>
+          <div className="bg-white dark:bg-slate-700 py-5 w-full h-full">      
+            <h1 className="text-center text-3xl lg:text-4xl font-bold my-5">Latest News</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
               {allnews.map((data,index)=>(
                 <button 
@@ -120,28 +120,30 @@ export default function News({allnews}) {
                       query:{news_id:data.news_id}
                     })
                   }}
-                  className="flex flex-col w-full h-full lg:mt-20 float-right"
+                  className="flex flex-col w-full h-full lg:mt-5 group"
                 >
-                  <Image
-                    src={data.Image}
-                    width={200}
-                    height={200} 
-                    className="!bg-cover w-full !h-64 border rounded-xl"
-                    alt="latest news image"
-                  />
-                  <div className="w-full flex flex-col my-5">
-                    <h3 className="my-5">
-                      <span className="text-md lg:text-lg font-bold dark:text-white text-black"> Category Name </span>
-                      <span className="font-normal text-sm lg:text-md dark:text-white text-gray-600">
+                  <div className="w-full h-52 lg:!h-64 relative">
+                    <Image
+                      src={data.Image}
+                      layout="fill"
+                      className="!bg-cover w-full !h-full border rounded-xl"
+                      alt="latest news image"
+                    />
+                  </div>
+
+                  <div className="w-full flex flex-col my-5 text-left">
+                    <h3 className="my-5 flex justify-between items-center">
+                      <span className="group-hover:text-blue-500 text-md lg:text-lg font-bold dark:text-white text-black"> Category Name </span>
+                      <span className="group-hover:text-blue-500 font-normal text-sm lg:text-md dark:text-white text-gray-600">
                         {moment(data.CreatedDate).utc().format('YYYY-MM-DD')}
                       </span>
                     </h3>
 
-                    <h1 className="text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug">
+                    <h1 className="group-hover:text-blue-500 text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug">
                       {data.Header}
                     </h1>
 
-                    <div  className="news_header !text-black dark:news_text mt-5 " dangerouslySetInnerHTML={{ __html: data.ShortDescription }} />
+                    <div  className="dark:news_text_dark  mt-5 " dangerouslySetInnerHTML={{ __html: data.ShortDescription }} />
                   </div>
                 </button>
               ))}
