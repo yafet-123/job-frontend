@@ -71,7 +71,7 @@ export default function News({allnews}) {
   return (
     <React.Fragment>
       <MainHeader title="News" />
-      <section className="w-full h-full bg-white dark:!bg-slate-700 overflow-hidden">
+      <section className="w-full h-full bg-white dark:!bg-slate-600 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-xl lg:text-5xl font-bold my-10">Trending</h1>
           <Slider {...settings}>
@@ -108,7 +108,7 @@ export default function News({allnews}) {
             ))}
           </Slider>
 
-          <div className="bg-white dark:bg-slate-700 py-5 w-full h-full">      
+          <div className="py-5 w-full h-full">      
             <h1 className="text-center text-3xl lg:text-4xl font-bold my-5">Latest News</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
               {allnews.map((data,index)=>(
