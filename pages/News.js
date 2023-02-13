@@ -133,17 +133,17 @@ export default function News({allnews}) {
 
                   <div className="w-full flex flex-col my-5 text-left">
                     <h3 className="my-5 flex justify-between items-center">
-                      <span className="group-hover:text-blue-500 text-md lg:text-lg font-bold dark:text-white text-black"> Category Name </span>
-                      <span className="group-hover:text-blue-500 font-normal text-sm lg:text-md dark:text-white text-gray-600">
+                      <span className="group-hover:text-blue-500 text-md lg:text-lg font-bold dark:text-slate-300 text-slate-600"> Category Name </span>
+                      <span className="group-hover:text-blue-500 font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
                         {moment(data.CreatedDate).utc().format('YYYY-MM-DD')}
                       </span>
                     </h3>
 
-                    <h1 className="group-hover:text-blue-500 text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug">
+                    <h1 className="group-hover:text-blue-500 text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug">
                       {data.Header}
                     </h1>
 
-                    <div  className="dark:news_text_dark  mt-5 " dangerouslySetInnerHTML={{ __html: data.ShortDescription }} />
+                    <div  className="!text-black mt-5 " dangerouslySetInnerHTML={{ __html: data.ShortDescription }} />
                   </div>
                 </button>
               ))}
