@@ -99,7 +99,7 @@ export default function News({allnews}) {
                   <div className="flex flex-row justify-between mb-5">
                     <h3 className="flex flex-col justify-between">
                       { Category.map((data,index)=>(
-                        <span className="text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
+                        <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
                           {data.NewsCategory.CategoryName}
                         </span>
                       ))}
@@ -146,7 +146,7 @@ export default function News({allnews}) {
                     <div className="flex flex-row justify-between mb-5">
                       <h3 className="flex flex-col justify-between">
                         { Category.map((data,index)=>(
-                          <span className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
+                          <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
                             {data.NewsCategory.CategoryName}
                           </span>
                         ))}
