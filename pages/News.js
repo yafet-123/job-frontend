@@ -79,37 +79,35 @@ export default function News({allnews}) {
               <div key={index} className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
                   <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
                     <Image
-                      src={AboutUsImage1}
-                      layout="fill" 
+                      src={data.Image}
+                      layout="fill"
                       className="!bg-cover w-full !h-full border rounded-xl"
                       alt="latest news image"
                     />
                   </div>
 
-                  <div className="w-full lg:w-3/4 flex flex-col lg:mx-10 lg:pl-5">
-                    <h3 className="mb-5">
-                      <span className="text-lg lg:text-xl font-bold dark:text-white text-black"> Category Name </span>
-                      <span className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
-                         - Date of the post
-                      </span>
-                    </h3>
+                  <div className="w-full lg:w-3/4 flex flex-col lg:mx-10 py-10">
+                    <div className="flex flex-row justify-between mb-5">
+                      <h3 className="text-lg lg:text-xl font-bold dark:text-white text-black">
+                        Category Name
+                      </h3>
+                      <h3 className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
+                        {moment(data.CreatedDate).utc().format('YYYY-MM-DD')}
+                      </h3>
+                    </div>
 
                     <h1 className="text-xl lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug lg:w-3/4">
-                      Your most customers are your greater source of learning.
+                      {data.Header}
                     </h1>
 
-                    <p className="mt-5 leading-loose font-sans text-sm lg:text-lg font-medium tracking-wide text-left text-slate-700 dark:text-white">
-                      {`So I started to walk into the water. I won't lie to you boys, I was terrified. But I pressed on, and as I made my 
-                      way past the breakers a strange calm came over me. I don't know if it was divine intervention or the kinship of 
-                      all living things but I tell you Jerry at that moment, I was a marine biologist.`}
-                    </p>
+                    <div  className="!text-black mt-5 " dangerouslySetInnerHTML={{ __html: data.ShortDescription }} />
                   </div>
               </div>
             ))}
           </Slider>
 
           <div className="py-5 w-full h-full">      
-            <h1 className="text-center text-3xl lg:text-4xl font-bold my-5">Latest News</h1>
+            <h1 className="text-center text-xl lg:text-4xl font-bold my-5">Latest News</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
               {allnews.map((data,index)=>(
                 <button 
@@ -132,12 +130,14 @@ export default function News({allnews}) {
                   </div>
 
                   <div className="w-full flex flex-col my-5 text-left">
-                    <h3 className="my-5 flex justify-between items-center">
-                      <span className="group-hover:text-blue-500 text-md lg:text-lg font-bold dark:text-slate-300 text-slate-600"> Category Name </span>
-                      <span className="group-hover:text-blue-500 font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
+                    <div className="flex flex-row justify-between mb-5">
+                      <h3 className="group-hover:text-blue-500 text-md lg:text-lg font-bold dark:text-slate-300 text-slate-600">
+                        Category Name
+                      </h3>
+                      <h3 className="group-hover:text-blue-500 font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
                         {moment(data.CreatedDate).utc().format('YYYY-MM-DD')}
-                      </span>
-                    </h3>
+                      </h3>
+                    </div>
 
                     <h1 className="group-hover:text-blue-500 text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug">
                       {data.Header}
