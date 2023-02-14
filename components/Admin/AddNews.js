@@ -25,7 +25,8 @@ const QuillNoSSRWrapper = dynamic(
   },
 )
 
-export function AddNews({categories}) {
+
+export default function AddNews({categories}) {
     const router = useRouter();
     
     const [Header, setHeader] = useState("")
