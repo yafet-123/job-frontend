@@ -118,9 +118,9 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
   return (
   	<React.Fragment>
       <MainHeader title="Jobs By Category" />
-	    <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-24 py-28">
-	    	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full lg:px-5 py-5 border rounded-xl dark:border-slate-800">
-	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-white dark:bg-slate-800">
+	    <section className="bg-neutral-300 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-24 py-28">
+	    	<div className="flex flex-col bg-neutral-200 dark:bg-slate-800 w-full h-full lg:px-5 py-5 border rounded-xl dark:border-slate-800">
+	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-neutral-400 dark:bg-slate-800 px-10">
 	    			<div className="flex flex-col lg:flex-row mb-5 mt-10">
 		    			<h1 className="lg:ml-5 text-blue-700 text-xl md:text-3xl lg:text-4xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">{category} Jobs</h1>
 	    			</div>
@@ -132,34 +132,30 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	    				</div>
 	    			</div>
 	    		</div>
-	      	<div className="flex flex-col md:flex-row w-full bg-white dark:bg-slate-800">
+	      	<div className="flex flex-col md:flex-row w-full bg-neutral-200 dark:bg-slate-800">
 	      		<div className="flex flex-col-reverse lg:flex-row w-full">
-		      		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3 dark:bg-slate-800">
+		      		<div className="flex flex-col w-full lg:w-1/4 h-[50rem] bg-neutral-300 p-3 dark:bg-slate-700 sticky top-32">
 		      			<h1 className="text-lg md:text-xl lg:text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs By Category</h1>
-		      				<div className="flex flex-col h-[20rem] lg:h-[50rem] overflow-y-scroll bg-gray-200 dark:bg-slate-700 p-3">
-			      				{categories.map((data, index) => (
-			      					<button 
-			      						className="flex items-center group hover:bg-white py-2 mb-5" 
-			      						key={index}
-			      						onClick = {()=>{
-		                      router.push({
-		                        pathname:"/JobsByCategory",
-		                        query:{category:data.CategoryName, howmany:data._count.JobCategory, category_id: data.category_id}
-		                      })
-		                    }}
-			      					>
-				      					<h1 className="text-left font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500">
-				                	{data.CategoryName}
-				                </h1>
-
-				                <h1 className="text-left text-blue-800 font-bold text-sm md:text-lg lg:text-xl group-hover:text-orange-500 group-hover:border-orange-200">
-		                      {data.howmany}
-		                    </h1>
-				              </button>
-			      				))}
-			      			</div>
+		      			<div className="flex flex-col h-[20rem] lg:h-[50rem] overflow-y-scroll p-3">
+			      			{categories.map((data, index) => (
+			      				<button 
+			      					className="flex items-center group hover:bg-neutral-500 py-2 mb-5" 
+			      					key={index}
+			      					onClick = {()=>{
+		                    router.push({
+		                      pathname:"/JobsByCategory",
+		                      query:{category:data.CategoryName, howmany:data._count.JobCategory, category_id: data.category_id}
+		                    })
+		                  }}
+			      				>
+				      				<h1 className="group-hover:text-white text-left font-normal text-sm md:text-lg lg:text-xl capitalize px-2">
+				               	{data.CategoryName}
+				               </h1>
+				            </button>
+			      			))}
+			      		</div>
 		      		</div>
-		      		<div className="flex flex-col w-full lg:w-3/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2 px-3 lg:px-10">
+		      		<div className="flex flex-col w-full lg:w-3/4 bg-neutral-200 dark:bg-slate-800 p-3 lg:border-l-2 px-3 lg:px-10">
 		      			{ jobsbycategory == "" ? 
 		      				<h1 className="text-black dark:text-white text-lg lg:text-xl font-bold text-center italic">
 		      					There is No job posted in {category} Category
@@ -219,7 +215,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 		      			}
 		      		</div>
 		      	</div>
-	      		<div className="flex flex-col w-full lg:w-4/12 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800 mt-5">
+	      		<div className="flex flex-col w-full lg:w-4/12 h-[50rem] p-3 border rounded-lg bg-neutral-300 dark:bg-slate-700 sticky top-32">
 	      			<div className="flex justify-between items-center p-2 md:p-0">
 				        <div className="flex items-center font-bold text-md lg:text-xl text-black dark:text-white capitalize">
 				          <AiOutlineClockCircle size={20} />
@@ -241,23 +237,23 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	          				}}
 				          	key={index}
 				          >
-				            <a className="flex justify-around items-center mb-5 even:bg-white even:dark:bg-slate-600 px-2 py-5 group">
-				              <div className="flex flex-col w-3/4">
-				                <h1 className="break-words text-left font-bold text-sm md:text-lg lg:text-xl text-blue-500 dark:text-white group-hover:text-orange-500">
-				                  {data.JobsType}
-				                </h1>
-				                <h1 className="break-words text-left font-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white group-hover:text-orange-500">
-				                  {data.CompanyName}
-				                </h1>
-				              </div>
-				              <div className="flex flex-col w-1/4">
-				                <h1 className="fbreak-words ont-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white text-right group-hover:text-orange-500">
-				                  {moment(data.CreatedDate).utc().format('MMM DD YYYY')}
-				                </h1>
-				                <h1 className="break-words font-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white text-right group-hover:text-orange-500">
-				                  {data.Location}
-				                </h1>
-				              </div>
+				            <a className="flex justify-around items-center mb-5 even:bg-white even:dark:bg-slate-600 px-2 py-5 group hover:bg-neutral-500">
+				              <div className="flex flex-col w-2/4 lg:w-3/4">
+                        <h1 className="font-normal text-sm lg:text-lg text-black dark:text-white group-hover:text-white text-left">
+                          {data.JobsType}
+                        </h1>
+                        <h1 className="font-light text-xs lg:text-sm text-black dark:text-white group-hover:text-white text-left">
+                          {data.CompanyName}
+                        </h1>
+                      </div>
+                      <div className="flex flex-col items-center justify-center w-1/4 lg:w-1/4">
+                        <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
+                          {moment(data.CreatedDate).utc().format('MMM DD YYYY')}
+                        </h1>
+                        <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
+                          {data.Location}
+                        </h1>
+                      </div>
 				            </a>
 				          </Link>
 				        ))}
@@ -269,3 +265,4 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	  </React.Fragment>
   );
 }
+				                 
