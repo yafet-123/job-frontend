@@ -77,7 +77,7 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
-	    <section className="flex flex-col lg:flex-row w-full h-full px-0 md:px-32 bg-gray-200 dark:bg-slate-700 p-5 pt-32">
+	    <section className="flex flex-col lg:flex-row w-full h-full px-0 md:px-32 bg-neutral-200 dark:bg-slate-700 p-5 pt-32">
 	      	<div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-3/4">
 	      		<h1 className="text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5">
               {news.Header}
@@ -96,7 +96,7 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
               <div className="flex flex-row justify-between mb-5 px-5">
                  <h3 className="flex flex-col justify-between">
                   { newsCategory.map((data,index)=>(
-                    <span className="text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
+                    <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
                       {data.NewsCategory.CategoryName}
                     </span>
                   ))}
