@@ -79,18 +79,18 @@ export default function DisplayJobs({job, categories}) {
   return (
   	<React.Fragment>
       <MainHeader title="Display Jobs" />
-	    <section className="flex flex-col w-full h-full px-0 md:px-32 bg-gray-200 dark:bg-slate-700 p-5 pt-32">
+	    <section className="flex flex-col w-full h-full px-0 md:px-32 bg-neutral-300 dark:bg-slate-700 p-5 pt-32">
 	      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply}/>
-	      	<div className="flex flex-col bg-white p-5 pb-20 bg-white dark:bg-slate-600">
+	      	<div className="flex flex-col bg-neutral-200 p-5 pb-20 dark:bg-slate-600">
 	      		<div className="flex justify-between items-center mt-10 mx-0 lg:mx-5">
 			      	<div className="flex flex-col w-3/4">
 			      		<h1 className="text-black text-md lg:text-3xl capitalize font-bold mb-2 text-black dark:text-white">{job.JobsType}</h1>
 			      		<p className="text-sm lg:text-lg font-bold w-3/4 text-gray-500 dark:text-gray-400">Job by {job.CompanyName}</p>
 			      	</div>
 
-			      	<div className="flex flex-col border text-black dark:text-white text-sm lg:text-lg font-bold">
-			      		<p className="bg-sky-500 text-center text-white">Posted</p>
-			      		<p className="p-5">{moment(job.ModifiedDate).utc().format('dddd, MMM Y')}</p>
+			      	<div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-blue-500 text-white p-2 lg:p-5">
+			      		<p className="text-lg lg:text-3xl font-bold capitalize mb-3">Posted</p>
+			      		<p className="text-md lg:text-xl font-bold capitalize">{moment(job.ModifiedDate).utc().format('dddd, MMM Y')}</p>
 			      	</div>
 	      		</div>
 

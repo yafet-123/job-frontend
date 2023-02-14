@@ -105,16 +105,16 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
   return (
   	<React.Fragment>
       <MainHeader title="Jobs By Location" />
-	    <section className="bg-gray-200 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-24 py-28">
-	    	<div className="flex flex-col bg-white dark:bg-slate-800 w-full h-full lg:px-5 py-5 border rounded-xl dark:border-slate-800">
-	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-white dark:bg-slate-800">
+	    <section className="bg-neutral-300 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-24 py-28">
+	    	<div className="flex flex-col bg-neutral-200 dark:bg-slate-800 w-full h-full lg:px-5 py-5 border rounded-xl dark:border-slate-800">
+	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-neutral-400 dark:bg-slate-700 px-10">
 	    			<div className="flex flex-col items-center lg:flex-row mb-5 mt-10">
 	    				<Image src={image} width={100} height={100} alt="image" className="rounded-2xl" />
 		    			<h1 className="lg:ml-5 text-blue-700 text-xl md:text-3xl lg:text-5xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">Jobs in {location}</h1>
 	    			</div>
 	    			<div className="flex flex-col items-center lg:flex-row mb-10 mt-10">
 	    				<div className="flex flex-col lg:mr-5 mb-10 lg:mb-0">
-	    					<p className="text-lg lg:text-3xl text-gray-600 dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
+	    					<p className="text-lg lg:text-3xl text-black dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
 	    					<p className="text-md lg:text-2xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>
 	    				</div>
 
@@ -124,11 +124,11 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 	    				</div>
 	    			</div>
 	    		</div>	
-	      	<div className="flex flex-col md:flex-row w-full bg-white dark:bg-slate-800">
+	      	<div className="flex flex-col md:flex-row w-full bg-neutral-200 dark:bg-slate-800">
 	      		<div className="flex flex-col-reverse lg:flex-row w-full">
-		      		<div className="flex flex-col w-full lg:w-1/4 bg-white p-3 dark:bg-slate-800">
+		      		<div className="flex flex-col w-full lg:w-1/4 h-[20rem] lg:h-[50rem] bg-neutral-300 p-3 dark:bg-slate-700 sticky top-32">
 		      				<h1 className="text-lg md:text-xl lg:text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs in ethopia</h1>
-		      				<div className="flex flex-col h-[20rem] lg:h-[40rem] overflow-y-scroll bg-gray-200 dark:bg-slate-700 p-3">
+		      				<div className="flex flex-col overflow-y-scroll p-3">
 			      				{locations.map((data, index) => (
 			      					<button 
 			      						className="flex items-center group hover:bg-white py-2 mb-5" 
@@ -148,7 +148,7 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 			      				))}
 			      			</div>
 		      		</div>
-		      		<div className="flex flex-col w-full lg:w-3/4 bg-white dark:bg-slate-800 p-3 lg:border-l-2 px-3 lg:px-10">
+		      		<div className="flex flex-col w-full lg:w-3/4 bg-neutral-200 dark:bg-slate-800 p-3 lg:border-l-2 px-3 lg:px-10">
 		      			{ jobsbylocation == "" ? 
 		      				<h1 className="text-black dark:text-white text-lg lg:text-xl font-bold text-center italic">
 		      					There is No job posted in {location}
@@ -156,7 +156,7 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 		      			:
 			      			<div>
 				      			{ jobsbylocation.map((data,index)=>(
-					      			<div key={index} className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
+					      			<div key={index} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
 					      				<div className="flex justify-between items-center mb-5">
 					      					<Link href="/DisplayJobs">
 					      						<a className="text-sm lg:text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
@@ -208,19 +208,20 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 		      			}
 		      		</div>
 		      	</div>
-	      		<div className="flex flex-col w-full lg:w-4/12 h-[45rem] p-3 border rounded-lg bg-white dark:bg-slate-800">
-	      			<div className="flex justify-between items-center py-10 px-2 lg:px-0">
-				        <div className="flex items-center font-bold text-sm md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
+	      		<div className="flex flex-col w-full lg:w-4/12 h-[50rem] p-3 border rounded-lg bg-neutral-300 dark:bg-slate-700 sticky top-32">
+	      			<div className="flex justify-between items-center p-2 md:p-0">
+				        <div className="flex items-center font-bold text-md lg:text-xl text-black dark:text-white capitalize">
 				          <AiOutlineClockCircle size={20} />
 				          <span className="ml-2 lg:ml-5">Latest Jobs</span>
 				        </div>
 				        <Link href="">
-				          <a className="font-bold text-sm md:text-xl lg:text-2xl text-white p-2 lg:p-4 bg-blue-700 capitalize border rounded-2xl">
+				          <a className="font-bold text-sm md:text-md lg:text-lg text-white p-2 lg:p-4 bg-blue-700 capitalize border rounded-2xl">
 				            view all jobs
 				          </a>
 				        </Link>
 	      			</div>
-				      <div className="md:max-w-7xl md:mx-auto bg-gray-200 dark:bg-slate-800 w-full h-[40rem] border dark:border-slate-800 rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
+
+				      <div className="md:max-w-7xl md:mx-auto bg-gray-200 dark:bg-slate-800 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
 				        {Alllatestjobs.map((data, index) => (
 				          <Link 
 				          	href={{
@@ -229,23 +230,23 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 	          				}}
 				          	key={index}
 				          >
-				            <a className="flex justify-around items-center mb-5 even:bg-white even:dark:bg-slate-600 px-5 py-5 group">
-				              <div className="flex flex-col w-3/4">
-				                <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-blue-500 dark:text-white group-hover:text-orange-500">
-				                  {data.JobsType}
-				                </h1>
-				                <h1 className="text-left font-light text-xs md:text-lg lg:text-xl text-blue-500 dark:text-white group-hover:text-orange-500">
-				                  {data.CompanyName}
-				                </h1>
-				              </div>
-				              <div className="flex flex-col w-1/4">
-				                <h1 className="font-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white text-right group-hover:text-orange-500">
-				                  {moment(data.CreatedDate).utc().format('MMM DD YYYY')}
-				                </h1>
-				                <h1 className="font-light text-xs md:text-sm lg:text-lg text-blue-500 dark:text-white text-right group-hover:text-orange-500">
-				                  {data.Location}
-				                </h1>
-				              </div>
+				            <a className="flex justify-around items-center mb-5 even:bg-white even:dark:bg-slate-600 px-2 py-5 group hover:bg-neutral-500">
+				              <div className="flex flex-col w-2/4 lg:w-3/4">
+                        <h1 className="font-normal text-sm lg:text-lg text-black dark:text-white group-hover:text-white text-left">
+                          {data.JobsType}
+                        </h1>
+                        <h1 className="font-light text-xs lg:text-sm text-black dark:text-white group-hover:text-white text-left">
+                          {data.CompanyName}
+                        </h1>
+                      </div>
+                      <div className="flex flex-col items-center justify-center w-1/4 lg:w-1/4">
+                        <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
+                          {moment(data.CreatedDate).utc().format('MMM DD YYYY')}
+                        </h1>
+                        <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
+                          {data.Location}
+                        </h1>
+                      </div>
 				            </a>
 				          </Link>
 				        ))}

@@ -120,7 +120,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
       <MainHeader title="Jobs By Category" />
 	    <section className="bg-neutral-300 dark:bg-slate-700 flex flex-col w-full h-full py-20 px-0 md:px-24 py-28">
 	    	<div className="flex flex-col bg-neutral-200 dark:bg-slate-800 w-full h-full lg:px-5 py-5 border rounded-xl dark:border-slate-800">
-	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-neutral-400 dark:bg-slate-800 px-10">
+	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-neutral-400 dark:bg-slate-700 px-10">
 	    			<div className="flex flex-col lg:flex-row mb-5 mt-10">
 		    			<h1 className="lg:ml-5 text-blue-700 text-xl md:text-3xl lg:text-4xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">{category} Jobs</h1>
 	    			</div>
@@ -134,9 +134,9 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	    		</div>
 	      	<div className="flex flex-col md:flex-row w-full bg-neutral-200 dark:bg-slate-800">
 	      		<div className="flex flex-col-reverse lg:flex-row w-full">
-		      		<div className="flex flex-col w-full lg:w-1/4 h-[50rem] bg-neutral-300 p-3 dark:bg-slate-700 sticky top-32">
+		      		<div className="flex flex-col w-full lg:w-1/4 h-[20rem] lg:h-[50rem] bg-neutral-300 p-3 dark:bg-slate-700 sticky top-32">
 		      			<h1 className="text-lg md:text-xl lg:text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs By Category</h1>
-		      			<div className="flex flex-col h-[20rem] lg:h-[50rem] overflow-y-scroll p-3">
+		      			<div className="flex flex-col overflow-y-scroll p-3">
 			      			{categories.map((data, index) => (
 			      				<button 
 			      					className="flex items-center group hover:bg-neutral-500 py-2 mb-5" 
