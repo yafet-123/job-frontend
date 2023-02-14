@@ -75,13 +75,13 @@ export default function News({allnews}) {
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-xl lg:text-5xl font-bold my-10">Trending</h1>
           <Slider {...settings}>
-            {allnews.map(({CreatedDate, Header, ShortDescription, image, Category},index)=>(
+            {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category},index)=>(
               <button 
                 key={index} 
                 onClick = {()=>{
                   router.push({
                     pathname:"/DisplayNews",
-                    query:{news_id:data.news_id}
+                    query:{news_id:news_id}
                   })
                 }}
                 className="!flex flex-col lg:flex-row px-2 w-full h-full lg:mt-5 group py-5"
@@ -99,21 +99,21 @@ export default function News({allnews}) {
                   <div className="flex flex-row justify-between mb-5">
                     <h3 className="flex flex-col justify-between">
                       { Category.map((data,index)=>(
-                        <span className="group-hover:text-blue-500 text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
+                        <span className="text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
                           {data.NewsCategory.CategoryName}
                         </span>
                       ))}
                     </h3>
-                    <h3 className="group-hover:text-blue-500 font-normal text-md lg:text-lg dark:text-white text-gray-600">
+                    <h3 className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
                       {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                     </h3>
                   </div>
 
-                  <h1 className="group-hover:text-blue-500 text-xl lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug lg:w-3/4">
+                  <h1 className="group-hover:underline text-xl lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug w-full lg:w-3/4">
                    {Header}
                   </h1>
 
-                  <div  className="!text-black mt-5 " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                  <div  className="!text-black mt-5 w-full " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                 </div>
               </button>
             ))}
@@ -122,13 +122,13 @@ export default function News({allnews}) {
           <div className="py-5 w-full h-full">      
             <h1 className="text-center text-xl lg:text-4xl font-bold my-5">Latest News</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
-              {allnews.map(({CreatedDate, Header, ShortDescription, image, Category},index)=>(
+              {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category},index)=>(
                 <button 
                   key={index} 
                   onClick = {()=>{
                     router.push({
                       pathname:"/DisplayNews",
-                      query:{news_id:data.news_id}
+                      query:{news_id:news_id}
                     })
                   }}
                   className="flex flex-col w-full h-full lg:mt-5 group py-5"
@@ -151,12 +151,12 @@ export default function News({allnews}) {
                           </span>
                         ))}
                       </h3>
-                      <h3 className="group-hover:text-blue-500 font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
+                      <h3 className="font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
                         {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                       </h3>
                     </div>
 
-                    <h1 className="group-hover:text-blue-500 text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug">
+                    <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug">
                       {Header}
                     </h1>
 
