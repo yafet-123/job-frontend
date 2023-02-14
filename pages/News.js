@@ -38,9 +38,8 @@ export async function getServerSideProps(context){
   const allnews = news.map((data)=>({
     news_id:data.news_id,
     Header:data.Header,
-    Image:data.Image,
+    image:data.Image,
     ShortDescription:data.ShortDescription,
-    Description:data.Description,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
@@ -68,6 +67,7 @@ export default function News({allnews}) {
   };
   const router = useRouter()
   console.log(allnews[0].Category[0].NewsCategory.CategoryName)
+  console.log(allnews)
   return (
     <React.Fragment>
       <MainHeader title="News" />
@@ -75,41 +75,54 @@ export default function News({allnews}) {
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-xl lg:text-5xl font-bold my-10">Trending</h1>
           <Slider {...settings}>
-            {allnews.map((data,index)=>(
-              <div key={index} className="!flex flex-col lg:flex-row px-2 w-full h-full lg:h-96 ">
-                  <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
-                    <Image
-                      src={data.Image}
-                      layout="fill"
-                      className="!bg-cover w-full !h-full border rounded-xl"
-                      alt="latest news image"
-                    />
+            {allnews.map(({CreatedDate, Header, ShortDescription, image, Category},index)=>(
+              <button 
+                key={index} 
+                onClick = {()=>{
+                  router.push({
+                    pathname:"/DisplayNews",
+                    query:{news_id:data.news_id}
+                  })
+                }}
+                className="!flex flex-col lg:flex-row px-2 w-full h-full lg:mt-5 group py-5"
+              >
+                <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
+                  <Image
+                    src={image}
+                    layout="fill"
+                    className="!bg-cover w-full !h-full border rounded-xl"
+                    alt="latest news image"
+                  />
+                </div>
+
+                <div className="w-full lg:w-3/4 flex flex-col lg:mx-10 py-10 text-left">
+                  <div className="flex flex-row justify-between mb-5">
+                    <h3 className="flex flex-col justify-between">
+                      { Category.map((data,index)=>(
+                        <span className="group-hover:text-blue-500 text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
+                          {data.NewsCategory.CategoryName}
+                        </span>
+                      ))}
+                    </h3>
+                    <h3 className="group-hover:text-blue-500 font-normal text-md lg:text-lg dark:text-white text-gray-600">
+                      {moment(CreatedDate).utc().format('YYYY-MM-DD')}
+                    </h3>
                   </div>
 
-                  <div className="w-full lg:w-3/4 flex flex-col lg:mx-10 py-10">
-                    <div className="flex flex-row justify-between mb-5">
-                      <h3 className="text-lg lg:text-xl font-bold dark:text-white text-black">
-                        Category Name
-                      </h3>
-                      <h3 className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
-                        {moment(data.CreatedDate).utc().format('YYYY-MM-DD')}
-                      </h3>
-                    </div>
+                  <h1 className="group-hover:text-blue-500 text-xl lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug lg:w-3/4">
+                   {Header}
+                  </h1>
 
-                    <h1 className="text-xl lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug lg:w-3/4">
-                      {data.Header}
-                    </h1>
-
-                    <div  className="!text-black mt-5 " dangerouslySetInnerHTML={{ __html: data.ShortDescription }} />
-                  </div>
-              </div>
+                  <div  className="!text-black mt-5 " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                </div>
+              </button>
             ))}
           </Slider>
 
           <div className="py-5 w-full h-full">      
             <h1 className="text-center text-xl lg:text-4xl font-bold my-5">Latest News</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
-              {allnews.map((data,index)=>(
+              {allnews.map(({CreatedDate, Header, ShortDescription, image, Category},index)=>(
                 <button 
                   key={index} 
                   onClick = {()=>{
@@ -118,32 +131,36 @@ export default function News({allnews}) {
                       query:{news_id:data.news_id}
                     })
                   }}
-                  className="flex flex-col w-full h-full lg:mt-5 group"
+                  className="flex flex-col w-full h-full lg:mt-5 group py-5"
                 >
                   <div className="w-full h-52 lg:!h-64 relative">
                     <Image
-                      src={data.Image}
+                      src={image}
                       layout="fill"
                       className="!bg-cover w-full !h-full border rounded-xl"
                       alt="latest news image"
                     />
                   </div>
 
-                  <div className="w-full flex flex-col my-5 text-left">
+                  <div className="w-full flex flex-col text-left py-5">
                     <div className="flex flex-row justify-between mb-5">
-                      <h3 className="group-hover:text-blue-500 text-md lg:text-lg font-bold dark:text-slate-300 text-slate-600">
-                        Category Name
+                      <h3 className="flex flex-col justify-between">
+                        { Category.map((data,index)=>(
+                          <span className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
+                            {data.NewsCategory.CategoryName}
+                          </span>
+                        ))}
                       </h3>
                       <h3 className="group-hover:text-blue-500 font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
-                        {moment(data.CreatedDate).utc().format('YYYY-MM-DD')}
+                        {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                       </h3>
                     </div>
 
                     <h1 className="group-hover:text-blue-500 text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug">
-                      {data.Header}
+                      {Header}
                     </h1>
 
-                    <div  className="!text-black mt-5 " dangerouslySetInnerHTML={{ __html: data.ShortDescription }} />
+                    <div  className="!text-black mt-5 " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                   </div>
                 </button>
               ))}
