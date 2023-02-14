@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 export function LatestJobs({latestjobs}) {
   const router = useRouter()
   return (
-    <section className="w-full h-[50rem] md:px-10 md:py-20 bg-gray-100 dark:bg-slate-800 flex flex-col brightness-100">
+    <section className="w-full h-[50rem] md:px-10 md:py-20 bg-neutral-300 dark:bg-slate-800 flex flex-col brightness-100">
       <div className="flex justify-between items-center py-10 px-2 lg:px-10">
         <div className="flex items-center font-bold text-md md:text-2xl lg:text-3xl text-black dark:text-white capitalize">
           <AiOutlineClockCircle size={30} />
@@ -20,10 +20,10 @@ export function LatestJobs({latestjobs}) {
         </Link>
       </div>
 
-      <div className="md:max-w-7xl md:mx-auto bg-gray-200 dark:bg-slate-800 w-full h-[40rem] border dark:border-slate-800 rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
+      <div className="md:max-w-7xl md:mx-auto bg-neutral-200 dark:bg-slate-800 w-full h-[40rem] border dark:border-slate-800 rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
         {latestjobs.map((data, index) => (
           <button
-            className="flex justify-around items-center mb-5 even:bg-white dark:bg-slate-700 px-10 py-5 group"
+            className="flex justify-around items-center mb-5 even:bg-white even:dark:bg-slate-700 px-10 py-5 group"
             key={index}
             type = "button"
             onClick = {()=>{

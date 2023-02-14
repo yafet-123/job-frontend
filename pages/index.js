@@ -78,7 +78,7 @@ export async function getStaticProps(){
 export default function Home({categories, locations, latestjobs}) {
   
   const { status, data } = useSession();
-  console.log(status)
+  
   return (
     <React.Fragment>
       <MainHeader title="Home" />
