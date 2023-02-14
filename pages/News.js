@@ -71,7 +71,7 @@ export default function News({allnews}) {
   return (
     <React.Fragment>
       <MainHeader title="News" />
-      <section className="w-full h-full bg-neutral-200 dark:!bg-slate-600 overflow-hidden">
+      <section className="w-full h-full bg-neutral-100 dark:!bg-slate-500 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-xl lg:text-5xl font-bold my-10">Trending</h1>
           <Slider {...settings}>
@@ -99,17 +99,17 @@ export default function News({allnews}) {
                   <div className="flex flex-row justify-between mb-5">
                     <h3 className="flex flex-col justify-between">
                       { Category.map((data,index)=>(
-                        <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
+                        <span key={index} className="text-lg lg:text-xl font-bold text-[#444444] mb-5">
                           {data.NewsCategory.CategoryName}
                         </span>
                       ))}
                     </h3>
-                    <h3 className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
+                    <h3 className="text-md lg:text-lg text-[#444444] font-bold">
                       {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                     </h3>
                   </div>
 
-                  <h1 className="group-hover:underline text-xl lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug w-full lg:w-3/4">
+                  <h1 className="group-hover:underline text-xl lg:text-2xl font-extrabold text-[#444444] tracking-wide leading-snug w-full lg:w-3/4">
                    {Header}
                   </h1>
 
