@@ -43,8 +43,9 @@ export async function getServerSideProps(context){
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
-    Category:data.NewsCategoryRelationship
   }
+
+  const newsCategory = data.NewsCategoryRelationship
 
   const latestnews = await prisma.News.findMany({
   	take:-5,
@@ -65,18 +66,19 @@ export async function getServerSideProps(context){
   return{
     props:{
       news:JSON.parse(JSON.stringify(onedata)),
-      Alllatestnews:JSON.parse(JSON.stringify(Alllatestnews))
+      Alllatestnews:JSON.parse(JSON.stringify(Alllatestnews)),
+      newsCategory:JSON.parse(JSON.stringify(newsCategory)),
     }
   }
 }
 
-export default function DisplayNews({news,Alllatestnews}) {
+export default function DisplayNews({news,Alllatestnews, newsCategory}) {
+  console.log(newsCategory)
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-0 md:px-32 bg-gray-200 dark:bg-slate-700 p-5 pt-32">
 	      	<div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-3/4">
-
 	      		<h1 className="text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5">
               {news.Header}
             </h1>
@@ -91,12 +93,18 @@ export default function DisplayNews({news,Alllatestnews}) {
             </div>
 
             <div className="w-full flex flex-col my-5">
-              <h3 className="my-5">
-                <span className="text-md lg:text-lg font-bold dark:text-white text-black"> Category Name </span>
-                <span className="font-normal text-sm lg:text-md dark:text-white text-gray-600">
+              <div className="flex flex-row justify-between mb-5 px-5">
+                 <h3 className="flex flex-col justify-between">
+                  { newsCategory.map((data,index)=>(
+                    <span className="text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
+                      {data.NewsCategory.CategoryName}
+                    </span>
+                  ))}
+                </h3>
+                <h3 className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
                   {moment(news.CreatedDate).utc().format('YYYY-MM-DD')}
-                </span>
-              </h3>
+                </h3>
+              </div>
 
               <div className="news_header !text-black dark:news_text mt-5 " dangerouslySetInnerHTML={{ __html: news.Description }} />
             </div>
