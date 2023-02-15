@@ -168,7 +168,7 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, Al
     return (
       <React.Fragment>
         <MainHeader title="Admin" />
-        <div className="flex bg-gray-100 dark:bg-slate-700">
+        <div className="flex bg-neutral-300 dark:bg-slate-700">
           <VerticalNavbar onChange={handleChange} data={data} />
           <div className="flex-1 pt-32 ">
             { selected == "dashboard" && <DashBoard categories={Allcategories} locations={Alllocations} />}
