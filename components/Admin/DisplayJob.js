@@ -22,7 +22,7 @@ export function DisplayJob({jobs, categories, locations}) {
             <div>
                 <div className="overflow-auto rounded-lg shadow hidden lg:block">
                     <table className="w-full">
-                        <thead className="bg-gray-50 dark:bg-slate-800 border-b-2 border-gray-200">
+                        <thead className="bg-neutral-100 dark:bg-slate-800 border-b-2 border-gray-200">
                             <tr>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Logo</th>
@@ -35,7 +35,7 @@ export function DisplayJob({jobs, categories, locations}) {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {jobs.map((data,index)=>(
-                                <tr key={index} className="even:bg-white odd:bg-gray-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
+                                <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.job_id}</p>
                                     </td>
@@ -73,7 +73,7 @@ export function DisplayJob({jobs, categories, locations}) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
                     {jobs.map((data,index)=>(
-                        <div key={index} className="bg-white dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
+                        <div key={index} className="bg-neutral-100 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div className="flex justify-between items-center">
                                 <p className="text-blue-500 dark:text-white font-bold hover:underline">
                                     <span className="text-lg">Id : </span> 

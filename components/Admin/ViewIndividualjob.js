@@ -31,9 +31,9 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
     }
 
 	return(
-		<div className="bg-gray-200 dark:bg-slate-800 opacity-96  fixed inset-0 z-50">
+		<div className="bg-neutral-300 dark:bg-slate-800 opacity-96  fixed inset-0 z-50">
             <div className="flex h-screen justify-center items-center ">
-               	<div className="overflow-y-scroll lg:overflow-none flex-col w-full h-screen mx-2 lg:mx-10 justify-center bg-gray-50 dark:bg-slate-500 py-5 px-5 lg:px-10 border-4 border-sky-500 rounded-xl ">
+               	<div className="overflow-y-scroll lg:overflow-none flex-col w-full h-screen mx-2 lg:mx-10 justify-center bg-neutral-200 dark:bg-slate-500 py-5 px-5 lg:px-10 border-4 border-sky-500 rounded-xl ">
                	    <h1 className="text-xl lg:text-2xl text-zinc-600 font-bold mb-10 dark:text-white text-center">Detail Job</h1>
                	    <div className="flex flex-col justify-between">
                	        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-5">
