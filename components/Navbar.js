@@ -26,9 +26,25 @@ export function Navbar() {
     { path: "/News", name: "News"}
   ];
 
+  const [colorChange, setColorchange] = useState(false);
+
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setColorchange(true);
+    } else {
+      setColorchange(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', changeNavbarColor);
+  }, []);
+
   return (
     <nav
-      className={ router.pathname == "/auth/signin" ? "hidden" : "w-full bg-neutral-700 bg-opacity-80 dark:bg-slate-800 lg:h-[100px] top-0 fixed z-50"}
+      className={ router.pathname == "/auth/signin" ? "hidden" : `${
+        colorChange ? 'md:bg-neutral-700 ' : 'md:bg-transparent'
+      } w-full  bg-opacity-80 dark:bg-slate-800 lg:h-[100px] top-0 fixed z-50`}
     >
       <div className="lg:justify-between justify-around lg:px-4 mx-10 items-center lg:flex lg:py-[10px] ">
         <div className="flex items-center justify-between py-3 ">

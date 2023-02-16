@@ -66,12 +66,10 @@ export default function News({allnews}) {
     autoplay: true
   };
   const router = useRouter()
-  console.log(allnews[0].Category[0].NewsCategory.CategoryName)
-  console.log(allnews)
   return (
     <React.Fragment>
       <MainHeader title="News" />
-      <section className="w-full h-full bg-neutral-100 dark:!bg-slate-500 overflow-hidden">
+      <section className="w-full h-full bg-neutral-300 dark:!bg-slate-500 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-xl lg:text-5xl font-bold my-10">Trending</h1>
           <Slider {...settings}>
