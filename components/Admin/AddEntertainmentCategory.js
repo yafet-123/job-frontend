@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import {DeleteCategory} from './DeleteCategory'
 import {UpdateCategory} from './UpdateCategory'
 
-export function AddCategory({categories}) {
+export function AddEntertainmentCategory({categories}) {
     const router = useRouter();
     const [category, setcategory] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);
@@ -20,13 +20,14 @@ export function AddCategory({categories}) {
     const UserData = data.user;
     async function registerCategory(e){
         e.preventDefault()
-        const data = await axios.post(`api/addCtegory`,{
+        const data = await axios.post(`api/addEntertainmentCategory`,{
             "CategoryName": category,
             "user_id": UserData.user_id,
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
-            seterror("Creating Category Failed")
+            seterror("Creating Entertainment Category Failed")
         });
        
     }
@@ -42,7 +43,7 @@ export function AddCategory({categories}) {
     return (
         <div className="px-0 lg:px-10 h-full">
             <form className="max-w-7xl mx-auto mt-10" onSubmit={registerCategory}>
-                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Category</h1>
+                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Entertainment Category</h1>
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1">
                         <input 

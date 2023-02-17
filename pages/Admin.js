@@ -8,6 +8,7 @@ import { AddLocation } from "../components/Admin/AddLocation";
 import { AddNewsCategory } from "../components/Admin/AddNewsCategory";
 import { AddNews } from "../components/Admin/AddNews";
 import { DisplayCategory } from "../components/Admin/DisplayCategory";
+import {AddEntertainmentCategory} from "../components/Admin/AddEntertainmentCategory"
 import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
 import { prisma } from '../util/db.server.js'
@@ -54,6 +55,20 @@ export async function getServerSideProps(){
       }
     }
   })
+
+  // const entertainmentcategories = await prisma.EntertainmentCategory.findMany({
+  //   orderBy: {
+  //     category_id:"asc"
+  //   },
+  //   include:{
+  //     User:{
+  //         select:{
+  //             UserName:true
+  //         }
+  //     }
+  //   }
+  // })
+
   const jobs = await prisma.Job.findMany({
     orderBy: {
       job_id:"asc"
@@ -108,6 +123,14 @@ export async function getServerSideProps(){
       userName:data.User.UserName
   }))
 
+  // const AllEntertainmentcategories = entertainmentcategories.map((data)=>({
+  //     category_id:data.category_id,
+  //     CategoryName:data.CategoryName,
+  //     CreatedDate:data.CreatedDate,
+  //     ModifiedDate:data.ModifiedDate,
+  //     userName:data.User.UserName
+  // }))
+
   const Allusers = users.map((data)=>({
       user_id:data.user_id,
       email:data.email,
@@ -146,7 +169,8 @@ export async function getServerSideProps(){
       Allusers:JSON.parse(JSON.stringify(Allusers)),
       Allcategories:JSON.parse(JSON.stringify(Allcategories)),
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
-      AllNewscategories:JSON.parse(JSON.stringify(AllNewscategories))
+      AllNewscategories:JSON.parse(JSON.stringify(AllNewscategories)),
+      // AllEntertainmentcategories:JSON.parse(JSON.stringify(AllEntertainmentcategories))
     }
   }
 }
@@ -179,7 +203,7 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, Al
             { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
             { selected == "addnewscategory" && <AddNewsCategory categories={AllNewscategories} />}
             { selected == "addnews" && <AddNews categories={AllNewscategories} />}
-            { selected == "addentertainmentcategory" && <AddNews categories={AllNewscategories} />}
+            { selected == "addentertainmentcategory" && <AddEntertainmentCategory categories={AllNewscategories} />}
             { selected == "addentertainment" && <AddNews categories={AllNewscategories} />}
           </div>
         </div>
