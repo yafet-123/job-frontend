@@ -179,6 +179,8 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, Al
             { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
             { selected == "addnewscategory" && <AddNewsCategory categories={AllNewscategories} />}
             { selected == "addnews" && <AddNews categories={AllNewscategories} />}
+            { selected == "addentertainmentcategory" && <AddNews categories={AllNewscategories} />}
+            { selected == "addentertainment" && <AddNews categories={AllNewscategories} />}
           </div>
         </div>
       </React.Fragment>
