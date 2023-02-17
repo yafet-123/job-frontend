@@ -5,8 +5,8 @@ import moment from 'moment';
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react";
 import Multiselect from 'multiselect-react-dropdown';
-import {DeleteCategory} from './DeleteCategory'
-import {UpdateCategory} from './UpdateCategory'
+import {DeleteEntertainment} from './DeleteEntertainment'
+import {UpdateEntertainment} from './UpdateEntertainment'
 
 export function AddEntertainment({categories}) {
     const router = useRouter();
@@ -14,8 +14,8 @@ export function AddEntertainment({categories}) {
     const [link, setlink] = useState("")
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
-    const [deletecategoryid,setdeletecategoryid] = useState()
-    const [updatecategoryid,setupdatecategoryid] = useState()
+    const [deleteentertainmentid,setdeleteentertainmentid] = useState()
+    const [updateentertainmentid,setupdateentertainmentid] = useState()
     const [updatecategoryname,setupdatecategoryname] = useState("")
     const { status, data } = useSession();
     const [error,seterror] = useState("")
@@ -92,7 +92,7 @@ export function AddEntertainment({categories}) {
                         onSearch={function noRefCheck(){}}
                         onSelect={(e)=>{
                             e.map((data,index)=>(
-                               setCategoryId([...categoryId, data.category_id])
+                               setCategoryId([...categoryId, data.entertainment_id])
                             ))
                         }}
                         options={categories}
@@ -128,10 +128,10 @@ export function AddEntertainment({categories}) {
                             {categories.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.category_id}</p>
+                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.entertainment_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {data.CategoryName}
+                                        {data.Header}
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
@@ -148,8 +148,8 @@ export function AddEntertainment({categories}) {
                                         <button
                                             onClick={() => {
                                                 clickedForupdate()
-                                                setupdatecategoryid(data.category_id)
-                                                setupdatecategoryname(data.CategoryName)
+                                                setupdateentertainmentid(data.entertainment_id)
+                                                setupdatecategoryname(data.Header)
                                             }}
                                             className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                             Edit
@@ -160,7 +160,7 @@ export function AddEntertainment({categories}) {
                                         <button 
                                             onClick={() => {
                                                 clickedFordelete()
-                                                setdeletecategoryid(data.category_id)
+                                                setdeleteentertainmentid(data.entertainment_id)
                                             }}
                                             className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                                             Delete
@@ -177,7 +177,7 @@ export function AddEntertainment({categories}) {
                             <div>
                                 <p className="text-blue-500 dark:text-white font-bold hover:underline">
                                     <span className="text-lg">Id : </span> 
-                                    <span className="text-sm ">{data.category_id}</span>
+                                    <span className="text-sm ">{data.entertainment_id}</span>
                                 </p>
                             </div>
                             <div className="text-gray-700 dark:text-white font-bold">
@@ -201,7 +201,7 @@ export function AddEntertainment({categories}) {
                                 <button
                                     onClick={() => {
                                         clickedForupdate()
-                                        setupdatecategoryid(data.category_id)
+                                        setupdateentertainmentid(data.entertainment_id)
                                         setupdatecategoryname(data.CategoryName)
                                     }} 
                                     className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
@@ -211,7 +211,7 @@ export function AddEntertainment({categories}) {
                                 <button
                                     onClick={() => {
                                         clickedFordelete()
-                                        setdeletecategoryid(data.category_id)
+                                        setdeleteentertainmentid(data.entertainment_id)
                                     }}  
                                     className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                                     Delete
@@ -223,11 +223,11 @@ export function AddEntertainment({categories}) {
             </div>
 
             {deletemodalOn && 
-                <DeleteCategory setdeleteModalOn={setdeleteModalOn} deletecategoryid={deletecategoryid}/>
+                <DeleteEntertainment setdeleteModalOn={setdeleteModalOn} deleteentertainmentid={deleteentertainmentid}/>
             }
 
             {updatemodalOn && 
-                <UpdateCategory setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
+                <UpdateEntertainment setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
             }
         </div>
   );
