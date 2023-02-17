@@ -16,7 +16,8 @@ export function AddEntertainment({categories}) {
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deleteentertainmentid,setdeleteentertainmentid] = useState()
     const [updateentertainmentid,setupdateentertainmentid] = useState()
-    const [updatecategoryname,setupdatecategoryname] = useState("")
+    const [updateheader,setupdateheader] = useState("")
+    const [updatelink,setupdatelink] = useState("")
     const { status, data } = useSession();
     const [error,seterror] = useState("")
     const UserData = data.user;
@@ -118,7 +119,8 @@ export function AddEntertainment({categories}) {
                         <thead className="bg-neutral-100 dark:bg-slate-800 border-b-2 border-gray-200">
                             <tr>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Category Name</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Header</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Link</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
@@ -132,6 +134,9 @@ export function AddEntertainment({categories}) {
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.Header}
+                                    </td>
+                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                        {data.link}
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
@@ -149,7 +154,8 @@ export function AddEntertainment({categories}) {
                                             onClick={() => {
                                                 clickedForupdate()
                                                 setupdateentertainmentid(data.entertainment_id)
-                                                setupdatecategoryname(data.Header)
+                                                setupdateheader(data.Header)
+                                                setupdatelink(data.link)
                                             }}
                                             className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                             Edit
@@ -181,9 +187,15 @@ export function AddEntertainment({categories}) {
                                 </p>
                             </div>
                             <div className="text-gray-700 dark:text-white font-bold">
-                                <span className="text-lg">Category Name : </span>
-                                <span className="text-sm ">{data.CategoryName}</span>
+                                <span className="text-lg">Header : </span>
+                                <span className="text-sm ">{data.Header}</span>
                             </div>
+
+                            <div className="text-gray-700 dark:text-white font-bold">
+                                <span className="text-lg">Link : </span>
+                                <span className="text-sm ">{data.link}</span>
+                            </div>
+
                             <div className="text-gray-700 dark:text-white font-bold">
                                 <span className="text-lg">Created By : </span>
                                 <span className="text-sm ">{data.userName}</span>
@@ -202,7 +214,8 @@ export function AddEntertainment({categories}) {
                                     onClick={() => {
                                         clickedForupdate()
                                         setupdateentertainmentid(data.entertainment_id)
-                                        setupdatecategoryname(data.CategoryName)
+                                        setupdateheader(data.Header)
+                                        setupdatelink(data.link)
                                     }} 
                                     className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit
@@ -227,7 +240,7 @@ export function AddEntertainment({categories}) {
             }
 
             {updatemodalOn && 
-                <UpdateEntertainment setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
+                <UpdateEntertainment setupdateModalOn={setupdateModalOn} updateentertainmentid={updateentertainmentid} updateheader={updateheader} setupdateentertainmentid={setupdateentertainmentid} updatelink={updatelink} setupdatelink={setupdatelink}/>
             }
         </div>
   );
