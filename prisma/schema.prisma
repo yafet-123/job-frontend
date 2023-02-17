@@ -63,6 +63,9 @@ model User {
   ModifiedDate DateTime?     @default(now()) @db.Timestamptz(6)
   Category     Category[]
   News         News[]
+  Entertainment Entertainment[]
+  EntertainmentCategory EntertainmentCategory[]
+  EntertainmentCategoryRelationship EntertainmentCategoryRelationship[]
   NewsCategory NewsCategory[]
   NewsCategoryRelationship NewsCategoryRelationship[]
   JobCategory  JobCategory[]
@@ -117,6 +120,16 @@ model NewsCategoryRelationship{
   User              User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
 }
 
+model Entertainment {
+  entertainment_id                      Int           @id @default(autoincrement()) 
+  Header                       String?
+  link                        String?       @db.VarChar(255)    
+  user_id                      Int
+  CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
+  User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
+  EntertainmentCategoryRelationship     EntertainmentCategoryRelationship[]
+}
 
 model EntertainmentCategory {
   category_id                   Int           @id @default(autoincrement())
@@ -125,7 +138,7 @@ model EntertainmentCategory {
   CreatedDate                   DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
   User                          User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
-  NewsCategoryRelationship      NewsCategoryRelationship[]
+  EntertainmentCategoryRelationship      EntertainmentCategoryRelationship[]
 }
 
 model EntertainmentCategoryRelationship{
