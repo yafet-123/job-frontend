@@ -62,10 +62,10 @@ model User {
   CreatedDate  DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate DateTime?     @default(now()) @db.Timestamptz(6)
   Category     Category[]
-  News         News[]
   Entertainment Entertainment[]
   EntertainmentCategory EntertainmentCategory[]
   EntertainmentCategoryRelationship EntertainmentCategoryRelationship[]
+  News         News[]
   NewsCategory NewsCategory[]
   NewsCategoryRelationship NewsCategoryRelationship[]
   JobCategory  JobCategory[]
@@ -121,9 +121,9 @@ model NewsCategoryRelationship{
 }
 
 model Entertainment {
-  entertainment_id                      Int           @id @default(autoincrement()) 
+  entertainment_id             Int           @id @default(autoincrement()) 
   Header                       String?
-  link                        String?       @db.VarChar(255)    
+  link                         String?       @db.VarChar(255)    
   user_id                      Int
   CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
@@ -142,13 +142,13 @@ model EntertainmentCategory {
 }
 
 model EntertainmentCategoryRelationship{
-  news_category_id  Int           @id @default(autoincrement())
-  user_id           Int?
-  category_id       Int
-  news_id           Int
+  entertainment_category_id   Int           @id @default(autoincrement())
+  user_id                     Int?
+  category_id                 Int
+  entertainment_id            Int
   CreatedDate       DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate      DateTime?     @default(now()) @db.Timestamptz(6)
-  NewsCategory      NewsCategory  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
-  News              News          @relation(fields: [news_id], references: [news_id], onDelete: Cascade, onUpdate: Cascade)
-  User              User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+  EntertainmentCategory      EntertainmentCategory  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
+  Entertainment              Entertainment          @relation(fields: [entertainment_id], references: [entertainment_id], onDelete: Cascade, onUpdate: Cascade)
+  User                       User?                  @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
 }
