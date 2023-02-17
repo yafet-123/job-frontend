@@ -19,9 +19,10 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     const [startDate, setStartDate] = useState(new Date());
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
-    const category = []
+    
 
     useEffect(()=>{
+        const category = []
         console.log(dataposttojob)
         category.push(dataposttojob.categories)
         setupdatejobid(dataposttojob.job_id)
