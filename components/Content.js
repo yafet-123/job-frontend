@@ -35,7 +35,7 @@ export function Content({entertainments}) {
                      </div>  
                </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 !pt-5 px-2 lg:px-5">
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 !pt-5 px-2 lg:px-5">
                     {entertainments.map(({Header,Category,CreatedDate}, index) => (
                          <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
                               <ReactPlayer className="!w-full !h-full !object-fit lg:!mb-5" url='https://www.facebook.com/100060800040546/videos/383129830691075/' />
