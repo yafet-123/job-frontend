@@ -243,7 +243,7 @@ export function AddEntertainment({categories, Allentertainment}) {
             }
 
             {updatemodalOn && 
-                <UpdateEntertainment setupdateModalOn={setupdateModalOn} updateentertainmentid={updateentertainmentid} updateheader={updateheader} setupdateentertainmentid={setupdateentertainmentid} updatelink={updatelink} setupdatelink={setupdatelink}/>
+                <UpdateEntertainment setupdateModalOn={setupdateModalOn} updateentertainmentid={updateentertainmentid} updateheader={updateheader} setupdateheader={setupdateheader} updatelink={updatelink} setupdatelink={setupdatelink} categories={categories}/>
             }
         </div>
   );

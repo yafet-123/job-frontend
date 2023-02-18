@@ -6,41 +6,33 @@ import { StatusCodes } from "http-status-codes";
 export default async function handleupdateentertainment(req, res){
 	const {updateentertainmentid} = req.query
 	const { 
-		Header
-		link
+		Header,
+		link,
 		categoryId,
+		user_id
 	} = req.body
 
 	console.log(categoryId)
 
-	const data = await prisma.Job.update({
-		where:{job_id:Number(updatejobid)},
+	const data = await prisma.Entertainment.update({
+		where:{entertainment_id:Number(updateentertainmentid)},
 		data:{
-			CompanyName,
-			Image,
-			JobsType,
-			location_id:Number(LocationId),
-			CareerLevel,
-			EmploymentType,
-			Salary,
-			JobsDescreption,
-			JobsRequirement,
-			DeadLine,
-			Apply,
+			Header,
+			link,
 		}
 	});
 
-	const deletecategorydata = await prisma.JobCategory.deleteMany({
-		where:{job_id:Number(updatejobid)},
+	const deletecategorydata = await prisma.EntertainmentCategoryRelationship.deleteMany({
+		where:{entertainment_id:Number(updateentertainmentid)},
 	});
 	
 
 	for (let j = 0; j < categoryId.length; j++) {
-	  	const jobcategory = await prisma.JobCategory.create({
+	  	const jobcategory = await prisma.EntertainmentCategoryRelationship.create({
 		    data:{
 		      user_id : Number(user_id),
 		      category_id : Number(categoryId[j]),
-		      job_id : Number(updatejobid)
+		      entertainment_id : Number(updateentertainmentid)
 		    }
 	  	})
 	}

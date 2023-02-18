@@ -1,16 +1,17 @@
 import axios from 'axios';
 import { useRouter } from 'next/router'
-export function DeleteLocation({setdeleteModalOn,deleteentertainmentid}) {
+export function DeleteEntertainment({setdeleteModalOn,deleteentertainmentid}) {
     const router = useRouter();
 	const handleOKClickFordelete = async() => {
         const data = await axios.delete(`api/deleteentertainment/${deleteentertainmentid}`,{
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             console.log(error);
         });
         setdeleteModalOn(false)
-        router.reload()
+        
     }
 
     const handleCancelClickFordelete = () => {
