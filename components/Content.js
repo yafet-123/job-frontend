@@ -36,17 +36,19 @@ export function Content({entertainments}) {
                </div>
 
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 !pt-5 px-5">
-                    {entertainments.map((item, index) => (
-                         <div key={index} className="flex flex-col w-full !h-full !mb-5 lg:!mb-0">
-                              <ReactPlayer className="!w-full h-full object-fit" url='https://www.facebook.com/100060800040546/videos/383129830691075/' />
+                    {entertainments.map(({Header,Category,CreatedDate}, index) => (
+                         <div key={index} className="!flex !flex-col w-full !h-full !mb-5 lg:!mb-0">
+                              <div className="w-full !h-5"> 
+                                   <ReactPlayer className="!w-full h-full object-fit" url='https://www.facebook.com/100060800040546/videos/383129830691075/' />
+                              </div>
                               <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug">
-                                   {item.Header}
+                                   {Header}
                               </h1>
                               <div className="flex flex-row justify-between mb-5">
                                    <h3 className="flex flex-col justify-between">
                                         { Category.map((data,index)=>(
                                              <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
-                                                  {data.NewsCategory.CategoryName}
+                                                  {data.EntertainmentCategory.CategoryName}
                                              </span>
                                         ))}
                                    </h3>

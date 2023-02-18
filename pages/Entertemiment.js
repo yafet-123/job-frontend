@@ -48,7 +48,8 @@ export async function getServerSideProps(context){
 		Header:data.Header,
 		link:data.link,
 		CreatedDate:data.CreatedDate,
-		ModifiedDate:data.ModifiedDate
+		ModifiedDate:data.ModifiedDate,
+		Category:data.EntertainmentCategoryRelationship
 	}))
 
   return{
