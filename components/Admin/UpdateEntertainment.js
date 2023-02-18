@@ -75,7 +75,7 @@ export function UpdateEntertainment({setupdateModalOn, updateentertainmentid, up
                                 displayValue="CategoryName"
                                 
                                 placeholder = "updated Category"
-                                className="w-full px-3 text-xl text-black h-16 bg-neutral-200 py-5 border-2 border-black rounded-xl appearance-none dark:text-black dark:bg-slate-500 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+                                className="w-full px-3 text-xl text-black h-32 bg-neutral-200 py-5 border-2 border-black rounded-xl appearance-none dark:text-black dark:bg-slate-500 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                                 onKeyPressFn={function noRefCheck(){}}
                                 onRemove={function noRefCheck(){}}
                                 onSearch={function noRefCheck(){}}
