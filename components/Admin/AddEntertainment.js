@@ -12,6 +12,7 @@ export function AddEntertainment({categories, Allentertainment}) {
     const router = useRouter();
     const [Header, setHeader] = useState("")
     const [link, setlink] = useState("")
+    const [categoryId, setCategoryId] = useState([])
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deleteentertainmentid,setdeleteentertainmentid] = useState()
@@ -27,8 +28,10 @@ export function AddEntertainment({categories, Allentertainment}) {
             "Header": Header,
             "link":link,
             "user_id": UserData.user_id,
+            "categoryId": categoryId
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             seterror("Creating Entertainment Failed")
         });
@@ -93,7 +96,7 @@ export function AddEntertainment({categories, Allentertainment}) {
                         onSearch={function noRefCheck(){}}
                         onSelect={(e)=>{
                             e.map((data,index)=>(
-                               setCategoryId([...categoryId, data.entertainment_id])
+                               setCategoryId([...categoryId, data.category_id])
                             ))
                         }}
                         options={categories}
@@ -132,7 +135,7 @@ export function AddEntertainment({categories, Allentertainment}) {
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.entertainment_id}</p>
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         {data.Header}
                                     </td>
                                      <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
@@ -191,7 +194,7 @@ export function AddEntertainment({categories, Allentertainment}) {
                                 <span className="text-sm ">{data.Header}</span>
                             </div>
 
-                            <div className="text-gray-700 dark:text-white font-bold">
+                            <div className="text-gray-700 dark:text-white font-bold overflow-x-scroll">
                                 <span className="text-lg">Link : </span>
                                 <span className="text-sm ">{data.link}</span>
                             </div>
