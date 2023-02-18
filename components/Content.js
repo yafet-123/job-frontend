@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 import React, {useState,useEffect} from "react";
+import moment from 'moment';
 
 export function Content({entertainments}) {
      const [getSearchValue,setgetSearchValue] = useState("")
@@ -41,6 +42,18 @@ export function Content({entertainments}) {
                               <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug">
                                    {item.Header}
                               </h1>
+                              <div className="flex flex-row justify-between mb-5">
+                                   <h3 className="flex flex-col justify-between">
+                                        { Category.map((data,index)=>(
+                                             <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
+                                                  {data.NewsCategory.CategoryName}
+                                             </span>
+                                        ))}
+                                   </h3>
+                                   <h3 className="font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
+                                       {moment(CreatedDate).utc().format('YYYY-MM-DD')}
+                                   </h3>
+                              </div>
                          </div>
                     ))}
                </div>

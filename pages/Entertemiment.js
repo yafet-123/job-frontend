@@ -17,6 +17,23 @@ export async function getServerSideProps(context){
 		orderBy : {
       		CreatedDate:'asc'
     	},
+    	include:{
+	      	User:{
+	        	select:{
+	          		UserName:true
+	        	}
+	      	},
+      		EntertainmentCategoryRelationship:{
+        		include:{
+          			EntertainmentCategory:{
+                        select:{
+                        	category_id:true,
+              				CategoryName:true
+            			}
+          			}
+        		}
+      		},
+    	}
 	})
 	
 	const categories = data.map((data)=>({
