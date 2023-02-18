@@ -22,3 +22,8 @@
   color: black !important;
 }*/
 
+.scroll_width{
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+

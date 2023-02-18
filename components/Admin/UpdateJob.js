@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import { useState , useEffect } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
+import { useSession } from "next-auth/react";
+
 export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, locations}){
     const [typechange , settypechange] = useState(true)
     const router = useRouter();
@@ -19,7 +21,8 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     const [startDate, setStartDate] = useState(new Date());
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
-    
+    const { status, data } = useSession();
+    const UserData = data.user;
 
     useEffect(()=>{
         const category = []
@@ -42,7 +45,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
         // } 
         
         
-    },[category,dataposttojob ])
+    },[dataposttojob ])
     
     const handleOKClickForupdate = async() => {
 
@@ -59,9 +62,10 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
             "Apply":Apply,
             "categoryId":categoryId,
             "LocationId": Location,
-            "user_id":17,
+            "user_id":UserData.user_id,
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             console.log(error);
         });
