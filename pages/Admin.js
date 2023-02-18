@@ -56,6 +56,18 @@ export async function getServerSideProps(){
       }
     }
   })
+  const entertainments = await prisma.Entertainment.findMany({
+    orderBy: {
+      entertainment_id:"asc"
+    },
+    include:{
+      User:{
+          select:{
+              UserName:true
+          }
+      }
+    }
+  })
 
   const entertainmentcategories = await prisma.EntertainmentCategory.findMany({
     orderBy: {
@@ -98,7 +110,14 @@ export async function getServerSideProps(){
       },
     } 
   })
-
+  const Allentertainment = entertainments.map((data)=>({
+    entertainment_id:data.entertainment_id,
+    Header:data.Header,
+    link:data.link,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate,
+    userName:data.User.UserName
+  }))
   const Alllocations = locations.map((data)=>({
       location_id:data.location_id,
       LocationName:data.LocationName,
@@ -171,12 +190,13 @@ export async function getServerSideProps(){
       Allcategories:JSON.parse(JSON.stringify(Allcategories)),
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
       AllNewscategories:JSON.parse(JSON.stringify(AllNewscategories)),
-      AllEntertainmentcategories:JSON.parse(JSON.stringify(AllEntertainmentcategories))
+      AllEntertainmentcategories:JSON.parse(JSON.stringify(AllEntertainmentcategories)),
+      Allentertainment:JSON.parse(JSON.stringify(Allentertainment))
     }
   }
 }
 
-export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, AllNewscategories, AllEntertainmentcategories }) {
+export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, AllNewscategories, AllEntertainmentcategories, Allentertainment }) {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
   // console.log(jobCategory)
@@ -205,7 +225,7 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, Al
             { selected == "addnewscategory" && <AddNewsCategory categories={AllNewscategories} />}
             { selected == "addnews" && <AddNews categories={AllNewscategories} />}
             { selected == "addentertainmentcategory" && <AddEntertainmentCategory categories={AllEntertainmentcategories} />}
-            { selected == "addentertainment" && <AddEntertainment categories={AllEntertainmentcategories} />}
+            { selected == "addentertainment" && <AddEntertainment categories={AllEntertainmentcategories} Allentertainment={Allentertainment} />}
           </div>
         </div>
       </React.Fragment>

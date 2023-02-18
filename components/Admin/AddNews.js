@@ -24,8 +24,7 @@ const QuillNoSSRWrapper = dynamic(
   },
 )
 
-QuillNoSSRWrapper.displayName = 'QuillNoSSRWrapper';
-export QuillNoSSRWrapper;
+
 
 
 export function AddNews({categories}) {

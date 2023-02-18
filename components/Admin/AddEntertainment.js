@@ -5,10 +5,10 @@ import moment from 'moment';
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react";
 import Multiselect from 'multiselect-react-dropdown';
-import {DeleteEntertainment} from './DeleteEntertainment'
+import {DeleteEntertainment} from './DeleteEntertainment' 
 import {UpdateEntertainment} from './UpdateEntertainment'
 
-export function AddEntertainment({categories}) {
+export function AddEntertainment({categories, Allentertainment}) {
     const router = useRouter();
     const [Header, setHeader] = useState("")
     const [link, setlink] = useState("")
@@ -50,11 +50,11 @@ export function AddEntertainment({categories}) {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 px-2">
                     <div className="relative mb-5">
                         <input 
-                            id="CareerLevel" 
+                            id="Header" 
                             type="text"
                             required 
                             className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                            value={CareerLevel}
+                            value={Header}
                             onChange={(e) => setHeader(e.target.value)}
                         />
                         <label 
@@ -67,11 +67,11 @@ export function AddEntertainment({categories}) {
 
                     <div className="relative mb-5">
                         <input 
-                            id="EmploymentType" 
+                            id="link" 
                             type="text"
                             required 
                             className="block w-full px-3 texxt-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                            value={EmploymentType}
+                            value={link}
                             onChange={(e) => setlink(e.target.value)}
                         />
                         <label 
@@ -127,7 +127,7 @@ export function AddEntertainment({categories}) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                            {categories.map((data,index)=>(
+                            {Allentertainment.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.entertainment_id}</p>
@@ -178,7 +178,7 @@ export function AddEntertainment({categories}) {
                     </table>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                    {categories.map((data,index)=>(
+                    {Allentertainment.map((data,index)=>(
                         <div key={index} className="bg-neutral-200 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div>
                                 <p className="text-blue-500 dark:text-white font-bold hover:underline">
