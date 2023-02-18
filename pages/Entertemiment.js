@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import ReactPlayer from 'react-player'
 import { MainHeader } from '../components/MainHeader';
 import { ETSidebar } from '../components/ETSidebar';
+import { Content } from '../components/Content';
 export default function Entertemiment(){
 	return(
 		<React.Fragment>
