@@ -7,7 +7,7 @@ export function Content({entertainments}) {
      const [getSearchValue,setgetSearchValue] = useState("")
      return (
           <div className="w-full h-full">
-               <div className="w-full px-20 mb-5">
+               <div className="w-full px-3 lg:px-20 mb-5">
                      <div className="flex flex-col lg:flex-row w-full">
                          <div className="relative flex-1">
                              <input 
@@ -35,13 +35,11 @@ export function Content({entertainments}) {
                      </div>  
                </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 !pt-5 px-5">
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 !pt-5 px-2 lg:px-5">
                     {entertainments.map(({Header,Category,CreatedDate}, index) => (
-                         <div key={index} className="!flex !flex-col w-full !h-full !mb-5 lg:!mb-0">
-                              <div className="w-full !h-5"> 
-                                   <ReactPlayer className="!w-full h-full object-fit" url='https://www.facebook.com/100060800040546/videos/383129830691075/' />
-                              </div>
-                              <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug">
+                         <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
+                              <ReactPlayer className="!w-full !h-full !object-fit lg:!mb-5" url='https://www.facebook.com/100060800040546/videos/383129830691075/' />
+                              <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
                                    {Header}
                               </h1>
                               <div className="flex flex-row justify-between mb-5">
