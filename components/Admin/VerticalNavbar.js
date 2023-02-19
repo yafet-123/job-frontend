@@ -31,7 +31,7 @@ export function VerticalNavbar({onChange, data}){
 
 	return(
             <div className={`flex h-full sticky top-0 bottom-0 ${sideBar ? "w-16 lg:w-28" : "w-96"} pt-24`}>
-                <nav className="w-full h-screen flex flex-col py-8 px-4 overflow-auto bg-neutral-100 dark:bg-slate-800">
+                <nav className="w-full h-screen flex flex-col py-8 px-4 bg-neutral-300 dark:bg-slate-800 overflow-y-scroll scroll_width">
                     <div className="flex justify-between ml-5">
                         <h1 className={`text-2xl font-bold text-black dark:text-white ${sideBar ? "hidden" : "flex"}`}>Admin Page</h1>
                         <button 

@@ -22,8 +22,13 @@
   color: black !important;
 }*/
 
+
 .scroll_width{
-  overflow-y: scroll;
-  scrollbar-width: none;
+  scrollbar-width: thin;
 }
 
+.scroll_width::-webkit-scrollbar {
+  width: 5px;
+  background-color: black;
+}
+  

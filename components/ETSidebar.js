@@ -6,7 +6,7 @@ export function ETSidebar({categories}) {
   const { category_id } = router.query
   return (
     <div className='flex flex-col justify-between bg-gray-300 dark:bg-slate-600' >
-      <ul className="flex flex-row lg:flex-col gap-10 h-[50rem] scroll_width">
+      <ul className="flex flex-row lg:flex-col gap-10 h-[50rem] overflow-y-scroll scroll_width">
         <li className='flex text-center gap-2 transition-none cursor-pointer hover:text-gray-600 '>
           <button 
             onClick = {()=>{
