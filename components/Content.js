@@ -2,9 +2,11 @@ import dynamic from 'next/dynamic'
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 import React, {useState,useEffect} from "react";
 import moment from 'moment';
+import { useRouter } from 'next/router'
 
 export function Content({entertainments}) {
      const [getSearchValue,setgetSearchValue] = useState("")
+     const router = useRouter()
      return (
           <div className="w-full h-full">
                <div className="w-full px-3 lg:px-20 mb-5">
@@ -26,9 +28,16 @@ export function Content({entertainments}) {
                          </div>
                          <div className="lg:mx-2 mt-5 lg:mt-0 flex items-center justify-center">
                              <div className="dropdown inline-block relative">
-                                 <button className="flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-md lg:text-xl px-2 lg:px-4 py-4 text-center inline-flex items-center">
+                                 <button 
+                                    onClick = {()=>{
+                                        router.push({
+                                          pathname:"/Search",
+                                          query:{searchValue:getSearchValue}
+                                        })
+                                    }}
+                                    className="flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-md lg:text-xl px-2 lg:px-4 py-4 text-center inline-flex items-center"
+                                >
                                      <span className="mr-1">Search</span>
-                                     <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
                                  </button>
                              </div>
                          </div>
@@ -50,7 +59,7 @@ export function Content({entertainments}) {
                                              </span>
                                         ))}
                                    </h3>
-                                   <h3 className="font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
+                                   <h3 className="font-bold text-sm lg:text-md dark:text-slate-800 text-slate-700">
                                        {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                                    </h3>
                               </div>
