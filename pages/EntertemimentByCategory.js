@@ -36,6 +36,16 @@ export async function getServerSideProps(context){
 	          		UserName:true
 	        	}
 	      	},
+	      	EntertainmentCategoryRelationship:{
+        		include:{
+          			EntertainmentCategory:{
+                        select:{
+                        	category_id:true,
+              				CategoryName:true
+            			}
+          			}
+        		}
+      		},
 	    } 
   	});
 
@@ -59,7 +69,8 @@ export async function getServerSideProps(context){
     	location_id:data.location_id,
     	userName:data.User.UserName,
     	CreatedDate:data.CreatedDate,
-    	ModifiedDate:data.ModifiedDate
+    	ModifiedDate:data.ModifiedDate,
+    	Category:data.EntertainmentCategoryRelationship
   	}))
 
   	return{
