@@ -5,9 +5,6 @@ import { GoLocation } from "react-icons/go";
 import { FaClock } from "react-icons/fa";
 import {RiGovernmentLine} from "react-icons/ri";
 import { useState } from "react";
-import { JobsByLocation } from "../data/JobsByLocation";
-import { LatestJobsList } from "../data/LatestJobs";
-import { GovernmentJobs } from "../data/GovernmentJobs";
 import { AiOutlineSearch, AiOutlineFacebook } from "react-icons/ai";
 import Image from 'next/image'
 import { useRouter } from 'next/router'

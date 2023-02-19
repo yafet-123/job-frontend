@@ -9,6 +9,8 @@ import axios from 'axios';
 import { prisma } from '../util/db.server.js'
 import moment from 'moment';
 import { MainHeader } from '../components/MainHeader';
+import { ETSidebar } from '../components/ETSidebar';
+import { Content } from '../components/Content';
 
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
@@ -26,7 +28,7 @@ export async function getServerSideProps(context){
   			}		
   		},
 	    orderBy: {
-	    	job_id:"asc"
+	    	entertainment_id:"asc"
 	    },
 	    include:{
 	      	User:{
@@ -37,7 +39,18 @@ export async function getServerSideProps(context){
 	    } 
   	});
 
-  	console.log(entertainmentsbycategory)
+  	const data = await prisma.EntertainmentCategory.findMany({
+		orderBy : {
+      		category_id:'asc'
+    	},
+	})
+
+	const categories = data.map((data)=>({
+		category_id:data.category_id,
+		CategoryName:data.CategoryName,
+		CreatedDate:data.CreatedDate,
+		ModifiedDate:data.ModifiedDate
+	}))
 
   	const Allentertainment = entertainmentsbycategory.map((data)=>({
     	entertainment_id:data.entertainment_id,
@@ -52,11 +65,14 @@ export async function getServerSideProps(context){
   	return{
     	props:{
     		Allentertainment:JSON.parse(JSON.stringify(Allentertainment)),
+    		categories:JSON.parse(JSON.stringify(categories))
     	}
   	}
 }
 
-export default function EntertemimentByCategory({categories,Alllatestjobs, jobsbycategory}) {
+export default function EntertemimentByCategory({Allentertainment, categories}) {
+	console.log(categories)
+	console.log(Allentertainment)
 	return(
 		<React.Fragment>
       		<MainHeader title="Jobs By Category" />
