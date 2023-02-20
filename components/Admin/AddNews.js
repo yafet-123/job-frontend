@@ -10,6 +10,8 @@ import {UpdateLocation} from './UpdateLocation'
 import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
+
+// eslint-disable-next-line react/display-name
 const QuillNoSSRWrapper = dynamic(
   async () => {
     const QuillNoSSRWrapper = (await import("react-quill")).default
@@ -23,8 +25,6 @@ const QuillNoSSRWrapper = dynamic(
   },
 )
 
-// 👇️ set display name
-QuillNoSSRWrapper.displayName = 'QuillNoSSRWrapper';
 
 
 
