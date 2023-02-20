@@ -17,7 +17,7 @@ const QuillNoSSRWrapper = dynamic(
     return ({
       forwardedRef,
       ...rest
-    }) => <QuillNoSSRWrapper ref={forwardedRef} {...rest} />
+    }) 
   },
   {
     ssr: false,

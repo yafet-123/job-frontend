@@ -6,8 +6,8 @@ export function ETSidebar({categories}) {
   const { category_id } = router.query
   return (
     <div className='flex flex-col justify-between bg-gray-300 dark:bg-slate-600' >
-      <ul className="flex flex-row lg:flex-col gap-3 lg:gap-10 lg:h-[50rem] mb-5 w-32 scroll_width">
-        <li className='flex text-center gap-2 transition-none cursor-pointer hover:text-gray-600 pt-5'>
+      <ul className="flex flex-row lg:flex-col gap-3 lg:gap-10 lg:h-[50rem] mb-5 w-full lg:w-32 scroll_width">
+        <li className='flex text-center gap-2 transition-none cursor-pointer hover:text-gray-600 lg:pt-5'>
           <button 
             onClick = {()=>{
               router.push({
@@ -19,7 +19,6 @@ export function ETSidebar({categories}) {
               Dashboard
             </button>
         </li>
-
         {categories.map((item, index) => (
 
             <li className='flex text-center lg:gap-2 transition-none cursor-pointer hover:text-gray-600'

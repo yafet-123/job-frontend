@@ -89,6 +89,7 @@ export function Navbar() {
                         ( router.pathname == "/JobsByCategory" && "/Jobs" == link.path ) || ( router.pathname == "/JobsByLocation" && "/Jobs" == link.path ) ||
                         ( router.pathname == "/Course" && "/Courses" == link.path ) || ( router.pathname == "/Advice" && "/Advices" == link.path ) || 
                         ( router.pathname == "/DisplayNews" && "/News" == link.path ) || ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path )
+                        || ( router.pathname == "/Search" && "/Entertemiment" == link.path )
                           ? "border-b-4 border-black dark:border-black md:ml-2 lg:ml-3 text-md lg:text-xl font-bold text-black dark:text-white"
                           : "md:ml-2 lg:ml-3 text-md lg:text-xl font-bold text-black dark:text-white hover:border-b-4 border-white"
                       }

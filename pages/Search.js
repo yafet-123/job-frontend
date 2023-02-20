@@ -74,15 +74,23 @@ export async function getServerSideProps(context){
 
 export default function Search({categories, AllData}) {
   const router = useRouter();
-  
-
+  console.log(AllData)
+  let error = "";
+  if(!AllData.length){
+    error = "There is no video"
+  }
+  console.log(error)
   return (
     <React.Fragment>
       <MainHeader title="AdvanceSearch" />
       <section className="flex flex-col w-full h-full bg-gray-300 dark:bg-slate-700 pt-32">
         <div className='w-full h-full flex flex-col lg:flex-row'>
           <ETSidebar categories={categories} />
-          <Content entertainments={AllData} />
+          { error == "" ? 
+            <Content entertainments={AllData} />
+            :
+            <h1 className="w-full pt-20 text-black dark:text-white text-2xl font-bold text-center italic">{error}</h1>
+          }
         </div> 
       </section>
     </React.Fragment>
