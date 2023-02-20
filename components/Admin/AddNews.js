@@ -24,10 +24,11 @@ const QuillNoSSRWrapper = dynamic(
   },
 )
 
+// 👇️ set display name
+QuillNoSSRWrapper.displayName = 'QuillNoSSRWrapper';
 
 
-
-export function AddNews({categories}) {
+export const AddNews = ({categories}) {
     const router = useRouter();
     
     const [Header, setHeader] = useState("")
