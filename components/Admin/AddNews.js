@@ -10,8 +10,6 @@ import {UpdateLocation} from './UpdateLocation'
 import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
-
-
 const QuillNoSSRWrapper = dynamic(
   async () => {
     const QuillNoSSRWrapper = (await import("react-quill")).default
