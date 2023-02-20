@@ -193,7 +193,13 @@ export const AddNews = ({categories}) {
                             Short Description
                         </p>
 
-                        <QuillNoSSRWrapper value={ShortDescription} onChange={setShortDescription} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                        <QuillNoSSRWrapper 
+                            forwardedRef={quillRef}
+                            value={ShortDescription} 
+                            onChange={setShortDescription} 
+                            modules={modules} className="dark:!bg-white dark:!text-black !mx-2" 
+                            theme="snow" 
+                        />
                     </div>
 
                     <div className="mb-10 ">
@@ -203,7 +209,13 @@ export const AddNews = ({categories}) {
                             Description
                         </p>
 
-                        <QuillNoSSRWrapper forwardedRef={quillRef} value={Description} onChange={setDescription} modules={modules} className="dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                        <QuillNoSSRWrapper 
+                            forwardedRef={quillRef} 
+                            value={Description} 
+                            onChange={setDescription} 
+                            modules={modules} className="dark:!bg-white dark:!text-black !mx-2" 
+                            theme="snow" 
+                        />
                     </div>
 
                     <div className="grid grid-cols-1 gap-5 my-10">
