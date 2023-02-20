@@ -29,7 +29,7 @@ QuillNoSSRWrapper.displayName = 'QuillNoSSRWrapper';
 export default QuillNoSSRWrapper;
 
 
-export const AddNews = ({categories}) {
+export function AddNews ({categories}) {
     const router = useRouter();
     
     const [Header, setHeader] = useState("")
