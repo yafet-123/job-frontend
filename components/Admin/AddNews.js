@@ -11,6 +11,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
 
+
 const QuillNoSSRWrapper = dynamic(
   async () => {
     const QuillNoSSRWrapper = (await import("react-quill")).default
@@ -194,7 +195,6 @@ export const AddNews = ({categories}) {
                         </p>
 
                         <QuillNoSSRWrapper 
-                            forwardedRef={quillRef}
                             value={ShortDescription} 
                             onChange={setShortDescription} 
                             modules={modules} className="dark:!bg-white dark:!text-black !mx-2" 
