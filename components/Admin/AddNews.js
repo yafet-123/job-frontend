@@ -27,6 +27,8 @@ const QuillNoSSRWrapper = dynamic(
 // 👇️ set display name
 QuillNoSSRWrapper.displayName = 'QuillNoSSRWrapper';
 
+export default QuillNoSSRWrapper;
+
 
 export const AddNews = ({categories}) {
     const router = useRouter();
