@@ -15,7 +15,7 @@ const QuillNoSSRWrapper = dynamic(
   async () => {
     const QuillNoSSRWrapper = (await import("react-quill")).default
     function Imagehandle({ forwardedRef, ...rest }){
-        <QuillNoSSRWrapper ref={forwardedRef} {...rest} />
+        return <QuillNoSSRWrapper ref={forwardedRef} {...rest} />
     }
     return Imagehandle
   },
