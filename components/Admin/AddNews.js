@@ -13,17 +13,14 @@ import dynamic from 'next/dynamic'
 
 const QuillNoSSRWrapper = dynamic(
   async () => {
-    const QuillNoSSRWrapper = (await import("react-quill")).default
-    return (({ forwardedRef, ...rest }) => <QuillNoSSRWrapper ref={forwardedRef} {...rest} />)
+    const ReactQuill = (await import("react-quill")).default
+    return (({ forwardedRef, ...rest }) => <ReactQuill ref={forwardedRef} {...rest} />)
   },
   {
     ssr: false,
   },
 )
 
-QuillNoSSRWrapper.displayName = 'QuillNoSSRWrapper';
-
-export default QuillNoSSRWrapper;
 
 
 
@@ -190,7 +187,7 @@ export function AddNews ({categories}) {
                             Short Description
                         </p>
 
-                        <QuillNoSSRWrapper 
+                        <ReactQuill 
                             value={ShortDescription} 
                             onChange={setShortDescription} 
                             modules={modules} className="dark:!bg-white dark:!text-black !mx-2" 
@@ -205,7 +202,7 @@ export function AddNews ({categories}) {
                             Description
                         </p>
 
-                        <QuillNoSSRWrapper 
+                        <ReactQuill 
                             forwardedRef={quillRef} 
                             value={Description} 
                             onChange={setDescription} 
