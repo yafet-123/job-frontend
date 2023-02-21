@@ -7,10 +7,10 @@ export default function About() {
     <React.Fragment>
       <MainHeader title="Forgot Password" />
       <div className="flex flex-col justify-center items-center h-screen w-full bg-neutral-400 dark:bg-slate-700"> 
-        <div className="flex flex-col bg-neutral-300 dark:bg-slate-700 border border-slate-300 rounded-xl w-[45rem] h-[35rem]">
-          <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic my-20">Category</h1>
-          <div className="flex flex-col justify-center lg:flex-row items-center">
-            <div className="relative my-10">
+        <div className="flex flex-col bg-neutral-300 dark:bg-slate-700 border border-slate-300 rounded-xl w-full lg:w-[45rem] h-full lg:h-[35rem]">
+          <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic my-20">Forgot Password</h1>
+          <div className="flex flex-col">
+            <div className="relative my-10 mx-5">
               <input 
                   id="email" 
                   type="email" 
@@ -26,11 +26,14 @@ export default function About() {
                   Email
               </label>
             </div>
-            <button 
-                className="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl p-4 text-center inline-flex items-center"
-            >
-                Submit
-            </button>
+
+            <div className="flex justify-end mx-5">
+              <button 
+                  className="w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl p-4"
+              >
+                  Submit
+              </button>
+            </div>
           </div>
         </div>
       </div>
