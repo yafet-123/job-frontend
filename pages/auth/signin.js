@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { useSession } from "next-auth/react";
 import { MainHeader } from '../../components/MainHeader';
 import React from 'react'
+import Link from 'next/link'
 export default function SignIn({ csrfToken }) {
     const router = useRouter();
     const [error, setError] = useState(null);
@@ -80,6 +81,14 @@ export default function SignIn({ csrfToken }) {
                                         <ErrorMessage name="password" />
                                     </div>
                                 </div>
+
+                                <Link href="/forgot/forgotpassword" >
+                                    <a
+                                        className="font-bold flex justify-end text-lg lg:text-xl text-red-600 mb-5"
+                                    >
+                                        forgot password?
+                                    </a>
+                                </Link>
 
                                 <div className="flex items-center justify-center">
                                     <button
