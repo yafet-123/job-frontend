@@ -13,16 +13,16 @@ import dynamic from 'next/dynamic'
 
 const QuillNoSSRWrapper = dynamic(
   async () => {
-    const ReactQuill = (await import("react-quill")).default
-    return (({ forwardedRef, ...rest }) => <ReactQuill ref={forwardedRef} {...rest} />)
+    const QuillNoSSRWrapper = (await import("react-quill")).default
+    function Imagehandle({ forwardedRef, ...rest }){
+        <QuillNoSSRWrapper ref={forwardedRef} {...rest} />
+    }
+    return Imagehandle
   },
   {
     ssr: false,
   },
 )
-
-
-
 
 export function AddNews ({categories}) {
     const router = useRouter();
@@ -187,7 +187,7 @@ export function AddNews ({categories}) {
                             Short Description
                         </p>
 
-                        <ReactQuill 
+                        <QuillNoSSRWrapper 
                             value={ShortDescription} 
                             onChange={setShortDescription} 
                             modules={modules} className="dark:!bg-white dark:!text-black !mx-2" 
@@ -202,7 +202,7 @@ export function AddNews ({categories}) {
                             Description
                         </p>
 
-                        <ReactQuill 
+                        <QuillNoSSRWrapper 
                             forwardedRef={quillRef} 
                             value={Description} 
                             onChange={setDescription} 
