@@ -75,7 +75,10 @@ export function Navbar() {
               open ? 'flex' : 'hidden'
             }`}
           >
-            <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-8 lg:space-y-0">
+            <ul className={`${
+              colorChange ? 'text-white' : 'text-black dark:text-white' } 
+              items-center justify-center space-y-8 lg:flex lg:space-x-8 lg:space-y-0 `}
+            >
               {NavbarTopic.map((link) => (
                 <li
                   key={link.name}
@@ -90,8 +93,8 @@ export function Navbar() {
                         ( router.pathname == "/Course" && "/Courses" == link.path ) || ( router.pathname == "/Advice" && "/Advices" == link.path ) || 
                         ( router.pathname == "/DisplayNews" && "/News" == link.path ) || ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path )
                         || ( router.pathname == "/Search" && "/Entertemiment" == link.path )
-                          ? "border-b-4 border-black dark:border-black md:ml-2 lg:ml-3 text-md lg:text-xl font-bold text-black dark:text-white"
-                          : "md:ml-2 lg:ml-3 text-md lg:text-xl font-bold text-black dark:text-white hover:border-b-4 border-white"
+                          ? "border-b-8 border-blue-700 dark:border-blue-700 md:ml-2 lg:ml-3 text-md lg:text-xl font-bold"
+                          : "md:ml-2 lg:ml-3 text-md lg:text-xl font-bold hover:border-b-4 border-white"
                       }
                     >
                       {link.name}
