@@ -14,11 +14,9 @@ import dynamic from 'next/dynamic'
 // eslint-disable-next-line react/display-name
 const QuillNoSSRWrapper = dynamic(
   async () => {
-    const QuillNoSSRWrapper = (await import("react-quill")).default
-    return ({
-      forwardedRef,
-      ...rest
-    }) => <QuillNoSSRWrapper ref={forwardedRef} {...rest} />
+    const 
+     = (await import("react-quill")).default
+    return ( ({ forwardedRef , ...rest }) => <QuillNoSSRWrapper ref={forwardedRef} {...rest} /> )
   },
   {
     ssr: false,
