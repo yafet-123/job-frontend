@@ -94,7 +94,7 @@ export function Navbar() {
                         ( router.pathname == "/DisplayNews" && "/News" == link.path ) || ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path )
                         || ( router.pathname == "/Search" && "/Entertemiment" == link.path )
                           ? "border-b-8 border-blue-700 dark:border-blue-700 md:ml-2 lg:ml-3 text-md lg:text-xl font-bold"
-                          : "md:ml-2 lg:ml-3 text-md lg:text-xl font-bold hover:border-b-4 border-white"
+                          : "md:ml-2 lg:ml-3 text-md lg:text-xl font-bold hover:border-b-8 border-blue-500"
                       }
                     >
                       {link.name}
