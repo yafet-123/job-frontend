@@ -21,7 +21,7 @@ export function Footer() {
   const router = useRouter();
 
   return (
-    <footer className={ router.pathname == "/auth/signin" || router.pathname == '/forgot/forgotpassword' ? "hidden" : "bg-neutral-600 dark:bg-slate-600 w-full"}>
+    <footer className={ router.pathname == "/auth/signin" || router.pathname == '/Forgotpassword' ? "hidden" : "bg-neutral-600 dark:bg-slate-600 w-full"}>
       <div className="flex flex-col lg:flex-row justify-between p-10 bg-neutral-700 dark:bg-slate-800">
         <div className="flex flex-col items-center justify-between space-y-5 md:items-start w-full md:w-1/4 mb-10 md:mb-0">
           <div className="">
