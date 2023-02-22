@@ -12,7 +12,7 @@ export default function ForgotPassword() {
             console.log(response.data);
             router.reload()
         }).catch(function (error) {
-            console.log("Creating Entertainment Failed")
+            console.log("Password Changing Failed")
         });
        
     }

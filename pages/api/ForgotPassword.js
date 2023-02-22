@@ -6,35 +6,35 @@ import nodemailer from "nodemailer"
 
 export default async function handleforgotpassword(req, res){
 	const {email} = req.body;
-	try {
+
 		console.log('new data')
 	    const oldUser = await prisma.User.findUnique({ 
 	    	where:{
-  				email
+  				email:email
   			},
 	    });
-	    console.log("oldUser")
-	    if (!oldUser) {
+	    console.log(oldUser)
+	    if (oldUser == null) {
 	      return res.json({ status: "User Not Exists!!" });
 	    }
-	    const secret = JWT_SECRET + oldUser.password;
+	    const secret = process.env.JWT_SECRET + oldUser.password;
 	    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
 	      expiresIn: "5m",
 	    });
-
-	    const link = `http://localhost:3000/Forgotpassword/${oldUser.user_id}/${token}`;
 	    
+	    const link = `http://localhost:3000/Forgotpassword/${oldUser.user_id}/${token}`;
+	    console.log(link)
 	    var transporter = nodemailer.createTransport({
 	      service: "gmail",
 	      auth: {
-	        user: "adarsh438tcsckandivali@gmail.com",
-	        pass: "rmdklolcsmswvyfw",
+	        user: "hulumedia12@gmail.com",
+	        pass: "mkhvelqnhlpkznji",
 	      },
 	    });
 
 	    var mailOptions = {
-	      from: "youremail@gmail.com",
-	      to: "thedebugarena@gmail.com",
+	      from: "hulumedia12@gmail.com",
+	      to: email,
 	      subject: "Password Reset",
 	      text: link,
 	    };
@@ -48,7 +48,5 @@ export default async function handleforgotpassword(req, res){
 	    });
 	    console.log(link);
 	    res.json(link)
-	} catch (error) {
-		res.json(error)
-	}
+	
 }
