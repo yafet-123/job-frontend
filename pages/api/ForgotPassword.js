@@ -7,13 +7,13 @@ import nodemailer from "nodemailer"
 export default async function handleforgotpassword(req, res){
 	const {email} = req.body;
 	try {
-		console.log('new')
+		console.log('new data')
 	    const oldUser = await prisma.User.findUnique({ 
 	    	where:{
-  				email:email
+  				email
   			},
 	    });
-	    console.log(oldUser)
+	    console.log("oldUser")
 	    if (!oldUser) {
 	      return res.json({ status: "User Not Exists!!" });
 	    }
