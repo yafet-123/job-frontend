@@ -82,7 +82,7 @@ export default function SignIn({ csrfToken }) {
                                     </div>
                                 </div>
 
-                                <Link href="/forgot/Forgotpassword" >
+                                <Link href="/Forgotpassword" >
                                     <a
                                         className="font-bold flex justify-end text-lg lg:text-xl text-red-600 mb-5"
                                     >
