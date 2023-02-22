@@ -1,4 +1,4 @@
-import { MainHeader } from '../../components/MainHeader';
+import { MainHeader } from '../components/MainHeader';
 import React from "react";
 import axios from 'axios';
 import { useState,useEffect, useContext} from 'react'
@@ -6,7 +6,6 @@ export default function ForgotPassword() {
   const [email, setemail] = useState("")
   async function forgotPasswordregister(e){
         e.preventDefault()
-        console.log(email)
         const data = await axios.post(`api/forgotPassword`,{
             "email": email,
         }).then(function (response) {

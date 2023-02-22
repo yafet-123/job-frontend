@@ -6,13 +6,14 @@ import nodemailer from "nodemailer"
 
 export default async function handleforgotpassword(req, res){
 	const {email} = req.body;
-	console.log(email)
 	try {
+		console.log('new')
 	    const oldUser = await prisma.User.findUnique({ 
 	    	where:{
   				email:email
   			},
 	    });
+	    console.log(oldUser)
 	    if (!oldUser) {
 	      return res.json({ status: "User Not Exists!!" });
 	    }
@@ -20,7 +21,9 @@ export default async function handleforgotpassword(req, res){
 	    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
 	      expiresIn: "5m",
 	    });
-	    const link = `http://localhost:3000/forgot/forgotpassword/${oldUser.user_id}/${token}`;
+
+	    const link = `http://localhost:3000/Forgotpassword/${oldUser.user_id}/${token}`;
+	    
 	    var transporter = nodemailer.createTransport({
 	      service: "gmail",
 	      auth: {
@@ -44,5 +47,8 @@ export default async function handleforgotpassword(req, res){
 	      }
 	    });
 	    console.log(link);
-	} catch (error) {}
+	    res.json(link)
+	} catch (error) {
+		res.json(error)
+	}
 }
