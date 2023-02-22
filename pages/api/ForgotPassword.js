@@ -5,6 +5,7 @@ import { StatusCodes } from "http-status-codes";
 import nodemailer from "nodemailer"
 
 export default async function handleforgotpassword(req, res){
+	const {email} = req.body;
 	try {
 	    const oldUser = await prisma.User.findUnique({ email });
 	    if (!oldUser) {
@@ -38,5 +39,5 @@ export default async function handleforgotpassword(req, res){
 	      }
 	    });
 	    console.log(link);
-	  } catch (error) {}
+	} catch (error) {}
 }

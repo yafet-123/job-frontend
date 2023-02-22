@@ -1,13 +1,27 @@
 import { MainHeader } from '../../components/MainHeader';
 import React from "react";
+import axios from 'axios';
 import { useState,useEffect, useContext} from 'react'
 export default function ForgotPassword() {
   const [email, setemail] = useState("")
+  async function forgotPasswordregister(e){
+        e.preventDefault()
+        console.log(email)
+        const data = await axios.post(`api/forgotPassword`,{
+            "email": email,
+        }).then(function (response) {
+            console.log(response.data);
+            router.reload()
+        }).catch(function (error) {
+            console.log("Creating Entertainment Failed")
+        });
+       
+    }
   return (
     <React.Fragment>
       <MainHeader title="Forgot Password" />
-      <div className="flex flex-col justify-center items-center h-screen w-full bg-neutral-400 dark:bg-slate-700"> 
-        <div className="flex flex-col bg-neutral-300 dark:bg-slate-700 border border-slate-300 rounded-xl w-full lg:w-[45rem] h-full lg:h-[35rem]">
+      <div className="flex flex-col justify-center items-center h-screen w-full bg-neutral-400 dark:bg-slate-700" > 
+        <form className="flex flex-col bg-neutral-300 dark:bg-slate-700 border border-slate-300 rounded-xl w-full lg:w-[45rem] h-full lg:h-[35rem]" onSubmit={forgotPasswordregister}>
           <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic my-20">Reset Password</h1>
           <div className="flex flex-col">
             <div className="relative my-10 mx-5">
@@ -35,7 +49,7 @@ export default function ForgotPassword() {
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </React.Fragment>
   );
