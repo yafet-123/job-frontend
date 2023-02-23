@@ -132,18 +132,17 @@ export default function News({allnews}) {
                   className="flex flex-col w-full h-full lg:mt-5 group py-5"
                 >
                   <div className="w-full h-52 lg:!h-64 relative">
-                    
+                    <Image
+                      src={image}
+                      layout="fill"
+                      className="!bg-cover w-full !h-full border rounded-xl"
+                      alt="latest news image"
+                    />
                   </div>
 
                   <div className="w-full flex flex-col text-left py-5">
                     <div className="flex flex-row justify-between mb-5">
-                      <h3 className="flex flex-col justify-between">
-                        { Category.map((data,index)=>(
-                          <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
-                            {data.NewsCategory.CategoryName}
-                          </span>
-                        ))}
-                      </h3>
+                      
                       <h3 className="font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
                         {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                       </h3>
