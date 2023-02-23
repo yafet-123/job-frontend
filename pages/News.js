@@ -132,12 +132,7 @@ export default function News({allnews}) {
                   className="flex flex-col w-full h-full lg:mt-5 group py-5"
                 >
                   <div className="w-full h-52 lg:!h-64 relative">
-                    <Image
-                      src={image}
-                      layout="fill"
-                      className="!bg-cover w-full !h-full border rounded-xl"
-                      alt="latest news image"
-                    />
+                    
                   </div>
 
                   <div className="w-full flex flex-col text-left py-5">
