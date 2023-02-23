@@ -17,12 +17,12 @@ export default async function handleforgotpassword(req, res){
 	    if (oldUser == null) {
 	      return res.json({ status: "User Not Exists!!" });
 	    }
-	    const secret = process.env.JWT_SECRET + oldUser.password;
-	    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
+	    const secret = process.env.JWT_SECRET + oldUser.Password;
+	    const token = jwt.sign({ email: oldUser.email, id: oldUser.user_id }, secret, {
 	      expiresIn: "5m",
 	    });
 	    
-	    const link = `http://localhost:3000/Forgotpassword/${oldUser.user_id}/${token}`;
+	    const link = `http://localhost:3000/api/Forgotpassword/${oldUser.user_id}/${token}`;
 	    console.log(link)
 	    var transporter = nodemailer.createTransport({
 	      service: "gmail",

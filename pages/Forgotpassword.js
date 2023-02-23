@@ -10,7 +10,7 @@ export default function ForgotPassword() {
             "email": email,
         }).then(function (response) {
             console.log(response.data);
-            router.reload()
+            
         }).catch(function (error) {
             console.log("Password Changing Failed")
         });
