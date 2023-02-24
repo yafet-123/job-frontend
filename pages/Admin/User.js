@@ -1,8 +1,8 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import { prisma } from '../../util/db.server.js'
-import { AddUser } from "../../components/Admin/AddUser";
-import {DisplayUser} from "../../components/Admin/DisplayUser";
+import { AddUser } from "../../components/Admin/User/AddUser";
+import {DisplayUser} from "../../components/Admin/User/DisplayUser";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../components/MainHeader';
@@ -30,7 +30,7 @@ export default function User({users}) {
     	<React.Fragment>
       		<MainHeader title="Entertemiment" />
       		<section className="flex flex-col w-full h-full bg-gray-300 dark:bg-slate-700 pt-28">
-				<div className='w-full h-full flex flex-col lg:flex-row'>
+				<div className='w-full h-full flex lg:flex-row'>
 		        	<VerticalNavbar data={data} />
 		        	<div className="w-full">
             			<AddUser />

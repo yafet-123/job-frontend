@@ -18,7 +18,6 @@ import { MainHeader } from '../components/MainHeader';
 import React from 'react'
 
 export async function getServerSideProps(){
-  const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
   const locations = await prisma.Location.findMany({
     orderBy: {
       location_id:"asc"
@@ -31,18 +30,7 @@ export async function getServerSideProps(){
       }
     }
   });
-  const categories = await prisma.Category.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  })
+
   const newscategories = await prisma.NewsCategory.findMany({
     orderBy: {
       category_id:"asc"
@@ -126,13 +114,7 @@ export async function getServerSideProps(){
       userName:data.User.UserName
   }))
 
-  const Allcategories = categories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
+  
 
   const AllNewscategories = newscategories.map((data)=>({
       category_id:data.category_id,
@@ -150,14 +132,6 @@ export async function getServerSideProps(){
       userName:data.User.UserName
   }))
 
-  const Allusers = users.map((data)=>({
-      user_id:data.user_id,
-      email:data.email,
-      role:data.role,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      UserName:data.UserName
-  }))
 
   const Alljobs = jobs.map((data)=>({
     job_id:data.job_id,
