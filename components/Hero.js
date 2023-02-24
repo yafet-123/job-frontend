@@ -36,7 +36,7 @@ export function Hero() {
 
   return (
     <div className="w-full h-[50rem] bg-[#F5F5DC] dark:bg-slate-700 relative">
-      <div className="absolute top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[40%]">
+      <div className="absolute top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
         <h1 className={`px-3 text-2xl mb-5 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-900 " : "text-yellow-900" } `}>
           Better Job. Better Talent
         </h1>
@@ -56,7 +56,7 @@ export function Hero() {
         </div>
 
         { search == "Job" ? (
-            <div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
+            <div className="flex h-16 w-[70%] border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
               <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
                 <AiOutlineSearch size={20} />
               </div>
@@ -76,7 +76,7 @@ export function Hero() {
             </div>
           )
           :(
-            <div className="flex h-16 w-full">
+            <div className="flex h-16 w-[70%]">
               <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
                 <AiOutlineSearch size={20} />
               </div>
