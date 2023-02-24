@@ -65,7 +65,7 @@ export default function Entertemiment({categories,entertainments}){
 	return(
 		<React.Fragment>
       		<MainHeader title="Entertemiment" />
-			<section className="flex flex-col w-full h-full bg-gray-300 dark:bg-slate-700 pt-32">
+			<section className="flex flex-col w-full h-full bg-[#F5F5DC] dark:bg-slate-700 pt-32">
 				
 				<div className='w-full h-full flex flex-col lg:flex-row'>
 		        	<ETSidebar categories={categories} />
