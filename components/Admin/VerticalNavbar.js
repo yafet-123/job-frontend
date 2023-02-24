@@ -18,9 +18,9 @@ export function VerticalNavbar({onChange, data}){
         { link: "displayJob", icon: <BsDisplay size={25}/>, name: "Display Job" },
         { link: "/Admin/Category", icon: <MdOutlineCategory size={25}/>, name: "Category" },
         { link: "/Admin/Location", icon: <MdLocationOn size={25}/>, name: "Location" },
-        { link: "addnewscategory", icon: <BsNewspaper size={25}/>, name: "News Category" },
+        { link: "/Admin/NewsCategory", icon: <BsNewspaper size={25}/>, name: "News Category" },
         { link: "addnews", icon: <GiNewspaper size={25}/>, name: "News" },
-        { link: "addentertainmentcategory", icon: <BsNewspaper size={25}/>, name: "Entertainment Category" },
+        { link: "/Admin/EntertainmentCategory", icon: <BsNewspaper size={25}/>, name: "Entertainment Category" },
         { link: "addentertainment", icon: <GiNewspaper size={25}/>, name: "Entertainment" },
     ];
 	const router = useRouter();

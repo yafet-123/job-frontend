@@ -18,31 +18,9 @@ import { MainHeader } from '../components/MainHeader';
 import React from 'react'
 
 export async function getServerSideProps(){
-  const locations = await prisma.Location.findMany({
-    orderBy: {
-      location_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  });
+  
 
-  const newscategories = await prisma.NewsCategory.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  })
+  
   const entertainments = await prisma.Entertainment.findMany({
     orderBy: {
       entertainment_id:"asc"
@@ -105,24 +83,11 @@ export async function getServerSideProps(){
     ModifiedDate:data.ModifiedDate,
     userName:data.User.UserName
   }))
-  const Alllocations = locations.map((data)=>({
-      location_id:data.location_id,
-      LocationName:data.LocationName,
-      Image:data.Image,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
+  
 
   
 
-  const AllNewscategories = newscategories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
+  
 
   const AllEntertainmentcategories = entertainmentcategories.map((data)=>({
       category_id:data.category_id,
@@ -159,7 +124,7 @@ export async function getServerSideProps(){
   return{
     props:{
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
-      AllNewscategories:JSON.parse(JSON.stringify(AllNewscategories)),
+      
       AllEntertainmentcategories:JSON.parse(JSON.stringify(AllEntertainmentcategories)),
       Allentertainment:JSON.parse(JSON.stringify(Allentertainment))
     }
