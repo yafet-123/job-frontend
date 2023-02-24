@@ -17,7 +17,7 @@ export function VerticalNavbar({onChange, data}){
         { link: "addJob", icon: <AiOutlineFolderAdd size={25}/>, name: "Add Job" },
         { link: "displayJob", icon: <BsDisplay size={25}/>, name: "Display Job" },
         { link: "/Admin/Category", icon: <MdOutlineCategory size={25}/>, name: "Category" },
-        { link: "addlocation", icon: <MdLocationOn size={25}/>, name: "Location" },
+        { link: "/Admin/Location", icon: <MdLocationOn size={25}/>, name: "Location" },
         { link: "addnewscategory", icon: <BsNewspaper size={25}/>, name: "News Category" },
         { link: "addnews", icon: <GiNewspaper size={25}/>, name: "News" },
         { link: "addentertainmentcategory", icon: <BsNewspaper size={25}/>, name: "Entertainment Category" },

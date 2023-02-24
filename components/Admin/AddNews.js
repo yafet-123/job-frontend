@@ -5,8 +5,6 @@ import moment from 'moment';
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react";
 import Image from 'next/image'
-import {DeleteLocation} from './DeleteLocation'
-import {UpdateLocation} from './UpdateLocation'
 import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'

@@ -158,9 +158,6 @@ export async function getServerSideProps(){
 
   return{
     props:{
-      Alllocations:JSON.parse(JSON.stringify(Alllocations)),
-      Allusers:JSON.parse(JSON.stringify(Allusers)),
-      Allcategories:JSON.parse(JSON.stringify(Allcategories)),
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
       AllNewscategories:JSON.parse(JSON.stringify(AllNewscategories)),
       AllEntertainmentcategories:JSON.parse(JSON.stringify(AllEntertainmentcategories)),
@@ -169,7 +166,7 @@ export async function getServerSideProps(){
   }
 }
 
-export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, AllNewscategories, AllEntertainmentcategories, Allentertainment }) {
+export default function Admin( Alljobs, AllNewscategories, AllEntertainmentcategories, Allentertainment }) {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
   // console.log(jobCategory)
@@ -190,10 +187,8 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, Al
           <VerticalNavbar onChange={handleChange} data={data} />
           <div className="flex-1 pt-32 ">
             { selected == "dashboard" && <DashBoard categories={Allcategories} locations={Alllocations} />}
-            { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
             { selected == "displayJob" && <DisplayJob jobs={Alljobs} categories={Allcategories} locations={Alllocations}/>}
             { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
-            { selected == "addlocation" && <AddLocation locations={Alllocations}/>}
             { selected == "addnewscategory" && <AddNewsCategory categories={AllNewscategories} />}
             { selected == "addnews" && <AddNews categories={AllNewscategories} />}
             { selected == "addentertainmentcategory" && <AddEntertainmentCategory categories={AllEntertainmentcategories} />}
