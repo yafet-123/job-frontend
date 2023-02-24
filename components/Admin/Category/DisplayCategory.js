@@ -18,7 +18,8 @@ export function DisplayCategory({categories}) {
         setupdateModalOn(true)
     }
     return (
-        <div className="m-2 lg:m-5">
+        <div className="px-0 lg:px-10 ">
+            <div className="p-2 lg:p-5">
                 <div className="overflow-auto rounded-lg shadow hidden md:block">
                     <table className="w-full">
                         <thead className="bg-neutral-100 dark:bg-slate-800 border-b-2 border-gray-200">
@@ -135,5 +136,6 @@ export function DisplayCategory({categories}) {
             {updatemodalOn && 
                 <UpdateCategory setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
             }
+        </div>
   );
 }

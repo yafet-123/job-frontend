@@ -30,22 +30,22 @@ export async function getServerSideProps(){
 
   return{
     props:{
-      categories:JSON.parse(JSON.stringify(Allcategories)),
+      categorie:JSON.parse(JSON.stringify(Allcategories)),
     }
   }
 }
 
-export default function Category({categories}) {
+export default function Category({categorie}) {
     const { status, data } = useSession();
     return (
     	<React.Fragment>
-      	<MainHeader title="Entertemiment" />
+      	<MainHeader title="Category Dashboard" />
         	<section className="flex flex-col w-full h-full bg-gray-300 dark:bg-slate-700 pt-28">
     				<div className='w-full h-full flex flex-col lg:flex-row'>
     		      <VerticalNavbar data={data} />
     		      <div className="w-full">
-            		<AddUser />
-            		<DisplayCategory categories={categories} />
+            		<AddCategory />
+            		<DisplayCategory categories={categorie} />
             	</div>
     		    </div> 
   			  </section>

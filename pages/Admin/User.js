@@ -28,7 +28,7 @@ export default function User({users}) {
     const { status, data } = useSession();
     return (
     	<React.Fragment>
-      		<MainHeader title="Entertemiment" />
+      		<MainHeader title="User Dashboard" />
       		<section className="flex flex-col w-full h-full bg-gray-300 dark:bg-slate-700 pt-28">
 				<div className='w-full h-full flex lg:flex-row'>
 		        	<VerticalNavbar data={data} />

@@ -159,7 +159,6 @@ export function AddUser() {
                     data-testid="loader"
                   />
             </form>
-
         </div>
     );
 }

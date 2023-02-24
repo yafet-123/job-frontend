@@ -24,10 +24,9 @@ export function AddCategory({categories}) {
        
     }
 
-    
 
     return (
-        <div className="px-0 lg:px-10 h-full">
+        <div className="px-0 lg:px-10">
             <form className="max-w-7xl mx-auto mt-10" onSubmit={registerCategory}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Category</h1>
                 <div className="flex flex-col my-10 w-full px-2">
