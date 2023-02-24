@@ -1,6 +1,5 @@
 import { VerticalNavbar } from "../components/Admin/VerticalNavbar";
 import { DashBoard } from "../components/Admin/DashBoard";
-import { AddUser } from "../components/Admin/AddUser";
 import { DisplayJob } from "../components/Admin/DisplayJob";
 import { AddCategory } from "../components/Admin/AddCategory";
 import { AddJob } from "../components/Admin/AddJob";
@@ -217,7 +216,6 @@ export default function Admin({Allusers,Allcategories, Alljobs, Alllocations, Al
           <VerticalNavbar onChange={handleChange} data={data} />
           <div className="flex-1 pt-32 ">
             { selected == "dashboard" && <DashBoard categories={Allcategories} locations={Alllocations} />}
-            { selected == "addUser" && <AddUser users={Allusers}/>}
             { selected == "addCategory" && <AddCategory categories={Allcategories}/>}
             { selected == "displayJob" && <DisplayJob jobs={Alljobs} categories={Allcategories} locations={Alllocations}/>}
             { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}

@@ -6,21 +6,17 @@ import { useRouter } from 'next/router'
 import {DeleteUser} from './DeleteUser.js'
 import {UpdateUser} from './UpdateUser.js'
 import {FiEye, FiEyeOff} from 'react-icons/fi'
+import PacmanLoader from "react-spinners/PacmanLoader";
 
-export function AddUser({users}) {
+export function AddUser() {
     const [typepassword, setTypepassword] = useState('password');
     const [typepasswordconfirm, setTypepasswordconfirm] = useState('password');
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
     const [UserName, setUserName] =useState("")
     const [email, setemail] = useState("")
     const [password,setpassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [deletemodalOn, setdeleteModalOn] = useState(false);
-    const [updatemodalOn, setupdateModalOn] = useState(false);
-    const [deleteuserid,setdeleteuserid] = useState()
-    const [updateuserid,setupdateuserid] = useState()
-    const [updateemail, setupdateemail] = useState("")
-    const [updateusername,setupdateusername] = useState("")
     const [passworderror,setpassworderror] = useState("")
     const [error,seterror] = useState("")
     async function register(e){
@@ -28,7 +24,7 @@ export function AddUser({users}) {
         if(confirmPassword === password){
             setpassworderror("")
             seterror("")
-            const data = await axios.post(`api/registerUser`,{
+            const data = await axios.post(`../api/registerUser`,{
                 'UserName':UserName,
                 'Password':password,
                 'email':email,
@@ -44,14 +40,6 @@ export function AddUser({users}) {
             setpassworderror("Password and confirm password should be same.")
         }
                 
-    }
-
-    const clickedFordelete = () => {
-        setdeleteModalOn(true)
-    }
-
-    const clickedForupdate = () => {
-        setupdateModalOn(true)
     }
 
     return (
@@ -156,142 +144,21 @@ export function AddUser({users}) {
                         {passworderror || error}
                     </h1>
                     <button 
+                        onClick={() => setLoading(!loading)}
                         className="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl p-4 text-center inline-flex items-center"
                     >
                         Submit
                     </button>
                 </div>
+
+                <PacmanLoader 
+                    color="#36d7b7"
+                    loading={loading}
+                    size={50}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
             </form>
-
-            <div className="p-2 lg:p-5">
-                <div className="overflow-auto rounded-lg shadow hidden md:block">
-                    <table className="w-full">
-                        <thead className="bg-neutral-100 dark:bg-slate-800 border-b-2 border-gray-200">
-                            <tr>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">User Name</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Email</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-100">
-                            {users.map((data,index)=>(
-                                <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
-                                    <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.user_id}</p>
-                                    </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {data.UserName}
-                                    </td>
-
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <h1 className="text-black dark:text-white flex justify-between my-5 font-bold text-lg md:text-xl">
-                                            <span className={ `font-normal font-medium ${data.email ? " " : "text-red-800"}`}>
-                                                { data.email ? data.email : "No Email Address" }
-                                            </span>
-                                        </h1>
-                                    </td>
-
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                                    </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
-                                    </td>
-
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <button
-                                            onClick={() => {
-                                                clickedForupdate()
-                                                setupdateuserid(data.user_id)
-                                                setupdateusername(data.UserName)
-                                                setupdateemail(data.email)
-                                            }} 
-                                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                            Edit
-                                        </button>
-                                    </td>
-
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <button 
-                                            onClick={() => {
-                                                clickedFordelete()
-                                                setdeleteuserid(data.user_id)
-                                            }}
-                                            className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:hidden">
-                    {users.map((data,index)=>(
-                        <div key={index} className=" bg-neutral-200 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow overflow-scroll">
-                            <div>
-                                <p className="text-blue-500 dark:text-white font-bold hover:underline">
-                                    <span className="text-lg">Id : </span> 
-                                    <span className="text-sm ">{data.user_id}</span>
-                                </p>
-                            </div>
-                            <div className="text-gray-700 dark:text-white font-bold">
-                                <span className="text-lg">User Name : </span>
-                                <span className="text-md">{data.UserName} </span>
-                            </div>
-
-                            <div className="text-md lg:text-lg text-gray-700 dark:text-white font-bold break-words ">
-                                Email : <span className={ `font-normal font-medium ${data.email ? " " : "text-red-800"}`}>
-                                    { data.email ? data.email : "No Email Address" }
-                                </span>
-                            </div>
-
-                            <div className="text-black font-bold dark:text-white">
-                              <span className="text-lg">createDate : </span>
-                              <span className="text-sm">{moment(data.createDate).utc().format('YYYY-MM-DD')}</span>
-                            </div>
-                            <div className="text-black font-bold dark:text-white">
-                              <span className="text-lg">Modified Date : </span>
-                              <span className="text-sm">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
-                            </div>
-
-                            <div className="flex items-center justify-between text-sm">
-                                <button
-                                    onClick={() => {
-                                        clickedForupdate()
-                                        setupdateuserid(data.user_id)
-                                        setupdateusername(data.UserName)
-                                        setupdateemail(data.email)
-                                    }}  
-                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                                    Edit
-                                </button>
-
-                                <button
-                                    onClick={() => {
-                                        clickedFordelete()
-                                        setdeleteuserid(data.user_id)
-                                    }} 
-                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {deletemodalOn && 
-                <DeleteUser setdeleteModalOn={setdeleteModalOn} deleteuserid={deleteuserid}/>
-            }
-
-            {updatemodalOn && 
-                <UpdateUser setupdateModalOn={setupdateModalOn} updateuserid={updateuserid} updateemail={updateemail} updateusername={updateusername} setupdateemail={setupdateemail} setupdateusername={setupdateusername} />
-            }
 
         </div>
     );

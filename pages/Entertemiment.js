@@ -61,7 +61,6 @@ export async function getServerSideProps(context){
 }
 
 export default function Entertemiment({categories,entertainments}){
-	
 	return(
 		<React.Fragment>
       		<MainHeader title="Entertemiment" />
