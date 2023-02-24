@@ -4,8 +4,6 @@ import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react";
-import {DeleteCategory} from './DeleteCategory'
-import {UpdateCategory} from './UpdateCategory'
 
 export function AddCategory({categories}) {
     const router = useRouter();
@@ -15,7 +13,7 @@ export function AddCategory({categories}) {
     const UserData = data.user;
     async function registerCategory(e){
         e.preventDefault()
-        const data = await axios.post(`api/addCtegory`,{
+        const data = await axios.post(`./api/addCtegory`,{
             "CategoryName": category,
             "user_id": UserData.user_id,
         }).then(function (response) {

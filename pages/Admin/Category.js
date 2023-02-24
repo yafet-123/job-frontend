@@ -1,8 +1,8 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import { prisma } from '../../util/db.server.js'
-import { AddCategory } from "../../components/Admin/AddCategory";
-import {DisplayCategory} from "../../components/Admin/DisplayCategory";
+import { AddCategory } from "../../components/Admin/Category/AddCategory";
+import {DisplayCategory} from "../../components/Admin/Category/DisplayCategory";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../components/MainHeader';
