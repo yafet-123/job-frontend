@@ -37,10 +37,10 @@ export function Hero() {
   return (
     <div className="w-full h-[50rem] bg-[#ddd0c8] dark:bg-slate-700 relative">
       <div className="absolute top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
-        <h1 className={`px-3 text-2xl mb-5 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-900 " : "text-yellow-900" } `}>
+        <h1 className={`px-3 text-2xl mb-10 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-900 " : "text-yellow-900" } `}>
           Better Job. Better Talent
         </h1>
-        <div className="flex flex-col lg:flex-row mb-2 px-3">
+        <div className="flex flex-col lg:flex-row mb-10 px-3">
           <button 
             className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "job" ? "bg-green-400 text-white" : "text-black" } p-4  rounded-xl`} 
             onClick={() => setsearch("job")}
