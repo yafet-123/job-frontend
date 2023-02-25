@@ -4,6 +4,14 @@ import axios from 'axios';
 import moment from 'moment';
 import Image from 'next/image'
 import { AiOutlineEye } from 'react-icons/ai'
+import { DeleteCategory } from './Category/DeleteCategory'
+import { UpdateCategory } from './Category/UpdateCategory'
+import { ViewIndividualjob } from './Job/ViewIndividualjob'
+import { DeleteLocation } from './Location/DeleteLocation'
+import { DeleteUser } from './User/DeleteUser'
+import { UpdateUser } from './User/UpdateUser'
+import { UpdateLocation } from './Location/UpdateLocation'
+
 
 export function DashBoard({categories}) {
     const [getSearchValue,setgetSearchValue] = useState("")
@@ -93,7 +101,7 @@ export function DashBoard({categories}) {
     }
 
     return (
-        <div className="mt-10 mx-1 lg:mx-3 lg:mx-10 h-full">
+        <div className="mt-10 mx-1 lg:mx-3 lg:mx-10 h-full pt-20">
             <div className="max-w-7xl mx-auto ">
                 <div className="flex flex-col lg:flex-row my-10 w-full">
                     <div className="relative flex-1">
@@ -106,7 +114,7 @@ export function DashBoard({categories}) {
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-300 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#ddd0c8] dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Search
                         </label>
@@ -582,6 +590,34 @@ export function DashBoard({categories}) {
                 </div>
                 :
                 <h1 className="text-black dark:text-white text-md lg:text-xl font-bold text-center italic">{error}</h1>
+            }
+
+            {deletemodalOnforcategory && 
+                <DeleteCategory setdeleteModalOn={setdeleteModalOnforcategory} deletecategoryid={deletecategoryid}/>
+            }
+
+            {updatemodalOnforcategory && 
+                <UpdateCategory setupdateModalOn={setupdateModalOnforcategory} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
+            }
+
+            {viewmodalOnforjob && 
+                <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOnforjob} categories={categories} />
+            }
+
+            { deletemodalOnforlocation && 
+                <DeleteLocation setdeleteModalOn={setdeleteModalOnforlocation} deletelocationid={deletelocationid} />
+            }
+
+            {deletemodalOnforuser && 
+                <DeleteUser setdeleteModalOn={setdeleteModalOnforuser} deleteuserid={deleteuserid}/>
+            }
+
+            {updatemodalOnforuser && 
+                <UpdateUser setupdateModalOn={setupdateModalOnforuser} updateuserid={updateuserid} updateemail={updateemail} updateusername={updateusername} setupdateemail={setupdateemail} setupdateusername={setupdateusername} />
+            }
+
+            { updatemodalOnforlocation && 
+                <UpdateLocation updatelocationid={updatelocationid} setupdateModalOn={setupdateModalOnforlocation} updatelocationname={updatelocationname} setupdatelocationname={setupdatelocationname} />
             }
         </div>
   );

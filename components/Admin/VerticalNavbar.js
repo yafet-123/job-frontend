@@ -12,9 +12,9 @@ import { BsDisplay } from 'react-icons/bs'
 
 export function VerticalNavbar({onChange, data}){
     const SideBarList = [
-        { link: "dashboard", icon: <AiFillDashboard size={25}/>, name: "Dashboard",},
+        { link: "/Admin", icon: <AiFillDashboard size={25}/>, name: "Dashboard",},
         { link: "/Admin/User", icon: <AiOutlineUser size={25}/>, name: "User",},
-        { link: "addJob", icon: <AiOutlineFolderAdd size={25}/>, name: "Add Job" },
+        { link: "/Admin/JobAdd", icon: <AiOutlineFolderAdd size={25}/>, name: "Add Job" },
         { link: "/Admin/JobDisplay", icon: <BsDisplay size={25}/>, name: "Display Job" },
         { link: "/Admin/Category", icon: <MdOutlineCategory size={25}/>, name: "Category" },
         { link: "/Admin/Location", icon: <MdLocationOn size={25}/>, name: "Location" },

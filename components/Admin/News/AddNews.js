@@ -110,7 +110,7 @@ export function AddNews ({categories}) {
     async function addnews(){
         const imageData = await imageUploadData()
         seterror("")
-        const data = await axios.post(`api/addNews`,{
+        const data = await axios.post(`../api/addNews`,{
             "Header": Header,
             "ShortDescription" : ShortDescription,
             "Description" : Description,
@@ -139,7 +139,7 @@ export function AddNews ({categories}) {
     }
 
     return (
-        <div className="px-0 lg:px-10 h-full">
+        <div className="px-0 lg:px-10 h-full pt-20">
             <form className="max-w-7xl mx-auto my-10" onSubmit={registerNews}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Add News</h1>
                 <div className="flex flex-col my-10 w-full px-2">
@@ -154,7 +154,7 @@ export function AddNews ({categories}) {
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-300 dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#ddd0c8] dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Header
                         </label>
@@ -188,7 +188,7 @@ export function AddNews ({categories}) {
                         <QuillNoSSRWrapper 
                             value={ShortDescription} 
                             onChange={setShortDescription} 
-                            modules={modules} className="dark:!bg-white dark:!text-black !mx-2" 
+                            modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2" 
                             theme="snow" 
                         />
                     </div>
