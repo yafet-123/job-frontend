@@ -583,8 +583,6 @@ export function DashBoard({categories}) {
                 :
                 <h1 className="text-black dark:text-white text-md lg:text-xl font-bold text-center italic">{error}</h1>
             }
-
-            
         </div>
   );
 }
