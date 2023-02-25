@@ -106,7 +106,7 @@ export async function getServerSideProps(){
   return{
     props:{
       jobs:JSON.parse(JSON.stringify(reversejob)),
-      categories:JSON.parse(JSON.stringify(Allcategories))
+      categories:JSON.parse(JSON.stringify(Allcategories)),
       locations:JSON.parse(JSON.stringify(Alllocations)),
     }
   }

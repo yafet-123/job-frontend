@@ -4,7 +4,6 @@ import axios from 'axios';
 import moment from 'moment';
 import Image from 'next/image'
 import { AiOutlineEye } from 'react-icons/ai'
-import {ViewIndividualjob} from './ViewIndividualjob'
 
 export function DashBoard({categories}) {
     const [getSearchValue,setgetSearchValue] = useState("")
@@ -585,33 +584,7 @@ export function DashBoard({categories}) {
                 <h1 className="text-black dark:text-white text-md lg:text-xl font-bold text-center italic">{error}</h1>
             }
 
-            {deletemodalOnforcategory && 
-                <DeleteCategory setdeleteModalOn={setdeleteModalOnforcategory} deletecategoryid={deletecategoryid}/>
-            }
-
-            {updatemodalOnforcategory && 
-                <UpdateCategory setupdateModalOn={setupdateModalOnforcategory} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
-            }
-
-            {viewmodalOnforjob && 
-                <ViewIndividualjob dataposttojob={dataposttojob} setviewModalOn={setviewModalOnforjob} categories={categories} />
-            }
-
-            { deletemodalOnforlocation && 
-                <DeleteLocation setdeleteModalOn={setdeleteModalOnforlocation} deletelocationid={deletelocationid} />
-            }
-
-            {deletemodalOnforuser && 
-                <DeleteUser setdeleteModalOn={setdeleteModalOnforuser} deleteuserid={deleteuserid}/>
-            }
-
-            {updatemodalOnforuser && 
-                <UpdateUser setupdateModalOn={setupdateModalOnforuser} updateuserid={updateuserid} updateemail={updateemail} updateusername={updateusername} setupdateemail={setupdateemail} setupdateusername={setupdateusername} />
-            }
-
-            { updatemodalOnforlocation && 
-                <UpdateLocation updatelocationid={updatelocationid} setupdateModalOn={setupdateModalOnforlocation} updatelocationname={updatelocationname} setupdatelocationname={setupdatelocationname} />
-            }
+            
         </div>
   );
 }

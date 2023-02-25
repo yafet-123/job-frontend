@@ -84,7 +84,7 @@ export default function Jobs({categories, locations, latestjobs}) {
   return (
     <React.Fragment>
       <MainHeader title="Jobs" />
-      <section className="flex flex-col w-full h-full py-20 px-0 md:px-24 bg-neutral-300 dark:bg-slate-700 pt-32">
+      <section className="flex flex-col w-full h-full py-20 px-0 md:px-24 bg-[#ddd0c8] dark:bg-slate-700 pt-32">
         <div className="flex flex-col lg:flex-row justify-between items-center h-16 w-full mb-10 px-10">
           <h1 className="text-black dark:text-white font-light text-md md:text-3xl lg:text-4xl capitalize lg:mb-5 text-center">
             Search and Find Jobs in Ethiopia
