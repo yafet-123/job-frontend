@@ -114,7 +114,7 @@ export function AddJob({categories, locations}) {
     
 
     return (
-        <div className="px-0 lg:px-10">
+        <div className="px-0 lg:px-10 pt-20">
             <form className="max-w-7xl lg:mx-auto mt-10" onSubmit={addJob}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Add Job</h1>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-10 px-2">

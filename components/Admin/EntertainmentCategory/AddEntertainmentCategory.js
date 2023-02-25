@@ -25,7 +25,7 @@ export function AddEntertainmentCategory({categories}) {
     }
 
     return (
-        <div className="px-0 lg:px-10">
+        <div className="px-0 lg:px-10 pt-20">
             <form className="max-w-7xl mx-auto mt-10" onSubmit={registerCategory}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Entertainment Category</h1>
                 <div className="flex flex-col my-10 w-full px-2">

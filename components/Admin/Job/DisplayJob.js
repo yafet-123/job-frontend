@@ -18,7 +18,7 @@ export function DisplayJob({jobs, categories, locations}) {
     }
 
     return (
-        <div className="m-2 lg:m-5">
+        <div className="m-2 lg:m-5 pt-20">
             <div>
                 <div className="overflow-auto rounded-lg shadow hidden lg:block">
                     <table className="w-full">

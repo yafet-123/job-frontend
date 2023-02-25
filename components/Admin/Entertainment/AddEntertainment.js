@@ -33,7 +33,7 @@ export function AddEntertainment({categories, Allentertainment}) {
 
 
     return (
-        <div className="px-0 lg:px-10">
+        <div className="px-0 lg:px-10 pt-20">
             <form className="max-w-7xl mx-auto mt-10" onSubmit={registerEntertainment}>
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Entertainment</h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 px-2">

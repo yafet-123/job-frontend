@@ -26,7 +26,7 @@ export default function Admin() {
     return (
       <React.Fragment>
         <MainHeader title="Admin" />
-        <div className="flex bg-neutral-300 dark:bg-slate-700">
+        <div className="flex bg-[#ddd0c8] dark:bg-slate-700 pt-10">
           <VerticalNavbar onChange={handleChange} data={data} />
           
         </div>
