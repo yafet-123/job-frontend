@@ -4,13 +4,7 @@ import axios from 'axios';
 import moment from 'moment';
 import Image from 'next/image'
 import { AiOutlineEye } from 'react-icons/ai'
-import {DeleteCategory} from './DeleteCategory'
-import {UpdateCategory} from './UpdateCategory'
 import {ViewIndividualjob} from './ViewIndividualjob'
-import {DeleteLocation} from './DeleteLocation'
-import {UpdateLocation} from './UpdateLocation'
-import {DeleteUser} from './DeleteUser.js'
-import {UpdateUser} from './UpdateUser.js'
 
 export function DashBoard({categories}) {
     const [getSearchValue,setgetSearchValue] = useState("")

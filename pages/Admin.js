@@ -1,18 +1,9 @@
 import { VerticalNavbar } from "../components/Admin/VerticalNavbar";
 import { DashBoard } from "../components/Admin/DashBoard";
 import { DisplayJob } from "../components/Admin/DisplayJob";
-import { AddCategory } from "../components/Admin/AddCategory";
-import { AddJob } from "../components/Admin/AddJob";
-import { AddLocation } from "../components/Admin/AddLocation";
-import { AddNewsCategory } from "../components/Admin/AddNewsCategory";
 import { AddNews } from "../components/Admin/AddNews";
-import { DisplayCategory } from "../components/Admin/DisplayCategory";
-import {AddEntertainmentCategory} from "../components/Admin/AddEntertainmentCategory"
-import {AddEntertainment} from "../components/Admin/AddEntertainment"
 import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
-import { prisma } from '../util/db.server.js'
-import { NextPage } from "next";
 import { useRouter } from 'next/router'
 import { MainHeader } from '../components/MainHeader';
 import React from 'react'
