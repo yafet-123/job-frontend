@@ -2,8 +2,8 @@ import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
 import ReactPlayer from 'react-player'
 import { MainHeader } from '../components/MainHeader';
-import { ETSidebar } from '../components/ETSidebar';
-import { Content } from '../components/Content';
+import { ETSidebar } from '../components/Entertemiment/ETSidebar';
+import { Content } from '../components/Entertemiment/Content';
 import { prisma } from '../util/db.server.js'
 
 export async function getServerSideProps(context){
@@ -64,7 +64,7 @@ export default function Entertemiment({categories,entertainments}){
 	return(
 		<React.Fragment>
       		<MainHeader title="Entertemiment" />
-			<section className="flex flex-col w-full h-full bg-[#F5F5DC] dark:bg-slate-700 pt-32">
+			<section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-32">
 				
 				<div className='w-full h-full flex flex-col lg:flex-row'>
 		        	<ETSidebar categories={categories} />

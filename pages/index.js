@@ -1,4 +1,4 @@
-import { Hero } from "../components/Hero";
+import { HomeHero } from "../components/HomeHero";
 import { LatestJobs } from "../components/LatestJobs";
 import { SearchJobs } from "../components/SearchJobs";
 import React from 'react'
@@ -83,7 +83,7 @@ export default function Home({categories, locations, latestjobs}) {
     <React.Fragment>
       <MainHeader title="Home" />
       <div className="">
-        <Hero />
+        <HomeHero />
         <LatestJobs latestjobs={latestjobs} />
         <SearchJobs categories={categories} locations={locations} />
       </div>
