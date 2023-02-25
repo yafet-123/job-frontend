@@ -1,6 +1,5 @@
 import { VerticalNavbar } from "../components/Admin/VerticalNavbar";
 import { DashBoard } from "../components/Admin/DashBoard";
-import { DisplayJob } from "../components/Admin/DisplayJob";
 import { AddNews } from "../components/Admin/AddNews";
 import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'

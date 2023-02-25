@@ -6,7 +6,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import {DeleteEntertainment} from './DeleteEntertainment' 
 import {UpdateEntertainment} from './UpdateEntertainment'
 
-export function AddEntertainment({categories, Allentertainment}) {
+export function DisplayEntertainment({categories, Allentertainment}) {
     const router = useRouter();
     const [categoryId, setCategoryId] = useState([])
     const [deletemodalOn, setdeleteModalOn] = useState(false);

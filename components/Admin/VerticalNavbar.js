@@ -19,7 +19,7 @@ export function VerticalNavbar({onChange, data}){
         { link: "/Admin/Category", icon: <MdOutlineCategory size={25}/>, name: "Category" },
         { link: "/Admin/Location", icon: <MdLocationOn size={25}/>, name: "Location" },
         { link: "/Admin/NewsCategory", icon: <BsNewspaper size={25}/>, name: "News Category" },
-        { link: "addnews", icon: <GiNewspaper size={25}/>, name: "News" },
+        { link: "/Admin/JobDisplay", icon: <GiNewspaper size={25}/>, name: "News" },
         { link: "/Admin/EntertainmentCategory", icon: <BsNewspaper size={25}/>, name: "Entertainment Category" },
         { link: "/Admin/Entertainment", icon: <GiNewspaper size={25}/>, name: "Entertainment" },
     ];

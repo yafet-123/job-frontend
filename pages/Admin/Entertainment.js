@@ -21,16 +21,6 @@ export async function getServerSideProps(){
     }
   })
 
-
-  const Allentertainment = entertainments.map((data)=>({
-    entertainment_id:data.entertainment_id,
-    Header:data.Header,
-    link:data.link,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    userName:data.User.UserName
-  }))
-
   const entertainmentcategories = await prisma.EntertainmentCategory.findMany({
     orderBy: {
       category_id:"asc"
@@ -43,6 +33,15 @@ export async function getServerSideProps(){
       }
     }
   })
+  
+  const Allentertainment = entertainments.map((data)=>({
+    entertainment_id:data.entertainment_id,
+    Header:data.Header,
+    link:data.link,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate,
+    userName:data.User.UserName
+  }))
 
   const AllEntertainmentcategories = entertainmentcategories.map((data)=>({
       category_id:data.category_id,
