@@ -44,7 +44,7 @@ export function Content({entertainments}) {
                      </div>  
                </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 !pt-5 px-2 lg:px-5">
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 !pt-5 px-2 lg:px-20">
                     {entertainments.map(({Header,Category,CreatedDate, link}, index) => (
                          <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
                               <ReactPlayer className="!w-full !h-full !object-fit lg:!mb-5" url={link} />
