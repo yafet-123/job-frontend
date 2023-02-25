@@ -42,11 +42,11 @@ export function Hero() {
         </h1>
         <div className="flex flex-col lg:flex-row mb-10 px-3">
           <button 
-            className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "job" ? "bg-green-400 text-white" : "text-black" } p-4  rounded-xl`} 
+            className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "job" ? "bg-green-700 text-white" : "text-black" } p-4  rounded-xl`} 
             onClick={() => setsearch("job")}
           >Job Type</button>
           <button 
-            className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "companies" ? "bg-yellow-400 text-white" : "text-black" } p-4 rounded-xl`} 
+            className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "companies" ? "bg-yellow-500 text-white" : "text-black" } p-4 rounded-xl`} 
             onClick={() => setsearch("companies")}
           >Companies</button>
           <button 
