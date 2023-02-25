@@ -40,7 +40,7 @@ export default function Category({categorie}) {
     return (
     	<React.Fragment>
       	<MainHeader title="Category Dashboard" />
-        	<section className="flex flex-col w-full h-full bg-gray-300 dark:bg-slate-700 pt-28">
+        	<section className="flex flex-col w-full h-full bg-[#d1cbc7] dark:bg-slate-700 pt-28">
     				<div className='w-full h-full flex flex-col lg:flex-row'>
     		      <VerticalNavbar data={data} />
     		      <div className="w-full">
