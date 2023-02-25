@@ -20,7 +20,7 @@ export function LatestJobs({latestjobs}) {
         </Link>
       </div>
 
-      <div className="md:max-w-7xl md:mx-auto bg-neutral-200 dark:bg-slate-800 w-full h-[40rem] border dark:border-slate-800 rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
+      <div className="md:max-w-7xl md:mx-auto bg-neutral-200 dark:bg-slate-800 w-full h-[40rem] border dark:border-[#000] rounded-lg md:mt-10 shadow-2xl shadow-zinc-900 flex flex-col overflow-y-scroll">
         {latestjobs.map((data, index) => (
           <button
             className="flex justify-around items-center mb-5 even:bg-white even:dark:bg-slate-700 px-10 py-5 group"
