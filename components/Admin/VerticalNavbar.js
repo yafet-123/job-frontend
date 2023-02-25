@@ -19,7 +19,7 @@ export function VerticalNavbar({onChange, data}){
         { link: "/Admin/Category", icon: <MdOutlineCategory size={25}/>, name: "Category" },
         { link: "/Admin/Location", icon: <MdLocationOn size={25}/>, name: "Location" },
         { link: "/Admin/NewsCategory", icon: <BsNewspaper size={25}/>, name: "News Category" },
-        { link: "/Admin/JobDisplay", icon: <GiNewspaper size={25}/>, name: "News" },
+        { link: "/Admin/News", icon: <GiNewspaper size={25}/>, name: "News" },
         { link: "/Admin/EntertainmentCategory", icon: <BsNewspaper size={25}/>, name: "Entertainment Category" },
         { link: "/Admin/Entertainment", icon: <GiNewspaper size={25}/>, name: "Entertainment" },
     ];
@@ -28,10 +28,12 @@ export function VerticalNavbar({onChange, data}){
     const handleSideBar = () => {
         setsideBar(!sideBar);
     };
+    const path = router.pathname
+    console.log(path)
 
 	return(
             <div className={`flex h-full sticky top-0 bottom-0 ${sideBar ? "w-10 lg:w-28" : "w-16 lg:w-96"} pt-24`}>
-                <nav className="w-full h-screen flex flex-col py-8 px-4 bg-[#d1cbc7] dark:bg-slate-800 scroll_width">
+                <nav className="w-full h-screen flex flex-col py-8 px-4 bg-[#ddd0c8] dark:bg-slate-800 scroll_width">
                     <div className="flex justify-between ml-5">
                         <h1 className={`text-2xl font-bold text-black dark:text-white ${sideBar ? "hidden" : "hidden lg:flex"}`}>Admin Page</h1>
                         <button 
@@ -51,7 +53,8 @@ export function VerticalNavbar({onChange, data}){
                                                 pathname:side.link,
                                             })
                                         }}
-                                        className="w-full flex items-center p-2 lg:p-4 text-xs lg:text-sm p-4 text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl"
+                                        className={ side.link == path ? "bg-white w-full flex items-center p-2 lg:p-4 text-xs lg:text-sm p-4 text-black rounded-xl":
+                                        "w-full flex items-center p-2 lg:p-4 text-xs lg:text-sm p-4 text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl" }
                                     >
                                             {side.icon}
                                             <span className={`ml-4 font-semibold ${sideBar ? 'hidden' : 'hidden lg:flex' } `}>
