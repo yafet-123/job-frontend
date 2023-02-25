@@ -44,14 +44,14 @@ export function Navbar() {
     <nav
       className={ router.pathname == "/auth/signin" || router.pathname == '/Forgotpassword' ? "hidden" : `${
         colorChange ? 'bg-white bg-opacity-80 dark:bg-slate-800 ' : 'bg-transparent'
-      } w-full   lg:h-[100px] top-0 fixed z-50`}
+      } w-full   lg:h-[110px] top-0 fixed z-50`}
     >
       <div className="lg:justify-between justify-around lg:px-4 mx-10 items-center lg:flex lg:py-[10px] ">
         <div className="flex items-center justify-between py-3 ">
           <Link href="/">
             <Image
-              src="/images/logo1.png"
-              width={300} height={70}
+              src="/images/logo2.png"
+              width={300} height={90}
               alt="Navbar"
             />
           </Link>
@@ -82,7 +82,7 @@ export function Navbar() {
               {NavbarTopic.map((link) => (
                 <li
                   key={link.name}
-                  className="md:ml-6 text-md font-medium md:my-0 my-7"
+                  className="md:ml-6 text-lg font-medium md:my-0 my-7"
                 >
                   <Link href={link.path}>
                     <a
@@ -93,8 +93,8 @@ export function Navbar() {
                         ( router.pathname == "/Course" && "/Courses" == link.path ) || ( router.pathname == "/Advice" && "/Advices" == link.path ) || 
                         ( router.pathname == "/DisplayNews" && "/News" == link.path ) || ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path )
                         || ( router.pathname == "/Search" && "/Entertemiment" == link.path )
-                          ? "border-b-4 border-blue-700 dark:border-blue-700 md:ml-2 lg:ml-3 text-md lg:text-xl font-bold"
-                          : "md:ml-2 lg:ml-3 text-md lg:text-xl font-bold hover:border-b-8 border-blue-500"
+                          ? "border-b-4 border-blue-700 dark:border-blue-700 md:ml-2 lg:ml-3 text-lg lg:text-2xl font-extrabold"
+                          : "md:ml-2 lg:ml-3 text-lg lg:text-2xl font-extrabold hover:border-b-8 border-blue-500"
                       }
                     >
                       {link.name}
