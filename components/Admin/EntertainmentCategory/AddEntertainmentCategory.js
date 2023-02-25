@@ -12,7 +12,7 @@ export function AddEntertainmentCategory({categories}) {
     const UserData = data.user;
     async function registerCategory(e){
         e.preventDefault()
-        const data = await axios.post(`api/addEntertainmentCategory`,{
+        const data = await axios.post(`../api/addEntertainmentCategory`,{
             "CategoryName": category,
             "user_id": UserData.user_id,
         }).then(function (response) {

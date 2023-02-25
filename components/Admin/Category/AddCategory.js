@@ -13,7 +13,7 @@ export function AddCategory({categories}) {
     const UserData = data.user;
     async function registerCategory(e){
         e.preventDefault()
-        const data = await axios.post(`./api/addCtegory`,{
+        const data = await axios.post(`..//api/addCtegory`,{
             "CategoryName": category,
             "user_id": UserData.user_id,
         }).then(function (response) {

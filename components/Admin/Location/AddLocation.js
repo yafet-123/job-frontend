@@ -36,7 +36,7 @@ export function AddLocation({locations}) {
     async function addLocation(){
         const imageData = await imageUploadData()
         seterror("")
-        const data = await axios.post(`api/addlocation`,{
+        const data = await axios.post(`../api/addlocation`,{
             "LocationName": LocationName,
             "user_id": UserData.user_id,
             "Image":imageData,

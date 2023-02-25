@@ -34,47 +34,10 @@ export async function getServerSideProps(){
     }
   })
 
-  const entertainmentcategories = await prisma.EntertainmentCategory.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  })
+  
 
-  const jobs = await prisma.Job.findMany({
-    orderBy: {
-      job_id:"asc"
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      Location:{
-        select:{
-          LocationName:true,
-          location_id:true
-        }
-      },
-      JobCategory:{
-        include:{
-          Category:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
-    } 
-  })
+  
+  
   const Allentertainment = entertainments.map((data)=>({
     entertainment_id:data.entertainment_id,
     Header:data.Header,
@@ -89,13 +52,7 @@ export async function getServerSideProps(){
 
   
 
-  const AllEntertainmentcategories = entertainmentcategories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
+  
 
 
   const Alljobs = jobs.map((data)=>({
@@ -125,13 +82,13 @@ export async function getServerSideProps(){
     props:{
       Alljobs:JSON.parse(JSON.stringify(reversejob)),
       
-      AllEntertainmentcategories:JSON.parse(JSON.stringify(AllEntertainmentcategories)),
+      
       Allentertainment:JSON.parse(JSON.stringify(Allentertainment))
     }
   }
 }
 
-export default function Admin( Alljobs, AllNewscategories, AllEntertainmentcategories, Allentertainment }) {
+export default function Admin( Alljobs, AllNewscategories, Allentertainment }) {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
   // console.log(jobCategory)
@@ -156,7 +113,6 @@ export default function Admin( Alljobs, AllNewscategories, AllEntertainmentcateg
             { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
             { selected == "addnewscategory" && <AddNewsCategory categories={AllNewscategories} />}
             { selected == "addnews" && <AddNews categories={AllNewscategories} />}
-            { selected == "addentertainmentcategory" && <AddEntertainmentCategory categories={AllEntertainmentcategories} />}
             { selected == "addentertainment" && <AddEntertainment categories={AllEntertainmentcategories} Allentertainment={Allentertainment} />}
           </div>
         </div>
