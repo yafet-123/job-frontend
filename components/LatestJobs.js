@@ -14,7 +14,7 @@ export function LatestJobs({latestjobs}) {
           <span className="ml-5">Latest Jobs</span>
         </div>
         <Link href="/Jobs">
-          <a className="font-bold text-sm md:text-xl lg:text-2xl text-white p-3 lg:p-4 bg-blue-700 capitalize border rounded-2xl">
+          <a className="font-bold text-sm md:text-xl lg:text-2xl text-white p-3 lg:p-4 bg-green-400 capitalize border rounded-2xl">
             view all jobs
           </a>
         </Link>
