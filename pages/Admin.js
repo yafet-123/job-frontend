@@ -17,78 +17,9 @@ import { useRouter } from 'next/router'
 import { MainHeader } from '../components/MainHeader';
 import React from 'react'
 
-export async function getServerSideProps(){
-  
-
-  
-  const entertainments = await prisma.Entertainment.findMany({
-    orderBy: {
-      entertainment_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  })
-
-  
-
-  
-  
-  const Allentertainment = entertainments.map((data)=>({
-    entertainment_id:data.entertainment_id,
-    Header:data.Header,
-    link:data.link,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    userName:data.User.UserName
-  }))
-  
-
-  
-
-  
-
-  
 
 
-  const Alljobs = jobs.map((data)=>({
-    job_id:data.job_id,
-    location_id:data.location_id,
-    CompanyName:data.CompanyName,
-    Image:data.Image,
-    JobsType:data.JobsType,
-    Location:data.Location.LocationName,
-    CareerLevel:data.CareerLevel,
-    EmploymentType:data.EmploymentType,
-    Salary:data.Salary,
-    JobsDescreption:data.JobsDescreption,
-    JobsRequirement:data.JobsRequirement,
-    DeadLine:data.DeadLine,
-    Apply:data.Apply,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    categories:data.JobCategory,
-
-  }))
-  
-  const reversejob = Alljobs.reverse();
-
-  return{
-    props:{
-      Alljobs:JSON.parse(JSON.stringify(reversejob)),
-      
-      
-      Allentertainment:JSON.parse(JSON.stringify(Allentertainment))
-    }
-  }
-}
-
-export default function Admin( Alljobs, AllNewscategories, Allentertainment }) {
+export default function Admin() {
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
   // console.log(jobCategory)
@@ -107,14 +38,7 @@ export default function Admin( Alljobs, AllNewscategories, Allentertainment }) {
         <MainHeader title="Admin" />
         <div className="flex bg-neutral-300 dark:bg-slate-700">
           <VerticalNavbar onChange={handleChange} data={data} />
-          <div className="flex-1 pt-32 ">
-            { selected == "dashboard" && <DashBoard categories={Allcategories} locations={Alllocations} />}
-            { selected == "displayJob" && <DisplayJob jobs={Alljobs} categories={Allcategories} locations={Alllocations}/>}
-            { selected == "addJob" && <AddJob categories={Allcategories} locations={Alllocations}/>}
-            { selected == "addnewscategory" && <AddNewsCategory categories={AllNewscategories} />}
-            { selected == "addnews" && <AddNews categories={AllNewscategories} />}
-            { selected == "addentertainment" && <AddEntertainment categories={AllEntertainmentcategories} Allentertainment={Allentertainment} />}
-          </div>
+          
         </div>
       </React.Fragment>
   );
