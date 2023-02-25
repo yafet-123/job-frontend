@@ -35,8 +35,8 @@ export function Hero() {
 
 
   return (
-    <div className="w-full h-[50rem] bg-[#ddd0c8] dark:bg-slate-700 relative">
-      <div className="absolute top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
+    <div className="w-full h-[30rem] bg-[#ddd0c8] dark:bg-slate-700 relative">
+      <div className="absolute top-20 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
         <h1 className={`px-3 text-2xl mb-10 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-700 " : "text-yellow-500" } `}>
           Better Job. Better Talent
         </h1>

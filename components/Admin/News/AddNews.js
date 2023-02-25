@@ -148,13 +148,13 @@ export function AddNews ({categories}) {
                             id="Header" 
                             type="text" 
                             required
-                            className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={Header}
                             onChange={(e) => setHeader(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#ddd0c8] dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Header
                         </label>
@@ -165,7 +165,7 @@ export function AddNews ({categories}) {
                         <Multiselect
                             displayValue="CategoryName"
                             placeholder = "Category"
-                            className="w-full px-1 lg:px-3 text-md lg:text-xl text-black bg-transparent py-4 border-2 border-black rounded-xl appearance-none dark:text-black dark:bg-slate-700 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+                            className="w-full px-1 lg:px-3 text-md lg:text-xl text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-black dark:bg-slate-700 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                             onKeyPressFn={function noRefCheck(){}}
                             onRemove={function noRefCheck(){}}
                             onSearch={function noRefCheck(){}}
@@ -204,7 +204,7 @@ export function AddNews ({categories}) {
                             forwardedRef={quillRef} 
                             value={Description} 
                             onChange={setDescription} 
-                            modules={modules} className="dark:!bg-white dark:!text-black !mx-2" 
+                            modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2" 
                             theme="snow" 
                         />
                     </div>
@@ -213,7 +213,7 @@ export function AddNews ({categories}) {
                         <div className="flex items-center justify-center w-full">
                             <label 
                                 htmlFor="dropzone-file" 
-                                className="flex flex-col items-center justify-center w-full h-64 border-2 border-black border rounded-lg cursor-pointer bg-transparent dark:hover:bg-bray-800 dark:bg-slate-700 hover:bg-gray-100 dark:border-black dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                                className="flex flex-col items-center justify-center w-full h-64 border-2 border-black border rounded-lg cursor-pointer bg-white dark:hover:bg-bray-800 dark:bg-slate-700 hover:bg-gray-100 dark:border-black dark:hover:border-gray-500 dark:hover:bg-gray-600"
                             >
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                     <p className="text-sm lg:text-lg text-black dark:text-white mb-5">Upload News Image</p>

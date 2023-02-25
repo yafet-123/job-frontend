@@ -20,10 +20,10 @@ export function Navbar() {
   const NavbarTopic = [
     { path: "/", name: "Home" },
     { path: "/Jobs", name: "Jobs" },
+    { path: "/News", name: "News"},
     { path: "/Entertemiment", name: "Entertemiment" },
     { path: "/Courses", name: "Courses" },
     { path: "/Advices", name: "Advices" },
-    { path: "/News", name: "News"}
   ];
 
   const [colorChange, setColorchange] = useState(false);

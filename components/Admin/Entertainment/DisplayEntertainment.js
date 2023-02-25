@@ -6,7 +6,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import {DeleteEntertainment} from './DeleteEntertainment' 
 import {UpdateEntertainment} from './UpdateEntertainment'
 
-export function DisplayEntertainment({categories, Allentertainment}) {
+export function DisplayEntertainment({categories, entertainment}) {
     const router = useRouter();
     const [categoryId, setCategoryId] = useState([])
     const [deletemodalOn, setdeleteModalOn] = useState(false);
@@ -40,7 +40,7 @@ export function DisplayEntertainment({categories, Allentertainment}) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                            {Allentertainment.map((data,index)=>(
+                            {entertainment.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.entertainment_id}</p>
@@ -91,7 +91,7 @@ export function DisplayEntertainment({categories, Allentertainment}) {
                     </table>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                    {Allentertainment.map((data,index)=>(
+                    {entertainment.map((data,index)=>(
                         <div key={index} className="bg-neutral-200 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div>
                                 <p className="text-blue-500 dark:text-white font-bold hover:underline">
