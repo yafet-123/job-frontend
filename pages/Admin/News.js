@@ -11,13 +11,13 @@ export default function News() {
     	<React.Fragment>
       	<MainHeader title="Category Dashboard" />
         	<section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-10">
-    				<div className='w-full h-full flex flex-col lg:flex-row'>
-    		      <VerticalNavbar data={data} />
-    		      <div className="w-full">
-            		<AddNews />
-            	</div>
+    		    <div className='w-full h-full flex flex-col lg:flex-row'>
+    		        <VerticalNavbar data={data} />
+    		        <div className="w-full">
+            		    <AddNews />
+            	    </div>
     		    </div> 
-  			  </section>
+  			</section>
       	</React.Fragment>
         
     );
