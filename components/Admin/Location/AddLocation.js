@@ -59,7 +59,7 @@ export function AddLocation({locations}) {
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Location</h1>
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1">
-                        <input 
+                        <input  
                             id="LocationName" 
                             type="text" 
                             required
