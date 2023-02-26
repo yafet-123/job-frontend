@@ -9,7 +9,7 @@ const ThemeToggler = () => {
   if (!mounted) return null;
   return (
     <button
-      className=" dark:bg-slate-800 flex items-center justify-center transition-all duration-300 focus:outline-none"
+      className=" dark:bg-slate-700 flex items-center justify-center transition-all duration-300 focus:outline-none"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       aria-label="Toggle Dark Mode"
     >
