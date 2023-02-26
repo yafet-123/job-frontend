@@ -43,7 +43,7 @@ export function Navbar() {
   return (
     <nav
       className={ router.pathname == "/auth/signin" || router.pathname == '/Forgotpassword' ? "hidden" : `${
-        colorChange ? 'bg-white bg-opacity-80 dark:bg-slate-800 ' : `${open ? 'bg-white' : 'bg-transparent'}`
+        colorChange ? 'bg-white bg-opacity-80 dark:bg-slate-800 ' : `${open ? 'bg-white bg-opacity-80' : 'bg-transparent'}`
       } w-full   lg:h-[110px] top-0 fixed z-50`}
     >
       <div className="lg:justify-between justify-around lg:px-4 mx-10 items-center lg:flex lg:py-[10px] ">
@@ -76,7 +76,7 @@ export function Navbar() {
             }`}
           >
             <ul className={`${
-              colorChange ? 'text-[#000]' : 'text-black dark:text-white' } 
+              colorChange ? 'text-[#000]' : 'text-[] dark:text-white' } 
               items-center justify-center space-y-8 lg:flex lg:space-x-8 lg:space-y-0 `}
             >
               {NavbarTopic.map((link) => (
