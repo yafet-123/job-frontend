@@ -93,8 +93,8 @@ export function Navbar() {
                         ( router.pathname == "/Course" && "/Courses" == link.path ) || ( router.pathname == "/Advice" && "/Advices" == link.path ) || 
                         ( router.pathname == "/DisplayNews" && "/News" == link.path ) || ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path )
                         || ( router.pathname == "/Search" && "/Entertemiment" == link.path )
-                          ? "border-b-4 border-blue-700 dark:border-blue-700 md:ml-2 lg:ml-3 text-lg lg:text-2xl font-extrabold"
-                          : "md:ml-2 lg:ml-3 text-lg lg:text-2xl font-extrabold hover:border-b-8 border-blue-500"
+                          ? "border-b-4 border-blue-700 dark:border-white md:ml-2 lg:ml-3 text-lg lg:text-2xl font-extrabold"
+                          : "md:ml-2 lg:ml-3 text-lg lg:text-2xl font-extrabold hover:border-b-4 border-blue-500 dark:border-white"
                       }
                     >
                       {link.name}
