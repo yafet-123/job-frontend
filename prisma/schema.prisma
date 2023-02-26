@@ -123,7 +123,8 @@ model NewsCategoryRelationship{
 model Entertainment {
   entertainment_id             Int           @id @default(autoincrement()) 
   Header                       String?
-  link                         String?       @db.VarChar(255)    
+  link                         String?       @db.VarChar(255)
+  ShortDescription             String?               
   user_id                      Int
   CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
