@@ -76,7 +76,7 @@ export function Navbar() {
             }`}
           >
             <ul className={`${
-              colorChange ? 'text-[#000]' : 'text-blue-700 dark:text-white' } 
+              colorChange ? 'text-[#000]' : 'text-blue-500 dark:text-white' } 
               items-center justify-center space-y-8 lg:flex lg:space-x-8 lg:space-y-0 `}
             >
               {NavbarTopic.map((link) => (
