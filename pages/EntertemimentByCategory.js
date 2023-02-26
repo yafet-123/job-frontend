@@ -2,15 +2,14 @@ import React from "react";
 import Link from "next/link";
 import { AiOutlineMenu } from "react-icons/ai";
 import Image from 'next/image'
-import { LatestJobs } from "../components/LatestJobs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useRouter } from 'next/router'
 import axios from 'axios';
 import { prisma } from '../util/db.server.js'
 import moment from 'moment';
 import { MainHeader } from '../components/MainHeader';
-import { ETSidebar } from '../components/ETSidebar';
-import { Content } from '../components/Content';
+import { ETSidebar } from '../components/Entertemiment/ETSidebar';
+import { Content } from '../components/Entertemiment/Content';
 
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
