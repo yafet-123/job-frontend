@@ -14,7 +14,7 @@ export default function News() {
     		    <div className='w-full h-full flex flex-col lg:flex-row'>
     		        <VerticalNavbar data={data} />
     		        <div className="w-full">
-            		    <AddNews />
+            		    
             	    </div>
     		    </div> 
   			</section>
