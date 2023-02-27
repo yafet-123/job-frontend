@@ -35,31 +35,31 @@ export function HomeHero() {
 
 
   return (
-    <div className="w-full h-[50rem] bg-[#ddd0c8] dark:bg-slate-700 relative">
-      <div className="absolute top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
+    <div className="w-full h-[50rem] bg-[#ddd0c8] dark:bg-slate-700 relative px-5">
+      <div className="absolute top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%] px-2 lg:text-[0xl]">
         <h1 className='text-green-700 text-2xl mb-10 font-bold md:text-4xl lg:text-5xl'>
           Hulu Media Hulu Neger
         </h1>
 
-        <div>
-          <div className="flex h-16 w-[70%] border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
-              <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
-                <AiOutlineSearch size={20} />
-              </div>
-              <input 
-                value={searchValue}                            
-                onChange={(e) => setsearchValue(e.target.value)}
-                className="flex-1 bg-white outline-none md:pl-6 text-sm lg:text-lg" />
-              <button 
-                onClick={()=> router.push({
-                  pathname: '/AdvanceSearch',
-                  query: { searchName: searchValue, searchtype: 1 },
-                })} 
-                className="text-xs md:text-xl text-white bg-green-400 lg:px-3 flex items-center justify-center"
-              >
-                Search
-              </button>
+        <div className="px-2 lg:text-[0xl]">
+          <div className="flex h-16 w-full lg:w-[60%] border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
+            <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
+              <AiOutlineSearch size={20} />
             </div>
+            <input 
+              value={searchValue}                            
+              onChange={(e) => setsearchValue(e.target.value)}
+              className="flex-1 bg-white outline-none md:pl-6 text-sm lg:text-lg" />
+            <button 
+              onClick={()=> router.push({
+                pathname: '/AdvanceSearch',
+                query: { searchName: searchValue, searchtype: 1 },
+              })} 
+              className="text-xs md:text-xl text-white bg-green-400 lg:px-3 flex items-center justify-center"
+            >
+              Search
+            </button>
+          </div>
         </div>
       </div>
     </div>

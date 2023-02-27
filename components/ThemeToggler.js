@@ -16,7 +16,7 @@ const ThemeToggler = () => {
       {theme === 'light' ? (
         <BsSun className="text-blue-500 dark:text-white w-8 h-8" />
       ) : (
-        <BsMoonStars className="text-blue-500 dark:text-black lg:dark:text-white w-8 h-8" />
+        <BsMoonStars className="text-blue-500 dark:text-white w-8 h-8" />
       )}
     </button>
   );
