@@ -103,7 +103,7 @@ export function AddJob({categories, locations}) {
             [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
             [{ 'font': [] }],
             [{ 'align': [] }],
-
+            ["link", "video"],
             ['clean'] 
         ],
         clipboard: {

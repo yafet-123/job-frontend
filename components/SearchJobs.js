@@ -18,7 +18,7 @@ export function SearchJobs({categories, locations}) {
       </h1>
       <hr className="w-full bg-gray-200 mb-5" />
       <div className="flex w-full h-[30rem] lg:h-[45rem] p-2">
-        <div className="w-[75%] flex-1 border rounded-xl shadow-2xl shadow-sky-200 border-slate-300 p-5 bg-neutral-100 dark:bg-slate-800">
+        <div className="w-[75%] flex-1 border dark:border-[#000] rounded-xl shadow-2xl shadow-zinc-900 p-5 bg-neutral-100 dark:bg-slate-800">
           <div className="w-full h-full overflow-y-scroll">
             {jobs == "category" ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
