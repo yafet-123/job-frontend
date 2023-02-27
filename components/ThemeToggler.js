@@ -9,14 +9,14 @@ const ThemeToggler = () => {
   if (!mounted) return null;
   return (
     <button
-      className=" dark:bg-slate-700 flex items-center justify-center transition-all duration-300 focus:outline-none"
+      className="bg-transparent flex items-center justify-center transition-all duration-300 focus:outline-none"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       aria-label="Toggle Dark Mode"
     >
       {theme === 'light' ? (
         <BsSun className="text-blue-500 dark:text-white w-8 h-8" />
       ) : (
-        <BsMoonStars className="text-blue-500 dark:text-white w-8 h-8" />
+        <BsMoonStars className="text-blue-500 dark:text-black lg:dark:text-white w-8 h-8" />
       )}
     </button>
   );

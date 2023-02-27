@@ -8,7 +8,7 @@ export function Content({entertainments}) {
      const [getSearchValue,setgetSearchValue] = useState("")
      const router = useRouter()
      return (
-          <div className="w-full h-full">
+          <div className="w-full h-full mt-10 lg:mt-0">
                <div className="w-full px-3 lg:px-20 mb-5">
                      <div className="flex flex-col lg:flex-row w-full">
                          <div className="relative flex-1">

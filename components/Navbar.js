@@ -61,9 +61,9 @@ export function Navbar() {
               onClick={() => setOpen(!open)}
             >
               {open === true ? (
-                <AiOutlineClose color="black" size={30} />
+                <AiOutlineClose className="text-dark dark:text-white" size={30} />
               ) : (
-                <AiOutlineMenu color="black" size={30} />
+                <AiOutlineMenu className="text-dark dark:text-white" size={30} />
               )}
             </button>
           </div>
@@ -76,7 +76,7 @@ export function Navbar() {
             }`}
           >
             <ul className={`${
-              colorChange ? 'text-[#000] dark:text-white' : 'text-blue-500 dark:text-white' } 
+              colorChange ? 'text-[#000] text-black lg:dark:text-white' : 'text-blue-500 dark:text-black lg:dark:text-white' } 
               items-center justify-center space-y-8 lg:flex lg:space-x-8 lg:space-y-0 `}
             >
               {NavbarTopic.map((link) => (
