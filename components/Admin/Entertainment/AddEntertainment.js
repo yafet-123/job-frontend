@@ -13,13 +13,15 @@ export function AddEntertainment({categories, Allentertainment}) {
     const [Header, setHeader] = useState("")
     const [link, setlink] = useState("")
     const { status, data } = useSession();
-    const [error,seterror] = useState("")
+    const [error,seterror] = useState("");
+    const [ShortDescription, setShortDescription] = useState("")
     const UserData = data.user;
     async function registerEntertainment(e){
         e.preventDefault()
         const data = await axios.post(`../api/addEntertainment`,{
             "Header": Header,
             "link":link,
+            "ShortDescription":ShortDescription,
             "user_id": UserData.user_id,
             "categoryId": categoryId
         }).then(function (response) {
@@ -59,13 +61,13 @@ export function AddEntertainment({categories, Allentertainment}) {
                             id="link" 
                             type="text"
                             required 
-                            className="block w-full px-3 texxt-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={link}
                             onChange={(e) => setlink(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute texxt-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Link
                         </label>
@@ -87,6 +89,24 @@ export function AddEntertainment({categories, Allentertainment}) {
                         }}
                         options={categories}
                     />
+                </div>
+
+               <div className="relative mb-5">
+                    <textarea  
+                        id="ShortDescription" 
+                        rows="7" 
+                        cols="50"
+                        required 
+                        className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                        value={ShortDescription}
+                        onChange={(e) => setShortDescription(e.target.value)}
+                    />
+                    <label 
+                        htmlFor="floating_outlined" 
+                        className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                    >
+                        ShortDescription
+                    </label>
                 </div>
 
                 <div className="my-5 flex flex-col lg:flex-row justify-between">

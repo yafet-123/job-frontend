@@ -8,6 +8,7 @@ export default async function handleaddentertainment(req, res){
 		Header,
 		link,
 		categoryId,
+		ShortDescription,
 		user_id,
 	} = req.body
 	console.log(req.body)
@@ -24,6 +25,7 @@ export default async function handleaddentertainment(req, res){
 		data:{
 			Header,
 			link,
+			ShortDescription,
 			user_id:Number(user_id),
 			EntertainmentCategoryRelationship:{
 				create: createEntertainmentCategory

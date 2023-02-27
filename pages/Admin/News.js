@@ -4,6 +4,7 @@ import { AddNews } from "../../components/Admin/News/AddNews";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../components/MainHeader';
+import { prisma } from '../../util/db.server.js'
 
 export async function getServerSideProps(){
   const newscategories = await prisma.NewsCategory.findMany({
