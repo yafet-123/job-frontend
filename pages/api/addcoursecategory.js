@@ -9,7 +9,7 @@ export default async function handleaddcategory(req, res){
 		data:{
 			CategoryName,
 			ShortDescription,
-			color
+			color,
 			user_id
 		},
 	});
