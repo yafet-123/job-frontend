@@ -71,6 +71,7 @@ model User {
   JobCategory  JobCategory[]
   Job          Job[]
   Location     Location[]
+  CourseCategory CourseCategory[]
 }
 
 model JobCategory {
@@ -152,4 +153,14 @@ model EntertainmentCategoryRelationship{
   EntertainmentCategory      EntertainmentCategory  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
   Entertainment              Entertainment          @relation(fields: [entertainment_id], references: [entertainment_id], onDelete: Cascade, onUpdate: Cascade)
   User                       User?                  @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+}
+
+model CourseCategory {
+  category_id                   Int           @id @default(autoincrement())
+  CategoryName                  String        @db.VarChar(255)
+  user_id                       Int?
+  CreatedDate                   DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  User                          User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+  EntertainmentCategoryRelationship      EntertainmentCategoryRelationship[]
 }
