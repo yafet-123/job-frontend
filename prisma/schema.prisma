@@ -158,9 +158,33 @@ model EntertainmentCategoryRelationship{
 model CourseCategory {
   category_id                   Int           @id @default(autoincrement())
   CategoryName                  String        @db.VarChar(255)
+  ShortDescription              String?
   user_id                       Int?
   CreatedDate                   DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
   User                          User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
   EntertainmentCategoryRelationship      EntertainmentCategoryRelationship[]
+}
+
+model Course {
+  course_id                    Int           @id @default(autoincrement()) 
+  title                        String?              
+  user_id                      Int
+  content                      String?
+  CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
+  User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
+  EntertainmentCategoryRelationship     EntertainmentCategoryRelationship[]
+}
+
+model CourseCategoryRelationship{
+  entertainment_category_id   Int           @id @default(autoincrement())
+  user_id                     Int?
+  category_id                 Int
+  entertainment_id            Int
+  CreatedDate       DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate      DateTime?     @default(now()) @db.Timestamptz(6)
+  EntertainmentCategory      EntertainmentCategory  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
+  Entertainment              Entertainment          @relation(fields: [entertainment_id], references: [entertainment_id], onDelete: Cascade, onUpdate: Cascade)
+  User                       User?                  @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
 }
