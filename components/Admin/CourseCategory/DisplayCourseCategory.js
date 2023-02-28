@@ -4,12 +4,14 @@ import moment from 'moment';
 import {DeleteCategory} from './DeleteCategory'
 import {UpdateCategory} from './UpdateCategory'
 
-export function DisplayCategory({categories}) {
+export function DisplayCourseCategory({categories}) {
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deletecategoryid,setdeletecategoryid] = useState()
     const [updatecategoryid,setupdatecategoryid] = useState()
     const [updatecategoryname,setupdatecategoryname] = useState("")
+    const [updateShortDescription,setupdateShortDescription] = useState("")
+    const [updatecolor,setupdatecolor] = useState("")
     const clickedFordelete = () => {
         setdeleteModalOn(true)
     }
@@ -57,6 +59,8 @@ export function DisplayCategory({categories}) {
                                                 clickedForupdate()
                                                 setupdatecategoryid(data.category_id)
                                                 setupdatecategoryname(data.CategoryName)
+                                                setupdateShortDescription(data.ShortDescription)
+                                                setupdatecolor(data.color)
                                             }}
                                             className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                             Edit
@@ -110,6 +114,8 @@ export function DisplayCategory({categories}) {
                                         clickedForupdate()
                                         setupdatecategoryid(data.category_id)
                                         setupdatecategoryname(data.CategoryName)
+                                        setupdateShortDescription(data.ShortDescription)
+                                        setupdatecolor(data.color)
                                     }} 
                                     className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit
@@ -134,7 +140,7 @@ export function DisplayCategory({categories}) {
             }
 
             {updatemodalOn && 
-                <UpdateCategory setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
+                <UpdateCategory setupdateModalOn={setupdateModalOn} updatecolor={updatecolor} setupdatecolor={setupdatecolor} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdateShortDescription={setupdateShortDescription} updateShortDescription={updateShortDescription} setupdatecategoryname={setupdatecategoryname}/>
             }
         </div>
   );

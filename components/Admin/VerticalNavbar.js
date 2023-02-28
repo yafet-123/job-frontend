@@ -22,6 +22,7 @@ export function VerticalNavbar({onChange, data}){
         { link: "/Admin/News", icon: <GiNewspaper size={25}/>, name: "News" },
         { link: "/Admin/EntertainmentCategory", icon: <BsNewspaper size={25}/>, name: "Entertainment Category" },
         { link: "/Admin/Entertainment", icon: <GiNewspaper size={25}/>, name: "Entertainment" },
+        { link: "/Admin/CourseCategory", icon: <GiNewspaper size={25}/>, name: "Course Category" },
     ];
 	const router = useRouter();
     const [sideBar , setsideBar] = useState(false);
