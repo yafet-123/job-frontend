@@ -5,6 +5,7 @@ import { useState,useEffect, useContext} from 'react'
 import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
+import { useSession } from "next-auth/react";
 
 const QuillNoSSRWrapper = dynamic(
   async () => {
@@ -22,6 +23,8 @@ const QuillNoSSRWrapper = dynamic(
 export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updatetitle ,setupdatetitle ,updatecontent ,setupdatecontent }) {
     const router = useRouter();
     const [categoryId, setCategoryId] = useState([])
+    const { status, data } = useSession();
+    const UserData = data.user;
     const quillRef = useRef(null)
     const modules = useMemo(() => ({
         toolbar: {
@@ -74,6 +77,7 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
             "title": updatetitle,
             "content": updatecontent,
             "categoryId":categoryId,
+            "user_id": UserData.user_id,
         }).then(function (response) {
             console.log(response.data);
             router.reload()

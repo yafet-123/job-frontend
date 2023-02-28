@@ -47,7 +47,7 @@ export function DisplayCourse({courses, categorie}) {
                                         {title}
                                     </td>
 
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="flex flex-col p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         { categories.map((data,index)=>(
                                              <span key={index} className="text-lg lg:text-xl font-normal dark:text-white text-black mb-3">
                                                   {data.CourseCategory.CategoryName}
