@@ -28,6 +28,7 @@ export function DisplayCourseCategory({categories}) {
                             <tr>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Category Name</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Color</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
@@ -42,6 +43,12 @@ export function DisplayCourseCategory({categories}) {
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.CategoryName}
                                     </td>
+
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                        <div className={`${ data.color} w-10 h-10`}>
+                                        </div>
+                                    </td>
+
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                                     </td>
@@ -95,6 +102,13 @@ export function DisplayCourseCategory({categories}) {
                                 <span className="text-lg">Category Name : </span>
                                 <span className="text-sm ">{data.CategoryName}</span>
                             </div>
+
+                            <div className="text-gray-700 dark:text-white font-bold">
+                                <span className="text-lg">Color : </span>
+                                <div className={`${ data.color} w-10 h-10`}>
+                                </div>
+                            </div>
+
                             <div className="text-gray-700 dark:text-white font-bold">
                                 <span className="text-lg">Created By : </span>
                                 <span className="text-sm ">{data.userName}</span>

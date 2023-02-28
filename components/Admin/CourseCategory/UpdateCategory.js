@@ -3,19 +3,20 @@ import { useRouter } from 'next/router'
 export function UpdateCategory({setupdateModalOn, updatecategoryname, setupdatecategoryname, updatecategoryid, updateShortDescription ,setupdateShortDescription ,updatecolor ,setupdatecolor}) {
     const router = useRouter();
 	const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/updatecourseCategory/${updatecategoryid}`,{
+        const data = await axios.patch(`../api/updatecourseCategory/${updatecategoryid}`,{
             "CategoryName": updatecategoryname,
             "ShortDescription":updateShortDescription,
             "color":updatecolor,
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             console.log(error);
         });
         setupdateModalOn(false)
-        router.reload()
+       
     }
-      
+       
     
 
     const handleCancelClickForupdate = () => {

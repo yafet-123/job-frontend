@@ -3,14 +3,15 @@ import { useRouter } from 'next/router'
 export function DeleteCategory({setdeleteModalOn,deletecategoryid}) {
     const router = useRouter();
 	const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/deletecoursecategory/${deletecategoryid}`,{
+        const data = await axios.delete(`../api/deletecoursecategory/${deletecategoryid}`,{
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             console.log(error);
         });
         setdeleteModalOn(false)
-        router.reload()
+        
     }
 
     const handleCancelClickFordelete = () => {
