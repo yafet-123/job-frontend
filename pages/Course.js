@@ -2,7 +2,6 @@ import React, {useState,useEffect} from "react";
 import Link from "next/link";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import {CourseHead} from '../data/courseHead'
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import {MdOutlineSubject} from 'react-icons/md'
 import { MainHeader } from '../components/MainHeader';
@@ -19,6 +18,8 @@ import { CssSelectors } from "../components/CSS/CssSelectors"
 import { CssAddingCSS } from "../components/CSS/CssAddingCSS"
 import { CssComment } from "../components/CSS/CssComment"
 import {CourseSideBar} from "../components/CourseSideBar"
+import { prisma } from '../util/db.server.js'
+import { CourseHead } from '../components/Course/CourseHead'
 
 export async function getServerSideProps(){
   const categories = await prisma.CourseCategory.findMany({
@@ -51,7 +52,7 @@ export async function getServerSideProps(){
   }
 }
 
-export default function Course() {
+export default function Course({categories}) {
 	const [selected , setselected] = useState("Home")
 	const router = useRouter();
   const { title} = router.query
@@ -82,24 +83,7 @@ export default function Course() {
           </div>
 
           <div className="hidden lg:flex">
-        		{ CourseHead.map((data,index)=>(
-        			<button 
-                onClick = {()=>{
-                    router.push({
-                      pathname:"/Course",
-                      query:{title:data.title}
-                    })
-                }}
-                key={index} 
-                className={
-                  router.query.title == data.title
-                    ? "bg-black mr-10 text-2xl font-bold text-white p-4"
-                    : "mr-10 text-2xl font-bold text-white hover:border-b-4 border-blue-800"
-                }
-              >
-                {data.title}
-              </button>
-        		))}
+        		<CourseHead categories={categories} />
           </div>
 
           <button onClick={handleCourse} className="lg:hidden text-white flex items-center">
