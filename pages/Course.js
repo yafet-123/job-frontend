@@ -4,9 +4,9 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import {MdOutlineSubject} from 'react-icons/md'
-
-import {CourseSideBar} from "../components/CourseSideBar"
 import { prisma } from '../util/db.server.js'
+import { Content } from '../components/Course/Content'
+import {CourseSideBar} from "../components/CourseSideBar"
 import { CourseHead } from '../components/Course/CourseHead'
 
 export async function getServerSideProps(context){
@@ -167,6 +167,7 @@ export default function Course({categorie, courses, indvidualCourses}) {
       			<CourseSideBar CategoryName={CategoryName} courses={courses} handleChapter={handleChapter} />
       		</div>
 
+          <Content indvidualCourses={indvidualCourses} />
       		
       	</div>
 
