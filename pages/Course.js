@@ -76,8 +76,8 @@ export default function Course({categorie}) {
   return (
     <React.Fragment>
       <MainHeader title="Course" />
-      <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800">
-      	<div className="w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
+      <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800 py-5">
+      	<div className="w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between mt-6">
       		<div onClick={handleChapter} className="md:hidden text-white z-10">
             <MdOutlineSubject size={30} /> 
           </div>
@@ -90,6 +90,8 @@ export default function Course({categorie}) {
             <span className="ml-5 font-bold text-xl hover:text-blue-400">Courses</span>
           </button>
       	</div>
+
+
       	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20 ">
       		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 overflow-y-scroll sticky top-0 bottom-0">
       			<CourseSideBar title={title} onChange={handleChange} handleChapter={handleChapter} />
@@ -164,30 +166,31 @@ export default function Course({categorie}) {
                 </div>
             </div>
             
+            <div className="py-4 flex flex-col mt-10 w-full">
+              { categorie.map((data,index)=>(
+                <button 
+                  onClick = {()=>{
+                      router.push({
+                        pathname:"/Course",
+                        query:{CategoryName:data.CategoryName}
+                      })
+                      handleCourse()
+                  }}
+                  key={index} 
+                  className={
+                    router.query.CategoryName == data.CategoryName
+                      ? "bg-green-500 w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500 hover:bg-gray-300 hover:text-orange-500"
+                      : "w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500"
+                    }
+                >
+                  {data.CategoryName}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="py-4 flex flex-col mt-10 w-full">
-          { categorie.map((data,index)=>(
-            <button 
-              onClick = {()=>{
-                  router.push({
-                    pathname:"/Course",
-                    query:{title:data.title}
-                  })
-                  handleCourse()
-              }}
-              key={index} 
-              className={
-                router.query.title == data.title
-                  ? "w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500 hover:bg-gray-300 hover:text-orange-500"
-                  : "w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500"
-                }
-            >
-              {data.title}
-            </button>
-          ))}
-        </div>
+        
 
       </section>
     </React.Fragment>
