@@ -74,6 +74,7 @@ export async function getServerSideProps(context){
     }
   })
 
+
   const Allcategories = categories.map((data)=>({
       category_id:data.category_id,
       CategoryName:data.CategoryName,
@@ -87,10 +88,7 @@ export async function getServerSideProps(context){
   const Allcourses = courses.map((data)=>({
       course_id:data.course_id,
       title:data.title,
-      content:data.content,
-      CreatedDate:data.CreatedDate,
       ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName,
       categories:data.CourseCategoryRelationship,
   }))
 
@@ -102,8 +100,7 @@ export async function getServerSideProps(context){
   }
 }
 
-export default function Course({categorie}) {
-	const [selected , setselected] = useState("Home")
+export default function Course({categorie, courses}) {
 	const router = useRouter();
   const { CategoryName } = router.query
   console.log(CategoryName)
@@ -111,18 +108,12 @@ export default function Course({categorie}) {
   const [chapter, setchapter] = useState(false);
   const handleChapter = () => {
     setchapter(!chapter);
-    console.log("Chapter")
   };
 
   const [course, setcourse] = useState(false);
   const handleCourse = () => {
     setcourse(!course);
-    console.log("Courses")
   };
-
-  function handleChange(newValue) {
-      setselected(newValue);
-  }
 
   return (
     <React.Fragment>
@@ -145,59 +136,29 @@ export default function Course({categorie}) {
 
       	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20 ">
       		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 overflow-y-scroll sticky top-0 bottom-0">
-      			<CourseSideBar CategoryName={CategoryName} onChange={handleChange} handleChapter={handleChapter} />
+      			<CourseSideBar CategoryName={CategoryName} courses={courses} handleChapter={handleChapter} />
       		</div>
 
       		
       	</div>
 
-      	<div
-          className={
-            chapter
-              ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10"
-              : ""
-          }
-        >
-          <div
-            className={
-              chapter
-                ? "fixed left-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500"
-                : "fixed left-[-100%] top-20 p-10 ease-in duration-500"
-            }
-          >
+      	<div className={ chapter ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10" : "" }>
+          <div className={chapter ? "fixed left-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500" : "fixed left-[-100%] top-20 p-10 ease-in duration-500" }>
             <div> 
-                <div
-                  onClick={handleChapter}
-                  className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-5"
-                >
+                <div onClick={handleChapter} className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-5">
                   <AiOutlineClose size={15} />
                 </div>   
             </div>
             <div className="py-4 flex flex-col mt-10 w-full">
-              <CourseSideBar CategoryName={CategoryName} onChange={handleChange} handleChapter={handleChapter} />
+              <CourseSideBar CategoryName={CategoryName} courses={courses} handleChapter={handleChapter} />
             </div>
           </div>
         </div>
 
-        <div
-          className={
-            course
-              ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10"
-              : ""
-          }
-        >
-          <div
-            className={
-              course
-                ? " fixed right-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500"
-                : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
-            }
-          >
+        <div className={ course ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10"   : "" }>
+          <div className={ course ? " fixed right-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500" : "fixed left-[-100%] top-0 p-10 ease-in duration-500"}>
             <div>
-                <div
-                  onClick={handleCourse}
-                  className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-left ml-3"
-                >
+                <div onClick={handleCourse} className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-left ml-3">
                   <AiOutlineClose size={15} />
                 </div>
             </div>
