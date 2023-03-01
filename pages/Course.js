@@ -127,15 +127,13 @@ export default function Course({categorie}) {
                 : "fixed left-[-100%] top-20 p-10 ease-in duration-500"
             }
           >
-            <div>
-              
+            <div> 
                 <div
                   onClick={handleChapter}
                   className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-5"
                 >
                   <AiOutlineClose size={15} />
-                </div>
-              
+                </div>   
             </div>
             <div className="py-4 flex flex-col mt-10 w-full">
               <CourseSideBar title={title} onChange={handleChange} handleChapter={handleChapter} />
