@@ -20,6 +20,36 @@ import { CssAddingCSS } from "../components/CSS/CssAddingCSS"
 import { CssComment } from "../components/CSS/CssComment"
 import {CourseSideBar} from "../components/CourseSideBar"
 
+export async function getServerSideProps(){
+  const categories = await prisma.CourseCategory.findMany({
+    orderBy: {
+      category_id:"asc"
+    },
+    include:{
+      User:{
+          select:{
+              UserName:true
+          }
+      }
+    }
+  })
+
+  const Allcategories = categories.map((data)=>({
+      category_id:data.category_id,
+      CategoryName:data.CategoryName,
+      ShortDescription:data.ShortDescription,
+      color:data.color,
+      CreatedDate:data.CreatedDate,
+      ModifiedDate:data.ModifiedDate,
+      userName:data.User.UserName
+  }))
+
+  return{
+    props:{
+      categorie:JSON.parse(JSON.stringify(Allcategories)),
+    }
+  }
+}
 
 export default function Course() {
 	const [selected , setselected] = useState("Home")
