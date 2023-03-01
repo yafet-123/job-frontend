@@ -4,19 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import {MdOutlineSubject} from 'react-icons/md'
-import { MainHeader } from '../components/MainHeader';
-import { HtmlHome } from "../components/HTML/HtmlHome"
-import { HtmlIntroduction } from "../components/HTML/HtmlIntroduction"
-import { HtmlEditors } from "../components/HTML/HtmlEditors"
-import { HtmlElements } from "../components/HTML/HtmlElements"
-import { HtmlAttributes } from "../components/HTML/HtmlAttributes"
 
-import { CssHome } from "../components/CSS/CssHome"
-import { CssIntroduction } from "../components/CSS/CssIntroduction"
-import { CssSyntax } from "../components/CSS/CssSyntax"
-import { CssSelectors } from "../components/CSS/CssSelectors"
-import { CssAddingCSS } from "../components/CSS/CssAddingCSS"
-import { CssComment } from "../components/CSS/CssComment"
 import {CourseSideBar} from "../components/CourseSideBar"
 import { prisma } from '../util/db.server.js'
 import { CourseHead } from '../components/Course/CourseHead'
@@ -24,6 +12,7 @@ import { CourseHead } from '../components/Course/CourseHead'
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const CategoryName = query.CategoryName
+  const course_id = query.courseId
   console.log(CategoryName)
 
   const categories = await prisma.CourseCategory.findMany({
@@ -74,6 +63,34 @@ export async function getServerSideProps(context){
     }
   })
 
+  const indvidualCourses = await prisma.Course.findUnique({
+    where:{
+      course_id: Number(course_id)
+    },
+
+    orderBy: {
+      course_id:"asc"
+    },
+
+    include:{
+      User:{
+          select:{
+              UserName:true
+          }
+      },
+
+      CourseCategoryRelationship:{
+        include:{
+          CourseCategory:{
+            select:{
+              category_id:true,
+              CategoryName:true
+            }
+          }
+        }
+      },
+    }
+  })
 
   const Allcategories = categories.map((data)=>({
       category_id:data.category_id,
@@ -92,15 +109,26 @@ export async function getServerSideProps(context){
       categories:data.CourseCategoryRelationship,
   }))
 
+  const Allindvidualcourses = indvidualCourses.map((data)=>({
+      course_id:data.course_id,
+      title:data.title,
+      content:data.content,
+      CreatedDate:data.CreatedDate,
+      ModifiedDate:data.ModifiedDate,
+      userName:data.User.UserName
+  }))
+
+
   return{
     props:{
       courses:JSON.parse(JSON.stringify(Allcourses)),
       categorie:JSON.parse(JSON.stringify(Allcategories)),
+      indvidualCourses:JSON.parse(JSON.stringify(Allindvidualcourses)),
     }
   }
 }
 
-export default function Course({categorie, courses}) {
+export default function Course({categorie, courses, indvidualCourses}) {
 	const router = useRouter();
   const { CategoryName } = router.query
   console.log(CategoryName)
