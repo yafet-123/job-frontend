@@ -21,7 +21,11 @@ import {CourseSideBar} from "../components/CourseSideBar"
 import { prisma } from '../util/db.server.js'
 import { CourseHead } from '../components/Course/CourseHead'
 
-export async function getServerSideProps(){
+export async function getServerSideProps(context){
+  const {params,req,res,query} = context
+  const CategoryName = query.CategoryName
+  console.log(CategoryName)
+
   const categories = await prisma.CourseCategory.findMany({
     orderBy: {
       category_id:"asc"
@@ -35,6 +39,41 @@ export async function getServerSideProps(){
     }
   })
 
+  const courses = await prisma.Course.findMany({
+    where:{
+      CourseCategoryRelationship:{
+        some: {
+          CourseCategory:{
+            CategoryName: CategoryName
+          }
+        }
+      } 
+    },
+
+    orderBy: {
+      course_id:"asc"
+    },
+
+    include:{
+      User:{
+          select:{
+              UserName:true
+          }
+      },
+
+      CourseCategoryRelationship:{
+        include:{
+          CourseCategory:{
+            select:{
+              category_id:true,
+              CategoryName:true
+            }
+          }
+        }
+      },
+    }
+  })
+
   const Allcategories = categories.map((data)=>({
       category_id:data.category_id,
       CategoryName:data.CategoryName,
@@ -45,8 +84,19 @@ export async function getServerSideProps(){
       userName:data.User.UserName
   }))
 
+  const Allcourses = courses.map((data)=>({
+      course_id:data.course_id,
+      title:data.title,
+      content:data.content,
+      CreatedDate:data.CreatedDate,
+      ModifiedDate:data.ModifiedDate,
+      userName:data.User.UserName,
+      categories:data.CourseCategoryRelationship,
+  }))
+
   return{
     props:{
+      courses:JSON.parse(JSON.stringify(Allcourses)),
       categorie:JSON.parse(JSON.stringify(Allcategories)),
     }
   }
@@ -55,7 +105,8 @@ export async function getServerSideProps(){
 export default function Course({categorie}) {
 	const [selected , setselected] = useState("Home")
 	const router = useRouter();
-  const { title} = router.query
+  const { CategoryName } = router.query
+  console.log(CategoryName)
 
   const [chapter, setchapter] = useState(false);
   const handleChapter = () => {
@@ -94,23 +145,10 @@ export default function Course({categorie}) {
 
       	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20 ">
       		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 overflow-y-scroll sticky top-0 bottom-0">
-      			<CourseSideBar title={title} onChange={handleChange} handleChapter={handleChapter} />
+      			<CourseSideBar CategoryName={CategoryName} onChange={handleChange} handleChapter={handleChapter} />
       		</div>
 
-      		<div className="w-full lg:w-3/4 h-full border bg-gray-50 dark:bg-slate-600">
-      			{ title == "HTML" && selected == "Home" && <HtmlHome />}
-      			{ title == "HTML" && selected == "Introduction" && <HtmlIntroduction />}
-      			{ title == "HTML" && selected == "Editors" && <HtmlEditors />}
-      			{ title == "HTML" && selected == "Elements" && <HtmlElements />}
-      			{ title == "HTML" && selected == "Attributes" && <HtmlAttributes />}
-
-      			{ title == "CSS" && selected == "Home" && <CssHome />}
-      			{ title == "CSS" && selected == "Introduction" && <CssIntroduction />}
-      			{ title == "CSS" && selected == "Synthax" && <CssSyntax />}
-      			{ title == "CSS" && selected == "Selectors" && <CssSelectors />}
-      			{ title == "CSS" && selected == "How To Add CSS" && <CssAddingCSS />}
-      			{ title == "CSS" && selected == "Comments" && <CssComment />}
-      		</div>
+      		
       	</div>
 
       	<div
@@ -136,7 +174,7 @@ export default function Course({categorie}) {
                 </div>   
             </div>
             <div className="py-4 flex flex-col mt-10 w-full">
-              <CourseSideBar title={title} onChange={handleChange} handleChapter={handleChapter} />
+              <CourseSideBar CategoryName={CategoryName} onChange={handleChange} handleChapter={handleChapter} />
             </div>
           </div>
         </div>
