@@ -4,8 +4,8 @@ export function CourseHead({categories}) {
   const router = useRouter()
   const { category_id } = router.query
   return (
-    <div className='flex flex-col justify-between shadow-2xl shadow-zinc-900' >
-      <ul className="flex flex-row lg:flex-col gap-3 lg:gap-10 lg:h-[50rem] mb-5 w-full lg:w-80 scroll_width">
+    <div className='flex justify-between shadow-2xl shadow-zinc-900' >
+      <ul className="flex flex-row">
         { categories.map((data,index)=>(
           <li className='flex text-center lg:gap-2 transition-none cursor-pointer hover:text-gray-600'
             key={index}
