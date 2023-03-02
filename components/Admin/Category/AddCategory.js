@@ -10,7 +10,7 @@ export function AddCategory({categories}) {
     const [category, setcategory] = useState("")
     const { status, data } = useSession();
     const [error,seterror] = useState("")
-    const UserData = data.user;
+    const UserData = data?.user;
     async function registerCategory(e){
         e.preventDefault()
         const data = await axios.post(`..//api/addCtegory`,{
