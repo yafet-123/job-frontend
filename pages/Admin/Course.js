@@ -76,7 +76,7 @@ export default function Course({courses, categorie}) {
     const { status, data } = useSession();
     return (
     	<React.Fragment>
-      	<MainHeader title="Category Dashboard" />
+      	<MainHeader title="Course Dashboard" />
         	<section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-10">
     				<div className='w-full h-full flex flex-row'>
     		      <VerticalNavbar data={data} />

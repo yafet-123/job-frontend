@@ -116,7 +116,7 @@ export default function JobDisplay({jobs,categories,locations}) {
     const { status, data } = useSession();
     return (
     	<React.Fragment>
-      	<MainHeader title="Entertemiment Category Dashboard" />
+      	<MainHeader title="Job Display Dashboard" />
         	<section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-10">
     				<div className='w-full h-full flex flex-row'>
     		      <VerticalNavbar data={data} />
