@@ -41,7 +41,7 @@ export default function NewsCategory({categories}) {
     	<React.Fragment>
       	<MainHeader title="News Category Dashboard" />
         	<section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-10">
-    				<div className='w-full h-full flex flex-col lg:flex-row'>
+    				<div className='w-full h-full flex flex-row'>
     		      <VerticalNavbar data={data} />
     		      <div className="w-full">
             		<AddNewsCategory />

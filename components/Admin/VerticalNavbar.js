@@ -34,13 +34,13 @@ export function VerticalNavbar({onChange, data}){
     console.log(path)
 
 	return(
-            <div className={`flex h-full sticky top-0 bottom-0 ${sideBar ? "w-10 lg:w-28" : "w-16 lg:w-96"} pt-24`}>
-                <nav className="w-full h-screen flex flex-col py-8 px-4 bg-[#ddd0c8] dark:bg-slate-800 scroll_width">
-                    <div className="flex justify-between ml-5">
+            <div className={`flex h-full sticky top-0 bottom-0 ${sideBar ? "w-16 lg:w-28" : "w-16 lg:w-96"} pt-24`}>
+                <nav className="w-full h-screen flex flex-col py-8 lg:px-4 bg-[#ddd0c8] dark:bg-slate-800 scroll_width">
+                    <div className="flex justify-between ml-2 lg:ml-5">
                         <h1 className={`text-2xl font-bold text-black dark:text-white ${sideBar ? "hidden" : "hidden lg:flex"}`}>Admin Page</h1>
                         <button 
                             onClick={handleSideBar} 
-                            className={`hidden lg:flex text-black dark:text-white hover:text-slate-800 focus:outline-none ${ sideBar ? "flex justify-center items-center" : ""} `}
+                            className={`flex text-black dark:text-white hover:text-slate-800 focus:outline-none ${ sideBar ? "flex justify-center items-center" : ""} `}
                         >
                             <AiOutlineMenu size={35} />
                         </button>
@@ -48,18 +48,18 @@ export function VerticalNavbar({onChange, data}){
                     <div className="mt-10">
                         <ul>
                             {SideBarList.map((side, index) => (
-                                <li className="mb-4" key={index}>
+                                <li className="mb-5" key={index}>
                                     <button 
                                         onClick = {()=>{
                                             router.push({
                                                 pathname:side.link,
                                             })
                                         }}
-                                        className={ side.link == path ? "bg-white w-full flex items-center p-2 lg:p-4 text-xs lg:text-sm p-4 text-black rounded-xl":
-                                        "w-full flex items-center p-2 lg:p-4 text-xs lg:text-sm p-4 text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl" }
+                                        className={ side.link == path ? "lg:w-full bg-white flex items-center px-4 py-2 lg:py-4 text-xs lg:text-sm text-black rounded-xl":
+                                        "lg:w-full flex items-center px-4 py-2 lg:py-4 text-xs lg:text-sm text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl" }
                                     >
-                                            {side.icon}
-                                            <span className={`ml-4 font-semibold ${sideBar ? 'hidden' : 'hidden lg:flex' } `}>
+                                            <span className="text-xs lg:text-lg">{side.icon}</span>
+                                            <span className={`ml-0 lg:ml-4 font-semibold ${sideBar ? 'hidden' : 'hidden lg:flex' } `}>
                                                 {side.name}
                                             </span>
                                     </button>
