@@ -14,7 +14,7 @@ export function CourseHead({categories}) {
               onClick = {()=>{
                 router.push({
                   pathname:"/Course",
-                  query:{CategoryName:data.CategoryName}
+                  query:{CategoryName:data.CategoryName, courseId:1}
                 })
               }}
               key={index} 

@@ -54,7 +54,7 @@ export default function Courses({categorie}) {
 		    				onClick = {()=>{
 	                router.push({
 	                  pathname:"/Course",
-	                  query:{CategoryName:data.CategoryName}
+	                  query:{CategoryName:data.CategoryName, courseId:1}
 	                })
 	              }}
 		    				className="py-3 border rounded-3xl w-52 text-xl font-bold bg-white text-black"

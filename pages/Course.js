@@ -8,6 +8,7 @@ import { prisma } from '../util/db.server.js'
 import { Content } from '../components/Course/Content'
 import {CourseSideBar} from "../components/CourseSideBar"
 import { CourseHead } from '../components/Course/CourseHead'
+import { MainHeader } from '../components/MainHeader';
 
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
@@ -63,31 +64,22 @@ export async function getServerSideProps(context){
     }
   })
 
-  const indvidualCourses = await prisma.Course.findUnique({
+  const indvidualCourses = await prisma.Course.findMany({
     where:{
-      course_id: Number(course_id)
+      course_id: Number(course_id),
+      CourseCategoryRelationship:{
+        some: {
+          CourseCategory:{
+            CategoryName: CategoryName
+          },
+        },
+      },
     },
-
-    orderBy: {
-      course_id:"asc"
-    },
-
     include:{
       User:{
           select:{
               UserName:true
           }
-      },
-
-      CourseCategoryRelationship:{
-        include:{
-          CourseCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
       },
     }
   })
@@ -109,21 +101,11 @@ export async function getServerSideProps(context){
       categories:data.CourseCategoryRelationship,
   }))
 
-  const Allindvidualcourses = indvidualCourses.map((data)=>({
-      course_id:data.course_id,
-      title:data.title,
-      content:data.content,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
-
-
   return{
     props:{
       courses:JSON.parse(JSON.stringify(Allcourses)),
       categorie:JSON.parse(JSON.stringify(Allcategories)),
-      indvidualCourses:JSON.parse(JSON.stringify(Allindvidualcourses)),
+      indvidualCourses:JSON.parse(JSON.stringify(indvidualCourses)),
     }
   }
 }
@@ -198,7 +180,7 @@ export default function Course({categorie, courses, indvidualCourses}) {
                   onClick = {()=>{
                       router.push({
                         pathname:"/Course",
-                        query:{CategoryName:data.CategoryName}
+                        query:{CategoryName:data.CategoryName, courseId:1}
                       })
                       handleCourse()
                   }}
@@ -215,9 +197,6 @@ export default function Course({categorie, courses, indvidualCourses}) {
             </div>
           </div>
         </div>
-
-        
-
       </section>
     </React.Fragment>
   );
