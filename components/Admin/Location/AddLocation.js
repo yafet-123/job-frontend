@@ -12,7 +12,7 @@ export function AddLocation({locations}) {
     const [image, setImage] = useState()
     const { status, data } = useSession();
     const [error,seterror] = useState("")
-    const UserData = data.user;
+    const UserData = data?.user;
     const [active, setActive] = useState(false)
 
     async function imageUploadData() {

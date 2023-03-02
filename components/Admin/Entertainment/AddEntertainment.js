@@ -15,7 +15,7 @@ export function AddEntertainment({categories, Allentertainment}) {
     const { status, data } = useSession();
     const [error,seterror] = useState("");
     const [ShortDescription, setShortDescription] = useState("")
-    const UserData = data.user;
+    const UserData = data?.user;
     async function registerEntertainment(e){
         e.preventDefault()
         const data = await axios.post(`../api/addEntertainment`,{

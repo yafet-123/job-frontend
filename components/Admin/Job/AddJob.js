@@ -34,7 +34,7 @@ export function AddJob({categories, locations}) {
     const [error,seterror] = useState("")
     const [active, setActive ] = useState(false)
     const { status, data } = useSession();
-    const UserData = data.user;
+    const UserData = data?.user;
 
     async function imageUploadData() {
         const formData = new FormData();

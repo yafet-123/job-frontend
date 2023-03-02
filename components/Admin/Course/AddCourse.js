@@ -29,7 +29,7 @@ export function AddCourse({categorie}) {
     const [categoryId,setCategoryId] = useState([])
     const { status, data } = useSession();
     const [error,seterror] = useState("")
-    const UserData = data.user;
+    const UserData = data?.user;
     const [active, setActive] = useState(false)
 
     const quillRef = useRef(null)
