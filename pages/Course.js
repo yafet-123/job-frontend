@@ -113,8 +113,6 @@ export async function getServerSideProps(context){
 export default function Course({categorie, courses, indvidualCourses}) {
 	const router = useRouter();
   const { CategoryName } = router.query
-  console.log(CategoryName)
-
   const [chapter, setchapter] = useState(false);
   const handleChapter = () => {
     setchapter(!chapter);
@@ -146,7 +144,7 @@ export default function Course({categorie, courses, indvidualCourses}) {
 
       	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20 ">
       		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 overflow-y-scroll sticky top-0 bottom-0">
-      			<CourseSideBar CategoryName={CategoryName} courses={courses} handleChapter={handleChapter} />
+      			<CourseSideBar handleCourse={handleCourse} CategoryName={CategoryName} courses={courses} handleChapter={handleChapter} />
       		</div>
 
           <Content indvidualCourses={indvidualCourses} />

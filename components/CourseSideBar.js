@@ -1,7 +1,7 @@
 import { CSSSideBar } from "../data/CSSSideBar";
 import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
-export function CourseSideBar({CategoryName,courses, handleChapter}){
+export function CourseSideBar({CategoryName,courses, handleChapter, handleCourse}){
 	const router = useRouter();
 	return(
 		<div className="w-full h-full dark:bg-slate-700">
@@ -12,7 +12,7 @@ export function CourseSideBar({CategoryName,courses, handleChapter}){
             onClick = {()=>{
                 router.push({
                   pathname:"/Course",
-                  query:{CategoryName:data.CategoryName, courseId:data.course_id}
+                  query:{CategoryName:CategoryName, courseId:data.course_id}
                 })
                 handleCourse()
             }}

@@ -12,7 +12,7 @@ export function AddCourseCategory({categories}) {
     const [color, setcolor] = useState("")
     const { status, data } = useSession();
     const [error,seterror] = useState("")
-    const UserData = data.user;
+    const UserData = data?.user;
     async function registerCategory(){
         const data = await axios.post(`../api/addcoursecategory`,{
             "CategoryName": category,
