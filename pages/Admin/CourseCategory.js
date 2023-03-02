@@ -39,7 +39,6 @@ export async function getServerSideProps(){
 
 export default function CourseCategory({categorie}) {
     const { status, data } = useSession();
-    const UserData = data?.user;
     return (
     	<React.Fragment>
       	<MainHeader title="Course Category Dashboard" />

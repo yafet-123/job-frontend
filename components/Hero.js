@@ -37,10 +37,10 @@ export function Hero() {
   return (
     <div className="w-full h-[30rem] bg-[#ddd0c8] dark:bg-slate-700 relative">
       <div className="absolute top-20 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
-        <h1 className={`px-3 text-2xl mb-10 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-700 " : "text-yellow-500" } `}>
+        <h1 className={`px-3 lg:px-0 text-2xl mb-10 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-700 " : "text-yellow-500" } `}>
           Better Job. Better Talent
         </h1>
-        <div className="flex flex-col lg:flex-row mb-10 px-3">
+        <div className="flex flex-col lg:flex-row mb-5 px-3 lg:px-0">
           <button 
             className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "job" ? "bg-green-700 text-white" : "text-black" } p-4  rounded-xl`} 
             onClick={() => setsearch("job")}
@@ -56,7 +56,8 @@ export function Hero() {
         </div>
 
         { search == "Job" ? (
-            <div className="flex h-16 w-[70%] border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
+          <div className="lg:text-lg">
+            <div className="flex h-16 w-full lg:w-[60%] border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
               <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
                 <AiOutlineSearch size={20} />
               </div>
@@ -74,9 +75,11 @@ export function Hero() {
                 Search
               </button>
             </div>
-          )
-          :(
-            <div className="flex h-16 w-[70%]">
+          </div>
+        )
+        :(
+          <div className="lg:text-lg">
+            <div className="flex h-16 w-full lg:w-[60%] border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
               <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
                 <AiOutlineSearch size={20} />
               </div>
@@ -94,8 +97,8 @@ export function Hero() {
                 Search
               </button>
             </div>
-          )
-        }
+          </div>
+        )}
       </div>
     </div>
   );
