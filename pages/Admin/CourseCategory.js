@@ -46,7 +46,7 @@ export default function CourseCategory({categorie}) {
     				<div className='w-full h-full flex flex-row'>
     		      <VerticalNavbar data={data} />
     		      <div className="w-full">
-            		<AddCourseCategory UserData={UserData}/>
+            		<AddCourseCategory />
             		<DisplayCourseCategory categories={categorie}  />
             	</div>
     		    </div> 

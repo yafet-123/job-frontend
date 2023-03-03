@@ -135,6 +135,7 @@ export function AddCourse({categorie}) {
                     </div>
 
                     <QuillNoSSRWrapper 
+                        forwardedRef={quillRef} 
                         value={content} 
                         onChange={setcontent} 
                         modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2 !my-5" 
