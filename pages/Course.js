@@ -161,7 +161,7 @@ export default function Course({categorie, courses, indvidualCourses}) {
       	</div>
 
 
-      	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20 ">
+      	<div className="flex flex-col lg:flex-row h-full px-0 lg:px-20 ">
       		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 overflow-y-scroll sticky top-0 bottom-0">
       			<CourseSideBar handleCourse={handleCourse} CategoryName={CategoryName} courses={courses} handleChapter={handleChapter} />
       		</div>
@@ -170,7 +170,7 @@ export default function Course({categorie, courses, indvidualCourses}) {
       		
       	</div>
 
-      	<div className={ chapter ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10" : "" }>
+      	<div className={ chapter ? "lg:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10" : "" }>
           <div className={chapter ? "fixed left-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500" : "fixed left-[-100%] top-20 p-10 ease-in duration-500" }>
             <div> 
                 <div onClick={handleChapter} className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-5">
