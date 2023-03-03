@@ -93,8 +93,8 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
     }
 
 	return(
-		<div className="bg-neutral-300 dark:bg-slate-800 opacity-95 fixed inset-0 z-50   ">
-            <div className="flex h-screen justify-center items-center ">
+		<div className="bg-neutral-300 dark:bg-slate-800 opacity-95 fixed inset-0 z-50 h-full overflow-y-scroll ">
+            <div className="flex justify-center items-center">
                 <div className="flex-col justify-center bg-neutral-200 dark:bg-slate-500 py-24 px-5 lg:px-10 border-4 border-sky-500 rounded-xl ">
                     <div className="flex text-center text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Update Course</div>
                     <div className="flex flex-col justify-between items-center">

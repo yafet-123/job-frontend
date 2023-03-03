@@ -41,11 +41,11 @@ export default function Courses({categorie}) {
   return (
   	<React.Fragment>
       <MainHeader title="Courses" />
-	    <section className="flex flex-col w-full h-full px-0 md:px-32 py-32 bg-[#ddd0c8] dark:bg-slate-700">
-	    	<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 bg-[#d1cbc7] dark:bg-slate-800 pt-20">
+	    <section className="flex flex-col w-full h-full px-0 md:px-40 py-32 bg-[#ddd0c8] dark:bg-slate-700">
+	    	<div className="grid grid-cols-1 lg:grid-cols-2 gap-5 pt-20">
 	    		{ categorie.map((data,index)=>(
 		    		<div 
-		    			className={`flex flex-col justify-center items-center mb-10 mx-2 lg:m-20 p-10 rounded-xl ${data.color}`} 
+		    			className={`flex flex-col justify-center items-center mb-10 mx-2 p-10 rounded-xl ${data.color}`} 
 		    			key ={index}
 		    		>
 		    			<h1 className="text-black text-5xl capitalize font-bold mb-5">{data.CategoryName}</h1>

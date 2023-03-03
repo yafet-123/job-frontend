@@ -9,6 +9,7 @@ import { Content } from '../components/Course/Content'
 import {CourseSideBar} from "../components/CourseSideBar"
 import { CourseHead } from '../components/Course/CourseHead'
 import { MainHeader } from '../components/MainHeader';
+import 'react-quill/dist/quill.snow.css';
 
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
@@ -137,9 +138,26 @@ export default function Course({categorie, courses, indvidualCourses}) {
         		<CourseHead categories={categorie} />
           </div>
 
-          <button onClick={handleCourse} className="lg:hidden text-white flex items-center">
-            <span className="ml-5 font-bold text-xl hover:text-blue-400">Courses</span>
-          </button>
+          <div className="ml-10 lg:hidden text-white flex items-center overflow-x-scroll">
+            <div className="py-2 flex flex-row w-full">
+              { categorie.map((data,index)=>(
+                <button 
+                  onClick = {()=>{
+                    router.push({
+                      pathname:"/Course",
+                      query:{CategoryName:data.CategoryName, courseId:1}
+                    })
+                    handleCourse()
+                  }}
+                  key={index} 
+                  className={`w-full px-3 text-lg font-normal text-black
+                    ${ router.query.CategoryName == data.CategoryName ? "bg-green-500 " : "hover:bg-gray-300 hover:text-orange-500" }`}
+                >
+                  {data.CategoryName}
+                </button>
+              ))}
+            </div>
+          </div>
       	</div>
 
 
@@ -161,38 +179,6 @@ export default function Course({categorie, courses, indvidualCourses}) {
             </div>
             <div className="py-4 flex flex-col mt-10 w-full">
               <CourseSideBar CategoryName={CategoryName} courses={courses} handleChapter={handleChapter} />
-            </div>
-          </div>
-        </div>
-
-        <div className={ course ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10"   : "" }>
-          <div className={ course ? " fixed right-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500" : "fixed left-[-100%] top-0 p-10 ease-in duration-500"}>
-            <div>
-                <div onClick={handleCourse} className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-left ml-3">
-                  <AiOutlineClose size={15} />
-                </div>
-            </div>
-            
-            <div className="py-4 flex flex-col mt-10 w-full">
-              { categorie.map((data,index)=>(
-                <button 
-                  onClick = {()=>{
-                      router.push({
-                        pathname:"/Course",
-                        query:{CategoryName:data.CategoryName, courseId:1}
-                      })
-                      handleCourse()
-                  }}
-                  key={index} 
-                  className={
-                    router.query.CategoryName == data.CategoryName
-                      ? "bg-green-500 w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500 hover:bg-gray-300 hover:text-orange-500"
-                      : "w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500"
-                    }
-                >
-                  {data.CategoryName}
-                </button>
-              ))}
             </div>
           </div>
         </div>
