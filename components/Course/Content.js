@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 import moment from 'moment';
 import { useRouter } from 'next/router'
-
+import 'react-quill/dist/quill.snow.css'
 export function Content({indvidualCourses}) {
     console.log(indvidualCourses)
     const router = useRouter()
