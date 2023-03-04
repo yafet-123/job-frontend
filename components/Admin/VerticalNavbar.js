@@ -1,14 +1,16 @@
 import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
-import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlineUser, AiOutlineFolderAdd } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlineUser, AiOutlineFolderAdd, AiOutlineHtml5 } from "react-icons/ai";
+import { DiJavascript1, DiPython } from "react-icons/di"
+import { SiCss3 } from 'react-icons/si'
 import { MdOutlineCategory, MdLocationOn } from "react-icons/md";
-import { BsNewspaper } from 'react-icons/bs'
+import { BsNewspaper, BsFiletypeCss } from 'react-icons/bs'
 import {GiNewspaper} from 'react-icons/gi'
 import Link from 'next/link'
 import { useSession, signIn, signOut  } from "next-auth/react";
 import { FiLogOut } from "react-icons/fi"
-import { BiDownArrow } from "react-icons/bi"
-import { BsDisplay } from 'react-icons/bs'
+import { BiDownArrow, BiNews } from "react-icons/bi"
+import { BsDisplay, BsFunnelFill } from 'react-icons/bs'
 
 export function VerticalNavbar({onChange, data}){
     const SideBarList = [
@@ -18,14 +20,14 @@ export function VerticalNavbar({onChange, data}){
         { link: "/Admin/JobDisplay", icon: <BsDisplay size={25}/>, name: "Display Job" },
         { link: "/Admin/Category", icon: <MdOutlineCategory size={25}/>, name: "Category" },
         { link: "/Admin/Location", icon: <MdLocationOn size={25}/>, name: "Location" },
-        { link: "/Admin/NewsCategory", icon: <BsNewspaper size={25}/>, name: "News Category" },
+        { link: "/Admin/NewsCategory", icon: <BiNews size={25}/>, name: "News Category" },
         { link: "/Admin/News", icon: <GiNewspaper size={25}/>, name: "News" },
         { link: "/Admin/EntertainmentCategory", icon: <BsNewspaper size={25}/>, name: "Entertainment Category" },
-        { link: "/Admin/Entertainment", icon: <GiNewspaper size={25}/>, name: "Entertainment" },
-        { link: "/Admin/HTmlCourse", icon: <GiNewspaper size={25}/>, name: "HTML Course" },
-        { link: "/Admin/CSSCourse", icon: <GiNewspaper size={25}/>, name: "CSS Course" },
-        { link: "/Admin/JavascriptCourses", icon: <GiNewspaper size={25}/>, name: "JavaScript Course" },
-        { link: "/Admin/PythonCourses", icon: <GiNewspaper size={25}/>, name: "Python Course" },
+        { link: "/Admin/Entertainment", icon: <BsFunnelFill size={25}/>, name: "Entertainment" },
+        { link: "/Admin/HTmlCourse", icon: <AiOutlineHtml5 size={25}/>, name: "HTML Course" },
+        { link: "/Admin/CSSCourse", icon: <SiCss3 size={25}/>, name: "CSS Course" },
+        { link: "/Admin/JavascriptCourses", icon: <DiJavascript1 size={25}/>, name: "JavaScript Course" },
+        { link: "/Admin/PythonCourses", icon: <DiPython size={25}/>, name: "Python Course" },
     ];
 	const router = useRouter();
     const [sideBar , setsideBar] = useState(false);
@@ -33,7 +35,7 @@ export function VerticalNavbar({onChange, data}){
         setsideBar(!sideBar);
     };
     const path = router.pathname
-    console.log(path)
+    console.log(data)
 
 	return(
             <div className={`flex h-full sticky top-0 bottom-0 ${sideBar ? "w-16 lg:w-28" : "w-16 lg:w-96"} pt-24`}>
@@ -72,7 +74,8 @@ export function VerticalNavbar({onChange, data}){
                     <div className="mt-auto flex flex-col">
                         <Link href="/">
                             <a className="flex items-center p-2 lg:p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl">
-                                <BsDisplay size={25} />
+                                <AiOutlineUser size={25} /> 
+                                <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>{data?.user.name}</span>
                             </a>
                         </Link>
 
