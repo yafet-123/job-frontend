@@ -73,7 +73,7 @@ export default function python({courses, indvidualCourses}) {
 
   return (
     <React.Fragment>
-      <MainHeader title="HTML Course" />
+      <MainHeader title="Python Course" />
       <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800 py-5">
       	<div className="w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between mt-6">
       		<div onClick={handleChapter} className="lg:hidden text-white z-10">

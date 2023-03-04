@@ -12,7 +12,7 @@ export const CourseHeadData = [
 		link:"/Course/Css"
 	},
 	{
-		title:"javaScript",
+		title:"javascript",
 		description:"The language for programming web pages",
 		backgroundColor:"bg-[#ffff00]",
 		link:"/Course/javascript"
