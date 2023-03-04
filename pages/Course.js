@@ -151,7 +151,7 @@ export default function Course({categorie, courses, indvidualCourses}) {
                   }}
                   key={index} 
                   className={`w-full px-3 text-lg font-normal text-black
-                    ${ router.query.CategoryName == data.CategoryName ? "bg-green-500 " : "hover:bg-gray-300 hover:text-orange-500" }`}
+                    ${ router.query.CategoryName == data.CategoryName ? "bg-[#ddd0c8]" : "hover:bg-gray-300 hover:text-orange-500" }`}
                 >
                   {data.CategoryName}
                 </button>

@@ -65,15 +65,16 @@ model User {
   Entertainment Entertainment[]
   EntertainmentCategory EntertainmentCategory[]
   EntertainmentCategoryRelationship EntertainmentCategoryRelationship[]
-  News         News[]
-  NewsCategory NewsCategory[]
-  NewsCategoryRelationship NewsCategoryRelationship[]
-  JobCategory  JobCategory[]
-  Job          Job[]
-  Location     Location[]
-  CourseCategory CourseCategory[]
-  CourseCategoryRelationship CourseCategoryRelationship[]
-  Course Course[]
+  News                        News[]
+  NewsCategory                NewsCategory[]
+  NewsCategoryRelationship    NewsCategoryRelationship[]
+  JobCategory                 JobCategory[]
+  Job                         Job[]
+  Location                    Location[]
+  HTMLCourse                  HTMLCourse[]
+  CSSCourse                   CSSCourse[]
+  JavascriptCourse            JavascriptCourse[]
+  PythonCourse                PythonCourse[]
 }
 
 model JobCategory {
@@ -157,19 +158,7 @@ model EntertainmentCategoryRelationship{
   User                       User?                  @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
 }
 
-model CourseCategory {
-  category_id                   Int           @id @default(autoincrement())
-  CategoryName                  String        @db.VarChar(255)
-  ShortDescription              String?
-  color                         String?
-  user_id                       Int?
-  CreatedDate                   DateTime?     @default(now()) @db.Timestamptz(6)
-  ModifiedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
-  User                          User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
-  CourseCategoryRelationship    CourseCategoryRelationship[]
-}
-
-model Course {
+model HTMLCourse {
   course_id                    Int           @id @default(autoincrement()) 
   title                        String?              
   user_id                      Int
@@ -177,17 +166,34 @@ model Course {
   CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
   User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
-  CourseCategoryRelationship   CourseCategoryRelationship[]
 }
 
-model CourseCategoryRelationship{
-  course_category_id          Int           @id @default(autoincrement())
-  user_id                     Int?
-  category_id                 Int
-  course_id                   Int
-  CreatedDate                 DateTime?       @default(now()) @db.Timestamptz(6)
-  ModifiedDate                DateTime?       @default(now()) @db.Timestamptz(6)
-  CourseCategory              CourseCategory  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
-  Course                      Course          @relation(fields: [course_id], references: [course_id], onDelete: Cascade, onUpdate: Cascade)
-  User                        User?           @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+model CSSCourse {
+  course_id                    Int           @id @default(autoincrement()) 
+  title                        String?              
+  user_id                      Int
+  content                      String?
+  CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
+  User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
+}
+
+model JavascriptCourse {
+  course_id                    Int           @id @default(autoincrement()) 
+  title                        String?              
+  user_id                      Int
+  content                      String?
+  CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
+  User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
+}
+
+model PythonCourse {
+  course_id                    Int           @id @default(autoincrement()) 
+  title                        String?              
+  user_id                      Int
+  content                      String?
+  CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
+  User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
 }
