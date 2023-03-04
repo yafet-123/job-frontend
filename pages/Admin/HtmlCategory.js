@@ -1,13 +1,13 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import { prisma } from '../../util/db.server.js'
-import { AddCategory } from "../../components/Admin/Category/AddCategory";
-import {DisplayCategory} from "../../components/Admin/Category/DisplayCategory";
+import { AddCategory } from "../../components/Admin/HtmlCategory/AddCategory";
+import {DisplayCategory} from "../../components/Admin/HtmlCategory/DisplayCategory";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../components/MainHeader';
 export async function getServerSideProps(){
-  const categories = await prisma.Category.findMany({
+  const categories = await prisma.HTMLCourse.findMany({
     orderBy: {
       category_id:"asc"
     },
@@ -35,7 +35,7 @@ export async function getServerSideProps(){
   }
 }
 
-export default function Category({categorie}) {
+export default function HtmlCategory({categorie}) {
     const { status, data } = useSession();
     return (
     	<React.Fragment>
