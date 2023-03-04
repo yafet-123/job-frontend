@@ -4,43 +4,19 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import {MdOutlineSubject} from 'react-icons/md'
-import { prisma } from '../util/db.server.js'
-import { Content } from '../components/Course/Content'
-import {CourseSideBar} from "../components/CourseSideBar"
-import { CourseHead } from '../components/Course/CourseHead'
-import { MainHeader } from '../components/MainHeader';
+import { prisma } from '../../util/db.server.js'
+import { Content } from '../../components/Course/Content'
+import {CourseSideBar} from "../../components/CourseSideBar"
+import { CourseHead } from '../../components/Course/CourseHead'
+import { MainHeader } from '../../components/MainHeader';
+import { CourseHeadData } from '../../data/CourseHead'
 import 'react-quill/dist/quill.snow.css';
 
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
-  const CategoryName = query.CategoryName
-  const course_id = query.courseId
-  console.log(CategoryName)
+  const course_id = query.id
 
-  const categories = await prisma.CourseCategory.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  })
-
-  const courses = await prisma.Course.findMany({
-    where:{
-      CourseCategoryRelationship:{
-        some: {
-          CourseCategory:{
-            CategoryName: CategoryName
-          }
-        }
-      } 
-    },
-
+  const courses = await prisma.HTMLCourse.findMany({
     orderBy: {
       course_id:"asc"
     },
@@ -51,30 +27,12 @@ export async function getServerSideProps(context){
               UserName:true
           }
       },
-
-      CourseCategoryRelationship:{
-        include:{
-          CourseCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
     }
   })
 
-  const indvidualCourses = await prisma.Course.findMany({
+  const indvidualCourses = await prisma.HTMLCourse.findMany({
     where:{
       course_id: Number(course_id),
-      CourseCategoryRelationship:{
-        some: {
-          CourseCategory:{
-            CategoryName: CategoryName
-          },
-        },
-      },
     },
     include:{
       User:{
@@ -84,16 +42,6 @@ export async function getServerSideProps(context){
       },
     }
   })
-
-  const Allcategories = categories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      ShortDescription:data.ShortDescription,
-      color:data.color,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
 
   const Allcourses = courses.map((data)=>({
       course_id:data.course_id,
@@ -105,15 +53,13 @@ export async function getServerSideProps(context){
   return{
     props:{
       courses:JSON.parse(JSON.stringify(Allcourses)),
-      categorie:JSON.parse(JSON.stringify(Allcategories)),
       indvidualCourses:JSON.parse(JSON.stringify(indvidualCourses)),
     }
   }
 }
 
-export default function Course({categorie, courses, indvidualCourses}) {
+export default function Course({courses, indvidualCourses}) {
 	const router = useRouter();
-  console.log(courses)
   const { CategoryName } = router.query
   const [chapter, setchapter] = useState(false);
   const handleChapter = () => {
@@ -127,7 +73,7 @@ export default function Course({categorie, courses, indvidualCourses}) {
 
   return (
     <React.Fragment>
-      <MainHeader title="Course" />
+      <MainHeader title="HTML Course" />
       <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800 py-5">
       	<div className="w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between mt-6">
       		<div onClick={handleChapter} className="lg:hidden text-white z-10">
@@ -135,16 +81,16 @@ export default function Course({categorie, courses, indvidualCourses}) {
           </div>
 
           <div className="hidden lg:flex">
-        		<CourseHead categories={categorie} />
+        		<CourseHead />
           </div>
 
           <div className="ml-10 lg:hidden text-white flex items-center overflow-x-scroll">
             <div className="py-2 flex flex-row w-full">
-              { categorie.map((data,index)=>(
+              { CourseHeadData.map((data,index)=>(
                 <button 
                   onClick = {()=>{
                     router.push({
-                      pathname:"/Course",
+                      pathname:data.link,
                       query:{CategoryName:data.CategoryName, courseId:1}
                     })
                     handleCourse()
