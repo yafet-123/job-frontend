@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { CourseHeadData } from '../../data/CourseHead'
+import { CourseHeadData } from '../../data/courseHead'
 
 export function CourseHead({categories}) {
   const router = useRouter()

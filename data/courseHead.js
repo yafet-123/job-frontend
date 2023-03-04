@@ -21,7 +21,7 @@ export const CourseHeadData = [
 		title:"Python",
 		description:"A popular programming language",
 		backgroundColor:"bg-[#0073e6]",
-		link:"/Course/Python"
+		link:"/Course/python"
 	}
 ]
 

@@ -9,7 +9,7 @@ import { Content } from '../../components/Course/Content'
 import {CourseSideBar} from "../../components/CourseSideBar"
 import { CourseHead } from '../../components/Course/CourseHead'
 import { MainHeader } from '../../components/MainHeader';
-import { CourseHeadData } from '../../data/CourseHead'
+import { CourseHeadData } from '../../data/courseHead'
 import 'react-quill/dist/quill.snow.css';
 
 export async function getServerSideProps(context){
