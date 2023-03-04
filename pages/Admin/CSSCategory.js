@@ -1,13 +1,14 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import { prisma } from '../../util/db.server.js'
-import { AddCourseCategory } from "../../components/Admin/CourseCategory/AddCourseCategory";
-import {DisplayCourseCategory} from "../../components/Admin/CourseCategory/DisplayCourseCategory";
+import { AddCategory } from "../../components/Admin/CssCategory/AddCategory";
+import {DisplayCategory} from "../../components/Admin/CssCategory/DisplayCategory";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../components/MainHeader';
+
 export async function getServerSideProps(){
-  const categories = await prisma.CourseCategory.findMany({
+  const categories = await prisma.CSSCourse.findMany({
     orderBy: {
       category_id:"asc"
     },
@@ -23,8 +24,6 @@ export async function getServerSideProps(){
   const Allcategories = categories.map((data)=>({
       category_id:data.category_id,
       CategoryName:data.CategoryName,
-      ShortDescription:data.ShortDescription,
-      color:data.color,
       CreatedDate:data.CreatedDate,
       ModifiedDate:data.ModifiedDate,
       userName:data.User.UserName
@@ -37,21 +36,21 @@ export async function getServerSideProps(){
   }
 }
 
-export default function CourseCategory({categorie}) {
+export default function CSSCategory({categorie}) {
     const { status, data } = useSession();
     return (
-    	<React.Fragment>
-      	<MainHeader title="Course Category Dashboard" />
-        	<section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-10">
-    				<div className='w-full h-full flex flex-row'>
-    		      <VerticalNavbar data={data} />
-    		      <div className="w-full">
-            		<AddCourseCategory />
-            		<DisplayCourseCategory categories={categorie}  />
-            	</div>
-    		    </div> 
-  			  </section>
-      	</React.Fragment>
+      <React.Fragment>
+        <MainHeader title="Category Dashboard" />
+          <section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-10">
+            <div className='w-full h-full flex flex-row'>
+              <VerticalNavbar data={data} />
+              <div className="w-full">
+                <AddCategory />
+                <DisplayCategory categories={categorie} />
+              </div>
+            </div> 
+          </section>
+        </React.Fragment>
         
     );
 }

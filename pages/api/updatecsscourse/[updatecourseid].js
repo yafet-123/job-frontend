@@ -6,7 +6,7 @@ import { StatusCodes } from "http-status-codes";
 export default async function handleupdatecategory(req, res){
 	const {updatecourseid} = req.query
 	const {title , content, user_id} = req.body
-	const data = await prisma.HTMLCourse.update({
+	const data = await prisma.CSSCourse.update({
 		where:{course_id:Number(updatecourseid)},
 		data:{
 			title,
