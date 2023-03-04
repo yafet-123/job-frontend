@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 export function Deletecourse({setdeleteModalOn,deletecourseid}) {
     const router = useRouter();
 	const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`../api/deletecourse/${deletecourseid}`,{
+        const data = await axios.delete(`../api/deleteHtmlcourse/${deletecourseid}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {

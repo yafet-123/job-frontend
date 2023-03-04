@@ -7,20 +7,10 @@ export default async function handleaddnews(req, res){
 	const { 
 		title,
 		content,
-		categoryId,
 		user_id
 	} = req.body
 
-	let createJobCategory = []
-
-	for (let j = 0; j < categoryId.length; j++) {
-		createJobCategory.push({
-			user_id : Number(user_id),
-			category_id : Number(categoryId[j]),
-		})
-	}
-
-	const Jobdata = await prisma.Course.create({
+	const Jobdata = await prisma.HTMLCourse.create({
 		data:{
 			title,
 			content,

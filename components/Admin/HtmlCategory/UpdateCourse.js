@@ -73,7 +73,7 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
     }
 
 	const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`../api/updatecourse/${updatecourseid}`,{
+        const data = await axios.patch(`../api/updateHtmlcourse/${updatecourseid}`,{
             "title": updatetitle,
             "content": updatecontent,
             "categoryId":categoryId,
@@ -113,23 +113,6 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
                             >
                                 Title
                             </label>
-                        </div>
-
-                        <div className="mb-10 w-full">
-                            <Multiselect
-                                displayValue="CategoryName"
-                                placeholder = "Category"
-                                className="w-full px-0 lg:px-3 text-md lg:text-xl !text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:bg-slate-700 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
-                                onKeyPressFn={function noRefCheck(){}}
-                                onRemove={function noRefCheck(){}}
-                                onSearch={function noRefCheck(){}}
-                                onSelect={(e)=>{
-                                    e.map((data,index)=>(
-                                       setCategoryId([...categoryId, data.category_id])
-                                    ))
-                                }}
-                                options={categorie}
-                            />
                         </div>
 
                         <QuillNoSSRWrapper 

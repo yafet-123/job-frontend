@@ -38,21 +38,13 @@ export function DisplayCourse({courses, categorie}) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                            {courses.map(({course_id, title, createDate, ModifiedDate, userName, categories, content},index)=>(
+                            {courses.map(({course_id, title, createDate, ModifiedDate, userName, content},index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{course_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {title}
-                                    </td>
-
-                                    <td className="flex flex-col p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        { categories.map((data,index)=>(
-                                             <span key={index} className="text-lg lg:text-xl font-normal dark:text-white text-black mb-3">
-                                                  {data.CourseCategory.CategoryName}
-                                             </span>
-                                        ))}
                                     </td>
 
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
@@ -95,7 +87,7 @@ export function DisplayCourse({courses, categorie}) {
                     </table>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                    {courses.map(({course_id, title, createDate, ModifiedDate, userName, categories, content},index)=>(
+                    {courses.map(({course_id, title, createDate, ModifiedDate, userName, content},index)=>(
                         <div key={index} className="bg-neutral-100 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div className="flex justify-between items-center">
                                 <div>
@@ -111,13 +103,6 @@ export function DisplayCourse({courses, categorie}) {
                                 <span className="text-sm ">{title}</span>
                             </div>
 
-                            <div className="flex flex-col font-bold text-gray-700 dark:text-white">
-                                { categories.map((data,index)=>(
-                                     <span key={index} className="text-lg lg:text-xl font-normal dark:text-white text-black mb-3">
-                                          {data.CourseCategory.CategoryName}
-                                     </span>
-                                ))}
-                            </div>
                             <div className="font-bold text-gray-700 dark:text-white">
                                 <span className="text-lg">Created By : </span> 
                                 <span className="text-sm ">{userName}</span>

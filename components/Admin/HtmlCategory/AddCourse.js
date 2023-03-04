@@ -26,7 +26,6 @@ export function AddCourse({categorie}) {
     const router = useRouter();
     const [title, settitle] = useState("")
     const [content, setcontent] = useState("")
-    const [categoryId,setCategoryId] = useState([])
     const { status, data } = useSession();
     const [error,seterror] = useState("")
     const UserData = data?.user;
@@ -82,11 +81,10 @@ export function AddCourse({categorie}) {
 
     async function registercourse(e){
         e.preventDefault()
-        const data = await axios.post(`../api/addcourse`,{
+        const data = await axios.post(`../api/addHtmlcourse`,{
             "title": title,
             "content":content,
-            "user_id": UserData.user_id,
-            "categoryId":categoryId,
+            "user_id": UserData.user_id
         }).then(function (response) {
             console.log(response.data);
             router.reload()
@@ -98,7 +96,7 @@ export function AddCourse({categorie}) {
     return (
         <div className="px-0 lg:px-10 pt-20">
             <form className="max-w-7xl mx-auto mt-10" onSubmit={registercourse}>
-                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Course</h1>
+                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Html Course</h1>
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1 my-5">
                         <input  
@@ -115,23 +113,6 @@ export function AddCourse({categorie}) {
                         >
                             Title
                         </label>
-                    </div>
-
-                    <div className="mb-10 my-5">
-                        <Multiselect
-                            displayValue="CategoryName"
-                            placeholder = "Category"
-                            className="w-full px-0 lg:px-3 text-md lg:text-xl !text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:bg-slate-700 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
-                            onKeyPressFn={function noRefCheck(){}}
-                            onRemove={function noRefCheck(){}}
-                            onSearch={function noRefCheck(){}}
-                            onSelect={(e)=>{
-                                e.map((data,index)=>(
-                                   setCategoryId([...categoryId, data.category_id])
-                                ))
-                            }}
-                            options={categorie}
-                        />
                     </div>
 
                     <QuillNoSSRWrapper 
