@@ -58,7 +58,7 @@ export async function getServerSideProps(context){
   }
 }
 
-export default function javascript({courses, indvidualCourses}) {
+export default function Javascript({courses, indvidualCourses}) {
 	const router = useRouter();
   const { CategoryName } = router.query
   const [chapter, setchapter] = useState(false);
