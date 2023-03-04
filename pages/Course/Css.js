@@ -16,7 +16,7 @@ export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const course_id = query.id
 
-  const courses = await prisma.HTMLCourse.findMany({
+  const courses = await prisma.CSSCourse.findMany({
     orderBy: {
       course_id:"asc"
     },
@@ -30,7 +30,7 @@ export async function getServerSideProps(context){
     }
   })
 
-  const indvidualCourses = await prisma.HTMLCourse.findMany({
+  const indvidualCourses = await prisma.CSSCourse.findMany({
     where:{
       course_id: Number(course_id),
     },
@@ -58,7 +58,7 @@ export async function getServerSideProps(context){
   }
 }
 
-export default function Html({courses, indvidualCourses}) {
+export default function Css({courses, indvidualCourses}) {
 	const router = useRouter();
   const { CategoryName } = router.query
   const [chapter, setchapter] = useState(false);

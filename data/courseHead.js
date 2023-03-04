@@ -9,19 +9,19 @@ export const CourseHeadData = [
 		title:"CSS",
 		description:"The language for styling web pages",
 		backgroundColor:"bg-[#4db8ff]",
-		link:"/Course/Html"
+		link:"/Course/Css"
 	},
 	{
-		title:"JavaScript",
+		title:"javaScript",
 		description:"The language for programming web pages",
 		backgroundColor:"bg-[#ffff00]",
-		link:"/Course/Html"
+		link:"/Course/javascript"
 	},
 	{
 		title:"Python",
 		description:"A popular programming language",
 		backgroundColor:"bg-[#0073e6]",
-		link:"/Course/Html"
+		link:"/Course/Python"
 	}
 ]
 

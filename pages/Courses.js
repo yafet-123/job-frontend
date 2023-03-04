@@ -23,7 +23,7 @@ export default function Courses() {
 		    				onClick = {()=>{
 	                router.push({
 	                  pathname:data.link,
-	                  query:{id:1 }
+	                  query:{CategoryName:data.title , id:1}
 
 
 	                })
