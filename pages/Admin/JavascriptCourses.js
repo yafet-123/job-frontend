@@ -1,8 +1,8 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import { prisma } from '../../util/db.server.js'
-import { AddCourse } from "../../components/Admin/CssCourses/AddCourse";
-import { DisplayCourse} from "../../components/Admin/CssCourses/DisplayCourse";
+import { AddCourse } from "../../components/Admin/jsCourses/AddCourse";
+import { DisplayCourse} from "../../components/Admin/jsCourses/DisplayCourse";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../components/MainHeader';
@@ -37,11 +37,11 @@ export async function getServerSideProps(){
   }
 }
 
-export default function CSSCourse({courses}) {
+export default function JavascriptCourses({courses}) {
     const { status, data } = useSession();
     return (
       <React.Fragment>
-        <MainHeader title="CSS Courses Dashboard" />
+        <MainHeader title="JavaScript Courses Dashboard" />
           <section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-10">
             <div className='w-full h-full flex flex-row'>
               <VerticalNavbar data={data} />

@@ -10,7 +10,7 @@ export default async function handleaddnews(req, res){
 		user_id
 	} = req.body
 
-	const Jobdata = await prisma.HTMLCourse.create({
+	const Jobdata = await prisma.JavascriptCourse.create({
 		data:{
 			title,
 			content,

@@ -14,10 +14,7 @@ export default async function handleaddnews(req, res){
 		data:{
 			title,
 			content,
-			user_id:Number(user_id),
-			CourseCategoryRelationship:{
-				create: createJobCategory
-			}
+			user_id:Number(user_id)
 		}
 	});
 
