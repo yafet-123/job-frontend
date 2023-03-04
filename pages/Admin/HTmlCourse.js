@@ -1,15 +1,15 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import { prisma } from '../../util/db.server.js'
-import { AddCategory } from "../../components/Admin/HtmlCategory/AddCategory";
-import {DisplayCategory} from "../../components/Admin/HtmlCategory/DisplayCategory";
+import { AddCourse } from "../../components/Admin/HtmlCourse/AddCourse";
+import { DisplayCourse } from "../../components/Admin/HtmlCourse/DisplayCourse";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../components/MainHeader';
 export async function getServerSideProps(){
-  const categories = await prisma.HTMLCourse.findMany({
+  const courses = await prisma.HTMLCourse.findMany({
     orderBy: {
-      category_id:"asc"
+      course_id:"asc"
     },
     include:{
       User:{
@@ -20,9 +20,10 @@ export async function getServerSideProps(){
     }
   })
 
-  const Allcategories = categories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
+  const Allcourses = courses.map((data)=>({
+      course_id:data.course_id,
+      title:data.title,
+      content:data.content,
       CreatedDate:data.CreatedDate,
       ModifiedDate:data.ModifiedDate,
       userName:data.User.UserName
@@ -30,22 +31,22 @@ export async function getServerSideProps(){
 
   return{
     props:{
-      categorie:JSON.parse(JSON.stringify(Allcategories)),
+      courses:JSON.parse(JSON.stringify(Allcourses)),
     }
   }
 }
 
-export default function HtmlCategory({categorie}) {
+export default function HtmlCourse({courses}) {
     const { status, data } = useSession();
     return (
     	<React.Fragment>
-      	<MainHeader title="Category Dashboard" />
+      	<MainHeader title="Html courses Dashboard" />
         	<section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-10">
     				<div className='w-full h-full flex flex-row'>
     		      <VerticalNavbar data={data} />
     		      <div className="w-full">
-            		<AddCategory />
-            		<DisplayCategory categories={categorie} />
+            		<AddCourse />
+            		<DisplayCourse courses={courses} />
             	</div>
     		    </div> 
   			  </section>

@@ -22,7 +22,7 @@ const QuillNoSSRWrapper = dynamic(
   },
 )
 
-export function AddCourse({categorie}) {
+export function AddCourse() {
     const router = useRouter();
     const [title, settitle] = useState("")
     const [content, setcontent] = useState("")
@@ -81,7 +81,7 @@ export function AddCourse({categorie}) {
 
     async function registercourse(e){
         e.preventDefault()
-        const data = await axios.post(`../api/addcsscourse`,{
+        const data = await axios.post(`../api/addHtmlcourse`,{
             "title": title,
             "content":content,
             "user_id": UserData.user_id
@@ -96,7 +96,7 @@ export function AddCourse({categorie}) {
     return (
         <div className="px-0 lg:px-10 pt-20">
             <form className="max-w-7xl mx-auto mt-10" onSubmit={registercourse}>
-                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">CSS Course</h1>
+                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Html Course</h1>
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1 my-5">
                         <input  
