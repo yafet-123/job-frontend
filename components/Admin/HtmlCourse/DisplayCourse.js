@@ -146,7 +146,7 @@ export function DisplayCourse({courses}) {
             }
 
             {updatemodalOn && 
-                <UpdateCourse updatecourseid={updatecourseid} categorie={categorie} setupdateModalOn={setupdateModalOn} updatetitle={updatetitle} setupdatetitle={setupdatetitle} updatecontent={updatecontent} setupdatecontent={setupdatecontent} />
+                <UpdateCourse updatecourseid={updatecourseid} setupdateModalOn={setupdateModalOn} updatetitle={updatetitle} setupdatetitle={setupdatetitle} updatecontent={updatecontent} setupdatecontent={setupdatecontent} />
             }
         </div>
   );
