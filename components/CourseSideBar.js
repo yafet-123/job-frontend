@@ -3,6 +3,7 @@ import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
 export function CourseSideBar({CategoryName, courses, handleChapter, handleCourse}){
 	const router = useRouter();
+  const {path} = router.route
 	return(
 		<div className="w-full h-full bg-[#ddd0c8] dark:bg-slate-700">
       <div className="flex flex-col">
@@ -11,7 +12,7 @@ export function CourseSideBar({CategoryName, courses, handleChapter, handleCours
           <button 
             onClick = {()=>{
                 router.push({
-                  pathname:"/Course",
+                  pathname:path,
                   query:{id:data.course_id}
                 })
                 handleCourse()
