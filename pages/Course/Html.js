@@ -75,7 +75,7 @@ export default function Html({courses, indvidualCourses}) {
     <React.Fragment>
       <MainHeader title="HTML Course" />
       <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800 py-5">
-      	<div className="w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between mt-6">
+      	<div className="w-full bg-[#64748b] flex px-5 lg:px-20 justify-between mt-6">
       		<div onClick={handleChapter} className="lg:hidden text-white z-10">
             <MdOutlineSubject size={30} /> 
           </div>
@@ -84,8 +84,8 @@ export default function Html({courses, indvidualCourses}) {
         		<CourseHead />
           </div>
 
-          <div className="ml-10 lg:hidden text-white flex items-center overflow-x-scroll">
-            <div className="py-2 flex flex-row w-full">
+          <div className="ml-10 lg:hidden text-white flex overflow-x-scroll">
+            <div className="flex w-full">
               { CourseHeadData.map((data,index)=>(
                 <button 
                   onClick = {()=>{

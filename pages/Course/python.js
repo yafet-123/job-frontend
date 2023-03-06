@@ -75,17 +75,17 @@ export default function Python({courses, indvidualCourses}) {
     <React.Fragment>
       <MainHeader title="Python Course" />
       <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800 py-5">
-      	<div className="w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between mt-6">
-      		<div onClick={handleChapter} className="lg:hidden text-white z-10">
+      	<div className="w-full bg-[#64748b] flex px-5 lg:px-20 justify-between mt-6">
+          <div onClick={handleChapter} className="lg:hidden text-white z-10">
             <MdOutlineSubject size={30} /> 
           </div>
 
           <div className="hidden lg:flex">
-        		<CourseHead />
+            <CourseHead />
           </div>
 
-          <div className="ml-10 lg:hidden text-white flex items-center overflow-x-scroll">
-            <div className="py-2 flex flex-row w-full">
+          <div className="ml-10 lg:hidden text-white flex overflow-x-scroll">
+            <div className="flex w-full">
               { CourseHeadData.map((data,index)=>(
                 <button 
                   onClick = {()=>{
@@ -104,7 +104,7 @@ export default function Python({courses, indvidualCourses}) {
               ))}
             </div>
           </div>
-      	</div>
+        </div>
 
 
       	<div className="flex flex-col lg:flex-row h-full px-0 lg:px-20 ">

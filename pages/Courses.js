@@ -10,7 +10,7 @@ export default function Courses() {
   return (
   	<React.Fragment>
       <MainHeader title="Courses" />
-	    <section className="flex flex-col w-full h-full px-0 md:px-44 py-32 bg-[#ddd0c8] dark:bg-slate-700">
+	    <section className="flex flex-col w-full h-full px-0 lg:px-52 py-32 bg-[#ddd0c8] dark:bg-slate-700">
 	    	<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 pt-20">
 	    		{ CourseHeadData.map((data,index)=>(
 		    		<div 
