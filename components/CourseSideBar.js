@@ -13,7 +13,7 @@ export function CourseSideBar({CategoryName, courses, handleChapter, handleCours
             onClick = {()=>{
                 router.push({
                   pathname:path,
-                  query:{id:data.course_id}
+                  query:{CategoryName:CategoryName,id:data.course_id}
                 })
                 handleCourse()
             }}
