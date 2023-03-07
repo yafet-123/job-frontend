@@ -9,10 +9,10 @@ export function Content({indvidualCourses}) {
     const { CategoryName } = router.query
     const { id } = router.query
     const homebutton =  { type:4 , name: "Home"}
-    const nexttbutton =  { type:1 , name: "Next"} 
-    const prevbutton =  { type:2 , name: "Previous" }
-    const [getSearchValue,setgetSearchValue] = useState()
-    const [type,settype] = useState()
+    const nexttbutton =  { type:2 , name: "Next"} 
+    const prevbutton =  { type:1 , name: "Previous" }
+    const [getSearchValue,setgetSearchValue] = useState("")
+    const [type,settype] = useState("")
     
     async function submitbuttondata(){
         if(CategoryName == "HTML"){
@@ -29,7 +29,7 @@ export function Content({indvidualCourses}) {
                 "searchName": getSearchValue,
                 "type": type
             }).then(function (response) {
-               console.log(response.data);
+               console.log(response.data.course_id);
             }).catch(function (error) {
                 console.log(error)
             });
