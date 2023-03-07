@@ -15,9 +15,8 @@ export function Content({indvidualCourses}) {
     const [type,settype] = useState()
     
     async function submitbuttondata(){
-        console.log("data")
         if(CategoryName == "HTML"){
-            const data = await axios.get(`/api/courseNextHomePrevioushtml`,{
+            const data = await axios.post(`../api/courseNextHomePrevioushtml`,{
                 "searchName": getSearchValue,
                 "type": type
             }).then(function (response) {
@@ -26,7 +25,7 @@ export function Content({indvidualCourses}) {
                 console.log(error)
             });
         }else if(CategoryName == "CSS"){
-            const data = await axios.get(`../api/courseNextHomePrevioushtml`,{
+            const data = await axios.post(`../api/courseNextHomePrevioushtml`,{
                 "searchName": getSearchValue,
                 "type": type
             }).then(function (response) {
@@ -65,6 +64,7 @@ export function Content({indvidualCourses}) {
                     }
                         <button 
                             onClick={() => {
+                                submitbuttondata()
                                 settype(nexttbutton.type)
                                 setgetSearchValue(id)
                             }} 
