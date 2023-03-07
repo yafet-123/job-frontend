@@ -4,25 +4,20 @@ export default async function handlecoursebuttons(req, res){
     const { searchName, type } = req.body
     console.log(req.body)
     if(type == 1){
-        console.log("iop")
+        console.log("Name")
         const prev = await prisma.HTMLCourse.findMany({
+            take:1,
             where: {
                 course_id: {
                     lt: Number(searchName),
                 },
             }
         });
-
-        const AllData = prev.map((data)=>({
-            course_id:data.course_id,
-            CreatedDate:data.CreatedDate,
-            ModifiedDate:data.ModifiedDate
-        }))
-
-        res.json(AllData)
+        console.log(prev)
+        res.json(prev)
 
     } else if(type == 2){
-        console.log("kxjc")
+        console.log("searchName")
         const next = await prisma.HTMLCourse.findMany({
             where: {
                 course_id: {
@@ -30,13 +25,8 @@ export default async function handlecoursebuttons(req, res){
                 },
             }
         });
-
-        const AllData = next.map((data)=>({
-            course_id:data.course_id,
-            CreatedDate:data.CreatedDate,
-            ModifiedDate:data.ModifiedDate
-        }))
-        res.json(AllData)
+        console.log(next)
+        res.json(next)
     } 
 
 
