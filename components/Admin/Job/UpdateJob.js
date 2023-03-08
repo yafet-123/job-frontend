@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState , useEffect } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
 import { useSession } from "next-auth/react";
+import SyncLoader from "react-spinners/SyncLoader";
 
 export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, locations}){
     const [typechange , settypechange] = useState(true)
@@ -21,6 +22,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     const [startDate, setStartDate] = useState(new Date());
     const [Description , setDescription] = useState("")
     const [Requirement , setRequirement] = useState("")
+    const [loading, setLoading] = useState(false);
     const { status, data } = useSession();
     const UserData = data.user;
 
@@ -48,7 +50,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     },[dataposttojob ])
     
     const handleOKClickForupdate = async() => {
-
+        setLoading(true)
         const data = await axios.patch(`../api/updatejob/${updatejobid}`,{
             "CompanyName":CompanyName,
             "Image":Image,
@@ -68,6 +70,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
             router.reload()
         }).catch(function (error) {
             console.log(error);
+            setLoading(false)
         });
         setupdateModalOn(false)
         
@@ -293,8 +296,24 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
                     </div>
 
                     <div className="flex">
-                        <button onClick={handleOKClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                        <button 
+                            disabled={loading}
+                            onClick={handleOKClickForupdate} 
+                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
+                        >
+                            Yes
+                        </button>
                         <button onClick={handleCancelClickForupdate} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                    </div>
+
+                    <div className="flex justify-center items-center mt-5">
+                        <SyncLoader 
+                            color="#36d7b7"
+                            loading={loading}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
                 </div>
             </div>

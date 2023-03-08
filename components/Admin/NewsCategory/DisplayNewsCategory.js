@@ -14,7 +14,7 @@ export function DisplayNewsCategory({categories}) {
     const [deletecategoryid,setdeletecategoryid] = useState()
     const [updatecategoryid,setupdatecategoryid] = useState()
     const [updatecategoryname,setupdatecategoryname] = useState("")
-    
+    const [loading, setLoading] = useState(false);
     const clickedFordelete = () => {
         setdeleteModalOn(true)
     }

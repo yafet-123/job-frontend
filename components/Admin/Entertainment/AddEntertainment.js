@@ -7,17 +7,20 @@ import { useSession } from "next-auth/react";
 import Multiselect from 'multiselect-react-dropdown';
 import {DeleteEntertainment} from './DeleteEntertainment' 
 import {UpdateEntertainment} from './UpdateEntertainment'
+import RingLoader from "react-spinners/RingLoader";
 
 export function AddEntertainment({categories, Allentertainment}) {
     const router = useRouter();
     const [Header, setHeader] = useState("")
     const [link, setlink] = useState("")
+    const [loading, setLoading] = useState(false);
     const { status, data } = useSession();
     const [error,seterror] = useState("");
     const [ShortDescription, setShortDescription] = useState("")
     const UserData = data?.user;
     async function registerEntertainment(e){
         e.preventDefault()
+        setLoading(true)
         const data = await axios.post(`../api/addEntertainment`,{
             "Header": Header,
             "link":link,
@@ -29,6 +32,7 @@ export function AddEntertainment({categories, Allentertainment}) {
             router.reload()
         }).catch(function (error) {
             seterror("Creating Entertainment Failed")
+            setLoading(false)
         });
        
     }
@@ -114,11 +118,23 @@ export function AddEntertainment({categories, Allentertainment}) {
                         {error}
                     </h1>
 
-                        <button 
-                        className="mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
+                    <button
+                        disabled={loading} 
+                        className={`float-right mx-2 flex justify-between rounded-xl w-32 text-white font-medium text-xl px-4 py-4 text-center inline-flex items-center
+                            ${loading ? "bg-gray-200" : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300" }`}
                     >
                         Submit
                     </button>
+                </div>
+
+                <div className="flex justify-center items-center mt-5">
+                    <RingLoader 
+                        color="#36d7b7"
+                        loading={loading}
+                        size={30}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                    />
                 </div>
             </form>
         </div>

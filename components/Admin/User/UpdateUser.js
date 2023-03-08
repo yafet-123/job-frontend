@@ -1,18 +1,25 @@
 import axios from 'axios';
 import { useRouter } from 'next/router'
+import { useState,useEffect, useContext} from 'react'
+import BeatLoader from "react-spinners/BeatLoader";
+
 export function UpdateUser({setupdateModalOn, updateuserid, updateemail, updateusername, setupdateemail , setupdateusername}) {
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
     const handleOKClickForupdate = async() => {
+        setLoading(true)
         const data = await axios.patch(`../api/updateUser/${updateuserid}`,{
             "UserName": updateusername,
             "email": updateemail
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             console.log(error);
+            setLoading(false)
         });
         setupdateModalOn(false)
-        router.reload()
+       
     }
 
     const handleCancelClickForupdate = () => {
@@ -58,8 +65,24 @@ export function UpdateUser({setupdateModalOn, updateuserid, updateemail, updateu
                         </div>
                     </div>
                     <div className="flex">
-                        <button onClick={handleOKClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                        <button 
+                            disabled={loading}
+                            onClick={handleOKClickForupdate} 
+                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
+                        >
+                            Yes
+                        </button>
                         <button onClick={handleCancelClickForupdate} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                    </div>
+
+                    <div className="flex justify-center items-center mt-10">
+                        <BeatLoader 
+                            color="#36d7b7"
+                            loading={loading}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
                 </div>
            	</div>

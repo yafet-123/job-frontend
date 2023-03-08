@@ -5,6 +5,7 @@ import moment from 'moment';
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react";
 import Image from 'next/image'
+import GridLoader from "react-spinners/GridLoader";
 
 export function AddLocation({locations}) {
     const router = useRouter();
@@ -14,7 +15,7 @@ export function AddLocation({locations}) {
     const [error,seterror] = useState("")
     const UserData = data?.user;
     const [active, setActive] = useState(false)
-
+    const [loading, setLoading] = useState(false);
     async function imageUploadData() {
         const formData = new FormData();
         let imagesecureUrl = ""
@@ -36,6 +37,7 @@ export function AddLocation({locations}) {
     async function addLocation(){
         const imageData = await imageUploadData()
         seterror("")
+        setLoading(true)
         const data = await axios.post(`../api/addlocation`,{
             "LocationName": LocationName,
             "user_id": UserData.user_id,
@@ -45,6 +47,7 @@ export function AddLocation({locations}) {
             router.reload()
         }).catch(function (error) {
             seterror("Creating Location Failed")
+            setLoading(false)
         });
     }
 
@@ -105,12 +108,23 @@ export function AddLocation({locations}) {
                             {error}
                         </h1>
 
-                        <button 
-                            onClick={()=> setActive(!active) }
-                            className="float-right mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
+                        <button
+                            disabled={loading} 
+                            className={`float-right mx-2 flex justify-between rounded-xl w-32 text-white font-medium text-xl px-4 py-4 text-center inline-flex items-center
+                                ${loading ? "bg-gray-200" : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300" }`}
                         >
                             Submit
-                        </button>     
+                        </button>
+                    </div>
+
+                    <div className="flex justify-center items-center mt-5">
+                        <GridLoader 
+                            color="#36d7b7"
+                            loading={loading}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
                 </div>
             </form>

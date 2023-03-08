@@ -1,17 +1,24 @@
 import axios from 'axios';
 import { useRouter } from 'next/router'
+import { useState,useEffect, useContext} from 'react'
+import GridLoader from "react-spinners/GridLoader";
+
 export function UpdateLocation({setupdateModalOn, updatelocationid, updatelocationname, setupdatelocationname }) {
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
 	const handleOKClickForupdate = async() => {
+        setLoading(true)
         const data = await axios.patch(`../api/updatelocation/${updatelocationid}`,{
             "LocationName": updatelocationname
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             console.log(error);
+            setLoading(false)
         });
         setupdateModalOn(false)
-        router.reload()
+        
     }
 
     const handleCancelClickForupdate = () => {
@@ -41,8 +48,24 @@ export function UpdateLocation({setupdateModalOn, updatelocationid, updatelocati
                         </div>
                     </div>
                     <div className="flex">
-                        <button onClick={handleOKClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                        <button 
+                            disabled={loading} 
+                            onClick={handleOKClickFordelete} 
+                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
+                        >
+                            Yes
+                        </button>
                         <button onClick={handleCancelClickForupdate} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                    </div>
+
+                    <div className="flex justify-center items-center mt-5">
+                        <RiseLoader 
+                            color="#36d7b7"
+                            loading={loading}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
                 </div>
             </div>

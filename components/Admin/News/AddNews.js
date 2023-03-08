@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
+import FadeLoader from "react-spinners/FadeLoader";
 
 const QuillNoSSRWrapper = dynamic(
   async () => {
@@ -24,7 +25,7 @@ const QuillNoSSRWrapper = dynamic(
 
 export function AddNews ({categories}) {
     const router = useRouter();
-    
+    const [loading, setLoading] = useState(false);
     const [Header, setHeader] = useState("")
     const [ShortDescription, setShortDescription] = useState("")
     const [Description, setDescription] = useState("")
@@ -110,6 +111,7 @@ export function AddNews ({categories}) {
     async function addnews(){
         const imageData = await imageUploadData()
         seterror("")
+        setLoading(true)
         const data = await axios.post(`../api/addNews`,{
             "Header": Header,
             "ShortDescription" : ShortDescription,
@@ -122,6 +124,7 @@ export function AddNews ({categories}) {
             router.reload()
         }).catch(function (error) {
             seterror("Creating Location Failed")
+            setLoading(false)
         });
     }
 
@@ -239,12 +242,23 @@ export function AddNews ({categories}) {
                             {error}
                         </h1>
 
-                        <button 
-                            onClick={()=> setActive(!active) }
-                            className="float-right mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
+                        <button
+                            disabled={loading} 
+                            className={`float-right mx-2 flex justify-between rounded-xl w-32 text-white font-medium text-xl px-4 py-4 text-center inline-flex items-center
+                                ${loading ? "bg-gray-200" : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300" }`}
                         >
                             Submit
-                        </button>     
+                        </button>
+                    </div>
+
+                    <div className="flex justify-center items-center mt-5">
+                        <FadeLoader 
+                            color="#36d7b7"
+                            loading={loading}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
             </form>
 

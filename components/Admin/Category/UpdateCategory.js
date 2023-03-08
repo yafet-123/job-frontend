@@ -1,17 +1,23 @@
 import axios from 'axios';
 import { useRouter } from 'next/router'
+import RiseLoader from "react-spinners/RiseLoader";
+import { useState,useEffect, useContext} from 'react'
 export function UpdateCategory({setupdateModalOn, updatecategoryname, setupdatecategoryname, updatecategoryid}) {
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
 	const handleOKClickForupdate = async() => {
+        setLoading(true)
         const data = await axios.patch(`../api/updateCategory/${updatecategoryid}`,{
             "CategoryName": updatecategoryname
         }).then(function (response) {
             console.log(response.data);
+            router.reload()
         }).catch(function (error) {
             console.log(error);
+            setLoading(false)
         });
         setupdateModalOn(false)
-        router.reload()
+        
     }
       
     
@@ -43,8 +49,23 @@ export function UpdateCategory({setupdateModalOn, updatecategoryname, setupdatec
                         </div>
                     </div>
                     <div className="flex">
-                        <button onClick={handleOKClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                        <button 
+                            disabled={loading}
+                            onClick={handleOKClickForupdate} 
+                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
+                        >
+                            Yes
+                        </button>
                         <button onClick={handleCancelClickForupdate} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                    </div>
+                    <div className="flex justify-center items-center mt-5">
+                        <RotateLoader 
+                            color="#36d7b7"
+                            loading={loading}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
                 </div>
             </div>

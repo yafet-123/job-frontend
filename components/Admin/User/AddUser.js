@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import {DeleteUser} from './DeleteUser.js'
 import {UpdateUser} from './UpdateUser.js'
 import {FiEye, FiEyeOff} from 'react-icons/fi'
-import PacmanLoader from "react-spinners/PacmanLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export function AddUser() {
     const [typepassword, setTypepassword] = useState('password');
@@ -24,6 +24,7 @@ export function AddUser() {
         if(confirmPassword === password){
             setpassworderror("")
             seterror("")
+            setLoading(true)
             const data = await axios.post(`../api/registerUser`,{
                 'UserName':UserName,
                 'Password':password,
@@ -34,10 +35,12 @@ export function AddUser() {
                 router.reload()
             }).catch(function (error) {
                 seterror("Creating user failed due to username is still exist or network error")
+                setLoading(false)
             });
         }else{
             seterror("")
             setpassworderror("Password and confirm password should be same.")
+            setLoading(false)
         }
                 
     }
@@ -46,6 +49,7 @@ export function AddUser() {
         <div className="px-0 lg:px-10 pt-20">
             <form className="max-w-7xl mx-auto mt-10" onSubmit={register} >
                 <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">User</h1>
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10 mx-2">
                     <div className="relative">
                         <input 
@@ -144,20 +148,23 @@ export function AddUser() {
                         {passworderror || error}
                     </h1>
                     <button 
-                        onClick={() => setLoading(!loading)}
-                        className="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl p-4 text-center inline-flex items-center"
+                        disabled={loading}
+                        className={`float-right text-white font-medium rounded-lg text-xl p-4 text-center inline-flex items-center 
+                            ${loading ? "bg-gray-200" : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300" }`}
                     >
                         Submit
                     </button>
                 </div>
 
-                <PacmanLoader 
-                    color="#36d7b7"
-                    loading={loading}
-                    size={50}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                  />
+                <div className="flex justify-center items-center mt-5">
+                    <BeatLoader 
+                        color="#36d7b7"
+                        loading={loading}
+                        size={30}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                    />
+                </div>
             </form>
         </div>
     );

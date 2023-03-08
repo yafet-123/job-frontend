@@ -10,6 +10,8 @@ import dynamic from 'next/dynamic'
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import 'react-quill/dist/quill.snow.css'
+import SyncLoader from "react-spinners/SyncLoader";
+
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {  
     ssr: false,
 })
@@ -19,7 +21,7 @@ export function AddJob({categories, locations}) {
     const [typechange , settypechange] = useState(true)
     const [CompanyName, setCompanyName] = useState("")
     const [image, setImage] = useState()
-
+    const [loading, setLoading] = useState(false);
     const [JobsType, setJobsType] = useState("")
     const [Location, setLocation] = useState("")
     const [CareerLevel, setCareerLevel] = useState("")
@@ -57,6 +59,7 @@ export function AddJob({categories, locations}) {
     async function addJobData(){
         const imageData = await imageUploadData()
         seterror("")
+        setLoading(true)
         const data = await axios.post(`../api/addjob`,{
             "CompanyName":CompanyName,
             "Image":imageData,
@@ -76,6 +79,7 @@ export function AddJob({categories, locations}) {
             router.reload()
         }).catch(function (error) {
             seterror("Creating Job Failed")
+            setLoading(false)
         });
     }
 
@@ -335,10 +339,22 @@ export function AddJob({categories, locations}) {
                     </h1>
 
                     <button 
-                        className="mx-2 mb-10 float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-md lg:text-xl rounded-lg px-4 py-4 text-center inline-flex items-center"
+                        disabled={loading}
+                        className={`mx-2 mb-10 float-right text-white font-medium text-md lg:text-xl rounded-lg px-4 py-4 text-center inline-flex items-center
+                            ${loading ? "bg-gray-200" : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300" }`}
                     >
                         Submit
                     </button>
+                </div>
+
+                <div className="flex justify-center items-center mt-5">
+                    <SyncLoader 
+                        color="#36d7b7"
+                        loading={loading}
+                        size={30}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                    />
                 </div>
             </form>
         </div>

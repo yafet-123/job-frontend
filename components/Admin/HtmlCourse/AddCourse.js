@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
+import MoonLoader from "react-spinners/MoonLoader";
 
 const QuillNoSSRWrapper = dynamic(
   async () => {
@@ -24,6 +25,7 @@ const QuillNoSSRWrapper = dynamic(
 
 export function AddCourse() {
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
     const [title, settitle] = useState("")
     const [content, setcontent] = useState("")
     const { status, data } = useSession();
@@ -81,6 +83,7 @@ export function AddCourse() {
 
     async function registercourse(e){
         e.preventDefault()
+        setLoading(true)
         const data = await axios.post(`../api/addHtmlcourse`,{
             "title": title,
             "content":content,
@@ -90,6 +93,7 @@ export function AddCourse() {
             router.reload()
         }).catch(function (error) {
             seterror("Creating Location Failed")
+            setLoading(false)
         });
     }
 
@@ -128,12 +132,23 @@ export function AddCourse() {
                             {error}
                         </h1>
 
-                        <button 
-                            onClick={()=> setActive(!active) }
-                            className="float-right mx-2 flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-xl px-4 py-4 text-center inline-flex items-center"
+                        <button
+                            disabled={loading} 
+                            className={`float-right mx-2 flex justify-between rounded-xl w-32 text-white font-medium text-xl px-4 py-4 text-center inline-flex items-center
+                                ${loading ? "bg-gray-200" : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300" }`}
                         >
                             Submit
-                        </button>     
+                        </button>
+                    </div>
+
+                    <div className="flex justify-center items-center mt-5">
+                        <MoonLoader 
+                            color="#36d7b7"
+                            loading={loading}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
                 </div>
             </form>

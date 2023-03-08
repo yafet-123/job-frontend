@@ -3,14 +3,17 @@ import { useRouter } from 'next/router'
 import { useState , useEffect } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
 import { useSession } from "next-auth/react";
+import RingLoader from "react-spinners/RingLoader";
 
 export function UpdateEntertainment({setupdateModalOn, updateentertainmentid, updateheader, setupdateheader, updatelink ,setupdatelink, categories }) {
     const router = useRouter();
     const [categoryId,setCategoryId] = useState([])
     const { status, data } = useSession();
     const UserData = data.user;
+    const [loading, setLoading] = useState(false);
 
 	const handleOKClickForupdate = async() => {
+        setLoading(true)
         const data = await axios.patch(`../api/updateentertainment/${updateentertainmentid}`,{
             "Header" : updateheader,
             "link" : updatelink,
@@ -21,6 +24,7 @@ export function UpdateEntertainment({setupdateModalOn, updateentertainmentid, up
             router.reload()
         }).catch(function (error) {
             console.log(error);
+            setLoading(false)
         });
         setupdateModalOn(false)
         
@@ -89,8 +93,24 @@ export function UpdateEntertainment({setupdateModalOn, updateentertainmentid, up
                         </div>
                     </div>
                     <div className="flex">
-                        <button onClick={handleOKClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                        <button 
+                            disabled={loading} 
+                            onClick={handleOKClickFordelete} 
+                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
+                        >
+                            Yes
+                        </button>
                         <button onClick={handleCancelClickForupdate} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                    </div>
+
+                    <div className="flex justify-center items-center mt-5">
+                        <RingLoader 
+                            color="#36d7b7"
+                            loading={loading}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
                 </div>
             </div>
