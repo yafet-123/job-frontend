@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 export function UpdateUser({setupdateModalOn, updateuserid, updateemail, updateusername, setupdateemail , setupdateusername}) {
     const router = useRouter();
     const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/updateUser/${updateuserid}`,{
+        const data = await axios.patch(`../api/updateUser/${updateuserid}`,{
             "UserName": updateusername,
             "email": updateemail
         }).then(function (response) {

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 export function DeleteLocation({setdeleteModalOn,deletelocationid}) {
     const router = useRouter();
 	const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/deletelocation/${deletelocationid}`,{
+        const data = await axios.delete(`../api/deletelocation/${deletelocationid}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {

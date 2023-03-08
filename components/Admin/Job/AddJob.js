@@ -57,7 +57,7 @@ export function AddJob({categories, locations}) {
     async function addJobData(){
         const imageData = await imageUploadData()
         seterror("")
-        const data = await axios.post(`api/addjob`,{
+        const data = await axios.post(`../api/addjob`,{
             "CompanyName":CompanyName,
             "Image":imageData,
             "JobsType":JobsType,

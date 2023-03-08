@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 export function UpdateEntertainmentCategory({setupdateModalOn, updatecategoryname, setupdatecategoryname, updatecategoryid}) {
     const router = useRouter();
 	const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/updateentertainmentCategory/${updatecategoryid}`,{
+        const data = await axios.patch(`../api/updateentertainmentCategory/${updatecategoryid}`,{
             "CategoryName": updatecategoryname
         }).then(function (response) {
             console.log(response.data);

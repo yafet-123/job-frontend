@@ -11,7 +11,7 @@ export function UpdateEntertainment({setupdateModalOn, updateentertainmentid, up
     const UserData = data.user;
 
 	const handleOKClickForupdate = async() => {
-        const data = await axios.patch(`api/updateentertainment/${updateentertainmentid}`,{
+        const data = await axios.patch(`../api/updateentertainment/${updateentertainmentid}`,{
             "Header" : updateheader,
             "link" : updatelink,
             "categoryId": categoryId,

@@ -49,7 +49,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     
     const handleOKClickForupdate = async() => {
 
-        const data = await axios.patch(`api/updatejob/${updatejobid}`,{
+        const data = await axios.patch(`../api/updatejob/${updatejobid}`,{
             "CompanyName":CompanyName,
             "Image":Image,
             "JobsType":JobsType,

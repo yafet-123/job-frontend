@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 export function DeleteEntertainmentCategory({setdeleteModalOn,deletecategoryid}) {
     const router = useRouter();
 	const handleOKClickFordelete = async() => {
-        const data = await axios.delete(`api/deleteentertainmentcategory/${deletecategoryid}`,{
+        const data = await axios.delete(`../api/deleteentertainmentcategory/${deletecategoryid}`,{
         }).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
