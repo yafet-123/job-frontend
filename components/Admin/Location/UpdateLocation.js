@@ -59,7 +59,7 @@ export function UpdateLocation({setupdateModalOn, updatelocationid, updatelocati
                     </div>
 
                     <div className="flex justify-center items-center mt-5">
-                        <RiseLoader 
+                        <GridLoader 
                             color="#36d7b7"
                             loading={loading}
                             size={30}

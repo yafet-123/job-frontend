@@ -40,7 +40,7 @@ export function DeleteLocation({setdeleteModalOn,deletelocationid}) {
                         <button onClick={handleCancelClickFordelete} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
                     </div>
                     <div className="flex justify-center items-center mt-5">
-                        <RiseLoader 
+                        <GridLoader 
                             color="#36d7b7"
                             loading={loading}
                             size={30}
