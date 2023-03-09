@@ -44,7 +44,7 @@ export function Navbar() {
     <nav
       className={ router.pathname == "/auth/signin" || router.pathname == '/Forgotpassword' ? "hidden" : `${
         colorChange ? 'bg-white bg-opacity-80 dark:bg-slate-800 ' : `${open ? 'bg-white bg-opacity-80 dark:bg-slate-800' : 'bg-transparent'}`
-      } w-full   lg:h-[110px] top-0 fixed z-50`}
+      } w-full   lg:h-[110px] top-0 fixed z-100`}
     >
       <div className="lg:justify-between justify-around lg:px-4 mx-2 lg:mx-10 items-center lg:flex lg:py-[10px] ">
         <div className="flex items-center justify-between py-3 ">
