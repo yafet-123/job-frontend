@@ -6,6 +6,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
 import { useSession } from "next-auth/react";
+import HashLoader from "react-spinners/HashLoader";
 
 const QuillNoSSRWrapper = dynamic(
   async () => {
@@ -24,6 +25,7 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
     const router = useRouter();
     const [categoryId, setCategoryId] = useState([])
     const { status, data } = useSession();
+    const [loading, setLoading] = useState(false);
     const UserData = data.user;
     const quillRef = useRef(null)
     const modules = useMemo(() => ({
@@ -73,6 +75,7 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
     }
 
 	const handleOKClickForupdate = async() => {
+        setLoading(true)
         const data = await axios.patch(`../api/updatepythoncourse/${updatecourseid}`,{
             "title": updatetitle,
             "content": updatecontent,
@@ -83,6 +86,7 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
             router.reload()
         }).catch(function (error) {
             console.log(error);
+            setLoading(false)
         });
         setupdateModalOn(false)
         
@@ -123,8 +127,24 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
                         />
                     </div>
                     <div className="flex">
-                        <button onClick={handleOKClickForupdate} className=" rounded px-4 py-4 text-white  bg-green-400 hover:bg-green-600">Yes</button>
+                        <button 
+                            disabled={loading} 
+                            onClick={handleOKClickForupdate} 
+                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
+                        >
+                            Yes
+                        </button>
                         <button onClick={handleCancelClickForupdate} className="rounded px-4 py-4 ml-4 text-white bg-blue-400 hover:bg-blue-600">No</button>
+                    </div>
+
+                    <div className="flex justify-center items-center mt-5">
+                        <HashLoader 
+                            color="#36d7b7"
+                            loading={loading}
+                            size={50}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
                     </div>
                 </div>
             </div>

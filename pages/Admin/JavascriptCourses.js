@@ -8,7 +8,7 @@ import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../components/MainHeader';
 
 export async function getServerSideProps(){
-  const courses = await prisma.CSSCourse.findMany({
+  const courses = await prisma.JavascriptCourse.findMany({
     orderBy: {
       course_id:"asc"
     },

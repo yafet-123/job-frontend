@@ -128,7 +128,7 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
                     <div className="flex">
                         <button 
                             disabled={loading} 
-                            onClick={handleOKClickFordelete} 
+                            onClick={handleOKClickForupdate} 
                             className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
                         >
                             Yes
@@ -140,7 +140,7 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
                         <MoonLoader 
                             color="#36d7b7"
                             loading={loading}
-                            size={30}
+                            size={50}
                             aria-label="Loading Spinner"
                             data-testid="loader"
                         />
