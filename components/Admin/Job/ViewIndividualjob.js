@@ -11,7 +11,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
     const [deletejobid,setdeletejobid] = useState()
     const [category, setcategory] = useState(dataposttojob.categories)
     const [categorydata, setcategorydata] = useState([])
-    console.log(dataposttojob.Image)
+    console.log(dataposttojob.Image === undefined)
 
     // for (var i=0;i<category.length;i++){
     //     setcategorydata((categorydata) => [...categorydata, category[i].Category])
