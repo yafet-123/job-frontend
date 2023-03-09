@@ -95,7 +95,7 @@ export function UpdateEntertainment({setupdateModalOn, updateentertainmentid, up
                     <div className="flex">
                         <button 
                             disabled={loading} 
-                            onClick={handleOKClickFordelete} 
+                            onClick={handleOKClickForupdate} 
                             className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
                         >
                             Yes
