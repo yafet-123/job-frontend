@@ -36,7 +36,7 @@ export async function getServerSideProps(){
   }
 }
 
-export default function EntertainmentCategory({categories}) {
+export default function Category({categories}) {
     const { status, data } = useSession();
     return (
     	<React.Fragment>
