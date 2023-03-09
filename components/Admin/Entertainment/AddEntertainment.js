@@ -9,7 +9,7 @@ import {DeleteEntertainment} from './DeleteEntertainment'
 import {UpdateEntertainment} from './UpdateEntertainment'
 import RingLoader from "react-spinners/RingLoader";
 
-export function AddEntertainment({categories, Allentertainment}) {
+export function AddEntertainment({categories}) {
     const router = useRouter();
     const [Header, setHeader] = useState("")
     const [link, setlink] = useState("")

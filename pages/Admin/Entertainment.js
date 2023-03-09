@@ -69,7 +69,7 @@ export default function Entertainment({entertainment,categories}) {
     				<div className='w-full h-full flex flex-row'>
     		      <VerticalNavbar data={data} />
     		      <div className="w-full">
-            		<AddEntertainment />
+            		<AddEntertainment categories={categories}/>
             		<DisplayEntertainment entertainment={entertainment} categories={categories} />
             	</div>
     		    </div> 

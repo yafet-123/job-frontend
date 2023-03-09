@@ -75,7 +75,7 @@ export function VerticalNavbar({onChange, data}){
                         <Link href="/">
                             <a className="flex items-center p-2 lg:p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl">
                                 <AiOutlineUser size={25} /> 
-                                <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>{data?.user.name}</span>
+                                <span className={`ml-4 text-sm lg:text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>{data?.user.name}</span>
                             </a>
                         </Link>
 
@@ -86,7 +86,7 @@ export function VerticalNavbar({onChange, data}){
                             })} 
                             className="flex items-center p-2 lg:p-4 text-xl text-black hover:text-white dark:text-white hover:bg-slate-800 dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl" href="#">
                             <FiLogOut size={25} />
-                            <span className={`ml-4 text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Log Out</span>
+                            <span className={`ml-4 text-sm lg:text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Log Out</span>
                         </button>
                     </div>
                 </nav>
