@@ -16,6 +16,7 @@ export function AddEntertainment({categories}) {
     const [loading, setLoading] = useState(false);
     const { status, data } = useSession();
     const [error,seterror] = useState("");
+    const [categoryId,setCategoryId] = useState([])
     const [ShortDescription, setShortDescription] = useState("")
     const UserData = data?.user;
     async function registerEntertainment(e){
