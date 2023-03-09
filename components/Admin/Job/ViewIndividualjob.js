@@ -109,7 +109,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                                 <div className="">
                                     { category.map((data,index)=>(
                                         <span key={index} className="text-xs lg:text-lg text-black dark:text-white text-left break-words">
-                                            {data.CategoryName}
+                                            {data.Category.CategoryName}
                                         </span>
                                     ))}
                                 </div>
