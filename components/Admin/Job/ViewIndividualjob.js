@@ -106,7 +106,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                         <div className="grid grid-cols-1 gap-10 mb-5">
                             <h1 className="flex flex-col font-bold hover:underline">
                                 <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-left">Categories</span>
-                                <div className="">
+                                <div className="flex flex-col">
                                     { category.map((data,index)=>(
                                         <span key={index} className="text-xs lg:text-lg text-black dark:text-white text-left break-words">
                                             {data.Category.CategoryName}
