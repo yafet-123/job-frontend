@@ -82,7 +82,7 @@ export function AddEntertainment({categories}) {
                     <Multiselect
                         displayValue="CategoryName"
                         placeholder = "Category"
-                        className="w-full px-0 lg:px-3 text-md lg:text-xl !text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:bg-slate-700 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+                        className="z-50 w-full px-0 lg:px-3 text-md lg:text-xl !text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:bg-slate-700 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                         onKeyPressFn={function noRefCheck(){}}
                         onRemove={function noRefCheck(){}}
                         onSearch={function noRefCheck(){}}
