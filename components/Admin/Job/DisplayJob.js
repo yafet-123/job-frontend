@@ -40,7 +40,7 @@ export function DisplayJob({jobs, categories, locations}) {
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.job_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                        <Image src={data.Image == null ? "/images/logo2.png" : data.Image} width={50} height={50} alt="image that will be displayed" />
+                                        <Image src={data.Image == undefined ? "/images/logo2.png" : data.Image} width={50} height={50} alt="image that will be displayed" />
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.CompanyName}
@@ -83,7 +83,7 @@ export function DisplayJob({jobs, categories, locations}) {
                                 
                             </div>
 
-                            <Image src={data.Image == null ? "/images/logo2.png" : data.Image} width={500} height={500} alt="image that will be displayed" />
+                            <Image src={data.Image == undefined ? "/images/logo2.png" : data.Image} width={500} height={500} alt="image that will be displayed" />
                             
                             <div className="text-gray-700 dark:text-white font-bold">
                                 <span className="text-lg">Company Name : </span> 
