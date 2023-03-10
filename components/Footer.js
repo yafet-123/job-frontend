@@ -52,7 +52,7 @@ export function Footer() {
             })}
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 w-full lg:w-3/4">
+        <div className="grid grid-cols-1 gap-6 w-full lg:w-3/4">
           <div className="flex flex-col space-y-2 text-white justify-center items-center">
             <h1 className="text-lg lg:text-2xl font-bold">Quick Links</h1>
             {quickLinks.map((links, index) => {
