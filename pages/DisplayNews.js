@@ -107,7 +107,7 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
                 </h3>
               </div>
 
-              <div className="ql-editor" dangerouslySetInnerHTML={{ __html: news.Description }} />
+              <div className="ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: news.Description }} />
             </div>
           </div>
 
