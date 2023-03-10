@@ -6,6 +6,7 @@ import { prisma } from '../util/db.server.js'
 import moment from 'moment'
 import { MainHeader } from '../components/MainHeader';
 import Image from 'next/image'
+import 'react-quill/dist/quill.snow.css';
 
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
@@ -77,17 +78,17 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
-	    <section className="flex flex-col lg:flex-row w-full h-full px-0 md:px-32 bg-neutral-200 dark:bg-slate-700 p-5 pt-32">
-	      	<div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-3/4">
+	    <section className="flex flex-col lg:flex-row w-full h-full px-0 md:px-56 bg-neutral-200 dark:bg-slate-700 p-5 pt-32">
+	      	<div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-3/4 px-10">
 	      		<h1 className="text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5">
               {news.Header}
             </h1>
 
-            <div className="w-full h-52 lg:!h-96 relative px-20">
+            <div className="px-20 h-52 lg:!h-96 relative ">
               <Image
                 src={news.Image}
                 layout="fill" 
-                className="!bg-cover w-full !h-full border rounded-xl"
+                className="!bg-cover w-full !h-full border rounded-xl px-20"
                 alt="latest news image"
               />
             </div>
@@ -106,7 +107,7 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
                 </h3>
               </div>
 
-              <div className="news_header !text-black dark:news_text mt-5 " dangerouslySetInnerHTML={{ __html: news.Description }} />
+              <div className="ql-editor" dangerouslySetInnerHTML={{ __html: news.Description }} />
             </div>
           </div>
 
