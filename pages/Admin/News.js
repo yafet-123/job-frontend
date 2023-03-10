@@ -36,6 +36,7 @@ export async function getServerSideProps(){
     Header:data.Header,
     image:data.Image,
     ShortDescription:data.ShortDescription,
+    Description : data.Description,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,

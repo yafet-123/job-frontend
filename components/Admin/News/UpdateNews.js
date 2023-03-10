@@ -6,7 +6,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
 import { useSession } from "next-auth/react";
-import MoonLoader from "react-spinners/MoonLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 const QuillNoSSRWrapper = dynamic(
   async () => {
     const QuillNoSSRWrapper = (await import("react-quill")).default
@@ -76,10 +76,11 @@ export function UpdateNews({categories ,updatenewsid ,setupdatenewsid ,updatehea
     const handleOKClickForupdate = async() => {
         setLoading(true)
         const data = await axios.patch(`../api/updatenews/${updatenewsid}`,{
-            "title": updatetitle,
-            "content": updatecontent,
-            "categoryId":categoryId,
+            "Header": updateheader,
+            "ShortDescription" : updateShortDescription,
+            "Description" : updateDescription,
             "user_id": UserData.user_id,
+            "categoryId" : categoryId
         }).then(function (response) {
             console.log(response.data);
             router.reload()
@@ -136,7 +137,7 @@ export function UpdateNews({categories ,updatenewsid ,setupdatenewsid ,updatehea
                             />
                         </div>
 
-                        <div className="mb-10 ">
+                        <div className="mb-10 w-full">
                             <p  
                                 className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
                             >
@@ -152,7 +153,7 @@ export function UpdateNews({categories ,updatenewsid ,setupdatenewsid ,updatehea
 
                         </div>
 
-                        <div className="mb-10 ">
+                        <div className="mb-10 w-full">
                             <p  
                                 className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
                             >
@@ -182,7 +183,7 @@ export function UpdateNews({categories ,updatenewsid ,setupdatenewsid ,updatehea
                     </div>
 
                      <div className="flex justify-center items-center mt-5">
-                        <MoonLoader 
+                        <FadeLoader 
                             color="#36d7b7"
                             loading={loading}
                             size={50}

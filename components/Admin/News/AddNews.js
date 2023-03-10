@@ -30,11 +30,6 @@ export function AddNews ({categories}) {
     const [ShortDescription, setShortDescription] = useState("")
     const [Description, setDescription] = useState("")
     const [categoryId, setCategoryId] = useState([])
-    const [deletemodalOn, setdeleteModalOn] = useState(false);
-    const [updatemodalOn, setupdateModalOn] = useState(false);
-    const [deletenewsid,setdeletenewsid] = useState()
-    const [updatenewsid,setupdatenewsid] = useState()
-    const [updatelocationname,setupdatelocationname] = useState("")
     const [images, setImage] = useState()
     const [saveUpload, setsaveUpload] = useState(false)
     const { status, data } = useSession();

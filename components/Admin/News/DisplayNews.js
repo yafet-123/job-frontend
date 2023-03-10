@@ -15,8 +15,8 @@ export function DisplayNews({news, categories}) {
     const [deletenewsid,setdeletenewsid] = useState()
     const [updatenewsid,setupdatenewsid] = useState()
     const [updateheader,setupdateheader] = useState("")
-    const [updateShortDescription,setupdateShortDescription] = useState()
-    const [updateDescription,setupdateDescription] = useState()
+    const [updateShortDescription,setupdateShortDescription] = useState("")
+    const [updateDescription,setupdateDescription] = useState("")
     
     const clickedFordelete = () => {
         setdeleteModalOn(true)
@@ -161,7 +161,7 @@ export function DisplayNews({news, categories}) {
                     setupdateShortDescription = {setupdateShortDescription}
                     updateDescription = {updateDescription}
                     setupdateDescription = {setupdateDescription}
-                    setupdateDescription setupdateModalOn={setupdateModalOn} 
+                    setupdateModalOn={setupdateModalOn} 
                 />
             }
         </div>

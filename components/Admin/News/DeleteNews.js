@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import {useState} from 'react'
-import SyncLoader from "react-spinners/SyncLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 
-export function DeleteNews({setdeleteModalOn,deletejobid}) {
+export function DeleteNews({setdeleteModalOn,deletenewsid}) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 	const handleOKClickFordelete = async() => {
         setLoading(true)
-        const data = await axios.delete(`../api/deletejob/${deletejobid}`,{
+        const data = await axios.delete(`../api/deletenews/${deletenewsid}`,{
         }).then(function (response) {
             console.log(response.data);
             router.reload()
@@ -41,7 +41,7 @@ export function DeleteNews({setdeleteModalOn,deletejobid}) {
                     </div>
 
                     <div className="flex justify-center items-center mt-5">
-                        <SyncLoader 
+                        <FadeLoader 
                             color="#36d7b7"
                             loading={loading}
                             size={30}
