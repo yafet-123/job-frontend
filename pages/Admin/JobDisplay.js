@@ -40,7 +40,7 @@ export async function getServerSideProps(){
     job_id:data.job_id,
     location_id:data.location_id,
     CompanyName:data.CompanyName,
-    Image:data.Image,
+    image:data.Image,
     JobsType:data.JobsType,
     Location:data.Location.LocationName,
     CareerLevel:data.CareerLevel,

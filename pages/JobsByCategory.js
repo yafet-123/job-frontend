@@ -46,7 +46,7 @@ export async function getServerSideProps(context){
   const Alljobs = jobsBycategories.map((data)=>({
     job_id:data.job_id,
     CompanyName:data.CompanyName,
-    Image:data.Image,
+    image:data.Image,
     JobsType:data.JobsType,
     Location:data.Location.LocationName,
     CareerLevel:data.CareerLevel,
@@ -191,7 +191,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 									      		</li>
 							      			</ul>
 
-							      			<Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={100} height={100} alt="image" required className="my-5" />
+							      			<Image src={data.image == "" || data.image == null ? "/images/bgImage1.avif" : data.image} width={100} height={100} alt="image" required className="my-5" />
 							      		</div>
 
 							      		<div className="text-sm lg:text-lg font-normal mb-5 h-36 overflow-hidden" dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
