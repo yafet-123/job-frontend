@@ -7,7 +7,7 @@ export default async function handledeletenews(req, res){
 	const {deletenewsid} = req.query
 	console.log(req.query)
 	const data = await prisma.News.delete({
-		where:{job_id:Number(deletenewsid)},
+		where:{news_id:Number(deletenewsid)},
 	});
 	res.json(data)
 }
