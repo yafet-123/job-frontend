@@ -52,16 +52,35 @@ export async function getServerSideProps(context){
   	take:-5,
     orderBy: {
       ModifiedDate:"asc"
+    },
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      NewsCategoryRelationship:{
+        include:{
+          NewsCategory:{
+            select:{
+              category_id:true,
+              CategoryName:true
+            }
+          }
+        }
+      },
     }
   });
 
   const Alllatestnews = latestnews.map((data)=>({
     news_id:data.news_id,
     Header:data.Header,
-    Image:data.Image,
+    image:data.Image,
     ShortDescription:data.ShortDescription,
+    userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate
+    ModifiedDate:data.ModifiedDate,
+    Category:data.NewsCategoryRelationship
   }))
 
   return{
@@ -78,8 +97,8 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
-	    <section className="flex flex-col lg:flex-row w-full h-full px-5 md:px-64 bg-[#ddd0c8] dark:bg-slate-700 pt-32">
-	      	<div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-3/4 lg:px-20">
+	    <section className="flex flex-col lg:flex-row w-full h-full px-5 md:px-56 bg-[#ddd0c8] dark:bg-slate-700 pt-32">
+	      	<div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-3/4 lg:px-32">
 	      		<h1 className="text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5">
               {news.Header}
             </h1>
@@ -111,19 +130,19 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cold-3 gap-5 w-full lg:w-1/4 h-full lg:h-[100rem] border rounded-lg shadow-2xl shadow-sky-200 lg:overflow-y-scroll">
-				    {Alllatestnews.map((data, index) => (
+          <div className="grid grid-cols-1 md:grid-cold-3 gap-5 w-full lg:w-1/4 h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 lg:overflow-y-scroll">
+				    {Alllatestnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
 				      <Link 
 				      	href={{
 	         			pathname: '/DisplayNews',
-	         			query:{news_id:data.news_id}
+	         			query:{news_id:news_id}
 	        		}}
 				      	key={index}
 				      >
-				        <a className="flex flex-col mb-5 even:bg-white even:dark:bg-slate-600 px-2 py-5">
+				        <a className="flex flex-col mb-5 even:bg-white odd:bg-gray-300 odd:dark:bg-slate-700 even:dark:bg-slate-600 px-2 py-5">
 				          <div className="w-full h-52 lg:!h-64 relative">
                     <Image
-                      src={data.Image}
+                      src={image}
                       layout="fill"
                       className="!bg-cover w-full !h-full border rounded-xl"
                       alt="latest news image"
@@ -132,12 +151,18 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
 
                   <div className="w-full flex flex-col my-5 text-left">
                   	<h1 className="text-lg lg:text-xl font-extrabold dark:text-white text-black tracking-wide leading-snug">
-                     	{data.Header}
+                     	{Header}
                     </h1>
                     <h3 className="mt-5 flex justify-between items-center">
-                      <span className="text-md lg:text-lg font-bold dark:text-white text-black"> Category Name </span>
+                      <h3 className="flex flex-col justify-between"> 
+                        { Category.map((data,index)=>(
+                          <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
+                            {data.NewsCategory.CategoryName}
+                          </span>
+                        ))}
+                      </h3>
                       <span className="font-normal text-sm lg:text-md dark:text-white text-gray-600">
-                        {moment(data.CreatedDate).utc().format('YYYY-MM-DD')}
+                        {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                       </span>
                     </h3>
                   </div>
