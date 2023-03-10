@@ -78,7 +78,7 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
-	    <section className="flex flex-col lg:flex-row w-full h-full px-0 md:px-56 bg-neutral-200 dark:bg-slate-700 p-5 pt-32">
+	    <section className="flex flex-col lg:flex-row w-full h-full px-5 md:px-64 bg-[#ddd0c8] dark:bg-slate-700 pt-32">
 	      	<div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-3/4 lg:px-20">
 	      		<h1 className="text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5">
               {news.Header}

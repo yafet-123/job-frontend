@@ -26,8 +26,8 @@ export function DisplayEntertainment({categories, entertainment}) {
 
     return (
         <div className="px-0 lg:px-10">
-            <div className="m-2 lg:m-5">
-                <div className="overflow-auto rounded-lg shadow hidden md:block">
+            <div className="m-2 lg:m-">
+                <div className="overflow-auto rounded-lg shadow hidden lg:block">
                     <table className="w-full">
                         <thead className="bg-neutral-100 dark:bg-slate-800 border-b-2 border-gray-200">
                             <tr>
@@ -42,23 +42,23 @@ export function DisplayEntertainment({categories, entertainment}) {
                         <tbody className="divide-y divide-gray-100">
                             {entertainment.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
-                                    <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
+                                    <td className="p-2 text-lg text-gray-700 whitespace-nowrap">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.entertainment_id}</p>
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
+                                    <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.Header}
                                     </td>
-                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                     <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.link}
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                                     </td>
 
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.userName}
                                     </td>
 
@@ -90,7 +90,7 @@ export function DisplayEntertainment({categories, entertainment}) {
                         </tbody>
                     </table>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
                     {entertainment.map((data,index)=>(
                         <div key={index} className="bg-neutral-200 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div>
