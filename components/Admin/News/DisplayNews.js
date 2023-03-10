@@ -123,6 +123,7 @@ export function DisplayNews({news, categories}) {
                             <div className="flex items-center justify-between text-sm">
                                 <button 
                                     onClick={() => {
+                                        clickedForupdate()
                                         setupdatenewsid(data.news_id)
                                         setupdateheader(data.Header)
                                         setupdateShortDescription(data.ShortDescription)
@@ -161,7 +162,7 @@ export function DisplayNews({news, categories}) {
                     setupdateShortDescription = {setupdateShortDescription}
                     updateDescription = {updateDescription}
                     setupdateDescription = {setupdateDescription}
-                    setupdateModalOn={setupdateModalOn} 
+                    setupdateModalOn= {setupdateModalOn} 
                 />
             }
         </div>
