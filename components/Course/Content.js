@@ -11,29 +11,24 @@ export function Content({indvidualCourses}) {
     const homebutton =  { type:4 , name: "Home"}
     const nexttbutton =  { type:2 , name: "Next"} 
     const prevbutton =  { type:1 , name: "Previous" }
+
     const [getSearchValue,setgetSearchValue] = useState("")
     const [type,settype] = useState("")
+    console.log(getSearchValue)
     
     async function submitbuttondata(){
-        if(CategoryName == "HTML"){
-            const data = await axios.post(`../api/courseNextHomePrevioushtml`,{
-                "searchName": getSearchValue,
-                "type": type
-            }).then(function (response) {
-               console.log(response.data);
-            }).catch(function (error) {
-                console.log(error)
-            });
-        }else if(CategoryName == "CSS"){
-            const data = await axios.post(`../api/courseNextHomePrevioushtml`,{
-                "searchName": getSearchValue,
-                "type": type
-            }).then(function (response) {
-               console.log(response.data.course_id);
-            }).catch(function (error) {
-                console.log(error)
-            });
-        }
+        setgetSearchValue(id)
+        const data = await axios.post(`../api/courseNextHomePrevioushtml`,{
+            "searchName": getSearchValue,
+            "type": type,
+            "Category" : CategoryName
+        }).then(function (response) {
+           console.log(response.data);
+           setgetSearchValue("")
+           settype("")
+        }).catch(function (error) {
+            console.log(error)
+        });
     }
 
     return (
@@ -47,7 +42,6 @@ export function Content({indvidualCourses}) {
                         <button
                             onClick={() => {
                                 settype(homebutton.type)
-                                setgetSearchValue(id)
                             }}  
                             className="px-3 lg:px-6 py-3 bg-green-600 border rounded-lg text-white text-xl font-bold"
                         >{homebutton.name}</button>
@@ -55,18 +49,18 @@ export function Content({indvidualCourses}) {
 
                         <button
                             onClick={() => {
-                                submitbuttondata()
                                 settype(prevbutton.type)
-                                setgetSearchValue(id)
+
+                                submitbuttondata()
                             }}  
                             className="px-3 lg:px-6 py-3 bg-green-600 border rounded-lg text-white text-xl font-bold"
                         >{prevbutton.name}</button>
                     }
                         <button 
                             onClick={() => {
-                                submitbuttondata()
                                 settype(nexttbutton.type)
-                                setgetSearchValue(id)
+
+                                submitbuttondata()
                             }} 
                             className="px-3 lg:px-6 py-3 bg-green-600 border rounded-lg text-white text-xl font-bold"
                         >
@@ -84,26 +78,30 @@ export function Content({indvidualCourses}) {
                         <button
                             onClick={() => {
                                 settype(homebutton.type)
-                                setgetSearchValue(id)
                             }}  
                             className="px-3 lg:px-6 py-3 bg-green-600 border rounded-lg text-white text-xl font-bold"
-                        >{homebutton.name}</button>
+                        >
+                            {homebutton.name}
+                        </button>
                     :
 
                         <button
                             onClick={() => {
-                                submitbuttondata()
+
                                 settype(prevbutton.type)
-                                setgetSearchValue(id)
+
+                                submitbuttondata()
+                                
                             }}  
                             className="px-3 lg:px-6 py-3 bg-green-600 border rounded-lg text-white text-xl font-bold"
-                        >{prevbutton.name}</button>
+                        >
+                            {prevbutton.name}
+                        </button>
                     }
                     <button 
                         onClick={() => {
-                            submitbuttondata()
                             settype(nexttbutton.type)
-                            setgetSearchValue(id)
+                            submitbuttondata()
                         }} 
                         className="px-3 lg:px-6 py-3 bg-green-600 border rounded-lg text-white text-xl font-bold"
                     >

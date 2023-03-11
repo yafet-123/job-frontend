@@ -73,7 +73,7 @@ export default function Javascript({courses, indvidualCourses}) {
 
   return (
     <React.Fragment>
-      <MainHeader title="JavaScript Course" />
+      <MainHeader title="JavaScript Courses"/>
       <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800 py-5">
       	<div className="w-full bg-[#64748b] flex px-5 lg:px-20 justify-between mt-6">
           <div onClick={handleChapter} className="lg:hidden text-white z-10">

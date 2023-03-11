@@ -1,42 +1,42 @@
 import { prisma } from '../../util/db.server.js'
 
-export default async function handlecoursebuttons(req, res){
-    const { searchName, type } = req.body
-    console.log(type)
-    if(type == 1){
-        console.log("Name")
-        const prev = await prisma.HTMLCourse.findFirst({
-            take:1,
-            where: {
-                course_id: {
-                    lt: Number(searchName),
+export default async function handlehtmlbuttons(req, res){
+    const { searchName, type, Category } = req.body
+    console.log(Category)
+    console.log(searchName)
+    if(Category == 'javascript'){
+        if(type == 1){
+            const prev = await prisma.JavascriptCourse.findMany({
+                take: 1,
+                where: {
+                    course_id: {
+                        lt: Number(searchName),
+                    },
                 },
-            }
-        });
-        const onedata = {
-            course_id : prev.course_id,
-            CreatedDate:prev.CreatedDate,
-            ModifiedDate:prev.ModifiedDate
-        }
-        res.json(onedata)
-
-    } else if(type == 2){
-        console.log(searchName)
-        const next = await prisma.HTMLCourse.findFirst({
-            where: {
-                course_id: {
-                    gt: Number(searchName),
+                orderBy: {
+                    course_id: "asc",
                 },
-            }
-        });
+            });
+            console.log(prev)
+            res.json(prev)
 
-        const onedata = {
-            course_id : next.course_id,
-            CreatedDate:next.CreatedDate,
-            ModifiedDate:next.ModifiedDate
-        }
-        res.json(next)
-    } 
+
+        } else if(type == 2){
+            const next = await prisma.JavascriptCourse.findMany({
+                take: 1,
+                where: {
+                    course_id: {
+                        gt: Number(searchName),
+                    },
+                },
+                orderBy: {
+                    course_id: "desc",
+                },  
+            });
+            console.log(next)
+            res.json(next)
+        } 
+    }
 
 
 }
