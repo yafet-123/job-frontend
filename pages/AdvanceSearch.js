@@ -60,7 +60,7 @@ export default function AdvanceSearch() {
   return (
     <React.Fragment>
       <MainHeader title="AdvanceSearch" />
-      <div className="flex flex-col bg-gray-200 dark:bg-slate-700 pt-32">
+      <div className="flex flex-col bg-[#ddd0c8] dark:bg-slate-700 pt-32">
         <div className="max-w-2xl mx-auto my-10 w-full md:px-0">
         	<div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 border rounded-2xl">
             <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
