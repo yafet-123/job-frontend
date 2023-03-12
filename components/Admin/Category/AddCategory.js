@@ -65,7 +65,7 @@ export function AddCategory({categories}) {
                         </button>
                     </div>
 
-                    <div className="flex justify-center items-center mt-5">
+                    <div className="flex justify-center items-center my-5">
                         <RiseLoader 
                             color="#36d7b7"
                             loading={loading}
