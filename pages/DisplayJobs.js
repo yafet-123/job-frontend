@@ -79,9 +79,9 @@ export default function DisplayJobs({job, categories}) {
   return (
   	<React.Fragment>
       <MainHeader title="Display Jobs" />
-	    <section className="flex flex-col w-full h-full px-0 md:px-32 bg-neutral-300 dark:bg-slate-700 p-5 pt-32">
+	    <section className="flex flex-col w-full h-full px-5 lg:px-52 bg-[#ddd0c8] dark:bg-slate-700 py-52">
 	      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply}/>
-	      	<div className="flex flex-col bg-neutral-200 p-5 pb-20 dark:bg-slate-600">
+	      	<div className="flex flex-col bg-[#d1cbc7] p-5 pb-20 dark:bg-slate-600">
 	      		<div className="flex justify-between items-center mt-10 mx-0 lg:mx-5">
 			      	<div className="flex flex-col w-3/4">
 			      		<h1 className="text-black text-md lg:text-3xl capitalize font-bold mb-2 text-black dark:text-white">{job.JobsType}</h1>

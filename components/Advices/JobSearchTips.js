@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 export function JobSearchTips(){
 	return(
-		<section className="flex flex-col w-full h-full px-0 bg-gray-50 dark:bg-slate-700">
+		<section className="flex flex-col w-full h-full px-0 bg-[#d1cbc7] dark:bg-slate-700">
 			<div className="py-20 px-10">
 				<h1 className="font-bold text-3xl md:text-4xl lg:text-5xl capitalize mb-5 text-center">
 					Job Searching Tips

@@ -36,7 +36,7 @@ export default function Advice() {
     <React.Fragment>
       <MainHeader title="Advice" />
       <section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-600 pt-32 px-5 lg:px-52">
-      	<div className="flex lg:hidden w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
+      	<div className="flex lg:hidden w-full h-16 bg-[#d1cbc7] flex flex-row items-center px-5 lg:px-20 justify-between">
       		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
             <MdOutlineSubject size={30} /> 
           </div>
@@ -46,11 +46,11 @@ export default function Advice() {
           </button>
       	</div>
       	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20">
-      		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 dark:bg-slate-800 overflow-y-scroll sticky top-20 bottom-0">
+      		<div className="hidden lg:flex w-1/4 h-screen bg-[#d1cbc7] dark:bg-slate-800 overflow-y-scroll scroll_width sticky top-20 bottom-0">
       			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} /> 
       		</div>
 
-      		<div className="w-full lg:w-3/4 h-full border dark:border-none bg-gray-50 dark:bg-slate-700">
+      		<div className="w-full lg:w-3/4 h-full bg-[#d1cbc7] dark:bg-slate-700">
       			{ title == "Carer Advice For job seeker" && selected == "How To Write Cv" && <HowToWriteCv />}
             { title == "Carer Advice For job seeker" && selected == "Job Interview" && <JobInterview />}
             { title == "Carer Advice For job seeker" && selected == "Job Search Tips" && <JobSearchTips />}
@@ -79,7 +79,7 @@ export default function Advice() {
                   <AiOutlineClose size={15} />
                 </div> 
             </div>
-            <div className="py-4 flex flex-col mt-10 w-full">
+            <div className="py-4 flex flex-col mt-10 w-full overflow-y-scroll scroll_width">
               <AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} />
             </div>
           </div>
