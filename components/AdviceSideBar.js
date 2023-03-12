@@ -7,7 +7,7 @@ export function AdviceSideBar({title,onChange, handleAdviceList}){
 		<div className="w-full py-10">
 			{ title == "Carer Advice For job seeker" && (
         <div className="flex flex-col">
-          <h1 className="w-full font-bold text-xl lg:text-3xl hover:text-orange-500 text-left lg:text-center px-5 lg:px-20 mt-5">Career Advice For Job Seeker</h1>
+          <h1 className="w-full font-bold text-lg lg:text-xl hover:text-orange-500 text-left lg:text-center px-5 lg:px-20 mt-5">Career Advice For Job Seeker</h1>
           {AdviceSidebar.map((data, index) => (
             <button 
               onClick = {()=>{

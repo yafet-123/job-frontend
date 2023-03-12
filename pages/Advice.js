@@ -35,7 +35,7 @@ export default function Advice() {
   return (
     <React.Fragment>
       <MainHeader title="Advice" />
-      <section className="flex flex-col w-full h-full bg-white dark:bg-slate-600 pt-24">
+      <section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-600 pt-32 px-5 lg:px-52">
       	<div className="flex lg:hidden w-full h-16 bg-[#64748b] flex flex-row items-center px-5 lg:px-20 justify-between">
       		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
             <MdOutlineSubject size={30} /> 
@@ -60,7 +60,7 @@ export default function Advice() {
       	<div
           className={
             adviceList
-              ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10"
+              ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 dark:bg-slate-700 z-10"
               : ""
           }
         >
@@ -68,7 +68,7 @@ export default function Advice() {
             className={
               adviceList
                 ? "fixed left-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500"
-                : "fixed left-[-100%] top-20 p-10 ease-in duration-500"
+                : "fixed left-[-100%] top-20 ease-in duration-500"
             }
           >
             <div>
@@ -95,8 +95,8 @@ export default function Advice() {
           <div
             className={
               advices
-                ? " fixed right-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500"
-                : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
+                ? "fixed right-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500"
+                : "fixed right-[-100%] top-20 ease-in duration-500"
             }
           >
             <div>
@@ -112,11 +112,11 @@ export default function Advice() {
               { AdviceHead.map((data,index)=>(
                 <button 
                   onClick = {()=>{
-                      router.push({
-                        pathname:"/Course",
-                        query:{title:data.title}
-                      })
-                      handleadvices()
+                    router.push({
+                      pathname:"/Advice",
+                      query:{title:data.title}
+                    })
+                    handleadvices()
                   }}
                   key={index} 
                   className={

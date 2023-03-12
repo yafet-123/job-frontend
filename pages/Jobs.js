@@ -200,7 +200,7 @@ export default function Jobs({categories, locations, latestjobs}) {
                 onClick={(e) => setJobs("latest")}
                 className={
                   jobs == "latest"
-                    ? "py-3 bg-neutral-400 dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-white dark:border-none -ml-1"
+                    ? "py-3 bg-neutral-600 dark:bg-slate-800 px-6 border border-slate-300 flex items-center text-white hover:bg-white hover:text-black dark:border-none -ml-1"
                     : "py-3 bg-gray-200 dark:bg-slate-600 border-4 border-y-white dark:border-slate-700 flex items-center hover:bg-neutral-500 hover:text-white"
                 }
               >
@@ -216,7 +216,7 @@ export default function Jobs({categories, locations, latestjobs}) {
                 onClick={(e) => setJobs("category")}
                 className={
                   jobs == "category"
-                    ? "py-3 bg-neutral-400 dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-white dark:border-none -ml-1"
+                    ? "py-3 bg-neutral-600 dark:bg-slate-800 px-6 border border-slate-300 flex items-center text-white hover:bg-white hover:text-black dark:border-none -ml-1"
                     : "py-3 bg-gray-200 dark:bg-slate-600 border-4 border-y-white dark:border-slate-700 flex items-center hover:bg-neutral-500 hover:text-white"
                 }
               >
@@ -231,7 +231,7 @@ export default function Jobs({categories, locations, latestjobs}) {
                 onClick={(e) => setJobs("location")}
                 className={
                   jobs == "location"
-                    ? "py-3 bg-neutral-400 dark:bg-slate-800 px-6 border border-slate-300 flex items-center hover:text-white dark:border-none -ml-1"
+                    ? "py-3 bg-neutral-600 dark:bg-slate-800 px-6 border border-slate-300 flex items-center text-white hover:bg-white hover:text-black dark:border-none -ml-1"
                     : "py-3 bg-gray-200 dark:bg-slate-600 border-4 border-y-white dark:border-slate-700 flex items-center hover:bg-neutral-500 hover:text-white"
                 }
               >
