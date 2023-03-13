@@ -35,8 +35,8 @@ export function HomeHero() {
 
 
   return (
-    <div className="w-full h-[35rem] bg-[#ddd0c8] dark:bg-slate-700 relative px-5">
-      <div className="absolute top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%] px-2 lg:text-lg">
+    <div className="w-full h-[25rem] lg:h-[35rem] bg-[#ddd0c8] dark:bg-slate-700 relative px-5">
+      <div className="absolute top-32 lg:top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%] px-2 lg:text-lg">
         <h1 className='text-green-700 text-2xl mb-10 font-bold md:text-4xl lg:text-5xl'>
           Hulu Media Hulu Neger
         </h1>

@@ -57,14 +57,14 @@ export function Hero() {
 
         { search == "Job" ? (
           <div className="lg:text-lg">
-            <div className="flex h-16 w-full lg:w-[60%] border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
-              <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
+            <div className="flex h-16 w-full lg:w-[60%] border border-green-400 dark:border-slate-800">
+              <div className="h-full bg-green-400 text-white lg:px-3 flex items-center justify-center">
                 <AiOutlineSearch size={20} />
               </div>
               <input 
                 value={searchValue}                            
                 onChange={(e) => setsearchValue(e.target.value)}
-                className="flex-1 bg-white outline-none md:pl-6 text-sm lg:text-lg" />
+                className="flex-1 bg-white outline-none md:pl-6 text-sm lg:text-lg border-green-400" />
               <button 
                 onClick={()=> router.push({
                   pathname: '/AdvanceSearch',
@@ -79,14 +79,14 @@ export function Hero() {
         )
         :(
           <div className="lg:text-lg">
-            <div className="flex h-16 w-full lg:w-[60%] border rounded-2xl border-white dark:border-slate-800 rounded-2xl">
-              <div className="h-full bg-blue-800 text-white lg:px-3 flex items-center justify-center">
+            <div className="flex h-16 w-full lg:w-[60%] border border-green-400 dark:border-slate-800">
+              <div className="h-full bg-green-400 text-white lg:px-3 flex items-center justify-center">
                 <AiOutlineSearch size={20} />
               </div>
               <input 
                 value={searchValue}
                 onChange={(e) => setsearchValue(e.target.value)}
-                className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg" />
+                className="flex-1 bg-white outline-none pl-1 md:pl-6 text-lg border-green-400" />
               <button
                 onClick={()=> router.push({
                   pathname: '/AdvanceSearch',

@@ -23,7 +23,7 @@ export function Footer() {
   return (
     <footer className={ router.pathname == "/auth/signin" || router.pathname == '/Forgotpassword' ? "hidden" : "bg-neutral-600 dark:bg-slate-600 w-full"}>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-10 bg-neutral-700 dark:bg-slate-800">
-        <div className="flex flex-col items-center justify-between space-y-5 md:items-start w-full md:w-3/4 mb-10 md:mb-0">
+        <div className="flex flex-col justify-center items-center space-y-5 md:items-start w-full md:w-3/4 mb-10 md:mb-0">
           <div className="">
             <Link href="/">
               <a>
