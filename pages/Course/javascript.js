@@ -96,8 +96,8 @@ export default function Javascript({courses, indvidualCourses}) {
                     handleCourse()
                   }}
                   key={index} 
-                  className={`w-full px-3 text-lg font-normal text-black
-                    ${ router.query.CategoryName == data.title ? "bg-[#ddd0c8]" : "hover:bg-gray-300 hover:text-orange-500" }`}
+                  className={`w-full px-3 text-xl font-bold
+                    ${ router.query.CategoryName == data.title ? "bg-[#ddd0c8] text-black" : "text-white hover:bg-gray-300 hover:text-orange-500" }`}
                 >
                   {data.title}
                 </button>

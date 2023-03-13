@@ -75,7 +75,7 @@ export default function Css({courses, indvidualCourses}) {
     <React.Fragment>
       <MainHeader title="HTML Course" />
       <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800 py-5">
-        <div className="w-full bg-[#64748b] flex px-5 lg:px-64 justify-between mt-6 h-12 lg:h-16">
+        <div className="w-full bg-[#64748b] flex px-5 lg:px-20 justify-between mt-6 h-12 lg:h-16">
           <div onClick={handleChapter} className="lg:hidden text-white z-10 flex items-center justify-center">
             <MdOutlineSubject size={30} /> 
           </div>
@@ -96,8 +96,8 @@ export default function Css({courses, indvidualCourses}) {
                     handleCourse()
                   }}
                   key={index} 
-                  className={`w-full px-3 text-lg font-normal text-black
-                    ${ router.query.CategoryName == data.title ? "bg-[#ddd0c8]" : "hover:bg-gray-300 hover:text-orange-500" }`}
+                  className={`w-full px-3 text-xl font-bold
+                    ${ router.query.CategoryName == data.title ? "bg-[#ddd0c8] text-black" : "text-white hover:bg-gray-300 hover:text-orange-500" }`}
                 >
                   {data.title}
                 </button>
