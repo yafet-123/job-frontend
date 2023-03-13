@@ -4,7 +4,7 @@ export function ETSidebar({categories}) {
   const router = useRouter()
   const { category_id } = router.query
   return (
-    <div className='flex flex-col justify-between shadow-2xl shadow-zinc-900' >
+    <div className='flex flex-col justify-between shadow-2xl shadow-zinc-900 bg-[#64748b] lg:bg-[#ddd0c8]' >
       <ul className="flex flex-row lg:flex-col px-2 lg:pt-5 gap-3 lg:gap-10 lg:h-[50rem] lg:mb-5 w-full lg:w-80 scroll_width">
         <li className='flex text-center gap-2 transition-none cursor-pointer hover:text-gray-600 lg:pt-5'>
           <button 
@@ -13,7 +13,7 @@ export function ETSidebar({categories}) {
                 pathname:"/Entertemiment"
               })
             }}
-              className={ router.pathname == "/Entertemiment" ? 'border rounded-2xl hover:text-white hover:bg-black px-2 py-3 bg-neutral-500 w-full text-center text-white font-bold flex': 'w-full hover:text-white hover:border hover:rounded-2xl hover:bg-black px-2 py-3 font-bold flex' }
+              className={ router.pathname == "/Entertemiment" ? 'bg-[#ddd0c8] lg:bg-neutral-500 px-2 py-3 w-full text-center text-black lg:text-white font-bold flex': 'w-full text-white lg:text-black hover:border hover:rounded-2xl hover:bg-black px-2 py-3 font-bold flex' }
             >
               Dashboard
             </button>
@@ -30,7 +30,7 @@ export function ETSidebar({categories}) {
                     query:{category_id:item.category_id}
                   })
                 }}
-                className={ item.category_id == category_id ? 'border rounded-2xl px-5 py-3 bg-neutral-500 w-full text-center text-white font-bold flex': 'w-full hover:text-white hover:bg-black hover:border hover:rounded-2xl px-2 py-3 font-bold flex' }
+                className={ item.category_id == category_id ? 'bg-[#ddd0c8] lg:bg-neutral-500 px-2 py-3 w-full text-center text-black lg:text-white font-bold flex': 'w-full text-white lg:text-black hover:border hover:rounded-2xl hover:bg-black px-2 py-3 font-bold flex' }
               >
                 {item.CategoryName}
               </button>
