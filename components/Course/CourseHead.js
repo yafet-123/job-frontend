@@ -22,7 +22,7 @@ export function CourseHead({categories}) {
               className={
                 router.query.CategoryName == data.title
                   ? "bg-[#ddd0c8] mr-10 text-2xl font-bold text-black p-4"
-                  : "mx-10 text-2xl font-bold text-white hover:border-b-4 border-blue-800"
+                  : "mx-5 text-2xl font-bold text-white hover:border-b-4 border-blue-800"
                 }
               >
                 {data.title}

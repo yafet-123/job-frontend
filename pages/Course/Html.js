@@ -75,12 +75,12 @@ export default function Html({courses, indvidualCourses}) {
     <React.Fragment>
       <MainHeader title="HTML Course" />
       <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800 py-5">
-      	<div className="w-full bg-[#64748b] flex px-5 lg:px-20 justify-between mt-6 h-12">
+      	<div className="w-full bg-[#64748b] flex px-5 lg:px-20 justify-between mt-6 h-12 lg:h-16">
       		<div onClick={handleChapter} className="lg:hidden text-white z-10 flex items-center justify-center">
             <MdOutlineSubject size={30} /> 
           </div>
 
-          <div className="hidden lg:flex h-12">
+          <div className="hidden lg:flex h-12 lg:h-16">
         		<CourseHead />
           </div>
 

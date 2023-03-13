@@ -60,7 +60,7 @@ export default function AdvanceSearch() {
   return (
     <React.Fragment>
       <MainHeader title="AdvanceSearch" />
-      <div className="flex flex-col bg-[#ddd0c8] dark:bg-slate-700 pt-32">
+      <div className="flex flex-col bg-[#ddd0c8] dark:bg-slate-700 pt-32 px-3 lg:px-32">
         <div className="max-w-2xl mx-auto my-10 w-full md:px-0">
         	<div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 border rounded-2xl">
             <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
@@ -98,9 +98,9 @@ export default function AdvanceSearch() {
                   No data can be found
               </h1>
               :
-              <div className="flex flex-col w-full bg-gray-200 dark:bg-slate-700 p-3 lg:border-l-2 px-3 lg:px-20">
+              <div className="flex flex-col w-full bg-[#ddd0c8] dark:bg-slate-700 p-3 lg:border-l-2 px-3 lg:px-20">
                 {searchValue?.map((data, index) => (
-                  <div key={index} className="flex flex-col w-full bg-gray-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
+                  <div key={index} className="flex flex-col w-full bg-[#d1cbc7] dark:bg-slate-800 mb-10 p-3 border rounded-lg">
                       <div className="flex justify-between items-center">
                         <Link href="/DisplayJobs">
                           <a className="text-sm lg:text-2xl text-blue-600 font-bold">Job Type: {data.JobsType} </a>
