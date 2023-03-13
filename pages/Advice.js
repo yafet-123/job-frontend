@@ -35,8 +35,8 @@ export default function Advice() {
   return (
     <React.Fragment>
       <MainHeader title="Advice" />
-      <section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-600 pt-32 px-5 lg:px-52">
-      	<div className="flex lg:hidden w-full h-16 bg-[#d1cbc7] flex flex-row items-center px-5 lg:px-20 justify-between">
+      <section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-600 pt-32 px-5 lg:px-44">
+      	<div className="flex lg:hidden w-full h-16 bg-[#d1cbc7] flex flex-row items-center px-5 lg:px-10 justify-between">
       		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
             <MdOutlineSubject size={30} /> 
           </div>
@@ -45,7 +45,7 @@ export default function Advice() {
             <span className="ml-5 font-bold text-xl hover:text-blue-400">Advices</span>
           </button>
       	</div>
-      	<div className="flex flex-col lg:flex-row h-full px-0 md:px-20">
+      	<div className="flex flex-col lg:flex-row h-full px-0 lg:px-5">
       		<div className="hidden lg:flex w-1/4 h-screen bg-[#d1cbc7] dark:bg-slate-800 overflow-y-scroll scroll_width sticky top-20 bottom-0">
       			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} /> 
       		</div>
@@ -109,6 +109,7 @@ export default function Advice() {
                 </div> 
             </div>
             <div className="py-4 flex flex-col mt-10 w-full">
+              <h1 className="text-center font-bold text-xl">Job Category</h1>
               { AdviceHead.map((data,index)=>(
                 <button 
                   onClick = {()=>{

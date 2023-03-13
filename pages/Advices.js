@@ -10,7 +10,7 @@ export default function Advices() {
   return (
     <React.Fragment>
       <MainHeader title="Advices" />
-      <section className="flex flex-col w-full lg:h-screen px-5 lg:px-64 bg-[#ddd0c8] dark:bg-slate-700 pt-52">
+      <section className="flex flex-col w-full lg:h-screen px-5 lg:px-52 bg-[#ddd0c8] dark:bg-slate-700 pt-52">
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10">
           { AdviceHead.map((data,index)=>(
             <button 
