@@ -35,18 +35,18 @@ export function Hero() {
 
 
   return (
-    <div className="w-full h-[25rem] bg-[#ddd0c8] dark:bg-slate-700 relative">
-      <div className="absolute top-20 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
-        <h1 className={`px-3 lg:px-0 text-2xl mb-10 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-700 " : "text-yellow-500" } `}>
+    <div className="w-full h-[20rem] lg:h-[25rem] bg-[#ddd0c8] dark:bg-slate-700 relative">
+      <div className="absolute top-0 lg:top-20 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
+        <h1 className={`px-3 lg:px-0 text-2xl mb-5 lg:mb-10 font-bold md:text-4xl lg:text-5xl ${ search == "job" ? " text-green-700 " : "text-amber-800" } `}>
           Better Job. Better Talent
         </h1>
-        <div className="flex flex-col lg:flex-row mb-5 px-3 lg:px-0">
+        <div className="flex flex-col lg:flex-row mb-2 lg:mb-5 px-3 lg:px-0">
           <button 
             className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "job" ? "bg-green-700 text-white" : "text-black" } p-4  rounded-xl`} 
             onClick={() => setsearch("job")}
           >Job Type</button>
           <button 
-            className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "companies" ? "bg-yellow-500 text-white" : "text-black" } p-4 rounded-xl`} 
+            className={`text-xl md:text-2xl lg:text-3xl lg:mr-5 ${ search == "companies" ? "bg-amber-800 text-white" : "text-black" } p-4 rounded-xl`} 
             onClick={() => setsearch("companies")}
           >Companies</button>
           <button 
