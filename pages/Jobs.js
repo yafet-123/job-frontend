@@ -94,7 +94,7 @@ export default function Jobs({categories, locations, latestjobs}) {
             </h1>
 
             <button 
-              className={`font-bold text-xs md:text-xl lg:text-2xl text-white p-3 lg:p-4 bg-green-400 capitalize border rounded-2xl w-1/4`} 
+              className={`font-bold text-xs md:text-xl lg:text-2xl text-white p-2 lg:p-4 bg-green-400 capitalize border rounded-2xl w-1/4`} 
               onClick={() => router.push("/AdvanceSearch")}
             >
               Advance Search
