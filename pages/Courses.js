@@ -10,8 +10,8 @@ export default function Courses() {
   return (
   	<React.Fragment>
       <MainHeader title="Courses" />
-	    <section className="flex flex-col w-full h-full px-3 lg:px-64 py-32 bg-[#ddd0c8] dark:bg-slate-700">
-	    	<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 pt-20">
+	    <section className="flex flex-col w-full h-full px-1 lg:px-64 py-10 lg:py-32 bg-[#ddd0c8] dark:bg-slate-700">
+	    	<div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 pt-20">
 	    		{ CourseHeadData.map((data,index)=>(
 		    		<div 
 		    			className={`flex flex-col justify-center items-center mb-10 mx-2 p-10 rounded-xl ${data.backgroundColor}`} 

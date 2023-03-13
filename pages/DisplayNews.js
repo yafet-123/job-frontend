@@ -97,13 +97,13 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
-	    <section className="flex flex-col lg:flex-row w-full h-full px-5 md:px-56 bg-[#ddd0c8] dark:bg-slate-700 pt-32">
-	      	<div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-3/4 lg:px-32">
+	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-44 bg-[#ddd0c8] dark:bg-slate-700 pt-32">
+	      	<div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-[70%] px-1 lg:pr-5 lg:pl-32">
 	      		<h1 className="text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5">
               {news.Header}
             </h1>
 
-            <div className="px-20 h-52 lg:!h-96 relative ">
+            <div className="px-20 h-52 lg:!h-80 relative ">
               <Image
                 src={news.Image == "" || news.Image == null ? "/images/logo2.png" : news.Image}
                 layout="fill" 
@@ -113,16 +113,16 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
             </div>
 
             <div className="w-full flex flex-col my-5">
-              <div className="flex flex-row justify-between mb-5 px-5">
-                 <h3 className="flex flex-col justify-between">
+              <div className="flex flex-row justify-between lg:mb-5 px-1 lg:px-2 w-full">
+                 <h3 className="flex flex-col justify-between w-2/4">
                   { newsCategory.map((data,index)=>(
-                    <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-5">
+                    <span key={index} className="text-sm lg:text-xl font-bold dark:text-white text-black mb-1 lg:mb-5">
                       {data.NewsCategory.CategoryName}
                     </span>
                   ))}
                 </h3>
-                <h3 className="font-normal text-md lg:text-lg dark:text-white text-gray-600">
-                  {moment(news.CreatedDate).utc().format('YYYY-MM-DD')}
+                <h3 className="text-left font-normal text-sm lg:text-lg dark:text-white text-gray-600 w-1/4">
+                  {moment(news.CreatedDate).utc().format('MMMM, Do YYYY')}
                 </h3>
               </div>
 
@@ -130,7 +130,7 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cold-3 gap-5 w-full lg:w-1/4 h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 lg:overflow-y-scroll">
+          <div className="grid grid-cols-1 md:grid-cold-3 gap-5 w-full lg:w-[30%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 lg:overflow-y-scroll">
 				    {Alllatestnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
 				      <Link 
 				      	href={{
