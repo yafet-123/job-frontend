@@ -103,7 +103,7 @@ export default function Jobs({categories, locations, latestjobs}) {
       
           <hr className="w-full bg-gray-200 mb-5" />
 
-          <div className="flex w-full h-[25rem] lg:h-[45rem] bg-neutral-100 dark:bg-slate-800 border rounded-xl p-2">
+          <div className="flex w-full h-[25rem] lg:h-[45rem] bg-neutral-100 dark:bg-slate-800 border rounded-xl p-5">
             <div className="flex-1 border rounded-xl shadow-2xl shadow-zinc-900 border-slate-800 dark:border-slate-800 lg:p-5">
               <div className="w-full h-full overflow-y-scroll">
                 {jobs == "latest" && (
