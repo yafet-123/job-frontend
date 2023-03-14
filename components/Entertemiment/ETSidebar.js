@@ -13,7 +13,7 @@ export function ETSidebar({categories}) {
                 pathname:"/Entertemiment"
               })
             }}
-              className={ router.pathname == "/Entertemiment" ? 'bg-[#ddd0c8] lg:bg-neutral-500 px-2 py-3 w-full text-center text-black lg:text-white font-bold flex': 'w-full text-white lg:text-black hover:border hover:rounded-2xl hover:bg-black px-2 py-3 font-bold flex' }
+              className={ router.pathname == "/Entertemiment" ? 'bg-[#ddd0c8] lg:bg-neutral-500 px-2 py-3 w-full text-center text-black lg:text-white font-bold flex': 'w-full text-white lg:text-black hover:bg-black px-2 py-3 font-bold flex' }
             >
               Dashboard
             </button>
@@ -30,7 +30,7 @@ export function ETSidebar({categories}) {
                     query:{category_id:item.category_id}
                   })
                 }}
-                className={ item.category_id == category_id ? 'bg-[#ddd0c8] lg:bg-neutral-500 px-2 py-3 w-full text-center text-black lg:text-white font-bold flex': 'w-full text-white lg:text-black hover:border hover:rounded-2xl hover:bg-black px-2 py-3 font-bold flex' }
+                className={ item.category_id == category_id ? 'bg-[#ddd0c8] lg:bg-neutral-500 px-2 py-3 w-full text-center text-black lg:text-white font-bold flex': 'w-full text-white lg:text-black hover:bg-black px-2 py-3 font-bold flex' }
               >
                 {item.CategoryName}
               </button>
