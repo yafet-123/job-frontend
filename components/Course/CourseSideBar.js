@@ -1,4 +1,3 @@
-import { CSSSideBar } from "../data/CSSSideBar";
 import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
 export function CourseSideBar({CategoryName, courses, handleChapter, handleCourse}){
