@@ -46,7 +46,7 @@ export function Content({entertainments}) {
 
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 !pt-5 px-2 lg:px-20">
                     {entertainments.map(({Header,Category,CreatedDate, link, ShortDescription}, index) => (
-                         <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
+                        <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
                               <ReactPlayer 
                                 url={link} 
                                 className="!w-full !h-[470px] !object-fit lg:!mb-5" 
@@ -54,15 +54,11 @@ export function Content({entertainments}) {
                                 playing={false}
                                 controls={true}
                                 
-                            />
-                            <iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" width="100%" height="470px" className="w-full h-[] object-fit lg:mb-5" src={link} title="W3Schools Free Online Web Tutorials"></iframe>
-                              <iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"
-src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
-</iframe>
-                              <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
+                                />
+                                <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
                                    {Header}
-                              </h1>
-                              <div className="flex flex-row justify-between mb-5">
+                                </h1>
+                                <div className="flex flex-row justify-between mb-5">
                                    <h3 className="flex flex-col justify-between">
                                         { Category.map((data,index)=>(
                                              <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
@@ -73,10 +69,10 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
                                    <h3 className="font-bold text-sm lg:text-md dark:text-slate-800 text-slate-700">
                                        {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                                    </h3>
-                              </div>
+                                </div>
 
-                              <div  className="!text-black mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
-                         </div>
+                            <div  className="!text-black mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                        </div>
                     ))}
                </div>
           </div>
