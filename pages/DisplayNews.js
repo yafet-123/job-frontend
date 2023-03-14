@@ -162,7 +162,7 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
                         ))}
                       </h3>
                       <span className="font-normal text-sm lg:text-md dark:text-white text-gray-600">
-                        {moment(CreatedDate).utc().format('YYYY-MM-DD')}
+                        {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                       </span>
                     </h3>
                   </div>
