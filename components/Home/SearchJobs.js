@@ -1,10 +1,8 @@
 import React from "react";
-import { LatestJobsList } from "../data/LatestJobs";
 import Link from "next/link";
 import { BiCategory } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
 import { useState } from "react";
-import { JobsByLocation } from "../data/JobsByLocation";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 

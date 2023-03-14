@@ -73,7 +73,6 @@ export async function getServerSideProps(){
 }
 
 export default function Jobs({categories, locations, latestjobs}) {
-  
   return (
     <React.Fragment>
       <MainHeader title="Jobs" />

@@ -1,6 +1,6 @@
-import { HomeHero } from "../components/HomeHero";
-import { LatestJobs } from "../components/LatestJobs";
-import { SearchJobs } from "../components/SearchJobs";
+import { Hero } from "../components/Home/Hero";
+import { LatestJobs } from "../components/Home/LatestJobs";
+import { SearchJobs } from "../components/Home/SearchJobs";
 import React from 'react'
 import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/MainHeader';
@@ -83,7 +83,7 @@ export default function Home({categories, locations, latestjobs}) {
     <React.Fragment>
       <MainHeader title="Home" />
       <div className="">
-        <HomeHero />
+        <Hero />
         <LatestJobs latestjobs={latestjobs} />
         <SearchJobs categories={categories} locations={locations} />
       </div>

@@ -1,12 +1,9 @@
 import React, {useState} from "react";
-import { AiOutlineSearch, AiOutlineFacebook } from "react-icons/ai";
-import { FaFacebookF,FaLinkedinIn,FaTwitter,FaYoutube} from "react-icons/fa";
+import { AiOutlineSearch } from "react-icons/ai";
 import Image from 'next/future/image'
 import { useRouter } from 'next/router'
-import { CiTwitter } from "react-icons/ci";
-import AboutUsHeroImageOne from '../public/images/bgImage1.avif';
 
-export function HomeHero() {
+export function Hero() {
   const [search,setsearch] = useState("job")
   const router = useRouter();
   const [searchValue, setsearchValue] = useState("")
