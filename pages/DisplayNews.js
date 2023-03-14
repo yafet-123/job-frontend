@@ -130,7 +130,7 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cold-3 gap-5 w-full lg:w-[30%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 lg:overflow-y-scroll">
+          <div className="sticky top-0 bottom-10 grid grid-cols-1 md:grid-cold-3 gap-5 w-full lg:w-[30%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 lg:overflow-y-scroll">
 				    {Alllatestnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
 				      <Link 
 				      	href={{
