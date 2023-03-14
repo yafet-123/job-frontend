@@ -55,6 +55,7 @@ export function Content({entertainments}) {
                                 controls={true}
                                 
                             />
+                            <iframe className="!w-full !h-[470px] !object-fit lg:!mb-5"  src={link} title="W3Schools Free Online Web Tutorials"></iframe>
                               <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
                                    {Header}
                               </h1>
