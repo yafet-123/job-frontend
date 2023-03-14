@@ -52,8 +52,7 @@ export function Content({entertainments}) {
                                 className="!w-full !h-[470px] !object-fit lg:!mb-5" 
                                 muted={false}
                                 playing={false}
-                                light={true}
-                                controls
+                                controls={true}
                                 
                             />
                               <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
