@@ -55,8 +55,8 @@ export function Content({entertainments}) {
                                 controls={true}
                                 
                             />
-                            <iframe className="!w-full !h-[470px] !object-fit lg:!mb-5" src={link} title="W3Schools Free Online Web Tutorials"></iframe>
-                              <iframe width="420" height="315"
+                            <iframe className="w-full h-[470px] object-fit lg:mb-5" src={link} title="W3Schools Free Online Web Tutorials"></iframe>
+                              <iframe width="100%" height="315"
 src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
 </iframe>
                               <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
