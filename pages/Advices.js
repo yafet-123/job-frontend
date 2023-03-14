@@ -19,7 +19,7 @@ export default function Advices() {
               onClick = {()=>{
                 router.push({
                   pathname:"/Advice",
-                  query:{title:data.title}
+                  query:{title:data.title, category_id:data.id}
                 })
               }}
             >

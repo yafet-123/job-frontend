@@ -2,21 +2,20 @@ import React, {useState,useEffect} from "react";
 import Link from "next/link";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import {AdviceHead} from '../data/AdviceHead'
+import { AdviceHeadData } from '../data/AdviceHead'
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import {MdOutlineSubject} from 'react-icons/md'
+import { MdOutlineSubject } from 'react-icons/md'
 import { MainHeader } from '../components/MainHeader';
 import { HowToWriteCv } from "../components/Advices/HowToWriteCv"
 import { JobInterview } from "../components/Advices/JobInterview"
 import { JobSearchTips } from "../components/Advices/JobSearchTips"
-
-
 import { AdviceSideBar } from "../components/AdviceSideBar"
+import { AdviceVerticalBar } from "../components/Advices/AdviceVerticalBar"
 
 export default function Advice() {
 	const [selected , setselected] = useState("How To Write Cv")
 	const router = useRouter();
-  const { title} = router.query
+  const { title } = router.query
 
   const [adviceList, setadviceList] = useState(false);
   const handleAdviceList = () => {
@@ -45,17 +44,21 @@ export default function Advice() {
             <span className="ml-5 font-bold text-xl hover:text-blue-400">Advices</span>
           </button>
       	</div>
-      	<div className="flex flex-col lg:flex-row h-full px-0 lg:px-5">
-      		<div className="hidden lg:flex w-1/4 h-screen bg-[#d1cbc7] dark:bg-slate-800 overflow-y-scroll scroll_width sticky top-20 bottom-0">
-      			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} /> 
-      		</div>
 
-      		<div className="w-full lg:w-3/4 h-full bg-[#d1cbc7] dark:bg-slate-700">
-      			{ title == "Carer Advice For job seeker" && selected == "How To Write Cv" && <HowToWriteCv />}
-            { title == "Carer Advice For job seeker" && selected == "Job Interview" && <JobInterview />}
-            { title == "Carer Advice For job seeker" && selected == "Job Search Tips" && <JobSearchTips />}
-      		</div>
-      	</div>
+        <div className="flex flex-col px-0 lg:px-5">
+          <AdviceVerticalBar />
+        	<div className="flex flex-col lg:flex-row h-full ">
+        		<div className="hidden lg:flex w-1/4 h-screen bg-[#d1cbc7] dark:bg-slate-800 overflow-y-scroll scroll_width sticky top-20 bottom-0">
+        			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} /> 
+        		</div>
+
+        		<div className="w-full lg:w-3/4 h-full bg-[#d1cbc7] dark:bg-slate-700">
+        			{ title == "Carer Advice For job seeker" && selected == "How To Write Cv" && <HowToWriteCv />}
+              { title == "Carer Advice For job seeker" && selected == "Job Interview" && <JobInterview />}
+              { title == "Carer Advice For job seeker" && selected == "Job Search Tips" && <JobSearchTips />}
+        		</div>
+        	</div>
+        </div>
 
       	<div
           className={
@@ -110,7 +113,7 @@ export default function Advice() {
             </div>
             <div className="py-4 flex flex-col mt-10 w-full">
               <h1 className="text-center font-bold text-xl">Job Category</h1>
-              { AdviceHead.map((data,index)=>(
+              { AdviceHeadData.map((data,index)=>(
                 <button 
                   onClick = {()=>{
                     router.push({
