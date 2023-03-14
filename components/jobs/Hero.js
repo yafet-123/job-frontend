@@ -4,7 +4,7 @@ import { FaFacebookF,FaLinkedinIn,FaTwitter,FaYoutube} from "react-icons/fa";
 import Image from 'next/future/image'
 import { useRouter } from 'next/router'
 import { CiTwitter } from "react-icons/ci";
-import AboutUsHeroImageOne from '../public/images/bgImage1.avif';
+import AboutUsHeroImageOne from '../../public/images/bgImage1.avif';
 
 export function Hero() {
   const [search,setsearch] = useState("job")

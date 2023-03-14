@@ -5,10 +5,10 @@ import { BiCategory } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
 import { FaClock } from "react-icons/fa";
 import moment from 'moment';
-import Image from 'next/image'
 
 export function Searchjobs({categories,locations,latestjobs}) {
   const router = useRouter();
+  const [jobs, setJobs] = useState("latest");
   return (
     <div className="px-0 md:px-24 bg-[#d1cbc7] dark:bg-slate-800 pt-10 lg:pt-16">
       <div className="flex flex-row justify-between items-center h-full lg:h-16 w-full mb-5 lg:mb-10 px-2 lg:px-10">

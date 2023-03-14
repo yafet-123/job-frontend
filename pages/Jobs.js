@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { useState } from "react";
-import { AiOutlineSearch, AiOutlineFacebook } from "react-icons/ai";
-import Image from 'next/image'
 import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/MainHeader';
 import { Hero } from "../components/jobs/Hero";
@@ -75,8 +73,7 @@ export async function getServerSideProps(){
 }
 
 export default function Jobs({categories, locations, latestjobs}) {
-  const [jobs, setJobs] = useState("latest");
-  const router = useRouter()
+  
   return (
     <React.Fragment>
       <MainHeader title="Jobs" />
