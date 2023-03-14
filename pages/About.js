@@ -1,8 +1,8 @@
 import {AboutUsHero} from '../components/AboutUsHero'
-import { AboutUsDetail } from '../components/AboutUsDetail';
-import { FollowingTheDream } from '../components/FollowingTheDream';
-import { OurMission } from '../components/OurMission';
-import { OurVision } from '../components/OurVision';
+import { AboutUsDetail } from '../components/AbouUs/AboutUsDetail';
+import { FollowingTheDream } from '../components/AbouUs/FollowingTheDream';
+import { OurMission } from '../components/AbouUs/OurMission';
+import { OurVision } from '../components/AbouUs/OurVision';
 import { MainHeader } from '../components/MainHeader';
 import { HtmlIntroduction } from "../components/HTML/HtmlIntroduction"
 import React from 'react'

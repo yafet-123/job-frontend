@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { AiOutlineMenu } from "react-icons/ai";
 import Image from 'next/image'
-import { LatestJobs } from "../components/LatestJobs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useRouter } from 'next/router'
 import axios from 'axios';
