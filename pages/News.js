@@ -158,7 +158,7 @@ export default function News({allnews}) {
                       {Header}
                     </h1>
 
-                    <div  className="!text-black mt-5 " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                    <div  className="!text-black mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                   </div>
                 </button>
               ))}
