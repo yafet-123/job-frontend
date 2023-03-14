@@ -7,7 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 export function DisplayIndvidualNews({news, newsCategory}) {
 
   	return (
-	    <div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-[70%] px-1 lg:pr-5 lg:pl-32">
+	    <div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-[70%] px-1 lg:pr-6 lg:pl-32">
 		    <h1 className="text-lg lg:text-2xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5">
 	            {news.Header}
 	        </h1>
