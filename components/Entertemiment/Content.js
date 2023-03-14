@@ -47,7 +47,7 @@ export function Content({entertainments}) {
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 !pt-5 px-2 lg:px-20">
                     {entertainments.map(({Header,Category,CreatedDate, link, ShortDescription}, index) => (
                          <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
-                              <ReactPlayer className="!w-full !h-[470px] !object-fit lg:!mb-5" url={link} />
+                              <iframe src={link} className="!w-full !h-[470px] !object-fit lg:!mb-5"></iframe>
                               <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
                                    {Header}
                               </h1>
