@@ -50,16 +50,11 @@ export function Content({entertainments}) {
                               <ReactPlayer 
                                 url={link} 
                                 className="!w-full !h-[470px] !object-fit lg:!mb-5" 
-                                muted={true}
-                                playing={true}
+                                muted={false}
+                                playing={false}
+                                light={true}
                                 controls
-                                config={{
-                                    file: {
-                                        attributes: {
-                                            controlsList: "nofullscreen",
-                                        },
-                                    },
-                                }}
+                                
                             />
                               <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
                                    {Header}
