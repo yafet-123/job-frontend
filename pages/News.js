@@ -1,7 +1,7 @@
 import React from "react";
 import { MainHeader } from '../components/MainHeader';
 import { AllNews } from '../components/News/AllNews';
-import { SideNews } from '../components/News/SideNews';
+import { SlideNews } from '../components/News/SlideNews';
 import { prisma } from '../util/db.server.js'
 
 export async function getServerSideProps(context){
@@ -53,7 +53,7 @@ export default function News({allnews}) {
       <section className="w-full h-full bg-[#ddd0c8] dark:!bg-slate-500 overflow-hidden px-0 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-xl lg:text-5xl font-bold my-10">Trending</h1>
-          <SideNews allnews={allnews} />
+          <SlideNews allnews={allnews} />
           <AllNews allnews={allnews}/>
         </div>
       </section>
