@@ -49,7 +49,7 @@ export function Content({entertainments}) {
                         <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
                               <ReactPlayer 
                                 url={link} 
-                                className="!w-full !h-[470px] !object-fit lg:!mb-5" 
+                                className="!w-full !h-[500px] !object-fit lg:!mb-5" 
                                 muted={false}
                                 playing={false}
                                 controls={true}
