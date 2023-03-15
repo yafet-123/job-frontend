@@ -9,9 +9,8 @@ import React from 'react'
 export default function About() {
   return (
     <React.Fragment>
-      <MainHeader title="About" />
+      <MainHeader title="Hulu Media : About" />
       <div className="flex flex-col">
-        <HtmlIntroduction />
         <AboutUsHero />
         <AboutUsDetail />
       </div>
