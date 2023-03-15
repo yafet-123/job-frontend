@@ -1,4 +1,4 @@
-import { AdviceSidebar } from "../data/AdviceSidebar";
+import { AdviceSidebar } from "../../data/AdviceSidebar";
 import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
 export function AdviceSideBar({title,onChange, handleAdviceList}){

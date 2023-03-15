@@ -9,7 +9,7 @@ import { MainHeader } from '../components/MainHeader';
 import { HowToWriteCv } from "../components/Advices/HowToWriteCv"
 import { JobInterview } from "../components/Advices/JobInterview"
 import { JobSearchTips } from "../components/Advices/JobSearchTips"
-import { AdviceSideBar } from "../components/AdviceSideBar"
+import { AdviceSideBar } from "../components/Advices/AdviceSideBar"
 import { AdviceVerticalBar } from "../components/Advices/AdviceVerticalBar"
 
 export default function Advice() {
