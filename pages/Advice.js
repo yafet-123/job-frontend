@@ -17,6 +17,7 @@ export default function Advice() {
 	const router = useRouter();
   const { title } = router.query
 
+
   const [adviceList, setadviceList] = useState(false);
   const handleAdviceList = () => {
     setadviceList(!adviceList);

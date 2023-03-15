@@ -11,7 +11,7 @@ export const AdviceHeadData = [
 	},
 	{
 		id:3,
-		title:"Carer Advice",
+		title:"CarerAdvice",
 		backgroundColor:"bg-[#4db8ff]",
 	},
 	{
