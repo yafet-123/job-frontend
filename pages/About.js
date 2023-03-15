@@ -1,4 +1,4 @@
-import {AboutUsHero} from '../components/AboutUsHero'
+import {AboutUsHero} from '../components/AboutUs/AboutUsHero'
 import { AboutUsDetail } from '../components/AboutUs/AboutUsDetail';
 import { FollowingTheDream } from '../components/AboutUs/FollowingTheDream';
 import { OurMission } from '../components/AboutUs/OurMission';
