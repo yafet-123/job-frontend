@@ -1,7 +1,7 @@
 import Image from 'next/future/image';
-import AboutUsHeroImageOne from '../public/images/AboutUsImage.jpg';
-import AboutUsHeroImageTwo from '../public/images/AboutUsImage.jpg';
-import AboutUsHeroImageThree from '../public/images/AboutUsImage.jpg';
+import AboutUsHeroImageOne from '../../public/images/AboutUsImage.jpg';
+import AboutUsHeroImageTwo from '../../public/images/AboutUsImage.jpg';
+import AboutUsHeroImageThree from '../../public/images/AboutUsImage.jpg';
 import React from 'react';
 
 export const AboutUsDetail = () => {

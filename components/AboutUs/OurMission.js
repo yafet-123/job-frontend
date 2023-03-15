@@ -1,5 +1,5 @@
 import Image from 'next/future/image';
-import Mission from '../public/images/aboutBackground.jpg';
+import Mission from '../../public/images/aboutBackground.jpg';
 
 export const OurMission = () => {
   return (

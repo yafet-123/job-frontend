@@ -1,5 +1,5 @@
 import Image from 'next/future/image';
-import Vision from '../public/images/aboutBackground.jpg';
+import Vision from '../../public/images/aboutBackground.jpg';
 
 export const OurVision =  () => {
   return (
