@@ -12,7 +12,7 @@ export default function About() {
       <MainHeader title="Hulu Media : About" />
       <div className="flex flex-col">
         <AboutUsHero />
-        <AboutUsDetail />
+        <FollowingTheDream />
       </div>
     </React.Fragment>
   );

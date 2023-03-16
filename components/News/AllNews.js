@@ -4,7 +4,7 @@ import moment from 'moment';
 import { useRouter } from 'next/router'
 
 export function AllNews({allnews}) {
-
+  const router = useRouter()
   return (
     <div className="py-5 w-full h-full">      
       <h1 className="text-center text-xl lg:text-4xl font-bold my-5">Latest News</h1>

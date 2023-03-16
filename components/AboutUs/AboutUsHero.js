@@ -1,10 +1,10 @@
 import Image from 'next/future/image';
-import AboutUsImage from '../../public/images/AboutUsImage.jpg';
+import AboutUsImage from '../../public/images/bgImage1.avif';
 
 export const AboutUsHero = () => {
   return (
     <div
-      className={`flex justify-center items-center bg-fixed h-[600px] bg-cover top-10 ${AboutUsImage}`}
+      className={`flex justify-center items-center bg-fixed h-[600px] bg-cover top-10 about-us-background`}
     >
       <div className="flex flex-col gap-8 font-bold text-center md:p-12">
         <div>
