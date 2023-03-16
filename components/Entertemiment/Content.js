@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 export function Content({entertainments}) {
      const [getSearchValue,setgetSearchValue] = useState("")
      const [affectRead, setaffectRead ] = useState()
-     let length = 50
+     let length = 100
      const [isReadMore, setisReadMore] = useState(true)
      const router = useRouter()
      const toggleReadMore = () => {
@@ -79,8 +79,8 @@ export function Content({entertainments}) {
 
                             <p  className="!text-black mt-5 font-normal italic text-sm lg:text-lg dark:text-slate-800 text-slate-500"> 
                                 { isReadMore ? `${ShortDescription.slice(0,length)}...`: ShortDescription}
-                                <button className="text-slate-700 text-sm lg:text-lg" onClick={toggleReadMore}>
-                                    &nbsp; view {isReadMore ? "More" : "Less"}
+                                <button className="text-slate-700 text-sm lg:text-lg mx-2" onClick={() => setisReadMore(!isReadMore)}>
+                                    View {isReadMore ? "More" : "Less"}
                                 </button>
                             </p>
                         </div>
