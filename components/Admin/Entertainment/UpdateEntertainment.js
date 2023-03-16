@@ -5,7 +5,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import { useSession } from "next-auth/react";
 import RingLoader from "react-spinners/RingLoader";
 
-export function UpdateEntertainment({setupdateModalOn, updateentertainmentid, updateheader, setupdateheader, updatelink ,setupdatelink, categories }) {
+export function UpdateEntertainment({setupdateModalOn, updateShortDescription, setupdateShortDescription, updateentertainmentid, updateheader, setupdateheader, updatelink ,setupdatelink, categories }) {
     const router = useRouter();
     const [categoryId,setCategoryId] = useState([])
     const { status, data } = useSession();
@@ -17,6 +17,7 @@ export function UpdateEntertainment({setupdateModalOn, updateentertainmentid, up
         const data = await axios.patch(`../api/updateentertainment/${updateentertainmentid}`,{
             "Header" : updateheader,
             "link" : updatelink,
+            "ShortDescription": updateShortDescription,
             "categoryId": categoryId,
             "user_id": UserData.user_id,
         }).then(function (response) {
@@ -70,6 +71,24 @@ export function UpdateEntertainment({setupdateModalOn, updateentertainmentid, up
                                     className="absolute text-2xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-200 dark:bg-slate-500 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                                 >
                                     Link
+                                </label>
+                            </div>
+
+                            <div className="relative mb-5">
+                                <textarea  
+                                    id="ShortDescription" 
+                                    rows="7" 
+                                    cols="50"
+                                    required 
+                                    className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                                    value={ShortDescription}
+                                    onChange={(e) => setShortDescription(e.target.value)}
+                                />
+                                <label 
+                                    htmlFor="floating_outlined" 
+                                    className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                                >
+                                    ShortDescription
                                 </label>
                             </div>
                         </div>

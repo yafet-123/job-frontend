@@ -8,6 +8,7 @@ export default async function handleupdateentertainment(req, res){
 	const { 
 		Header,
 		link,
+		ShortDescription,
 		categoryId,
 		user_id
 	} = req.body
@@ -19,6 +20,7 @@ export default async function handleupdateentertainment(req, res){
 		data:{
 			Header,
 			link,
+			ShortDescription,
 		}
 	});
 

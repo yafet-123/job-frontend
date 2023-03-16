@@ -71,7 +71,9 @@ export function Content({entertainments}) {
                                </h3>
                             </div>
 
-                            <div  className="!text-black mt-5" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                            <div  className="!text-black mt-5 font-bold text-md lg:text-lg dark:text-slate-800 text-slate-700"> 
+                                {ShortDescription}
+                            </div>
                         </div>
                     ))}
                </div>

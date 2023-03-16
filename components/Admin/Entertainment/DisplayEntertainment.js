@@ -13,6 +13,7 @@ export function DisplayEntertainment({categories, entertainment}) {
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deleteentertainmentid,setdeleteentertainmentid] = useState()
     const [updateentertainmentid,setupdateentertainmentid] = useState()
+    const [updateShortDescription ,setupdateShortDescription] = useState()
     const [updateheader,setupdateheader] = useState("")
     const [updatelink,setupdatelink] = useState("")
 
@@ -153,7 +154,7 @@ export function DisplayEntertainment({categories, entertainment}) {
             }
 
             {updatemodalOn && 
-                <UpdateEntertainment setupdateModalOn={setupdateModalOn} updateentertainmentid={updateentertainmentid} updateheader={updateheader} setupdateheader={setupdateheader} updatelink={updatelink} setupdatelink={setupdatelink} categories={categories}/>
+                <UpdateEntertainment updateShortDescription={updateShortDescription} setupdateShortDescription={setupdateShortDescription} setupdateModalOn={setupdateModalOn} updateentertainmentid={updateentertainmentid} updateheader={updateheader} setupdateheader={setupdateheader} updatelink={updatelink} setupdatelink={setupdatelink} categories={categories}/>
             }
         </div>
   );
