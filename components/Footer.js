@@ -13,7 +13,10 @@ export function Footer() {
 
   const quickLinks = [
     { link: "Home", path:"/" },
-    { link: "Course", path:"/" },
+    { link: "Jobs", path: "/Jobs" },
+    { link: "News", path: "/News" },
+    { link: "Entertemiment", path: "/Entertemiment"},
+    { link: "Courses", path: "/Courses"},
     { link: "Advices", path:"/" },
     { link: "About", path: "/About" },
   ];
