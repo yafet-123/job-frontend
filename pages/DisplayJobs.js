@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { JobRequirement } from "../data/JobRequirement";
-import { TopAndBottomOfDisplayJobs } from "../components/TopAndBottomOfDisplayJobs";
+import { TopAndBottomOfDisplayJobs } from "../components/jobs/TopAndBottomOfDisplayJobs";
 import { DisplayIndividualJobs } from "../components/jobs/DisplayIndividualJobs";
 import axios from "axios";
 import { useRouter } from 'next/router'
