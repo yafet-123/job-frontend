@@ -44,7 +44,7 @@ export function Content({entertainments}) {
                      </div>  
                </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 !pt-5 px-2 lg:px-20">
+               <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 !pt-5 px-2 lg:px-20">
                     {entertainments.map(({Header,Category,CreatedDate, link, ShortDescription}, index) => (
                         <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
                             <ReactPlayer 
@@ -61,7 +61,7 @@ export function Content({entertainments}) {
                             <div className="flex flex-row justify-between mb-5">
                                <h3 className="flex flex-col justify-between">
                                     { Category.map((data,index)=>(
-                                         <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
+                                         <span key={index} className="text-sm lg:text-xl font-bold dark:text-white text-black mb-1 lg:mb-5">
                                               {data.EntertainmentCategory.CategoryName}
                                          </span>
                                     ))}
