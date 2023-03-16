@@ -4,11 +4,21 @@ import React, {useState,useEffect} from "react";
 import moment from 'moment';
 import { useRouter } from 'next/router'
 
+const Description = ({ShortDescription})=>{
+    let length = 100
+    const [isReadMore, setisReadMore] = useState(true)
+    return(
+        <p  className=" mt-5 font-normal italic text-sm lg:text-lg dark:text-slate-800 text-black"> 
+            {ShortDescription.substring(0, isReadMore ? length : undefined)}...
+            <button className="text-slate-700 text-sm lg:text-lg mx-2" onClick={() => setisReadMore((isReadMore) => !isReadMore)}>
+                {isReadMore ? "Read More" : "Read Less"}
+            </button>
+        </p>
+    )
+}
 export function Content({entertainments}) {
      const [getSearchValue,setgetSearchValue] = useState("")
      const [affectRead, setaffectRead ] = useState()
-     let length = 100
-     const [isReadMore, setisReadMore] = useState(true)
      const router = useRouter()
      const toggleReadMore = () => {
         setisReadMore(!isReadMore);
@@ -66,7 +76,7 @@ export function Content({entertainments}) {
                             <div className="flex flex-row justify-between mb-5">
                                <h3 className="flex flex-col justify-between">
                                     { Category.map((data,index)=>(
-                                         <span key={index} className="text-sm lg:text-xl font-bold dark:text-white text-black mb-1 lg:mb-5">
+                                         <span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2">
                                               {data.EntertainmentCategory.CategoryName}
                                          </span>
                                     ))}
@@ -75,13 +85,8 @@ export function Content({entertainments}) {
                                    {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                                </h3>
                             </div>
-
-                            <p  className=" mt-5 font-normal italic text-sm lg:text-lg dark:text-slate-800 text-slate-500"> 
-                                { isReadMore ? `${ShortDescription.slice(0,length)}...`: ShortDescription}
-                                <button className="text-slate-700 text-sm lg:text-lg mx-2" onClick={() => setisReadMore(!isReadMore)}>
-                                    View {isReadMore ? "More" : "Less"}
-                                </button>
-                            </p>
+                            <Description ShortDescription={ShortDescription}/>
+                            
                         </div>
                     ))}
                </div>

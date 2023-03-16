@@ -1,16 +1,78 @@
 import axios from 'axios';
+import React, { useMemo, useRef } from "react"
 import { useRouter } from 'next/router'
 import { useState , useEffect } from 'react'
 import Multiselect from 'multiselect-react-dropdown';
 import { useSession } from "next-auth/react";
 import RingLoader from "react-spinners/RingLoader";
+import 'react-quill/dist/quill.snow.css'
+import dynamic from 'next/dynamic'
 
+const QuillNoSSRWrapper = dynamic(
+  async () => {
+    const QuillNoSSRWrapper = (await import("react-quill")).default
+    function Imagehandle({ forwardedRef, ...rest }){
+        return <QuillNoSSRWrapper ref={forwardedRef} {...rest} />
+    }
+    return Imagehandle
+  },
+  {
+    ssr: false,
+  },
+)
 export function UpdateEntertainment({setupdateModalOn, updateShortDescription, setupdateShortDescription, updateentertainmentid, updateheader, setupdateheader, updatelink ,setupdatelink, categories }) {
     const router = useRouter();
     const [categoryId,setCategoryId] = useState([])
     const { status, data } = useSession();
     const UserData = data.user;
     const [loading, setLoading] = useState(false);
+
+    const quillRef = useRef(null)
+    const modules = useMemo(() => ({
+        toolbar: {
+            container: [
+                    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                    ['blockquote', 'code-block'],
+
+                    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                    [{ 'direction': 'rtl' }],                         // text direction
+            
+                    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ 'font': [] }],
+                    [{ 'align': [] }],
+
+                    ["link","image", "video"],
+                ],
+            handlers: {
+                image: imageHandler,
+            },
+        },
+
+        clipboard: {
+            matchVisual: false,
+        },
+    }),[])
+
+    function imageHandler() {
+        console.log(quillRef)
+        if (!quillRef.current) return
+        
+        const editor = quillRef.current.getEditor()
+        const range = editor.getSelection()
+        const value = prompt("Please enter the image URL")
+        console.log(value)
+        console.log(range)
+        console.log(editor)
+        if (value && range) {
+          editor.insertEmbed(range.index, "image", value, "user")
+        }
+    }
 
 	const handleOKClickForupdate = async() => {
         setLoading(true)
@@ -40,8 +102,8 @@ export function UpdateEntertainment({setupdateModalOn, updateShortDescription, s
             <div className="flex h-screen justify-center items-center ">
                 <div className="flex-col justify-center bg-neutral-200 dark:bg-slate-500 py-24 px-5 lg:px-10 border-4 border-sky-500 rounded-xl ">
                     <div className="flex text-center text-xl text-zinc-600 font-bold mb-10 dark:text-white" >Update Category</div>
-                    <div className="flex flex-col justify-between items-center">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="flex flex-col justify-between items-center w-full">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
                             <div className="relative mb-10">
                                 <input 
                                     id="Header" 
@@ -75,22 +137,20 @@ export function UpdateEntertainment({setupdateModalOn, updateShortDescription, s
                             </div>
                         </div>
 
-                        <div className="relative mb-5">
-                            <textarea  
-                                id="updateShortDescription" 
-                                rows="7" 
-                                cols="50"
-                                required 
-                                className="block !w-full px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                                value={updateShortDescription}
-                                onChange={(e) => setupdateShortDescription(e.target.value)}
-                            />
-                            <label 
-                                htmlFor="floating_outlined" 
-                                className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        <div className="mb-10 ">
+                            <p  
+                                className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
                             >
                                 ShortDescription
-                            </label>
+                            </p>
+
+                            <QuillNoSSRWrapper 
+                                forwardedRef={quillRef} 
+                                value={updateShortDescription} 
+                                onChange={setupdateShortDescription} 
+                                modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2" 
+                                theme="snow" 
+                            />
                         </div>
 
                         <div className="w-full mb-5">
