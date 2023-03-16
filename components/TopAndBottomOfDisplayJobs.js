@@ -31,19 +31,6 @@ import {
 export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
   const router = useRouter()
   const shareUrl = router.asPath
-  console.log(shareUrl)
-   const socialMediaLinks = [
-    { path: "", button:"FacebookShareButton", icon:<FacebookIcon size={32} round />},
-    { path: "", button:"PinterestShareButton", icon:<PinterestIcon size={32} round />},
-    { path: "", button:"PinterestShareButton", icon:<RedditIcon size={32} round />},
-    { path: "", button:"PinterestShareButton", icon:<TelegramIcon size={32} round />},
-    { path: "", button:"PinterestShareButton", icon:<TwitterIcon size={32} round />},
-    { path: "", button:"ViberShareButton", icon:<ViberIcon size={32} round />},
-    { path: "", button:"WhatsappShareButton", icon:<WhatsappIcon size={32} round />},
-    { path: "", button:"LinkedinShareButton", icon:<LinkedinIcon size={32} round />},
-    { path: "", button:"FacebookMessengerShareButton", icon:<FacebookMessengerIcon size={32} round />},
-    { path: "", button:"EmailShareButton", icon:<EmailIcon size={32} round />},
-  ];
   return (
     <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 px-0 lg:px-10 py-20">
     	<div className="flex mb-10">
@@ -54,7 +41,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
     		</div>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-between items-center mb-10">
+      <div className="flex flex-col lg:flex-row justify-between items-center mb-5">
       	<h1 className="text-black dark:text-white border rounded-lg text-xl font-bold mr-2 mb-5 lg:mb-0 dark:border-slate-700">Share On:</h1>
       	<div className="flex flex-col lg:flex-row items-center">
           <div className="flex items-center mb-5 lg:mb-0">
