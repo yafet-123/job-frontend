@@ -33,7 +33,7 @@ export function DisplayLatestNews({Alllatestnews}) {
                     		<div className="mt-5 flex justify-between items-center">
                       			<h3 className="flex flex-col justify-between"> 
                         			{ Category.map((data,index)=>(
-                          				<span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
+                          				<span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2">
                             				{data.NewsCategory.CategoryName}
                           				</span>
                         			))}
