@@ -71,7 +71,7 @@ export function Content({entertainments}) {
                                </h3>
                             </div>
 
-                            <div  className="!text-black mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                            <div  className="!text-black mt-5" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                         </div>
                     ))}
                </div>
