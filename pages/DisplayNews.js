@@ -46,9 +46,9 @@ export async function getServerSideProps(context){
   const newsCategory = data.NewsCategoryRelationship
 
   const latestnews = await prisma.News.findMany({
-  	take:-5,
+  	take:-6,
     orderBy: {
-      ModifiedDate:"asc"
+      news_id:"desc"
     },
     include:{
       User:{
@@ -90,7 +90,7 @@ export async function getServerSideProps(context){
 }
 
 export default function DisplayNews({news,Alllatestnews, newsCategory}) {
-  console.log(newsCategory)
+  console.log(news)
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
