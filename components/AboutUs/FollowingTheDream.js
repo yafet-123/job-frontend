@@ -36,26 +36,15 @@ export const FollowingTheDream = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col text-left justify-center gap-4 bg-white text-[#165248]">
+        <div className="flex flex-col text-left justify-center gap-4 text-[#165248]">
           <h1 className="md:text-5xl font-bold text-3xl">
-            We are Eco-Travel Ethiopia
+            We are Hulu Media
           </h1>
           <p className="md:text-2xl font-semibold text-md text-lg">
-            We organize the best Ethiopian premium tours covering historical
-            routes, mountain trekking and adventure expeditions to remote areas,
-            bird and wildlife watching, as well as family-friendly tours.
+            Hulumedia is one the most online recruitment provider in ethiopia, 
+            The website advertises jobs across a wide range of job types by different employers, 
+            inlcuding private, local, international, who are hiring in ethiopia.
           </p>
-          {/* <div className="justify-self-end">
-          <Image
-            src="https://jonesbrotherscoffee.com/en/img/asset/bWFpbi9ibG9nL2ltYWdlLWFzc2V0LmpwZw==?w=1200&s=f14631dd1dec01f2a90d6ce25bf50438"
-            alt="sustainablity background"
-            //   fill
-            priority
-            width={500}
-            height={400}
-            className="md:w-full md:h-full rounded-lg shadow-md shadow-slate-800"
-          />
-        </div> */}
         </div>
       </div>
 

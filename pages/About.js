@@ -10,7 +10,7 @@ export default function About() {
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : About" />
-      <div className="flex flex-col">
+      <div className="flex flex-col bg-[#ddd0c8] dark:bg-slate-700">
         <AboutUsHero />
         <FollowingTheDream />
       </div>

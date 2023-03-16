@@ -1,20 +1,51 @@
 import React from "react";
 import Link from "next/link";
-import { FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube, FaTelegramPlane} from "react-icons/fa";
 import moment from 'moment';
+import { useRouter } from "next/router";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  PinterestShareButton,
+  PinterestIcon,
+  RedditShareButton,
+  RedditIcon,
+  TelegramShareButton,
+  TelegramIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  ViberShareButton,
+  ViberIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  FacebookMessengerShareButton,
+  FacebookMessengerIcon,
+  EmailShareButton,
+  EmailIcon,
+} from 'next-share';
+
 
 export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
+  const router = useRouter()
+  const shareUrl = router.asPath
+  console.log(shareUrl)
    const socialMediaLinks = [
-    { path: "", icon: <FaFacebookF />, style: "bg-blue-900",},
-    { path: "", icon: <FaTwitter />, style: "bg-blue-500" },
-    { path: "", icon: <FaLinkedinIn />, style: "bg-blue-700" },
-    { path: "", icon: <FaYoutube />, style: "bg-red-500" },
-    { path: "", icon: <FaTelegramPlane />, style: "bg-blue-600" },
+    { path: "", button:"FacebookShareButton", icon:<FacebookIcon size={32} round />},
+    { path: "", button:"FacebookShareButton", icon:<PinterestIcon size={32} round />},
+    { path: "", button:"FacebookShareButton", icon:<RedditIcon size={32} round />},
+    { path: "", button:"FacebookShareButton", icon:<TelegramIcon size={32} round />},
+    { path: "", button:"FacebookShareButton", icon:<TwitterIcon size={32} round />},
+    { path: "", button:"FacebookShareButton", icon:<ViberIcon size={32} round />},
+    { path: "", button:"FacebookShareButton", icon:<WhatsappIcon size={32} round />},
+    { path: "", button:"FacebookShareButton", icon:<LinkedinIcon size={32} round />},
+    { path: "", button:"FacebookShareButton", icon:<FacebookMessengerIcon size={32} round />},
+    { path: "", button:"FacebookShareButton", icon:<EmailIcon size={32} round />},
   ];
   return (
-    <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 px-0 lg:px-20 py-20">
+    <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 px-0 lg:px-10 py-20">
     	<div className="flex mb-10">
-    		<h1 className="px-3 lg:px-10 py-3 bg-yellow-400 text-white border rounded-lg text-md lg:text-xl font-bold mr-5 ">Apply Now</h1>
+    		<h1 className="px-3 lg:px-10 py-3 bg-yellow-400 text-white border rounded-lg text-md lg:text-lg font-bold mr-2">Apply Now</h1>
     		<div className="flex flex-col text-sm lg:text-lg text-red-700 font-bold">
     			<p className="">Deadline</p>
     			<p className="">{moment(DeadLine).utc().format('YYYY-MM-DD')}</p>
@@ -22,18 +53,18 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
       </div>
 
       <div className="flex flex-col lg:flex-row justify-between items-center mb-10">
-      	<h1 className="text-black dark:text-white border rounded-lg text-2xl font-bold mr-5 mb-5 lg:mb-0 dark:border-slate-700">Share On</h1>
+      	<h1 className="text-black dark:text-white border rounded-lg text-xl font-bold mr-2 mb-5 lg:mb-0 dark:border-slate-700">Share On:</h1>
       	<div className="flex items-center">
           {socialMediaLinks.map((main, index) => (
-            <Link key={index} href={main.path}>
-              <a target="_blank" rel="noreferrer">
-                <div
-                  className={`${main.style} ml-3 text-white rounded-lg shadow-lg shadow-gray-400 p-3 hover:w-20 transition-all duration-1000 transform-cpu cursor-pointer hover:brightness-110 flex items-center justify-center`}
-                >
-                  {main.icon}
-                </div>
-              </a>
-            </Link>
+            <div className="mx-1">
+              <FacebookShareButton
+                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                quote={'next-share is a social share buttons for your next React apps.'}
+                hashtag={'#nextshare'}
+              >
+                {main.icon}
+              </FacebookShareButton>
+            </div>
           ))}
         </div>
       </div>
