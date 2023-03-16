@@ -14,7 +14,7 @@ export function Content({entertainments}) {
         setisReadMore(!isReadMore);
     };
      return (
-          <div className="w-full h-full my-20 lg:mt-0">
+          <div className="w-full h-full my-20 lg:mt-0 px-10">
                <div className="w-full px-3 lg:px-20 mb-5">
                      <div className="flex flex-col lg:flex-row w-full">
                          <div className="relative flex-1">
@@ -58,8 +58,7 @@ export function Content({entertainments}) {
                                 className="!w-full !h-[500px] !object-fit lg:!mb-5" 
                                 muted={false}
                                 playing={false}
-                                controls={true}
-                                
+                                controls={true}                           
                             />
                             <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
                                {Header}
@@ -77,7 +76,7 @@ export function Content({entertainments}) {
                                </h3>
                             </div>
 
-                            <p  className="!text-black mt-5 font-normal italic text-sm lg:text-lg dark:text-slate-800 text-slate-500"> 
+                            <p  className=" mt-5 font-normal italic text-sm lg:text-lg dark:text-slate-800 text-slate-500"> 
                                 { isReadMore ? `${ShortDescription.slice(0,length)}...`: ShortDescription}
                                 <button className="text-slate-700 text-sm lg:text-lg mx-2" onClick={() => setisReadMore(!isReadMore)}>
                                     View {isReadMore ? "More" : "Less"}
