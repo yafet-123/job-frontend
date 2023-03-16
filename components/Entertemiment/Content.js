@@ -24,7 +24,7 @@ export function Content({entertainments}) {
         setisReadMore(!isReadMore);
     };
      return (
-          <div className="w-full h-full my-20 lg:mt-0 px-10">
+          <div className="w-full h-full my-20 lg:mt-0 px-3 lg:px-10">
                <div className="w-full px-3 lg:px-20 mb-5">
                      <div className="flex flex-col lg:flex-row w-full">
                          <div className="relative flex-1">
