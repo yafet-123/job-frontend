@@ -47,29 +47,29 @@ export function Content({entertainments}) {
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 !pt-5 px-2 lg:px-20">
                     {entertainments.map(({Header,Category,CreatedDate, link, ShortDescription}, index) => (
                         <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
-                              <ReactPlayer 
+                            <ReactPlayer 
                                 url={link} 
                                 className="!w-full !h-[500px] !object-fit lg:!mb-5" 
                                 muted={false}
                                 playing={false}
                                 controls={true}
                                 
-                                />
-                                <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
-                                   {Header}
-                                </h1>
-                                <div className="flex flex-row justify-between mb-5">
-                                   <h3 className="flex flex-col justify-between">
-                                        { Category.map((data,index)=>(
-                                             <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
-                                                  {data.EntertainmentCategory.CategoryName}
-                                             </span>
-                                        ))}
-                                   </h3>
-                                   <h3 className="font-bold text-sm lg:text-md dark:text-slate-800 text-slate-700">
-                                       {moment(CreatedDate).utc().format('YYYY-MM-DD')}
-                                   </h3>
-                                </div>
+                            />
+                            <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
+                               {Header}
+                            </h1>
+                            <div className="flex flex-row justify-between mb-5">
+                               <h3 className="flex flex-col justify-between">
+                                    { Category.map((data,index)=>(
+                                         <span key={index} className="text-lg lg:text-xl font-bold dark:text-white text-black mb-3">
+                                              {data.EntertainmentCategory.CategoryName}
+                                         </span>
+                                    ))}
+                               </h3>
+                               <h3 className="font-bold text-sm lg:text-md dark:text-slate-800 text-slate-700">
+                                   {moment(CreatedDate).utc().format('YYYY-MM-DD')}
+                               </h3>
+                            </div>
 
                             <div  className="!text-black mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                         </div>
