@@ -43,40 +43,41 @@ export function DisplayEntertainment({categories, entertainment}) {
                         <tbody className="divide-y divide-gray-100">
                             {entertainment.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
-                                    <td className="p-2 text-lg text-gray-700 whitespace-nowrap">
+                                    <td className="p-2 text-lg text-gray-700">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.entertainment_id}</p>
                                     </td>
-                                    <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-2 text-lg text-gray-700 dark:text-white">
                                         {data.Header}
                                     </td>
-                                     <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                     <td className="p-2 text-lg text-gray-700 dark:text-white">
                                         {data.link}
                                     </td>
-                                    <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-2 text-lg text-gray-700 dark:text-white">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                                     </td>
-                                    <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-2 text-lg text-gray-700 dark:text-white">
                                         {moment(data.ModifiedDate).utc().format('YYYY-MM-DD')}
                                     </td>
 
-                                    <td className="p-2 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-2 text-lg text-gray-700 dark:text-white">
                                         {data.userName}
                                     </td>
 
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         <button
                                             onClick={() => {
                                                 clickedForupdate()
                                                 setupdateentertainmentid(data.entertainment_id)
                                                 setupdateheader(data.Header)
                                                 setupdatelink(data.link)
+                                                setupdateShortDescription(data.ShortDescription)
                                             }}
                                             className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                             Edit
                                         </button>
                                     </td>
 
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         <button 
                                             onClick={() => {
                                                 clickedFordelete()
@@ -130,6 +131,7 @@ export function DisplayEntertainment({categories, entertainment}) {
                                         setupdateentertainmentid(data.entertainment_id)
                                         setupdateheader(data.Header)
                                         setupdatelink(data.link)
+                                        setupdateShortDescription(data.ShortDescription)
                                     }} 
                                     className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                                     Edit

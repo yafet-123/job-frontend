@@ -73,24 +73,24 @@ export function UpdateEntertainment({setupdateModalOn, updateShortDescription, s
                                     Link
                                 </label>
                             </div>
+                        </div>
 
-                            <div className="relative mb-5">
-                                <textarea  
-                                    id="ShortDescription" 
-                                    rows="7" 
-                                    cols="50"
-                                    required 
-                                    className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                                    value={ShortDescription}
-                                    onChange={(e) => setShortDescription(e.target.value)}
-                                />
-                                <label 
-                                    htmlFor="floating_outlined" 
-                                    className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                                >
-                                    ShortDescription
-                                </label>
-                            </div>
+                        <div className="relative mb-5">
+                            <textarea  
+                                id="updateShortDescription" 
+                                rows="7" 
+                                cols="50"
+                                required 
+                                className="block !w-full px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                                value={updateShortDescription}
+                                onChange={(e) => setupdateShortDescription(e.target.value)}
+                            />
+                            <label 
+                                htmlFor="floating_outlined" 
+                                className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            >
+                                ShortDescription
+                            </label>
                         </div>
 
                         <div className="w-full mb-5">
