@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/MainHeader';
 import { DisplayIndvidualNews } from '../components/News/DisplayIndvidualNews';
@@ -90,12 +91,13 @@ export async function getServerSideProps(context){
 }
 
 export default function DisplayNews({news,Alllatestnews, newsCategory}) {
-  console.log(news)
+  const router = useRouter()
+  const shareUrl = router.asPath
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-44 bg-[#ddd0c8] dark:bg-slate-700 pt-32">
-	      <DisplayIndvidualNews news={news} newsCategory={newsCategory} />
+	      <DisplayIndvidualNews news={news} newsCategory={newsCategory} shareUrl={shareUrl} />
         <DisplayLatestNews Alllatestnews={Alllatestnews}/>          
 	    </section>
 	  </React.Fragment>

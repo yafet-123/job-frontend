@@ -3,8 +3,9 @@ import Image from 'next/future/image'
 import moment from 'moment';
 import { useRouter } from 'next/router'
 import 'react-quill/dist/quill.snow.css';
+import { NewsSharing } from './NewsSharing';
 
-export function DisplayIndvidualNews({news, newsCategory}) {
+export function DisplayIndvidualNews({news, newsCategory,shareUrl}) {
 
   	return (
 	    <div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-[70%] px-1 lg:pr-6 lg:pl-32">
@@ -37,6 +38,8 @@ export function DisplayIndvidualNews({news, newsCategory}) {
 
 	            <div className="ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: news.Description }} />
 	        </div>
+
+	        <NewsSharing shareUrl={shareUrl}/>
 	    </div>
   	);
 }
