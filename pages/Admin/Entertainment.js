@@ -38,6 +38,7 @@ export async function getServerSideProps(){
     entertainment_id:data.entertainment_id,
     Header:data.Header,
     link:data.link,
+    ShortDescription:data.ShortDescription,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
     userName:data.User.UserName

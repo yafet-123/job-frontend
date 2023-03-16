@@ -47,6 +47,7 @@ export async function getServerSideProps(context){
 		entertainment_id : data.entertainment_id,
 		Header:data.Header,
 		link:data.link,
+		ShortDescription:data.ShortDescription,
 		CreatedDate:data.CreatedDate,
 		ModifiedDate:data.ModifiedDate,
 		Category:data.EntertainmentCategoryRelationship
@@ -61,6 +62,7 @@ export async function getServerSideProps(context){
 }
 
 export default function Entertemiment({categories,entertainments}){
+	console.log(entertainments)
 	return(
 		<React.Fragment>
       <MainHeader title="Entertemiment" />
