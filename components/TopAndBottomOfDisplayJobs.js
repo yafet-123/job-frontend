@@ -32,15 +32,15 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
   console.log(shareUrl)
    const socialMediaLinks = [
     { path: "", button:"FacebookShareButton", icon:<FacebookIcon size={32} round />},
-    { path: "", button:"FacebookShareButton", icon:<PinterestIcon size={32} round />},
-    { path: "", button:"FacebookShareButton", icon:<RedditIcon size={32} round />},
-    { path: "", button:"FacebookShareButton", icon:<TelegramIcon size={32} round />},
-    { path: "", button:"FacebookShareButton", icon:<TwitterIcon size={32} round />},
-    { path: "", button:"FacebookShareButton", icon:<ViberIcon size={32} round />},
-    { path: "", button:"FacebookShareButton", icon:<WhatsappIcon size={32} round />},
-    { path: "", button:"FacebookShareButton", icon:<LinkedinIcon size={32} round />},
-    { path: "", button:"FacebookShareButton", icon:<FacebookMessengerIcon size={32} round />},
-    { path: "", button:"FacebookShareButton", icon:<EmailIcon size={32} round />},
+    { path: "", button:"PinterestShareButton", icon:<PinterestIcon size={32} round />},
+    { path: "", button:"PinterestShareButton", icon:<RedditIcon size={32} round />},
+    { path: "", button:"PinterestShareButton", icon:<TelegramIcon size={32} round />},
+    { path: "", button:"PinterestShareButton", icon:<TwitterIcon size={32} round />},
+    { path: "", button:"ViberShareButton", icon:<ViberIcon size={32} round />},
+    { path: "", button:"WhatsappShareButton", icon:<WhatsappIcon size={32} round />},
+    { path: "", button:"LinkedinShareButton", icon:<LinkedinIcon size={32} round />},
+    { path: "", button:"FacebookMessengerShareButton", icon:<FacebookMessengerIcon size={32} round />},
+    { path: "", button:"EmailShareButton", icon:<EmailIcon size={32} round />},
   ];
   return (
     <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 px-0 lg:px-10 py-20">
@@ -55,17 +55,105 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
       <div className="flex flex-col lg:flex-row justify-between items-center mb-10">
       	<h1 className="text-black dark:text-white border rounded-lg text-xl font-bold mr-2 mb-5 lg:mb-0 dark:border-slate-700">Share On:</h1>
       	<div className="flex items-center">
-          {socialMediaLinks.map((main, index) => (
-            <div className="mx-1">
-              <FacebookShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'next-share is a social share buttons for your next React apps.'}
-                hashtag={'#nextshare'}
-              >
-                {main.icon}
-              </FacebookShareButton>
-            </div>
-          ))}
+          <div className="mx-1">
+            <FacebookShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
+          </div>
+
+          <div className="mx-1">
+            <PinterestShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <PinterestIcon size={32} round />
+            </PinterestShareButton>
+          </div>
+
+          <div className="mx-1">
+            <RedditShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <RedditIcon size={32} round />
+            </RedditShareButton>
+          </div>
+
+          <div className="mx-1">
+            <TelegramShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <TelegramIcon size={32} round />
+            </TelegramShareButton>
+          </div>
+
+          <div className="mx-1">
+            <TwitterShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <TwitterIcon size={32} round />
+            </TwitterShareButton>
+          </div>
+
+          <div className="mx-1">
+            <ViberShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <ViberIcon size={32} round />
+            </ViberShareButton>
+          </div>
+
+          <div className="mx-1">
+            <WhatsappShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <WhatsappIcon size={32} round />
+            </WhatsappShareButton>
+          </div>
+
+          <div className="mx-1">
+            <LinkedinShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <LinkedinIcon size={32} round />
+            </LinkedinShareButton>
+          </div>
+
+          <div className="mx-1">
+            <FacebookMessengerShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <FacebookMessengerIcon size={32} round />
+            </FacebookMessengerShareButton>
+          </div>
+
+          <div className="mx-1">
+            <EmailShareButton
+              url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+              quote={'Hulu Media is company that shares jobs , entertainment and others'}
+              hashtag={'#huluMedia'}
+            >
+              <EmailIcon size={32} round />
+            </EmailShareButton>
+          </div>
         </div>
       </div>
     </div>
