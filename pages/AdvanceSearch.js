@@ -18,18 +18,16 @@ export default function AdvanceSearch() {
   const [type,settype] = useState(searchtype)
   const advanceSearchList = [
     { type:1 , name: "Job Type" , styleHover:"bg-green-800" , style: "bg-blue-400"},
-    { type:2 , name: "CareerLevel", styleHover:"bg-green-800" , style: "bg-green-400"},
+    { type:2 , name: "Career Level", styleHover:"bg-green-800" , style: "bg-green-400"},
     { type:3 , name: "Company Name" , styleHover:"bg-red-800" , style: "bg-red-400" },
-    { type:4 , name: "Employment Type" , styleHover:"bg-sky-800" , style: "bg-sky-400" },
-    { type:5 , name: "Career Level" , styleHover:"bg-orange-800" , style: "bg-orange-400" },
-    
+    { type:4 , name: "Employment Type" , styleHover:"bg-sky-800" , style: "bg-sky-400" },  
   ];
-
+  
   console.log(getSearchValue)
 
   useEffect(()=>{
     handleSearch()
-  })
+  },[])
 
   async function handleSearch(){
     if(getSearchValue == ""){
@@ -62,7 +60,7 @@ export default function AdvanceSearch() {
       <MainHeader title="AdvanceSearch" />
       <div className="flex flex-col bg-[#ddd0c8] dark:bg-slate-700 pt-32 px-3 lg:px-32">
         <div className="max-w-2xl mx-auto my-10 w-full md:px-0">
-        	<div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 border rounded-2xl">
+        	<div className="flex h-16 w-full border rounded-2xl border-white dark:border-slate-800 border">
             <div className="h-full bg-blue-800 text-white px-3 flex items-center justify-center">
               <AiOutlineSearch size={20} />
             </div>
