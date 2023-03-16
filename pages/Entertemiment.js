@@ -9,13 +9,13 @@ import { prisma } from '../util/db.server.js'
 export async function getServerSideProps(context){
 	const data = await prisma.EntertainmentCategory.findMany({
 		orderBy : {
-      		category_id:'asc'
+      		category_id:'desc'
     	},
 	})
 
 	const entertainments = await prisma.Entertainment.findMany({
 		orderBy : {
-      		CreatedDate:'asc'
+      		entertainment_id:'desc'
     	},
     	include:{
 	      	User:{

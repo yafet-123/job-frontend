@@ -4,8 +4,8 @@ export function ETSidebar({categories}) {
   const router = useRouter()
   const { category_id } = router.query
   return (
-    <div className='flex flex-col justify-between shadow-2xl shadow-zinc-900 bg-[#64748b] lg:bg-[#ddd0c8]' >
-      <ul className="flex flex-row lg:flex-col px-2 lg:pt-5 gap-3 lg:gap-10 lg:h-[50rem] lg:mb-5 w-full lg:w-80 scroll_width">
+    <div className='flex flex-col justify-between shadow-2xl shadow-zinc-900 bg-[#64748b] lg:bg-[#ddd0c8] ' >
+      <ul className="flex flex-row lg:flex-col px-2 lg:pt-5 gap-3 lg:gap-10 lg:h-[50rem] lg:mb-5 w-full lg:w-80 sticky top-0 bottom-0 scroll_width">
         <li className='flex text-center gap-2 transition-none cursor-pointer whitespace-nowrap hover:text-gray-600 lg:pt-5'>
           <button 
             onClick = {()=>{

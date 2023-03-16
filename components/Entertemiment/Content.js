@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 
 export function Content({entertainments}) {
      const [getSearchValue,setgetSearchValue] = useState("")
+     const [isReadMore, setisReadMore] = useState(true)
      const router = useRouter()
      return (
           <div className="w-full h-full mt-10 lg:mt-0">
@@ -71,9 +72,12 @@ export function Content({entertainments}) {
                                </h3>
                             </div>
 
-                            <div  className="!text-black mt-5 font-bold text-md lg:text-lg dark:text-slate-800 text-slate-700"> 
-                                {ShortDescription}
-                            </div>
+                            <p  className="!text-black mt-5 font-normal italic text-sm lg:text-lg dark:text-slate-800 text-slate-500"> 
+                                { isReadMore ? `${ShortDescription.slice(0,100)}...`: ShortDescription}
+                                <button className="text-blue-700 text-lg" onClick={()=> setisReadMore(!isReadMore)}>
+                                    &nbsp; view {isReadMore ? "More" : "Less"}
+                                </button>
+                            </p>
                         </div>
                     ))}
                </div>

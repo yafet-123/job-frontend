@@ -10,7 +10,7 @@ export async function getServerSideProps(){
 
   const entertainments = await prisma.Entertainment.findMany({
     orderBy: {
-      entertainment_id:"asc"
+      entertainment_id:"desc"
     },
     include:{
       User:{
@@ -23,7 +23,7 @@ export async function getServerSideProps(){
 
   const entertainmentcategories = await prisma.EntertainmentCategory.findMany({
     orderBy: {
-      category_id:"asc"
+      category_id:"desc"
     },
     include:{
       User:{
@@ -48,6 +48,7 @@ export async function getServerSideProps(){
       category_id:data.category_id,
       CategoryName:data.CategoryName,
       CreatedDate:data.CreatedDate,
+      ShortDescription:data.ShortDescription,
       ModifiedDate:data.ModifiedDate,
       userName:data.User.UserName
   }))
@@ -62,6 +63,7 @@ export async function getServerSideProps(){
 }
 
 export default function Entertainment({entertainment,categories}) {
+    console.log(entertainment)
     const { status, data } = useSession();
     return (
     	<React.Fragment>
