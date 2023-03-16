@@ -45,7 +45,7 @@ export function SlideNews({allnews}) {
             <div className="flex flex-row justify-between mb-5">
               <h3 className="flex flex-col justify-between">
                 { Category.map((data,index)=>(
-                  <span key={index} className="text-lg lg:text-xl font-bold text-[#444444] mb-5">
+                  <span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2">
                     {data.NewsCategory.CategoryName}
                   </span>
                 ))}

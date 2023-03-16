@@ -33,7 +33,7 @@ export function AllNews({allnews}) {
               <div className="flex flex-row justify-between items-center mb-5">
                 <h3 className="flex flex-col justify-between w-[60%]">
                   { Category.map((data,index)=>(
-                    <span key={index} className="text-xs lg:text-sm font-normal dark:text-white text-black mb-2">
+                    <span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2">
                       {data.NewsCategory.CategoryName}
                     </span>
                   ))}
