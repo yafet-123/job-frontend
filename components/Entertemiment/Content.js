@@ -6,10 +6,15 @@ import { useRouter } from 'next/router'
 
 export function Content({entertainments}) {
      const [getSearchValue,setgetSearchValue] = useState("")
+     const [affectRead, setaffectRead ] = useState()
+     let length = 50
      const [isReadMore, setisReadMore] = useState(true)
      const router = useRouter()
+     const toggleReadMore = () => {
+        setisReadMore(!isReadMore);
+    };
      return (
-          <div className="w-full h-full mt-10 lg:mt-0">
+          <div className="w-full h-full my-20 lg:mt-0">
                <div className="w-full px-3 lg:px-20 mb-5">
                      <div className="flex flex-col lg:flex-row w-full">
                          <div className="relative flex-1">
@@ -73,8 +78,8 @@ export function Content({entertainments}) {
                             </div>
 
                             <p  className="!text-black mt-5 font-normal italic text-sm lg:text-lg dark:text-slate-800 text-slate-500"> 
-                                { isReadMore ? `${ShortDescription.slice(0,100)}...`: ShortDescription}
-                                <button className="text-blue-700 text-lg" onClick={()=> setisReadMore(!isReadMore)}>
+                                { isReadMore ? `${ShortDescription.slice(0,length)}...`: ShortDescription}
+                                <button className="text-slate-700 text-sm lg:text-lg" onClick={toggleReadMore}>
                                     &nbsp; view {isReadMore ? "More" : "Less"}
                                 </button>
                             </p>
