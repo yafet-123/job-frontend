@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/future/image';
-import Mission from '../../public/images/aboutBackground.jpg';
+import About from '../../public/images/logo1.png';
+import Mission from '../../public/images/mission.avif';
+import Vision from '../../public/images/vision.jpg';
 
 export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
   const FollowingTheDreamData = [
@@ -22,25 +24,17 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
   ];
   return (
     <React.Fragment>
-      <div className="grid md:grid-cols-2 grid-cols-1 md:gap-16 gap-8 md:my-32 my-16 md:px-16 px-4">
-        <div className="flex flex-col justify-around gap-4">
-          <div>
-            <Image
-              src={Mission}
-              alt="sustainablity background"
-              //   fill
-              priority
-              width={500}
-              height={200}
-              className="md:w-full rounded-lg shadow-md shadow-slate-800"
-            />
-          </div>
+      <div className="flex flex-col lg:flex-row items-center md:my-20 my-16 md:px-16 px-4">
+        <div className="w-full !h-32 lg:!h-64 relative">
+          <Image
+            src={About}
+            fill
+            className="!bg-cover w-full !h-full"
+            alt="latest news image"
+          />
         </div>
-        <div className="flex flex-col text-left justify-center gap-4 text-[#165248]">
-          <h1 className="md:text-5xl font-bold text-3xl">
-            We are Hulu Media
-          </h1>
-          <p className="md:text-2xl font-semibold text-md text-lg">
+        <div className="flex flex-col text-left justify-center lg:w-3/4  text-[#165248]">
+          <p className="md:text-2xl font-semibold text-md text-lg text-left">
             Hulumedia is one the most online recruitment provider in ethiopia, 
             The website advertises jobs across a wide range of job types by different employers, 
             inlcuding private, local, international, who are hiring in ethiopia.
@@ -48,44 +42,35 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-8 text-justify ">
-        <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-start md:mt-32 gap-4 md:p-20 p-2 text-white text-left bg-[#165248]">
-          <div className="order-last md:order-first md:-mt-40 mt-0">
-            <Image
-              src={Mission}
-              alt="sustainablity background"
-              //   fill
-              priority
-              width={500}
-              height={400}
-              className="md:h-full md:w-auto rounded-sm shadow-md shadow-slate-800"
-            />
-          </div>
-
-          <div className="flex gap-8 flex-col">
-            <h1 className="md:text-5xl font-bold text-4xl mt-6">OUR VISION</h1>
+      <div className="flex flex-col md:px-16 px-2 text-center">
+        <div className="flex flex-col lg:flex-row justify-between">
+          <div className="flex flex-col justify-between lg:px-10">
+            <div className="w-full !h-52 lg:!h-72 opacity-50 relative">
+              <Image
+                src={Mission}
+                fill
+                className="!bg-cover w-full !h-full"
+                alt="latest news image"
+              />
+            </div>
+            <h1 className="md:text-5xl font-bold text-4xl my-10">OUR VISION</h1>
             <p className="md:text-2xl md:font-semibold text-md text-lg">
               We are proud to offer excellent quality and value for money in our
               tours, which give you the chance to experience your chosen
               destination in an authentic and exciting way.
             </p>
           </div>
-        </div>
-        <div className="my-16 grid md:grid-cols-2 grid-cols-1 items-center  justify-center md:p-20 md:mt-12 md:mb-32 gap-4 p-2 text-[#165248] text-left">
-          <div className="order-first md:order-last md:-mb-40">
-            <Image
-              src={Mission}
-              alt="sustainablity background"
-              //   fill
-              priority
-              width={500}
-              height={400}
-              className="md:h-full md:w-auto rounded-sm shadow-md shadow-slate-800"
-            />
-          </div>
-
-          <div className="flex gap-8 flex-col">
-            <h1 className="md:text-5xl font-bold text-4xl mt-6">OUR MISSION</h1>
+      
+          <div className="flex flex-col justify-between lg:px-10">
+            <div className="w-full !h-52 lg:!h-72 opacity-50 relative">
+              <Image
+                src={Vision}
+                fill
+                className="!bg-cover w-full !h-full"
+                alt="latest news image"
+              />
+            </div>
+            <h1 className="md:text-5xl font-bold text-4xl my-10">OUR MISSION</h1>
             <p className="md:text-2xl md:font-semibold text-md text-lg">
               Our mission is to provide the ultimate travel planning experience
               while becoming a one-stop shop for every travel service available
@@ -118,7 +103,7 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 text-[#165248] my-16">
+      <div className="flex flex-col gap-4 text-[#165248] my-5 px-4">
         <h1 className="md:text-5xl font-bold text-4xl text-center m-6">
           What Makes Us Different?
         </h1>
