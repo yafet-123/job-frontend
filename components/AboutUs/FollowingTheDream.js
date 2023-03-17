@@ -2,22 +2,22 @@ import React from 'react'
 import Image from 'next/future/image';
 import Mission from '../../public/images/aboutBackground.jpg';
 
-export const FollowingTheDream = () => {
+export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
   const FollowingTheDreamData = [
     {
     id: 1,
-    numbers: 200,
-    title: 'Happy Travelers',
+    numbers: jobcount,
+    title: 'Jobs',
   },
   {
     id: 2,
-    numbers: 20,
-    title: 'Destinations',
+    numbers: newCount,
+    title: 'News',
   },
   {
     id: 3,
-    numbers: 5,
-    title: 'Team Members',
+    numbers: entertainmentcount,
+    title: 'Entertainment',
   },
   ];
   return (

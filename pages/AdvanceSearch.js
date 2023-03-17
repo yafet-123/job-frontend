@@ -22,7 +22,7 @@ export default function AdvanceSearch() {
     { type:3 , name: "Company Name" , styleHover:"bg-red-800" , style: "bg-red-400" },
     { type:4 , name: "Employment Type" , styleHover:"bg-sky-800" , style: "bg-sky-400" },  
   ];
-  
+
   console.log(getSearchValue)
 
   useEffect(()=>{

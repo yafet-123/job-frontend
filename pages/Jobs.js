@@ -5,6 +5,7 @@ import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/MainHeader';
 import { Hero } from "../components/jobs/Hero";
 import { Searchjobs } from "../components/jobs/Searchjobs";
+
 export async function getServerSideProps(){
   const categories = await prisma.Category.findMany({
     include:{
