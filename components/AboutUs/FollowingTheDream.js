@@ -33,7 +33,7 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
             alt="latest news image"
           />
         </div>
-        <div className="flex flex-col text-left justify-center lg:w-3/4  text-[#165248]">
+        <div className="flex flex-col text-left justify-center lg:w-3/4  text-[#165248] dark:text-white">
           <p className="md:text-2xl font-semibold text-md text-lg text-left">
             Hulumedia is one the most online recruitment provider in ethiopia, 
             The website advertises jobs across a wide range of job types by different employers, 
@@ -80,7 +80,7 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-around items-center bg-[#165248] my-16">
+      <div className="flex flex-col justify-around items-center bg-[#165248] dark:bg-slate-800 my-16">
         <h1 className="md:text-5xl font-bold text-4xl text-center text-white mt-6">
           Following the Dream
         </h1>
@@ -103,7 +103,7 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 text-[#165248] my-5 px-4">
+      <div className="flex flex-col gap-4 text-[#165248] dark:text-white my-5 px-4">
         <h1 className="md:text-5xl font-bold text-4xl text-center m-6">
           What Makes Us Different?
         </h1>
