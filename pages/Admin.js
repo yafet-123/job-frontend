@@ -29,37 +29,23 @@ export async function getServerSideProps(){
       userName:data.User.UserName
   }))
 
-  const locations = await prisma.Location.findMany({
-    orderBy: {
-      location_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  });
+  const jobs = await prisma.Job.count()
 
-  const Alllocations = locations.map((data)=>({
-      location_id:data.location_id,
-      LocationName:data.LocationName,
-      Image:data.Image,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
+  const news = await prisma.News.count()
+
+  const entertainments = await prisma.Entertainment.count()
 
   return{
     props:{
       categorie:JSON.parse(JSON.stringify(Allcategories)),
-      locations:JSON.parse(JSON.stringify(Alllocations)),
+      jobs:JSON.parse(JSON.stringify(jobs)),
+      news:JSON.parse(JSON.stringify(news)),
+      entertainments:JSON.parse(JSON.stringify(entertainments)),
     }
   }
 }
 
-export default function Admin({categories, locations}) {
+export default function Admin({categories}){
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
   // console.log(jobCategory)
@@ -73,13 +59,14 @@ export default function Admin({categories, locations}) {
       setselected(newValue);
   }
   // if (status === "authenticated")
+
     return (
       <React.Fragment>
         <MainHeader title="Admin" />
         <div className="flex bg-[#ddd0c8] dark:bg-slate-700 pt-10">
           <VerticalNavbar onChange={handleChange} data={data} />
           <div className="w-full">
-            <DashBoard categories={categories} locations={locations} />
+            <DashBoard categories={categories} />
           </div>
         </div>
       </React.Fragment>
