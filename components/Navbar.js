@@ -43,7 +43,7 @@ export function Navbar() {
   return (
     <nav
       className={ router.pathname == "/auth/signin" || router.pathname == '/Forgotpassword' ? "hidden" : `${
-        colorChange ? 'bg-[#e6e6e6] bg-opacity-80 dark:bg-slate-800 border border-b-4  ' : `${open ? 'bg-[#e6e6e6] bg-opacity-80 dark:bg-slate-800' : 'bg-transparent'}`
+        colorChange ? 'bg-[#e6e6e6] bg-opacity-80 dark:bg-opacity-80 dark:bg-[#02201D] border-b-2 border-slate-700' : `${open ? 'bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D]' : 'bg-transparent'}`
       } w-full   lg:h-[80px] top-0 fixed z-50`}
     >
       <div className="lg:justify-between justify-around lg:px-4 mx-2 lg:mx-10 items-center lg:flex lg:py-[10px] ">
@@ -61,9 +61,9 @@ export function Navbar() {
               onClick={() => setOpen(!open)}
             >
               {open === true ? (
-                <AiOutlineClose className="text-dark dark:text-white" size={30} />
+                <AiOutlineClose className="text-white" size={30} />
               ) : (
-                <AiOutlineMenu className="text-dark dark:text-white" size={30} />
+                <AiOutlineMenu className="text-white" size={30} />
               )}
             </button>
           </div>
@@ -95,8 +95,8 @@ export function Navbar() {
                         ( router.pathname == "/Advice" && "/Advices" == link.path ) || ( router.pathname == "/DisplayNews" && "/News" == link.path ) ||
                         ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path ) ||
                         ( router.pathname == "/Search" && "/Entertemiment" == link.path )
-                          ? "border-b-4 border-[#009688] text-[#009688] dark:border-white md:ml-2 lg:ml-3 text-md lg:text-xl font-extrabold"
-                          : "md:ml-2 lg:ml-3 text-md lg:text-xl font-extrabold hover:border-b-4 border-[#009688] dark:border-white"
+                          ? "border-b-4 border-[#009688] text-[#009688] dark:border-[#009688] md:ml-2 lg:ml-3 text-md lg:text-lg font-extrabold"
+                          : "md:ml-2 lg:ml-3 text-md lg:text-lg font-extrabold hover:border-b-4 border-[#009688] dark:border-[#009688]"
                       }
                     >
                       {link.name}

@@ -10,30 +10,23 @@ export function Searchjobs({categories,locations,latestjobs}) {
   const router = useRouter();
   const [jobs, setJobs] = useState("latest");
   return (
-    <div className="px-0 md:px-24 bg-[#d1cbc7] dark:bg-slate-800 pt-10 lg:pt-16">
-      <div className="flex flex-row justify-between items-center h-full lg:h-16 w-full mb-5 lg:mb-10 px-2 lg:px-10">
-        <h1 className="text-black dark:text-white font-light text-md md:text-3xl lg:text-4xl capitalize text-center w-2/4">
+    <div className="px-0 md:px-24 bg-[#e6e6e6] dark:bg-[#02201D] pt-5">
+      <div className="flex flex-row justify-between items-center h-full lg:h-16 w-full mb-5 px-2 lg:px-0">
+        <h1 className="font-semibold text-[#009688] dark:text-white text-md md:text-3xl lg:text-4xl capitalize w-full">
           Search and Find Jobs in Ethiopia
         </h1>
-
-        <button 
-          className={`font-bold text-xs md:text-xl lg:text-2xl text-white p-2 lg:p-4 bg-green-400 capitalize border rounded-2xl w-1/4`} 
-          onClick={() => router.push("/AdvanceSearch")}
-        >
-         Advance Search
-        </button>
       </div>
       
       <hr className="w-full bg-gray-200 mb-5" />
 
-      <div className="flex w-full h-[25rem] lg:h-[45rem] bg-neutral-100 dark:bg-slate-800 border rounded-xl p-5">
+      <div className="flex w-full h-[25rem] lg:h-[45rem] bg-neutral-100 dark:bg-[#1B2637] border rounded-xl p-5">
         <div className="flex-1 border rounded-xl shadow-2xl shadow-zinc-900 border-slate-800 dark:border-slate-800 lg:p-5">
           <div className="w-full h-full overflow-y-scroll">
             {jobs == "latest" && (
               <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5 py-10">
                 {latestjobs.map((data, index) => (
                   <button
-                    className="flex justify-between items-center mb-3 group hover:bg-neutral-500 px-2 lg:px-4 py-2 w-full"
+                    className="flex justify-between items-center mb-3 group hover:bg-[#009688] px-2 lg:px-4 py-2 w-full"
                     key={index}
                     type = "button"
                     onClick = {()=>{
@@ -44,7 +37,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                     }}
                   >
                     <div className="flex flex-col w-2/4 lg:w-3/4">
-                      <h1 className="font-normal text-sm lg:text-lg text-blue-500 dark:text-white group-hover:text-white text-left">
+                      <h1 className="font-normal text-sm lg:text-lg text-[#009688] group-hover:text-white text-left">
                         {data.JobsType}
                       </h1>
                       <h1 className="font-light text-xs lg:text-sm text-black dark:text-white group-hover:text-white text-left">
@@ -68,7 +61,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
                 {locations.map((data, index) => (
                   <button
-                    className="w-full flex items-center mb-3 group hover:bg-neutral-500 px-2 lg:px-4 py-2"
+                    className="w-full flex items-center mb-3 group hover:bg-[#009688] px-2 lg:px-4 py-2"
                     key={index}
                     type = "button"
                     onClick = {()=>{
@@ -83,7 +76,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                       <h1 className="text-black dark:text-white font-normal text-xs md:text-lg lg:text-xl capitalize group-hover:text-white mb-5">
                         jobs in {data.LocationName}
                       </h1>
-                      <h1 className="text-black dark:text-white text-left text-blue-800 font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:border-orange-200">
+                      <h1 className="text-black dark:text-white text-left text-[#009688] font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:border-white">
                         {data._count.Job}
                       </h1>
                     </div>
@@ -96,7 +89,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
                 {categories.map((data, index) => (
                   <button
-                    className="flex justify-between items-center mb-3 group hover:bg-neutral-500 px-2 lg:px-4 py-2 w-full"
+                    className="flex justify-between items-center mb-3 group hover:bg-[#009688] px-2 lg:px-4 py-2 w-full"
                     key={index}
                     type = "button"
                     onClick = {()=>{
@@ -109,7 +102,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                     <h1 className="w-2/4 lg:w-3/4 text-left text-black dark:text-white font-normal text-xs md:text-lg lg:text-xl capitalize group-hover:text-white">
                       {data.CategoryName}
                     </h1>
-                    <h1 className="w-1/4 px-2 lg:px-5 py-2 text-black dark:text-white border rounded-xl border-gray-200 text-blue-800 font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:border-orange-200">
+                    <h1 className="w-1/4 px-2 lg:px-5 py-2 text-black dark:text-white border rounded-xl border-[#009688] text-[#009688] font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:border-white">
                       {data._count.JobCategory}
                     </h1>
                   </button>
@@ -124,8 +117,8 @@ export function Searchjobs({categories,locations,latestjobs}) {
             onClick={(e) => setJobs("latest")}
             className={
               jobs == "latest"
-                ? "py-3 bg-neutral-600 dark:bg-slate-800 px-6 border border-slate-300 flex items-center text-white hover:bg-white hover:text-black dark:border-none -ml-1"
-                : "py-3 bg-gray-200 dark:bg-slate-600 border-4 border-y-white dark:border-slate-700 flex items-center hover:bg-neutral-500 hover:text-white"
+                ? "py-3 bg-[#009688] px-6 border border-slate-300 flex items-center text-white dark:border-none hover:font-bold -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-600 border-4 border-y-white dark:border-slate-700 flex items-center hover:bg-white hover:text-black"
             }
           >
             <span className="font-bold text-md lg:text-lg">
@@ -140,8 +133,8 @@ export function Searchjobs({categories,locations,latestjobs}) {
             onClick={(e) => setJobs("category")}
             className={
               jobs == "category"
-                ? "py-3 bg-neutral-600 dark:bg-slate-800 px-6 border border-slate-300 flex items-center text-white hover:bg-white hover:text-black dark:border-none -ml-1"
-                : "py-3 bg-gray-200 dark:bg-slate-600 border-4 border-y-white dark:border-slate-700 flex items-center hover:bg-neutral-500 hover:text-white"
+                ? "py-3 bg-[#009688] px-6 border border-slate-300 flex items-center text-white dark:border-none hover:font-bold -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-600 border-4 border-y-white dark:border-slate-700 flex items-center hover:bg-white hover:text-black"
             }
           >
             <span className="font-bold text-md lg:text-lg">
@@ -155,8 +148,8 @@ export function Searchjobs({categories,locations,latestjobs}) {
             onClick={(e) => setJobs("location")}
             className={
               jobs == "location"
-                ? "py-3 bg-neutral-600 dark:bg-slate-800 px-6 border border-slate-300 flex items-center text-white hover:bg-white hover:text-black dark:border-none -ml-1"
-                : "py-3 bg-gray-200 dark:bg-slate-600 border-4 border-y-white dark:border-slate-700 flex items-center hover:bg-neutral-500 hover:text-white"
+                ? "py-3 bg-[#009688] px-6 border border-slate-300 flex items-center text-white dark:border-none hover:font-bold -ml-1"
+                : "py-3 bg-gray-200 dark:bg-slate-600 border-4 border-y-white dark:border-slate-700 flex items-center hover:bg-white hover:text-black"
             }
           >
             <span className="font-bold text-md lg:text-lg">

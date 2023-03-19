@@ -35,13 +35,13 @@ export function Hero() {
 
 
   return (
-    <div className="w-full h-[20rem] lg:h-[25rem] bg-[#e6e6e6] bg-opacity-100 dark:bg-slate-700 relative">
+    <div className="w-full h-[20rem] lg:h-[25rem] bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D] relative">
       <div className="absolute top-0 lg:top-20 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
-        <h1 className={`px-3 lg:px-0 text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl italic text-[#445960] opacity-100`}>
+        <h1 className={`px-3 lg:px-0 text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl italic text-[#445960] dark:text-white opacity-100`}>
           All Ethiopian Jobs in One Place.
         </h1>
 
-        <h5 className="italic text-sm mb-3 lg:mb-10 font-bold md:text-lg text-center lg:text-2xl text-[#445960] opacity-100">
+        <h5 className="italic text-sm mb-3 lg:mb-10 font-bold md:text-lg text-center lg:text-2xl text-[#445960] opacity-100 dark:text-white">
           Find career opportunities in Ethiopia
         </h5>
         
@@ -51,7 +51,7 @@ export function Hero() {
               value={searchValue}   
               placeholder="Carer level, Job Type, Company Name , Employment type"                         
               onChange={(e) => setsearchValue(e.target.value)}
-              className="placeholder:font-bold mb-5 lg:mb-0 duration-1000 ease-in-out h-16 focus:w-full w-[90%] lg:w-1/2 bg-white outline-none md:pl-2 text-sm lg:text-lg border border[#009688] border-l-2 rounded-xl mr-2" 
+              className="text-black dark:text-white placeholder:font-bold mb-5 lg:mb-0 duration-1000 ease-in-out h-16 focus:w-full w-[90%] lg:w-[70%] bg-white dark:bg-[#1B2637] outline-none md:pl-2 text-sm lg:text-lg border border[#009688] border-l-2 rounded-xl mr-2" 
             />
 
             <div className="h-16 bg-[#009688] text-white lg:px-3 flex items-center justify-center border border[#009688] border-l-2 rounded-xl px-5">
@@ -61,7 +61,7 @@ export function Hero() {
                   pathname: '/AdvanceSearch',
                   query: { searchName: searchValue, searchtype: 1 },
                 })} 
-                className="text-xs md:text-xl text-white bg-[#009688] lg:px-3 flex items-center justify-center "
+                className="font-bold text-xs md:text-xl text-white bg-[#009688] lg:px-3 flex items-center justify-center "
               >
                 Search
               </button>

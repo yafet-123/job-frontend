@@ -14,9 +14,9 @@ const ThemeToggler = () => {
       aria-label="Toggle Dark Mode"
     >
       {theme === 'light' ? (
-        <BsSun className="text-blue-500 dark:text-white w-8 h-8" />
+        <BsSun className="text-black dark:text-white w-5 h-5" />
       ) : (
-        <BsMoonStars className="text-blue-500 dark:text-white w-8 h-8" />
+        <BsMoonStars className="text-black dark:text-white w-5 h-5" />
       )}
     </button>
   );

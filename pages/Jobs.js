@@ -77,7 +77,7 @@ export default function Jobs({categories, locations, latestjobs}) {
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : Jobs" />
-      <section className="flex flex-col w-full h-full py-0 lg:py-20 pt-32 bg-[#e6e6e6] dark:bg-slate-700">
+      <section className="flex flex-col w-full h-full py-0 lg:py-20 pt-32 bg-[#e6e6e6] dark:bg-[#02201D]">
         <Hero />
         <Searchjobs categories={categories} locations={locations} latestjobs={latestjobs} />
       </section>
