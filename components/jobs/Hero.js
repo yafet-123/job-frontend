@@ -51,7 +51,7 @@ export function Hero() {
               value={searchValue}   
               placeholder="Carer level, Job Type, Company Name , Employment type"                         
               onChange={(e) => setsearchValue(e.target.value)}
-              className="mb-5 lg:mb-0 duration-1000 ease-in-out delay-500 h-16 focus:w-full w-[90%] lg:w-1/2 bg-white outline-none md:pl-2 text-sm lg:text-lg border border[#009688] border-l-2 rounded-xl mr-2" 
+              className="placeholder:font-bold mb-5 lg:mb-0 duration-1000 ease-in-out h-16 focus:w-full w-[90%] lg:w-1/2 bg-white outline-none md:pl-2 text-sm lg:text-lg border border[#009688] border-l-2 rounded-xl mr-2" 
             />
 
             <div className="h-16 bg-[#009688] text-white lg:px-3 flex items-center justify-center border border[#009688] border-l-2 rounded-xl px-5">
