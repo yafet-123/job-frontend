@@ -61,9 +61,9 @@ export function Navbar() {
               onClick={() => setOpen(!open)}
             >
               {open === true ? (
-                <AiOutlineClose className="text-white" size={30} />
+                <AiOutlineClose className="text-black dark:text-white" size={30} />
               ) : (
-                <AiOutlineMenu className="text-white" size={30} />
+                <AiOutlineMenu className="text-black dark:text-white" size={30} />
               )}
             </button>
           </div>
