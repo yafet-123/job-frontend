@@ -8,9 +8,9 @@ const Description = ({ShortDescription})=>{
     let length = 100
     const [isReadMore, setisReadMore] = useState(true)
     return(
-        <p  className=" mt-5 font-normal italic text-sm lg:text-lg dark:text-slate-800 text-black"> 
-            {ShortDescription.substring(0, isReadMore ? length : undefined)}...
-            <button className="text-slate-700 text-sm lg:text-lg mx-2" onClick={() => setisReadMore((isReadMore) => !isReadMore)}>
+        <p  className=" mt-5 font-normal italic text-sm lg:text-lg dark:text-white text-black"> 
+            {ShortDescription?.substring(0, isReadMore ? length : undefined)}...
+            <button className="text-slate-700 dark:text-white text-sm lg:text-lg mx-2" onClick={() => setisReadMore((isReadMore) => !isReadMore)}>
                 {isReadMore ? "Read More" : "Read Less"}
             </button>
         </p>
@@ -31,13 +31,13 @@ export function Content({entertainments}) {
                              <input 
                                  id="search" 
                                  type="text" 
-                                 className="block w-full px-2 lg:px-3 text-md lg:text-xl text-black dark:text-white bg-[#ddd0c8] py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                                 className="block w-full px-2 lg:px-3 text-md lg:text-xl text-black dark:text-white bg-[#e6e6e6] dark:bg-[#02201D] py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#009688] focus:outline-none focus:ring-0 focus:border-[#009688] peer" placeholder=" "
                                  value={getSearchValue}
                                  onChange={(e) => setgetSearchValue(e.target.value)}
                              />
                              <label 
                                  htmlFor="floating_outlined" 
-                                 className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#ddd0c8] dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                                 className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#e6e6e6] dark:bg-[#02201D] px-2 peer-focus:px-2 peer-focus:text-[#009688] peer-focus:dark:text-[#009688] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                              >
                                  Search
                              </label>
@@ -51,7 +51,7 @@ export function Content({entertainments}) {
                                           query:{searchValue:getSearchValue}
                                         })
                                     }}
-                                    className="flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-md lg:text-xl px-2 lg:px-4 py-4 text-center inline-flex items-center"
+                                    className="flex justify-between rounded-xl w-32 text-white bg-[#009688] hover:font-bold focus:ring-4 focus:ring-[#009688] font-medium text-md lg:text-xl px-2 lg:px-4 py-4 text-center inline-flex items-center"
                                 >
                                      <span className="mr-1">Search</span>
                                  </button>
@@ -81,7 +81,7 @@ export function Content({entertainments}) {
                                          </span>
                                     ))}
                                </h3>
-                               <h3 className="font-bold text-sm lg:text-md dark:text-slate-800 text-slate-700">
+                               <h3 className="font-bold text-sm lg:text-md dark:text-white text-slate-700">
                                    {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                                </h3>
                             </div>
