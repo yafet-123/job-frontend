@@ -31,6 +31,15 @@ export async function getServerSideProps(){
 
   const jobs = await prisma.Job.count()
 
+  const groupBy = await prisma.News.groupBy({
+    by: ['user_id'],
+    _count: {
+      news_id: true,
+    },
+  })
+
+  console.log(groupBy)
+
   const news = await prisma.News.count()
 
   const entertainments = await prisma.Entertainment.count()
@@ -45,15 +54,27 @@ export async function getServerSideProps(){
   }
 }
 
-export default function Admin({categories}){
+export default function Admin({categories,jobs,news,entertainments}){
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
-  // console.log(jobCategory)
   const router = useRouter();
-  // useEffect(() => {
-  //   if (status === "unauthenticated") router.replace("/auth/signin");
-  // }, [status]);
+  const file = []
 
+  const [barChartData, setbarChartData] = useState({
+    labels: file.map((data) => data.id),
+    datasets: [
+      {
+        label: "Jobs",
+        data: file.map((data) => data.Number),
+        backgroundColor: [
+          "#00008b",
+          "#ffc0cb",
+        ],
+        borderColor: "black",
+        borderWidth: 2,
+      },
+    ],
+  });
 
   function handleChange(newValue) {
       setselected(newValue);

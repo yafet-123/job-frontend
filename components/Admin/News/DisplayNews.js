@@ -44,22 +44,22 @@ export function DisplayNews({news, categories}) {
                         <tbody className="divide-y divide-gray-100">
                             {news.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
-                                    <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700">
                                         <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.news_id}</p>
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         <Image src={data.image == "" || data.image == null ? "/images/logo2.png" : data.image} width={50} height={50} alt="image that will be displayed" />
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         {data.Header}
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         {data.userName}
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         <button
                                             onClick={() => {
                                                 clickedForupdate()

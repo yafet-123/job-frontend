@@ -43,15 +43,15 @@ export function Navbar() {
   return (
     <nav
       className={ router.pathname == "/auth/signin" || router.pathname == '/Forgotpassword' ? "hidden" : `${
-        colorChange ? 'bg-white bg-opacity-80 dark:bg-slate-800 ' : `${open ? 'bg-white bg-opacity-80 dark:bg-slate-800' : 'bg-transparent'}`
-      } w-full   lg:h-[110px] top-0 fixed z-50`}
+        colorChange ? 'bg-[#e6e6e6] bg-opacity-80 dark:bg-slate-800 ' : `${open ? 'bg-[#e6e6e6] bg-opacity-80 dark:bg-slate-800' : 'bg-transparent'}`
+      } w-full   lg:h-[80px] top-0 fixed z-50`}
     >
       <div className="lg:justify-between justify-around lg:px-4 mx-2 lg:mx-10 items-center lg:flex lg:py-[10px] ">
         <div className="flex items-center justify-between py-3 ">
           <Link href="/">
             <Image
-              src="/images/logo2.png"
-              width={300} height={90}
+              src="/images/logo1.png"
+              width={150} height={50}
               alt="Navbar"
             />
           </Link>
@@ -76,7 +76,7 @@ export function Navbar() {
             }`}
           >
             <ul className={`${
-              colorChange ? 'text-[#000] dark:text-white' : 'text-blue-500 dark:text-white lg:dark:text-white' } 
+              colorChange ? 'text-[#000] dark:text-white' : 'text-[#445960] opacity-100 opacity-50 dark:text-white lg:dark:text-white' } 
               items-center justify-center space-y-8 lg:flex lg:space-x-8 lg:space-y-0 `}
             >
               {NavbarTopic.map((link) => (
@@ -95,8 +95,8 @@ export function Navbar() {
                         ( router.pathname == "/Advice" && "/Advices" == link.path ) || ( router.pathname == "/DisplayNews" && "/News" == link.path ) ||
                         ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path ) ||
                         ( router.pathname == "/Search" && "/Entertemiment" == link.path )
-                          ? "border-b-4 border-blue-700 dark:border-white md:ml-2 lg:ml-3 text-lg lg:text-2xl font-extrabold"
-                          : "md:ml-2 lg:ml-3 text-lg lg:text-2xl font-extrabold hover:border-b-4 border-blue-500 dark:border-white"
+                          ? "border-b-4 border-[#009688] text-[#009688] dark:border-white md:ml-2 lg:ml-3 text-md lg:text-xl font-extrabold"
+                          : "md:ml-2 lg:ml-3 text-md lg:text-xl font-extrabold hover:border-b-4 border-[#009688] dark:border-white"
                       }
                     >
                       {link.name}

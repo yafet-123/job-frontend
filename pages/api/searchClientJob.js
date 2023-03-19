@@ -2,144 +2,60 @@ import { prisma } from '../../util/db.server.js'
 
 export default async function handlesearchclientjob(req, res){
     const { searchName, type } = req.body
-    console.log(req.body)
-    if (type == 1) {
-        const searchData = await prisma.Job.findMany({
-            where: {
-                JobsType: {
-                    contains: searchName,
-                    mode: "insensitive",
+    const searchData = await prisma.Job.findMany({
+        where: {
+            OR:[
+                {
+                    JobsType: {
+                        contains: searchName,
+                        mode: "insensitive",
+                    },
                 },
-            },
-            include:{
-                User:{
-                    select:{
-                        UserName:true
-                    }
+                {
+                    CareerLevel: {
+                        contains: searchName,
+                        mode: "insensitive",
+                    },
+                },
+                {
+                    CompanyName: {
+                        contains: searchName,
+                        mode: "insensitive",
+                    },
+                },
+                {
+                    EmploymentType: {
+                        contains: searchName,
+                        mode: "insensitive",
+                    },
+                },
+            ]
+        },
+        include:{
+            User:{
+                select:{
+                    UserName:true
                 }
             }
-        })
+        }
+    })
 
-        const AllData = searchData.map((data)=>({
-            job_id:data.job_id,
-            CompanyName:data.CompanyName,
-            JobsType:data.JobsType,
-            CareerLevel:data.CareerLevel,
-            EmploymentType:data.EmploymentType,
-            Salary:data.Salary,
-            DeadLine:data.DeadLine,
-            Apply:data.Apply,
-            JobsDescreption:data.JobsDescreption,
-    		JobsRequirement:data.JobsRequirement,
-            CreatedDate:data.CreatedDate,
-            ModifiedDate:data.ModifiedDate,
-            userName:data.User.UserName
-        }))
+    const AllData = searchData.map((data)=>({
+        job_id:data.job_id,
+        CompanyName:data.CompanyName,
+        JobsType:data.JobsType,
+        CareerLevel:data.CareerLevel,
+        EmploymentType:data.EmploymentType,
+        Salary:data.Salary,
+        DeadLine:data.DeadLine,
+        Apply:data.Apply,
+        JobsDescreption:data.JobsDescreption,
+    	JobsRequirement:data.JobsRequirement,
+        CreatedDate:data.CreatedDate,
+        ModifiedDate:data.ModifiedDate,
+        userName:data.User.UserName
+    }))
 
-        res.json(AllData)
-
-    } else if(type == 2){
-        const searchData = await prisma.Job.findMany({
-            where: {
-                CareerLevel: {
-                    contains: searchName,
-                    mode: "insensitive",
-                },
-            },
-            include:{
-                User:{
-                    select:{
-                        UserName:true
-                    }
-                }
-            }
-        })
-
-        const AllData = searchData.map((data)=>({
-            job_id:data.job_id,
-            CompanyName:data.CompanyName,
-            JobsType:data.JobsType,
-            CareerLevel:data.CareerLevel,
-            EmploymentType:data.EmploymentType,
-            Salary:data.Salary,
-            DeadLine:data.DeadLine,
-            Apply:data.Apply,
-            JobsDescreption:data.JobsDescreption,
-    		JobsRequirement:data.JobsRequirement,
-            CreatedDate:data.CreatedDate,
-            ModifiedDate:data.ModifiedDate,
-            userName:data.User.UserName
-        }))
-
-        res.json(AllData)
-    } else if(type == 3){
-        const searchData = await prisma.Job.findMany({
-            where: {
-                CompanyName: {
-                    contains: searchName,
-                    mode: "insensitive",
-                },
-            },
-            include:{
-                User:{
-                    select:{
-                        UserName:true
-                    }
-                }
-            }
-        })
-
-        const AllData = searchData.map((data)=>({
-            job_id:data.job_id,
-            CompanyName:data.CompanyName,
-            JobsType:data.JobsType,
-            CareerLevel:data.CareerLevel,
-            EmploymentType:data.EmploymentType,
-            Salary:data.Salary,
-            DeadLine:data.DeadLine,
-            Apply:data.Apply,
-            JobsDescreption:data.JobsDescreption,
-    		JobsRequirement:data.JobsRequirement,
-            CreatedDate:data.CreatedDate,
-            ModifiedDate:data.ModifiedDate,
-            userName:data.User.UserName
-        }))
-
-        res.json(AllData)
-    } else if (type == 4){
-        const searchData = await prisma.Job.findMany({
-            where: {
-                EmploymentType: {
-                    contains: searchName,
-                    mode: "insensitive",
-                },
-            },
-            include:{
-                User:{
-                    select:{
-                        UserName:true
-                    }
-                },
-            }
-        })
-
-        const AllData = searchData.map((data)=>({
-            job_id:data.job_id,
-            CompanyName:data.CompanyName,
-            JobsType:data.JobsType,
-            CareerLevel:data.CareerLevel,
-            EmploymentType:data.EmploymentType,
-            Salary:data.Salary,
-            DeadLine:data.DeadLine,
-            Apply:data.Apply,
-            JobsDescreption:data.JobsDescreption,
-            JobsRequirement:data.JobsRequirement,
-            CreatedDate:data.CreatedDate,
-            ModifiedDate:data.ModifiedDate,
-            userName:data.User.UserName
-        }))
-
-        res.json(AllData)
-    }
+    res.json(AllData)
 
 }
