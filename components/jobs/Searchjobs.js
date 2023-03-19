@@ -10,7 +10,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
   const router = useRouter();
   const [jobs, setJobs] = useState("latest");
   return (
-    <div className="px-0 md:px-24 bg-[#e6e6e6] dark:bg-[#02201D] pt-5">
+    <div className="px-0 md:px-24 bg-[#e6e6e6] dark:bg-[#02201D] pt-5 pb-10">
       <div className="flex flex-row justify-between items-center h-full lg:h-16 w-full mb-5 px-2 lg:px-0">
         <h1 className="font-semibold text-[#009688] dark:text-white text-md md:text-3xl lg:text-4xl capitalize w-full">
           Search and Find Jobs in Ethiopia
@@ -19,7 +19,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
       
       <hr className="w-full bg-gray-200 mb-5" />
 
-      <div className="flex w-full h-[25rem] lg:h-[45rem] bg-neutral-100 dark:bg-[#1B2637] border rounded-xl p-5">
+      <div className="flex w-full h-[25rem] lg:h-[45rem] bg-neutral-100 dark:bg-[#1B2637] border rounded-xl p-2 lg:p-5">
         <div className="flex-1 border rounded-xl shadow-2xl shadow-zinc-900 border-slate-800 dark:border-slate-800 lg:p-5">
           <div className="w-full h-full overflow-y-scroll">
             {jobs == "latest" && (
