@@ -45,16 +45,16 @@ export function Hero() {
           Find career opportunities in Ethiopia
         </h5>
         
-        <div className="">
-          <div className="flex justify-center items-center !h-16 w-full dark:border-slate-800">
+        <div className="!h-16 w-full dark:border-slate-800 px-2">
+          <div className="flex flex-col lg:flex-row justify-center items-center ">
             <input 
               value={searchValue}   
               placeholder="Carer level, Job Type, Company Name , Employment type"                         
               onChange={(e) => setsearchValue(e.target.value)}
-              className="duration-1000 ease-in-out delay-500 h-16 focus:w-3/4 w-1/2 bg-white outline-none md:pl-2 text-sm lg:text-lg border border[#009688] border-l-2 rounded-xl mr-2" 
+              className="mb-5 lg:mb-0 duration-1000 ease-in-out delay-700 h-16 focus:w-full w-[90%] lg:w-1/2 bg-white outline-none md:pl-2 text-sm lg:text-lg border border[#009688] border-l-2 rounded-xl mr-2" 
             />
 
-            <div className="h-full bg-[#009688] text-white lg:px-3 flex items-center justify-center border border[#009688] border-l-2 rounded-xl">
+            <div className="h-16 bg-[#009688] text-white lg:px-3 flex items-center justify-center border border[#009688] border-l-2 rounded-xl px-5">
               <AiOutlineSearch size={20} />
               <button 
                 onClick={()=> router.push({
