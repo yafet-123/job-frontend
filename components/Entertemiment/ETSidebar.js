@@ -13,7 +13,7 @@ export function ETSidebar({categories}) {
                 pathname:"/Entertemiment"
               })
             }}
-              className={ router.pathname == "/Entertemiment" ? 'bg-[#009688] dark:bg-[#1B2637] px-2 py-3 w-full text-center text-white font-bold flex': 'w-full text-black dark:text-white hover:text-[#009688] hover:text-center hover:bg-white dark:hover:bg-[#009688] px-2 py-3 font-bold flex' }
+              className={ router.pathname == "/Entertemiment" ? 'bg-[#009688] dark:bg-[#009688] px-2 py-3 w-full text-center text-white font-bold flex': 'w-full text-black dark:text-white hover:text-[#009688] hover:text-center hover:bg-white dark:hover:bg-[#009688] px-2 py-3 font-bold flex' }
             >
               Dashboard
             </button>
@@ -30,7 +30,7 @@ export function ETSidebar({categories}) {
                     query:{category_id:item.category_id}
                   })
                 }}
-                className={ item.category_id == category_id ? 'bg-[#009688] dark:bg-[#1B2637] px-2 py-3 w-full text-center text-white font-bold flex': 'w-full text-black dark:text-white hover:text-[#009688] hover:text-center hover:bg-white dark:hover:bg-[#009688] px-2 py-3 font-bold flex' }
+                className={ item.category_id == category_id ? 'bg-[#009688] dark:bg-[#009688] px-2 py-3 w-full text-center text-white font-bold flex': 'w-full text-black dark:text-white hover:text-[#009688] hover:text-center hover:bg-white dark:hover:bg-[#009688] px-2 py-3 font-bold flex' }
               >
                 {item.CategoryName}
               </button>

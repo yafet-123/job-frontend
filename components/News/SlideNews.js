@@ -50,14 +50,14 @@ export function SlideNews({allnews}) {
                   </span>
                 ))}
               </h3>
-              <h3 className="text-md lg:text-lg text-[#444444] font-bold">
+              <h3 className="text-md lg:text-lg text-slate-600 dark:text-white font-bold">
                 {moment(CreatedDate).utc().format('YYYY-MM-DD')}
               </h3>
             </div>
-            <h1 className="group-hover:underline text-xl lg:text-2xl font-extrabold text-[#444444] tracking-wide leading-snug w-full lg:w-3/4">
+            <h1 className="group-hover:underline text-xl lg:text-2xl font-extrabold text-slate-600 dark:text-[#009688] tracking-wide leading-snug w-full lg:w-3/4">
               {Header}
             </h1>
-            <div  className="!text-black mt-5 w-full " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+            <div  className="!bg-transparent !text-black dark:!text-white mt-5 w-full " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
           </div>
         </button>
       ))}

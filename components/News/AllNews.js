@@ -38,16 +38,16 @@ export function AllNews({allnews}) {
                     </span>
                   ))}
                 </h3>
-                <h3 className="text-left font-normal text-sm lg:text-md dark:text-slate-300 text-slate-600">
+                <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
                   {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                 </h3>
               </div>
 
-              <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug">
+              <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
                 {Header}
               </h1>
 
-              <div  className="!text-black mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+              <div  className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
             </div>
           </button>
         ))}

@@ -57,7 +57,7 @@ export function Navbar() {
           </Link>
           <div className="lg:hidden ">
             <button
-              className="p-2  text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+              className="p-2 rounded-md outline-none focus:border-gray-400 focus:border"
               onClick={() => setOpen(!open)}
             >
               {open === true ? (
@@ -76,7 +76,7 @@ export function Navbar() {
             }`}
           >
             <ul className={`${
-              colorChange ? 'text-[#000] dark:text-white' : 'text-[#445960] opacity-100 opacity-50 dark:text-white lg:dark:text-white' } 
+              colorChange ? 'text-[#000] dark:text-white' : 'text-black dark:text-white lg:dark:text-white' } 
               items-center justify-center space-y-8 lg:flex lg:space-x-8 lg:space-y-0 `}
             >
               {NavbarTopic.map((link) => (
@@ -95,7 +95,7 @@ export function Navbar() {
                         ( router.pathname == "/Advice" && "/Advices" == link.path ) || ( router.pathname == "/DisplayNews" && "/News" == link.path ) ||
                         ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path ) ||
                         ( router.pathname == "/Search" && "/Entertemiment" == link.path )
-                          ? "border-b-4 border-[#009688] text-[#009688] dark:border-[#009688] md:ml-2 lg:ml-3 text-md lg:text-lg font-extrabold"
+                          ? "border-b-4 border-[#009688] text-[#009688] dark:border-white md:ml-2 lg:ml-3 text-md lg:text-lg font-extrabold"
                           : "md:ml-2 lg:ml-3 text-md lg:text-lg font-extrabold hover:border-b-4 border-[#009688] dark:border-[#009688]"
                       }
                     >
