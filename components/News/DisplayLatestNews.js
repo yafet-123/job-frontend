@@ -16,7 +16,7 @@ export function DisplayLatestNews({Alllatestnews}) {
 	    			}}
 			  		key={index}
 			  	>
-			    	<a className="flex flex-col mb-5 even:bg-white odd:bg-gray-300 odd:dark:bg-slate-700 even:dark:bg-slate-600 px-2 py-5">
+			    	<a className="flex flex-col mb-5 px-2 py-5 hover:bg-[#009688]">
 			      		<div className="w-full h-52 lg:!h-64 relative">
               				<Image
               	  				src={image}

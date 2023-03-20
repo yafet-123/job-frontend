@@ -26,17 +26,17 @@ export function DisplayIndvidualNews({news, newsCategory,shareUrl}) {
 	            <div className="flex flex-row justify-between lg:mb-5 px-1 lg:px-2 w-full">
 	                <h3 className="flex flex-col justify-between w-2/4">
 	                  	{ newsCategory.map((data,index)=>(
-	                    	<span key={index} className="text-sm lg:text-xl font-bold dark:text-white text-black mb-1 lg:mb-5">
+	                    	<span key={index} className="text-sm lg:text-xl font-bold dark:text-[#009688] text-slate-600 mb-1 lg:mb-5">
 	                      		{data.NewsCategory.CategoryName}
 	                    	</span>
 	                  	))}
 	                </h3>
-	                <h3 className="text-left font-normal text-sm lg:text-lg dark:text-white text-gray-600 w-1/4">
+	                <h3 className="text-left font-normal text-sm lg:text-lg dark:text-[#009688] text-slate-600 w-1/4">
 	                	{moment(news.CreatedDate).utc().format('MMMM, Do YYYY')}
 	                </h3>
 	            </div>
 
-	            <div className="ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: news.Description }} />
+	            <div className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: news.Description }} />
 	        </div>
 
 	        <NewsSharing shareUrl={shareUrl}/>
