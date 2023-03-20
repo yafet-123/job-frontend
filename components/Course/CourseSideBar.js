@@ -17,8 +17,8 @@ export function CourseSideBar({CategoryName, courses, handleChapter, handleCours
                 handleCourse()
             }}
             key={index}
-            className={`w-full text-left font-normal px-2 lg:px-10 mt-5 text-normal lg:text-xl p-3 hover:bg-black hover:text-white 
-              ${data.course_id == router.query.id ? "bg-[#009688]" :" "} `}
+            className={`w-full text-left font-normal px-2 lg:px-10 mt-5 text-normal lg:text-xl p-3 hover:bg-slate-700 hover:text-white 
+              ${data.course_id == router.query.id ? "bg-[#009688] text-white" :" "} `}
           >
             {data.title}
           </button>
