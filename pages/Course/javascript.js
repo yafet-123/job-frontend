@@ -70,8 +70,8 @@ export default function Javascript({courses, indvidualCourses}) {
   return (
     <React.Fragment>
       <MainHeader title="JavaScript Courses"/>
-      <section className="flex flex-col w-full h-full bg-[#ddd0c8] pt-24 dark:bg-slate-800 py-5">
-      	<CourseHead handleChapter={handleChapter} />
+      <section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-24 py-5">
+      	<CourseHead handleChapter={handleChapter} handleCourse={handleCourse}/>
         <Main CategoryName={CategoryName} handleCourse={handleCourse} courses={courses} handleChapter={handleChapter} indvidualCourses={indvidualCourses}/>
         <MobileViewCourse CategoryName={CategoryName} courses={courses} handleChapter={handleChapter} chapter={chapter} />
       </section>

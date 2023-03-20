@@ -2,11 +2,11 @@ import { useRouter } from 'next/router'
 import { CourseHeadData } from '../../data/courseHead'
 import { MdOutlineSubject } from 'react-icons/md'
 
-export function CourseHead({handleChapter}) {
+export function CourseHead({handleChapter,handleCourse}) {
   const router = useRouter()
   const { category_id } = router.query
   return (
-    <div className="w-full bg-[#64748b] flex px-5 lg:px-20 justify-between h-12 lg:h-16">
+    <div className="w-full bg-gray-300 dark:bg-slate-700 flex px-5 lg:px-20 justify-between h-12 lg:h-16">
       <div onClick={handleChapter} className="lg:hidden text-white z-10 flex items-center justify-center">
         <MdOutlineSubject size={30} /> 
       </div>
@@ -28,7 +28,7 @@ export function CourseHead({handleChapter}) {
                   key={index} 
                   className={
                     router.query.CategoryName == data.title
-                      ? "bg-[#ddd0c8] mr-10 text-2xl font-bold text-black p-4 whitespace-nowrap"
+                      ? "bg-[#009688] mr-10 text-2xl font-bold text-black p-4 whitespace-nowrap"
                       : "mx-5 text-2xl font-bold text-white hover:border-b-4 border-blue-800 whitespace-nowrap"
                     }
                   >
@@ -53,7 +53,7 @@ export function CourseHead({handleChapter}) {
               }}
               key={index} 
               className={`w-full px-3 text-xl font-bold
-                ${ router.query.CategoryName == data.title ? "bg-[#ddd0c8] text-black" : "text-white hover:bg-gray-300 hover:text-orange-500" }`}
+                ${ router.query.CategoryName == data.title ? "bg-[#009688] text-white" : "text-black hover:bg-gray-300 hover:text-orange-500" }`}
             >
               {data.title}
             </button>
