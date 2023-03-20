@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 export function ETSidebar({categories}) {
   const router = useRouter()
   const { category_id } = router.query
+  console.log(category_id)
   return (
     <div className='flex flex-col justify-between shadow-2xl shadow-zinc-900 bg-[#e6e6e6] dark:bg-[#02201D]' >
       <ul className="flex flex-row lg:flex-col px-2 lg:pt-5 gap-3 lg:gap-10 lg:h-[50rem] lg:mb-5 w-full lg:w-80 sticky top-0 bottom-0 scroll_width">

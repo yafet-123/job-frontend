@@ -17,6 +17,9 @@ export async function getServerSideProps(context){
   	console.log(category_id)
 
   	const entertainmentsbycategory = await prisma.Entertainment.findMany({
+  		orderBy : {
+      		entertainment_id:'desc'
+    	},
   		where:{
   			EntertainmentCategoryRelationship:{
   				some: {
@@ -26,9 +29,6 @@ export async function getServerSideProps(context){
 	  			}
   			}		
   		},
-	    orderBy: {
-	    	entertainment_id:"asc"
-	    },
 	    include:{
 	      	User:{
 	        	select:{
@@ -50,7 +50,7 @@ export async function getServerSideProps(context){
 
   	const data = await prisma.EntertainmentCategory.findMany({
 		orderBy : {
-      		category_id:'asc'
+      		category_id:'desc'
     	},
 	})
 
