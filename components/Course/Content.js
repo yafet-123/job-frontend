@@ -70,7 +70,7 @@ export function Content({indvidualCourses}) {
                 </div>
 
                 <div className="ql-snow">
-                    <div className="ql-editor" dangerouslySetInnerHTML={{ __html: indvidualCourses[0]?.content }} />
+                    <div className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: indvidualCourses[0]?.content }} />
                 </div>
 
                 <div className="flex flex-row justify-between">
