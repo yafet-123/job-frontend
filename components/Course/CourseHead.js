@@ -53,7 +53,7 @@ export function CourseHead({handleChapter,handleCourse}) {
               }}
               key={index} 
               className={`w-full px-3 text-xl font-bold
-                ${ router.query.CategoryName == data.title ? "bg-[#009688] text-white" : "text-black hover:bg-gray-300 hover:text-orange-500" }`}
+                ${ router.query.CategoryName == data.title ? "bg-[#009688] text-white" : "text-black hover:bg-gray-700 hover:text-orange-500" }`}
             >
               {data.title}
             </button>
