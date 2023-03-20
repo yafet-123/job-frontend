@@ -6,14 +6,14 @@ import moment from 'moment'
 export function DisplayIndividualJobs({job,categories}) {
     
 	return(
-		<div className="flex flex-col bg-[#d1cbc7] p-5 pb-20 dark:bg-slate-600">
+		<div className="flex flex-col bg-neutral-300 dark:bg-slate-700 p-5 pb-20">
             <div className="flex justify-between items-center mt-10 mx-0 lg:mx-5">
                 <div className="flex flex-col w-3/4">
                     <h1 className="text-black text-md lg:text-3xl capitalize font-bold mb-2 text-black dark:text-white">{job.JobsType}</h1>
                     <p className="text-sm lg:text-lg font-bold w-3/4 text-gray-500 dark:text-gray-400">Job by {job.CompanyName}</p>
                 </div>
 
-                <div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-blue-500 text-white p-2 lg:p-5">
+                <div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-[#009688] text-white p-2 lg:p-5">
                     <p className="text-lg lg:text-3xl font-bold capitalize mb-3">Posted</p>
                     <p className="text-md lg:text-xl font-bold capitalize">{moment(job.ModifiedDate).utc().format('dddd, MMM Y')}</p>
                 </div>
@@ -51,17 +51,17 @@ export function DisplayIndividualJobs({job,categories}) {
             </ul>
 
             <div className="flex flex-col justify-between mt-10 mx-2 lg:mx-5 ">
-                <h1 className="text-blue-700 capitalize text-xl lg:text-3xl font-bold mb-2">job descreption</h1>
+                <h1 className="text-[#009688] capitalize text-xl lg:text-3xl font-bold mb-2">job descreption</h1>
                 <div dangerouslySetInnerHTML={{ __html: job.JobsDescreption }} />
             </div>
 
             <div className="flex flex-col justify-between mt-10 mx-2 lg:mx-5">
-                <h1 className="text-blue-700 capitalize text-xl lg:text-3xl font-bold mb-2">job requirement</h1>
+                <h1 className="text-[#009688] capitalize text-xl lg:text-3xl font-bold mb-2">job requirement</h1>
                 <div dangerouslySetInnerHTML={{ __html: job.JobsRequirement }} />
             </div>
 
             <div className="flex flex-col justify-between mt-10 mx-2 lg:mx-5">
-                <h1 className="text-blue-700 capitalize text-xl lg:text-3xl font-bold mb-2">How to Apply</h1>
+                <h1 className="text-[#009688] capitalize text-xl lg:text-3xl font-bold mb-2">How to Apply</h1>
                 <div  dangerouslySetInnerHTML={{ __html: job.Apply }} />
             </div>
         </div>

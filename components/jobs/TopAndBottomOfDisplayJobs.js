@@ -32,9 +32,9 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
   const router = useRouter()
   const shareUrl = router.asPath
   return (
-    <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 px-0 lg:px-10 py-20">
+    <div className="bg-neutral-300 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 px-0 lg:px-10 py-20 mb-2">
     	<div className="flex mb-10">
-    		<h1 className="px-3 lg:px-10 py-3 bg-yellow-400 text-white border rounded-lg text-md lg:text-lg font-bold mr-2">Apply Now</h1>
+    		<h1 className="px-3 lg:px-10 py-3 bg-[#009688] text-white border rounded-lg text-md lg:text-lg font-bold mr-2">Apply Now</h1>
     		<div className="flex flex-col text-sm lg:text-lg text-red-700 font-bold">
     			<p className="">Deadline</p>
     			<p className="">{moment(DeadLine).utc().format('YYYY-MM-DD')}</p>
