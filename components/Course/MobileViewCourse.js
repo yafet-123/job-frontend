@@ -6,9 +6,9 @@ export function MobileViewCourse({chapter, CategoryName, courses, handleChapter}
   const router = useRouter()
   return (
     <div className={ chapter ? "lg:hidden fixed left-0 top-20 w-full h-screen bg-black/70 z-10" : "" }>
-      <div className={chapter ? "fixed left-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500" : "fixed left-[-100%] top-20 ease-in duration-500" }>
+      <div className={chapter ? "fixed left-0 top-20 w-[70%] h-screen bg-gray-200 dark:bg-slate-700 py-10 ease-in duration-500" : "fixed left-[-100%] top-20 ease-in duration-500" }>
         <div> 
-            <div onClick={handleChapter} className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-5">
+            <div onClick={handleChapter} className="dark:text-white text-black rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-5">
               <AiOutlineClose size={15} />
             </div>   
         </div>

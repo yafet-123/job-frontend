@@ -4,9 +4,9 @@ export function CourseSideBar({CategoryName, courses, handleChapter, handleCours
 	const router = useRouter();
   const {path} = router.route
 	return(
-		<div className="w-full h-full bg-[#e6e6e6] dark:bg-[#02201D]">
+		<div className="w-full h-full bg-[#e6e6e6] lg:dark:bg-[#02201D] dark:bg-slate-700">
       <div className="flex flex-col">
-        <h1 className="w-full font-bold text-lg lg:text-xl hover:text-orange-500 text-left lg:text-center px-5 lg:px-20 mt-5">{CategoryName} Tutorial</h1>
+        <h1 className="w-full font-bold text-lg lg:text-xl hover:text-orange-500 text-left lg:text-center px-5 lg:px-20 my-5">{CategoryName} Tutorial</h1>
         {courses.map((data, index) => (
           <button 
             onClick = {()=>{
