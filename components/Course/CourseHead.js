@@ -6,7 +6,7 @@ export function CourseHead({handleChapter,handleCourse}) {
   const router = useRouter()
   const { category_id } = router.query
   return (
-    <div className="w-full bg-gray-300 dark:bg-slate-700 flex px-5 lg:px-20 justify-between h-12 lg:h-16">
+    <div className="w-full bg-gray-400 dark:bg-slate-700 flex px-5 lg:px-20 justify-between h-12 lg:h-16">
       <div onClick={handleChapter} className="lg:hidden text-white z-10 flex items-center justify-center">
         <MdOutlineSubject size={30} /> 
       </div>
