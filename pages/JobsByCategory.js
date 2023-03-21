@@ -113,7 +113,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	const { category, howmany } = router.query
   return (
   	<React.Fragment>
-      <MainHeader title="Jobs By Category" />
+      <MainHeader title="Hulu Media : Jobs By Category" />
 	    <section className="bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col w-full h-full px-0 md:px-24 py-44">
 	    	<div className="flex flex-col bg-neutral-100 dark:bg-[#1B2637] w-full h-full lg:px-5 py-10 border rounded-xl dark:border-slate-800">
 	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-neutral-200 dark:bg-slate-700 px-10">

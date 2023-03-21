@@ -49,7 +49,7 @@ export async function getServerSideProps(context){
 export default function News({allnews}) {
   return (
     <React.Fragment>
-      <MainHeader title="News" />
+      <MainHeader title="Hulu Media : News" />
       <section className="w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] overflow-hidden px-0 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col py-32 !px-3">
           <h1 className="text-center text-xl lg:text-5xl font-bold my-10">Trending</h1>

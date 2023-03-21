@@ -12,9 +12,18 @@ import draftToHtml from 'draftjs-to-html';
 import 'react-quill/dist/quill.snow.css'
 import SyncLoader from "react-spinners/SyncLoader";
 
-const QuillNoSSRWrapper = dynamic(import('react-quill'), {  
+const QuillNoSSRWrapper = dynamic(
+  async () => {
+    const QuillNoSSRWrapper = (await import("react-quill")).default
+    function Imagehandle({ forwardedRef, ...rest }){
+        return <QuillNoSSRWrapper ref={forwardedRef} {...rest} />
+    }
+    return Imagehandle
+  },
+  {
     ssr: false,
-})
+  },
+)
 
 export function AddJob({categories, locations}) {
     const router = useRouter();
@@ -90,30 +99,51 @@ export function AddJob({categories, locations}) {
         addJobData()
     }
 
-    const modules = {
-        toolbar: [
-            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-            ['blockquote', 'code-block'],
+    const quillRef = useRef(null)
+    const modules = useMemo(() => ({
+        toolbar: {
+            container: [
+                    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                    ['blockquote', 'code-block'],
 
-            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-            [{ 'direction': 'rtl' }],                         // text direction
+                    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                    [{ 'direction': 'rtl' }],                         // text direction
             
-            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
-            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-            [{ 'font': [] }],
-            [{ 'align': [] }],
-            ["link", "video"],
-            ['clean'] 
-        ],
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ 'font': [] }],
+                    [{ 'align': [] }],
+
+                    ["link","image", "video"],
+                ],
+            handlers: {
+                image: imageHandler,
+            },
+        },
+
         clipboard: {
-            // toggle to add extra line breaks when pasting HTML:
             matchVisual: false,
         },
+    }),[])
+
+    function imageHandler() {
+        console.log(quillRef)
+        if (!quillRef.current) return
+        
+        const editor = quillRef.current.getEditor()
+        const range = editor.getSelection()
+        const value = prompt("Please enter the image URL")
+        console.log(value)
+        console.log(range)
+        console.log(editor)
+        if (value && range) {
+          editor.insertEmbed(range.index, "image", value, "user")
+        }
     }
     
 

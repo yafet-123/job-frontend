@@ -42,7 +42,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
       </div>
 
       <div className="flex flex-col lg:flex-row justify-between items-center mb-5">
-      	<h1 className="text-black dark:text-white border rounded-lg text-xl font-bold mr-2 mb-5 lg:mb-0 dark:border-slate-700">Share On:</h1>
+      	<h1 className="text-black dark:text-white text-xl font-bold mr-2 mb-5 lg:mb-0">Share On:</h1>
       	<div className="flex flex-col lg:flex-row items-center">
           <div className="flex items-center mb-5 lg:mb-0">
             <div className="mx-1">
