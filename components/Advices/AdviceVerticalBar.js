@@ -5,22 +5,22 @@ export function AdviceVerticalBar({AdviceHead}) {
   const router = useRouter()
   const { category_id } = router.query
   return (
-    <div className='w-full h-full shadow-2xl shadow-zinc-900 bg-[#64748b] lg:bg-[#ddd0c8]' >
-      <div className="flex flex-nowrap px-2 gap-2 lg:gap-10 scroll_width">
-        <div className='gap-2 cursor-pointer hover:text-gray-600 w-full'>
+    <div className='w-full h-full shadow-2xl shadow-zinc-900' >
+      <div className="flex flex-nowrap px-2 gap-2 lg:gap-10 overflow-x-scroll">
+        <div className='flex text-center lg:gap-2 transition-none cursor-pointer whitespace-nowrap hover:text-gray-600 w-full'>
           <button 
             onClick = {()=>{
               router.push({
                 pathname:"/Advices"
               })
             }}
-              className={ router.pathname == "/Advices" ? 'bg-[#ddd0c8] lg:bg-neutral-500 px-2 py-3 text-center text-black lg:text-white font-bold flex': 'w-full text-white lg:text-black hover:text-white text-center hover:bg-black px-2 py-3 font-bold flex' }
+              className={ router.pathname == "/Advices" ? 'bg-[#009688] dark:bg-[#009688] px-2 py-3 w-full text-center text-white font-bold flex': 'w-full text-black dark:text-white hover:text-[#009688] hover:text-center hover:bg-white dark:hover:bg-[#009688] px-2 py-3 font-bold flex' }
             >
               Home
             </button>
         </div>
         {AdviceHeadData.map((item, index) => (
-          <div className='gap-2 cursor-pointer hover:text-gray-600 w-full whitespace-nowrap' key={index}>
+          <div className='flex text-center lg:gap-2 transition-none cursor-pointer whitespace-nowrap hover:text-gray-600 w-full' key={index}>
             <button 
               onClick = {()=>{
                 router.push({
@@ -28,7 +28,7 @@ export function AdviceVerticalBar({AdviceHead}) {
                   query:{title:item.title, category_id:item.id}
                 })
               }}
-              className={ item.id == category_id ? 'bg-[#ddd0c8] lg:bg-neutral-500 px-2 py-3 !w-full text-center text-black lg:text-white font-bold flex': 'w-full text-white lg:text-black hover:text-white text-center hover:bg-black px-2 py-3 font-bold flex' }
+              className={ item.id == category_id ? 'bg-[#009688] dark:bg-[#009688] px-2 py-3 w-full text-center text-white font-bold flex': 'w-full text-black dark:text-white hover:text-[#009688] hover:text-center hover:bg-white dark:hover:bg-[#009688] px-2 py-3 font-bold flex' }
             >
               {item.title}
             </button>

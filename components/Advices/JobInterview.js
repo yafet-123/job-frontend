@@ -5,8 +5,8 @@ import Image from 'next/image'
 import {InterviewQuestionAndAnswer} from '../../data/InterviewQuestionAndAnswer'
 export function JobInterview(){
 	return(
-		<section className="flex flex-col w-full h-full px-0 bg-[#d1cbc7] dark:bg-slate-700">
-			<div className="py-20 px-10">
+		<section className="flex flex-col w-full h-full px-0">
+			<div className="py-20 px-2 lg:px-10">
 				<h1 className="font-bold text-3xl md:text-4xl lg:text-5xl capitalize mb-5 text-center">
 					Job Interview Tips
 				</h1>

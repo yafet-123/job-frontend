@@ -35,25 +35,21 @@ export default function Advice() {
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : Advice" />
-      <section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-600 pt-32 px-5 lg:px-44">
-      	<div className="flex lg:hidden w-full h-16 bg-[#d1cbc7] flex flex-row items-center px-5 lg:px-10 justify-between">
-      		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
+      <section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-32 px-5 lg:px-44">
+      	<div className="bg-gray-200 dark:bg-slate-700 flex lg:hidden w-full h-16 flex flex-row items-center px-5 lg:px-10 justify-between mb-5">
+      		<div onClick={handleAdviceList} className="md:hidden text-white z-10 text-black dark:text-white">
             <MdOutlineSubject size={30} /> 
           </div>
-
-          <button onClick={handleadvices} className="lg:hidden text-white flex items-center">
-            <span className="ml-5 font-bold text-xl hover:text-blue-400">Advices</span>
-          </button>
       	</div>
 
         <div className="flex flex-col px-0 lg:px-5">
           <AdviceVerticalBar />
         	<div className="flex flex-col lg:flex-row h-full ">
-        		<div className="hidden lg:flex w-1/4 h-screen bg-[#d1cbc7] dark:bg-slate-800 overflow-y-scroll scroll_width sticky top-20 bottom-0">
+        		<div className="hidden lg:flex w-1/4 h-screen bg-gray-200 dark:bg-slate-700 overflow-y-scroll scroll_width sticky top-20 bottom-0">
         			<AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} /> 
         		</div>
 
-        		<div className="w-full lg:w-3/4 h-full bg-[#d1cbc7] dark:bg-slate-700">
+        		<div className="w-full lg:w-3/4 h-full bg-gray-200 dark:bg-slate-700">
         			{ title == "Carer Advice For job seeker" && selected == "How To Write Cv" && <HowToWriteCv />}
               { title == "Carer Advice For job seeker" && selected == "Job Interview" && <JobInterview />}
               { title == "Carer Advice For job seeker" && selected == "Job Search Tips" && <JobSearchTips />}
@@ -64,75 +60,27 @@ export default function Advice() {
       	<div
           className={
             adviceList
-              ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 dark:bg-slate-700 z-10"
+              ? "md:hidden fixed left-0 top-20 w-full h-screen bg-gray-200 dark:bg-slate-700 z-10"
               : ""
           }
         >
           <div
             className={
               adviceList
-                ? "fixed left-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500"
+                ? "fixed left-0 top-20 w-[70%] h-screen bg-gray-300 dark:bg-slate-800 py-10 ease-in duration-500"
                 : "fixed left-[-100%] top-20 ease-in duration-500"
             }
           >
             <div>
                 <div
                   onClick={handleAdviceList}
-                  className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-right mr-5"
+                  className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer text-black dark:text-white float-right mr-5"
                 >
                   <AiOutlineClose size={15} />
                 </div> 
             </div>
             <div className="py-4 flex flex-col mt-10 w-full overflow-y-scroll scroll_width">
               <AdviceSideBar title={title} onChange={handleChange} handleAdviceList={handleAdviceList} />
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={
-            advices
-              ? "md:hidden fixed left-0 top-20 w-full h-screen bg-black/70 dark:bg-slate-700 z-10"
-              : ""
-          }
-        >
-          <div
-            className={
-              advices
-                ? "fixed right-0 top-20 w-[70%] h-screen bg-white py-10 ease-in duration-500"
-                : "fixed right-[-100%] top-20 ease-in duration-500"
-            }
-          >
-            <div>
-              
-                <div
-                  onClick={handleadvices}
-                  className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer float-left ml-3"
-                >
-                  <AiOutlineClose size={15} />
-                </div> 
-            </div>
-            <div className="py-4 flex flex-col mt-10 w-full">
-              <h1 className="text-center font-bold text-xl">Job Category</h1>
-              { AdviceHeadData.map((data,index)=>(
-                <button 
-                  onClick = {()=>{
-                    router.push({
-                      pathname:"/Advice",
-                      query:{title:data.title}
-                    })
-                    handleadvices()
-                  }}
-                  key={index} 
-                  className={
-                    router.query.title == data.title
-                      ? "w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500 hover:bg-gray-300 hover:text-orange-500"
-                      : "w-full pl-5 mt-5 p-3 text-xl text-left font-normal text-black hover:bg-gray-300 hover:text-orange-500"
-                    }
-                >
-                  {data.title}
-                </button>
-              ))}
             </div>
           </div>
         </div>
