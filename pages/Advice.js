@@ -35,7 +35,7 @@ export default function Advice() {
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : Advice" />
-      <section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-32 px-5 lg:px-44">
+      <section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-32 px-2 lg:px-44">
       	<div className="bg-gray-200 dark:bg-slate-700 flex lg:hidden w-full h-16 flex flex-row items-center px-5 lg:px-10 justify-between mb-5">
       		<div onClick={handleAdviceList} className="md:hidden text-white z-10 text-black dark:text-white">
             <MdOutlineSubject size={30} /> 
