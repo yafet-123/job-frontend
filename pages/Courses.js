@@ -9,7 +9,7 @@ export default function Courses() {
 	const router = useRouter()
   return (
   	<React.Fragment>
-      <MainHeader title="Courses" />
+      <MainHeader title="Hulu Media : Courses" />
 	    <section className="flex flex-col w-full h-full px-1 lg:px-64 py-10 lg:py-32 bg-[#e6e6e6] dark:bg-[#02201D]">
 	    	<div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 pt-20">
 	    		{ CourseHeadData.map((data,index)=>(

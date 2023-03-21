@@ -9,12 +9,12 @@ export default function Advices() {
 	const router = useRouter()
   return (
     <React.Fragment>
-      <MainHeader title="Advices" />
-      <section className="flex flex-col w-full lg:h-screen px-5 lg:px-52 bg-[#ddd0c8] dark:bg-slate-700 pt-52">
+      <MainHeader title="Hulu Media : Advices" />
+      <section className="flex flex-col w-full lg:h-screen px-5 lg:px-52 bg-[#e6e6e6] dark:bg-[#02201D] pt-52">
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10">
           { AdviceHeadData.map((data,index)=>(
             <button 
-              className={`w-full flex flex-col justify-center items-center mb-10 my-10 p-10 rounded-xl ${data.backgroundColor}`} 
+              className={`w-full flex flex-col justify-center items-center mb-10 my-10 p-10 rounded-xl hover:scale-110 duration-1000 ease-in-out ${data.backgroundColor}`} 
               key ={index}
               onClick = {()=>{
                 router.push({

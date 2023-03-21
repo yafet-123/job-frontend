@@ -34,7 +34,7 @@ export default function Advice() {
 
   return (
     <React.Fragment>
-      <MainHeader title="Advice" />
+      <MainHeader title="Hulu Media : Advice" />
       <section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-600 pt-32 px-5 lg:px-44">
       	<div className="flex lg:hidden w-full h-16 bg-[#d1cbc7] flex flex-row items-center px-5 lg:px-10 justify-between">
       		<div onClick={handleAdviceList} className="md:hidden text-white z-10">
