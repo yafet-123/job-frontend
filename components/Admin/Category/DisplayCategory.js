@@ -35,7 +35,7 @@ export function DisplayCategory({categories}) {
                             {categories.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.category_id}</p>
+                                        <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.category_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {data.CategoryName}
@@ -58,7 +58,7 @@ export function DisplayCategory({categories}) {
                                                 setupdatecategoryid(data.category_id)
                                                 setupdatecategoryname(data.CategoryName)
                                             }}
-                                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                            className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                             Edit
                                         </button>
                                     </td>
@@ -82,7 +82,7 @@ export function DisplayCategory({categories}) {
                     {categories.map((data,index)=>(
                         <div key={index} className="bg-neutral-200 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div>
-                                <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                <p className="text-[#009688] dark:text-white font-bold hover:underline">
                                     <span className="text-lg">Id : </span> 
                                     <span className="text-sm ">{data.category_id}</span>
                                 </p>
@@ -111,7 +111,7 @@ export function DisplayCategory({categories}) {
                                         setupdatecategoryid(data.category_id)
                                         setupdatecategoryname(data.CategoryName)
                                     }} 
-                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                    className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                     Edit
                                 </button>
 
@@ -120,7 +120,7 @@ export function DisplayCategory({categories}) {
                                         clickedFordelete()
                                         setdeletecategoryid(data.category_id)
                                     }}  
-                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                    className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                     Delete
                                 </button>
                             </div>

@@ -111,13 +111,13 @@ export function DashBoard({categories}) {
                         <input 
                             id="search" 
                             type="text" 
-                            className="block w-full px-2 lg:px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            className="block w-full px-2 lg:px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#009688] focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                             value={getSearchValue}
                             onChange={(e) => setgetSearchValue(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
-                            className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                            className="absolute text-md lg:text-xl text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[#009688] peer-focus:dark:text-[#009688] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
                             Search
                         </label>
@@ -126,7 +126,7 @@ export function DashBoard({categories}) {
                         <div className="dropdown inline-block relative">
                             <button 
                                 disabled={loading} 
-                                className="flex justify-between rounded-xl w-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-md lg:text-xl px-2 lg:px-4 py-4 text-center inline-flex items-center"
+                                className="flex justify-between rounded-xl w-32 text-white bg-[#009688] focus:ring-4 focus:ring-[#009688] font-medium text-md lg:text-xl px-2 lg:px-4 py-4 text-center inline-flex items-center"
                             >
                                 <span className="mr-1">Search</span>
                                 <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
@@ -179,7 +179,7 @@ export function DashBoard({categories}) {
                                                 {searchValue.map((data,index)=>(
                                                     <tr key={index} className="even:bg-neutral-100 odd:bg-neutral-300 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                                         <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                                            <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.user_id}</p>
+                                                            <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.user_id}</p>
                                                         </td>
                                                         <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                                             {data.UserName}
@@ -198,7 +198,7 @@ export function DashBoard({categories}) {
                                                                     setupdateusername(data.UserName)
                                                                     setupdateemail(data.email)
                                                                 }} 
-                                                                className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                                className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                                                 Edit
                                                             </button>
                                                         </td>
@@ -209,7 +209,7 @@ export function DashBoard({categories}) {
                                                                     clickedFordeleteforuser()
                                                                     setdeleteuserid(data.user_id)
                                                                 }}
-                                                                className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                                                                className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded"
                                                             >
                                                                 Delete
                                                             </button>
@@ -223,7 +223,7 @@ export function DashBoard({categories}) {
                                         {searchValue.map((data,index)=>(
                                             <div key={index} className="bg-neutral-100 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow overflow-scroll">
                                                 <div>
-                                                    <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                                    <p className="text-[#009688] dark:text-white font-bold hover:underline">
                                                         <span className="text-lg">Id : </span> 
                                                         <span className="text-sm ">{data.user_id}</span>
                                                     </p>
@@ -255,7 +255,7 @@ export function DashBoard({categories}) {
                                                             setupdateusername(data.UserName)
                                                             setupdateemail(data.email)
                                                         }}  
-                                                        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                        className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                                         Edit
                                                     </button>
 
@@ -264,7 +264,7 @@ export function DashBoard({categories}) {
                                                             clickedFordeleteforuser()
                                                             setdeleteuserid(data.user_id)
                                                         }} 
-                                                        className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+                                                        className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded"
                                                     >
                                                         Delete
                                                     </button>
@@ -292,7 +292,7 @@ export function DashBoard({categories}) {
                                                 {searchValue.map((data,index)=>(
                                                     <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                                         <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                                            <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.category_id}</p>
+                                                            <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.category_id}</p>
                                                         </td>
                                                         <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                                             {data.CategoryName}
@@ -310,13 +310,13 @@ export function DashBoard({categories}) {
 
                                                         <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                                             <button 
-                                                                className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                                className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                                                 Edit
                                                             </button>
                                                         </td>
 
                                                         <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                            <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                            <button className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                                                 Delete
                                                             </button>
                                                         </td>
@@ -329,7 +329,7 @@ export function DashBoard({categories}) {
                                         {searchValue.map((data,index)=>(
                                             <div key={index} className="bg-neutral-100 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                                                 <div>
-                                                    <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                                    <p className="text-[#009688] dark:text-white font-bold hover:underline">
                                                         <span className="text-lg">Id : </span> 
                                                         <span className="text-sm ">{data.category_id}</span>
                                                     </p>
@@ -358,7 +358,7 @@ export function DashBoard({categories}) {
                                                             setupdatecategoryid(data.category_id)
                                                             setupdatecategoryname(data.CategoryName) 
                                                         }}
-                                                        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                                                        className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded"
                                                     >
                                                         Edit
                                                     </button>
@@ -368,7 +368,7 @@ export function DashBoard({categories}) {
                                                             clickedFordelete()
                                                             setdeletecategoryid(data.category_id)
                                                         }} 
-                                                        className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                        className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                                         Delete
                                                     </button>
                                                 </div>
@@ -398,7 +398,7 @@ export function DashBoard({categories}) {
                                                 {searchValue.map((data,index)=>(
                                                     <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                                         <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                                            <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.job_id}</p>
+                                                            <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.job_id}</p>
                                                         </td>
                                                         <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                                             {data.CompanyName}
@@ -426,7 +426,7 @@ export function DashBoard({categories}) {
                                                                     clickedForview()
                                                                     setdataposttojob(data)
                                                                 }}
-                                                                className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
+                                                                className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded ">
                                                                 <AiOutlineEye size={30} />
                                                             </button>
                                                         </td>
@@ -439,7 +439,7 @@ export function DashBoard({categories}) {
                                         {searchValue.map((data,index)=>(
                                             <div key={index} className="bg-neutral-100 dark:bg-slate-800 space-y-3 p-4 rounded-lg shadow">
                                                 <div>
-                                                    <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                                    <p className="text-[#009688] dark:text-white font-bold hover:underline">
                                                         <span className="text-lg">Id : </span> 
                                                         <span className="text-sm ">{data.job_id} </span>
                                                     </p>
@@ -480,7 +480,7 @@ export function DashBoard({categories}) {
                                                             clickedForview()
                                                             setdataposttojob(data)
                                                         }}
-                                                        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-blue-500 rounded">
+                                                        className="bg-[#009688] hover:bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                                         <AiOutlineEye size={30} />
                                                     </button>
                                                 </div>
@@ -508,7 +508,7 @@ export function DashBoard({categories}) {
                                                 {searchValue.map((data,index)=>(
                                                     <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                                         <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                                            <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.location_id}</p>
+                                                            <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.location_id}</p>
                                                         </td>
                                                         <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                                             {data.LocationName}
@@ -530,13 +530,13 @@ export function DashBoard({categories}) {
                                                         </td>
 
                                                         <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                            <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                            <button className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                                                 Edit
                                                             </button>
                                                         </td>
 
                                                         <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
-                                                            <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                            <button className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                                                 Delete
                                                             </button>
                                                         </td>
@@ -550,7 +550,7 @@ export function DashBoard({categories}) {
                                             <div key={index} className="bg-neutral-100 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                                                 <div className="flex justify-between items-center">
                                                     <div>
-                                                        <p className="text-blue-500 dark:text-white font-bold hover:underline">
+                                                        <p className="text-[#009688] dark:text-white font-bold hover:underline">
                                                             <span className="text-lg">Id : </span> 
                                                             <span className="text-sm ">{data.location_id}</span>
                                                         </p>
@@ -583,7 +583,7 @@ export function DashBoard({categories}) {
                                                             setupdatelocationid(data.location_id)
                                                             setupdatelocationname(data.LocationName)
                                                         }}
-                                                        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                                        className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                                         Edit
                                                     </button>
 
@@ -592,7 +592,7 @@ export function DashBoard({categories}) {
                                                             clickedFordeleteforlocation()
                                                             setdeletelocationid(data.location_id)
                                                         }}
-                                                        className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                                        className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                                         Delete
                                                     </button>
                                                 </div>

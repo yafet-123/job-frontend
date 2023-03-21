@@ -51,7 +51,7 @@ export function UpdateLocation({setupdateModalOn, updatelocationid, updatelocati
                         <button 
                             disabled={loading} 
                             onClick={handleOKClickForupdate} 
-                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
+                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-[#009688] hover:bg-[#009688]"}`}
                         >
                             Yes
                         </button>

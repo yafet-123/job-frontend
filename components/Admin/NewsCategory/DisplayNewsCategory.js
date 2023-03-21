@@ -65,7 +65,7 @@ export function DisplayNewsCategory({categories}) {
                                                 setupdatecategoryid(data.category_id)
                                                 setupdatecategoryname(data.CategoryName)
                                             }}
-                                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                            className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                             Edit
                                         </button>
                                     </td>
@@ -76,7 +76,7 @@ export function DisplayNewsCategory({categories}) {
                                                 clickedFordelete()
                                                 setdeletecategoryid(data.category_id)
                                             }}
-                                            className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                            className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                             Delete
                                         </button>
                                     </td>
@@ -118,7 +118,7 @@ export function DisplayNewsCategory({categories}) {
                                         setupdatecategoryid(data.category_id)
                                         setupdatecategoryname(data.CategoryName)
                                     }} 
-                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                    className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                     Edit
                                 </button>
 
@@ -127,7 +127,7 @@ export function DisplayNewsCategory({categories}) {
                                         clickedFordelete()
                                         setdeletecategoryid(data.category_id)
                                     }}  
-                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                    className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                     Delete
                                 </button>
                             </div>

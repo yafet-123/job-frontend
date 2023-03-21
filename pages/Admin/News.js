@@ -78,7 +78,7 @@ export default function News({categories, news}) {
     	
         <React.Fragment>
           <MainHeader title="News Dashboard" />
-        	<section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-10">
+        	<section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
     		    <div className='w-full h-full flex flex-row'>
     		        <VerticalNavbar data={data} />
     		        <div className="w-full">
