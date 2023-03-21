@@ -81,8 +81,8 @@ export default function Home({categories, locations, latestjobs}) {
   
   return (
     <React.Fragment>
-      <MainHeader title="Home" />
-      <div className="">
+      <MainHeader title="Hulu Media : Home" />
+      <div className="flex flex-col w-full h-full py-0 lg:py-20 pt-32 bg-[#e6e6e6] dark:bg-[#02201D]">
         <Hero />
         <LatestJobs latestjobs={latestjobs} />
         <SearchJobs categories={categories} locations={locations} />
