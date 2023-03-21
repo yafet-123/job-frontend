@@ -107,7 +107,7 @@ export function UpdateNews({categories ,updatenewsid ,setupdatenewsid ,updatehea
                                 id="title" 
                                 type="text" 
                                 required
-                                className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                                className="block w-full px-3 text-md lg:text-xl text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                                 value={updateheader}
                                 onChange={(e) => setupdateheader(e.target.value)}
                             />
@@ -175,7 +175,7 @@ export function UpdateNews({categories ,updatenewsid ,setupdatenewsid ,updatehea
                         <button 
                             disabled={loading} 
                             onClick={handleOKClickForupdate} 
-                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
+                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-[#009688] hover:bg-[#009688]"}`}
                         >
                             Yes
                         </button>

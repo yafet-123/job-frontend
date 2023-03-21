@@ -45,7 +45,7 @@ export function DisplayNews({news, categories}) {
                             {news.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700">
-                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.news_id}</p>
+                                        <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.news_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         <Image src={data.image == "" || data.image == null ? "/images/logo2.png" : data.image} width={50} height={50} alt="image that will be displayed" />
@@ -69,7 +69,7 @@ export function DisplayNews({news, categories}) {
                                                 setupdateDescription(data.Description)
 
                                             }}
-                                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                            className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                             Edit
                                         </button>
                                     </td>
@@ -80,7 +80,7 @@ export function DisplayNews({news, categories}) {
                                                 clickedFordelete()
                                                 setdeletenewsid(data.news_id)
                                             }}
-                                            className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                            className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                             Delete
                                         </button>
                                     </td>
@@ -129,7 +129,7 @@ export function DisplayNews({news, categories}) {
                                         setupdateShortDescription(data.ShortDescription)
                                         setupdateDescription(data.Description)
                                     }}
-                                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                    className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                     Edit
                                 </button>
 
@@ -138,7 +138,7 @@ export function DisplayNews({news, categories}) {
                                         clickedFordelete()
                                         setdeletenewsid(data.news_id)
                                     }}
-                                    className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                                    className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                     Delete
                                 </button>
                             </div>

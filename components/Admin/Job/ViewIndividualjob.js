@@ -11,7 +11,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
     const [deletejobid,setdeletejobid] = useState()
     const [category, setcategory] = useState(dataposttojob.categories)
     const [categorydata, setcategorydata] = useState([])
-    console.log(dataposttojob.Image == undefined)
+    console.log(category)
 
     // for (var i=0;i<category.length;i++){
     //     setcategorydata((categorydata) => [...categorydata, category[i].Category])
@@ -31,7 +31,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
     }
 
 	return(
-		<div className="bg-neutral-300 dark:bg-slate-800 opacity-96  fixed inset-0 z-50">
+		<div className="bg-neutral-100 dark:bg-slate-800 fixed inset-0 z-50">
             <div className="flex h-screen justify-center items-center ">
                	<div className="overflow-y-scroll lg:overflow-none flex-col w-full h-screen mx-2 lg:mx-10 justify-center bg-neutral-200 dark:bg-slate-500 py-5 px-5 lg:px-10 border-4 border-sky-500 rounded-xl ">
                	    <h1 className="text-xl lg:text-2xl text-zinc-600 font-bold mb-10 dark:text-white text-center">Detail Job</h1>
@@ -102,7 +102,6 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                             </h1>
                         </div>
 
-
                         <div className="grid grid-cols-1 gap-10 mb-5">
                             <h1 className="flex flex-col font-bold hover:underline">
                                 <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-left">Categories</span>
@@ -115,6 +114,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                                 </div>
                             </h1>
                         </div>
+
                        	<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-5">
                             <h1 className="flex flex-col font-bold">
                                	<span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">JobsDescreption</span>
@@ -140,7 +140,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                                     clickedForupdate()
                                 }
                             }
-                            className="rounded px-2 lg:px-4 py-4 ml-2 lg:ml-4 text-white bg-green-400 hover:bg-green-600"
+                            className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded mx-2"
                        	>
                             Edit
                        	</button>
@@ -148,14 +148,14 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                        	        clickedFordelete()
                        	        setdeletejobid(dataposttojob.job_id)
                        	    }} 
-                       	    className="rounded px-2 lg:px-4 py-4 ml-2 lg:ml-4 text-white bg-red-400 hover:bg-red-600"
+                       	    className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-500 hover:scale-110 duration-1000 ease-in-out rounded mx-2"
                        	>
                        	    Delete
                        	</button>
 
                        	<button
                             onClick={handleCancelClickForview} 
-                            className="rounded px-2 lg:px-4 py-4 ml-2 lg:ml-4 text-white bg-blue-400 hover:bg-blue-600"
+                            className="bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:scale-110 duration-1000 ease-in-out rounded mx-2"
                         >
                             Cancel
                         </button>

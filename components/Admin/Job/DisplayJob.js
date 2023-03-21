@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 export function DisplayJob({jobs, categories, locations}) {
     const router = useRouter();
-    const [viewmodalOn, setviewModalOn] = useState(false);
+    const [viewmodalOn, setviewModalOn] = useState(false)
     const [dataposttojob, setdataposttojob] = useState()
     const [view,setview] = useState()
     console.log(jobs)
@@ -38,7 +38,7 @@ export function DisplayJob({jobs, categories, locations}) {
                             {jobs.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
-                                        <p className="font-bold text-blue-500 dark:text-white hover:underline">{data.job_id}</p>
+                                        <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.job_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         <Image src={data.image == "" || data.image == null ? "/images/logo2.png" : data.image} width={50} height={50} alt="image that will be displayed" />
@@ -63,7 +63,7 @@ export function DisplayJob({jobs, categories, locations}) {
                                                 clickedForview()
                                                 setdataposttojob(data)
                                             }}
-                                            className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">
+                                            className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded ">
                                             <AiOutlineEye size={30} />
                                         </button>
                                     </td>
@@ -121,7 +121,7 @@ export function DisplayJob({jobs, categories, locations}) {
                                         clickedForview()
                                         setdataposttojob(data)
                                     }} 
-                                    className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-blue-500 rounded">
+                                    className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded ">
                                     <AiOutlineEye size={30} />
                                 </button>
                             </div>

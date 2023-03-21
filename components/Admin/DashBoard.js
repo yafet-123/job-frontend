@@ -13,7 +13,7 @@ import { UpdateUser } from './User/UpdateUser'
 import { UpdateLocation } from './Location/UpdateLocation'
 import RiseLoader from "react-spinners/RiseLoader";
 
-export function DashBoard({categories}) {
+export function DashBoard({categories}) { 
     const [loading, setLoading] = useState(false);
     const [getSearchValue,setgetSearchValue] = useState("")
     const [dataposttojob, setdataposttojob] = useState()

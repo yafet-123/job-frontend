@@ -62,7 +62,17 @@ export default async function handlesearchadmin(req, res){
                     select:{
                         UserName:true
                     }
-                }
+                },
+                JobCategory:{
+                    include:{
+                      Category:{
+                        select:{
+                          category_id:true,
+                          CategoryName:true
+                        }
+                      }
+                    }
+                },
             }
         })
 
@@ -74,6 +84,7 @@ export default async function handlesearchadmin(req, res){
             EmploymentType:data.EmploymentType,
             Salary:data.Salary,
             DeadLine:data.DeadLine,
+            categories:data.JobCategory,
             Apply:data.Apply,
             CreatedDate:data.CreatedDate,
             ModifiedDate:data.ModifiedDate,
