@@ -12,8 +12,11 @@ export const MainHeader = ({ title }) => {
         />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="Head-icon"
+          sizes="180x180"
+          href="/headLogo.png"
+        />
       </Head>
     </div>
   );
