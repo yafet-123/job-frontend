@@ -8,7 +8,7 @@ import axios from 'axios';
 import { prisma } from '../util/db.server.js'
 import moment from 'moment';
 import { MainHeader } from '../components/MainHeader';
-
+import { useState, useEffect, useRef} from 'react'
 import { FacebookShareButton,
   FacebookIcon,
   PinterestShareButton,
@@ -134,7 +134,12 @@ export async function getServerSideProps(context){
 export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory}) {
 	const router = useRouter();
   const shareUrl = router.asPath
-	console.log(categories)
+  const quoteRef = useRef(null)
+  const quote = quoteRef.current?.textContent ?? "";
+  const [pageurl , setpageurl] = useState("")
+  useEffect(()=>{
+  	setpageurl(window.location.href)
+  },[])
 	const { category, howmany } = router.query
   return (
   	<React.Fragment>
@@ -184,7 +189,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 		      			:
 			      			<div>
 				      			{ jobsbycategory.map((data,index)=>(
-					      			<div key={index} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
+					      			<div key={index} ref={quoteRef} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
 					      				<div className="flex justify-between items-center mb-5">
 					      					<Link href="/DisplayJobs">
 					      						<a className="text-sm lg:text-2xl text-[#009688] font-bold">Job Type: {data.JobsType} </a>
@@ -232,16 +237,16 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 							      		</Link>
 
 							      		<FacebookShareButton
-                					url={`https://job-frontend-main.vercel.app/`}
-                					quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                					url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                					quote={quote}
                 					hashtag={'#huluMedia'}
               					>
                 					<FacebookIcon size={32} round />
               					</FacebookShareButton>
 
               					<TelegramShareButton
-                					url={`https://job-frontend-main.vercel.app/`}
-                					quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                					url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                					quote={quote}
                 					hashtag={'#huluMedia'}
               					>
                 					<TelegramIcon size={32} round />
