@@ -235,7 +235,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 							      		</Link>
 
 							      		<FacebookShareButton
-                					url={`https://job-frontend-main.vercel.app${shareUrl}#{index}`}
+                					url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
                 					quote={quote}
                 					hashtag={'#huluMedia'}
               					>
@@ -243,7 +243,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
               					</FacebookShareButton>
 
               					<TelegramShareButton
-                					url={`https://job-frontend-main.vercel.app${shareUrl}#{index}`}
+                					url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
                 					quote={quote}
                 					hashtag={'#huluMedia'}
               					>
