@@ -137,10 +137,8 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
   const quoteRef = useRef(null)
   const quote = quoteRef.current?.textContent ?? "";
   const [pageurl , setpageurl] = useState("")
-  useEffect(()=>{
-  	setpageurl(window.location.href)
-  },[])
-	const { category, howmany } = router.query
+ 	const { category, howmany } = router.query
+ 	console.log(quote)
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Jobs By Category" />
@@ -189,7 +187,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 		      			:
 			      			<div>
 				      			{ jobsbycategory.map((data,index)=>(
-					      			<div key={index} ref={quoteRef} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
+					      			<div id={index} key={index} ref={quoteRef} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
 					      				<div className="flex justify-between items-center mb-5">
 					      					<Link href="/DisplayJobs">
 					      						<a className="text-sm lg:text-2xl text-[#009688] font-bold">Job Type: {data.JobsType} </a>
@@ -237,7 +235,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 							      		</Link>
 
 							      		<FacebookShareButton
-                					url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                					url={`https://job-frontend-main.vercel.app${shareUrl}#`}
                 					quote={quote}
                 					hashtag={'#huluMedia'}
               					>
@@ -245,7 +243,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
               					</FacebookShareButton>
 
               					<TelegramShareButton
-                					url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                					url={`https://job-frontend-main.vercel.app${shareUrl}#`}
                 					quote={quote}
                 					hashtag={'#huluMedia'}
               					>
