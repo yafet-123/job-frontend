@@ -45,7 +45,7 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
       <div className="flex flex-col md:px-16 px-2 text-center">
         <div className="flex flex-col lg:flex-row justify-between">
           <div className="flex flex-col justify-between lg:px-10">
-            <div className="w-full !h-52 lg:!h-72 opacity-50 relative">
+            <div className="w-full !h-52 lg:!h-72 relative">
               <Image
                 src={Mission}
                 fill
@@ -55,14 +55,18 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
             </div>
             <h1 className="md:text-5xl font-bold text-4xl my-10">OUR VISION</h1>
             <p className="md:text-2xl md:font-semibold text-md text-lg">
-              We are proud to offer excellent quality and value for money in our
-              tours, which give you the chance to experience your chosen
-              destination in an authentic and exciting way.
+              Our vision is to create a vibrant online community that empowers individuals 
+              and connects people from all walks of life. We aim to foster collaboration, 
+              creativity, and innovation, and to inspire our users to achieve their goals 
+              and realize their full potential. By leveraging technology and constantly pushing 
+              the boundaries of what is possible, we envision a future where our website is synonymous 
+              with excellence, and where our users can always rely on us to deliver the very best.
+
             </p>
           </div>
       
           <div className="flex flex-col justify-between lg:px-10">
-            <div className="w-full !h-52 lg:!h-72 opacity-50 relative">
+            <div className="w-full !h-52 lg:!h-72 relative">
               <Image
                 src={Vision}
                 fill
@@ -72,9 +76,10 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
             </div>
             <h1 className="md:text-5xl font-bold text-4xl my-10">OUR MISSION</h1>
             <p className="md:text-2xl md:font-semibold text-md text-lg">
-              Our mission is to provide the ultimate travel planning experience
-              while becoming a one-stop shop for every travel service available
-              in the industry.
+              Our mission is to provide high-quality content and services to our users, 
+              with a focus on delivering value and enhancing their experience. We strive to be a 
+              trusted resource and a go-to destination for our audience, providing them with the 
+              information and tools they need to make informed decisions and improve their lives.
             </p>
           </div>
         </div>

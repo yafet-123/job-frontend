@@ -50,8 +50,8 @@ export function Navbar() {
         <div className="flex items-center justify-between py-3 ">
           <Link href="/">
             <Image
-              src="/images/logo1.png"
-              width={150} height={50}
+              src="/images/logo6.png"
+              width={170} height={60}
               alt="Navbar"
             />
           </Link>

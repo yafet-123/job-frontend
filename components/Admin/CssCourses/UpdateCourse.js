@@ -132,7 +132,7 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
                                 modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2 my-5" 
                                 theme="snow" 
                             />
-                        </div> 
+                        </div>
                     </div>
                     <div className="flex">
                         <button 

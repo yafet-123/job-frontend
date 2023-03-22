@@ -29,7 +29,7 @@ export default function About({jobs,news,entertainments}) {
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : About" />
-      <div className="flex flex-col bg-[#ddd0c8] dark:bg-slate-700">
+      <div className="flex flex-col bg-[#e6e6e6] dark:bg-[#02201D]">
         <AboutUsHero />
         <FollowingTheDream jobcount={jobs} newCount={news} entertainmentcount={entertainments} />
       </div>
