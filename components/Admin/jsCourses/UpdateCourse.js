@@ -107,30 +107,39 @@ export function UpdateCourse({categorie, setupdateModalOn, updatecourseid, updat
                                 id="title" 
                                 type="text" 
                                 required
-                                className="block w-full px-3 text-md lg:text-xl text-black dark:text-white bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                                className="block w-full px-3 text-md lg:text-xl text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
                                 value={updatetitle}
                                 onChange={(e) => setupdatetitle(e.target.value)}
                             />
                             <label 
                                 htmlFor="floating_outlined" 
-                                className="absolute text-md lg:text-xl text-black dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-slate-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                                className="absolute text-md lg:text-xl text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                             >
                                 Title
                             </label>
                         </div>
 
-                        <QuillNoSSRWrapper 
-                            value={updatecontent} 
-                            onChange={setupdatecontent} 
-                            modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2 my-5" 
-                            theme="snow" 
-                        />
+                        <div className="mb-10 ">
+                            <p  
+                                className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
+                            >
+                                Content
+                            </p>
+
+                            <QuillNoSSRWrapper 
+                                forwardedRef={quillRef}
+                                value={updatecontent} 
+                                onChange={setupdatecontent} 
+                                modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2 my-5" 
+                                theme="snow" 
+                            />
+                        </div> 
                     </div>
                     <div className="flex">
                         <button 
                             disabled={loading} 
                             onClick={handleOKClickForupdate} 
-                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-green-400 hover:bg-green-600"}`}
+                            className={`rounded px-4 py-4  ${loading ? "text-black bg-gray-200" : "text-white  bg-[#009688] hover:bg-[#009688]"}`}
                         >
                             Yes
                         </button>

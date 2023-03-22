@@ -65,7 +65,7 @@ export function DisplayCourse({courses}) {
                                                 setupdatetitle(title)
                                                 setupdatecontent(content)
                                             }}
-                                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                            className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                             Edit
                                         </button>
                                     </td>
