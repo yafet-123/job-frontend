@@ -240,7 +240,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
               					</FacebookShareButton>
 
               					<TelegramShareButton
-                					url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                					url={`https://job-frontend-main.vercel.app/`}
                 					quote={'Hulu Media is company that shares jobs , entertainment and others'}
                 					hashtag={'#huluMedia'}
               					>
