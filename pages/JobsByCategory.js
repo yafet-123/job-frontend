@@ -8,6 +8,30 @@ import axios from 'axios';
 import { prisma } from '../util/db.server.js'
 import moment from 'moment';
 import { MainHeader } from '../components/MainHeader';
+
+import { FacebookShareButton,
+  FacebookIcon,
+  PinterestShareButton,
+  PinterestIcon,
+  RedditShareButton,
+  RedditIcon,
+  TelegramShareButton,
+  TelegramIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  ViberShareButton,
+  ViberIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  FacebookMessengerShareButton,
+  FacebookMessengerIcon,
+  EmailShareButton,
+  EmailIcon,
+  LineShareButton,
+  LineIcon, } from 'next-share';
+
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
   const category_id = query.category_id
@@ -109,6 +133,7 @@ export async function getServerSideProps(context){
 
 export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory}) {
 	const router = useRouter();
+  const shareUrl = router.asPath
 	console.log(categories)
 	const { category, howmany } = router.query
   return (
@@ -205,6 +230,22 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 							      				view detail
 							      			</a>
 							      		</Link>
+
+							      		<FacebookShareButton
+                					url={`https://job-frontend-main.vercel.app/`}
+                					quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                					hashtag={'#huluMedia'}
+              					>
+                					<FacebookIcon size={32} round />
+              					</FacebookShareButton>
+
+              					<TelegramShareButton
+                					url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                					quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                					hashtag={'#huluMedia'}
+              					>
+                					<TelegramIcon size={32} round />
+              					</TelegramShareButton>
 					      			</div>
 				      			))}
 			      			</div>

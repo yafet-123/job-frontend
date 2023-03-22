@@ -108,30 +108,6 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 text-[#165248] dark:text-white my-5 px-4">
-        <h1 className="md:text-5xl font-bold text-4xl text-center m-6">
-          What Makes Us Different?
-        </h1>
-        <ul className="text-justify md:px-16 ">
-          <li className="md:text-2xl font-semibold text-lg">
-            ● We offer every traveller a lifetime loyalty programme to ensure
-            that they continue to travel sustainably.
-          </li>
-          <li className="md:text-2xl font-semibold  text-lg my-2">
-            ● We have the experience, skills, and resources to make sure that
-            your journey runs smoothly and environmentally friendly.
-          </li>
-          <li className="md:text-2xl font-semibold  text-lg my-2">
-            ● We’ve embraced technology within our fleet and office,
-            transforming our processes to ensure that we can monitor all our
-            vehicles and journeys in close detail.
-          </li>
-          <li className="md:text-2xl font-semibold  text-lg my-2">
-            ● We ensure that all travel is done with purpose and to create
-            positive impact to every community and ecosystem that we visit.
-          </li>
-        </ul>
-      </div>
     </React.Fragment>
   );
 };
