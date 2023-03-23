@@ -5,7 +5,6 @@ import React from "react";
 import { useState,useEffect, useContext} from 'react'
 
 export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, locations}) {
-    
 	const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deletejobid,setdeletejobid] = useState()
