@@ -234,21 +234,97 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 							      			</a>
 							      		</Link>
 
-							      		<FacebookShareButton
-                					url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-                					quote={quote}
-                					hashtag={'#huluMedia'}
-              					>
-                					<FacebookIcon size={32} round />
-              					</FacebookShareButton>
+							      		<div className="flex flex-col lg:flex-row justify-between">
 
-              					<TelegramShareButton
-                					url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-                					quote={quote}
-                					hashtag={'#huluMedia'}
-              					>
-                					<TelegramIcon size={32} round />
-              					</TelegramShareButton>
+							      			<div className="flex flex-row px-2 justify-between mb-3 lg:mb-0">
+
+							      				<div className="px-3">
+										      		<FacebookShareButton
+			                					url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
+			                					quote={quote}
+			                					hashtag={'#huluMedia'}
+			              					>
+			                					<FacebookIcon size={32} round />
+			              					</FacebookShareButton>
+			              				</div>
+
+			              				<div className="px-3">
+			              					<TelegramShareButton
+			                					url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
+			                					quote={quote}
+			                					hashtag={'#huluMedia'}
+			              					>
+			                					<TelegramIcon size={32} round />
+			              					</TelegramShareButton>
+
+			              				</div>
+	
+														<div className="px-3">
+			              					<TwitterShareButton
+								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
+			                					quote={quote}
+								                hashtag={'#huluMedia'}
+								              >
+								                <TwitterIcon size={32} round />
+								              </TwitterShareButton>
+								            </div>
+
+								            <div className="px-3">
+
+								              <ViberShareButton
+								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
+								                quote={quote}
+								                hashtag={'#huluMedia'}
+								              >
+								                <ViberIcon size={32} round />
+								              </ViberShareButton>
+								            </div>
+
+							            </div>
+
+							            <div className="flex flex-row px-2 justify-between mb-3 lg:mb-0">
+
+							            	<div className="px-3">
+								              <WhatsappShareButton
+								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
+								                quote={quote}
+								                hashtag={'#huluMedia'}
+								              >
+								                <WhatsappIcon size={32} round />
+								              </WhatsappShareButton>
+								            </div>
+
+							              <div className="mx-3">
+								              <LinkedinShareButton
+								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
+								                quote={quote}
+								                hashtag={'#huluMedia'}
+								              >
+								                <LinkedinIcon size={32} round />
+								              </LinkedinShareButton>
+								            </div>
+
+							              <div className="mx-3">
+								              <FacebookMessengerShareButton
+								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
+								                quote={quote}
+								                hashtag={'#huluMedia'}
+								              >
+								                <FacebookMessengerIcon size={32} round />
+								              </FacebookMessengerShareButton>
+								            </div>
+
+							              <div className="mx-3">
+								              <EmailShareButton
+								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
+								                quote={quote}
+								                hashtag={'#huluMedia'}
+								              >
+								                <EmailIcon size={32} round />
+								              </EmailShareButton>
+								            </div>
+							            </div>
+						            </div>
 					      			</div>
 				      			))}
 			      			</div>

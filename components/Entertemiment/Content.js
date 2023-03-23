@@ -9,11 +9,13 @@ const Description = ({ShortDescription})=>{
     const [isReadMore, setisReadMore] = useState(true)
     return(
         <p  className=" mt-5 font-normal italic text-sm lg:text-lg dark:text-white text-black"> 
-            {ShortDescription?.substring(0, isReadMore ? length : undefined)}...
+            {ShortDescription ?.substring(0, isReadMore ? length : undefined)}...
             <button className="text-slate-700 dark:text-white text-sm lg:text-lg mx-2" onClick={() => setisReadMore((isReadMore) => !isReadMore)}>
                 {isReadMore ? "Read More" : "Read Less"}
             </button>
         </p>
+
+        
     )
 }
 export function Content({entertainments}) {
