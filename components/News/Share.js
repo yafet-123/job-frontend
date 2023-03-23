@@ -28,7 +28,7 @@ import {
 } from 'next-share';
 
 
-export function Share({DeadLine,Apply}) {
+export function Share({shareUrl,Apply}) {
   return (
     <div className="flex flex-col lg:flex-row w-full justify-between lg:h-28 border rounded-lg dark:border-slate-700 py-5 mb-2">
       <div className="flex flex-col lg:flex-row mb-5 w-full">

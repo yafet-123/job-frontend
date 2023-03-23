@@ -49,7 +49,7 @@ export function AllNews({allnews}) {
               </h1>
 
               <div  className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
-              <Share />
+              <Share shareUrl={shareUrl} />
             </div>
           </button>
         ))}
