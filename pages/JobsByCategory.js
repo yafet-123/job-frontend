@@ -1,36 +1,16 @@
 import React from "react";
 import Link from "next/link";
-import { AiOutlineMenu } from "react-icons/ai";
 import Image from 'next/image'
-import { AiOutlineClockCircle } from "react-icons/ai";
 import { useRouter } from 'next/router'
 import axios from 'axios';
 import { prisma } from '../util/db.server.js'
 import moment from 'moment';
 import { MainHeader } from '../components/MainHeader';
 import { useState, useEffect, useRef} from 'react'
-import { FacebookShareButton,
-  FacebookIcon,
-  PinterestShareButton,
-  PinterestIcon,
-  RedditShareButton,
-  RedditIcon,
-  TelegramShareButton,
-  TelegramIcon,
-  TwitterShareButton,
-  TwitterIcon,
-  ViberShareButton,
-  ViberIcon,
-  WhatsappShareButton,
-  WhatsappIcon,
-  LinkedinShareButton,
-  LinkedinIcon,
-  FacebookMessengerShareButton,
-  FacebookMessengerIcon,
-  EmailShareButton,
-  EmailIcon,
-  LineShareButton,
-  LineIcon, } from 'next-share';
+import {Share} from '../components/common/Share.js'
+import { GroupLatestJobs } from '../components/jobs/GroupLatestJobs'
+import { CompanyJobs } from '../components/jobs/CompanyJobs'
+import { Company } from '../components/jobs/Company'
 
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
@@ -134,11 +114,11 @@ export async function getServerSideProps(context){
 export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory}) {
 	const router = useRouter();
   const shareUrl = router.asPath
-  const quoteRef = useRef(null)
-  const quote = quoteRef.current?.textContent ?? "";
-  const [pageurl , setpageurl] = useState("")
  	const { category, howmany } = router.query
- 	console.log(quote)
+ 	const [viewmodalOn, setviewModalOn] = useState(false)
+  const [id, setid] = useState()
+ 
+ 	
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Jobs By Category" />
@@ -160,24 +140,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	      		<div className="flex flex-col-reverse lg:flex-row w-full">
 		      		<div className="flex flex-col w-full lg:w-1/4 h-[20rem] lg:h-[50rem] bg-neutral-200 dark:bg-slate-700 p-3 sticky top-32">
 		      			<h1 className="text-lg md:text-xl lg:text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs By Category</h1>
-		      			<div className="flex flex-col overflow-y-scroll scroll_width p-3">
-			      			{categories.map((data, index) => (
-			      				<button 
-			      					className="flex items-center group hover:bg-neutral-500 py-2 mb-5" 
-			      					key={index}
-			      					onClick = {()=>{
-		                    router.push({
-		                      pathname:"/JobsByCategory",
-		                      query:{category:data.CategoryName, howmany:data._count.JobCategory, category_id: data.category_id}
-		                    })
-		                  }}
-			      				>
-				      				<h1 className="group-hover:text-white text-left font-normal text-sm md:text-lg lg:text-xl capitalize px-2">
-				               	{data.CategoryName}
-				               </h1>
-				            </button>
-			      			))}
-			      		</div>
+		      			<Company categories={categories} />
 		      		</div>
 		      		<div className="flex flex-col w-full lg:w-3/4 p-3 lg:border-l-2 px-3 lg:px-10">
 		      			{ jobsbycategory == "" ? 
@@ -185,198 +148,18 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 		      					There is No job posted in {category} Category
 		      				</h1>
 		      			:
-			      			<div>
-				      			{ jobsbycategory.map((data,index)=>(
-					      			<div id={index} key={index} ref={quoteRef} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
-					      				<div className="flex justify-between items-center mb-5">
-					      					<Link href="/DisplayJobs">
-					      						<a className="text-sm lg:text-2xl text-[#009688] font-bold">Job Type: {data.JobsType} </a>
-					      					</Link>
-						      				<p className="text-xs lg:text-lg text-[#009688]">Posted: {moment(data.ModifiedDate).utc().format('MMM DD')}</p>
-					      				</div>
-
-						      			<div className="flex flex-col-reverse md:flex-row items-center">
-							      			<ul className="mt-10 w-full lg:w-3/4">
-									      		<li className="flex flex-row justify-between items-center w-full mb-5">
-									      			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
-									      			<p className="text-xs lg:text-lg text-left w-1/2">{data.CompanyName}</p>
-									      		</li>
-
-									      		<li className="flex flex-row justify-between items-center w-full mb-5">
-									      			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Location:</h1>
-									      			<p className="text-xs lg:text-lg text-left w-1/2">{data.Location}</p>
-									      		</li>
-
-									      		<li className="flex flex-row justify-between items-center w-full mb-5">
-									      			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
-									      			<p className="text-xs lg:text-lg text-left w-1/2">{data.CareerLevel}</p>
-									      		</li>
-
-									      		<li className="flex flex-row justify-between items-center w-full mb-5">
-									      			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
-									      			<p className="text-xs lg:text-lg text-left w-1/2">{moment(data.DeadLine).utc().format('MMM DD')}</p>
-									      		</li>
-							      			</ul>
-
-							      			<Image src={data.image == "" || data.image == null ? "/images/bgImage1.avif" : data.image} width={100} height={100} alt="image" required className="my-5" />
-							      		</div>
-
-							      		<div className="!bg-transparent !text-black dark:!text-white mt-5 w-full" dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
-
-							      		<Link 
-							      			href={{
-				            				pathname: '/DisplayJobs',
-				            				query:{job_id:data.job_id}
-				          				}}
-							      		>
-							      			<a className="my-5 text-[#009688] text-md lg:text-xl">
-							      				view detail
-							      			</a>
-							      		</Link>
-
-							      		<div className="flex flex-col lg:flex-row justify-between">
-
-							      			<div className="flex flex-row px-2 justify-between mb-3 lg:mb-0">
-
-							      				<div className="px-3">
-										      		<FacebookShareButton
-			                					url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-			                					quote={quote}
-			                					hashtag={'#huluMedia'}
-			              					>
-			                					<FacebookIcon size={32} round />
-			              					</FacebookShareButton>
-			              				</div>
-
-			              				<div className="px-3">
-			              					<TelegramShareButton
-			                					url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-			                					quote={quote}
-			                					hashtag={'#huluMedia'}
-			              					>
-			                					<TelegramIcon size={32} round />
-			              					</TelegramShareButton>
-
-			              				</div>
-	
-														<div className="px-3">
-			              					<TwitterShareButton
-								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-			                					quote={quote}
-								                hashtag={'#huluMedia'}
-								              >
-								                <TwitterIcon size={32} round />
-								              </TwitterShareButton>
-								            </div>
-
-								            <div className="px-3">
-
-								              <ViberShareButton
-								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-								                quote={quote}
-								                hashtag={'#huluMedia'}
-								              >
-								                <ViberIcon size={32} round />
-								              </ViberShareButton>
-								            </div>
-
-							            </div>
-
-							            <div className="flex flex-row px-2 justify-between mb-3 lg:mb-0">
-
-							            	<div className="px-3">
-								              <WhatsappShareButton
-								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-								                quote={quote}
-								                hashtag={'#huluMedia'}
-								              >
-								                <WhatsappIcon size={32} round />
-								              </WhatsappShareButton>
-								            </div>
-
-							              <div className="mx-3">
-								              <LinkedinShareButton
-								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-								                quote={quote}
-								                hashtag={'#huluMedia'}
-								              >
-								                <LinkedinIcon size={32} round />
-								              </LinkedinShareButton>
-								            </div>
-
-							              <div className="mx-3">
-								              <FacebookMessengerShareButton
-								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-								                quote={quote}
-								                hashtag={'#huluMedia'}
-								              >
-								                <FacebookMessengerIcon size={32} round />
-								              </FacebookMessengerShareButton>
-								            </div>
-
-							              <div className="mx-3">
-								              <EmailShareButton
-								                url={`https://job-frontend-main.vercel.app${shareUrl}#${index}`}
-								                quote={quote}
-								                hashtag={'#huluMedia'}
-								              >
-								                <EmailIcon size={32} round />
-								              </EmailShareButton>
-								            </div>
-							            </div>
-						            </div>
-					      			</div>
-				      			))}
-			      			</div>
+			      			<CompanyJobs jobs={jobsbycategory} />
 		      			}
 		      		</div>
 		      	</div>
-	      		<div className="flex flex-col w-full lg:w-4/12 h-[50rem] p-3 border rounded-lg sticky top-32">
-	      			<div className="flex justify-between items-center p-2 md:p-0">
-				        <div className="flex items-center font-bold text-md lg:text-xl text-black dark:text-white capitalize">
-				          <AiOutlineClockCircle size={20} />
-				          <span className="ml-2 lg:ml-5">Latest Jobs</span>
-				        </div>
-				        <Link href="">
-				          <a className="font-bold text-sm md:text-md lg:text-lg text-white p-2 lg:p-4 bg-[#009688] capitalize border rounded-2xl">
-				            view all jobs
-				          </a>
-				        </Link>
-	      			</div>
-
-				      <div className="md:max-w-7xl md:mx-auto bg-neutral-200 dark:bg-slate-700 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll scroll_width">
-				        {Alllatestjobs.map((data, index) => (
-				          <Link 
-				          	href={{
-	            				pathname: '/DisplayJobs',
-	            				query:{job_id:data.job_id}
-	          				}}
-				          	key={index}
-				          >
-				            <a className="flex justify-around items-center mb-5 px-2 py-5 group hover:bg-[#009688]">
-				              <div className="flex flex-col w-2/4 lg:w-3/4">
-                        <h1 className="font-normal text-sm lg:text-lg text-black dark:text-white group-hover:text-white text-left">
-                          {data.JobsType}
-                        </h1>
-                        <h1 className="font-light text-xs lg:text-sm text-black dark:text-white group-hover:text-white text-left">
-                          {data.CompanyName}
-                        </h1>
-                      </div>
-                      <div className="flex flex-col items-center justify-center w-1/4 lg:w-1/4">
-                        <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
-                          {moment(data.CreatedDate).utc().format('MMM DD YYYY')}
-                        </h1>
-                        <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
-                          {data.Location}
-                        </h1>
-                      </div>
-				            </a>
-				          </Link>
-				        ))}
-				      </div>
-	      		</div>
+	      		
+	      		<GroupLatestJobs Alllatestjobs={Alllatestjobs} setviewModalOn={setviewModalOn} />
 	     		</div>
 	    	</div>
+
+	    	{viewmodalOn && 
+        	<Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
+      	}
 	    </section>
 	  </React.Fragment>
   );

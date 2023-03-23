@@ -1,15 +1,17 @@
-import React, {useState} from "react";
+import React, {useState,useRef} from "react";
 import Image from 'next/future/image'
 import moment from 'moment';
 import { useRouter } from 'next/router'
-import {Share} from './Share.js'
-import { AiOutlineShareAlt } from 'react-icons/ai'
+import {Share} from '../common/Share.js'
+import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 
 export function AllNews({allnews}) {
   const router = useRouter()
+  const quoteRef = useRef(null)
+  const quote = quoteRef.current?.textContent ?? "";
+  const [quotes, setquotes] = useState()
   const shareUrl = router.asPath
   const [viewmodalOn, setviewModalOn] = useState(false)
-  const [view,setview] = useState()
   const [id, setid] = useState()
   const clickedForview = () => {
       setviewModalOn(true)
@@ -21,6 +23,7 @@ export function AllNews({allnews}) {
         {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category},index)=>(
           <div
             id={Header}
+            ref={quoteRef}
             key={index} 
             className="flex flex-col w-full h-full lg:mt-5 group py-5"
           >
@@ -63,12 +66,18 @@ export function AllNews({allnews}) {
             </button>
 
             <div className="flex items-center justify-between text-sm"> 
+              <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+                <AiOutlineEye size={32} />
+                <span className="ml-3">12</span>
+              </p>
+
               <button
                   onClick={() => {
                       clickedForview()
                       setid(Header)
+                      setquotes(quote)
                   }} 
-                  className="text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+                  className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
                   <AiOutlineShareAlt size={32} />
               </button>
             </div>
@@ -77,7 +86,7 @@ export function AllNews({allnews}) {
       </div>
 
       {viewmodalOn && 
-        <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} />
+        <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
       }
     </div>
   );
