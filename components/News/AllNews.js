@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import Image from 'next/future/image'
 import moment from 'moment';
 import { useRouter } from 'next/router'
-
+import {Share} from './Share.js'
 export function AllNews({allnews}) {
   const router = useRouter()
+  const shareUrl = router.asPath
   return (
     <div className="py-5 w-full h-full">      
       <h1 className="text-center text-xl lg:text-4xl font-bold my-5">Latest News</h1>
@@ -48,6 +49,7 @@ export function AllNews({allnews}) {
               </h1>
 
               <div  className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+              <Share />
             </div>
           </button>
         ))}
