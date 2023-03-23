@@ -32,6 +32,7 @@ export async function getServerSideProps(context){
     news_id:data.news_id,
     Header:data.Header,
     image:data.Image,
+    view:data.view,
     ShortDescription:data.ShortDescription,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,

@@ -11,6 +11,11 @@ export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const id = query.job_id
 
+  const updatePosts = await prisma.Job.update({
+  	where:{job_id : Number(id),},
+	  data: { view: { increment: 1 }, },
+	})
+
 	const data = await prisma.Job.findUnique({
 		where:{
 			job_id: Number(id),

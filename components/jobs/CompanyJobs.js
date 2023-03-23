@@ -5,6 +5,7 @@ import { AiOutlineShareAlt, AiOutlineEye, AiOutlineMenu, AiOutlineClockCircle } 
 import Image from 'next/image'
 import {Share} from '../common/Share.js'
 export function CompanyJobs({jobs,shareUrl}) {
+	console.log(jobs)
 	const quoteRef = useRef(null)
   	const quote = quoteRef.current?.textContent ?? "";
   	const [quotes, setquotes] = useState()
@@ -57,7 +58,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 					<div className="flex items-center justify-between text-sm my-5"> 
 						<p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
 						  	<AiOutlineEye size={32} />
-						  	<span className="ml-3">12</span>
+						  	<span className="ml-3">{data.view}</span>
 						</p>
 
 						<Link 

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Job" ADD COLUMN     "view" INTEGER NOT NULL DEFAULT 0;

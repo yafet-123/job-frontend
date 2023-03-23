@@ -30,6 +30,7 @@ model Job {
   EmploymentType  String        @db.VarChar(255)
   Salary          String        @db.VarChar(255)
   JobsDescreption String?
+  view                         Int           @default(0)
   JobsRequirement String?
   DeadLine        DateTime      @db.Date
   Apply           String        
@@ -94,7 +95,8 @@ model News {
   Header                       String?
   Image                        String?       @db.VarChar(255)
   ShortDescription             String?           
-  Description                  String?      
+  Description                  String?
+  view                         Int           @default(0)      
   user_id                      Int
   CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
