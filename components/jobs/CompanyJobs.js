@@ -3,12 +3,14 @@ import moment from 'moment';
 import { useState, useEffect, useRef} from 'react'
 import { AiOutlineShareAlt, AiOutlineEye, AiOutlineMenu, AiOutlineClockCircle } from 'react-icons/ai'
 import Image from 'next/image'
-
-export function CompanyJobs({jobs,setviewModalOn}) {
+import {Share} from '../common/Share.js'
+export function CompanyJobs({jobs,shareUrl}) {
 	const quoteRef = useRef(null)
   	const quote = quoteRef.current?.textContent ?? "";
   	const [quotes, setquotes] = useState()
-  	console.log(quote)
+  	const [viewmodalOn, setviewModalOn] = useState(false)
+ 	const [id, setid] = useState()
+ 
 
   	const clickedForview = () => {
       setviewModalOn(true)
@@ -81,6 +83,10 @@ export function CompanyJobs({jobs,setviewModalOn}) {
             		</div>
 				</div>
 			))}
+
+			{viewmodalOn && 
+        		<Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
+      		}
 		</div>
 	);
 }

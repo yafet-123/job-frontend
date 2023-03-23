@@ -9,6 +9,10 @@ import axios from 'axios';
 import { prisma } from '../util/db.server.js'
 import moment from 'moment';
 import { MainHeader } from '../components/MainHeader';
+import { GroupLatestJobs } from '../components/jobs/GroupLatestJobs'
+import { CompanyJobs } from '../components/jobs/CompanyJobs'
+import { Location } from '../components/jobs/Location'
+
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
   const location_id = query.location_id
@@ -101,6 +105,7 @@ export async function getServerSideProps(context){
 export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs}) {
 	const router = useRouter();
   const { location, howmany, image } = router.query
+  const shareUrl = router.asPath
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Jobs By Location" />
@@ -127,25 +132,7 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 	      		<div className="flex flex-col-reverse lg:flex-row w-full">
 		      		<div className="flex flex-col w-full lg:w-1/4 h-[20rem] lg:h-[50rem] p-3 bg-neutral-200 dark:bg-slate-700 sticky top-32">
 		      				<h1 className="text-lg md:text-xl lg:text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs in ethopia</h1>
-		      				<div className="flex flex-col overflow-y-scroll scroll_width p-3">
-			      				{locations.map((data, index) => (
-			      					<button 
-			      						className="flex items-center group hover:bg-white py-2 mb-5" 
-			      						key={index}
-			      						onClick = {()=>{
-		                      router.push({
-		                        pathname:"/JobsByLocation",
-		                        query:{location:data.LocationName, howmany:data._count.Job, image:data.Image, location_id:data.location_id}
-		                      })
-		                    }}
-			      					>
-			      						<Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={25} height={25} alt="image that will be displayed" />
-				      					<h1 className="text-left font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 ml-5">
-				                	jobs in {data.LocationName}
-				                </h1>
-				              </button>
-			      				))}
-			      			</div>
+		      				<Location locations={locations} />
 		      		</div>
 		      		<div className="flex flex-col w-full lg:w-3/4 p-3 lg:border-l-2 px-3 lg:px-10">
 		      			{ jobsbylocation == "" ? 
@@ -153,104 +140,12 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 		      					There is No job posted in {location}
 		      				</h1>
 		      			:
-			      			<div>
-				      			{ jobsbylocation.map((data,index)=>(
-					      			<div key={index} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
-					      				<div className="flex justify-between items-center mb-5">
-					      					<Link href="/DisplayJobs">
-					      						<a className="text-sm lg:text-2xl text-[#009688] font-bold">Job Type: {data.JobsType} </a>
-					      					</Link>
-						      				<p className="text-xs lg:text-lg text-[#009688]">Posted: {moment(data.ModifiedDate).utc().format('MMM DD')}</p>
-					      				</div>
-
-						      			<div className="flex flex-col-reverse md:flex-row items-center">
-							      			<ul className="mt-10 w-full lg:w-3/4">
-									      		<li className="flex flex-row justify-between items-center w-full mb-5">
-									      			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Company Name:</h1>
-									      			<p className="text-xs lg:text-lg text-left w-1/2">{data.CompanyName}</p>
-									      		</li>
-
-									      		<li className="flex flex-row justify-between items-center w-full mb-5">
-									      			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Location:</h1>
-									      			<p className="text-xs lg:text-lg text-left w-1/2">{data.Location}</p>
-									      		</li>
-
-									      		<li className="flex flex-row justify-between items-center w-full mb-5">
-									      			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
-									      			<p className="text-xs lg:text-lg text-left w-1/2">{data.CareerLevel}</p>
-									      		</li>
-
-									      		<li className="flex flex-row justify-between items-center w-full mb-5">
-									      			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Dead Line</h1>
-									      			<p className="text-xs lg:text-lg text-left w-1/2">{moment(data.DeadLine).utc().format('MMM DD')}</p>
-									      		</li>
-							      			</ul>
-
-							      			 <Image src={data.image == "" || data.image == null ? "/images/bgImage1.avif" : data.image} width={100} height={100} alt="image" required />
-							      		</div>
-
-							      		<div className="!bg-transparent !text-black dark:!text-white mt-5 w-full" dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
-
-							      		<Link 
-							      			href={{
-				            				pathname: '/DisplayJobs',
-				            				query:{job_id:data.job_id}
-				          				}}
-							      		>
-							      			<a className="my-5 text-[#009688] text-md lg:text-xl">
-							      				view detail
-							      			</a>
-							      		</Link>
-					      			</div>
-				      			))}
-			      			</div>
+			      			<CompanyJobs jobs={jobsbylocation} shareUrl={shareUrl} />
 		      			}
 		      		</div>
 		      	</div>
-	      		<div className="flex flex-col w-full lg:w-4/12 h-[50rem] p-3 border rounded-lg sticky top-32">
-	      			<div className="flex justify-between items-center p-2 md:p-0">
-				        <div className="flex items-center font-bold text-md lg:text-xl text-black dark:text-white capitalize">
-				          <AiOutlineClockCircle size={20} />
-				          <span className="ml-2 lg:ml-5">Latest Jobs</span>
-				        </div>
-				        <Link href="">
-				          <a className="font-bold text-sm md:text-md lg:text-lg text-white p-2 lg:p-4 bg-[#009688] capitalize border rounded-2xl">
-				            view all jobs
-				          </a>
-				        </Link>
-	      			</div>
 
-				      <div className="md:max-w-7xl md:mx-auto bg-neutral-200 dark:bg-slate-700 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll scroll_width">
-				        {Alllatestjobs.map((data, index) => (
-				          <Link 
-				          	href={{
-	            				pathname: '/DisplayJobs',
-	            				query:{job_id:data.job_id}
-	          				}}
-				          	key={index}
-				          >
-				            <a className="flex justify-around items-center mb-5 px-2 py-5 group hover:bg-[#009688]">
-				              <div className="flex flex-col w-2/4 lg:w-3/4">
-                        <h1 className="font-normal text-sm lg:text-lg text-black dark:text-white group-hover:text-white text-left">
-                          {data.JobsType}
-                        </h1>
-                        <h1 className="font-light text-xs lg:text-sm text-black dark:text-white group-hover:text-white text-left">
-                          {data.CompanyName}
-                        </h1>
-                      </div>
-                      <div className="flex flex-col items-center justify-center w-1/4 lg:w-1/4">
-                        <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
-                          {moment(data.CreatedDate).utc().format('MMM DD YYYY')}
-                        </h1>
-                        <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
-                          {data.Location}
-                        </h1>
-                      </div>
-				            </a>
-				          </Link>
-				        ))}
-				      </div>
-	      		</div>
+	      		<GroupLatestJobs Alllatestjobs={Alllatestjobs} />
 	     		</div>
 	    	</div>
 	    </section>

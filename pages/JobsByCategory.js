@@ -115,8 +115,6 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	const router = useRouter();
   const shareUrl = router.asPath
  	const { category, howmany } = router.query
- 	const [viewmodalOn, setviewModalOn] = useState(false)
-  const [id, setid] = useState()
  
  	
   return (
@@ -148,18 +146,16 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 		      					There is No job posted in {category} Category
 		      				</h1>
 		      			:
-			      			<CompanyJobs jobs={jobsbycategory} />
+			      			<CompanyJobs jobs={jobsbycategory} shareUrl={shareUrl} />
 		      			}
 		      		</div>
 		      	</div>
 	      		
-	      		<GroupLatestJobs Alllatestjobs={Alllatestjobs} setviewModalOn={setviewModalOn} />
+	      		<GroupLatestJobs Alllatestjobs={Alllatestjobs} />
 	     		</div>
 	    	</div>
 
-	    	{viewmodalOn && 
-        	<Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
-      	}
+	    	
 	    </section>
 	  </React.Fragment>
   );
