@@ -52,7 +52,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 <AiOutlineClose size={32} />
               </button>
           </div>
-          <div className="flex flex-row lg:flex-col">
+          <div className="lg:w-full flex flex-row lg:flex-col">
             <div className="flex flex-col lg:flex-row lg:justify-between w-full my-2 lg:my-5">
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookShareButton
