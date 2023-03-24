@@ -41,9 +41,9 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
   }
   return (
     <div className="bg-neutral-100 bg-opacity-80 dark:bg-slate-800 fixed inset-0 z-50">
-      <div className="flex h-screen justify-center items-center">
-        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-5 px-5 lg:px-10 border-4 border-sky-500 rounded-xl overflow-y-scroll">
-          <div className="flex items-center justify-between mb-3 lg:mb-10">
+      <div className="flex lg:h-screen justify-center items-center">
+        <div className="flex-col justify-center bg-white dark:bg-slate-500 py-2 lg:py-5 px-5 lg:px-10 border-4 border-sky-500 rounded-xl">
+          <div className="flex items-center justify-between mb-1 lg:mb-10">
             <h1 className="text-[#009688] font-bold text-lg lg:text-2xl">Share</h1>
             <button
                 onClick={() => {
@@ -54,21 +54,21 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               </button>
           </div>
           <div className="flex flex-row lg:flex-col">
-            <div className="flex flex-col lg:flex-row justify-between w-full mb-5">
-              <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+            <div className="flex flex-col lg:flex-row lg:justify-between  w-full mb-2 lg:mb-5">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
                   hashtag={'#huluMedia'}
                 >
-                  <span className="group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
+                  <span className="group-hover:text-white text-sm lg:text-xl text-center font-bold text-[#009688]">
                     Facebook
                   </span>
                   <FacebookIcon className="block m-auto mt-5" size={40} round />
                 </FacebookShareButton>
               </div>
 
-              <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <TelegramShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   title={quote}
@@ -82,7 +82,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </TelegramShareButton>
               </div>
 
-              <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <TwitterShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -96,7 +96,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </TwitterShareButton>
               </div>
 
-              <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <EmailShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -110,7 +110,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </EmailShareButton>
               </div>
 
-              <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <ViberShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -125,9 +125,9 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               </div>    
             </div>
 
-            <div className="flex flex-col lg:flex-row justify-between w-full ">
+            <div className="flex flex-col lg:flex-row lg:justify-between w-full ">
               
-              <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <WhatsappShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -141,7 +141,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </WhatsappShareButton>
               </div>
 
-              <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <LinkedinShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -154,20 +154,20 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </LinkedinShareButton>
               </div>
 
-              <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookMessengerShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
                   hashtag={'#huluMedia'}
                 >
                   <span className="group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
-                    Facebook Messenger
+                    Messenger
                   </span>
                   <FacebookMessengerIcon className="block m-auto mt-5" size={40} round />
                 </FacebookMessengerShareButton>
               </div>
 
-               <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <PinterestShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -180,7 +180,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </PinterestShareButton>
               </div>
 
-              <div className="m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <RedditShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
