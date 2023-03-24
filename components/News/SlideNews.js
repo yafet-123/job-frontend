@@ -59,7 +59,7 @@ export function SlideNews({allnews}) {
                 className="flex flex-col justify-between w-full"
               >
                 <div className="flex flex-row justify-between mb-5 w-full">
-                  <h3 className="flex flex-col justify-between">
+                  <h3 className="flex flex-col justify-between float-left">
                     { Category.map((data,index)=>(
                       <span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2">
                         {data.NewsCategory.CategoryName}
@@ -70,10 +70,10 @@ export function SlideNews({allnews}) {
                     {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                   </h3>
                 </div>
-                <h1 className="group-hover:underline text-xl lg:text-2xl font-extrabold text-slate-600 dark:text-[#009688] tracking-wide leading-snug w-full">
+                <h1 className="group-hover:underline text-left text-xl lg:text-2xl font-extrabold text-slate-600 dark:text-[#009688] tracking-wide leading-snug w-full">
                   {Header}
                 </h1>
-                <div  className="!bg-transparent !text-black dark:!text-white mt-5 w-full " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                <div  className="!bg-transparent !text-left !text-black dark:!text-white mt-5 w-full " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
               </button>
 
               <div className="flex items-center justify-between text-sm"> 
