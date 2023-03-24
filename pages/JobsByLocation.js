@@ -113,11 +113,11 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 	    <section className="bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col w-full h-full px-0 md:px-24 py-44">
 	    	<div className="flex flex-col bg-neutral-100 dark:bg-[#1B2637] w-full h-full lg:px-5 py-10 border rounded-xl dark:border-slate-800">
 	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-neutral-200 dark:bg-slate-700 px-10">
-	    			<div className="flex flex-col items-center lg:flex-row mb-5 mt-10">
+	    			<div className="flex flex-col items-center lg:flex-row mb-2 lg:mb-5 mt-3 lg:mt-10">
 	    				<Image src={image} width={100} height={100} alt="image" className="rounded-2xl" />
 		    			<h1 className="lg:ml-5 text-[#009688] text-xl md:text-3xl lg:text-5xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">Jobs in {location}</h1>
 	    			</div>
-	    			<div className="flex flex-col items-center lg:flex-row mb-10 mt-10">
+	    			<div className="flex flex-col items-center lg:flex-row mb-2 lg:mb-5 mt-3 lg:mt-10">
 	    				<div className="flex flex-col lg:mr-5 mb-10 lg:mb-0">
 	    					<p className="text-lg lg:text-3xl text-black dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
 	    					<p className="text-md lg:text-2xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>

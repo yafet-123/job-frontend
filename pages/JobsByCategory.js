@@ -124,11 +124,10 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	    <section className="bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col w-full h-full px-0 md:px-24 py-44">
 	    	<div className="flex flex-col bg-neutral-100 dark:bg-[#1B2637] w-full h-full lg:px-5 py-10 border rounded-xl dark:border-slate-800">
 	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-neutral-200 dark:bg-slate-700 px-10">
-	    			<div className="flex flex-col lg:flex-row mb-5 mt-10">
+	    			<div className="flex flex-col lg:flex-row mb-2 lg:mb-5 mt-3 lg:mt-10">
 		    			<h1 className="lg:ml-5 text-[#009688] text-xl md:text-3xl lg:text-4xl capitalize font-bold mt-10 lg:mt-0 text-center lg:text-left">{category} Jobs</h1>
 	    			</div>
-	    			<div className="flex flex-col lg:flex-row mb-10 mt-10">
-	    				
+	    			<div className="flex flex-col lg:flex-row mb-2 lg:mb-10 mt-3 lg:mt-10"> 				
 	    				<div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-[#009688] text-white p-2 lg:p-5">
 	    					<p className="text-lg lg:text-3xl font-bold capitalize">Jobs</p>
 	    					<p className="text-md lg:text-xl font-bold capitalize">{howmany}</p>
@@ -154,9 +153,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	      		
 	      		<GroupLatestJobs Alllatestjobs={Alllatestjobs} />
 	     		</div>
-	    	</div>
-
-	    	
+	    	</div>    	
 	    </section>
 	  </React.Fragment>
   );
