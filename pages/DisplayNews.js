@@ -10,6 +10,11 @@ export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const id = query.news_id
 
+  const updateview = await prisma.News.update({
+    where:{news_id : Number(id),},
+    data: { view: { increment: 1 }, },
+  })
+  
 	const data = await prisma.News.findUnique({
 		where:{
 			news_id: Number(id),

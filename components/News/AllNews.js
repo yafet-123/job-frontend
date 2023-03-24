@@ -20,7 +20,7 @@ export function AllNews({allnews}) {
     <div className="py-5 w-full h-full">      
       <h1 className="text-center text-xl lg:text-4xl font-bold my-5">Latest News</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
-        {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category},index)=>(
+        {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <div
             id={Header}
             ref={quoteRef}
@@ -68,7 +68,7 @@ export function AllNews({allnews}) {
             <div className="flex items-center justify-between text-sm"> 
               <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
                 <AiOutlineEye size={32} />
-                <span className="ml-3">12</span>
+                <span className="ml-3">{view}</span>
               </p>
 
               <button

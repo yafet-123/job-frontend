@@ -55,8 +55,8 @@ export function CompanyJobs({jobs,shareUrl}) {
 
 					<div className="!bg-transparent !text-black dark:!text-white mt-5 w-full" dangerouslySetInnerHTML={{ __html: data.JobsDescreption }} />
 
-					<div className="flex items-center justify-between text-sm my-5"> 
-						<p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+					<div className="flex flex-col lg:flex-row items-center justify-between text-sm my-5"> 
+						<p className="mb-2 lg:mb-0 flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
 						  	<AiOutlineEye size={32} />
 						  	<span className="ml-3">{data.view}</span>
 						</p>
@@ -67,7 +67,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 					     		query:{job_id:data.job_id}
 					        }}
 						>
-							<a className="font-bold text-white text-md lg:text-xl bg-[#009688] p-4 border rounded-2xl hover:bg-white hover:text-[#009688]">
+							<a className="text-center font-bold text-white text-md lg:text-xl bg-[#009688] py-4 px-7 border rounded-2xl hover:bg-white hover:text-[#009688]">
 								view detail
 							</a>
 						</Link>
@@ -78,7 +78,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 						        setid(index)
 						        setquotes(quote)
 						    }} 
-						    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+						    className="mt-2 lg:mt-0 text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
 						    <AiOutlineShareAlt size={32} />
 						</button>
             		</div>
