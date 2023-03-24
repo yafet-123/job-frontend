@@ -36,6 +36,7 @@ export function SlideNews({allnews}) {
         {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <div 
             key={index}
+            id={index}
             className="!flex flex-col lg:flex-row px-2 w-full h-full lg:mt-5 py-5"
           >
             <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
@@ -84,7 +85,7 @@ export function SlideNews({allnews}) {
                 <button
                     onClick={() => {
                         clickedForview()
-                        setid(Header)
+                        setid(index)
                         setquotes(quote)
                     }} 
                     className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
