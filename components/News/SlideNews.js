@@ -97,7 +97,7 @@ export function SlideNews({allnews}) {
         ))}
       </Slider>
 
-    {viewmodalOn && 
+      {viewmodalOn && 
         <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
       }
 
