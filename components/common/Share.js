@@ -55,7 +55,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
           </div>
           <div className="flex flex-row lg:flex-col">
             <div className="flex flex-col lg:flex-row lg:justify-between w-full my-2 lg:my-5">
-              <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -64,11 +64,11 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl text-center font-bold text-[#009688]">
                     Facebook
                   </span>
-                  <FacebookIcon className="block m-auto mt-5" size={40} round />
+                  <FacebookIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
                 </FacebookShareButton>
               </div>
 
-              <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <TelegramShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   title={quote}
@@ -78,11 +78,11 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688]">
                     Telegram
                   </span>
-                  <TelegramIcon className="block m-auto mt-5" size={40} round />
+                  <TelegramIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
                 </TelegramShareButton>
               </div>
 
-              <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <TwitterShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -92,11 +92,11 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688]">
                     Twitter
                   </span>
-                  <TwitterIcon className="block m-auto mt-5" size={40} round />
+                  <TwitterIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
                 </TwitterShareButton>
               </div>
 
-              <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <EmailShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -106,11 +106,11 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688]">
                     Email
                   </span>
-                  <EmailIcon className="block m-auto mt-5" size={40} round />
+                  <EmailIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
                 </EmailShareButton>
               </div>
 
-              <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <ViberShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -120,13 +120,13 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm text-center lg:text-xl font-bold text-[#009688]">
                     Viber
                   </span>
-                  <ViberIcon className="block m-auto mt-5"  size={40} round />
+                  <ViberIcon className="block m-auto mt-2 lg:mt-5"  size={40} round />
                 </ViberShareButton>
               </div>    
             </div>
 
             <div className="flex flex-col lg:flex-row lg:justify-between w-full my-2 lg:my-5">      
-              <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <WhatsappShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -136,11 +136,11 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
                     Whatsapp
                   </span>
-                  <WhatsappIcon className="block m-auto mt-5" size={40} round />
+                  <WhatsappIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
                 </WhatsappShareButton>
               </div>
 
-              <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <LinkedinShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -149,11 +149,11 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
                     Linkedin
                   </span>
-                  <LinkedinIcon className="block m-auto mt-5" size={40} round />
+                  <LinkedinIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
                 </LinkedinShareButton>
               </div>
 
-              <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookMessengerShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -162,11 +162,11 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
                     Messenger
                   </span>
-                  <FacebookMessengerIcon className="block m-auto mt-5" size={40} round />
+                  <FacebookMessengerIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
                 </FacebookMessengerShareButton>
               </div>
 
-               <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <PinterestShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -175,11 +175,11 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
                     Pinterest
                   </span>
-                  <PinterestIcon className="block m-auto mt-5" size={40} round />
+                  <PinterestIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
                 </PinterestShareButton>
               </div>
 
-              <div className="m-2 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <RedditShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -188,7 +188,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
                     Reddit
                   </span>
-                  <RedditIcon className="block m-auto mt-5" size={40} round />
+                  <RedditIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
                 </RedditShareButton>
               </div>
             </div>
