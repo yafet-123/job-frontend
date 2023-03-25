@@ -74,7 +74,7 @@ export function AllNews({allnews}) {
               <button
                   onClick={() => {
                       clickedForview()
-                      setid(Header)
+                      setid(news_id)
                       setquotes(quote)
                   }} 
                   className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
