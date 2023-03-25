@@ -5,15 +5,15 @@ import { AiOutlineEye } from 'react-icons/ai'
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import {DeleteNews} from './DeleteNews'
-import {UpdateNews} from './UpdateNews'
+import {DeleteBlogs} from './DeleteBlogs'
+import {UpdateBlogs} from './UpdateBlogs'
 
 export function DisplayBlogs({blogs, categories}) {
     const router = useRouter();
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
-    const [deletenewsid,setdeletenewsid] = useState()
-    const [updatenewsid,setupdatenewsid] = useState()
+    const [deleteblogsid,setdeleteblogsid] = useState()
+    const [updateblogsid,setupdateblogsid] = useState()
     const [updateheader,setupdateheader] = useState("")
     const [updateShortDescription,setupdateShortDescription] = useState("")
     const [updateDescription,setupdateDescription] = useState("")
@@ -45,7 +45,7 @@ export function DisplayBlogs({blogs, categories}) {
                             {blogs.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700">
-                                        <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.news_id}</p>
+                                        <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.blogs_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         <Image src={data.image == "" || data.image == null ? "/images/logo2.png" : data.image} width={50} height={50} alt="image that will be displayed" />
@@ -63,7 +63,7 @@ export function DisplayBlogs({blogs, categories}) {
                                         <button
                                             onClick={() => {
                                                 clickedForupdate()
-                                                setupdatenewsid(data.news_id)
+                                                setupdateblogsid(data.blogs_id)
                                                 setupdateheader(data.Header)
                                                 setupdateShortDescription(data.ShortDescription)
                                                 setupdateDescription(data.Description)
@@ -78,7 +78,7 @@ export function DisplayBlogs({blogs, categories}) {
                                         <button 
                                             onClick={() => {
                                                 clickedFordelete()
-                                                setdeletenewsid(data.news_id)
+                                                setdeleteblogsid(data.blogs_id)
                                             }}
                                             className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                             Delete
@@ -95,7 +95,7 @@ export function DisplayBlogs({blogs, categories}) {
                             <div className="flex justify-between items-center">
                                 <p className="text-blue-500 dark:text-white font-bold hover:underline">
                                     <span className="text-lg">Id : </span> 
-                                    <span className="text-sm ">{data.news_id} </span>
+                                    <span className="text-sm ">{data.blogs_id} </span>
                                 </p>
 
                                 
@@ -124,7 +124,7 @@ export function DisplayBlogs({blogs, categories}) {
                                 <button 
                                     onClick={() => {
                                         clickedForupdate()
-                                        setupdatenewsid(data.news_id)
+                                        setupdateblogsid(data.blogs_id)
                                         setupdateheader(data.Header)
                                         setupdateShortDescription(data.ShortDescription)
                                         setupdateDescription(data.Description)
@@ -136,7 +136,7 @@ export function DisplayBlogs({blogs, categories}) {
                                 <button 
                                     onClick={() => {
                                         clickedFordelete()
-                                        setdeletenewsid(data.news_id)
+                                        setdeleteblogsid(data.blogs_id)
                                     }}
                                     className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-110 duration-1000 ease-in-out rounded">
                                     Delete
@@ -148,14 +148,14 @@ export function DisplayBlogs({blogs, categories}) {
             </div>
 
             {deletemodalOn && 
-                <DeleteNews setdeleteModalOn={setdeleteModalOn} deletenewsid={deletenewsid} />
+                <DeleteBlogs setdeleteModalOn={setdeleteModalOn} deleteblogsid={deleteblogsid} />
             }
 
             {updatemodalOn && 
-                <UpdateNews 
+                <UpdateBlogs 
                     categories = {categories}
-                    updatenewsid = {updatenewsid}
-                    setupdatenewsid = {setupdatenewsid}
+                    updateblogsid = {updateblogsid}
+                    setupdateblogsid = {setupdateblogsid}
                     updateheader = {updateheader}
                     setupdateheader = {setupdateheader}
                     updateShortDescription = {updateShortDescription}

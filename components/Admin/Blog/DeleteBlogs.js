@@ -3,12 +3,12 @@ import { useRouter } from 'next/router'
 import {useState} from 'react'
 import FadeLoader from "react-spinners/FadeLoader";
 
-export function DeleteNews({setdeleteModalOn,deletenewsid}) {
+export function DeleteBlogs({setdeleteModalOn,deleteblogsid}) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 	const handleOKClickFordelete = async() => {
         setLoading(true)
-        const data = await axios.delete(`../api/deletenews/${deletenewsid}`,{
+        const data = await axios.delete(`../api/deleteblogs/${deleteblogsid}`,{
         }).then(function (response) {
             console.log(response.data);
             router.reload()

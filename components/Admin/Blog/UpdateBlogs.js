@@ -20,7 +20,7 @@ const QuillNoSSRWrapper = dynamic(
   },
 )
 
-export function UpdateNews({categories ,updatenewsid ,setupdatenewsid ,updateheader ,setupdateheader ,updateShortDescription ,setupdateShortDescription ,updateDescription, setupdateDescription ,setupdateModalOn}) {
+export function UpdateBlogs({categories ,updateblogsid ,setupdateblogsid ,updateheader ,setupdateheader ,updateShortDescription ,setupdateShortDescription ,updateDescription, setupdateDescription ,setupdateModalOn}) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [categoryId, setCategoryId] = useState([])
@@ -75,7 +75,7 @@ export function UpdateNews({categories ,updatenewsid ,setupdatenewsid ,updatehea
 
     const handleOKClickForupdate = async() => {
         setLoading(true)
-        const data = await axios.patch(`../api/updatenews/${updatenewsid}`,{
+        const data = await axios.patch(`../api/updateblogs/${updateblogsid}`,{
             "Header": updateheader,
             "ShortDescription" : updateShortDescription,
             "Description" : updateDescription,

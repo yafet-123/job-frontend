@@ -32,7 +32,7 @@ export async function getServerSideProps(){
   });
 
   const allblogs = blogs.map((data)=>({
-    news_id:data.news_id,
+    blogs_id:data.blogs_id,
     Header:data.Header,
     image:data.Image,
     ShortDescription:data.ShortDescription,
