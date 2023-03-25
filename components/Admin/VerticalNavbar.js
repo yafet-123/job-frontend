@@ -28,8 +28,8 @@ export function VerticalNavbar({onChange, data}){
         { link: "/Admin/CSSCourse", icon: <SiCss3 size={25}/>, name: "CSS Course" },
         { link: "/Admin/JavascriptCourses", icon: <DiJavascript1 size={25}/>, name: "JavaScript Course" },
         { link: "/Admin/PythonCourses", icon: <DiPython size={25}/>, name: "Python Course" },
-        { link: "/Admin/BlogsCategory", icon: <DiPython size={25}/>, name: "Blogs Category" },
-        { link: "/Admin/PythonCourses", icon: <DiPython size={25}/>, name: "Python Course" },
+        { link: "/Admin/BlogsCategory", icon: <MdOutlineCategory size={25}/>, name: "Blogs Category" },
+        { link: "/Admin/Blogs", icon: <DiPython size={25}/>, name: "Blogs" },
     ];
 	const router = useRouter();
     const [sideBar , setsideBar] = useState(false);

@@ -4,8 +4,8 @@ import axios from 'axios';
 import moment from 'moment';
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react";
-import {DeleteNewsCategory} from './DeleteNewsCategory'
-import {UpdateNewsCategory} from './UpdateNewsCategory'
+import {DeleteBlogsCategory} from './DeleteBlogsCategory'
+import {UpdateBlogsCategory} from './UpdateBlogsCategory'
 
 export function DisplayBlogsCategory({categories}) {
     const router = useRouter();
@@ -137,11 +137,11 @@ export function DisplayBlogsCategory({categories}) {
             </div>
 
             {deletemodalOn && 
-                <DeleteNewsCategory setdeleteModalOn={setdeleteModalOn} deletecategoryid={deletecategoryid}/>
+                <DeleteBlogsCategory setdeleteModalOn={setdeleteModalOn} deletecategoryid={deletecategoryid}/>
             }
 
             {updatemodalOn && 
-                <UpdateNewsCategory setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
+                <UpdateBlogsCategory setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
             }
         </div>
   );

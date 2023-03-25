@@ -8,7 +8,7 @@ import Image from 'next/image'
 import {DeleteNews} from './DeleteNews'
 import {UpdateNews} from './UpdateNews'
 
-export function DisplayNews({news, categories}) {
+export function DisplayBlogs({blogs, categories}) {
     const router = useRouter();
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
@@ -42,7 +42,7 @@ export function DisplayNews({news, categories}) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                            {news.map((data,index)=>(
+                            {blogs.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
                                     <td className="p-3 text-lg text-gray-700">
                                         <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.news_id}</p>
@@ -90,7 +90,7 @@ export function DisplayNews({news, categories}) {
                     </table>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
-                    {news.map((data,index)=>(
+                    {blogs.map((data,index)=>(
                         <div key={index} className="bg-neutral-100 dark:bg-slate-800 space-y-3 p-2 lg:p-4 rounded-lg shadow">
                             <div className="flex justify-between items-center">
                                 <p className="text-blue-500 dark:text-white font-bold hover:underline">

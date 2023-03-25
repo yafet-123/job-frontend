@@ -23,7 +23,7 @@ const QuillNoSSRWrapper = dynamic(
   },
 )
 
-export function AddNews ({categories}) {
+export function AddBlogs ({categories}) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [Header, setHeader] = useState("")
@@ -107,7 +107,7 @@ export function AddNews ({categories}) {
         const imageData = await imageUploadData()
         seterror("")
         setLoading(true)
-        const data = await axios.post(`../api/addNews`,{
+        const data = await axios.post(`../api/addBlogs`,{
             "Header": Header,
             "ShortDescription" : ShortDescription,
             "Description" : Description,
@@ -139,7 +139,7 @@ export function AddNews ({categories}) {
     return (
         <div className="px-0 lg:px-10 pt-20">
             <form className="max-w-7xl mx-auto my-10" onSubmit={registerNews}>
-                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Add News</h1>
+                <h1 className="text-black dark:text-white text-xl lg:text-4xl font-bold text-center italic">Add Blogs</h1>
                 <div className="flex flex-col my-10 w-full px-2">
                     <div className="relative flex-1">
                         <input 
