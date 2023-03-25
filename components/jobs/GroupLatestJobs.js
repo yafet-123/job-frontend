@@ -12,7 +12,7 @@ export function GroupLatestJobs({Alllatestjobs}) {
 					<span className="ml-2 lg:ml-5">Latest Jobs</span>
 				</div>
 				<Link href="">
-				  <a className="font-bold text-sm md:text-md lg:text-lg text-white p-2 lg:p-4 bg-[#009688] capitalize border rounded-2xl">
+				  <a className="font-bold text-sm md:text-md lg:text-lg text-white p-4 bg-[#009688] capitalize border rounded-2xl">
 				    view all jobs
 				  </a>
 				</Link>
