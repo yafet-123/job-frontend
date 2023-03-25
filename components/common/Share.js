@@ -48,7 +48,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
           </div>
           <div className="lg:w-full flex flex-col">
             <div className="flex flex-row lg:justify-between w-full my-2 lg:my-5">
-              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-1 lg:p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -61,7 +61,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </FacebookShareButton>
               </div>
 
-              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-1 lg:p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <TelegramShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   title={quote}
@@ -75,7 +75,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </TelegramShareButton>
               </div>
 
-              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-1 lg:p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <TwitterShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -89,7 +89,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </TwitterShareButton>
               </div>
 
-              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-1 lg:p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <EmailShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -105,7 +105,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
             </div>
 
             <div className="flex flex-row lg:justify-between w-full my-2 lg:my-5">   
-              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-1 lg:p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <ViberShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -119,7 +119,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </ViberShareButton>
               </div> 
 
-              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-1 lg:p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <WhatsappShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -133,7 +133,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </WhatsappShareButton>
               </div>
 
-              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-1 lg:p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <LinkedinShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
@@ -146,7 +146,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 </LinkedinShareButton>
               </div>
 
-              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-1 lg:p-2 hover:border rounded-2xl">
+              <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookMessengerShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
