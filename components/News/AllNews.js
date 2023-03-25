@@ -22,7 +22,7 @@ export function AllNews({allnews}) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
         {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <div
-            id={Header}
+            id={news_id}
             ref={quoteRef}
             key={index} 
             className="flex flex-col w-full h-full lg:mt-5 group py-5"
