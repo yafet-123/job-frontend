@@ -58,6 +58,7 @@ model User {
   user_id      Int           @id @default(autoincrement())
   UserName     String        @unique @db.VarChar(255)
   email        String?       @unique @db.VarChar(255)
+  resetToken   String?       @unique @db.VarChar(255)
   Password     String        @db.VarChar(255)
   role         String?       @db.VarChar(255)
   CreatedDate  DateTime?     @default(now()) @db.Timestamptz(6)
@@ -76,6 +77,9 @@ model User {
   CSSCourse                   CSSCourse[]
   JavascriptCourse            JavascriptCourse[]
   PythonCourse                PythonCourse[]
+  Blogs                       Blogs[]
+  BlogsCategory               BlogsCategory[]
+  BlogsCategoryRelationship   BlogsCategoryRelationship[]
 }
 
 model JobCategory {
@@ -88,6 +92,42 @@ model JobCategory {
   Category     Category  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
   Job          Job       @relation(fields: [job_id], references: [job_id], onDelete: Cascade, onUpdate: Cascade)
   User         User?     @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+}
+
+model Blogs {
+  blogs_id                     Int           @id @default(autoincrement()) 
+  Header                       String?
+  Image                        String?       @db.VarChar(255)
+  ShortDescription             String?           
+  Description                  String?
+  view                         Int           @default(0)      
+  user_id                      Int
+  CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
+  User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
+  BlogsCategoryRelationship    BlogsCategoryRelationship[]
+}
+
+model BlogsCategory {
+  category_id                   Int           @id @default(autoincrement())
+  CategoryName                  String        @db.VarChar(255)
+  user_id                       Int?
+  CreatedDate                   DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
+  User                          User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+  BlogsCategoryRelationship      BlogsCategoryRelationship[]
+}
+
+model BlogsCategoryRelationship{
+  blogs_category_id Int           @id @default(autoincrement())
+  user_id           Int?
+  category_id       Int
+  blogs_id          Int
+  CreatedDate       DateTime?     @default(now()) @db.Timestamptz(6)
+  ModifiedDate      DateTime?     @default(now()) @db.Timestamptz(6)
+  BlogsCategory     BlogsCategory  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
+  Blogs             Blogs          @relation(fields: [blogs_id], references: [blogs_id], onDelete: Cascade, onUpdate: Cascade)
+  User              User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
 }
 
 model News {

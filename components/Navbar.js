@@ -42,7 +42,7 @@ export function Navbar() {
 
   return (
     <nav
-      className={ router.pathname == "/auth/signin" || router.pathname == '/Forgotpassword' ? "hidden" : `${
+      className={ router.pathname == "/auth/signin" || router.pathname == "/ResetPassword" || router.pathname == '/Forgotpassword' ? "hidden" : `${
         colorChange ? 'bg-[#e6e6e6] bg-opacity-80 dark:bg-opacity-80 dark:bg-[#02201D] border-b-2 border-slate-700' : `${open ? 'bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D]' : 'bg-transparent'}`
       } w-full   lg:h-[80px] top-0 fixed z-50`}
     >
