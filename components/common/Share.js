@@ -41,7 +41,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
   }
   return (
     <div className="bg-neutral-100 bg-opacity-80 dark:bg-slate-800 fixed inset-0 z-50 flex justify-center items-center">
-        <div className="flex flex-col bg-white dark:bg-slate-500 py-2 lg:py-5 px-2 lg:px-5 border-4 border-sky-500 rounded-xl">
+        <div className="flex flex-col bg-white dark:bg-slate-500 py-2 lg:py-5 px-2 lg:px-5 border-4 border-sky-500 rounded-xl px-2">
           <div className="flex items-center justify-between mb-1 lg:mb-10">
             <h1 className="text-[#009688] font-bold text-lg lg:text-2xl">Share</h1>
             <button
@@ -52,8 +52,8 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 <AiOutlineClose size={32} />
               </button>
           </div>
-          <div className="lg:w-full flex flex-row lg:flex-col">
-            <div className="flex flex-col lg:flex-row lg:justify-between w-full my-2 lg:my-5">
+          <div className="lg:w-full flex flex-col">
+            <div className="flex flex-row lg:justify-between w-full my-2 lg:my-5">
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
@@ -110,7 +110,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               </div>   
             </div>
 
-            <div className="flex flex-col lg:flex-row lg:justify-between w-full my-2 lg:my-5">   
+            <div className="flex flex-row lg:justify-between w-full my-2 lg:my-5">   
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <ViberShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
@@ -124,7 +124,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   <ViberIcon className="block m-auto mt-2 lg:mt-5"  size={40} round />
                 </ViberShareButton>
               </div> 
-                 
+
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <WhatsappShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
