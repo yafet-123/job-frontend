@@ -78,7 +78,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <TwitterShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  quote={quote}
+                  title={quote}
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
@@ -92,7 +92,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <EmailShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  quote={quote}
+                  body={quote}
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
@@ -108,7 +108,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <ViberShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  quote={quote}
+                  title={quote}
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
@@ -122,7 +122,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <WhatsappShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  quote={quote}
+                  title={quote}
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
@@ -136,7 +136,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <LinkedinShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  quote={quote}
+                  title={quote}
                   hashtag={'#huluMedia'}
                 >
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
@@ -149,7 +149,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookMessengerShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  quote={quote}
+                  title={quote}
                   hashtag={'#huluMedia'}
                 >
                   <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
