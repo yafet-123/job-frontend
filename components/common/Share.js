@@ -112,7 +112,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
-                  <span className="hidden lg:flex group-hover:text-white text-sm text-center lg:text-xl font-bold text-[#009688]">
+                  <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688]">
                     Viber
                   </span>
                   <ViberIcon className="block m-auto mt-2 lg:mt-5"  size={40} round />
@@ -126,7 +126,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
-                  <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
+                  <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688]">
                     Whatsapp
                   </span>
                   <WhatsappIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
@@ -139,7 +139,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   title={quote}
                   hashtag={'#huluMedia'}
                 >
-                  <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
+                  <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688]">
                     Linkedin
                   </span>
                   <LinkedinIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
@@ -152,7 +152,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   title={quote}
                   hashtag={'#huluMedia'}
                 >
-                  <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688] pb-5">
+                  <span className="hidden lg:flex group-hover:text-white text-sm lg:text-xl font-bold text-[#009688]">
                     Messenger
                   </span>
                   <FacebookMessengerIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
