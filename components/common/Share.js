@@ -6,10 +6,6 @@ import { AiOutlineClose } from 'react-icons/ai'
 import {
   FacebookShareButton,
   FacebookIcon,
-  PinterestShareButton,
-  PinterestIcon,
-  RedditShareButton,
-  RedditIcon,
   TelegramShareButton,
   TelegramIcon,
   TwitterShareButton,
@@ -24,8 +20,6 @@ import {
   FacebookMessengerIcon,
   EmailShareButton,
   EmailIcon,
-  LineShareButton,
-  LineIcon,
 } from 'next-share';
 
 
