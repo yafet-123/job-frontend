@@ -1,10 +1,12 @@
 import { Hero } from "../components/Home/Hero";
 import { LatestJobs } from "../components/Home/LatestJobs";
 import { SearchJobs } from "../components/Home/SearchJobs";
+import { Blogs } from "../components/Home/Blogs";
 import React from 'react'
 import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/MainHeader';
 import { useSession } from "next-auth/react";
+
 export async function getStaticProps(){
   const locations = await prisma.Location.findMany({
     include:{
@@ -86,6 +88,7 @@ export default function Home({categories, locations, latestjobs}) {
         <Hero />
         <LatestJobs latestjobs={latestjobs} />
         <SearchJobs categories={categories} locations={locations} />
+        <Blogs />
       </div>
     </React.Fragment>
   );
