@@ -23,7 +23,7 @@ export function Navbar() {
     { path: "/News", name: "News"},
     { path: "/Entertemiment", name: "Entertemiment" },
     { path: "/Courses", name: "Courses" },
-    { path: "/Advices", name: "Advices" },
+    { path: "/Blogs", name: "Blogs" },
   ];
 
   const [colorChange, setColorchange] = useState(false);

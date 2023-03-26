@@ -7,7 +7,7 @@ export default async function handledeletecategory(req, res){
 	const {deleteblogsid} = req.query
 	console.log(req.query)
 	const data = await prisma.Blogs.delete({
-		where:{category_id:Number(deleteblogsid)},
+		where:{blogs_id:Number(deleteblogsid)},
 	});
 	res.json(data)
 }
