@@ -88,8 +88,10 @@ export function Navbar() {
                     <a
                       onClick={(e) => setNavabarText(link.text)}
                       className={
+                        
                         router.pathname == link.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == link.path ) || 
                         ( router.pathname == "/JobsByCategory" && "/Jobs" == link.path ) || ( router.pathname == "/JobsByLocation" && "/Jobs" == link.path ) ||
+                        ( router.pathname == "/AdvanceSearch" && "/Jobs" == link.path ) ||
                         ( router.pathname == "/Course/Html" && "/Courses" == link.path ) || ( router.pathname == "/Course/Css" && "/Courses" == link.path ) ||
                         ( router.pathname == "/Course/javascript" && "/Courses" == link.path ) || ( router.pathname == "/Course/python" && "/Courses" == link.path ) ||
                         ( router.pathname == "/Advice" && "/Advices" == link.path ) || ( router.pathname == "/DisplayNews" && "/News" == link.path ) ||

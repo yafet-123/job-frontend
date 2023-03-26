@@ -1,7 +1,7 @@
 import { prisma } from '../../util/db.server.js'
-
+ 
 export default async function handlesearchclientjob(req, res){
-    const { searchName, type } = req.body
+    const { searchName } = req.body
     const searchData = await prisma.Job.findMany({
         where: {
             OR:[
@@ -49,6 +49,7 @@ export default async function handlesearchclientjob(req, res){
         Salary:data.Salary,
         DeadLine:data.DeadLine,
         Apply:data.Apply,
+        view:data.view,
         JobsDescreption:data.JobsDescreption,
     	JobsRequirement:data.JobsRequirement,
         CreatedDate:data.CreatedDate,

@@ -10,15 +10,10 @@ export function Hero() {
   const [search,setsearch] = useState("job")
   const router = useRouter();
   const [searchValue, setsearchValue] = useState("")
-  const SearchList = [
-    { type: 1, name: "job Type",},
-    { type: 2, name: "Companies",},
-  ];
 
   async function handleSearch(e){
     const data = await axios.post(`api/searchAdmin`,{
         "searchName": getSearchValue,
-        "type": 1
     }).then(function (response) {
       const objOneData = response.data
           if(Array.isArray(objOneData)){
