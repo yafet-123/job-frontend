@@ -83,7 +83,7 @@ export async function getServerSideProps(context){
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
-    Category:data.NewsCategoryRelationship
+    Category:data.BlogsCategoryRelationship
   }))
 
   return{
