@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 export function DisplayLatestNews({Alllatestnews}) {
 
   	return (
-	    <div className="sticky top-0 bottom-10 grid grid-cols-1 md:grid-cold-3 gap-5 w-full lg:w-[30%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 lg:overflow-y-scroll">
+	    <div className="sticky top-0 bottom-10 grid grid-cols-1 md:grid-cold-3 gap-5 w-full lg:w-[30%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 scroll_width">
 			{Alllatestnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
 			  	<Link 
 			  		href={{
@@ -16,7 +16,7 @@ export function DisplayLatestNews({Alllatestnews}) {
 	    			}}
 			  		key={index}
 			  	>
-			    	<a className="flex flex-col mb-5 px-2 py-5 hover:bg-[#009688]">
+			    	<a className="flex flex-col mb-5 px-2 py-5 hover:bg-[#009688] group">
 			      		<div className="w-full h-52 lg:!h-64 relative">
               				<Image
               	  				src={image}
@@ -33,12 +33,12 @@ export function DisplayLatestNews({Alllatestnews}) {
                     		<div className="mt-5 flex justify-between items-center">
                       			<h3 className="flex flex-col justify-between"> 
                         			{ Category.map((data,index)=>(
-                          				<span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2">
+                          				<span key={index} className="text-xs lg:text-sm font-bold dark:text-white group-hover:text-black text-slate-600 mb-2">
                             				{data.NewsCategory.CategoryName}
                           				</span>
                         			))}
                       			</h3>
-                      			<span className="font-normal text-sm lg:text-md dark:text-white text-gray-600">
+                      			<span className="font-normal text-sm lg:text-md dark:text-white text-gray-600 group-hover:text-black">
                         			{moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                       			</span>
                     		</div>
