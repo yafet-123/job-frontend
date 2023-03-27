@@ -161,7 +161,7 @@ export default function Home({categories, locations, latestjobs, Alllatestblogs,
         <LatestJobs latestjobs={latestjobs} />
         <SearchJobs categories={categories} locations={locations} />
         <Blogs blogs={Alllatestblogs} />
-        <div className="w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] overflow-hidden px-0 lg:px-32">
+        <div className="w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] overflow-hidden px-0 lg:px-32 py-10">
           <h1 className={`text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl text-black dark:text-white opacity-100`}>
             News
           </h1>
