@@ -46,7 +46,7 @@ export function Navbar() {
         colorChange ? 'bg-[#e6e6e6] bg-opacity-80 dark:bg-opacity-80 dark:bg-[#02201D] border-b-2 border-slate-700' : `${open ? 'bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D]' : 'bg-transparent'}`
       } w-full   lg:h-[80px] top-0 fixed z-50`}
     >
-      <div className="lg:justify-between justify-around lg:px-4 mx-2 lg:mx-10 items-center lg:flex lg:py-[10px] ">
+      <div className="lg:justify-between justify-around lg:px-4 mx-0 lg:mx-10 items-center lg:flex lg:py-[10px] ">
         <div className="flex items-center justify-between py-3 ">
           <Link href="/">
             <Image
