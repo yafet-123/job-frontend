@@ -32,7 +32,7 @@ export function SlideNews({allnews}) {
   }
   return (
     <div>
-      <Slider {...settings}>
+      <Slider {...settings} className="">
         {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <div 
             key={index}
