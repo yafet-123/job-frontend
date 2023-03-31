@@ -1,10 +1,10 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import moment from 'moment';
-import {DeleteCategory} from './DeleteCategory'
-import {UpdateCategory} from './UpdateCategory'
+import {DeleteAiSearchCategory} from './DeleteAiSearchCategory'
+import {UpdateAiSearchCategory} from './UpdateAiSearchCategory'
 
-export function DisplayCategory({categories}) {
+export function DisplayAiSearchCategory({categories}) {
     const [deletemodalOn, setdeleteModalOn] = useState(false);
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deletecategoryid,setdeletecategoryid] = useState()
@@ -130,11 +130,11 @@ export function DisplayCategory({categories}) {
             </div>
 
             {deletemodalOn && 
-                <DeleteCategory setdeleteModalOn={setdeleteModalOn} deletecategoryid={deletecategoryid}/>
+                <DeleteAiSearchCategory setdeleteModalOn={setdeleteModalOn} deletecategoryid={deletecategoryid}/>
             }
 
             {updatemodalOn && 
-                <UpdateCategory setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
+                <UpdateAiSearchCategory setupdateModalOn={setupdateModalOn} updatecategoryid={updatecategoryid} updatecategoryname={updatecategoryname} setupdatecategoryname={setupdatecategoryname}/>
             }
         </div>
   );

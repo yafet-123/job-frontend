@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useSession } from "next-auth/react";
 import RiseLoader from "react-spinners/RiseLoader";
 
-export function AddCategory({categories}) {
+export function AddAiSearchCategory({categories}) {
     const router = useRouter();
     const [category, setcategory] = useState("")
     const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ export function AddCategory({categories}) {
     async function registerCategory(e){
         e.preventDefault()
         setLoading(true)
-        const data = await axios.post(`../api/addCtegory`,{
+        const data = await axios.post(`../api/addAisearchCategory`,{
             "CategoryName": category,
             "user_id": UserData.user_id,
         }).then(function (response) {

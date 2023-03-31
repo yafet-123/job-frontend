@@ -2,12 +2,12 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import RiseLoader from "react-spinners/RiseLoader";
 import { useState,useEffect, useContext} from 'react'
-export function DeleteCategory({setdeleteModalOn,deletecategoryid}) {
+export function DeleteAiSearchCategory({setdeleteModalOn,deletecategoryid}) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 	const handleOKClickFordelete = async() => {
         setLoading(true)
-        const data = await axios.delete(`../api/deletecategory/${deletecategoryid}`,{
+        const data = await axios.delete(`../api/deleteAiSearchCategory/${deletecategoryid}`,{
         }).then(function (response) {
             console.log(response.data);
             router.reload()

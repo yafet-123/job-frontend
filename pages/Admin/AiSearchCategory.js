@@ -1,8 +1,8 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
 import { prisma } from '../../util/db.server.js'
-import { AddCategory } from "../../components/Admin/AiSearchCategory/AddCategory";
-import { DisplayCategory } from "../../components/Admin/AiSearchCategory/DisplayCategory";
+import { AddAiSearchCategory } from "../../components/Admin/AiSearchCategory/AddAiSearchCategory";
+import { DisplayAiSearchCategory } from "../../components/Admin/AiSearchCategory/DisplayAiSearchCategory";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../components/common/MainHeader';
@@ -40,13 +40,13 @@ export default function AiSearchCategory({categories}) {
     const { status, data } = useSession();
     return (
     	<React.Fragment>
-      	<MainHeader title="Entertemiment Category Dashboard" />
+      	<MainHeader title="Ai Search Category Dashboard" />
         	<section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
     				<div className='w-full h-full flex flex-row'>
     		      <VerticalNavbar data={data} />
     		      <div className="w-full">
-            		<AddCategory />
-            		<DisplayCategory categories={categories} />
+            		<AddAiSearchCategory />
+            		<DisplayAiSearchCategory categories={categories} />
             	</div>
     		    </div> 
   			  </section>

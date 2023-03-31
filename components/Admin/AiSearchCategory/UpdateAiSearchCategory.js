@@ -2,12 +2,12 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import RiseLoader from "react-spinners/RiseLoader";
 import { useState,useEffect, useContext} from 'react'
-export function UpdateCategory({setupdateModalOn, updatecategoryname, setupdatecategoryname, updatecategoryid}) {
+export function UpdateAiSearchCategory({setupdateModalOn, updatecategoryname, setupdatecategoryname, updatecategoryid}) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 	const handleOKClickForupdate = async() => {
         setLoading(true)
-        const data = await axios.patch(`../api/updateCategory/${updatecategoryid}`,{
+        const data = await axios.patch(`../api/updateAiSearchCategory/${updatecategoryid}`,{
             "CategoryName": updatecategoryname
         }).then(function (response) {
             console.log(response.data);
