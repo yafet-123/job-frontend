@@ -80,6 +80,9 @@ model User {
   Blogs                       Blogs[]
   BlogsCategory               BlogsCategory[]
   BlogsCategoryRelationship   BlogsCategoryRelationship[]
+  Detail                      Detail[]
+  AiCategory                  AiCategory[]
+  DetailCategory              DetailCategory[]
 }
 
 model JobCategory {
@@ -238,4 +241,66 @@ model PythonCourse {
   CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
   User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
+}
+
+
+
+model AiCategory {
+  category_id     Int           @id @default(autoincrement())
+  CategoryName    String        @db.VarChar(255)
+  user_id         Int?
+  createdAt       DateTime?     @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime?      @updatedAt
+  User            User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+  DetailCategory  DetailCategory[]
+}
+
+model Detail {
+  detail_id       Int           @id @default(autoincrement())
+  Header          String        @db.VarChar(255)
+  description     String?       @db.VarChar(255)
+  like            String        @db.VarChar(255)          
+  link            String        @db.VarChar(255)
+  service         String[]      
+  user_id         Int
+  category_id     Int
+  createdAt       DateTime?     @default(now()) @db.Timestamptz(6)
+  updatedAt       DateTime?      @updatedAt
+  User            User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+  DetailCategory  DetailCategory[]
+  Comment         Comment[]
+}
+
+model DetailCategory {
+  detail_category_id  Int       @id @default(autoincrement())
+  user_id             Int?
+  category_id         Int
+  detail_id           Int
+  createdAt           DateTime?   @default(now()) @db.Timestamptz(6)
+  updatedAt           DateTime?   @updatedAt
+  AiCategory          AiCategory  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
+  Detail              Detail      @relation(fields: [detail_id], references: [detail_id], onDelete: Cascade, onUpdate: Cascade)
+  User                User?       @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  Author    Author   @relation(fields: [author_id], references: [author_id], onDelete: Cascade, onUpdate: Cascade)
+  author_id Int
+  Detail    Detail   @relation(fields: [detail_id], references: [detail_id], onDelete: Cascade, onUpdate: Cascade)
+  detail_id Int
+}
+
+
+model Author {
+  author_id Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  comments  Comment[]
 }
