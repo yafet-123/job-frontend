@@ -5,7 +5,7 @@ import { AddLocation } from "../../components/Admin/Location/AddLocation";
 import {DisplayLocation} from "../../components/Admin/Location/DisplayLocation";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/MainHeader';
+import { MainHeader } from '../../components/common/MainHeader';
 export async function getServerSideProps(){
   const locations = await prisma.Location.findMany({
     orderBy: {

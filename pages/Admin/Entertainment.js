@@ -5,7 +5,7 @@ import { AddEntertainment } from "../../components/Admin/Entertainment/AddEntert
 import { DisplayEntertainment } from "../../components/Admin/Entertainment/DisplayEntertainment";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/MainHeader';
+import { MainHeader } from '../../components/common/MainHeader';
 export async function getServerSideProps(){
 
   const entertainments = await prisma.Entertainment.findMany({

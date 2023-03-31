@@ -4,7 +4,7 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import { useSession } from "next-auth/react";
-import { MainHeader } from '../../components/MainHeader';
+import { MainHeader } from '../../components/common/MainHeader';
 import React from 'react'
 import Link from 'next/link'
 export default function SignIn({ csrfToken }) {

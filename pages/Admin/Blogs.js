@@ -4,7 +4,7 @@ import { AddBlogs } from "../../components/Admin/Blog/AddBlogs";
 import { DisplayBlogs } from "../../components/Admin/Blog/DisplayBlogs";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/MainHeader';
+import { MainHeader } from '../../components/common/MainHeader';
 import { prisma } from '../../util/db.server.js'
 
 export async function getServerSideProps(){

@@ -4,7 +4,7 @@ import { AddNews } from "../../components/Admin/News/AddNews";
 import { DisplayNews } from "../../components/Admin/News/DisplayNews";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/MainHeader';
+import { MainHeader } from '../../components/common/MainHeader';
 import { prisma } from '../../util/db.server.js'
 
 export async function getServerSideProps(){

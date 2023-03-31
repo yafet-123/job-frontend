@@ -5,7 +5,7 @@ import { AddCategory } from "../../components/Admin/Category/AddCategory";
 import { DisplayCategory } from "../../components/Admin/Category/DisplayCategory";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/MainHeader';
+import { MainHeader } from '../../components/common/MainHeader';
 export async function getServerSideProps(){
 
   const categories = await prisma.Category.findMany({
