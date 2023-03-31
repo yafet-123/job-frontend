@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { prisma } from '../util/db.server.js'
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 import { DisplayIndvidualNews } from '../components/News/DisplayIndvidualNews';
 import { DisplayLatestNews } from '../components/News/DisplayLatestNews';
 

@@ -5,7 +5,7 @@ import { Blogs } from "../components/Home/Blogs";
 import { SlideNews } from '../components/News/SlideNews';
 import React from 'react'
 import { prisma } from '../util/db.server.js'
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 import { useSession } from "next-auth/react";
 import Link from 'next/link'
 

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios';
 import { prisma } from '../util/db.server.js'
 import moment from 'moment';
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 import { useState, useEffect, useRef} from 'react'
 import {Share} from '../components/common/Share.js'
 import { GroupLatestJobs } from '../components/jobs/GroupLatestJobs'

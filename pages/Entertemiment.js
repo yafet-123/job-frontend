@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
 import ReactPlayer from 'react-player'
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 import { ETSidebar } from '../components/Entertemiment/ETSidebar';
 import { Content } from '../components/Entertemiment/Content';
 import { prisma } from '../util/db.server.js'

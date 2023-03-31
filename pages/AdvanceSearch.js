@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { AiOutlineSearch, AiOutlineFacebook } from "react-icons/ai";
 import axios from 'axios';
 import moment from 'moment';
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 import { CompanyJobs } from '../components/jobs/CompanyJobs'
 
 export default function AdvanceSearch() {

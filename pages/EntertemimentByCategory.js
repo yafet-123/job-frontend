@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios';
 import { prisma } from '../util/db.server.js'
 import moment from 'moment';
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 import { ETSidebar } from '../components/Entertemiment/ETSidebar';
 import { Content } from '../components/Entertemiment/Content';
 

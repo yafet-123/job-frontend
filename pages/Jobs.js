@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 import { prisma } from '../util/db.server.js'
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 import { Hero } from "../components/jobs/Hero";
 import { Searchjobs } from "../components/jobs/Searchjobs";
 

@@ -3,7 +3,7 @@ import { DashBoard } from "../components/Admin/DashBoard";
 import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
 import { useRouter } from 'next/router'
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 import React from 'react'
 import { prisma } from '../util/db.server.js'
 

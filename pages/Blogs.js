@@ -1,5 +1,5 @@
 import React from "react";
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 import { AllBlogs } from '../components/Blogs/AllBlogs';
 import { prisma } from '../util/db.server.js'
 

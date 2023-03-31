@@ -1,6 +1,6 @@
 import "../styles/globals.css";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
+import { Navbar } from "../components/common/Navbar";
+import { Footer } from "../components/common/Footer";
 import { ThemeProvider } from 'next-themes';
 import { SessionProvider } from "next-auth/react"
 import Router from 'next/router';

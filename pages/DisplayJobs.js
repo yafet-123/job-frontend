@@ -6,7 +6,7 @@ import { DisplayIndividualJobs } from "../components/jobs/DisplayIndividualJobs"
 import axios from "axios";
 import { useRouter } from 'next/router'
 import { prisma } from '../util/db.server.js'
-import { MainHeader } from '../components/MainHeader';
+import { MainHeader } from '../components/common/MainHeader';
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const id = query.job_id
