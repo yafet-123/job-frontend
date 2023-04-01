@@ -248,10 +248,10 @@ model PythonCourse {
 model AiCategory {
   category_id     Int           @id @default(autoincrement())
   CategoryName    String        @db.VarChar(255)
-  user_id         Int?
+  user_id         Int
   createdAt       DateTime?     @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime?      @updatedAt
-  User            User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+  updatedAt       DateTime?     @default(now()) @db.Timestamptz(6)
+  User            User         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
   DetailCategory  DetailCategory[]
 }
 
@@ -259,13 +259,12 @@ model Detail {
   detail_id       Int           @id @default(autoincrement())
   Header          String        @db.VarChar(255)
   description     String?       @db.VarChar(255)
-  like            String        @db.VarChar(255)          
+  like            Int          
   link            String        @db.VarChar(255)
   service         String[]      
   user_id         Int
-  category_id     Int
   createdAt       DateTime?     @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime?      @updatedAt
+  updatedAt       DateTime?     @default(now()) @db.Timestamptz(6)
   User            User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
   DetailCategory  DetailCategory[]
   Comment         Comment[]
@@ -273,21 +272,21 @@ model Detail {
 
 model DetailCategory {
   detail_category_id  Int       @id @default(autoincrement())
-  user_id             Int?
+  user_id             Int
   category_id         Int
   detail_id           Int
   createdAt           DateTime?   @default(now()) @db.Timestamptz(6)
-  updatedAt           DateTime?   @updatedAt
+  updatedAt           DateTime?   @default(now()) @db.Timestamptz(6)
   AiCategory          AiCategory  @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: Cascade)
   Detail              Detail      @relation(fields: [detail_id], references: [detail_id], onDelete: Cascade, onUpdate: Cascade)
-  User                User?       @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
+  User                User       @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
 }
 
 model Comment {
   id        Int      @id @default(autoincrement())
   content   String
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
+  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime? @default(now()) @db.Timestamptz(6)
   Author    Author   @relation(fields: [author_id], references: [author_id], onDelete: Cascade, onUpdate: Cascade)
   author_id Int
   Detail    Detail   @relation(fields: [detail_id], references: [detail_id], onDelete: Cascade, onUpdate: Cascade)
@@ -301,6 +300,6 @@ model Author {
   email     String   @unique
   password  String
   createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
+  updatedAt DateTime? @default(now()) @db.Timestamptz(6)
   comments  Comment[]
 }

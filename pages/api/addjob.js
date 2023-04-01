@@ -43,7 +43,6 @@ export default async function handleaddjob(req, res){
 			DeadLine,
 			Apply,
 			user_id:Number(user_id),
-			location_id: Number(LocationId),
 			JobCategory:{
 				create: createJobCategory
 			}
