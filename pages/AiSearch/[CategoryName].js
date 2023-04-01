@@ -44,6 +44,8 @@ export async function getServerSideProps(context) {
 		detail_id:data.detail_id,
 		Header:data.Header,
 		description:data.description,
+		service:data.service,
+		link:data.link
 	}))
 
   	return {
