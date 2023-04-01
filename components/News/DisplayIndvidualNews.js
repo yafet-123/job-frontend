@@ -13,7 +13,7 @@ export function DisplayIndvidualNews({news, newsCategory,shareUrl}) {
 	            {news.Header}
 	        </h1>
 
-	        <div className="lg:mr-20 h-52 lg:!h-96 relative ">
+	        <div className="lg:mr-20 !h-full relative ">
 	          	<Image
 	            	src={news.Image == "" || news.Image == null ? "/images/logo2.png" : news.Image}
 	            	fill
