@@ -64,8 +64,9 @@ export async function getServerSideProps(context){
   	const Allentertainment = entertainmentsbycategory.map((data)=>({
     	entertainment_id:data.entertainment_id,
     	Header:data.Header,
-    	link:data.link,
-    	location_id:data.location_id,
+    	image:data.Image,
+    	view:data.view,
+    	ShortDescription:data.ShortDescription,
     	userName:data.User.UserName,
     	CreatedDate:data.CreatedDate,
     	ModifiedDate:data.ModifiedDate,

@@ -1,28 +1,23 @@
 import dynamic from 'next/dynamic'
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
-import React, {useState,useEffect} from "react";
+import React, {useState,useRef} from "react";
 import moment from 'moment';
 import { useRouter } from 'next/router'
+import {Share} from '../common/Share.js'
+import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
+import Image from 'next/future/image'
 
-const Description = ({ShortDescription})=>{
-    let length = 100
-    const [isReadMore, setisReadMore] = useState(true)
-    return(
-        <p  className=" mt-5 font-normal italic text-sm lg:text-lg dark:text-white text-black"> 
-            {ShortDescription ?.substring(0, isReadMore ? length : undefined)}...
-            <button className="text-slate-700 dark:text-white text-sm lg:text-lg mx-2" onClick={() => setisReadMore((isReadMore) => !isReadMore)}>
-                {isReadMore ? "Read More" : "Read Less"}
-            </button>
-        </p>
-
-        
-    )
-}
 export function Content({entertainments}) {
-     const [getSearchValue,setgetSearchValue] = useState("")
-     const [affectRead, setaffectRead ] = useState()
-     const router = useRouter()
-     const toggleReadMore = () => {
+    const router = useRouter()
+    const quoteRef = useRef(null)
+    const quote = quoteRef.current?.textContent ?? "";
+    const [quotes, setquotes] = useState()
+    const shareUrl = router.asPath
+    const [viewmodalOn, setviewModalOn] = useState(false)
+    const [id, setid] = useState()
+    const [getSearchValue,setgetSearchValue] = useState("")
+    const [affectRead, setaffectRead ] = useState()
+    const toggleReadMore = () => {
         setisReadMore(!isReadMore);
     };
      return (
@@ -61,38 +56,66 @@ export function Content({entertainments}) {
                          </div>
                      </div>  
                </div>
-
-               <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 !pt-5 px-2 lg:px-20">
-                    {entertainments.map(({Header,Category,CreatedDate, link, ShortDescription}, index) => (
-                        <div key={index} className="!flex !flex-col !w-full !h-full !mb-5 lg:!mb-0">
-                            <ReactPlayer 
-                                url={link} 
-                                className="!w-full !h-[500px] !object-fit lg:!mb-5" 
-                                muted={false}
-                                playing={false}
-                                controls={true}                           
-                            />
-                            <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug mb-5">
-                               {Header}
-                            </h1>
-                            <div className="flex flex-row justify-between mb-5">
-                               <h3 className="flex flex-col justify-between">
-                                    { Category.map((data,index)=>(
-                                         <span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2">
-                                              {data.EntertainmentCategory.CategoryName}
-                                         </span>
-                                    ))}
-                               </h3>
-                               <h3 className="font-bold text-sm lg:text-md dark:text-white text-slate-700">
-                                   {moment(CreatedDate).utc().format('YYYY-MM-DD')}
-                               </h3>
+   
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
+                    {entertainments.map(({entertainment_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
+                        <div id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full h-full lg:mt-5 group py-5">
+                            <div className="w-full !h-52 lg:!h-64 relative">
+                                <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
                             </div>
-                            <Description ShortDescription={ShortDescription}/>
-                            
+
+                            <button 
+                                onClick = {()=>{
+                                    router.push({
+                                        pathname:"/DisplayNews",
+                                        query:{entertainment_id:entertainment_id}
+                                    })
+                                }}
+                                className="w-full flex flex-col text-left py-5"
+                            >
+                                <div className="flex flex-row justify-between items-center w-full mb-5">
+                                    <h3 className="flex flex-col justify-between w-full">
+                                        { Category.map((data,index)=>(
+                                            <span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2 w-full">
+                                                {data.EntertainmentCategory.CategoryName}
+                                            </span>
+                                        ))}
+                                    </h3>
+                                    <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
+                                        {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
+                                    </h3>
+                                </div>
+
+                                <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+                                    {Header}
+                                </h1>
+
+                                <div  className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                            </button>
+
+                            <div className="flex items-center justify-between text-sm"> 
+                                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+                                    <AiOutlineEye size={32} />
+                                    <span className="ml-3">{view}</span>
+                                </p>
+
+                                <button
+                                    onClick={() => {
+                                        clickedForview()
+                                        setid(entertainment_id)
+                                        setquotes(quote)
+                                    }} 
+                                    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+                                    <AiOutlineShareAlt size={32} />
+                                </button>
+                            </div>
                         </div>
                     ))}
-               </div>
-          </div>
+                </div>
+            {viewmodalOn && 
+                <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
+            }
+        </div>
      )
 }
      

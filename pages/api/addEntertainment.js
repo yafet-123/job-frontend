@@ -6,9 +6,10 @@ import { StatusCodes } from "http-status-codes";
 export default async function handleaddentertainment(req, res){
 	const { 
 		Header,
-		link,
+		Image,
 		categoryId,
 		ShortDescription,
+		Description,
 		user_id,
 	} = req.body
 	console.log(req.body)
@@ -24,8 +25,9 @@ export default async function handleaddentertainment(req, res){
 	const Jobdata = await prisma.Entertainment.create({
 		data:{
 			Header,
-			link,
+			Image,
 			ShortDescription,
+			Description,
 			user_id:Number(user_id),
 			EntertainmentCategoryRelationship:{
 				create: createEntertainmentCategory

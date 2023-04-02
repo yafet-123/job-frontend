@@ -46,10 +46,12 @@ export async function getServerSideProps(context){
 	const entertainmentsdata = entertainments.map((data)=>({
 		entertainment_id : data.entertainment_id,
 		Header:data.Header,
-		link:data.link,
-		ShortDescription:data.ShortDescription,
-		CreatedDate:data.CreatedDate,
-		ModifiedDate:data.ModifiedDate,
+    image:data.Image,
+    view:data.view,
+    ShortDescription:data.ShortDescription,
+    userName:data.User.UserName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate,
 		Category:data.EntertainmentCategoryRelationship
 	}))
 
