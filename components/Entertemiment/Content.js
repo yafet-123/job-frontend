@@ -61,7 +61,7 @@ export function Content({entertainments}) {
                     {entertainments.map(({entertainment_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
                         <div id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full h-full lg:mt-5 group py-5">
                             <div className="w-full !h-52 lg:!h-64 relative">
-                                <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
+                                <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest entertainment image"/>
                             </div>
 
                             <button 
