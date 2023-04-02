@@ -17,9 +17,10 @@ export function Content({entertainments}) {
     const [id, setid] = useState()
     const [getSearchValue,setgetSearchValue] = useState("")
     const [affectRead, setaffectRead ] = useState()
-    const toggleReadMore = () => {
-        setisReadMore(!isReadMore);
-    };
+
+    const clickedForview = () => {
+      setviewModalOn(true)
+    }
      return (
           <div className="w-full h-full my-20 lg:mt-0 px-3 lg:px-10">
                <div className="w-full px-3 lg:px-20 mb-5">
@@ -59,11 +60,7 @@ export function Content({entertainments}) {
    
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
                     {entertainments.map(({entertainment_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
-                        <div id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full h-full lg:mt-5 group py-5">
-                            <div className="w-full !h-52 lg:!h-64 relative">
-                                <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest entertainment image"/>
-                            </div>
-
+                        <div>
                             <button 
                                 onClick = {()=>{
                                     router.push({
@@ -71,31 +68,36 @@ export function Content({entertainments}) {
                                         query:{entertainment_id:entertainment_id}
                                     })
                                 }}
-                                className="w-full flex flex-col text-left py-5"
-                            >
-                                <div className="flex flex-row justify-between items-center w-full mb-5">
-                                    <h3 className="flex flex-col justify-between w-full">
-                                        { Category.map((data,index)=>(
-                                            <span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2 w-full">
-                                                {data.EntertainmentCategory.CategoryName}
-                                            </span>
-                                        ))}
-                                    </h3>
-                                    <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
-                                        {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
-                                    </h3>
+                                id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col lg:mt-5 group py-5">
+                                <div className="w-full !h-52 lg:!h-64 relative">
+                                    <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest entertainment image"/>
                                 </div>
 
-                                <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
-                                    {Header}
-                                </h1>
+                                <div className="w-full flex flex-col text-left pt-5">
+                                    <div className="flex flex-row justify-between items-center w-full mb-5">
+                                        <h3 className="flex flex-col justify-between w-full">
+                                            { Category.map((data,index)=>(
+                                                <span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-1 w-full">
+                                                    {data.EntertainmentCategory.CategoryName}
+                                                </span>
+                                            ))}
+                                        </h3>
+                                        <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
+                                            {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
+                                        </h3>
+                                    </div>
 
-                                <div  className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                                    <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+                                        {Header}
+                                    </h1>
+
+                                    <div  className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                                </div>
                             </button>
 
-                            <div className="flex items-center justify-between text-sm"> 
-                                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
-                                    <AiOutlineEye size={32} />
+                            <div className="flex items-center justify-between text-sm w-full"> 
+                                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
+                                    <AiOutlineEye size={25} />
                                     <span className="ml-3">{view}</span>
                                 </p>
 
