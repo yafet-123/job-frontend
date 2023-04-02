@@ -67,7 +67,7 @@ export function Content({entertainments}) {
                             <button 
                                 onClick = {()=>{
                                     router.push({
-                                        pathname:"/DisplayNews",
+                                        pathname:"/DisplayEntertemiment",
                                         query:{entertainment_id:entertainment_id}
                                     })
                                 }}
