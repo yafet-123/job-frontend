@@ -172,13 +172,15 @@ model NewsCategoryRelationship{
 model Entertainment {
   entertainment_id             Int           @id @default(autoincrement()) 
   Header                       String?
-  link                         String?       @db.VarChar(255)
-  ShortDescription             String?               
+  Image                        String?       @db.VarChar(255)
+  ShortDescription             String?           
+  Description                  String?
+  view                         Int           @default(0)      
   user_id                      Int
   CreatedDate                  DateTime?     @default(now()) @db.Timestamptz(6)
-  ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)    
+  ModifiedDate                 DateTime?     @default(now()) @db.Timestamptz(6)
   User                         User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)  
-  EntertainmentCategoryRelationship     EntertainmentCategoryRelationship[]
+  EntertainmentCategoryRelationship          EntertainmentCategoryRelationship[]
 }
 
 model EntertainmentCategory {
