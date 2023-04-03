@@ -27,9 +27,9 @@ export function UpdateAiSearch({
     const [service, setservice] = useState([])
     const { status, data } = useSession();
     const UserData = data?.user;
-    const servicedata = updateservice.map((data)=>(
+    const servicedata = updateservice.map((data)=>{
         { title: data }
-    ))
+    })
 
     const categorydata = updatecategory.map((data)=>(
         { category_id: data.AiCategory.category_id },
