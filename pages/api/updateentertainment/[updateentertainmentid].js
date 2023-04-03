@@ -5,23 +5,15 @@ import { StatusCodes } from "http-status-codes";
 
 export default async function handleupdateentertainment(req, res){
 	const {updateentertainmentid} = req.query
-	const { 
-		Header,
-		link,
-		ShortDescription,
-		categoryId,
-		user_id
-	} = req.body
-
-	console.log(categoryId)
+	const {Header ,ShortDescription ,Description ,user_id ,categoryId} = req.body
 
 	const data = await prisma.Entertainment.update({
 		where:{entertainment_id:Number(updateentertainmentid)},
 		data:{
 			Header,
-			link,
 			ShortDescription,
-		}
+			Description 
+		},
 	});
 
 	const deletecategorydata = await prisma.EntertainmentCategoryRelationship.deleteMany({

@@ -13,9 +13,9 @@ export function DisplayEntertainment({categories, entertainment}) {
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deleteentertainmentid,setdeleteentertainmentid] = useState()
     const [updateentertainmentid,setupdateentertainmentid] = useState()
-    const [updateShortDescription ,setupdateShortDescription] = useState()
     const [updateheader,setupdateheader] = useState("")
-    const [updatelink,setupdatelink] = useState("")
+    const [updateShortDescription,setupdateShortDescription] = useState("")
+    const [updateDescription,setupdateDescription] = useState("")
 
     const clickedFordelete = () => {
         setdeleteModalOn(true)
@@ -69,8 +69,8 @@ export function DisplayEntertainment({categories, entertainment}) {
                                                 clickedForupdate()
                                                 setupdateentertainmentid(data.entertainment_id)
                                                 setupdateheader(data.Header)
-                                                setupdatelink(data.link)
                                                 setupdateShortDescription(data.ShortDescription)
+                                                setupdateDescription(data.Description)
                                             }}
                                             className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                             Edit
@@ -130,8 +130,8 @@ export function DisplayEntertainment({categories, entertainment}) {
                                         clickedForupdate()
                                         setupdateentertainmentid(data.entertainment_id)
                                         setupdateheader(data.Header)
-                                        setupdatelink(data.link)
                                         setupdateShortDescription(data.ShortDescription)
+                                        setupdateDescription(data.Description)
                                     }} 
                                     className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                     Edit
@@ -156,7 +156,17 @@ export function DisplayEntertainment({categories, entertainment}) {
             }
 
             {updatemodalOn && 
-                <UpdateEntertainment updateShortDescription={updateShortDescription} setupdateShortDescription={setupdateShortDescription} setupdateModalOn={setupdateModalOn} updateentertainmentid={updateentertainmentid} updateheader={updateheader} setupdateheader={setupdateheader} updatelink={updatelink} setupdatelink={setupdatelink} categories={categories}/>
+                <UpdateEntertainment 
+                    setupdateModalOn={setupdateModalOn} 
+                    updateentertainmentid={updateentertainmentid} 
+                    updateheader = {updateheader}
+                    setupdateheader = {setupdateheader}
+                    updateShortDescription = {updateShortDescription}
+                    setupdateShortDescription = {setupdateShortDescription}
+                    updateDescription = {updateDescription}
+                    setupdateDescription = {setupdateDescription}
+                    categories={categories}
+                />
             }
         </div>
   );

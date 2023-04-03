@@ -49,6 +49,7 @@ export async function getServerSideProps(context){
     image:data.Image,
     view:data.view,
     ShortDescription:data.ShortDescription,
+    Description:data.Description,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
