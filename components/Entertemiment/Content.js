@@ -60,7 +60,7 @@ export function Content({entertainments}) {
    
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
                     {entertainments.map(({entertainment_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
-                        <div>
+                        <div key={index}>
                             <button 
                                 onClick = {()=>{
                                     router.push({
