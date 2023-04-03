@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainHeader } from '../../components/MainHeader';
+import { MainHeader } from '../../components/common/MainHeader';
 import { useRouter } from "next/router";
 import Link from 'next/link'
 export default function Error () {
