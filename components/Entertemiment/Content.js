@@ -68,8 +68,9 @@ export function Content({entertainments}) {
                                         query:{entertainment_id:entertainment_id}
                                     })
                                 }}
-                                id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col lg:mt-5 group py-5">
-                                <div className="w-full !h-52 lg:!h-64 relative">
+                                id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full lg:mt-5 group py-5"
+                            >
+                                <div className="w-full !h-full lg:!h-64 relative">
                                     <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest entertainment image"/>
                                 </div>
 
@@ -77,21 +78,21 @@ export function Content({entertainments}) {
                                     <div className="flex flex-row justify-between items-center w-full mb-5">
                                         <h3 className="flex flex-col justify-between w-full">
                                             { Category.map((data,index)=>(
-                                                <span key={index} className="text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-1 w-full">
+                                                <span key={index} className="text-xs lg:text-sm group-hover:text-xs font-bold dark:text-white text-slate-600 mb-1 w-full group-hover:text-[#009688]">
                                                     {data.EntertainmentCategory.CategoryName}
                                                 </span>
                                             ))}
                                         </h3>
-                                        <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
+                                        <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600 group-hover:text-xs group-hover:text-[#009688]">
                                             {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                                         </h3>
                                     </div>
 
-                                    <h1 className="group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+                                    <h1 className="group-hover:text-3xl group-hover:text-[#009688] group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
                                         {Header}
                                     </h1>
 
-                                    <div  className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                                    <div  className="group-hover:text-2xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                                 </div>
                             </button>
 
