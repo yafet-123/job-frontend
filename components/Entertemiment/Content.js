@@ -70,7 +70,7 @@ export function Content({entertainments}) {
                                 }}
                                 id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full lg:mt-5 group py-5"
                             >
-                                <div className="w-full !h-full lg:!h-64 relative">
+                                <div className="w-full !h-full lg:!h-96 relative">
                                     <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest entertainment image"/>
                                 </div>
 
