@@ -9,12 +9,12 @@ export function LatestJobs({latestjobs}) {
   return (
     <section className="w-full h-[50rem] md:px-10 md:py-10 bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col brightness-100">
       <div className="flex justify-between items-center py-5 px-2 lg:px-10">
-        <div className="flex items-center font-bold text-md md:text-2xl lg:text-3xl text-[#009688] dark:text-white capitalize">
+        <div className="flex items-center font-bold text-md md:text-2xl lg:text-3xl hover:text-4xl text-[#009688] dark:text-white capitalize">
           <AiOutlineClockCircle size={30} />
           <span className="ml-5">Latest Jobs</span>
         </div>
         <Link href="/Jobs">
-          <a className="font-bold text-sm md:text-xl lg:text-2xl text-white p-3 lg:p-4 bg-[#009688] capitalize border rounded-2xl">
+          <a className="font-bold text-sm md:text-xl lg:text-2xl hover:text-3xl text-white p-3 lg:p-4 hover:p-5 bg-[#009688] capitalize border rounded-2xl">
             view all jobs
           </a>
         </Link>

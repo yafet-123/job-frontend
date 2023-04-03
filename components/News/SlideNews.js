@@ -66,7 +66,7 @@ export function SlideNews({allnews}) {
                       </span>
                     ))}
                   </h3>
-                  <h3 className="text-md lg:text-lg text-slate-600 dark:text-white font-bold hover:text-[#009688]">
+                  <h3 className="text-md lg:text-lg text-slate-600 dark:text-white font-bold group-hover:text-[#009688]">
                     {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                   </h3>
                 </div>
