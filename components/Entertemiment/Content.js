@@ -58,7 +58,7 @@ export function Content({entertainments}) {
                      </div>  
                </div>
    
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-10 mb-5 w-full h-full px-0 lg:px-32">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-10 mb-5 w-full h-full px-0 lg:px-64">
                     {entertainments.map(({entertainment_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
                         <div key={index}>
                             <button 
@@ -70,7 +70,7 @@ export function Content({entertainments}) {
                                 }}
                                 id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full lg:mt-5 group py-5"
                             >
-                                <div className="w-full !h-96 relative">
+                                <div className="w-full !h-52 lg:!h-96 relative">
                                     <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest entertainment image"/>
                                 </div>
 

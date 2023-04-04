@@ -100,10 +100,10 @@ export default function DisplayEntertemiment({entertainment,Alllatestentertainme
   const shareUrl = router.asPath
   return (
   	<React.Fragment>
-      <MainHeader title="Display News" />
-	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-44 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
+      <MainHeader title="Display Entertainment" />
+	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-64 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 		    <DisplayIndvidualentertainment entertainment={entertainment} entertainmentCategory={entertainmentCategory} shareUrl={shareUrl} />
-        	<DisplayLatestentertainment Alllatestentertainment={Alllatestentertainment}/>          
+        <DisplayLatestentertainment Alllatestentertainment={Alllatestentertainment}/>          
 	    </section>
 	  </React.Fragment>
   );

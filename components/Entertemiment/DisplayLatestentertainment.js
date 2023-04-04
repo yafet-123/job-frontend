@@ -27,18 +27,18 @@ export function DisplayLatestentertainment({Alllatestentertainment}) {
                   		</div>
 
                   		<div className="w-full flex flex-col my-5 text-left">
-                  			<h1 className="text-lg lg:text-xl font-extrabold dark:text-white text-black tracking-wide leading-snug">
+                  			<h1 className="text-lg lg:text-xl font-extrabold dark:text-white text-black tracking-wide leading-snug group-hover:text-white">
                      			{Header}
                     		</h1>
                     		<div className="mt-5 flex justify-between items-center">
                       			<h3 className="flex flex-col justify-between"> 
                         			{ Category.map((data,index)=>(
-                          				<span key={index} className="text-xs lg:text-sm font-bold dark:text-white group-hover:text-black text-slate-600 mb-2">
+                          				<span key={index} className="group-hover:text-white text-xs lg:text-sm font-bold dark:text-white group-hover:text-black text-slate-600 mb-2">
                             				{data.EntertainmentCategory.CategoryName}
                           				</span>
                         			))}
                       			</h3>
-                      			<span className="font-normal text-sm lg:text-md dark:text-white text-gray-600 group-hover:text-black">
+                      			<span className="font-normal text-sm lg:text-md dark:text-white text-gray-600 group-hover:text-black group-hover:text-white">
                         			{moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                       			</span>
                     		</div>

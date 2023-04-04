@@ -29,7 +29,7 @@ import {
 
 export function NewsSharing({shareUrl}) {
   return (
-    <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 px-0 lg:px-10 py-20">
+    <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 py-20">
       <div className="flex flex-col lg:flex-row justify-between items-center mb-5">
       	<h1 className="text-black dark:text-white border rounded-lg text-xl font-bold mr-2 mb-5 lg:mb-0 dark:border-slate-700">Share On:</h1>
       	<div className="flex flex-col lg:flex-row items-center">

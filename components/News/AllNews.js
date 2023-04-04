@@ -31,7 +31,7 @@ export function AllNews({allnews}) {
               }}
               id={news_id} ref={quoteRef} className="flex flex-col w-full lg:mt-5 group pt-5"
             >
-              <div className="w-full !h-52 lg:!h-64 relative">
+              <div className="w-full !h-52 lg:!h-96 relative">
                 <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
               </div>
 

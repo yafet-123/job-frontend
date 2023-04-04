@@ -101,7 +101,7 @@ export default function DisplayNews({news,Alllatestnews, newsCategory}) {
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
-	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-44 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
+	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-64 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 	      <DisplayIndvidualNews news={news} newsCategory={newsCategory} shareUrl={shareUrl} />
         <DisplayLatestNews Alllatestnews={Alllatestnews}/>          
 	    </section>
