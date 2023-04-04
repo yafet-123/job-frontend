@@ -26,7 +26,7 @@ export function DisplayIndvidualNews({news, newsCategory,shareUrl}) {
 	            <div className="flex flex-row justify-between lg:mb-5 px-1 lg:px-2 w-full">
 	                <h3 className="flex flex-col justify-between w-2/4">
 	                  	{ newsCategory.map((data,index)=>(
-	                    	<span key={index} className="text-sm lg:text-xl font-bold dark:text-[#009688] text-slate-600 mb-1 lg:mb-5 hover:text-[#009688]">
+	                    	<span key={index} className="text-sm lg:text-lg font-bold dark:text-[#009688] text-slate-600 mb-1 hover:text-[#009688]">
 	                      		{data.NewsCategory.CategoryName}
 	                    	</span>
 	                  	))}

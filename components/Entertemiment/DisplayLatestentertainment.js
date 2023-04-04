@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 export function DisplayLatestentertainment({Alllatestentertainment}) {
 
   	return (
-	    <div className="sticky top-0 bottom-10 grid grid-cols-1 md:grid-cold-3 gap-5 w-full lg:w-[30%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 scroll_width">
+	    <div className="sticky top-0 bottom-10 flex flex-col gap-5 w-full lg:w-[30%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 scroll_width">
 			{Alllatestentertainment.map(({entertainment_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
 			  	<Link 
 			  		href={{
@@ -16,7 +16,7 @@ export function DisplayLatestentertainment({Alllatestentertainment}) {
 	    			}}
 			  		key={index}
 			  	>
-			    	<a className="flex flex-col mb-5 px-2 py-5 hover:bg-[#009688] group">
+			    	<a className="flex flex-col px-2 py-3 hover:bg-[#009688] group hover:rounded-3xl">
 			      		<div className="w-full h-52 lg:!h-64 relative">
               				<Image
               	  				src={image}
@@ -26,14 +26,14 @@ export function DisplayLatestentertainment({Alllatestentertainment}) {
               				/>
                   		</div>
 
-                  		<div className="w-full flex flex-col my-5 text-left">
+                  		<div className="w-full flex flex-col mt-5 text-left">
                   			<h1 className="text-lg lg:text-xl font-extrabold dark:text-white text-black tracking-wide leading-snug group-hover:text-white">
                      			{Header}
                     		</h1>
                     		<div className="mt-5 flex justify-between items-center">
                       			<h3 className="flex flex-col justify-between"> 
                         			{ Category.map((data,index)=>(
-                          				<span key={index} className="group-hover:text-white text-xs lg:text-sm font-bold dark:text-white group-hover:text-black text-slate-600 mb-2">
+                          				<span key={index} className="group-hover:text-white text-xs lg:text-sm font-bold dark:text-white group-hover:text-black text-slate-600 mb-1">
                             				{data.EntertainmentCategory.CategoryName}
                           				</span>
                         			))}
