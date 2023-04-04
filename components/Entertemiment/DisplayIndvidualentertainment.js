@@ -13,7 +13,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
 	            {entertainment.Header}
 	        </h1>
 
-	        <div className="lg:mr-20 !h-full relative ">
+	        <div className="lg:mr-20 !h-[30rem] relative ">
 	          	<Image
 	            	src={entertainment.Image == "" || entertainment.Image == null ? "/images/logo2.png" : entertainment.Image}
 	            	fill
