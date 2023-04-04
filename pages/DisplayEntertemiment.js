@@ -41,7 +41,7 @@ export async function getServerSideProps(context){
 	const onedata = {
 	    entertainment_id:data.entertainment_id,
 	    Header:data.Header,
-	    Image:data.Image,
+	    image:data.Image,
 	    ShortDescription:data.ShortDescription,
 	    Description:data.Description,
 	    userName:data.User.UserName,

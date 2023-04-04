@@ -8,14 +8,14 @@ import { EntertainmentSharing } from './EntertainmentSharing';
 export function DisplayIndvidualentertainment({entertainment,entertainmentCategory,shareUrl}) {
 
   	return (
-	    <div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-[70%] lg:pl-32">
+	    <div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-[70%] px-1 lg:pr-6 lg:pl-32">
 		    <h1 className="text-lg lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5">
 	            {entertainment.Header}
 	        </h1>
 
-	        <div className="lg:mr-20 !h-[30rem] relative ">
+	        <div className="lg:mr-20 h-80 lg:!h-[30rem] relative ">
 	          	<Image
-	            	src={entertainment.Image == "" || entertainment.Image == null ? "/images/logo2.png" : entertainment.Image}
+	            	src={entertainment.image == "" || entertainment.image == null ? "/images/logo2.png" : entertainment.image}
 	            	fill
 	            	className="!bg-cover w-full !h-full border rounded-xl "
 	            	alt="latest entertainment image"
