@@ -95,7 +95,7 @@ export async function getServerSideProps(context){
   }
 }
 
-export default function DisplayNews({blogs,Alllatestblogs, blogsCategory}) {
+export default function DisplayBlogs({blogs,Alllatestblogs, blogsCategory}) {
   const router = useRouter()
   const shareUrl = router.asPath
   return (

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from 'next/router'
 
 export function DisplayLatestNews({Alllatestnews}) {
-
   	return (
 	    <div className="lg:sticky top-0 bottom-10 flex flex-col w-full lg:w-[30%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 scroll_width">
 			{Alllatestnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
@@ -21,7 +20,7 @@ export function DisplayLatestNews({Alllatestnews}) {
               				<Image
               	  				src={image}
               	  				fill
-              	  				className="!bg-cover w-full !h-full border rounded-xl"
+              	  				className="!bg-cover w-full !h-full"
               	  				alt="latest news image"
               				/>
                   		</div>
@@ -33,12 +32,12 @@ export function DisplayLatestNews({Alllatestnews}) {
                     		<div className="mt-5 flex justify-between items-center">
                       			<h3 className="flex flex-col justify-between"> 
                         			{ Category.map((data,index)=>(
-                          				<span key={index} className="group-hover:text-white text-xs lg:text-sm font-bold dark:text-white group-hover:text-black text-slate-600 mb-1">
+                          				<span key={index} className="group-hover:text-white text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-1">
                             				{data.NewsCategory.CategoryName}
                           				</span>
                         			))}
                       			</h3>
-                      			<span className="group-hover:text-white font-normal text-sm lg:text-md dark:text-white text-gray-600 group-hover:text-black">
+                      			<span className="group-hover:text-white font-normal text-sm lg:text-md dark:text-white text-gray-600">
                         			{moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                       			</span>
                     		</div>
