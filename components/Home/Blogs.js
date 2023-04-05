@@ -34,7 +34,7 @@ export function Blogs({blogs}) {
   }
 
   return (
-    <section className="w-full h-full lg:h-[50rem] md:py-10 bg-slate-100 dark:bg-slate-700 flex flex-col brightness-100 py-10">
+    <section className="w-full h-full lg:h-[50rem] px-10 md:py-10 bg-slate-100 dark:bg-slate-700 flex flex-col brightness-100 py-10">
       <h1 className={`px-3 lg:px-0 text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl text-black dark:text-white opacity-100`}>
         Blogs
       </h1>
@@ -44,9 +44,9 @@ export function Blogs({blogs}) {
           <div 
             key={index}
             id={Header}
-            className="!flex flex-col lg:flex-row px-2 w-full h-full lg:mt-5 py-5"
+            className="!flex flex-col lg:flex-row !px-0 w-full h-full lg:mt-5 py-5"
           >
-            <div className="w-full lg:w-1/2 h-52 lg:!h-96 relative">
+            <div className="w-full lg:w-[40%] h-52 lg:!h-96 relative">
               <Image
                 src={image}
                 fill
@@ -55,7 +55,7 @@ export function Blogs({blogs}) {
               />
             </div>
 
-            <div className="w-full lg:w-3/4 flex flex-col justify-between lg:mx-10 py-10 text-left group">
+            <div className="w-full lg:w-[60%] flex flex-col justify-between lg:mx-10 py-10 text-left group">
               <button 
                 onClick = {()=>{
                   router.push({
