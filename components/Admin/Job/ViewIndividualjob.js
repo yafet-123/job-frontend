@@ -9,8 +9,8 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
     const [updatemodalOn, setupdateModalOn] = useState(false);
     const [deletejobid,setdeletejobid] = useState()
     const [category, setcategory] = useState(dataposttojob.categories)
+    const [location, setlocation] = useState(dataposttojob.Location)
     const [categorydata, setcategorydata] = useState([])
-    console.log(category)
 
     // for (var i=0;i<category.length;i++){
     //     setcategorydata((categorydata) => [...categorydata, category[i].Category])
@@ -67,38 +67,24 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                                 <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">Career Level</span>
                                 <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.CareerLevel}</span>
                             </h1>
-
-                            <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Employment Type</span>
-                                <span className="text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.EmploymentType}</span>
-                            </h1>
                                     
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-right">Jobs Type</span>
-                                <span className="text-xs lg:text-lg text-black dark:text-white text-right break-words">{dataposttojob.JobsType}</span>
+                                <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-right">Jobs Name</span>
+                                <span className="text-xs lg:text-lg text-black dark:text-white text-right break-words">{dataposttojob.JobsName}</span>
+                            </h1>
+
+                            <h1 className="flex flex-col font-bold hover:underline">
+                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Salary</span>
+                                <span className="text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.Salary}</span>
                             </h1>
                         </div>
 
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-5">
-                           	<h1 className="flex flex-col font-bold hover:underline">
-                           	    <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Salary</span>
-                           	    <span className="text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.Salary}</span>
-                           	</h1>
-
+                        
                            	<h1 className="flex flex-col font-bold hover:underline">
                            	    <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">DeadLine</span>
-                           	    <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{moment(dataposttojob.DeadLine).utc().format('YYYY-MM-DD')}</span>
+                           	    <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.DeadLine}</span>
                            	</h1>
-
-                           	<h1 className="flex flex-col font-bold hover:underline">
-                           	    <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Apply</span>
-                           	    <span className="text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.Apply}</span>
-                           	</h1>
-                                    
-                            <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-right">Location</span>
-                                <span className="text-xs lg:text-lg text-black dark:text-white text-right break-words">{dataposttojob.Location}</span>
-                            </h1>
                         </div>
 
                         <div className="grid grid-cols-1 gap-10 mb-5">
@@ -112,22 +98,33 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                                     ))}
                                 </div>
                             </h1>
+
+                            <h1 className="flex flex-col font-bold hover:underline">
+                                <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-left">Location</span>
+                                <div className="flex flex-col">
+                                    { location.map((data,index)=>(
+                                        <span key={index} className="text-xs lg:text-lg text-black dark:text-white text-left break-words">
+                                            {data.Location.LocationName}
+                                        </span>
+                                    ))}
+                                </div>
+                            </h1>
                         </div>
 
                        	<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-5">
                             <h1 className="flex flex-col font-bold">
-                               	<span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">JobsDescreption</span>
+                               	<span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Descreption</span>
                             	<div 
                                 	className="h-52 w-full text-sm lg:text-lg text-black dark:text-white overflow-y-scroll" 
-                                    dangerouslySetInnerHTML={{ __html: dataposttojob.JobsRequirement }} 
+                                    dangerouslySetInnerHTML={{ __html: dataposttojob.Descreption }} 
                                 />
                             </h1>
 
                             <h1 className="flex flex-col font-bold">
-                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">JobsRequirement</span>
+                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Short Descreption</span>
                                 <div 
                                     className="h-52 w-full text-sm lg:text-lg text-black dark:text-white overflow-y-scroll" 
-                                        dangerouslySetInnerHTML={{ __html: dataposttojob.JobsDescreption }} 
+                                        dangerouslySetInnerHTML={{ __html: dataposttojob.shortDescreption }} 
                                 />
                             </h1>
                         </div>
