@@ -38,7 +38,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                   >
                     <div className="flex flex-col w-2/4 lg:w-3/4">
                       <h1 className="font-normal text-sm lg:text-lg text-[#009688] group-hover:text-white text-left">
-                        {data.JobsType}
+                        {data.JobsName}
                       </h1>
                       <h1 className="font-light text-xs lg:text-sm text-black dark:text-white group-hover:text-white text-left">
                         {data.CompanyName}
@@ -48,9 +48,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                       <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                       </h1>
-                      <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
-                        {data.Location}
-                      </h1>
+                  
                     </div>
                   </button>
                 ))}
@@ -77,7 +75,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                         jobs in {data.LocationName}
                       </h1>
                       <h1 className="text-black dark:text-white text-left text-[#009688] font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:border-white">
-                        {data._count.Job}
+                        {data._count.JobLocation}
                       </h1>
                     </div>
                   </button>

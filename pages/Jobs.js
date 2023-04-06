@@ -20,7 +20,7 @@ export async function getServerSideProps(){
     include:{
        _count:{
         select:{
-          Job:true
+          JobLocation:true
         }
       },
     }
@@ -35,31 +35,35 @@ export async function getServerSideProps(){
           UserName:true
         }
       },
-      Location:{
-        select:{
-          LocationName:true
+      JobLocation:{
+        include:{
+          Location:{
+            select:{
+              location_id:true,
+              LocationName:true
+            }
+          }
         }
-      }
+      },
     } 
   });
 
   const Alljobs = jobs.map((data)=>({
     job_id:data.job_id,
     CompanyName:data.CompanyName,
-    Image:data.Image,
-    JobsType:data.JobsType,
-    Location:data.Location.LocationName,
+    image:data.Image,
+    JobsName:data.JobsName,
     CareerLevel:data.CareerLevel,
-    EmploymentType:data.EmploymentType,
     Salary:data.Salary,
-    JobsDescreption:data.JobsDescreption,
-    JobsRequirement:data.JobsRequirement,
+    Descreption:data.Descreption,
+    shortDescreption:data.shortDescreption,
     DeadLine:data.DeadLine,
     Apply:data.Apply,
-    location_id:data.location_id,
+    view:data.view,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate
+    ModifiedDate:data.ModifiedDate,
+    Location:data.JobLocation,
   }))
   
   const reversejob = Alljobs.reverse();

@@ -36,11 +36,16 @@ export async function getServerSideProps(context){
           UserName:true
         }
       },
-      Location:{
-        select:{
-          LocationName:true
+      JobLocation:{
+        include:{
+          Location:{
+            select:{
+              location_id:true,
+              LocationName:true
+            }
+          }
         }
-      }
+      },
     } 
   });
 
@@ -50,20 +55,19 @@ export async function getServerSideProps(context){
     job_id:data.job_id,
     CompanyName:data.CompanyName,
     image:data.Image,
-    JobsType:data.JobsType,
-    view:data.view,
-    Location:data.Location.LocationName,
+    JobsName:data.JobsName,
     CareerLevel:data.CareerLevel,
-    EmploymentType:data.EmploymentType,
     Salary:data.Salary,
-    JobsDescreption:data.JobsDescreption,
-    JobsRequirement:data.JobsRequirement,
+    Descreption:data.Descreption,
+    shortDescreption:data.shortDescreption,
     DeadLine:data.DeadLine,
     Apply:data.Apply,
-    location_id:data.location_id,
+    view:data.view,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate
+    ModifiedDate:data.ModifiedDate,
+    categories:data.JobCategory,
+    Location:data.JobLocation,
   }))
   
   const reversejob = Alljobs.reverse();
@@ -84,19 +88,23 @@ export async function getServerSideProps(context){
       ModifiedDate:"asc"
     },
     include:{
-      Location:{
-        select:{
-          LocationName:true
+      JobLocation:{
+        include:{
+          Location:{
+            select:{
+              location_id:true,
+              LocationName:true
+            }
+          }
         }
-      }
+      },
     } 
   });
 
   const Alllatestjobs = latestjobs.map((data)=>({
     job_id:data.job_id,
     CompanyName:data.CompanyName,
-    JobsType:data.JobsType,
-    Location:data.Location.LocationName,
+    JobsName:data.JobsName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate
   }))

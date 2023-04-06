@@ -3,8 +3,10 @@ import moment from 'moment';
 import { useState, useEffect, useRef} from 'react'
 import { AiOutlineShareAlt, AiOutlineEye, AiOutlineMenu, AiOutlineClockCircle } from 'react-icons/ai'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 export function Company({categories}) {
+	const router = useRouter();
   	return (
 	   <div className="flex flex-col overflow-y-scroll scroll_width p-3">
 			{categories.map((data, index) => (
