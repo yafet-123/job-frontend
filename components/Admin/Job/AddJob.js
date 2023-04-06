@@ -31,21 +31,33 @@ export function AddJob({categories, locations}) {
     const [CompanyName, setCompanyName] = useState("")
     const [image, setImage] = useState()
     const [loading, setLoading] = useState(false);
-    const [JobsType, setJobsType] = useState("")
-    const [Location, setLocation] = useState("")
+    const [JobsName, setJobsName] = useState("")
+    const [LocationId, setLocationId] = useState([])
     const [CareerLevel, setCareerLevel] = useState("")
     const [categoryId,setCategoryId] = useState([])
-    const [EmploymentType, setEmploymentType] = useState("")
     const [Salary, setSalary] = useState("")
-    const [Apply, setApply] = useState("")
     const [DeadLine, setDeadLine] = useState("")
-    const [startDate, setStartDate] = useState(new Date());
     const [Description , setDescription] = useState("")
-    const [Requirement , setRequirement] = useState("")
+    const [shortDescription , setshortDescription] = useState("")
     const [error,seterror] = useState("")
     const [active, setActive ] = useState(false)
     const { status, data } = useSession();
     const UserData = data?.user;
+
+    function imageHandler() {
+        console.log(quillRef)
+        if (!quillRef.current) return
+        
+        const editor = quillRef.current.getEditor()
+        const range = editor.getSelection()
+        const value = prompt("Please enter the image URL")
+        console.log(value)
+        console.log(range)
+        console.log(editor)
+        if (value && range) {
+          editor.insertEmbed(range.index, "image", value, "user")
+        }
+    }
 
     async function imageUploadData() {
         const formData = new FormData();
@@ -72,16 +84,14 @@ export function AddJob({categories, locations}) {
         const data = await axios.post(`../api/addjob`,{
             "CompanyName":CompanyName,
             "Image":imageData,
-            "JobsType":JobsType,
+            "JobsName":JobsName,
             "CareerLevel":CareerLevel,
-            "EmploymentType":EmploymentType,
             "Salary":Salary,
-            "JobsDescreption":Description,
-            "JobsRequirement":Requirement,
-            "DeadLine":new Date(DeadLine).toISOString(),
-            "Apply":Apply,
+            "Description":Description,
+            "shortDescription":shortDescription,
+            "DeadLine":DeadLine,
             "categoryId":categoryId,
-            "LocationId":Location,
+            "LocationId":LocationId,
             "user_id":UserData.user_id
         }).then(function (response) {
             console.log(response.data);
@@ -151,7 +161,7 @@ export function AddJob({categories, locations}) {
         <div className="px-0 lg:px-10 pt-20">
             <form className="max-w-7xl lg:mx-auto mt-10" onSubmit={addJob}>
                 <h1 className="text-xl lg:text-4xl font-bold text-center italic">Add Job</h1>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-10 px-2">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 px-2">
                     <div className="relative mb-5">
                         <input 
                             id="CompanyName" 
@@ -171,55 +181,26 @@ export function AddJob({categories, locations}) {
                     
                     <div className="relative mb-5">
                         <input 
-                            id="JobsType" 
+                            id="JobsName" 
                             type="text" 
                             required
                             className="block w-full px-3 text-md lg:text-xl text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                            value={JobsType}
-                            onChange={(e) => setJobsType(e.target.value)}
+                            value={JobsName}
+                            onChange={(e) => setJobsName(e.target.value)}
                         />
                         <label 
                             htmlFor="floating_outlined" 
                            className="absolute text-md lg:text-xl text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                         >
-                            Jobs Type
+                            Job Name
                         </label>
                     </div>
 
-                    <div className="relative mb-5">
-                        <select
-                            id="Location" 
-                            name="select"
-                            required
-                            onChange={(e) => setLocation(e.target.value)}
-                            className="block w-full px-3 text-lg text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                        >
-                            <option
-                                className="bg-white dark:bg-slate-500 text-black" 
-                            >
-                         
-                                Insert A Location
-                            </option>
-                            { locations.map((data,index) => (
-                                <option
-                                    key={index} 
-                                    className="bg-white text-black" 
-                                    value={data.location_id}
-                                >
-                                    {data.LocationName}
-                                </option>
-                            ))}
-                        </select>
-                        <label 
-                            htmlFor="floating_outlined" 
-                            className="absolute text-xl text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >
-                            Location
-                        </label>
-                    </div>
+                    
+                    
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 px-2">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-10 px-2">
                     <div className="relative mb-5">
                         <input 
                             id="CareerLevel" 
@@ -237,25 +218,6 @@ export function AddJob({categories, locations}) {
                         </label>
                     </div>
 
-                    <div className="relative mb-5">
-                        <input 
-                            id="EmploymentType" 
-                            type="text"
-                            required 
-                            className="block w-full px-3 texxt-md lg:text-xl text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
-                            value={EmploymentType}
-                            onChange={(e) => setEmploymentType(e.target.value)}
-                        />
-                        <label 
-                            htmlFor="floating_outlined" 
-                            className="absolute texxt-md lg:text-xl text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-                        >
-                            Employment Type
-                        </label>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10 px-2">
                     <div className="relative mb-5">
                         <input 
                             id="Salary" 
@@ -296,10 +258,10 @@ export function AddJob({categories, locations}) {
                     <p  
                         className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
                     >
-                        Requirement
+                        Short Description
                     </p>
 
-                    <QuillNoSSRWrapper value={Requirement} onChange={setRequirement} modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                    <QuillNoSSRWrapper value={shortDescription} onChange={setshortDescription} modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" />
                 </div>
 
                 <div className="mb-10 ">
@@ -313,13 +275,20 @@ export function AddJob({categories, locations}) {
                 </div>
 
                 <div className="mb-10 ">
-                    <p  
-                        className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
-                    >
-                        Apply
-                    </p>
-
-                    <QuillNoSSRWrapper value={Apply} onChange={setApply} modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                    <Multiselect
+                        displayValue="LocationName"
+                        placeholder = "Location"
+                        className="w-full px-0 lg:px-3 text-md lg:text-xl !text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+                        onKeyPressFn={function noRefCheck(){}}
+                        onRemove={function noRefCheck(){}}
+                        onSearch={function noRefCheck(){}}
+                        onSelect={(e)=>{
+                            e.map((data,index)=>(
+                               setLocationId([...LocationId, data.location_id])
+                            ))
+                        }}
+                        options={locations}
+                    />
                 </div>
 
                 <div className="mb-10 ">

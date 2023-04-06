@@ -7,17 +7,15 @@ export default async function handleaddjob(req, res){
 	const { 
 		CompanyName,
 		Image,
-		JobsType,
+		JobsName,
 		CareerLevel,
-		EmploymentType,
 		Salary,
-		JobsDescreption,
-		JobsRequirement,
+		Description,
+		shortDescription,
 		DeadLine,
-		Apply,
-		user_id,
 		categoryId,
-		LocationId
+		LocationId,
+		user_id
 	} = req.body
 
 	let createJobCategory = []
@@ -33,8 +31,7 @@ export default async function handleaddjob(req, res){
 		data:{
 			CompanyName,
 			Image,
-			JobsType,
-			location_id:Number(LocationId),
+			JobsName,
 			CareerLevel,
 			EmploymentType,
 			Salary,
@@ -46,6 +43,7 @@ export default async function handleaddjob(req, res){
 			JobCategory:{
 				create: createJobCategory
 			}
+			location_id:Number(LocationId),
 		}
 	});
 
