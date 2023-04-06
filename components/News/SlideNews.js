@@ -39,7 +39,7 @@ export function SlideNews({allnews}) {
             id={Header}
             className="!flex flex-col lg:flex-row px-2 w-full h-full lg:mt-5 py-5"
           >
-            <div className="w-full lg:w-[40%] h-52 lg:!h-96 relative">
+            <div className="w-full lg:w-[40%] !h-52 lg:!h-96 relative">
               <Image
                 src={image}
                 fill

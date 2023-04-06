@@ -23,23 +23,20 @@ model Category {
 
 model Job {
   job_id          Int           @id @default(autoincrement())
-  CompanyName     String        @db.VarChar(255)
+  CompanyName     String?       @db.VarChar(255)
   Image           String?       @db.VarChar(255)
-  JobsType        String        @db.VarChar(255)          
-  CareerLevel     String        @db.VarChar(255)
-  EmploymentType  String        @db.VarChar(255)
-  Salary          String        @db.VarChar(255)
-  JobsDescreption String?
-  view                         Int           @default(0)
-  JobsRequirement String?
-  DeadLine        DateTime      @db.Date
-  Apply           String        
+  JobsName        String?       @db.VarChar(255)          
+  CareerLevel     String?       @db.VarChar(255)
+  Salary          String?       @db.VarChar(255)
+  Descreption     String?
+  shortDescreption String?
+  view            Int           @default(0)
+  DeadLine        String?     
   CreatedDate     DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate    DateTime?     @default(now()) @db.Timestamptz(6)
   user_id         Int
-  location_id     Int
   User            User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
-  Location        Location      @relation(fields: [location_id], references: [location_id], onDelete: Cascade, onUpdate: Cascade)
+  Locations       Location[]
   JobCategory     JobCategory[]
 }
 
@@ -50,8 +47,8 @@ model Location {
   user_id         Int
   CreatedDate     DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate    DateTime?     @default(now()) @db.Timestamptz(6)
-  Job             Job[]
   User            User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+  Jobs            Job[]
 }
 
 model User {
