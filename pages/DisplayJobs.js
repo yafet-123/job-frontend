@@ -15,7 +15,7 @@ export async function getServerSideProps(context){
   	where:{job_id : Number(id),},
 	  data: { view: { increment: 1 }, },
 	})
-
+ 
 	const data = await prisma.Job.findUnique({
 		where:{
 			job_id: Number(id),
@@ -26,11 +26,16 @@ export async function getServerSideProps(context){
 					UserName:true,
 				},
 			},
-			Location:{
-				select:{
-					LocationName:true,
-				},
-			},
+			JobLocation:{
+        include:{
+          Location:{
+            select:{
+              location_id:true,
+              LocationName:true
+            }
+          }
+        }
+      },
 		},
 
 	});
@@ -51,20 +56,20 @@ export async function getServerSideProps(context){
 	
 	const onedata = {
 		job_id:data.job_id,
-		CompanyName:data.CompanyName,
-		Image:data.Image,
-		JobsType:data.JobsType,
-		Location:data.Location.LocationName,
-		CareerLevel:data.CareerLevel,
-		EmploymentType:data.EmploymentType,
-		Salary:data.Salary,
-		JobsDescreption:data.JobsDescreption,
-		JobsRequirement:data.JobsRequirement,
-		DeadLine:data.DeadLine,
-		Apply:data.Apply,
-		user:data.User.UserName,
-		CreatedDate:data.CreatedDate,
-		ModifiedDate:data.ModifiedDate
+    CompanyName:data.CompanyName,
+    image:data.Image,
+    JobsName:data.JobsName,
+    CareerLevel:data.CareerLevel,
+    Salary:data.Salary,
+    Descreption:data.Descreption,
+    shortDescreption:data.shortDescreption,
+    DeadLine:data.DeadLine,
+    Apply:data.Apply,
+    view:data.view,
+    userName:data.User.UserName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate,
+    Location:data.JobLocation,
 	}
 
 	const Allcategories = categoriesdata.map((data)=>({
