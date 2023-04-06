@@ -21,14 +21,20 @@ export async function getServerSideProps(context){
   	include:{
        _count:{
         select:{
-          Job:true
+          JobLocation:true
         }
       },
     }
   })
   const jobsByLocation = await prisma.Job.findMany({
   	where:{
-  		location_id: Number(location_id)
+      JobLocation:{
+        some: {
+          Location:{
+            location_id: Number(location_id)
+          }
+        }
+      }
   	},
     orderBy: {
       job_id:"asc"
@@ -39,11 +45,16 @@ export async function getServerSideProps(context){
           UserName:true
         }
       },
-      Location:{
-        select:{
-          LocationName:true
+      JobLocation:{
+        include:{
+          Location:{
+            select:{
+              location_id:true,
+              LocationName:true
+            }
+          }
         }
-      }
+      },
     } 
   });
 
@@ -53,19 +64,23 @@ export async function getServerSideProps(context){
       ModifiedDate:"asc"
     },
     include:{
-      Location:{
-        select:{
-          LocationName:true
+      JobLocation:{
+        include:{
+          Location:{
+            select:{
+              location_id:true,
+              LocationName:true
+            }
+          }
         }
-      }
+      },
     } 
   });
 
   const Alllatestjobs = latestjobs.map((data)=>({
     job_id:data.job_id,
     CompanyName:data.CompanyName,
-    JobsType:data.JobsType,
-    Location:data.Location.LocationName,
+    JobsName:data.JobsName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate
   }))
