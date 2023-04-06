@@ -48,7 +48,7 @@ model Location {
   CreatedDate     DateTime?     @default(now()) @db.Timestamptz(6)
   ModifiedDate    DateTime?     @default(now()) @db.Timestamptz(6)
   User            User          @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
-  Jobs            Job[]
+  JobLocation     JobLocation[]
 }
 
 model JobLocation {
@@ -81,6 +81,7 @@ model User {
   NewsCategory                NewsCategory[]
   NewsCategoryRelationship    NewsCategoryRelationship[]
   JobCategory                 JobCategory[]
+  JobLocation                 JobLocation[]
   Job                         Job[]
   Location                    Location[]
   HTMLCourse                  HTMLCourse[]

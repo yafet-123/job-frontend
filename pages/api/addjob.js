@@ -19,11 +19,19 @@ export default async function handleaddjob(req, res){
 	} = req.body
 
 	let createJobCategory = []
+	let createLocationCategory = []
 
 	for (let j = 0; j < categoryId.length; j++) {
 		createJobCategory.push({
 			user_id : Number(user_id),
 			category_id : Number(categoryId[j]),
+		})
+	}
+
+	for (let j = 0; j < LocationId.length; j++) {
+		createLocationCategory.push({
+			user_id : Number(user_id),
+			location_id : Number(LocationId[j]),
 		})
 	}
 
@@ -33,17 +41,17 @@ export default async function handleaddjob(req, res){
 			Image,
 			JobsName,
 			CareerLevel,
-			EmploymentType,
 			Salary,
-			JobsDescreption,
-			JobsRequirement,
+			Description,
+			shortDescription,
 			DeadLine,
-			Apply,
 			user_id:Number(user_id),
 			JobCategory:{
 				create: createJobCategory
+			},
+			JobCategory:{
+				create: createLocationCategory
 			}
-			location_id:Number(LocationId),
 		}
 	});
 
