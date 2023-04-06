@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 
 export function SearchJobs({categories, locations}) {
   const [jobs, setJobs] = useState("category");
-  const router = useRouter();
+  const router = useRouter(); 
   return (
     <div className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-[#e6e6e6] dark:bg-[#02201D] ">
       <h1 className="font-semibold text-[#009688] dark:text-white text-md md:text-3xl lg:text-4xl capitalize w-full">
@@ -51,7 +51,7 @@ export function SearchJobs({categories, locations}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/JobsByLocation",
-                        query:{location:data.LocationName, howmany:data._count.Job, image:data.Image, location_id:data.location_id}
+                        query:{location:data.LocationName, howmany:data._count.JobLocation, image:data.Image, location_id:data.location_id}
                       })
                     }}
                   >
@@ -61,7 +61,7 @@ export function SearchJobs({categories, locations}) {
                         jobs in {data.LocationName}
                       </h1>
                       <h1 className="text-black dark:text-white text-left text-[#009688] font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:border-orange-200">
-                        {data._count.Job}
+                        {data._count.JobLocation}
                       </h1>
                     </div>
                   </button>

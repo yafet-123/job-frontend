@@ -35,7 +35,7 @@ export function LatestJobs({latestjobs}) {
           >
             <div className="flex flex-col w-1/2">
               <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-[#009688] dark:text-white group-hover:text-white">
-                {data.JobsType}
+                {data.JobsName}
               </h1>
               <h1 className="text-left font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white group-hover:text-white">
                 {data.CompanyName}
@@ -45,9 +45,6 @@ export function LatestJobs({latestjobs}) {
               <h1 className="font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white text-right group-hover:text-white">
                 {moment(data.createDate).utc().format('YYYY-MM-DD')}
               </h1>
-              <h1 className="font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white text-right group-hover:text-white">
-                {data.Location}
-              </h1>
             </div>
            </button>
           ))}
@@ -55,3 +52,4 @@ export function LatestJobs({latestjobs}) {
     </section>
   );
 }
+

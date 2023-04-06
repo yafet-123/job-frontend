@@ -14,7 +14,7 @@ export async function getStaticProps(){
     include:{
        _count:{
         select:{
-          Job:true
+          JobLocation:true
         }
       },
     }
@@ -39,12 +39,26 @@ export async function getStaticProps(){
           UserName:true
         }
       },
-
-      Location:{
-        select:{
-          LocationName:true
+      JobLocation:{
+        include:{
+          Location:{
+            select:{
+              location_id:true,
+              LocationName:true
+            }
+          }
         }
-      }
+      },
+      JobCategory:{
+        include:{
+          Category:{
+            select:{
+              category_id:true,
+              CategoryName:true
+            }
+          }
+        }
+      },  
     } 
   });
   
@@ -87,20 +101,20 @@ export async function getStaticProps(){
   const Alllatestjobs = latestjobs.map((data)=>({
     job_id:data.job_id,
     CompanyName:data.CompanyName,
-    Image:data.Image,
-    JobsType:data.JobsType,
-    Location:data.Location.LocationName,
+    image:data.Image,
+    JobsName:data.JobsName,
     CareerLevel:data.CareerLevel,
-    EmploymentType:data.EmploymentType,
     Salary:data.Salary,
-    JobsDescreption:data.JobsDescreption,
-    JobsRequirement:data.JobsRequirement,
+    Descreption:data.Descreption,
+    shortDescreption:data.shortDescreption,
     DeadLine:data.DeadLine,
     Apply:data.Apply,
-    location_id:data.location_id,
+    view:data.view,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate
+    ModifiedDate:data.ModifiedDate,
+    categories:data.JobCategory,
+    Location:data.JobLocation,
   }))
   
   const latestreversejob = Alllatestjobs.reverse();
