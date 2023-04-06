@@ -17,10 +17,14 @@ export async function getServerSideProps(){
           UserName:true
         }
       },
-      Location:{
-        select:{
-          LocationName:true,
-          location_id:true
+      JobLocation:{
+        include:{
+          Location:{
+            select:{
+              location_id:true,
+              LocationName:true
+            }
+          }
         }
       },
       JobCategory:{
@@ -42,7 +46,6 @@ export async function getServerSideProps(){
     CompanyName:data.CompanyName,
     image:data.Image,
     JobsType:data.JobsType,
-    Location:data.Location.LocationName,
     CareerLevel:data.CareerLevel,
     EmploymentType:data.EmploymentType,
     Salary:data.Salary,
@@ -54,6 +57,7 @@ export async function getServerSideProps(){
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
     categories:data.JobCategory,
+    Location:data.JobLocation,
 
   }))
   

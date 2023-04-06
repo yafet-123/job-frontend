@@ -43,21 +43,7 @@ export function AddJob({categories, locations}) {
     const [active, setActive ] = useState(false)
     const { status, data } = useSession();
     const UserData = data?.user;
-
-    function imageHandler() {
-        console.log(quillRef)
-        if (!quillRef.current) return
-        
-        const editor = quillRef.current.getEditor()
-        const range = editor.getSelection()
-        const value = prompt("Please enter the image URL")
-        console.log(value)
-        console.log(range)
-        console.log(editor)
-        if (value && range) {
-          editor.insertEmbed(range.index, "image", value, "user")
-        }
-    }
+    const quillRef = useRef(null)
 
     async function imageUploadData() {
         const formData = new FormData();
@@ -87,8 +73,8 @@ export function AddJob({categories, locations}) {
             "JobsName":JobsName,
             "CareerLevel":CareerLevel,
             "Salary":Salary,
-            "Description":Description,
-            "shortDescription":shortDescription,
+            "Descreption":Description,
+            "shortDescreption":shortDescription,
             "DeadLine":DeadLine,
             "categoryId":categoryId,
             "LocationId":LocationId,
@@ -109,7 +95,6 @@ export function AddJob({categories, locations}) {
         addJobData()
     }
 
-    const quillRef = useRef(null)
     const modules = useMemo(() => ({
         toolbar: {
             container: [
@@ -261,7 +246,13 @@ export function AddJob({categories, locations}) {
                         Short Description
                     </p>
 
-                    <QuillNoSSRWrapper value={shortDescription} onChange={setshortDescription} modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                    <QuillNoSSRWrapper 
+                        forwardedRef={quillRef} 
+                        value={shortDescription} 
+                        onChange={setshortDescription} 
+                        modules={modules} 
+                        className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" 
+                    />
                 </div>
 
                 <div className="mb-10 ">
@@ -271,7 +262,13 @@ export function AddJob({categories, locations}) {
                         Description
                     </p>
 
-                    <QuillNoSSRWrapper value={Description} onChange={setDescription} modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" />
+                    <QuillNoSSRWrapper 
+                        forwardedRef={quillRef} 
+                        value={Description} 
+                        onChange={setDescription}
+                        modules={modules} 
+                        className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" 
+                    />
                 </div>
 
                 <div className="mb-10 ">
