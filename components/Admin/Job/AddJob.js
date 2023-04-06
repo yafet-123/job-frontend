@@ -24,7 +24,7 @@ const QuillNoSSRWrapper = dynamic(
     ssr: false,
   },
 )
-
+ 
 export function AddJob({categories, locations}) {
     const router = useRouter();
     const [typechange , settypechange] = useState(true)
@@ -179,10 +179,7 @@ export function AddJob({categories, locations}) {
                         >
                             Job Name
                         </label>
-                    </div>
-
-                    
-                    
+                    </div>  
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-10 px-2">
@@ -237,6 +234,38 @@ export function AddJob({categories, locations}) {
                             DeadLine
                         </label>
                     </div>
+                </div>
+
+                <div className="mb-10 ">
+                    <p  
+                        className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
+                    >
+                        Short Description
+                    </p>
+
+                    <QuillNoSSRWrapper 
+                        forwardedRef={quillRef} 
+                        value={shortDescription} 
+                        onChange={setshortDescription} 
+                        modules={modules} 
+                        className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" 
+                    />
+                </div>
+
+                <div className="mb-10 ">
+                    <p  
+                        className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
+                    >
+                        Description
+                    </p>
+
+                    <QuillNoSSRWrapper 
+                        forwardedRef={quillRef} 
+                        value={Description} 
+                        onChange={setDescription}
+                        modules={modules} 
+                        className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" 
+                    />
                 </div>
 
                 <div className="mb-10 ">
