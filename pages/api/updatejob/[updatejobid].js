@@ -8,17 +8,15 @@ export default async function handleupdatejob(req, res){
 	const { 
 		CompanyName,
 		Image,
-		JobsType,
+		JobsName,
 		CareerLevel,
-		EmploymentType,
 		Salary,
-		JobsDescreption,
-		JobsRequirement,
+		Descreption,
+		shortDescreption,
 		DeadLine,
-		Apply,
-		user_id,
 		categoryId,
-		LocationId
+		LocationId,
+		user_id
 	} = req.body
 
 	console.log(categoryId)
@@ -28,15 +26,13 @@ export default async function handleupdatejob(req, res){
 		data:{
 			CompanyName,
 			Image,
-			JobsType,
-			location_id:Number(LocationId),
+			JobsName,
 			CareerLevel,
-			EmploymentType,
 			Salary,
-			JobsDescreption,
-			JobsRequirement,
+			Descreption,
+			shortDescreption,
 			DeadLine,
-			Apply,
+			user_id:Number(user_id),
 		}
 	});
 
@@ -44,12 +40,25 @@ export default async function handleupdatejob(req, res){
 		where:{job_id:Number(updatejobid)},
 	});
 	
+	const deletelocationdata = await prisma.JobLocation.deleteMany({
+		where:{job_id:Number(updatejobid)},
+	});
 
 	for (let j = 0; j < categoryId.length; j++) {
 	  	const jobcategory = await prisma.JobCategory.create({
 		    data:{
 		      user_id : Number(user_id),
 		      category_id : Number(categoryId[j]),
+		      job_id : Number(updatejobid)
+		    }
+	  	})
+	}
+
+	for (let j = 0; j < LocationId.length; j++) {
+	  	const locationcategory = await prisma.JobLocation.create({
+		    data:{
+		      user_id : Number(user_id),
+		      location_id : Number(LocationId[j]),
 		      job_id : Number(updatejobid)
 		    }
 	  	})

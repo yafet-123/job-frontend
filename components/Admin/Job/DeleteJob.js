@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import SyncLoader from "react-spinners/SyncLoader";
+import { useState } from 'react'
 
 export function DeleteJob({setdeleteModalOn,deletejobid}) {
     const router = useRouter();

@@ -35,10 +35,10 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                	<div className="overflow-y-scroll lg:overflow-none flex-col w-full h-screen mx-2 lg:mx-10 justify-center bg-neutral-200 dark:bg-slate-500 py-5 px-5 lg:px-10 border-4 border-sky-500 rounded-xl ">
                	    <h1 className="text-xl lg:text-2xl text-zinc-600 font-bold mb-10 dark:text-white text-center">Detail Job</h1>
                	    <div className="flex flex-col justify-between">
-               	        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-5">
+               	        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
                	            <h1 className="flex flex-col font-bold hover:underline">
-               	                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Id</span>
-               	                <span className="text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.job_id}</span>
+               	                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">Id</span>
+               	                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.job_id}</span>
                              </h1>
 
                	            <h1 className="flex flex-col font-bold hover:underline">
@@ -47,47 +47,44 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                	            </h1>
 
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Modified Date</span>
-                                <span className="text-xs lg:text-lg text-black dark:text-white break-words">{moment(dataposttojob.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
+                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">Modified Date</span>
+                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{moment(dataposttojob.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
                             </h1>
                                     
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-right">Created By</span>
-                                <span className="text-xs lg:text-lg text-black dark:text-white text-right break-words">{dataposttojob.userName}</span>
+                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">Created By</span>
+                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.userName}</span>
                             </h1>
                         </div>
 
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-5">
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Company Name</span>
-                                <span className="text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.CompanyName}</span>
+                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">Company Name</span>
+                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.CompanyName}</span>
                             </h1>
 
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">Career Level</span>
+                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">Career Level</span>
                                 <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.CareerLevel}</span>
                             </h1>
                                     
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-right">Jobs Name</span>
-                                <span className="text-xs lg:text-lg text-black dark:text-white text-right break-words">{dataposttojob.JobsName}</span>
+                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">Jobs Name</span>
+                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.JobsName}</span>
                             </h1>
 
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Salary</span>
-                                <span className="text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.Salary}</span>
+                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">Salary</span>
+                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.Salary}</span>
                             </h1>
                         </div>
 
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-5">
-                        
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
                            	<h1 className="flex flex-col font-bold hover:underline">
-                           	    <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">DeadLine</span>
+                           	    <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">DeadLine</span>
                            	    <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.DeadLine}</span>
                            	</h1>
-                        </div>
 
-                        <div className="grid grid-cols-1 gap-10 mb-5">
                             <h1 className="flex flex-col font-bold hover:underline">
                                 <span className="text-md lg:text-xl text-black dark:text-white mb-3 text-left">Categories</span>
                                 <div className="flex flex-col">

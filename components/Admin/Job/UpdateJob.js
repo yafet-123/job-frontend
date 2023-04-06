@@ -68,7 +68,6 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
         setLoading(true)
         const data = await axios.patch(`../api/updatejob/${updatejobid}`,{
             "CompanyName":CompanyName,
-            "Image":imageData,
             "JobsName":JobsName,
             "CareerLevel":CareerLevel,
             "Salary":Salary,
