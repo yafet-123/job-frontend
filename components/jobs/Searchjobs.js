@@ -36,20 +36,21 @@ export function Searchjobs({categories,locations,latestjobs}) {
                       })
                     }}
                   >
-                    <div className="flex flex-col w-2/4 lg:w-3/4">
-                      <h1 className="font-normal text-sm lg:text-lg text-[#009688] group-hover:text-white text-left">
-                        {data.JobsName}
-                      </h1>
-                      <h1 className="font-light text-xs lg:text-sm text-black dark:text-white group-hover:text-white text-left">
-                        {data.CompanyName}
-                      </h1>
+                    <div className="flex flex-row items-center w-full">
+                      <Image src={data.image == "" || data.image == null ? "/images/bgImage1.avif" : data.image} width={75} height={75} alt="image" required className="my-5" />
+                      <div className="flex flex-col pt-2 lg:pt-0 ml-2 lg:ml-5">
+                        <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-[#009688] dark:text-white group-hover:text-white">
+                          {data.JobsName}
+                        </h1>
+                        <h1 className="text-left font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white group-hover:text-white">
+                          {data.CompanyName}
+                        </h1>
+                        <h1 className="font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white text-left group-hover:text-white">
+                          {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                        </h1>
+                      </div>
                     </div>
-                    <div className="flex flex-col items-center justify-center w-1/4 lg:w-1/4">
-                      <h1 className="font-light text-xs text-black dark:text-white md:text-lg text-right group-hover:text-white">
-                        {moment(data.createDate).utc().format('YYYY-MM-DD')}
-                      </h1>
-                  
-                    </div>
+
                   </button>
                 ))}
               </div>

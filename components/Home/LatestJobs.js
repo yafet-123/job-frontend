@@ -22,36 +22,36 @@ export function LatestJobs({latestjobs}) {
       </div>
 
       <div className="md:max-w-7xl md:mx-auto bg-neutral-100 dark:bg-[#1B2637] w-full h-[40rem] border dark:border-[#000] rounded-lg md:mt-10 shadow-2xl shadow-zinc-900 flex flex-col overflow-y-scroll">
-        {latestjobs.map((data, index) => (
-          <button
-            className="flex justify-around items-center mb-5 px-10 py-5 group hover:bg-[#009688]"
-            key={index}
-            type = "button"
-            onClick = {()=>{
-              router.push({
-                pathname:"/DisplayJobs",
-                query:{job_id:data.job_id}
-              })
-            }}
-          >
-            <div className="flex flex-col lg:flex-row w-1/2">
-              <Image src={data.image == "" || data.image == null ? "/images/bgImage1.avif" : data.image} width={75} height={75} alt="image" required className="my-5" />
-              <div className="flex flex-col pt-2 lg:pt-0 ml-5">
-                <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-[#009688] dark:text-white group-hover:text-white">
-                  {data.JobsName}
-                </h1>
-                <h1 className="text-left font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white group-hover:text-white">
-                  {data.CompanyName}
-                </h1>
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5 py-10">
+          {latestjobs.map((data, index) => (
+            <button
+              className="flex justify-around items-center mb-5 px-10 py-5 group hover:bg-[#009688]"
+              key={index}
+              type = "button"
+              onClick = {()=>{
+                router.push({
+                  pathname:"/DisplayJobs",
+                  query:{job_id:data.job_id}
+                })
+              }}
+            >
+              <div className="flex flex-col lg:flex-row w-full">
+                <Image src={data.image == "" || data.image == null ? "/images/bgImage1.avif" : data.image} width={75} height={75} alt="image" required className="my-5" />
+                <div className="flex flex-col pt-2 lg:pt-0 ml-2 lg:ml-5">
+                  <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-[#009688] dark:text-white group-hover:text-white">
+                    {data.JobsName}
+                  </h1>
+                  <h1 className="text-left font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white group-hover:text-white">
+                    {data.CompanyName}
+                  </h1>
+                  <h1 className="font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white text-left group-hover:text-white">
+                    {moment(data.createDate).utc().format('YYYY-MM-DD')}
+                  </h1>
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col w-1/2">
-              <h1 className="font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white text-right group-hover:text-white">
-                {moment(data.createDate).utc().format('YYYY-MM-DD')}
-              </h1>
-            </div>
-           </button>
-          ))}
+             </button>
+            ))}
+        </div>
       </div>
     </section>
   );
