@@ -269,38 +269,6 @@ export function AddJob({categories, locations}) {
                 </div>
 
                 <div className="mb-10 ">
-                    <p  
-                        className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
-                    >
-                        Short Description
-                    </p>
-
-                    <QuillNoSSRWrapper 
-                        forwardedRef={quillRef} 
-                        value={shortDescription} 
-                        onChange={setshortDescription} 
-                        modules={modules} 
-                        className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" 
-                    />
-                </div>
-
-                <div className="mb-10 ">
-                    <p  
-                        className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
-                    >
-                        Description
-                    </p>
-
-                    <QuillNoSSRWrapper 
-                        forwardedRef={quillRef} 
-                        value={Description} 
-                        onChange={setDescription}
-                        modules={modules} 
-                        className="!bg-white dark:!bg-white dark:!text-black !mx-2" theme="snow" 
-                    />
-                </div>
-
-                <div className="mb-10 ">
                     <Multiselect
                         displayValue="LocationName"
                         placeholder = "Location"

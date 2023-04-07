@@ -20,7 +20,7 @@ model Category {
   User         User?         @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
   JobCategory  JobCategory[]
 }
- 
+  
 model Job {
   job_id          Int           @id @default(autoincrement())
   CompanyName     String?       @db.VarChar(255)

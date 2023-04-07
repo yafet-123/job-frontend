@@ -37,52 +37,52 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                	    <div className="flex flex-col justify-between">
                	        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
                	            <h1 className="flex flex-col font-bold hover:underline">
-               	                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">Id</span>
-               	                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.job_id}</span>
+               	                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Id</span>
+               	                <span className="text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.job_id}</span>
                              </h1>
 
                	            <h1 className="flex flex-col font-bold hover:underline">
-               	                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">Created Date</span>
-               	                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{moment(dataposttojob.CreatedDate).utc().format('YYYY-MM-DD')}</span>
+               	                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Created Date</span>
+               	                <span className="text-left text-xs lg:text-lg text-black dark:text-white break-words">{moment(dataposttojob.CreatedDate).utc().format('YYYY-MM-DD')}</span>
                	            </h1>
 
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">Modified Date</span>
-                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{moment(dataposttojob.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
+                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Modified Date</span>
+                                <span className="text-left text-xs lg:text-lg text-black dark:text-white break-words">{moment(dataposttojob.ModifiedDate).utc().format('YYYY-MM-DD')}</span>
                             </h1>
                                     
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-3">Created By</span>
-                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.userName}</span>
+                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-3">Created By</span>
+                                <span className="text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.userName}</span>
                             </h1>
                         </div>
 
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">Company Name</span>
-                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.CompanyName}</span>
+                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-5">Company Name</span>
+                                <span className="text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.CompanyName}</span>
                             </h1>
 
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">Career Level</span>
-                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.CareerLevel}</span>
+                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-5">Career Level</span>
+                                <span className="text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.CareerLevel}</span>
                             </h1>
                                     
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">Jobs Name</span>
-                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.JobsName}</span>
+                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-5">Jobs Name</span>
+                                <span className="text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.JobsName}</span>
                             </h1>
 
                             <h1 className="flex flex-col font-bold hover:underline">
-                                <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">Salary</span>
-                                <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.Salary}</span>
+                                <span className="text-left text-md lg:text-xl text-black dark:text-white mb-5">Salary</span>
+                                <span className="text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.Salary}</span>
                             </h1>
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
                            	<h1 className="flex flex-col font-bold hover:underline">
-                           	    <span className="text-right lg:text-left text-md lg:text-xl text-black dark:text-white mb-5">DeadLine</span>
-                           	    <span className="text-right lg:text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.DeadLine}</span>
+                           	    <span className="text-left text-md lg:text-xl text-black dark:text-white mb-5">DeadLine</span>
+                           	    <span className="text-left text-xs lg:text-lg text-black dark:text-white break-words">{dataposttojob.DeadLine}</span>
                            	</h1>
 
                             <h1 className="flex flex-col font-bold hover:underline">
@@ -133,7 +133,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                                     clickedForupdate()
                                 }
                             }
-                            className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded mx-2"
+                            className="bg-[#009688] text-white font-bold py-2 px-2 lg:px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded mx-2"
                        	>
                             Edit
                        	</button>
@@ -141,14 +141,14 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                        	        clickedFordelete()
                        	        setdeletejobid(dataposttojob.job_id)
                        	    }} 
-                       	    className="bg-red-500 text-white font-bold py-2 px-4 border-b-4 border-red-500 hover:scale-110 duration-1000 ease-in-out rounded mx-2"
+                       	    className="bg-red-500 text-white font-bold py-2 px-2 lg:px-4 border-b-4 border-red-500 hover:scale-110 duration-1000 ease-in-out rounded mx-2"
                        	>
                        	    Delete
                        	</button>
 
                        	<button
                             onClick={handleCancelClickForview} 
-                            className="bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:scale-110 duration-1000 ease-in-out rounded mx-2"
+                            className="bg-blue-500 text-white font-bold py-2 px-2 lg:px-4 border-b-4 border-blue-500 hover:scale-110 duration-1000 ease-in-out rounded mx-2"
                         >
                             Cancel
                         </button>

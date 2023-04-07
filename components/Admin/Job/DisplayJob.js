@@ -12,7 +12,6 @@ export function DisplayJob({jobs, categories, locations}) {
     const [viewmodalOn, setviewModalOn] = useState(false)
     const [dataposttojob, setdataposttojob] = useState()
     const [view,setview] = useState()
-    console.log(jobs)
 
     const clickedForview = () => {
         setviewModalOn(true)
@@ -28,7 +27,6 @@ export function DisplayJob({jobs, categories, locations}) {
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Logo</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Company Name</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Jobs Type</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
                               
@@ -37,27 +35,22 @@ export function DisplayJob({jobs, categories, locations}) {
                         <tbody className="divide-y divide-gray-100">
                             {jobs.map((data,index)=>(
                                 <tr key={index} className="even:bg-neutral-300 odd:bg-neutral-200 even:dark:bg-gray-900 odd:dark:bg-gray-800 w-full">
-                                    <td className="p-3 text-lg text-gray-700 whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700">
                                         <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.job_id}</p>
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         <Image src={data.image == "" || data.image == null ? "/images/logo2.png" : data.image} width={50} height={50} alt="image that will be displayed" />
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         {data.CompanyName}
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white">
-                                        <p className="w-full overflow-hidden">
-                                            {data.JobsType}
-                                        </p>
-                                    </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         {data.userName}
                                     </td>
-                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap flex justify-center">
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white flex justify-center">
                                         <button
                                             onClick={() => {
                                                 clickedForview()
@@ -84,33 +77,29 @@ export function DisplayJob({jobs, categories, locations}) {
                                 
                             </div>
 
-                            <Image src={data.Image == "" || data.image == null ? "/images/logo2.png" : data.Image} width={500} height={500} alt="image that will be displayed" />
+                            <Image src={data.image == "" || data.image == null ? "/images/logo2.png" : data.image} width={500} height={500} alt="image that will be displayed" />
                             
                             <div className="text-gray-700 dark:text-white font-bold">
                                 <span className="text-lg">Company Name : </span> 
                                 <span className="text-sm ">{data.CompanyName} </span>
                             </div>
                             <div className="text-gray-700 dark:text-white font-bold">
-                                <span className="text-lg">Job Type : </span> 
-                                <span className="text-sm ">{data.JobsType} </span> 
+                                <span className="text-lg">Job Name : </span> 
+                                <span className="text-sm ">{data.JobsName} </span> 
                             </div>
                             <div className="text-gray-700 dark:text-white font-bold">
-                                <span className="text-lg">Employment Type : </span> 
-                                <span className="text-sm ">{data.EmploymentType} </span>
-                            </div>
-                            <div className="text-black dark:text-white font-bold">
                                 <span className="text-lg">DeadLine : </span> 
                                 <span className="text-sm ">{moment(data.DeadLine).utc().format('YYYY-MM-DD')} </span>
                             </div>
-                            <div className="text-lg text-gray-700 dark:text-white font-bold">
+                            <div className="text-gray-700 dark:text-white font-bold">
                                 <span className="text-lg">Created By : </span> 
                                 <span className="text-sm ">{data.userName} </span> 
                             </div>
-                            <div className="text-black font-bold dark:text-white">
+                            <div className="text-gray-700 dark:text-white font-bold">
                                 <span className="text-lg">createDate : </span> 
                                 <span className="text-sm ">{moment(data.createDate).utc().format('YYYY-MM-DD')} </span> 
                             </div>
-                            <div className="text-black font-bold dark:text-white">
+                            <div className="text-gray-700 dark:text-white font-bold">
                                 <span className="text-lg">Modified Date : </span> 
                                 <span className="text-sm ">{moment(data.ModifiedDate).utc().format('YYYY-MM-DD')} </span>   
                             </div>
