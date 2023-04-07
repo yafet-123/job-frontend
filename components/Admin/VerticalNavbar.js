@@ -1,11 +1,12 @@
 import React, {useState,useEffect} from "react";
 import { useRouter } from 'next/router'
+import { FaBlogger,FaBlog } from "react-icons/fa"
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu, AiFillDashboard, AiOutlineUser, AiOutlineFolderAdd, AiOutlineHtml5 } from "react-icons/ai";
 import { DiJavascript1, DiPython } from "react-icons/di"
+import { GiArtificialIntelligence, GiArtificialHive, GiNewspaper} from "react-icons/gi"
 import { SiCss3 } from 'react-icons/si'
 import { MdOutlineCategory, MdLocationOn } from "react-icons/md";
 import { BsNewspaper, BsFiletypeCss } from 'react-icons/bs'
-import {GiNewspaper} from 'react-icons/gi'
 import Link from 'next/link'
 import { useSession, signIn, signOut  } from "next-auth/react";
 import { FiLogOut } from "react-icons/fi"
@@ -28,10 +29,10 @@ export function VerticalNavbar({onChange, data}){
         { link: "/Admin/CSSCourse", icon: <SiCss3 size={25}/>, name: "CSS Course" },
         { link: "/Admin/JavascriptCourses", icon: <DiJavascript1 size={25}/>, name: "JavaScript Course" },
         { link: "/Admin/PythonCourses", icon: <DiPython size={25}/>, name: "Python Course" },
-        { link: "/Admin/BlogsCategory", icon: <MdOutlineCategory size={25}/>, name: "Blogs Category" },
-        { link: "/Admin/Blogs", icon: <DiPython size={25}/>, name: "Blogs" },
-        { link: "/Admin/AiSearchCategory", icon: <DiPython size={25}/>, name: "AiSearch Category" },
-        { link: "/Admin/AiSearch", icon: <DiPython size={25}/>, name: "AiSearch" },
+        { link: "/Admin/BlogsCategory", icon: <FaBlog size={25}/>, name: "Blogs Category" },
+        { link: "/Admin/Blogs", icon: <FaBlogger size={25}/>, name: "Blogs" },
+        { link: "/Admin/AiSearchCategory", icon: <GiArtificialHive size={25}/>, name: "AiSearch Category" },
+        { link: "/Admin/AiSearch", icon: <GiArtificialIntelligence size={25}/>, name: "AiSearch" },
     ];
 	const router = useRouter();
     const [sideBar , setsideBar] = useState(false);
@@ -78,7 +79,7 @@ export function VerticalNavbar({onChange, data}){
                     <div className="mt-auto flex flex-col">
                         <Link href="/">
                             <a className="flex items-center p-2 lg:p-4 text-xl text-black hover:text-white dark:text-white hover:bg-[#009688] dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl">
-                                <AiOutlineUser size={25} /> 
+                                <span className="hidden lg:flex"><AiOutlineUser size={25} /> </span>
                                 <span className={`ml-1 lg:ml-4 text-xs lg:text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>{data?.user.name}</span>
                             </a>
                         </Link>
@@ -89,7 +90,7 @@ export function VerticalNavbar({onChange, data}){
                                 callbackUrl: '/auth/signin'
                             })} 
                             className="flex items-center p-2 lg:p-4 text-xl text-black hover:text-white dark:text-white hover:bg-[#009688] dark:hover:bg-white dark:hover:text-slate-800 rounded-xl hover:bg-white rounded-xl" href="#">
-                            <FiLogOut size={25} />
+                            <span className="hidden lg:flex"><FiLogOut size={25} /></span>
                             <span className={`ml-1 lg:ml-4 text-xs lg:text-lg font-semibold ${sideBar ? "hidden" : "flex"} `}>Log Out</span>
                         </button>
                     </div>

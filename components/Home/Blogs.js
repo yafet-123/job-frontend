@@ -59,7 +59,7 @@ export function Blogs({blogs}) {
               <button 
                 onClick = {()=>{
                   router.push({
-                    pathname:"/DisplayNews",
+                    pathname:"/DisplayBlogs",
                     query:{blogs_id:blogs_id}
                   })
                 }}

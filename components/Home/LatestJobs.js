@@ -3,6 +3,7 @@ import React from "react";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import moment from 'moment'
 import { useRouter } from 'next/router' 
+import Image from 'next/image'
 
 export function LatestJobs({latestjobs}) {
   const router = useRouter()
@@ -33,13 +34,16 @@ export function LatestJobs({latestjobs}) {
               })
             }}
           >
-            <div className="flex flex-col w-1/2">
-              <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-[#009688] dark:text-white group-hover:text-white">
-                {data.JobsName}
-              </h1>
-              <h1 className="text-left font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white group-hover:text-white">
-                {data.CompanyName}
-              </h1>
+            <div className="flex flex-col lg:flex-row w-1/2">
+              <Image src={data.image == "" || data.image == null ? "/images/bgImage1.avif" : data.image} width={75} height={75} alt="image" required className="my-5" />
+              <div className="flex flex-col pt-2 lg:pt-0 ml-5">
+                <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-[#009688] dark:text-white group-hover:text-white">
+                  {data.JobsName}
+                </h1>
+                <h1 className="text-left font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white group-hover:text-white">
+                  {data.CompanyName}
+                </h1>
+              </div>
             </div>
             <div className="flex flex-col w-1/2">
               <h1 className="font-light text-xs md:text-sm lg:text-lg text-[#009688] dark:text-white text-right group-hover:text-white">
