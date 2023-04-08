@@ -7,6 +7,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { MainHeader } from '../components/common/MainHeader';
 import { CompanyJobs } from '../components/jobs/CompanyJobs'
+import RiseLoader from "react-spinners/RiseLoader";
 
 export default function AdvanceSearch() {
   const router = useRouter();
@@ -16,8 +17,7 @@ export default function AdvanceSearch() {
   const [error , seterror] = useState("")
   const [getSearchValue,setgetSearchValue] = useState(searchName)
   const [searchValue,setsearchValue] = useState([])
-  const [loading , setloading] = useState(false)
-
+  const [loading, setloading] = useState(false)
   useEffect(()=>{
     handleSearch()
   },[handleSearch])
@@ -27,11 +27,10 @@ export default function AdvanceSearch() {
         seterror("Please Insert a value")
         setsearchValue([])
     }else{
-      setloading(true)
+      setloading(false)
       const data = await axios.post(`api/searchClientJob`,{
           "searchName": getSearchValue,
       }).then(function (response) {
-        setloading(false)
         const objOneData = response.data
         if(Array.isArray(objOneData)){
             setsearchValue(objOneData)
@@ -40,16 +39,14 @@ export default function AdvanceSearch() {
             values.push(objOneData)
             setsearchValue(values)
         }
-        seterror("")  
-             
+        seterror("")       
         }).catch(function (error) {
             console.log(error);
-            
+            setLoading(false)
         });
       }
-    }
 
-  console.log(searchValue)
+    }
 
   return ( 
     <React.Fragment>
@@ -76,24 +73,28 @@ export default function AdvanceSearch() {
           </div>
         </div>
 
-        { loading == true ?
-          <h1 className="text-black dark:text-white text-xl font-bold text-center italic">Please Wait ... </h1>
-          :
+        <div className="flex justify-center items-center my-5">
+          <RiseLoader 
+            color="#36d7b7"
+            loading={loading}
+            size={30}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+
+        { error == "" ? 
           <div>
-            { error == "" ? 
-              <div>
-                { searchValue == "" ? 
-                  <h1 className="text-black dark:text-white text-xl font-bold text-center italic">
-                      No data can be found
-                  </h1>
-                  :
-                  <CompanyJobs jobs={searchValue} shareUrl={shareUrl} />
-                }
-              </div>
+            { searchValue == "" ? 
+              <h1 className="text-black dark:text-white text-xl font-bold text-center italic my-5">
+                  { loading ?  "please wait ..." : "No data can be found"}
+              </h1>
               :
-              <h1 className="text-black dark:text-white text-xl font-bold text-center italic">{error}</h1>
+              <CompanyJobs jobs={searchValue} shareUrl={shareUrl} />
             }
           </div>
+          :
+          <h1 className="text-black dark:text-white text-xl font-bold text-center italic">{error}</h1>
         }
       </div>
     </React.Fragment>
