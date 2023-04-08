@@ -55,26 +55,6 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             </div>
 
             <div className="mx-1">
-              <PinterestShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
-                hashtag={'#huluMedia'}
-              >
-                <PinterestIcon size={32} round />
-              </PinterestShareButton>
-            </div>
-
-            <div className="mx-1">
-              <RedditShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
-                hashtag={'#huluMedia'}
-              >
-                <RedditIcon size={32} round />
-              </RedditShareButton>
-            </div>
-
-            <div className="mx-1">
               <TelegramShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
                 quote={'Hulu Media is company that shares jobs , entertainment and others'}
@@ -92,6 +72,26 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
               >
                 <TwitterIcon size={32} round />
               </TwitterShareButton>
+            </div>
+
+            <div className="mx-1">
+              <PinterestShareButton
+                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                hashtag={'#huluMedia'}
+              >
+                <PinterestIcon size={32} round />
+              </PinterestShareButton>
+            </div>
+
+            <div className="mx-1">
+              <RedditShareButton
+                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                hashtag={'#huluMedia'}
+              >
+                <RedditIcon size={32} round />
+              </RedditShareButton>
             </div>
           </div>
 

@@ -106,6 +106,7 @@ export async function getServerSideProps(context){
     CompanyName:data.CompanyName,
     JobsName:data.JobsName,
     CreatedDate:data.CreatedDate,
+    image:data.Image,
     ModifiedDate:data.ModifiedDate
   }))
 
@@ -137,7 +138,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	    			</div>
 	    			<div className="flex flex-col lg:flex-row mb-2 lg:mb-5 mt-3 lg:mt-10"> 				
 	    				<div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-[#009688] text-white py-2 lg:py-5 px-10">
-	    					<p className="text-lg lg:text-3xl font-bold capitalize">Jobs</p>
+	    					<p className="text-lg lg:text-xl font-bold capitalize">Jobs</p>
 	    					<p className="text-md lg:text-xl font-bold capitalize">{howmany}</p>
 	    				</div>
 	    			</div>
