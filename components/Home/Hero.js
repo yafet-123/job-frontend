@@ -18,7 +18,8 @@ export function Hero() {
         <div className="!h-16 w-full dark:border-slate-800 px-2">
           <div className="flex flex-col lg:flex-row justify-center items-center ">
             <input 
-              value={searchValue}   
+              value={searchValue} 
+              required  
               placeholder="Carer level, Job Type, Company Name , Employment type"                         
               onChange={(e) => setsearchValue(e.target.value)}
               className="text-black dark:text-white placeholder:font-bold mb-5 lg:mb-0 duration-1000 ease-in-out h-16 focus:w-full w-[90%] lg:w-[70%] bg-white dark:bg-[#1B2637] outline-none md:pl-2 text-sm lg:text-lg border border[#009688] border-l-2 rounded-xl mr-2" 
