@@ -23,7 +23,7 @@ export function Location({locations}) {
 		            }}
 			    >
 			    	<Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={25} height={25} alt="image that will be displayed" />
-				   	<h1 className="text-left font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-white ml-5">
+				   	<h1 className="text-left font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-white ml-5 dark:text-white">
 				          jobs in {data.LocationName}
 				    </h1>
 				</button>

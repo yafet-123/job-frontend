@@ -144,13 +144,13 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 	    				</div>
 	    			</div>
 	    		</div>	
-	      	<div className="flex flex-col md:flex-row w-full">
+	      	<div className="flex flex-col w-full">
 	      		<div className="flex flex-col-reverse lg:flex-row w-full">
 		      		<div className="flex flex-col w-full lg:w-1/4 h-[20rem] lg:h-[50rem] p-3 bg-neutral-200 dark:bg-slate-700 sticky top-32">
 		      				<h1 className="text-lg md:text-xl lg:text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs in ethopia</h1>
 		      				<Location locations={locations} />
 		      		</div>
-		      		<div className="flex flex-col w-full lg:w-3/4 p-3 lg:border-l-2 px-3 lg:px-10">
+		      		<div className="flex flex-col md:flex-row w-full lg:w-3/4 p-3 lg:border-l-2 px-3 lg:px-10">
 		      			{ jobsbylocation == "" ? 
 		      				<h1 className="text-black dark:text-white text-lg lg:text-xl font-bold text-center italic">
 		      					There is No job posted in {location}

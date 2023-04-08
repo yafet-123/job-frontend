@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export function GroupLatestJobs({Alllatestjobs}) {
   	return (
-	    <div className="flex flex-col w-full h-[50rem] p-3 border rounded-lg mt-10">
+	    <div className="flex flex-col w-full h-[50rem] p-10 border rounded-lg mt-10">
 		    <div className="flex justify-between items-center p-2 md:p-0">
 				<div className="flex items-center font-bold text-md lg:text-xl text-black dark:text-white capitalize">
 					<AiOutlineClockCircle size={20} />

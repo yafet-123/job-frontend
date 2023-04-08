@@ -22,7 +22,7 @@ export function Company({categories}) {
 			            })
 		        	}}
 			    >
-				   	<h1 className={`${data.CategoryName == category ? "bg-[#009688] dark:bg-[#009688] text-white":"hover:bg-neutral-500  group-hover:text-white" } rounded-xl text-black text-left font-normal text-sm md:text-lg lg:text-xl capitalize py-4 px-5 w-full`}>
+				   	<h1 className={`${data.CategoryName == category ? "bg-[#009688] dark:bg-[#009688] text-white":"hover:bg-neutral-500  group-hover:text-white" } rounded-xl dark:text-white text-black text-left font-normal text-sm md:text-lg lg:text-xl capitalize py-4 px-5 w-full`}>
 				        {data.CategoryName}
 				    </h1>
 				</button>
