@@ -52,7 +52,7 @@ export default function AdvanceSearch() {
   return ( 
     <React.Fragment>
       <MainHeader title="AdvanceSearch" />
-      <div className="flex flex-col bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D] pt-32 px-3 lg:px-32">
+      <div className="flex flex-col bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D] pt-32 px-3 lg:px-72">
         <div className="!h-16 w-full dark:border-slate-800 px-2 my-10" >
           <div className="flex flex-col lg:flex-row justify-center items-center" >
             <input 
