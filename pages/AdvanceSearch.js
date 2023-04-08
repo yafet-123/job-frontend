@@ -27,8 +27,9 @@ export default function AdvanceSearch() {
     if(getSearchValue == ""){
         seterror("Please Insert a value")
         setsearchValue([])
-    }else{
-      setloading(false)
+    }
+    else{
+      setloading(true)
       const data = await axios.post(`api/searchClientJob`,{
           "searchName": getSearchValue,
       }).then(function (response) {
@@ -46,15 +47,14 @@ export default function AdvanceSearch() {
             setLoading(false)
         });
       }
-
     }
 
   return ( 
     <React.Fragment>
       <MainHeader title="AdvanceSearch" />
       <div className="flex flex-col bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D] pt-32 px-3 lg:px-32">
-        <form className="!h-16 w-full dark:border-slate-800 px-2 my-10">
-          <div className="flex flex-col lg:flex-row justify-center items-center" onSubmit={handleSearch}>
+        <div className="!h-16 w-full dark:border-slate-800 px-2 my-10" >
+          <form className="flex flex-col lg:flex-row justify-center items-center" onSubmit={handleSearch} >
             <input 
               value={getSearchValue}
               required   
@@ -71,8 +71,8 @@ export default function AdvanceSearch() {
                 Search
               </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
 
         <div className="flex justify-center items-center my-5">
           <RiseLoader 
