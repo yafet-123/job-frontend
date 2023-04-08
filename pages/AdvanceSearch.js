@@ -20,7 +20,7 @@ export default function AdvanceSearch() {
   const [loading, setloading] = useState(false)
   useEffect(()=>{
     handleSearch()
-  },[handleSearch])
+  },[])
 
   async function handleSearch(){
     if(getSearchValue == ""){
