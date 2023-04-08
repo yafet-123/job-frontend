@@ -114,15 +114,14 @@ export async function getServerSideProps(context){
     ModifiedDate:data.ModifiedDate,
     Category:data.EntertainmentCategoryRelationship
   }))
-  const uniqueallcategoryNews = [...new Map(Allcategoryet.map(v => [v.Entertainment.entertainment_id,v])).values()]
-  console.log(uniqueallcategoryNews)
+  const uniqueallcategoryet = [...new Map(Allcategoryet.map(v => [v.Entertainment.entertainment_id,v])).values()]
 
   return{
     props:{
       entertainment:JSON.parse(JSON.stringify(onedata)),
       Alllatestentertainment:JSON.parse(JSON.stringify(Alllatestentertainment)),
       entertainmentCategory:JSON.parse(JSON.stringify(etCategory)),
-      Allcategoryet:JSON.parse(JSON.stringify(uniqueallcategoryNews))
+      Allcategoryet:JSON.parse(JSON.stringify(uniqueallcategoryet))
     }
   }
 }
