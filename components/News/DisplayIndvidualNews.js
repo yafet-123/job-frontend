@@ -1,14 +1,16 @@
-import React, {useState} from "react";
+import React, {useState,useRef} from "react";
 import Image from 'next/future/image'
 import moment from 'moment';
 import { useRouter } from 'next/router'
 import 'react-quill/dist/quill.snow.css';
 import { NewsSharing } from './NewsSharing';
- 
-export function DisplayIndvidualNews({news, newsCategory,shareUrl}) {
+import {Share} from '../common/Share.js'
+import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 
+export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUrl}) {
+	const quoteRef = useRef(null)
   	return (
-	    <div className="flex flex-col flex-1 pb-20 w-full lg:w-[75%]">
+	    <div className="flex flex-col flex-1 pb-20 w-full lg:w-[72%]">
 		    <h1 className="text-lg lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5 hover:text-[#009688]">
 	            {news.Header}
 	        </h1>
@@ -40,6 +42,31 @@ export function DisplayIndvidualNews({news, newsCategory,shareUrl}) {
 	        </div>
 
 	        <NewsSharing shareUrl={shareUrl}/>
+
+	        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+	        	{ AllcategoryNews.map((data, index)=>(
+	        		<div key={index}>
+            			<button 
+              				onClick = {()=>{
+                				router.push({
+                  					pathname:"/DisplayNews",
+                  					query:{news_id:data.News.news_id}
+                				})
+              				}}
+              				id={data.News.news_id} ref={quoteRef} className="flex flex-col w-full lg:mt-5 group pt-5"
+            			>
+            				<div className="w-full !h-52 lg:!h-96 relative">
+                				<Image src={data.News.Image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
+              				</div>
+
+              				<h1 className="group-hover:text-3xl group-hover:text-[#009688] group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+                  				{data.News.Header}
+                			</h1>
+                			<div  className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: data.News.ShortDescription }} />
+            			</button>
+            		</div>
+	        	))}
+	        </div>
 	    </div>
   	);
 }

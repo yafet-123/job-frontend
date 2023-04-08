@@ -50,6 +50,34 @@ export async function getServerSideProps(context){
   }
 
   const newsCategory = data.NewsCategoryRelationship
+  const findCategory = []
+  for(let i=0; i< newsCategory.length;i++){
+    findCategory.push(
+      Number(newsCategory[i].NewsCategory?.category_id)
+    )
+  }
+
+  console.log(findCategory)
+  const dataForCategoryNews = await prisma.NewsCategoryRelationship.findMany({
+    where:{
+        NewsCategory:{
+          category_id:{
+            in:findCategory
+          }
+        }
+    },
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      News:true,
+      NewsCategory:true
+    }
+  });
+
+  console.log(dataForCategoryNews)
 
   const latestnews = await prisma.News.findMany({
   	take:-6,
@@ -75,6 +103,10 @@ export async function getServerSideProps(context){
     }
   });
 
+  const AllcategoryNews = dataForCategoryNews.map((data)=>({
+    News:data.News
+  }))
+
   const Alllatestnews = latestnews.map((data)=>({
     news_id:data.news_id,
     Header:data.Header,
@@ -86,23 +118,26 @@ export async function getServerSideProps(context){
     Category:data.NewsCategoryRelationship
   }))
 
+  console.log(AllcategoryNews)
+
   return{
     props:{
       news:JSON.parse(JSON.stringify(onedata)),
       Alllatestnews:JSON.parse(JSON.stringify(Alllatestnews)),
       newsCategory:JSON.parse(JSON.stringify(newsCategory)),
+      AllcategoryNews:JSON.parse(JSON.stringify(AllcategoryNews))
     }
   }
 }
 
-export default function DisplayNews({news,Alllatestnews, newsCategory}) {
+export default function DisplayNews({news,Alllatestnews, AllcategoryNews, newsCategory}) {
   const router = useRouter()
   const shareUrl = router.asPath
   return (
   	<React.Fragment>
       <MainHeader title="Display News" />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
-	      <DisplayIndvidualNews news={news} newsCategory={newsCategory} shareUrl={shareUrl} />
+	      <DisplayIndvidualNews news={news} AllcategoryNews={AllcategoryNews} newsCategory={newsCategory} shareUrl={shareUrl} />
         <DisplayLatestNews Alllatestnews={Alllatestnews}/>          
 	    </section>
 	  </React.Fragment>
