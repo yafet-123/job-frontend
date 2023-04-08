@@ -7,7 +7,7 @@ export function Hero() {
   const [search,setsearch] = useState("job")
   const router = useRouter();
   const [searchValue, setsearchValue] = useState("")
-  async function registerCategory(e){
+  async function handleSearch(e){
         e.preventDefault()
         router.push({
           pathname: '/AdvanceSearch',
