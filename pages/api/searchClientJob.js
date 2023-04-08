@@ -6,7 +6,7 @@ export default async function handlesearchclientjob(req, res){
         where: {
             OR:[
                 {
-                    JobsType: {
+                    JobsName: {
                         contains: searchName,
                         mode: "insensitive",
                     },
@@ -24,7 +24,7 @@ export default async function handlesearchclientjob(req, res){
                     },
                 },
                 {
-                    EmploymentType: {
+                    Salary: {
                         contains: searchName,
                         mode: "insensitive",
                     },
@@ -43,18 +43,20 @@ export default async function handlesearchclientjob(req, res){
     const AllData = searchData.map((data)=>({
         job_id:data.job_id,
         CompanyName:data.CompanyName,
-        JobsType:data.JobsType,
+        image:data.Image,
+        JobsName:data.JobsName,
         CareerLevel:data.CareerLevel,
-        EmploymentType:data.EmploymentType,
         Salary:data.Salary,
+        Descreption:data.Descreption,
+        shortDescreption:data.shortDescreption,
         DeadLine:data.DeadLine,
         Apply:data.Apply,
         view:data.view,
-        JobsDescreption:data.JobsDescreption,
-    	JobsRequirement:data.JobsRequirement,
+        userName:data.User.UserName,
         CreatedDate:data.CreatedDate,
         ModifiedDate:data.ModifiedDate,
-        userName:data.User.UserName
+        categories:data.JobCategory,
+        Location:data.JobLocation,
     }))
 
     res.json(AllData)

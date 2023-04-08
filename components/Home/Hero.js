@@ -11,9 +11,9 @@ export function Hero() {
     { type: 1, name: "job Type",},
     { type: 2, name: "Companies",},
   ];
-
+ 
   async function handleSearch(e){
-    const data = await axios.post(`api/searchAdmin`,{
+    const data = await axios.post(`api/searchClientJob`,{
         "searchName": getSearchValue,
         "type": e
     }).then(function (response) {
