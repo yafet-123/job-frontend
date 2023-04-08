@@ -9,6 +9,13 @@ import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 
 export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUrl}) {
 	const quoteRef = useRef(null)
+	const [id, setid] = useState()
+	const quote = quoteRef.current?.textContent ?? "";
+  	const [quotes, setquotes] = useState()
+  	const [viewmodalOn, setviewModalOn] = useState(false)
+  	const clickedForview = () => {
+      setviewModalOn(true)
+  	}
   	return (
 	    <div className="flex flex-col flex-1 pb-20 w-full lg:w-[72%]">
 		    <h1 className="text-lg lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5 hover:text-[#009688]">
@@ -64,6 +71,23 @@ export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUr
                 			</h1>
                 			<div  className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: data.News.ShortDescription }} />
             			</button>
+
+            			<div className="flex items-center justify-between text-sm"> 
+              				<p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
+                				<AiOutlineEye size={32} />
+                				<span className="ml-3">{data.News.view}</span>
+              				</p>
+
+              				<button
+                  				onClick={() => {
+                      				clickedForview()
+                      				setid(data.News.news_id)
+                      				setquotes(quote)
+                  				}} 
+                  				className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+                  				<AiOutlineShareAlt size={32} />
+              				</button>
+            			</div>
             		</div>
 	        	))}
 	        </div>
