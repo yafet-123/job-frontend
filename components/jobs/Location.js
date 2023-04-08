@@ -3,13 +3,17 @@ import moment from 'moment';
 import { useState, useEffect, useRef} from 'react'
 import { AiOutlineShareAlt, AiOutlineEye, AiOutlineMenu, AiOutlineClockCircle } from 'react-icons/ai'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 export function Location({locations}) {
+	const router = useRouter();
+	const location = router.query.location
+
   	return (
 	   <div className="flex flex-col overflow-y-scroll scroll_width p-3">
 			{locations.map((data, index) => (
 			    <button 
-			    	className="flex items-center group hover:bg-white py-2 mb-5" 
+			    	className={` ${data.LocationName == location ? "bg-[#009688] dark:bg-[#009688] text-white" : "hover:bg-neutral-500 group-hover:text-white" } flex items-center group hover:bg-white py-2 mb-5`} 
 			    	key={index}
 			    	onClick = {()=>{
 		                router.push({
@@ -19,7 +23,7 @@ export function Location({locations}) {
 		            }}
 			    >
 			    	<Image src={data.Image == null ? "/images/bgImage1.avif" : data.Image} width={25} height={25} alt="image that will be displayed" />
-				   	<h1 className={`${data.LocationName == location ? "bg-[#009688] dark:bg-[#009688] text-white":"hover:bg-neutral-500  group-hover:text-white" } rounded-xl text-black text-left font-normal text-sm md:text-lg lg:text-xl capitalize py-4 px-5 w-full`}>
+				   	<h1 className="text-left font-normal text-sm md:text-lg lg:text-xl capitalize group-hover:text-orange-500 ml-5">
 				          jobs in {data.LocationName}
 				    </h1>
 				</button>
