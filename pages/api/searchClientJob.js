@@ -36,7 +36,27 @@ export default async function handlesearchclientjob(req, res){
                 select:{
                     UserName:true
                 }
-            }
+            },
+            JobLocation:{
+                include:{
+                  Location:{
+                    select:{
+                      location_id:true,
+                      LocationName:true
+                    }
+                  }
+                }
+            },
+            JobCategory:{
+                include:{
+                    Category:{
+                        select:{
+                            category_id:true,
+                            CategoryName:true
+                        }
+                    }
+                }
+            },
         }
     })
 

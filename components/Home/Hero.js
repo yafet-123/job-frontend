@@ -7,34 +7,11 @@ export function Hero() {
   const [search,setsearch] = useState("job")
   const router = useRouter();
   const [searchValue, setsearchValue] = useState("")
-  const SearchList = [
-    { type: 1, name: "job Type",},
-    { type: 2, name: "Companies",},
-  ];
- 
-  async function handleSearch(e){
-    const data = await axios.post(`api/searchClientJob`,{
-        "searchName": getSearchValue,
-        "type": e
-    }).then(function (response) {
-      const objOneData = response.data
-          if(Array.isArray(objOneData)){
-              setsearchValue(objOneData)
-          }else{
-              const values = []
-              values.push(objOneData)
-              setsearchValue(values)
-          }
-      }).catch(function (error) {
-          console.log(error);
-      });
-  }
-
 
   return (
     <div className="w-full h-[20rem] lg:h-[25rem] bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D] relative">
       <div className="absolute top-32 lg:top-44 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%] px-2 lg:text-lg">
-        <h1 className={`px-3 lg:px-0 text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl italic text-[#445960] dark:text-white opacity-100`}>
+        <h1 className="px-3 lg:px-0 text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl italic text-[#445960] dark:text-white opacity-100">
           Hulu Media Hulu Neger
         </h1>
 
@@ -52,7 +29,7 @@ export function Hero() {
               <button 
                 onClick={()=> router.push({
                   pathname: '/AdvanceSearch',
-                  query: { searchName: searchValue, searchtype: 1 },
+                  query: { searchName: searchValue },
                 })} 
                 className="font-bold text-xs md:text-xl text-white bg-[#009688] lg:px-3 flex items-center justify-center "
               >
