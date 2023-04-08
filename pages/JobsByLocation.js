@@ -134,12 +134,12 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
 	    			</div>
 	    			<div className="flex flex-col items-center lg:flex-row mb-2 lg:mb-5 mt-3 lg:mt-10">
 	    				<div className="flex flex-col lg:mr-5 mb-10 lg:mb-0">
-	    					<p className="text-lg lg:text-3xl text-black dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
-	    					<p className="text-md lg:text-2xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>
+	    					<p className="text-lg lg:text-2xl text-black dark:text-white font-bold capitalize mb-5 lg:mb-0 text-center lg:text-left">Population of {location}</p>
+	    					<p className="text-md lg:text-xl text-black dark:text-white font-bold capitalize text-center">2,739,551 </p>
 	    				</div>
 
 	    				<div className="flex flex-col items-center justify-center lg:ml-5 border rounded-xl bg-[#009688] text-white p-2 lg:p-5">
-	    					<p className="text-lg lg:text-3xl font-bold capitalize">Jobs</p>
+	    					<p className="text-lg lg:text-2xl font-bold capitalize">Jobs</p>
 	    					<p className="text-md lg:text-xl font-bold capitalize">{howmany}</p>
 	    				</div>
 	    			</div>
