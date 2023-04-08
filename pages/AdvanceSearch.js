@@ -22,7 +22,8 @@ export default function AdvanceSearch() {
     handleSearch()
   },[])
 
-  async function handleSearch(){
+  async function handleSearch(e){
+    e.preventDefault()
     if(getSearchValue == ""){
         seterror("Please Insert a value")
         setsearchValue([])
@@ -52,10 +53,11 @@ export default function AdvanceSearch() {
     <React.Fragment>
       <MainHeader title="AdvanceSearch" />
       <div className="flex flex-col bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D] pt-32 px-3 lg:px-32">
-        <div className="!h-16 w-full dark:border-slate-800 px-2 my-10">
-          <div className="flex flex-col lg:flex-row justify-center items-center ">
+        <form className="!h-16 w-full dark:border-slate-800 px-2 my-10">
+          <div className="flex flex-col lg:flex-row justify-center items-center" onSubmit={handleSearch}>
             <input 
-              value={getSearchValue}   
+              value={getSearchValue}
+              required   
               placeholder="Carer level, Job Type, Company Name , Employment type"                         
               onChange={(e) => setgetSearchValue(e.target.value)}
               className="text-black dark:text-white placeholder:font-bold mb-5 lg:mb-0 duration-1000 ease-in-out h-16 focus:w-full w-[90%] lg:w-[70%] bg-white dark:bg-[#1B2637] outline-none md:pl-2 text-sm lg:text-lg border border[#009688] border-l-2 rounded-xl mr-2" 
@@ -64,14 +66,13 @@ export default function AdvanceSearch() {
             <div className="h-16 bg-[#009688] text-white lg:px-3 flex items-center justify-center border border[#009688] border-l-2 rounded-xl px-5">
               <AiOutlineSearch size={20} />
               <button 
-                onClick={()=> handleSearch() } 
                 className="font-bold text-xs md:text-xl text-white bg-[#009688] lg:px-3 flex items-center justify-center "
               >
                 Search
               </button>
             </div>
           </div>
-        </div>
+        </form>
 
         <div className="flex justify-center items-center my-5">
           <RiseLoader 
