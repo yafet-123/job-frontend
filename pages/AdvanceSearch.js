@@ -27,9 +27,11 @@ export default function AdvanceSearch() {
         seterror("Please Insert a value")
         setsearchValue([])
     }else{
+      setloading(true)
       const data = await axios.post(`api/searchClientJob`,{
           "searchName": getSearchValue,
       }).then(function (response) {
+        setloading(false)
         const objOneData = response.data
         if(Array.isArray(objOneData)){
             setsearchValue(objOneData)
@@ -39,10 +41,10 @@ export default function AdvanceSearch() {
             setsearchValue(values)
         }
         seterror("")  
-        setloading(true)     
+             
         }).catch(function (error) {
             console.log(error);
-            setloading(false)
+            
         });
       }
     }
