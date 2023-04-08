@@ -19,7 +19,7 @@ export function GroupLatestJobs({Alllatestjobs}) {
 				</Link>
 		     </div>
 
-			<div className="md:max-w-7xl md:mx-auto bg-neutral-200 dark:bg-slate-700 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll scroll_width">
+			<div className="md:max-w-7xl md:mx-auto bg-neutral-200 dark:bg-slate-700 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
 				<div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5">
 					{Alllatestjobs.map((data, index) => (
 					  	<Link 

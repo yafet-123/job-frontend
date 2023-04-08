@@ -81,6 +81,7 @@ export async function getServerSideProps(context){
     job_id:data.job_id,
     CompanyName:data.CompanyName,
     JobsName:data.JobsName,
+    image: data.Image,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate
   }))
