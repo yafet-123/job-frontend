@@ -4,16 +4,16 @@ import moment from 'moment';
 import { useRouter } from 'next/router'
 import 'react-quill/dist/quill.snow.css';
 import { NewsSharing } from './NewsSharing';
-
+ 
 export function DisplayIndvidualNews({news, newsCategory,shareUrl}) {
 
   	return (
-	    <div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-[70%] px-1 lg:pr-6 lg:pl-32">
+	    <div className="flex flex-col flex-1 pb-20 w-full lg:w-[70%]">
 		    <h1 className="text-lg lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5 hover:text-[#009688]">
 	            {news.Header}
 	        </h1>
 
-	        <div className="lg:mr-20 h-80 lg:!h-[30rem] relative ">
+	        <div className="lg:mr-5 h-80 lg:!h-[30rem] relative ">
 	          	<Image
 	            	src={news.Image == "" || news.Image == null ? "/images/logo2.png" : news.Image}
 	            	fill

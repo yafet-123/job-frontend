@@ -3,7 +3,7 @@ import Image from 'next/future/image'
 import moment from 'moment';
 import Link from "next/link";
 import { useRouter } from 'next/router'
-
+ 
 export function DisplayLatestNews({Alllatestnews}) {
   	return (
 	    <div className="lg:sticky top-0 bottom-10 flex flex-col w-full lg:w-[30%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 scroll_width">
