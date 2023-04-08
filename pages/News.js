@@ -3,7 +3,7 @@ import { MainHeader } from '../components/common/MainHeader';
 import { AllNews } from '../components/News/AllNews';
 import { SlideNews } from '../components/News/SlideNews';
 import { prisma } from '../util/db.server.js'
-
+ 
 export async function getServerSideProps(context){
   const news = await prisma.News.findMany({
     orderBy : {

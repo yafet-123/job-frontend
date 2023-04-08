@@ -5,7 +5,7 @@ import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/common/MainHeader';
 import { DisplayIndvidualNews } from '../components/News/DisplayIndvidualNews';
 import { DisplayLatestNews } from '../components/News/DisplayLatestNews';
- 
+
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const id = query.news_id

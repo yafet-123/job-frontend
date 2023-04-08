@@ -5,7 +5,7 @@ import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/common/MainHeader';
 import { DisplayIndvidualentertainment } from '../components/Entertemiment/DisplayIndvidualentertainment';
 import { DisplayLatestentertainment } from '../components/Entertemiment/DisplayLatestentertainment';
-
+ 
 export async function getServerSideProps(context){
   	const {params,req,res,query} = context
   	const id = query.entertainment_id
@@ -101,7 +101,7 @@ export default function DisplayEntertemiment({entertainment,Alllatestentertainme
   return (
   	<React.Fragment>
       <MainHeader title="Display Entertainment" />
-	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-64 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
+	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 		    <DisplayIndvidualentertainment entertainment={entertainment} entertainmentCategory={entertainmentCategory} shareUrl={shareUrl} />
         <DisplayLatestentertainment Alllatestentertainment={Alllatestentertainment}/>          
 	    </section>
