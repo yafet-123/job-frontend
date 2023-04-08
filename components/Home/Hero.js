@@ -31,10 +31,10 @@ export function Hero() {
               className="text-black dark:text-white placeholder:font-bold mb-5 lg:mb-0 duration-1000 ease-in-out h-16 focus:w-full w-[90%] lg:w-[70%] bg-white dark:bg-[#1B2637] outline-none md:pl-2 text-sm lg:text-lg border border[#009688] border-l-2 rounded-xl mr-2" 
             />
 
-            <div className="h-16 bg-[#009688] text-white lg:px-3 flex items-center justify-center border border[#009688] border-l-2 rounded-xl px-5">
+            <div className="h-16 bg-[#009688] hover:bg-opacity-50 text-white lg:px-3 flex items-center justify-center border border[#009688] border-l-2 rounded-xl px-5">
               <AiOutlineSearch size={20} />
               <button 
-                className="font-bold text-xs md:text-xl text-white bg-[#009688] lg:px-3 flex items-center justify-center "
+                className="font-bold text-xs md:text-xl text-white bg-transparent lg:px-3 flex items-center justify-center "
               >
                 Search
               </button>
