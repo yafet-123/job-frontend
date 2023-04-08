@@ -7,11 +7,13 @@ import { useRouter } from 'next/router'
 
 export function Company({categories}) {
 	const router = useRouter();
+	const category = router.query.category
+	console.log(category)
   	return (
 	   <div className="flex flex-col overflow-y-scroll scroll_width p-3">
 			{categories.map((data, index) => (
 				<button 
-					className="flex items-center group hover:bg-neutral-500 py-2 mb-5" 
+					className="flex items-center group py-2 mb-5" 
 					key={index}
 					onClick = {()=>{
 			           	router.push({
@@ -20,7 +22,7 @@ export function Company({categories}) {
 			            })
 		        	}}
 			    >
-				   	<h1 className="group-hover:text-white text-left font-normal text-sm md:text-lg lg:text-xl capitalize px-2">
+				   	<h1 className={`${data.CategoryName == category ? "bg-[#009688] dark:bg-[#009688] text-white":"hover:bg-neutral-500  group-hover:text-white" } rounded-xl text-black text-left font-normal text-sm md:text-lg lg:text-xl capitalize py-4 px-5 w-full`}>
 				        {data.CategoryName}
 				    </h1>
 				</button>
