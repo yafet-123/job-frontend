@@ -129,7 +129,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Jobs By Category" />
-	    <section className="bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col w-full h-full px-0 md:px-24 py-44">
+	    <section className="bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col w-full h-full px-0 md:px-64 py-44">
 	    	<div className="flex flex-col bg-neutral-100 dark:bg-[#1B2637] w-full h-full lg:px-5 py-10 border rounded-xl dark:border-slate-800">
 	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-neutral-200 dark:bg-slate-700 px-3 lg:px-10">
 	    			<div className="flex flex-col lg:flex-row mb-2 lg:mb-5 mt-3 lg:mt-10">
@@ -142,7 +142,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 	    				</div>
 	    			</div>
 	    		</div>
-	      	<div className="flex flex-col md:flex-row w-full">
+	      	<div className="flex flex-col w-full">
 	      		<div className="flex flex-col-reverse lg:flex-row w-full">
 		      		<div className="flex flex-col w-full lg:w-1/4 h-[20rem] lg:h-[50rem] bg-neutral-200 dark:bg-slate-700 p-3 sticky top-32">
 		      			<h1 className="text-lg md:text-xl lg:text-2xl text-black dark:text-white font-bold capitalize text-center mb-10">Jobs By Category</h1>
