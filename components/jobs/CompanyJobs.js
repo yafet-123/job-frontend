@@ -23,7 +23,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 				<div id={index} key={index} ref={quoteRef} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
 					<div className="flex justify-between items-center mb-5">
 						<Link href="/DisplayJobs">
-							<a className="text-sm lg:text-2xl text-[#009688] font-bold">Job Type: {JobsName} </a>
+							<a className="text-sm lg:text-2xl text-[#009688] font-bold">Job Name: {JobsName} </a>
 						</Link>
 						<p className="text-xs lg:text-lg text-[#009688]">Posted: {moment(ModifiedDate).utc().format('MMM DD')}</p>
 					</div>
@@ -73,7 +73,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 					        }}
 						>
 							<a className="text-center font-bold text-white text-md lg:text-xl bg-[#009688] py-4 px-7 border rounded-2xl hover:bg-white hover:text-[#009688]">
-								view detail
+								Read More
 							</a>
 						</Link>
 

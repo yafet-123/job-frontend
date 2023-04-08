@@ -11,7 +11,7 @@ import {Share} from '../components/common/Share.js'
 import { GroupLatestJobs } from '../components/jobs/GroupLatestJobs'
 import { CompanyJobs } from '../components/jobs/CompanyJobs'
 import { Company } from '../components/jobs/Company'
-
+ 
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
   const category_id = query.category_id
