@@ -58,7 +58,7 @@ export function DisplayIndividualJobs({job,categories}) {
             </ul>
 
             <div className="flex flex-col justify-between mt-10">
-                <div dangerouslySetInnerHTML={{ __html: job.Descreption }} />
+                <div className="ql-editor !bg-transparent dark:!text-white mt-5 w-full" dangerouslySetInnerHTML={{ __html: job.Descreption }} />
             </div>
         </div>
 	)
