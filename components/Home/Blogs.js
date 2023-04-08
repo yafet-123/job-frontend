@@ -34,7 +34,7 @@ export function Blogs({blogs}) {
   }
 
   return (
-    <section className="w-full h-full lg:h-[50rem] px-10 md:py-10 bg-slate-100 dark:bg-slate-700 flex flex-col brightness-100 py-10">
+    <section className="w-full h-full lg:h-[50rem] px-3 lg:px-10 md:py-10 bg-slate-100 dark:bg-slate-700 flex flex-col brightness-100 py-10">
       <h1 className={`px-3 lg:px-0 text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl text-black dark:text-white opacity-100`}>
         Blogs
       </h1>
@@ -83,7 +83,7 @@ export function Blogs({blogs}) {
                 <div  className="!bg-transparent !text-left !text-black dark:!text-white mt-5 w-full group-hover:text-2xl group-hover:text-[#009688] " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
               </button>
 
-              <div className="flex items-center justify-between text-sm"> 
+              <div className="flex items-center justify-between text-sm my-5"> 
                 <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
                   <AiOutlineEye size={32} />
                   <span className="ml-3">{view}</span>
@@ -96,7 +96,7 @@ export function Blogs({blogs}) {
                         query:{blogs_id:blogs_id}
                       })
                     }}
-                    className="text-sm lg:text-lg text-white bg-[#009688] hover:bg-opacity-50 font-bold px-3 py-2 border rounded-2xl">
+                    className="text-sm lg:text-lg text-white bg-[#009688] hover:bg-opacity-50 font-bold px-3 py-4 border rounded-2xl">
                     Read More
                 </button>
 

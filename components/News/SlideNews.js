@@ -76,11 +76,22 @@ export function SlideNews({allnews}) {
                 <div  className="group-hover:underline group-hover:text-[#009688] !bg-transparent !text-left !text-black dark:!text-white mt-5 w-full " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
               </button>
 
-              <div className="flex items-center justify-between text-sm"> 
+              <div className="flex items-center justify-between text-sm my-5"> 
                 <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
                   <AiOutlineEye size={32} />
                   <span className="ml-3">{view}</span>
                 </p>
+
+                <button
+                    onClick = {()=>{
+                      router.push({
+                        pathname:"/DisplayNews",
+                        query:{news_id:news_id}
+                      })
+                    }}
+                    className="text-sm lg:text-lg text-white bg-[#009688] hover:bg-opacity-50 font-bold px-3 py-4 border rounded-2xl">
+                    Read More
+                </button>
 
                 <button
                     onClick={() => {
