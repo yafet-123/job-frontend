@@ -16,6 +16,7 @@ export default function AdvanceSearch() {
   const [error , seterror] = useState("")
   const [getSearchValue,setgetSearchValue] = useState(searchName)
   const [searchValue,setsearchValue] = useState([])
+  const [loading , setloading] = useState(false)
 
   useEffect(()=>{
     handleSearch()
@@ -37,9 +38,11 @@ export default function AdvanceSearch() {
             values.push(objOneData)
             setsearchValue(values)
         }
-        seterror("")       
+        seterror("")  
+        setloading(true)     
         }).catch(function (error) {
             console.log(error);
+            setloading(false)
         });
       }
     }
@@ -71,18 +74,24 @@ export default function AdvanceSearch() {
           </div>
         </div>
 
-        { error == "" ? 
+        { loading == true ?
+          <h1 className="text-black dark:text-white text-xl font-bold text-center italic">Please Wait ... </h1>
+          :
           <div>
-            { searchValue == "" ? 
-              <h1 className="text-black dark:text-white text-xl font-bold text-center italic">
-                  No data can be found
-              </h1>
+            { error == "" ? 
+              <div>
+                { searchValue == "" ? 
+                  <h1 className="text-black dark:text-white text-xl font-bold text-center italic">
+                      No data can be found
+                  </h1>
+                  :
+                  <CompanyJobs jobs={searchValue} shareUrl={shareUrl} />
+                }
+              </div>
               :
-              <CompanyJobs jobs={searchValue} shareUrl={shareUrl} />
+              <h1 className="text-black dark:text-white text-xl font-bold text-center italic">{error}</h1>
             }
           </div>
-          :
-          <h1 className="text-black dark:text-white text-xl font-bold text-center italic">{error}</h1>
         }
       </div>
     </React.Fragment>
