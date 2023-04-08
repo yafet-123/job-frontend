@@ -45,6 +45,26 @@ export function NewsSharing({shareUrl}) {
             </div>
 
             <div className="mx-1">
+              <TelegramShareButton
+                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                hashtag={'#huluMedia'}
+              >
+                <TelegramIcon size={40} round />
+              </TelegramShareButton>
+            </div>
+
+            <div className="mx-1">
+              <TwitterShareButton
+                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                hashtag={'#huluMedia'}
+              >
+                <TwitterIcon size={40} round />
+              </TwitterShareButton>
+            </div>
+
+            <div className="mx-1">
               <PinterestShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
                 quote={'Hulu Media is company that shares jobs , entertainment and others'}
@@ -64,25 +84,7 @@ export function NewsSharing({shareUrl}) {
               </RedditShareButton>
             </div>
 
-            <div className="mx-1">
-              <TelegramShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
-                hashtag={'#huluMedia'}
-              >
-                <TelegramIcon size={40} round />
-              </TelegramShareButton>
-            </div>
-
-            <div className="mx-1">
-              <TwitterShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
-                hashtag={'#huluMedia'}
-              >
-                <TwitterIcon size={40} round />
-              </TwitterShareButton>
-            </div>
+            
           </div>
 
           <div className="flex items-center justify-between w-full mb-5 lg:mb-0">
