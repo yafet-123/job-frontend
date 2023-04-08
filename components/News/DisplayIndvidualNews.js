@@ -67,7 +67,7 @@ export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUr
                 				<Image src={data.News.Image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
               				</div>
 
-              				<h1 className="group-hover:text-3xl group-hover:text-[#009688] group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+              				<h1 className="text-left group-hover:text-3xl group-hover:text-[#009688] group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
                   				{data.News.Header}
                 			</h1>
                 			<div  className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: data.News.ShortDescription }} />
