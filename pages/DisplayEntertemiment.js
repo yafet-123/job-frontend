@@ -122,7 +122,7 @@ export async function getServerSideProps(context){
       entertainment:JSON.parse(JSON.stringify(onedata)),
       Alllatestentertainment:JSON.parse(JSON.stringify(Alllatestentertainment)),
       entertainmentCategory:JSON.parse(JSON.stringify(etCategory)),
-      Allcategoryet:JSON.parse(JSON.stringify(Allcategoryet))
+      Allcategoryet:JSON.parse(JSON.stringify(uniqueallcategoryNews))
     }
   }
 }

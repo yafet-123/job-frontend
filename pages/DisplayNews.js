@@ -104,7 +104,7 @@ export async function getServerSideProps(context){
     News:data.News
   }))
 
-  const uniqueallcategoryNews = [...new Set(AllcategoryNews)]
+  const uniqueallcategoryNews = [...new Map(AllcategoryNews.map(v => [v.News.news_id,v])).values()]
   console.log(uniqueallcategoryNews)
 
   const Alllatestnews = latestnews.map((data)=>({
@@ -123,7 +123,7 @@ export async function getServerSideProps(context){
       news:JSON.parse(JSON.stringify(onedata)),
       Alllatestnews:JSON.parse(JSON.stringify(Alllatestnews)),
       newsCategory:JSON.parse(JSON.stringify(newsCategory)),
-      AllcategoryNews:JSON.parse(JSON.stringify(AllcategoryNews))
+      AllcategoryNews:JSON.parse(JSON.stringify(uniqueallcategoryNews))
     }
   }
 }
