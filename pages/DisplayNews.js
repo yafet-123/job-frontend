@@ -5,7 +5,7 @@ import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/common/MainHeader';
 import { DisplayIndvidualNews } from '../components/News/DisplayIndvidualNews';
 import { DisplayLatestNews } from '../components/News/DisplayLatestNews';
-
+ 
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const id = query.news_id
@@ -57,7 +57,6 @@ export async function getServerSideProps(context){
     )
   }
 
-  console.log(findCategory)
   const dataForCategoryNews = await prisma.NewsCategoryRelationship.findMany({
     where:{
         NewsCategory:{
@@ -76,8 +75,6 @@ export async function getServerSideProps(context){
       NewsCategory:true
     }
   });
-
-  console.log(dataForCategoryNews)
 
   const latestnews = await prisma.News.findMany({
   	take:-6,
@@ -107,6 +104,9 @@ export async function getServerSideProps(context){
     News:data.News
   }))
 
+  const uniqueallcategoryNews = [...new Set(AllcategoryNews)]
+  console.log(uniqueallcategoryNews)
+
   const Alllatestnews = latestnews.map((data)=>({
     news_id:data.news_id,
     Header:data.Header,
@@ -117,8 +117,6 @@ export async function getServerSideProps(context){
     ModifiedDate:data.ModifiedDate,
     Category:data.NewsCategoryRelationship
   }))
-
-  console.log(AllcategoryNews)
 
   return{
     props:{

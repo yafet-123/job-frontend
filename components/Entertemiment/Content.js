@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 import Image from 'next/future/image'
-
+ 
 export function Content({entertainments}) {
     const router = useRouter()
     const quoteRef = useRef(null)

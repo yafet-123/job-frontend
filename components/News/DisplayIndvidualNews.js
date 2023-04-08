@@ -6,7 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import { NewsSharing } from './NewsSharing';
 import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
-
+ 
 export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUrl}) {
 	const quoteRef = useRef(null)
 	const router = useRouter()

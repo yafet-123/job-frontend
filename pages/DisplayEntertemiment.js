@@ -50,6 +50,35 @@ export async function getServerSideProps(context){
   	}
 
   const etCategory = data.EntertainmentCategoryRelationship
+  const findCategory = []
+  for(let i=0; i< etCategory.length;i++){
+    findCategory.push(
+      Number(etCategory[i].EntertainmentCategory?.category_id)
+    )
+  }
+
+  const dataForCategoryet = await prisma.EntertainmentCategoryRelationship.findMany({
+    where:{
+        EntertainmentCategory:{
+          category_id:{
+            in:findCategory
+          }
+        }
+    },
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      Entertainment:true,
+      EntertainmentCategory:true
+    }
+  });
+
+  const Allcategoryet = dataForCategoryet.map((data)=>({
+    Entertainment:data.Entertainment
+  }))
 
   const latestet = await prisma.Entertainment.findMany({
   	take:-6,
@@ -85,24 +114,27 @@ export async function getServerSideProps(context){
     ModifiedDate:data.ModifiedDate,
     Category:data.EntertainmentCategoryRelationship
   }))
+  const uniqueallcategoryNews = [...new Map(Allcategoryet.map(v => [v.Entertainment.entertainment_id,v])).values()]
+  console.log(uniqueallcategoryNews)
 
   return{
     props:{
       entertainment:JSON.parse(JSON.stringify(onedata)),
       Alllatestentertainment:JSON.parse(JSON.stringify(Alllatestentertainment)),
       entertainmentCategory:JSON.parse(JSON.stringify(etCategory)),
+      Allcategoryet:JSON.parse(JSON.stringify(Allcategoryet))
     }
   }
 }
 
-export default function DisplayEntertemiment({entertainment,Alllatestentertainment, entertainmentCategory}) {
+export default function DisplayEntertemiment({entertainment, Allcategoryet ,Alllatestentertainment, entertainmentCategory}) {
   const router = useRouter()
   const shareUrl = router.asPath
   return (
   	<React.Fragment>
       <MainHeader title="Display Entertainment" />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
-		    <DisplayIndvidualentertainment entertainment={entertainment} entertainmentCategory={entertainmentCategory} shareUrl={shareUrl} />
+		    <DisplayIndvidualentertainment Allcategoryet={Allcategoryet} entertainment={entertainment} entertainmentCategory={entertainmentCategory} shareUrl={shareUrl} />
         <DisplayLatestentertainment Alllatestentertainment={Alllatestentertainment}/>          
 	    </section>
 	  </React.Fragment>
