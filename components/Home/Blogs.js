@@ -68,19 +68,19 @@ export function Blogs({blogs}) {
                 <div className="flex flex-row justify-between mb-5 w-full">
                   <h3 className="flex flex-col justify-between">
                     { Category.map((data,index)=>(
-                      <span key={index} className="text-left text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2">
+                      <span key={index} className="text-left text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2 group-hover:text-lg group-hover:text-[#009688]">
                         {data.BlogsCategory.CategoryName}
                       </span>
                     ))}
                   </h3>
-                  <h3 className="text-md lg:text-lg text-slate-600 dark:text-white font-bold">
+                  <h3 className="text-md lg:text-lg text-slate-600 dark:text-white font-bold group-hover:text-xl group-hover:text-[#009688]">
                     {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                   </h3>
                 </div>
-                <h1 className="group-hover:underline text-left text-xl lg:text-2xl font-extrabold text-slate-600 dark:text-[#009688] tracking-wide leading-snug w-full">
+                <h1 className="group-hover:underline text-left text-xl lg:text-2xl font-extrabold text-slate-600 dark:text-[#009688] tracking-wide leading-snug w-full group-hover:text-3xl group-hover:text-[#009688]">
                   {Header}
                 </h1>
-                <div  className="!bg-transparent !text-left !text-black dark:!text-white mt-5 w-full " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                <div  className="!bg-transparent !text-left !text-black dark:!text-white mt-5 w-full group-hover:text-2xl group-hover:text-[#009688] " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
               </button>
 
               <div className="flex items-center justify-between text-sm"> 
@@ -88,6 +88,17 @@ export function Blogs({blogs}) {
                   <AiOutlineEye size={32} />
                   <span className="ml-3">{view}</span>
                 </p>
+
+                <button
+                    onClick = {()=>{
+                      router.push({
+                        pathname:"/DisplayBlogs",
+                        query:{blogs_id:blogs_id}
+                      })
+                    }}
+                    className="text-sm lg:text-lg text-white bg-[#009688] hover:bg-opacity-50 font-bold px-3 py-2 border rounded-2xl">
+                    Read More
+                </button>
 
                 <button
                     onClick={() => {
