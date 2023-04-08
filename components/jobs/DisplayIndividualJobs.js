@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import moment from 'moment'
+import Image from 'next/image'
 
 export function DisplayIndividualJobs({job,categories}) {
     const location = job.Location;
@@ -20,6 +21,13 @@ export function DisplayIndividualJobs({job,categories}) {
             </div>
 
             <ul className="mt-10 text-black dark:text-white">
+                <li className="flex flex-row justify-between w-full mb-5">
+                    <h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Company Image:</h1>
+                    <div className="w-1/2">
+                        <Image src={job.image == "" || job.image == null ? "/images/bgImage1.avif" : job.image} width={100} height={100} alt="image" required className="my-5 w-1/2" />
+                    </div>
+                </li>
+
                 <li className="flex flex-row justify-between w-full mb-5">
                     <h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">category:</h1>
                     <div className="flex flex-col gap-5 w-1/2">
