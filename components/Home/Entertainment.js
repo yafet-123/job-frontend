@@ -69,7 +69,7 @@ export function Entertainment({latestentertainments}) {
                   <h3 className="flex flex-col justify-between">
                     { Category.map((data,index)=>(
                       <span key={index} className="text-left text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2 group-hover:text-lg group-hover:text-[#009688]">
-                        {data.EntertainmentCategoryRelationship.CategoryName}
+                        {data.EntertainmentCategory.CategoryName}
                       </span>
                     ))}
                   </h3>
