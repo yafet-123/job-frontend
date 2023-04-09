@@ -132,7 +132,7 @@ export async function getStaticProps(){
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
-    Category:data.NewsCategoryRelationship
+    Category:data.EntertainmentCategoryRelationship
   }))
 
   const Alllatestjobs = latestjobs.map((data)=>({
