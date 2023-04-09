@@ -2,6 +2,7 @@ import { Hero } from "../components/Home/Hero";
 import { LatestJobs } from "../components/Home/LatestJobs";
 import { SearchJobs } from "../components/Home/SearchJobs";
 import { Blogs } from "../components/Home/Blogs";
+import { Entertainment } from "../components/Home/Entertainment";
 import { SlideNews } from '../components/News/SlideNews';
 import React from 'react'
 import { prisma } from '../util/db.server.js'
@@ -202,7 +203,7 @@ export async function getStaticProps(){
   }
 }
 
-export default function Home({categories, locations, latestjobs, Alllatestblogs, latestnews}) {
+export default function Home({categories, locations, latestjobs, Alllatestblogs, latestnews, latestentertainments}) {
   const { status, data } = useSession();
   return (
     <React.Fragment>
@@ -222,6 +223,7 @@ export default function Home({categories, locations, latestjobs, Alllatestblogs,
             </Link>
           </div>
         </div>
+        <Entertainment latestentertainments={latestentertainments} />
         <Blogs blogs={Alllatestblogs} />
       </div>
     </React.Fragment>

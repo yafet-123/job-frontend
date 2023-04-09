@@ -10,7 +10,7 @@ import {Share} from '../common/Share.js'
 import Image from 'next/future/image'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 
-export function Entertainment({blogs}) {
+export function Entertainment({latestentertainments}) {
   var settings = {
     dots: true,
     lazyLoad: true,
@@ -40,7 +40,7 @@ export function Entertainment({blogs}) {
       </h1>
 
       <Slider {...settings}>
-        {blogs.map(({blogs_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
+        {latestentertainments.map(({entertainment_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <div 
             key={index}
             id={Header}
@@ -59,8 +59,8 @@ export function Entertainment({blogs}) {
               <button 
                 onClick = {()=>{
                   router.push({
-                    pathname:"/DisplayBlogs",
-                    query:{blogs_id:blogs_id}
+                    pathname:"/DisplayEntertemiment",
+                    query:{entertainment_id:entertainment_id}
                   })
                 }}
                 className="flex flex-col justify-between w-full"
