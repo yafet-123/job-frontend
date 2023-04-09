@@ -86,8 +86,44 @@ export async function getStaticProps(){
     }
   });
 
+  const entertainments = await prisma.Entertainment.findMany({
+    take:-5,
+    orderBy : {
+      CreatedDate:'desc'
+    },
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      EntertainmentCategoryRelationship:{
+        include:{
+          EntertainmentCategory:{
+            select:{
+              category_id:true,
+              CategoryName:true
+            }
+          }
+        }
+      },
+    }
+  });
+
   const latestnews = news.map((data)=>({
     news_id:data.news_id,
+    Header:data.Header,
+    image:data.Image,
+    view:data.view,
+    ShortDescription:data.ShortDescription,
+    userName:data.User.UserName,
+    CreatedDate:data.CreatedDate,
+    ModifiedDate:data.ModifiedDate,
+    Category:data.NewsCategoryRelationship
+  }))
+
+  const latestentertainments = entertainments.map((data)=>({
+    entertainment_id:data.entertainment_id,
     Header:data.Header,
     image:data.Image,
     view:data.view,
@@ -161,6 +197,7 @@ export async function getStaticProps(){
       latestjobs:JSON.parse(JSON.stringify(latestreversejob)),
       Alllatestblogs:JSON.parse(JSON.stringify(Alllatestblogs)),
       latestnews:JSON.parse(JSON.stringify(latestnews)),
+      latestentertainments:JSON.parse(JSON.stringify(latestentertainments))
     }
   }
 }
