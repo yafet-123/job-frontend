@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import moment from 'moment'
 import Image from 'next/image'
+import 'react-quill/dist/quill.snow.css';
 
 export function DisplayIndividualJobs({job,categories}) {
     const location = job.Location;
@@ -44,7 +45,7 @@ export function DisplayIndividualJobs({job,categories}) {
                             <p key={index} className="text-xs lg:text-lg text-left ">{data.Location.LocationName}</p>
                         ))}
                     </div>
-                </li>
+                </li> 
 
                 <li className="flex flex-row justify-between w-full mb-5">
                     <h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Career Level:</h1>
@@ -58,7 +59,7 @@ export function DisplayIndividualJobs({job,categories}) {
             </ul>
 
             <div className="flex flex-col justify-between mt-10">
-                <div className="ql-editor !bg-transparent dark:!text-white mt-5 w-full" dangerouslySetInnerHTML={{ __html: job.Descreption }} />
+                <div className="ql-snow ql-editor !bg-transparent dark:!text-white mt-5 w-full" dangerouslySetInnerHTML={{ __html: job.Descreption }} />
             </div>
         </div>
 	)
