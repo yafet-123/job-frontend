@@ -34,7 +34,7 @@ export function Entertainment({latestentertainments}) {
   }
 
   return (
-    <section className="w-full h-full lg:h-[50rem] px-3 lg:px-10 md:py-10  bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col brightness-100 py-10">
+    <section className="w-full h-full lg:h-[50rem] px-3 lg:px-10 lg:py-10  bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col brightness-100 py-10">
       <h1 className={`px-3 lg:px-0 text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl text-black dark:text-white opacity-100`}>
         Entertainment
       </h1>
@@ -116,7 +116,7 @@ export function Entertainment({latestentertainments}) {
       </Slider>
 
       <div className="w-full flex items-center justify-center">
-        <Link href="/Entertainment">
+        <Link href="/Entertemiment">
           <a className="mb-10 text-lg lg:text-2xl mt-10 lg:mt-20 text-white bg-[#009688] hover:bg-opacity-50 font-bold p-5 border rounded-2xl">More Entertainment</a>
         </Link>
       </div>
