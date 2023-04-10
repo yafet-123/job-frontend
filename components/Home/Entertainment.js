@@ -116,8 +116,8 @@ export function Entertainment({latestentertainments}) {
       </Slider>
 
       <div className="w-full flex items-center justify-center">
-        <Link href="/Blogs">
-          <a className="mb-10 text-lg lg:text-2xl mt-10 lg:mt-20 text-white bg-[#009688] hover:bg-opacity-50 font-bold p-5 border rounded-2xl">More Blogs</a>
+        <Link href="/Entertainment">
+          <a className="mb-10 text-lg lg:text-2xl mt-10 lg:mt-20 text-white bg-[#009688] hover:bg-opacity-50 font-bold p-5 border rounded-2xl">More Entertainment</a>
         </Link>
       </div>
 
