@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import { EntertainmentSharing } from './EntertainmentSharing';
 import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
+import 'react-quill/dist/quill.snow.css';
 
 export function DisplayIndvidualentertainment({entertainment,entertainmentCategory, Allcategoryet,shareUrl}) {
 	const quoteRef = useRef(null)
@@ -18,7 +19,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
       setviewModalOn(true)
   	}
   	return (
-	    <div className="flex flex-col flex-1 p-5 pb-20 w-full lg:w-[70%] px-1 lg:pr-6 lg:pl-32">
+	    <div className="flex flex-col flex-1 pb-20 w-full lg:w-[100%]">
 		    <h1 className="text-lg lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5 hover:text-[#009688]">
 	            {entertainment.Header}
 	        </h1>
