@@ -83,7 +83,7 @@ export default function Admin({categories,jobs,news,entertainments}){
 
     return (
       <React.Fragment>
-        <MainHeader title="Admin" />
+        <MainHeader title="Hulu Media : Admin" />
         <div className="flex bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
           <VerticalNavbar onChange={handleChange} data={data} />
           <div className="w-full">

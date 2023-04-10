@@ -133,7 +133,7 @@ export default function DisplayNews({news,Alllatestnews, AllcategoryNews, newsCa
   const shareUrl = router.asPath
   return (
   	<React.Fragment>
-      <MainHeader title="Display News" />
+      <MainHeader title="Hulu Media : Display News" />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 	      <DisplayIndvidualNews news={news} AllcategoryNews={AllcategoryNews} newsCategory={newsCategory} shareUrl={shareUrl} />
         <DisplayLatestNews Alllatestnews={Alllatestnews}/>          

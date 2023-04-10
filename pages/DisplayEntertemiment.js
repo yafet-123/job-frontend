@@ -131,7 +131,7 @@ export default function DisplayEntertemiment({entertainment, Allcategoryet ,Alll
   const shareUrl = router.asPath
   return (
   	<React.Fragment>
-      <MainHeader title="Display Entertainment" />
+      <MainHeader title="Hulu Media : Display Entertainment" />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 		    <DisplayIndvidualentertainment Allcategoryet={Allcategoryet} entertainment={entertainment} entertainmentCategory={entertainmentCategory} shareUrl={shareUrl} />
         <DisplayLatestentertainment Alllatestentertainment={Alllatestentertainment}/>          

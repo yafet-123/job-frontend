@@ -18,7 +18,7 @@ export default function ForgotPassword() {
 
   return (
     <React.Fragment>
-      <MainHeader title="Forgot Password" />
+      <MainHeader title="Hulu Media : Forgot Password" />
       <div className="flex flex-col justify-center items-center h-screen w-full bg-[#e6e6e6] dark:bg-[#02201D]"> 
         <p className="mb-5 text-black text-xl font-bold">{status}</p> 
     

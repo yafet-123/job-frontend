@@ -67,7 +67,7 @@ export async function getServerSideProps(context){
 export default function Entertemiment({categories,entertainments}){
 	return(
 		<React.Fragment>
-      <MainHeader title="Entertemiment" />
+      <MainHeader title="Hulu Media : Entertemiment" />
 			<section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 				<div className='w-full h-full flex flex-col lg:flex-row'>
 		      <ETSidebar categories={categories} />

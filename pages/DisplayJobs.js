@@ -88,7 +88,7 @@ export default function DisplayJobs({job, categories}) {
 	console.log(categories)
   return (
   	<React.Fragment>
-      <MainHeader title="Display Jobs" />
+      <MainHeader title="Hulu Media : Display Jobs" />
 	    <section className="flex flex-col w-full h-full px-5 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] py-52">
 	      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply}/>
 	      	<DisplayIndividualJobs job={job} categories={categories}/>
