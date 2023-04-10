@@ -2,11 +2,27 @@ import React, {useState,useRef} from "react";
 import Image from 'next/future/image'
 import moment from 'moment';
 import { useRouter } from 'next/router'
+import ReactQuill from "react-quill"
 import 'react-quill/dist/quill.snow.css';
 import { NewsSharing } from './NewsSharing';
 import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
-import 'react-quill/dist/quill.snow.css';
+
+const Video = ReactQuill.Quill.import('formats/video');
+class ResizableVideo extends Video{
+	static create(value){
+		const node = super.create(value);
+		const style = {
+			width:'100%',
+			height:'100%',
+		};
+		object.assign(node.styl, style)
+		return node;
+	}
+}
+
+ReactQuill.Quill.register(ResizableVideo,true)
+
 export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUrl}) {
 	const quoteRef = useRef(null)
 	const router = useRouter()
