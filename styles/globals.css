@@ -38,11 +38,27 @@
   }
 }
 
-.ql-editor .ql-video{
+/*.ql-editor .ql-video{
     display: block;
     max-width: 100%;
     width: 100%;
-    height: 408px;
+    max-height: 100%;
+    height: 408px !important;
+}
+*/
+.ql-video{
+  position: relative;
+  max-width: 100%;
+  width:100%;
+  height: 420px;
+}
+
+.ql-video iframe , .ql-video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100% !important;
+  width: 100% !important;
 }
 
 .ql-snow .ql-editor img {
