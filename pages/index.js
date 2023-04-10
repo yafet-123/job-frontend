@@ -223,11 +223,11 @@ export default function Home({categories, locations, latestjobs, Alllatestblogs,
             </Link>
           </div>
         </div>
-        <div  className="w-full h-full overflow-hidden px-0 lg:px-32 py-10">
+        <div  className="w-full h-full overflow-hidden py-10">
           <Entertainment latestentertainments={latestentertainments} />
         </div>
 
-        <div className="w-full h-full overflow-hidden px-0 lg:px-32 py-10">
+        <div className="w-full h-full overflow-hidden py-10">
           <Blogs blogs={Alllatestblogs} />
         </div>
       </div>
