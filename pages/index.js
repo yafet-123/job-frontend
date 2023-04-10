@@ -223,7 +223,7 @@ export default function Home({categories, locations, latestjobs, Alllatestblogs,
             </Link>
           </div>
         </div>
-        <Entertainment latestentertainments={latestentertainments} />
+        
         <Blogs blogs={Alllatestblogs} />
       </div>
     </React.Fragment>
