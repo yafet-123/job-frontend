@@ -67,7 +67,7 @@ export function AllNews({allnews}) {
                   onClick={() => {
                       clickedForview()
                       setid(news_id)
-                      setquotes(quoteRef.current?.innerHTML)
+                      setquotes(quoteRef.current?.textContent)
                   }} 
                   className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
                   <AiOutlineShareAlt size={32} />
