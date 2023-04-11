@@ -208,7 +208,7 @@ export default function Home({categories, locations, latestjobs, Alllatestblogs,
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : Home" />
-      <div className="flex flex-col w-full h-full py-0 lg:py-20 pt-32 bg-[#e6e6e6] dark:bg-[#02201D]">
+      <div className="flex flex-col w-full h-full py-0 pt-32 bg-[#e6e6e6] dark:bg-[#02201D]">
         <Hero />
         <LatestJobs latestjobs={latestjobs} />
         <SearchJobs categories={categories} locations={locations} />
@@ -227,7 +227,7 @@ export default function Home({categories, locations, latestjobs, Alllatestblogs,
           <Entertainment latestentertainments={latestentertainments} />
         </div>
 
-        <div className="w-full h-full overflow-hidden py-10">
+        <div className="w-full h-full overflow-hidden">
           <Blogs blogs={Alllatestblogs} />
         </div>
       </div>

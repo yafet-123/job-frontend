@@ -17,8 +17,8 @@ export function Entertainment({latestentertainments}) {
     fade: true,
     infinite: true,
     autoplay: true,
-    // speed: 2000,
-    // autoplaySpeed: 2000,
+    speed: 2000,
+    autoplaySpeed: 2000,
     // slidesToScroll: 1,
   };
   const router = useRouter()

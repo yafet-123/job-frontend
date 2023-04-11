@@ -100,8 +100,8 @@ export default function DisplayBlogs({blogs,Alllatestblogs, blogsCategory}) {
   const shareUrl = router.asPath
   return (
     <React.Fragment>
-      <MainHeader title="Hulu Media : Display Blogs" />
-      <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-44 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
+      <MainHeader title="Hulu Media : Display Blogs" /> 
+      <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
         <DisplayIndvidualBlogs blogs={blogs} blogsCategory={blogsCategory} shareUrl={shareUrl} />
         <DisplayLatestBlogs Alllatestblogs={Alllatestblogs}/>          
       </section>
