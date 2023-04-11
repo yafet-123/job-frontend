@@ -53,7 +53,7 @@ export function AllNews({allnews}) {
                   {Header}
                 </h1>
 
-                <div  className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                <div  className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-5" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
               </div>
             </button>
 
@@ -67,7 +67,7 @@ export function AllNews({allnews}) {
                   onClick={() => {
                       clickedForview()
                       setid(news_id)
-                      setquotes(quoteRef.current?.textContent)
+                      setquotes(quoteRef.current?.innerHTML)
                   }} 
                   className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
                   <AiOutlineShareAlt size={32} />

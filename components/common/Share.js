@@ -33,6 +33,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
   const clickedFordelete = () => {
     setdeleteModalOn(true)
   }
+  console.log(quote)
   return (
     <div className="bg-neutral-100 bg-opacity-80 dark:bg-slate-800 fixed inset-0 z-50 flex justify-center items-center">
         <div className="flex flex-col bg-white dark:bg-slate-500 py-2 lg:py-5 px-2 lg:px-5 border-4 border-sky-500 rounded-xl px-2">
