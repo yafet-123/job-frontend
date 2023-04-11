@@ -52,7 +52,6 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 <FacebookShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   quote={quote}
-                  ref={quote}
                   hashtag={'#huluMedia'}
                 >
                   <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
@@ -64,9 +63,8 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
 
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <TelegramShareButton
-                  ref={quote}
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  title={quote}
+                  title="jhjh"
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
