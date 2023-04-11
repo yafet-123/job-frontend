@@ -18,7 +18,6 @@ export function SlideNews({allnews}) {
     // speed: 2000,
     // autoplaySpeed: 2000,
     // slidesToScroll: 1,
-    autoplay: true
   };
   const router = useRouter()
   const quoteRef = useRef(null)
@@ -31,7 +30,7 @@ export function SlideNews({allnews}) {
       setviewModalOn(true)
   }
   return (
-    <div>
+    <section>
       <Slider {...settings} className="">
         {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <div 
@@ -48,7 +47,7 @@ export function SlideNews({allnews}) {
               />
             </div>
 
-            <div className="w-full lg:w-[60%] flex flex-col justify-between lg:mx-10 py-10 text-left group">
+            <div className="w-full lg:w-[60%] flex flex-col justify-between lg:mx-10 py-10 text-left">
               <button 
                 onClick = {()=>{
                   router.push({
@@ -56,28 +55,28 @@ export function SlideNews({allnews}) {
                     query:{news_id:news_id}
                   })
                 }}
-                className="flex flex-col justify-between w-full"
+                className="flex flex-col justify-between w-full h-full group"
               >
                 <div className="flex flex-row justify-between mb-5 w-full">
                   <h3 className="flex flex-col justify-between">
                     { Category.map((data,index)=>(
-                      <span key={index} className="text-left text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2 group-hover:underline group-hover:text-[#009688]">
+                      <span key={index} className="text-left text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2 group-hover:text-lg group-hover:text-[#009688]">
                         {data.NewsCategory.CategoryName}
                       </span>
                     ))}
                   </h3>
-                  <h3 className="text-md lg:text-lg text-slate-600 dark:text-white font-bold group-hover:text-[#009688]">
+                  <h3 className="text-md lg:text-lg text-slate-600 dark:text-white font-bold group-hover:text-xl group-hover:text-[#009688]">
                     {moment(CreatedDate).utc().format('YYYY-MM-DD')}
                   </h3>
                 </div>
-                <h1 className="group-hover:underline group-hover:text-[#009688] text-left text-xl lg:text-2xl font-extrabold text-slate-600 dark:text-[#009688] tracking-wide leading-snug w-full">
+                <h1 className="group-hover:underline text-left text-xl lg:text-2xl font-extrabold text-slate-600 dark:text-[#009688] tracking-wide leading-snug w-full group-hover:text-3xl group-hover:text-[#009688]">
                   {Header}
                 </h1>
-                <div  className="group-hover:underline group-hover:text-[#009688] !bg-transparent !text-left !text-black dark:!text-white mt-5 w-full " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                <div  className="group-hover:text-2xl group-hover:text-[#009688] !bg-transparent !text-left !text-black dark:!text-white mt-5 w-full " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
               </button>
 
               <div className="flex items-center justify-between text-sm my-5"> 
-                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 rounded ">
                   <AiOutlineEye size={32} />
                   <span className="ml-3">{view}</span>
                 </p>
@@ -99,7 +98,7 @@ export function SlideNews({allnews}) {
                         setid(Header)
                         setquotes(quote)
                     }} 
-                    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+                    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 rounded ">
                     <AiOutlineShareAlt size={32} />
                 </button>
               </div>
@@ -112,6 +111,6 @@ export function SlideNews({allnews}) {
         <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
       }
 
-    </div>
+    </section>
   );
 }

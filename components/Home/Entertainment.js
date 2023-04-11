@@ -20,7 +20,6 @@ export function Entertainment({latestentertainments}) {
     // speed: 2000,
     // autoplaySpeed: 2000,
     // slidesToScroll: 1,
-    autoplay: true
   };
   const router = useRouter()
   const quoteRef = useRef(null)
@@ -44,18 +43,18 @@ export function Entertainment({latestentertainments}) {
           <div 
             key={index}
             id={Header}
-            className="!flex flex-col lg:flex-row !px-0 w-full h-full lg:mt-5 py-5"
+            className="!flex flex-col lg:flex-row px-2 w-full h-full lg:mt-5 py-5"
           >
             <div className="w-full lg:w-[40%] h-52 lg:!h-96 relative">
               <Image
                 src={image}
                 fill
-                className="!bg-cover w-full !h-full"
+                className="!bg-cover w-full !h-full border rounded-xl"
                 alt="latest news image"
               />
             </div>
 
-            <div className="w-full lg:w-[60%] flex flex-col justify-between lg:mx-10 py-10 text-left group">
+            <div className="w-full lg:w-[60%] flex flex-col justify-between lg:mx-10 my-10 text-left ">
               <button 
                 onClick = {()=>{
                   router.push({
@@ -63,9 +62,9 @@ export function Entertainment({latestentertainments}) {
                     query:{entertainment_id:entertainment_id}
                   })
                 }}
-                className="flex flex-col justify-between w-full"
+                className="flex flex-col justify-between w-full h-full group"
               >
-                <div className="flex flex-row justify-between mb-5 w-full">
+                <div className="flex flex-row justify-between mb-5 w-full ">
                   <h3 className="flex flex-col justify-between">
                     { Category.map((data,index)=>(
                       <span key={index} className="text-left text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2 group-hover:text-lg group-hover:text-[#009688]">
@@ -83,8 +82,8 @@ export function Entertainment({latestentertainments}) {
                 <div  className="!bg-transparent !text-left !text-black dark:!text-white mt-5 w-full group-hover:text-2xl group-hover:text-[#009688] " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
               </button>
 
-              <div className="flex items-center justify-between text-sm my-5"> 
-                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+              <div className="flex items-center justify-between text-sm py-5"> 
+                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 rounded ">
                   <AiOutlineEye size={32} />
                   <span className="ml-3">{view}</span>
                 </p>
@@ -106,7 +105,7 @@ export function Entertainment({latestentertainments}) {
                         setid(Header)
                         setquotes(quote)
                     }} 
-                    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+                    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 rounded ">
                     <AiOutlineShareAlt size={32} />
                 </button>
               </div>

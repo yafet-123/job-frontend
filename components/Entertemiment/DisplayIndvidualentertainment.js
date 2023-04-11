@@ -19,7 +19,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
       setviewModalOn(true)
   	}
   	return (
-	    <div className="flex flex-col flex-1 pb-20 w-full lg:w-[100%]">
+	    <div className="flex flex-col flex-1 pb-20 w-full lg:w-[72%]">
 		    <h1 className="text-lg lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5 hover:text-[#009688]">
 	            {entertainment.Header}
 	        </h1>

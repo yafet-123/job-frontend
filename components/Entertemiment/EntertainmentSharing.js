@@ -30,10 +30,10 @@ import {
 export function EntertainmentSharing({shareUrl}) {
   return (
     <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 py-20">
-      <div className="flex flex-col lg:flex-row justify-between items-center mb-5">
-      	<h1 className="text-black dark:text-white border rounded-lg text-xl font-bold mr-2 mb-5 lg:mb-0 dark:border-slate-700">Share On:</h1>
-      	<div className="flex flex-col lg:flex-row items-center">
-          <div className="flex items-center justify-between w-full mb-5 lg:mb-0">
+      <div className="flex flex-col lg:flex-row justify-between items-center mb-5 w-full">
+      	<h1 className="text-black dark:text-white border rounded-lg text-xl font-bold mr-2 mb-5 lg:mb-0 dark:border-slate-700 whitespace-normal">Share On:</h1>
+      	<div className="flex flex-col lg:flex-row items-center w-full flex-wrap">
+          <div className="flex items-center justify-between mb-5">
             <div className="mx-1">
               <FacebookShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
@@ -85,7 +85,7 @@ export function EntertainmentSharing({shareUrl}) {
             </div>
           </div>
 
-          <div className="flex items-center justify-between w-full mb-5 lg:mb-0">
+          <div className="flex items-center justify-between mb-5">
             <div className="mx-1">
               <ViberShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}

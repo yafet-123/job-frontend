@@ -17,6 +17,7 @@
     "axios": "^1.2.0",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.2.1",
+    "dompurify": "^3.0.1",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "formik": "^2.2.9",

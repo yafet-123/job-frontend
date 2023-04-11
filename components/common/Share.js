@@ -42,7 +42,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 onClick={() => {
                   handleCancelClickForview()
                 }} 
-                className="text-[#009688] hover:bg-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded dark:text-white">
+                className="text-[#009688] hover:bg-white font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded dark:text-white">
                 <AiOutlineClose size={32} />
               </button>
           </div>
@@ -54,7 +54,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   quote={quote}
                   hashtag={'#huluMedia'}
                 >
-                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] dark:text-white">
+                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
                     Facebook
                   </span>
                   <FacebookIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
@@ -68,7 +68,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
-                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] dark:text-white">
+                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
                     Telegram
                   </span>
                   <TelegramIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
@@ -82,7 +82,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
-                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] dark:text-white">
+                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
                     Twitter
                   </span>
                   <TwitterIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
@@ -96,7 +96,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
-                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] dark:text-white">
+                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
                     Email
                   </span>
                   <EmailIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
@@ -112,7 +112,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
-                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] dark:text-white">
+                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
                     Viber
                   </span>
                   <ViberIcon className="block m-auto mt-2 lg:mt-5"  size={40} round />
@@ -126,7 +126,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
-                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] dark:text-white">
+                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
                     Whatsapp
                   </span>
                   <WhatsappIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
@@ -139,7 +139,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   title={quote}
                   hashtag={'#huluMedia'}
                 >
-                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] dark:text-white">
+                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
                     Linkedin
                   </span>
                   <LinkedinIcon className="block m-auto mt-2 lg:mt-5" size={40} round />
@@ -152,7 +152,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                   title={quote}
                   hashtag={'#huluMedia'}
                 >
-                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] dark:text-white">
+                  <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
                     Messenger
                   </span>
                   <FacebookMessengerIcon className="block m-auto mt-2 lg:mt-5" size={40} round />

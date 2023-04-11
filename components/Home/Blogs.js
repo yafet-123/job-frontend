@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import {Share} from '../common/Share.js'
 import Image from 'next/future/image'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
-
+ 
 export function Blogs({blogs}) {
   var settings = {
     dots: true,
@@ -34,7 +34,7 @@ export function Blogs({blogs}) {
   }
 
   return (
-    <section className="w-full h-full lg:h-[50rem] px-3 lg:px-10 md:py-10  bg-slate-100 dark:bg-slate-700 flex flex-col brightness-100 py-10">
+    <div className="w-full h-full lg:h-[50rem] px-3 lg:px-10 md:py-10  bg-slate-100 dark:bg-slate-700 flex flex-col brightness-100 py-10">
       <h1 className={`px-3 lg:px-0 text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl text-black dark:text-white opacity-100`}>
         Blogs
       </h1>
@@ -55,7 +55,7 @@ export function Blogs({blogs}) {
               />
             </div>
 
-            <div className="w-full lg:w-[60%] flex flex-col justify-between lg:mx-10 py-10 text-left group">
+            <div className="w-full lg:w-[60%] flex flex-col justify-between lg:mx-10 text-left">
               <button 
                 onClick = {()=>{
                   router.push({
@@ -63,7 +63,7 @@ export function Blogs({blogs}) {
                     query:{blogs_id:blogs_id}
                   })
                 }}
-                className="flex flex-col justify-between w-full"
+                className="flex flex-col justify-between w-full group"
               >
                 <div className="flex flex-row justify-between mb-5 w-full">
                   <h3 className="flex flex-col justify-between">
@@ -83,8 +83,8 @@ export function Blogs({blogs}) {
                 <div  className="!bg-transparent !text-left !text-black dark:!text-white mt-5 w-full group-hover:text-2xl group-hover:text-[#009688] " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
               </button>
 
-              <div className="flex items-center justify-between text-sm my-5"> 
-                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+              <div className="flex items-center justify-between text-sm py-5"> 
+                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 rounded ">
                   <AiOutlineEye size={32} />
                   <span className="ml-3">{view}</span>
                 </p>
@@ -106,7 +106,7 @@ export function Blogs({blogs}) {
                         setid(Header)
                         setquotes(quote)
                     }} 
-                    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
+                    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 rounded ">
                     <AiOutlineShareAlt size={32} />
                 </button>
               </div>
@@ -124,6 +124,6 @@ export function Blogs({blogs}) {
       {viewmodalOn && 
         <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
       }
-    </section>
+    </div>
   );
 }
