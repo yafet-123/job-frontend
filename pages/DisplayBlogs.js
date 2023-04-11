@@ -50,6 +50,37 @@ export async function getServerSideProps(context){
   }
 
   const blogsCategory = data.BlogsCategoryRelationship
+  const findCategory = []
+  for(let i=0; i< blogsCategory.length;i++){
+    findCategory.push(
+      Number(blogsCategory[i].BlogsCategory?.category_id)
+    )
+  }
+
+  const dataForCategoryBlogs = await prisma.BlogsCategoryRelationship.findMany({
+    where:{
+        BlogsCategory:{
+          category_id:{
+            in:findCategory
+          }
+        }
+    },
+    include:{
+      User:{
+        select:{
+          UserName:true
+        }
+      },
+      Blogs:true,
+      BlogsCategory:true
+    }
+  });
+  const AllcategoryBlogs = dataForCategoryBlogs.map((data)=>({
+    Blogs:data.Blogs
+  }))
+
+  const uniqueallcategoryBlogs = [...new Map(AllcategoryBlogs.map(v => [v.Blogs.blogs_id,v])).values()]
+  console.log(uniqueallcategoryBlogs)
 
   const latestblogs = await prisma.Blogs.findMany({
     take:-6,
@@ -91,18 +122,19 @@ export async function getServerSideProps(context){
       blogs:JSON.parse(JSON.stringify(onedata)),
       Alllatestblogs:JSON.parse(JSON.stringify(Alllatestblogs)),
       blogsCategory:JSON.parse(JSON.stringify(blogsCategory)),
+      AllcategoryBlogs:JSON.parse(JSON.stringify(uniqueallcategoryBlogs))
     }
   }
 }
 
-export default function DisplayBlogs({blogs,Alllatestblogs, blogsCategory}) {
+export default function DisplayBlogs({blogs,Alllatestblogs, blogsCategory,AllcategoryBlogs}) {
   const router = useRouter()
   const shareUrl = router.asPath
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : Display Blogs" /> 
       <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
-        <DisplayIndvidualBlogs blogs={blogs} blogsCategory={blogsCategory} shareUrl={shareUrl} />
+        <DisplayIndvidualBlogs blogs={blogs} blogsCategory={blogsCategory} AllcategoryBlogs={AllcategoryBlogs} shareUrl={shareUrl} />
         <DisplayLatestBlogs Alllatestblogs={Alllatestblogs}/>          
       </section>
     </React.Fragment>

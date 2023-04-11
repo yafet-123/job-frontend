@@ -48,7 +48,7 @@ export async function getServerSideProps(context){
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
   }
-
+ 
   const newsCategory = data.NewsCategoryRelationship
   const findCategory = []
   for(let i=0; i< newsCategory.length;i++){
