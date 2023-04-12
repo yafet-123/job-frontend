@@ -6,7 +6,6 @@ import { AiOutlineClose } from 'react-icons/ai'
 import {
   FacebookShareButton,
   FacebookIcon,
-  TelegramShareButton,
   TelegramIcon,
   TwitterShareButton,
   TwitterIcon,
@@ -22,6 +21,8 @@ import {
   EmailIcon,
 } from 'next-share';
 
+import { TelegramShareButton } from 'react-share'
+
 
 export function Share({shareUrl,id,setviewModalOn,quote}) {
   const [deletemodalOn, setdeleteModalOn] = useState(false);
@@ -34,6 +35,8 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
     setdeleteModalOn(true)
   }
   console.log(quote)
+
+  const imageData =""
   return (
     <div className="bg-neutral-100 bg-opacity-80 dark:bg-slate-800 fixed inset-0 z-50 flex justify-center items-center">
         <div className="flex flex-col bg-white dark:bg-slate-500 py-2 lg:py-5 px-2 lg:px-5 border-4 border-sky-500 rounded-xl px-2">
@@ -52,7 +55,6 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  
                   quote={quote}
                   hashtag={'#huluMedia'}
                 >
@@ -66,8 +68,9 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <TelegramShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  title={quote}
-                  onClick={()=> <div dangerouslySetInnerHTML={{ __html: quote }} /> }
+                  image={`${imageData}`}
+                  
+                  ogImage={imageData}
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
