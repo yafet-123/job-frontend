@@ -12,6 +12,7 @@ export const MainHeader = ({ title }) => {
         />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta property="og:image" content="https://flaviocopes.com/img/avatar.png"/>
         <link
           rel="Head-icon"
           sizes="180x180"
