@@ -6,13 +6,14 @@ export const MainHeader = ({ title }) => {
     <div>
       <Head>
         <title>{title}</title>
-        <meta
-          name="description"
-          content="Hulu Media Offer you diffrent jobs , entertainment and other wonderfull things"
-        />
+        <meta property="og:title" content="How to set GitHub credentials for macOS"/>
+        <meta property="og:description" content="Set up GitHub authentication so you can use it from VS Code or the command line"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:url" content="https://flaviocopes.com/setup-github-credentials-macos"/>
+        <meta property="og:image" content="https://flaviocopes.com/img/avatar.png"/>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta property="og:image" content="https://flaviocopes.com/img/avatar.png"/>
+      
         <link
           rel="Head-icon"
           sizes="180x180"
