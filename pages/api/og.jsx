@@ -6,7 +6,7 @@ export const config = {
  
 export default function (req) {
   const { searchParams } = new URL(req.url)
-  const image = searchParams.get('image')
+  const image = searchParams.get('images')
   return new ImageResponse(
     (
       <div
