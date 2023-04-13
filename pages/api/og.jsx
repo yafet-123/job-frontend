@@ -23,7 +23,6 @@ export default function (req) {
       >
         <img
           alt="avatar"
-          
           src={image}
           className = "w-full h-full "
         />
