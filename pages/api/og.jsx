@@ -23,11 +23,9 @@ export default function (req) {
       >
         <img
           alt="avatar"
-          width="256"
+          
           src={image}
-          style={{
-            borderRadius: 128,
-          }}
+          className = "w-full h-full "
         />
       </div>
     ),
