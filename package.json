@@ -13,6 +13,7 @@
   "dependencies": {
     "@lexical/react": "^0.7.6",
     "@prisma/client": "^4.9.0",
+    "@vercel/og": "^0.5.1",
     "ace-builds": "^1.12.5",
     "axios": "^1.2.0",
     "bcryptjs": "^2.4.3",
