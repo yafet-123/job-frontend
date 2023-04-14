@@ -15,11 +15,7 @@ export const MainHeader = ({ title }) => {
         <meta property="og:site_name" content="Hulu Media" key="ogsitename" />
         <meta property="og:title" content={title} key="ogtitle" />
         <meta property="og:description" content="Hulu Media Offer you diffrent jobs , entertainment and other wonderfull things" key="ogdesc" />
-        <link
-          rel="Head-icon"
-          sizes="180x180"
-          href="/headLogo.png"
-        />
+        
       </Head>
     </div>
   );

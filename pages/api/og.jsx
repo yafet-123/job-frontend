@@ -22,7 +22,7 @@ export default function (req) {
         }}
       >
         <img
-          alt="avatar"
+          alt="background image that will be shared"
           src={image}
           className = "w-full h-full bg-cover"
         />
