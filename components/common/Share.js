@@ -69,7 +69,6 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
                 <TelegramShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
                   title={`fvf ${imageData}`}
-                  image={imageData}
                   hashtag={'#huluMedia'}
                   className="flex flex-col items-center justify-between"
                 >
