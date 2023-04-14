@@ -14,7 +14,7 @@ export function SlideNews({allnews}) {
     lazyLoad: true,
     fade: true,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     // speed: 2000,
     // autoplaySpeed: 2000,
     // slidesToScroll: 1,
