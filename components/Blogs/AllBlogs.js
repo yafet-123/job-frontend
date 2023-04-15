@@ -8,7 +8,6 @@ import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 export function AllBlogs({allblogs,categories}) {
   const router = useRouter()
   const { category_id } = router.query
-  console.log(category_id)
   const quoteRef = useRef(null)
   const quote = quoteRef.current?.textContent ?? "";
   const [quotes, setquotes] = useState()
