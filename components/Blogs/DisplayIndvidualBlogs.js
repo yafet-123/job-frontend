@@ -7,8 +7,6 @@ import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 import 'react-quill/dist/quill.snow.css';
 import { BlogsSharing } from './BlogsSharing';
-
-
 export function DisplayIndvidualBlogs({blogs, blogsCategory,shareUrl,AllcategoryBlogs}) {
 	const quoteRef = useRef(null)
 	const router = useRouter()
