@@ -14,7 +14,7 @@ export function Navbar() {
   const [NavabarText,setNavabarText] = useState("")
   const router = useRouter();
   const handleNav = () => {
-    setNav(!nav);
+    setNav(!nav)
   };
 
   const NavbarTopic = [
