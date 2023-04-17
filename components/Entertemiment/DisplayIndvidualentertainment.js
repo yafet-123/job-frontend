@@ -18,6 +18,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
   	const clickedForview = () => {
       setviewModalOn(true)
   	}
+  	console.log(entertainment.Description)
   	return (
 	    <div className="flex flex-col flex-1 pb-20 w-full lg:w-[72%]">
 		    <h1 className="text-lg lg:text-4xl font-extrabold dark:text-white text-black tracking-wide leading-snug mb-5 hover:text-[#009688]">
@@ -46,7 +47,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
 	                	{moment(entertainment.CreatedDate).utc().format('MMMM, Do YYYY')}
 	                </h3>
 	            </div>
-
+	       
 	            <div className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: entertainment.Description }} />
 	        </div>
 
