@@ -17,7 +17,7 @@ export function Content({entertainments}) {
     const [id, setid] = useState()
     const [getSearchValue,setgetSearchValue] = useState("")
     const [affectRead, setaffectRead ] = useState()
-
+ 
     const clickedForview = () => {
       setviewModalOn(true)
     }
@@ -106,7 +106,7 @@ export function Content({entertainments}) {
                                     onClick={() => {
                                         clickedForview()
                                         setid(entertainment_id)
-                                        setquotes(quote)
+                                        setquotes(quoteRef.current?.textContent)
                                     }} 
                                     className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
                                     <AiOutlineShareAlt size={32} />
