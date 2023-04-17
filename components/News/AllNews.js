@@ -53,7 +53,7 @@ export function AllNews({allnews}) {
                   {Header}
                 </h1>
 
-                <div  className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-5" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                <div  className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-10" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
               </div>
             </button>
 

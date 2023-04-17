@@ -68,8 +68,8 @@ export function Content({entertainments}) {
                                         query:{entertainment_id:entertainment_id}
                                     })
                                 }}
-                                id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full lg:mt-5 group py-5"
-                            >
+                                id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full lg:mt-5 group pt-5"
+                            > 
                                 <div className="w-full !h-52 lg:!h-96 relative">
                                     <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest entertainment image"/>
                                 </div>
@@ -92,7 +92,7 @@ export function Content({entertainments}) {
                                         {Header}
                                     </h1>
 
-                                    <div  className="group-hover:text-2xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                                    <div className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-10" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                                 </div>
                             </button>
 
