@@ -15,7 +15,7 @@ export const MainHeader = ({ title }) => {
         />
         <meta
           property="og:image"
-          content="https://example.com/images/cool-page.jpg"
+          content="https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014__340.jpg"
         />
         
       </Head>
