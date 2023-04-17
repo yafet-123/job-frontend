@@ -15,10 +15,6 @@ export default function (req) {
           background: 'white',
           width: '100%',
           height: '100%',
-          display: 'flex',
-          textAlign: 'center',
-          alignItems: 'center',
-          justifyContent: 'center',
         }}
       >
         <img
