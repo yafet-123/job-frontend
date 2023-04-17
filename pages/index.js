@@ -9,7 +9,8 @@ import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/common/MainHeader';
 import { useSession } from "next-auth/react";
 import Link from 'next/link'
- 
+import { NextSeo } from 'next-seo';
+
 export async function getStaticProps(){
   const locations = await prisma.Location.findMany({
     include:{
@@ -207,7 +208,35 @@ export default function Home({categories, locations, latestjobs, Alllatestblogs,
   const { status, data } = useSession();
   return (
     <React.Fragment>
-      <MainHeader title="Hulu Media : Home" />
+      
+      <NextSeo
+            title="Hulu Media : Home"
+            description="This is the desccription of the page"
+            openGraph={{
+        url: 'https://www.url.ie/a',
+        title: 'Open Graph Title',
+        description: 'Open Graph Description',
+        images: [
+          {
+            url: 'https://www.example.ie/og-image-01.jpg',
+            width: 800,
+            height: 600,
+            alt: 'Og Image Alt',
+            type: 'image/jpeg',
+          },
+          {
+            url: 'https://www.example.ie/og-image-02.jpg',
+            width: 900,
+            height: 800,
+            alt: 'Og Image Alt Second',
+            type: 'image/jpeg',
+          },
+          { url: 'https://www.example.ie/og-image-03.jpg' },
+          { url: 'https://www.example.ie/og-image-04.jpg' },
+        ],
+        siteName: 'SiteName',
+      }}
+        />
       <div className="flex flex-col w-full h-full py-0 pt-32 bg-[#e6e6e6] dark:bg-[#02201D]">
         <Hero />
         <LatestJobs latestjobs={latestjobs} />
