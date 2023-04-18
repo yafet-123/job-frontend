@@ -8,7 +8,6 @@ import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 export function AllNews({allnews}) {
   const router = useRouter()
   const quoteRef = useRef(null)
-  const quote = quoteRef.current?.textContent ?? "";
   const [quotes, setquotes] = useState()
   const shareUrl = router.asPath
   const [viewmodalOn, setviewModalOn] = useState(false)
