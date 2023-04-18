@@ -10,7 +10,6 @@ import Image from 'next/future/image'
 export function Content({entertainments}) {
     const router = useRouter()
     const quoteRef = useRef(null)
-    const quote = quoteRef.current?.textContent ?? "";
     const [quotes, setquotes] = useState()
     const shareUrl = router.asPath
     const [viewmodalOn, setviewModalOn] = useState(false)
