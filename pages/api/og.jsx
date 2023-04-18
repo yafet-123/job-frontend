@@ -11,16 +11,25 @@ export default function (req) {
     (
       <div
         style={{
-          fontSize: 128,
-          background: 'white',
-          width: '100%',
-          height: '100%',
+          fontSize:128,
+          background:'white',
+          width:'100%',
+          height:'100%',
+          display:'flex',
+          textAlign:'center',
+          alignItems:'center',
+          justifyContent:'center',
         }}
       >
         <img
           alt="background image that will be shared"
           src={image}
-          className = "w-full h-full bg-cover"
+          style={{
+            width:"100%",
+            height:"100%",
+            backgroundPosition:"center",
+            backgroundSize: "cover",
+          }}
         />
       </div>
     ),
