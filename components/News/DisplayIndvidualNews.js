@@ -7,7 +7,7 @@ import { NewsSharing } from './NewsSharing';
 import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 
-export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUrl}) {
+export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUrl, setimage}) {
 	const quoteRef = useRef(null)
 	const router = useRouter()
 	const [id, setid] = useState()
@@ -86,6 +86,7 @@ export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUr
 	                      				clickedForview()
 	                      				setid(data.News.news_id)
 	                      				setquotes(quote)
+	                      				setimage(image)
 	                  				}} 
 	                  				className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
 	                  				<AiOutlineShareAlt size={32} />

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 
-export function AllNews({allnews}) {
+export function AllNews({allnews , setimage}) {
   const router = useRouter()
   const quoteRef = useRef(null)
   const [quotes, setquotes] = useState()
@@ -67,6 +67,7 @@ export function AllNews({allnews}) {
                       clickedForview()
                       setid(news_id)
                       setquotes(quoteRef.current?.textContent)
+                      setimage(image)
                   }} 
                   className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
                   <AiOutlineShareAlt size={32} />

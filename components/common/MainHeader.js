@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 
-export const MainHeader = ({ title }) => {
-  const image = "https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014__340.jpg"
+export const MainHeader = ({ title, image }) => {
+  console.log(image)
   const url = `${process.env.headurl}/api/og?images=${image}`
   return (
     <div>
