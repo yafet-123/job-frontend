@@ -69,11 +69,11 @@ export default function Entertemiment({categories,entertainments}){
   console.log(image)
 	return(
 		<React.Fragment>
-      <MainHeader title="Hulu Media : Entertemiment" />
+      <MainHeader title="Hulu Media : Entertemiment" image={image} />
 			<section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 				<div className='w-full h-full flex flex-col lg:flex-row'>
 		      <ETSidebar categories={categories} />
-		      <Content entertainments={entertainments} />
+		      <Content entertainments={entertainments} setimage={setimage} />
 		    </div> 
 			</section>
 		</React.Fragment>
