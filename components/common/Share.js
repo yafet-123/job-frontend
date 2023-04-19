@@ -4,7 +4,6 @@ import moment from 'moment';
 import { useRouter } from "next/router";
 import { AiOutlineClose } from 'react-icons/ai'
 import {
-  FacebookShareButton,
   FacebookIcon,
   TelegramIcon,
   TwitterShareButton,
@@ -21,7 +20,7 @@ import {
   EmailIcon,
 } from 'next-share';
 
-import { TelegramShareButton } from 'react-share'
+import { TelegramShareButton,FacebookShareButton } from 'react-share'
 
 
 export function Share({shareUrl,id,setviewModalOn,quote}) {
