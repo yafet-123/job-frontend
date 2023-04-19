@@ -2,8 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 
 export const MainHeader = ({ title, image }) => {
-  console.log(image)
-  const url = `${process.env.headurl}/api/og?images=${image}`
+  console.log(process.env.headurl)
+  const url = `https://job-frontend-main.vercel.app/api/og?images=${image}`
+  console.log(url)
   return (
     <div>
       <Head>
