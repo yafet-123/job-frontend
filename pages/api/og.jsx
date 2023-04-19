@@ -21,7 +21,16 @@ export default function (req) {
           justifyContent:'center',
         }}
       >
-        <h1>{image}</h1>
+        <img
+          alt="background image that will be shared"
+          src={image}
+          style={{
+            width:"100%",
+            height:"100%",
+            backgroundPosition:"center",
+            backgroundSize: "cover",
+          }}
+        />
       </div>
     ),
     {
