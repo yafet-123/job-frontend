@@ -7,7 +7,7 @@ import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 import Image from 'next/future/image'
  
-export function Content({entertainments}) {
+export function Content({entertainments,setimage}) {
     const router = useRouter()
     const quoteRef = useRef(null)
     const [quotes, setquotes] = useState()
@@ -106,6 +106,7 @@ export function Content({entertainments}) {
                                         clickedForview()
                                         setid(entertainment_id)
                                         setquotes(quoteRef.current?.textContent)
+                                        setimage(image)
                                     }} 
                                     className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
                                     <AiOutlineShareAlt size={32} />

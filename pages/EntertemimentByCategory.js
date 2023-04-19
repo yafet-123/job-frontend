@@ -82,8 +82,8 @@ export async function getServerSideProps(context){
 }
 
 export default function EntertemimentByCategory({Allentertainment, categories}) {
-	console.log(categories)
-	console.log(Allentertainment)
+	const [image , setimage] = useState("")
+  	console.log(image)
 	return(
 		<React.Fragment>
       		<MainHeader title="Hulu Media : Entertemiment" />
