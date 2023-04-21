@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { prisma } from '../util/db.server.js'
@@ -131,13 +131,19 @@ export async function getServerSideProps(context){
 export default function DisplayNews({news,Alllatestnews, AllcategoryNews, newsCategory}) {
   const router = useRouter()
   const shareUrl = router.asPath
-  const [image , setimage] = useState("")
+  const [image , setimage] = useState("") 
+  const [quotes, setquotes] = useState("")
+  useEffect(()=>{
+    setimage(news.Image)
+    setquotes(news.ShortDescription)
+  },[])
+
   return (
   	<React.Fragment>
-      <MainHeader title="Hulu Media : Display News" image={image} />
+      <MainHeader title="Hulu Media : Display News" image={image} quotes={quotes} />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 	      <DisplayIndvidualNews news={news} AllcategoryNews={AllcategoryNews} newsCategory={newsCategory} shareUrl={shareUrl} />
-        <DisplayLatestNews Alllatestnews={Alllatestnews} setimage={setimage} />          
+        <DisplayLatestNews Alllatestnews={Alllatestnews} />          
 	    </section>
 	  </React.Fragment>
   );

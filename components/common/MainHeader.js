@@ -15,8 +15,7 @@ export const MainHeader = ({ title, image , quotes }) => {
         <meta property="og:image:url" content={image} />
         <meta property="og:site_name" content="Hulu Media" key="ogsitename" />
         <meta property="og:title" content={title} key="ogtitle" />
-        <meta property="og:description" content={quotes} key="ogdesc" />
-        
+        <meta property="og:description" content={quotes} key="ogdesc" />   
       </Head>
     </div>
   );
