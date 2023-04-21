@@ -7,7 +7,7 @@ export const config = {
 export default function (req) {
   const { searchParams } = req.nextUrl;
   const image = searchParams.get('images')
-  console.log(image)
+  console.log(searchParams)
 
   if(!image) {
     return new ImageResponse(
@@ -26,7 +26,7 @@ export default function (req) {
       height:630,
     });
   }
-  
+
   return new ImageResponse(
     (
       <div

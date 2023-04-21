@@ -48,7 +48,7 @@ export async function getServerSideProps(context){
 }
 
 export default function News({allnews}) {
-  const [image , setimage] = useState("")
+  const [image , setimage] = useState("https://cdn.pixabay.com/photo/2023/04/06/01/26/heart-7902540_960_720.jpg") 
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : News" image={image} />
