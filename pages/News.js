@@ -49,7 +49,6 @@ export async function getServerSideProps(context){
 
 export default function News({allnews}) {
   const [image , setimage] = useState("")
-  console.log(image)
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : News" image={image} />

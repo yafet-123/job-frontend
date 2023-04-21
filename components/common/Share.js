@@ -33,7 +33,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
   const clickedFordelete = () => {
     setdeleteModalOn(true)
   }
-  console.log(quote)
+
 
   const imageData ="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2023/01/socia-share-button-in-react-fb.jpg?q=50&fit=crop&w=1500&dpr=1.5"
   return (
