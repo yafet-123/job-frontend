@@ -5,15 +5,13 @@ import { useRouter } from 'next/router'
 import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 
-export function AllNews({allnews , setimage}) {
+export function AllNews({allnews , setimage, setquotes}) {
   const router = useRouter()
   const quoteRef = useRef(null)
-  const [quotes, setquotes] = useState()
   const shareUrl = router.asPath
   const [viewmodalOn, setviewModalOn] = useState(false)
   const [id, setid] = useState()
   const clickedForview = () => {
-      setimage()
       setviewModalOn(true)
   } 
 
@@ -80,7 +78,7 @@ export function AllNews({allnews , setimage}) {
       </div>
 
       {viewmodalOn && 
-        <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
+        <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id}/>
       }
     </div>
   );

@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { AiOutlineClose } from 'react-icons/ai'
 import {
   TelegramShareButton,
-  FacebookShareButton,
   FacebookIcon,
   TelegramIcon,
   TwitterShareButton,
@@ -22,7 +21,7 @@ import {
   EmailIcon,
 } from 'next-share';
 
-
+import { FacebookShareButton } from "react-share"
 export function Share({shareUrl,id,setviewModalOn,quote}) {
   const [deletemodalOn, setdeleteModalOn] = useState(false);
 
@@ -34,8 +33,6 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
     setdeleteModalOn(true)
   }
 
-
-  const imageData ="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2023/01/socia-share-button-in-react-fb.jpg?q=50&fit=crop&w=1500&dpr=1.5"
   return (
     <div className="bg-neutral-100 bg-opacity-80 dark:bg-slate-800 fixed inset-0 z-50 flex justify-center items-center">
         <div className="flex flex-col bg-white dark:bg-slate-500 py-2 lg:py-5 px-2 lg:px-5 border-4 border-sky-500 rounded-xl px-2">
@@ -54,8 +51,7 @@ export function Share({shareUrl,id,setviewModalOn,quote}) {
               <div className="m-1 lg:m-3 group hover:bg-[#009688] p-2 hover:border rounded-2xl">
                 <FacebookShareButton
                   url={`https://job-frontend-main.vercel.app${shareUrl}#${id}`}
-                  quote={quote}
-                  hashtag={'#huluMedia'}
+                  
                 >
                   <span className="hidden lg:flex text-sm lg:text-xl font-bold text-[#009688] group-hover:text-white dark:text-white">
                     Facebook
