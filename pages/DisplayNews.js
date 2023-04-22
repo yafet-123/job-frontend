@@ -127,20 +127,21 @@ export async function getServerSideProps(context){
     }
   }
 }
-
+ 
 export default function DisplayNews({news,Alllatestnews, AllcategoryNews, newsCategory}) {
   const router = useRouter()
-  const shareUrl = router.asPath
+  const [shareUrl, setshareUrl] = useState("")
   const [image , setimage] = useState("") 
   const [quotes, setquotes] = useState("")
   useEffect(()=>{
     setimage(news.Image)
     setquotes(news.ShortDescription)
+    setshareUrl(router.asPath)
   },[])
 
   return (
   	<React.Fragment>
-      <MainHeader title="Hulu Media : Display News" image={image} quotes={quotes} />
+      <MainHeader title="Hulu Media : Display News" image={image} quotes={quotes} shareUrl={shareUrl} />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 	      <DisplayIndvidualNews news={news} AllcategoryNews={AllcategoryNews} newsCategory={newsCategory} shareUrl={shareUrl} />
         <DisplayLatestNews Alllatestnews={Alllatestnews} />          
