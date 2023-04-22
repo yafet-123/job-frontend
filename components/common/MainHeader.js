@@ -9,14 +9,20 @@ export const MainHeader = ({ title, image , quotes, shareUrl }) => {
   return (
     <div>
       <Head>
-        <title>{title}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={quotes} />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta property="og:url" content={url} key="ogurl" />
-        <meta property="og:image:url" content={image} />
-        <meta property="og:site_name" content="Hulu Media" key="ogsitename" />
+
+        {/* Open Graph */}
         <meta property="og:title" content={title} key="ogtitle" />
-        <meta property="og:description" content={quotes} key="ogdesc" />   
+        <meta property="og:image" content={ImageUrl} key="ogimage" />
+        <meta property="og:description" content={quotes} key="ogdesc" /> 
+        <meta property="og:url" content={url} key="ogurl" />
+        <meta property="og:site_name" content="Hulu Media" key="ogsitename" />
+
+
+        <title>{title}</title>
       </Head>
     </div>
   );

@@ -47,7 +47,7 @@ export function NewsSharing({shareUrl}) {
             <div className="mx-1">
               <TelegramShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                title={'Hulu Media is company that shares jobs , entertainment and others'}
                 hashtag={'#huluMedia'}
               >
                 <TelegramIcon size={40} round />
