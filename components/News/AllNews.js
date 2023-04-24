@@ -35,7 +35,7 @@ export function AllNews({allnews , setimage, setquotes}) {
                 {Header}
               </h1>
               <div  className="allListshortdescription w-full group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
-              <div className="w-full flex flex-row justify-between items-center">
+              <div className="w-full flex flex-row justify-between items-center px-5">
                 <h3 className="group-hover:text-xs group-hover:text-[#009688] text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
                   {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                 </h3>
