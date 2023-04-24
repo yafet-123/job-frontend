@@ -23,20 +23,20 @@ export function AllNews({allnews , setimage, setquotes}) {
             <div className="!h-52 lg:!h-96 relative">
               <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
             </div>
-            <div className="">
-                <h1 className="group-hover:text-3xl group-hover:text-[#009688] group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
-                  {Header}
-                </h1>
-                <div  className="w-full group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
-                <div className="grid grid-cols-2 gap-5">
-                  <h3 className="w-full group-hover:text-xs group-hover:text-[#009688] text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
-                    {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
-                  </h3>
-                  <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
-                    <AiOutlineEye size={32} />
-                    <span className="ml-3">{view}</span>
-                  </p>
-                </div>
+            <div className="flex flex-col items-center justify-between">
+              <h1 className="group-hover:text-3xl group-hover:text-[#009688] group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+                {Header}
+              </h1>
+              <div  className="allListshortdescription w-full group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+              <div className="w-full flex flex-row justify-between items-center">
+                <h3 className="group-hover:text-xs group-hover:text-[#009688] text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
+                  {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
+                </h3>
+                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
+                  <AiOutlineEye size={32} />
+                  <span className="ml-3">{view}</span>
+                </p>
+              </div>
             </div>
           </li>
         ))}
