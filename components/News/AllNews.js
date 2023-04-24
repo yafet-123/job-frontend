@@ -23,8 +23,8 @@ export function AllNews({allnews , setimage, setquotes}) {
             <div className="relative">
               <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
             </div>
-            <div className="flex flex-col items-center justify-between">
-              <h1 className="group-hover:text-3xl group-hover:text-[#009688] group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+            <div className="flex flex-col justify-between mt-5">
+              <h1 className="allListHeader group-hover:text-2xl group-hover:text-[#009688] text-left group-hover:underline font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
                 {Header}
               </h1>
               <div  className="allListshortdescription w-full group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
