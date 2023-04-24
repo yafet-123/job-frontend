@@ -19,7 +19,14 @@ export function AllNews({allnews , setimage, setquotes}) {
     <div className="py-5 w-full h-full">      
       <ul className="allListGrid w-full">
         {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
-          <li className="" key={index}>
+          <li className="" key={index} 
+            onClick = {()=>{
+              router.push({
+                pathname:"/DisplayNews",
+                query:{news_id:news_id}
+              })
+            }}
+          >
             <div className="relative">
               <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
             </div>
