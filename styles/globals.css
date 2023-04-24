@@ -91,10 +91,6 @@
   display: flex;
 }
 
-/*.allListGrid li:first-child div:nth-child(2) div{
-  grid-column: 4/-1;
-}*/
-
 .allListshortdescription{
   display: none;
 }
