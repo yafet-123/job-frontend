@@ -79,6 +79,8 @@
 
 .allListGrid li:first-child div:first-child{
   grid-column: 1 / 3;
+  width: 100%;
+  height: 30rem;
 }
 
 .allListGrid li:first-child div:nth-child(2){
@@ -95,5 +97,10 @@
 
 .allListshortdescription{
   display: none;
+}
+
+.allListGrid li div:first-child{
+  width:100%;
+  height:15rem;
 }
 
