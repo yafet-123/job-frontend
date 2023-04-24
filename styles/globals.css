@@ -85,11 +85,11 @@
   grid-column: 3 / -1;
 }
 
-/*.allListGrid li:first-child div:nth-child(2) h1{
-  grid-column: 1/-1;
+.allListGrid li:first-child div:nth-child(2) .allListshortdescription{
+  display: flex;
 }
 
-.allListGrid li:first-child div:nth-child(2) div{
+/*.allListGrid li:first-child div:nth-child(2) div{
   grid-column: 4/-1;
 }*/
 
