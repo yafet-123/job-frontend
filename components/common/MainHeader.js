@@ -16,7 +16,7 @@ export const MainHeader = ({ title, image , quotes, shareUrl }) => {
 
         {/* Open Graph */}
         <meta property="og:title" content={title} key="ogtitle" />
-        <meta property="og:image" content={ImageUrl} key="ogimage" />
+        <meta property="og:image" content={image} key="ogimage" />
         <meta property="og:description" content={quotes} key="ogdesc" /> 
         <meta property="og:url" content={url} key="ogurl" />
         <meta property="og:site_name" content="Hulu Media" key="ogsitename" />
