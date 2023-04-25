@@ -35,13 +35,13 @@ export function AllNews({allnews , setimage, setquotes}) {
                 {Header}
               </h1>
               <div  className="allListshortdescription w-full group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
-              <div className="w-full flex flex-row justify-between items-center px-5">
+              <div className="w-full flex flex-row justify-between items-center px-2">
                 <h3 className="group-hover:text-xs group-hover:text-[#009688] text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
                   {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                 </h3>
                 <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
-                  <AiOutlineEye size={32} />
-                  <span className="ml-3">{view}</span>
+                  <AiOutlineEye size={20} />
+                  <span className="ml-3 text-md">{view}</span>
                 </p>
               </div>
             </div>
