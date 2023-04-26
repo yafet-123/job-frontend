@@ -69,48 +69,39 @@ export function Content({entertainments,setimage}) {
                                 }}
                                 id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full lg:mt-5 group pt-5"
                             > 
-                                <div className="w-full !h-52 lg:!h-96 relative">
+                                <div className="w-full !h-52 lg:!h-72 relative">
                                     <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest entertainment image"/>
                                 </div>
 
-                                <div className="w-full flex flex-col text-left pt-5">
-                                    <div className="flex flex-row justify-between items-center w-full mb-5">
+                                <div className="w-full flex flex-col text-left pt-2">
+                                    <div className="flex flex-row justify-between items-center w-full mb-2">
                                         <h3 className="flex flex-col justify-between w-full">
                                             { Category.map((data,index)=>(
-                                                <span key={index} className="text-xs lg:text-sm group-hover:text-xs font-bold dark:text-white text-slate-600 mb-1 w-full group-hover:text-[#009688]">
+                                                <span key={index} className="text-xs font-bold dark:text-white text-slate-600 mb-1 w-full group-hover:text-[#009688]">
                                                     {data.EntertainmentCategory.CategoryName}
                                                 </span>
                                             ))}
                                         </h3>
-                                        <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600 group-hover:text-xs group-hover:text-[#009688]">
-                                            {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
-                                        </h3>
+                                        
                                     </div>
 
-                                    <h1 className="group-hover:text-3xl group-hover:text-[#009688] group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+                                    <h1 className="group-hover:text-[#009688] group-hover:underline text-md lg:text-lg font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
                                         {Header}
                                     </h1>
 
-                                    <div className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-10" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                                    <div className="group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-2 text-sm lg:text-md" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                                 </div>
                             </button>
 
                             <div className="flex items-center justify-between text-sm w-full"> 
+                                <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600 group-hover:text-xs group-hover:text-[#009688]">
+                                    {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
+                                </h3>
+
                                 <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
-                                    <AiOutlineEye size={25} />
+                                    <AiOutlineEye size={20} />
                                     <span className="ml-3">{view}</span>
                                 </p>
-
-                                <button
-                                    onClick={() => {
-                                        clickedForview()
-                                        setid(entertainment_id)
-                                        setquotes(quoteRef.current?.textContent)
-                                        setimage(image)
-                                    }} 
-                                    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
-                                    <AiOutlineShareAlt size={32} />
-                                </button>
                             </div>
                         </div>
                     ))}
