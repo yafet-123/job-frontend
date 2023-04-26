@@ -54,7 +54,7 @@ export default function News({allnews}) {
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : News" image={image} quotes="shbdckh ksjnd" />
-      <section className="w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] overflow-hidden px-0 lg:px-32">
+      <section className="w-full h-full bg-[#e6e6e6] dark:bg-[#02201D]  px-0 lg:px-32">
         <div className="max-w-7xl mx-auto flex flex-col py-32 px-2 lg:!px-3">
           <AllNews allnews={allnews} setimage={setimage} setquotes={setquotes}/>
         </div>

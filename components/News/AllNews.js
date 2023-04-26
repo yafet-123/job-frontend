@@ -18,7 +18,7 @@ export function AllNews({allnews , setimage, setquotes}) {
 
   return (
     <div className="py-5 w-full h-full">      
-      <div className="allListGrid w-full">
+      <div className="allListGrid">
         {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <Link key={index} 
             href={`/DisplayNews?news_id=${news_id}`}
@@ -31,7 +31,7 @@ export function AllNews({allnews , setimage, setquotes}) {
                 <h1 className="allListHeader group-hover:text-[#009688] text-left group-hover:underline font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
                   {Header}
                 </h1>
-                <div  className="allListshortdescription w-full group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                <div  className="allListshortdescription flex flex-col w-full group-hover:text-[#009688] bg-transparent text-black dark:!text-white" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                 <div className="w-full flex flex-row justify-between items-center px-2 mt-5">
                   <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
                     {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
