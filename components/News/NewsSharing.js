@@ -27,7 +27,7 @@ import {
 } from 'next-share';
 
 
-export function NewsSharing({shareUrl}) {
+export function NewsSharing({shareUrl,quote}) {
   return (
     <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 py-20">
       <div className="flex flex-col lg:flex-row justify-between items-center mb-5 w-full">
@@ -57,7 +57,7 @@ export function NewsSharing({shareUrl}) {
             <div className="mx-1">
               <TwitterShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quote}
                 hashtag={'#huluMedia'}
               >
                 <TwitterIcon size={40} round />

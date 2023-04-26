@@ -137,7 +137,7 @@ export default function DisplayNews({news,Alllatestnews, AllcategoryNews, newsCa
     setimage(news.Image)
     setquotes(news.ShortDescription)
     setshareUrl(router.asPath)
-  },[news,router])
+  },[])
 
   return (
   	<React.Fragment>

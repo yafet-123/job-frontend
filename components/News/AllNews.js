@@ -50,7 +50,7 @@ export function AllNews({allnews , setimage, setquotes}) {
       </div>
 
       {viewmodalOn && 
-        <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id}/>
+        <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} />
       }
     </div>
   );

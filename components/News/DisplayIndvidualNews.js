@@ -10,8 +10,6 @@ import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUrl}) {
 	const quoteRef = useRef(null)
 	const router = useRouter()
-	const [id, setid] = useState()
-	const quote = quoteRef.current?.textContent ?? "";
   	const [quotes, setquotes] = useState()
   	const [viewmodalOn, setviewModalOn] = useState(false)
   	const clickedForview = () => {
@@ -100,7 +98,7 @@ export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUr
 	        </div>
 
 	        {viewmodalOn && 
-       			<Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
+       			<Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={news.shortDescreption} />
       		}
 	    </div>
   	);
