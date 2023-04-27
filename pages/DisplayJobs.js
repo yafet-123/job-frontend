@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Link from "next/link";
 import { JobRequirement } from "../data/JobRequirement";
 import { TopAndBottomOfDisplayJobs } from "../components/jobs/TopAndBottomOfDisplayJobs";
@@ -85,14 +85,22 @@ export async function getServerSideProps(context){
 }
 
 export default function DisplayJobs({job, categories}) {
-	console.log(categories)
+	const router = useRouter()
+	const [shareUrl, setshareUrl] = useState("")
+  const [image , setimage] = useState("") 
+  const [quotes, setquotes] = useState("")
+  useEffect(()=>{
+    setimage(job.image)
+    setquotes(job.CompanyName)
+    setshareUrl(router.asPath)
+  },[])
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Display Jobs" />
-	    <section className="flex flex-col w-full h-full px-5 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] py-52">
-	      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply}/>
+	    <section className="flex flex-col w-full h-full px-5 lg:px-56 bg-[#e6e6e6] dark:bg-[#02201D] py-52">
+	      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply} quotes={quotes} />
 	      	<DisplayIndividualJobs job={job} categories={categories}/>
-	      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply}/>
+	      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply} quotes={quotes} />
 	    </section>
 	  </React.Fragment>
   );

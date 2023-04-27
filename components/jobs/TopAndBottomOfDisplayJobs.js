@@ -28,7 +28,7 @@ import {
 } from 'next-share';
 
 
-export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
+export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
   const router = useRouter()
   const shareUrl = router.asPath
   return (
@@ -47,7 +47,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <FacebookShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <FacebookIcon size={32} round />
@@ -57,7 +57,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <TelegramShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <TelegramIcon size={32} round />
@@ -67,7 +67,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <TwitterShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <TwitterIcon size={32} round />
@@ -77,7 +77,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <PinterestShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <PinterestIcon size={32} round />
@@ -87,7 +87,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <RedditShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <RedditIcon size={32} round />
@@ -99,7 +99,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <ViberShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <ViberIcon size={32} round />
@@ -109,7 +109,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <WhatsappShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <WhatsappIcon size={32} round />
@@ -119,7 +119,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <LinkedinShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <LinkedinIcon size={32} round />
@@ -129,7 +129,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <FacebookMessengerShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <FacebookMessengerIcon size={32} round />
@@ -139,7 +139,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply}) {
             <div className="mx-1">
               <EmailShareButton
                 url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <EmailIcon size={32} round />

@@ -125,7 +125,7 @@ export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Jobs By Location" />
-	    <section className="bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col w-full h-full px-0 md:px-80 py-44">
+	    <section className="bg-[#e6e6e6] dark:bg-[#02201D] flex flex-col w-full h-full px-0 md:px-56 py-44">
 	    	<div className="flex flex-col bg-neutral-100 dark:bg-[#1B2637] w-full h-full lg:px-5 py-10 border rounded-xl dark:border-slate-800">
 	    		<div className="flex flex-col lg:flex-row justify-between items-center mb-10 bg-neutral-200 dark:bg-slate-700 px-10">
 	    			<div className="flex flex-col items-center lg:flex-row mb-2 lg:mb-5 mt-3 lg:mt-10">
