@@ -27,17 +27,18 @@ import {
 } from 'next-share';
 
 
-export function EntertainmentSharing({shareUrl}) {
+export function EntertainmentSharing({shareUrl,quotes}) {
+  console.log(quotes)
   return (
     <div className="bg-gray-200 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 py-20">
       <div className="flex flex-col lg:flex-row justify-between items-center mb-5 w-full">
-      	<h1 className="text-black dark:text-white border rounded-lg text-xl font-bold mr-2 mb-5 lg:mb-0 dark:border-slate-700 whitespace-normal">Share On:</h1>
-      	<div className="flex flex-col lg:flex-row items-center w-full flex-wrap">
+        <h1 className="text-black dark:text-white border rounded-lg text-xl font-bold mr-2 mb-5 lg:mb-0 dark:border-slate-700">Share On:</h1>
+        <div className="flex flex-col lg:flex-row items-center w-full flex-wrap">
           <div className="flex items-center justify-between mb-5">
             <div className="mx-1">
               <FacebookShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <FacebookIcon size={40} round />
@@ -45,29 +46,9 @@ export function EntertainmentSharing({shareUrl}) {
             </div>
 
             <div className="mx-1">
-              <PinterestShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
-                hashtag={'#huluMedia'}
-              >
-                <PinterestIcon size={40} round />
-              </PinterestShareButton>
-            </div>
-
-            <div className="mx-1">
-              <RedditShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
-                hashtag={'#huluMedia'}
-              >
-                <RedditIcon size={40} round />
-              </RedditShareButton>
-            </div>
-
-            <div className="mx-1">
               <TelegramShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                title={quotes}
                 hashtag={'#huluMedia'}
               >
                 <TelegramIcon size={40} round />
@@ -76,20 +57,40 @@ export function EntertainmentSharing({shareUrl}) {
 
             <div className="mx-1">
               <TwitterShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <TwitterIcon size={40} round />
               </TwitterShareButton>
             </div>
+
+            <div className="mx-1">
+              <PinterestShareButton
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                quote={quotes}
+                hashtag={'#huluMedia'}
+              >
+                <PinterestIcon size={40} round />
+              </PinterestShareButton>
+            </div>
+
+            <div className="mx-1">
+              <RedditShareButton
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                quote={quotes}
+                hashtag={'#huluMedia'}
+              >
+                <RedditIcon size={40} round />
+              </RedditShareButton>
+            </div> 
           </div>
 
           <div className="flex items-center justify-between mb-5">
             <div className="mx-1">
               <ViberShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <ViberIcon size={40} round />
@@ -98,8 +99,8 @@ export function EntertainmentSharing({shareUrl}) {
 
             <div className="mx-1">
               <WhatsappShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <WhatsappIcon size={40} round />
@@ -108,8 +109,8 @@ export function EntertainmentSharing({shareUrl}) {
 
             <div className="mx-1">
               <LinkedinShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <LinkedinIcon size={40} round />
@@ -118,8 +119,8 @@ export function EntertainmentSharing({shareUrl}) {
 
             <div className="mx-1">
               <FacebookMessengerShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <FacebookMessengerIcon size={40} round />
@@ -128,8 +129,8 @@ export function EntertainmentSharing({shareUrl}) {
 
             <div className="mx-1">
               <EmailShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
-                quote={'Hulu Media is company that shares jobs , entertainment and others'}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
+                quote={quotes}
                 hashtag={'#huluMedia'}
               >
                 <EmailIcon size={40} round />

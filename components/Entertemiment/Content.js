@@ -93,7 +93,7 @@ export function Content({entertainments,setimage}) {
                                 </div>
                             </button>
 
-                            <div className="flex items-center justify-between text-sm w-full"> 
+                            <div className="flex items-center justify-between text-sm w-full px-2"> 
                                 <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600 group-hover:text-xs group-hover:text-[#009688]">
                                     {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                                 </h3>

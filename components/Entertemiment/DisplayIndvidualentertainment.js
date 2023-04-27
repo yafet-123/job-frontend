@@ -51,7 +51,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
 	            <div className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: entertainment.Description }} />
 	        </div>
 
-	        <EntertainmentSharing shareUrl={shareUrl}/>
+	        <EntertainmentSharing shareUrl={shareUrl} quotes={quotes}/>
 
 	        <div className="flex flex-col">
 	        	<h1 className="text-lg lg:text-3xl font-extrabold dark:text-white text-black tracking-wide leading-snug hover:text-[#009688]">Related Topics</h1>
