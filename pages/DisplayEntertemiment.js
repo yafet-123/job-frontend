@@ -133,7 +133,7 @@ export default function DisplayEntertemiment({entertainment, Allcategoryet ,Alll
   const [image , setimage] = useState("") 
   const [quotes, setquotes] = useState("")
   useEffect(()=>{
-    setimage(entertainment.Image)
+    setimage(entertainment.image)
     setquotes(entertainment.ShortDescription)
     setshareUrl(router.asPath)
   },[])
