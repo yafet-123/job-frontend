@@ -8,12 +8,10 @@ import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 import 'react-quill/dist/quill.snow.css';
 
-export function DisplayIndvidualentertainment({entertainment,entertainmentCategory, Allcategoryet,shareUrl}) {
+export function DisplayIndvidualentertainment({entertainment,entertainmentCategory, Allcategoryet,shareUrl,quotes}) {
 	const quoteRef = useRef(null)
 	const router = useRouter()
 	const [id, setid] = useState()
-	const quote = quoteRef.current?.textContent ?? "";
-  	const [quotes, setquotes] = useState()
   	const [viewmodalOn, setviewModalOn] = useState(false)
   	const clickedForview = () => {
       setviewModalOn(true)
@@ -65,41 +63,32 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
 	                  					query:{entertainment_id:data.Entertainment.entertainment_id}
 	                				})
 	              				}}
-	              				id={data.Entertainment.entertainment_id} ref={quoteRef} className="flex flex-col w-full lg:mt-5 group pt-5"
+	              				id={data.Entertainment.entertainment_id} ref={quoteRef} className="flex flex-col w-full group pt-5"
 	            			>
-	            				<div className="w-full !h-52 lg:!h-96 relative">
+	            				<div className="w-full !h-52 lg:!h-72 relative">
 	                				<Image src={data.Entertainment.Image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
 	              				</div>
 
-	              				<h1 className="text-left group-hover:text-3xl group-hover:text-[#009688] group-hover:underline text-lg lg:text-2xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+	              				<h1 className="text-left group-hover:text-[#009688] group-hover:underline text-lg lg:text-xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
 	                  				{data.Entertainment.Header}
 	                			</h1>
-	                			<div  className="group-hover:text-xl group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video " dangerouslySetInnerHTML={{ __html: data.Entertainment.ShortDescription }} />
+	                			<div  className="text-lg group-hover:text-[#009688] bg-transparent text-black dark:!text-white text-left mt-2" dangerouslySetInnerHTML={{ __html: data.Entertainment.ShortDescription }} />
 	            			</button>
 
 	            			<div className="flex items-center justify-between text-sm"> 
+	            				<h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
+                                  {moment(data.CreatedDate).utc().format('MMMM, Do YYYY')}
+                                </h3>
+
 	              				<p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
 	                				<AiOutlineEye size={32} />
 	                				<span className="ml-3">{data.Entertainment.view}</span>
 	              				</p>
-
-	              				<button
-	                  				onClick={() => {
-	                      				clickedForview()
-	                      				setid(data.Entertainment.entertainment_id)
-	                      				setquotes(quote)
-	                  				}} 
-	                  				className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
-	                  				<AiOutlineShareAlt size={32} />
-	              				</button>
 	            			</div>
 	        			</div>
 	        		))}
 	        	</div>
 	        </div>
-	        {viewmodalOn && 
-       			<Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
-      		}
 	    </div>
   	);
 }
