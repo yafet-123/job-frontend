@@ -85,22 +85,23 @@ export function Content({entertainments,setimage}) {
                                         
                                     </div>
 
-                                    <h1 className="group-hover:text-[#009688] group-hover:underline text-md lg:text-lg font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
+                                    <h1 className="allListHeader group-hover:text-[#009688] text-left group-hover:underline font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
                                         {Header}
                                     </h1>
 
-                                    <div className="group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-2 text-sm lg:text-md" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                                    <div className="group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-2 text-sm" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                                 </div>
                             </button>
 
-                            <div className="flex items-center justify-between text-sm w-full px-2"> 
-                                <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600 group-hover:text-xs group-hover:text-[#009688]">
-                                    {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
+                            <div className="w-full flex flex-row justify-between items-center px-2 mt-5">
+                                <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
+                                  {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
                                 </h3>
 
+
                                 <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
-                                    <AiOutlineEye size={20} />
-                                    <span className="ml-3">{view}</span>
+                                  <AiOutlineEye size={20} />
+                                  <span className="ml-3 text-xs">{view}</span>
                                 </p>
                             </div>
                         </div>
