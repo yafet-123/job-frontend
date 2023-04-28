@@ -91,7 +91,7 @@ export default function DisplayJobs({job, categories}) {
   const [quotes, setquotes] = useState("")
   useEffect(()=>{
     setimage(job.image)
-    setquotes(job.JobsName)
+    setquotes(job.shortDescreption)
     setshareUrl(router.asPath)
   },[])
   return (

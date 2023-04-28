@@ -55,7 +55,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes,shareUrl}) {
             <div className="mx-1">
               <TelegramShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                title={quotes}
                 hashtag={'#huluMedia'}
               >
                 <TelegramIcon size={32} round />
