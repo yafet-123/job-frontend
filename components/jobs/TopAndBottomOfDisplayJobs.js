@@ -28,9 +28,7 @@ import {
 } from 'next-share';
 
 
-export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
-  const router = useRouter()
-  const shareUrl = router.asPath
+export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes,shareUrl}) {
   return (
     <div className="bg-neutral-300 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 px-0 lg:px-3 py-20 my-2">
     	<div className="flex mb-10">
@@ -46,7 +44,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
           <div className="flex items-center mb-5 lg:mb-0">
             <div className="mx-1">
               <FacebookShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -56,7 +54,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
 
             <div className="mx-1">
               <TelegramShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -66,7 +64,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
 
             <div className="mx-1">
               <TwitterShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -76,7 +74,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
 
             <div className="mx-1">
               <PinterestShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -86,7 +84,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
 
             <div className="mx-1">
               <RedditShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -98,7 +96,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
           <div className="flex items-center">
             <div className="mx-1">
               <ViberShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -108,7 +106,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
 
             <div className="mx-1">
               <WhatsappShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -118,7 +116,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
 
             <div className="mx-1">
               <LinkedinShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -128,7 +126,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
 
             <div className="mx-1">
               <FacebookMessengerShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -138,7 +136,7 @@ export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes}) {
 
             <div className="mx-1">
               <EmailShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
