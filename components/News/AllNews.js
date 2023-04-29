@@ -8,7 +8,6 @@ import Link from 'next/link'
 
 export function AllNews({allnews , setimage, setquotes}) {
   const router = useRouter()
-  const quoteRef = useRef(null)
   const shareUrl = router.asPath
   const [viewmodalOn, setviewModalOn] = useState(false)
   const [id, setid] = useState()
