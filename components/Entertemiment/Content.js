@@ -9,8 +9,6 @@ import Image from 'next/future/image'
  
 export function Content({entertainments,setimage}) {
     const router = useRouter()
-    const quoteRef = useRef(null)
-    const [quotes, setquotes] = useState()
     const shareUrl = router.asPath
     const [viewmodalOn, setviewModalOn] = useState(false)
     const [id, setid] = useState()
