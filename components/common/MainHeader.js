@@ -14,7 +14,6 @@ export const MainHeader = ({ title, image , quotes, shareUrl }) => {
         <meta name="description" content={quotes} />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        {/* Open Graph */}
         <meta property="og:title" content={title} key="ogtitle" />
         <meta property="og:image" content={image} key="ogimage" />
         <meta property="og:description" content={quotes} key="ogdesc" /> 
