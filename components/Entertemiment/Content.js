@@ -107,9 +107,6 @@ export function Content({entertainments,setimage}) {
                         </div>
                     ))}
                 </div>
-            {viewmodalOn && 
-                <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
-            }
         </div>
      )
 }
