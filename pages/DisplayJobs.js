@@ -91,10 +91,10 @@ export default function DisplayJobs({job, categories}) {
   const [quotes, setquotes] = useState("")
   const [loading,setloading] = useState(true)
   useEffect(()=>{
-  	setloading(false)
     setimage(job.image)
     setquotes(job.shortDescreption)
     setshareUrl(router.asPath)
+    setloading(false)
   },[])
 
   if (loading) return <div>Loading...</div>;
