@@ -89,11 +89,16 @@ export default function DisplayJobs({job, categories}) {
 	const [shareUrl, setshareUrl] = useState("")
   const [image , setimage] = useState("") 
   const [quotes, setquotes] = useState("")
+  const [loading,setloading] = useState(true)
   useEffect(()=>{
+  	setloading(false)
     setimage(job.image)
     setquotes(job.shortDescreption)
     setshareUrl(router.asPath)
   },[])
+
+  if (loading) return <div>Loading...</div>;
+
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Display Jobs" image={image} quotes={quotes} shareUrl={shareUrl} />
