@@ -97,7 +97,7 @@ export default function DisplayJobs({job, categories}) {
     setloading(false)
   },[])
 
-  if (loading) return <div className="w-full flex justify-center text-xl h-screen pt-10 lg:text-2xl">Loading...</div>;
+  if (loading) return <div className="w-full flex justify-center text-xl h-screen pt-96 lg:text-2xl">Loading...</div>;
 
   return (
   	<React.Fragment>
