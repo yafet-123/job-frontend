@@ -100,7 +100,7 @@ export default function DisplayJobs({job, categories}) {
   
   	return (
 	  	<React.Fragment>
-	      <MainHeader title="Hulu Media : Display Jobs" type="News" image={job.image} quotes={quotes} shareUrl={shareUrl} />
+	      <MainHeader title="Hulu Media : Display Jobs" type="jobs" image={job.image} quotes={quotes} shareUrl={shareUrl} />
 		    <section className="flex flex-col w-full h-full px-5 lg:px-56 bg-[#e6e6e6] dark:bg-[#02201D] py-52">
 		      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply} quotes={quotes} shareUrl={shareUrl} />
 		      	<DisplayIndividualJobs job={job} categories={categories}/>

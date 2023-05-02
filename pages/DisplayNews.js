@@ -141,7 +141,7 @@ export default function DisplayNews({news,Alllatestnews, AllcategoryNews, newsCa
   console.log(news.Image)
   return (
   	<React.Fragment>
-      <MainHeader title="Hulu Media : Display News" image={news.Image} quotes={quotes} shareUrl={shareUrl} />
+      <MainHeader title="Hulu Media : Display News" type="News" image={news.Image} quotes={quotes} shareUrl={shareUrl} />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:pl-80 lg:px-32 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 	      <DisplayIndvidualNews news={news} AllcategoryNews={AllcategoryNews} newsCategory={newsCategory} shareUrl={shareUrl} quotes={quotes} />
         <DisplayLatestNews Alllatestnews={Alllatestnews} />          
