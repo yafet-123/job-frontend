@@ -91,7 +91,11 @@ export default function DisplayJobs({job, categories}) {
   const [quotes, setquotes] = useState()
   const [loading,setloading] = useState(true)
   useEffect(()=>{
-    setimage(job.image)
+    const img = new Image()
+    img.onload = () =>{
+    	document.querySelector('meta[property="og:image"]').setAttribute('content',img.src)
+    }
+    img.src= job.image
     setquotes(job.shortDescreption)
     setshareUrl(router.asPath)
     setloading(false)
