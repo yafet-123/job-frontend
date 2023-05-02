@@ -25,7 +25,7 @@ import {
   EmailIcon,
   LineShareButton,
   LineIcon,
-} from 'next-share';
+} from 'react-share';
 
 
 export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes,shareUrl}) {
