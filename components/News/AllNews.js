@@ -46,10 +46,6 @@ export function AllNews({allnews , setimage, setquotes}) {
           </Link>
         ))}
       </div>
-
-      {viewmodalOn && 
-        <Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} />
-      }
     </div>
   );
 }
