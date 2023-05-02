@@ -3,7 +3,7 @@ import Head from 'next/head';
  
 export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
   const url = `https://job-frontend-main.vercel.app${shareUrl}`
-  const content=`https://job-frontend-main.vercel.app/api/og?images=${image}`
+  const ogImage=`https://job-frontend-main.vercel.app/api/og?images=${image}`
   console.log(quotes)
   console.log(image)
   return (
@@ -15,7 +15,7 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <meta property="og:title" content={title} key="ogtitle" />
-        <meta property="og:image" content={image} key="ogimage" />
+        <meta property="og:image" content={ogImage} key="ogimage" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={type} />
