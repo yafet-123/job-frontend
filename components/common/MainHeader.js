@@ -14,11 +14,10 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <meta property="og:title" content={title} key="ogtitle" />
-        <meta property="og:image" content={image} key="ogimage" />
+        <meta property="og:image" content="https://res.cloudinary.com/df7hlpjcj/image/upload/v1680795085/my_upload/zlsyly9qqbik2k2gtucx.png" key="ogimage" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={type} />
-        <meta property="og:image:type" content="image/png" />
         <meta property="og:description" content={quotes} key="ogdesc" /> 
         <meta property="og:url" content={url} key="ogurl" />
         <meta property="og:type" content={type} key="ogurl" />
