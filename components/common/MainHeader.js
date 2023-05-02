@@ -18,7 +18,7 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={type} />
-        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:type" content="image/png" />
         <meta property="og:description" content={quotes} key="ogdesc" /> 
         <meta property="og:url" content={url} key="ogurl" />
         <meta property="og:type" content={type} key="ogurl" />
