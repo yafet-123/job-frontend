@@ -3,6 +3,7 @@ import Head from 'next/head';
  
 export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
   const url = `https://job-frontend-main.vercel.app${shareUrl}`
+  const content=`https://job-frontend-main.vercel.app/api/og?images=${image}`
   console.log(quotes)
   console.log(image)
   return (
