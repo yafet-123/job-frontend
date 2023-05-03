@@ -137,20 +137,22 @@ export function UpdateBlogs({categories ,updateblogsid ,setupdateblogsid ,update
                             />
                         </div>
 
-                        <div className="mb-10 w-full">
-                            <p  
-                                className="text-md lg:text-xl text-black dark:text-white mb-5 mx-5"
+                        <div className="relative mb-5 w-full">
+                            <textarea  
+                                id="updateShortDescription" 
+                                required
+                                className="block w-full px-3 text-md lg:text-xl text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                                value={updateShortDescription}
+                                rows="10" 
+                                cols="40"
+                                onChange={(e) => setupdateShortDescription(e.target.value)}
+                            />
+                            <label 
+                                htmlFor="floating_outlined" 
+                                className="absolute text-md lg:text-xl text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-[10%] peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                             >
                                 Short Description
-                            </p>
-
-                            <QuillNoSSRWrapper 
-                                value={updateShortDescription} 
-                                onChange={setupdateShortDescription} 
-                                modules={modules} className="!bg-white dark:!bg-white dark:!text-black !mx-2 my-5" 
-                                theme="snow" 
-                            />
-
+                            </label>
                         </div>
 
                         <div className="mb-10 w-full">
