@@ -38,7 +38,7 @@ export function NewsSharing({shareUrl,quotes}) {
           <div className="flex items-center justify-between mb-5">
             <div className="mx-1">
               <FacebookShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -48,7 +48,7 @@ export function NewsSharing({shareUrl,quotes}) {
 
             <div className="mx-1">
               <TelegramShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 title={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -58,7 +58,7 @@ export function NewsSharing({shareUrl,quotes}) {
 
             <div className="mx-1">
               <TwitterShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -68,7 +68,7 @@ export function NewsSharing({shareUrl,quotes}) {
 
             <div className="mx-1">
               <PinterestShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -78,7 +78,7 @@ export function NewsSharing({shareUrl,quotes}) {
 
             <div className="mx-1">
               <RedditShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -90,7 +90,7 @@ export function NewsSharing({shareUrl,quotes}) {
           <div className="flex items-center justify-between mb-5">
             <div className="mx-1">
               <ViberShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -100,7 +100,7 @@ export function NewsSharing({shareUrl,quotes}) {
 
             <div className="mx-1">
               <WhatsappShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -110,7 +110,7 @@ export function NewsSharing({shareUrl,quotes}) {
 
             <div className="mx-1">
               <LinkedinShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -120,7 +120,7 @@ export function NewsSharing({shareUrl,quotes}) {
 
             <div className="mx-1">
               <FacebookMessengerShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
@@ -130,7 +130,7 @@ export function NewsSharing({shareUrl,quotes}) {
 
             <div className="mx-1">
               <EmailShareButton
-                url={`https://job-frontend-main.vercel.app/${shareUrl}`}
+                url={`https://job-frontend-main.vercel.app${shareUrl}`}
                 quote={quotes}
                 hashtag={'#huluMedia'}
               >
