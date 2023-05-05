@@ -127,7 +127,7 @@ export async function getServerSideProps(context){
     }
   }
 }
- 
+
 export default function DisplayNews({news,Alllatestnews, AllcategoryNews, newsCategory}) {
   const router = useRouter()
   const [shareUrl, setshareUrl] = useState("")

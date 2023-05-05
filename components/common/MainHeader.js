@@ -16,7 +16,7 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
         <meta property="og:title" content={title} key="ogtitle" />
         <meta property="og:type" content={type} />
         <meta property="og:url" content={`https://job-frontend-main.vercel.app${shareUrl}`} />
-        <meta property="og:image" content={image} key="ogimage" />
+        <meta property="og:image" content={ogImage} key="ogimage" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={type} />
