@@ -8,20 +8,14 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
   return (
     <div>
       <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content={quotes} />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-        <meta property="og:title" content={title} key="ogtitle" />
-        <meta property="og:image" content={ogImage} key="ogimage" />
-        <meta property="og:type" content={type} />
-        <meta property="og:url" content={`https://job-frontend-main.vercel.app${shareUrl}`} />
-        <meta property="og:description" content={quotes} key="ogdesc" /> 
-        
-        
-
         <title>{title}</title>
+        <meta charSet="utf-8" />
+
+        
+        <meta property="og:title" content="The Rock" />
+        <meta property="og:type" content="video.movie" />
+        <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
+        <meta property="og:image" content="https://ia.media-imdb.com/images/rock.jpg" />
       </Head>
     </div>
   );

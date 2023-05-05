@@ -24,7 +24,7 @@ import {
   EmailIcon,
   LineShareButton,
   LineIcon,
-} from 'next-share';
+} from 'react-share';
 
 
 export function NewsSharing({shareUrl,quotes}) {
@@ -118,15 +118,7 @@ export function NewsSharing({shareUrl,quotes}) {
               </LinkedinShareButton>
             </div>
 
-            <div className="mx-1">
-              <FacebookMessengerShareButton
-                url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
-                hashtag={'#huluMedia'}
-              >
-                <FacebookMessengerIcon size={40} round />
-              </FacebookMessengerShareButton>
-            </div>
+            
 
             <div className="mx-1">
               <EmailShareButton
