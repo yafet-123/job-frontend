@@ -14,14 +14,11 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <meta property="og:title" content={title} key="ogtitle" />
+        <meta property="og:image" content={ogImage} key="ogimage" />
         <meta property="og:type" content={type} />
         <meta property="og:url" content={`https://job-frontend-main.vercel.app${shareUrl}`} />
-        <meta property="og:image" content={ogImage} key="ogimage" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="og image type" />
         <meta property="og:description" content={quotes} key="ogdesc" /> 
-        <meta property="og:site_name" content="Hulu Media" key="ogsitename" />
+        
         
 
         <title>{title}</title>
