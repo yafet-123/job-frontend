@@ -12,7 +12,7 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
         <meta charSet="utf-8" />
         
         
-        <meta property="og:title" content={title} />
+        <meta property="og:title" content="title" />
         <meta property="og:type" content="News" />
         <meta property="og:url" content="https://job-frontend-main.vercel.app" />
         <meta property="og:image" content="https://ia.media-imdb.com/images/rock.jpg" />
