@@ -22,7 +22,7 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
         <meta property="og:image:alt" content={type} />
         <meta property="og:description" content={quotes} key="ogdesc" /> 
         <meta property="og:site_name" content="Hulu Media" key="ogsitename" />
-        <meta property="fb:app_id" content="your_app_id" />
+        
 
         <title>{title}</title>
       </Head>
