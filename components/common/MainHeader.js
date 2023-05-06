@@ -21,7 +21,7 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
           property="og:description"
           content={quotes}
         />
-        <meta property="og:image" content={ogImage} />
+        <meta property="og:image" content={image} />
       </Head>
     </div>
   );
