@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
  
-export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
+export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
   const ogurl = `https://job-frontend-main.vercel.app${shareUrl}`
   const ogImage=`https://job-frontend-main.vercel.app/api/og?images=${image}`
   console.log(image)
@@ -21,8 +21,8 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type }) => {
           property="og:description"
           content={quotes}
         />
-        <meta property="og:image" content={image} />
-        <meta property="og:image:secure_url" content={image} />
+        <meta property="og:image" content={news.Image} />
+        <meta property="og:image:secure_url" content={news.Image} />
 
       </Head>
     </div>
