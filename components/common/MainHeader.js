@@ -9,7 +9,7 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
 
   useEffect(() => {
     async function generateOgImage() {
-      const response = await fetch(`../api/og-image?data=${image}`);
+      const response = await fetch(`../api/og-image?image=${image}`);
       const imageUrl = await response.text();
       setOgImageUrl(imageUrl);
     }
