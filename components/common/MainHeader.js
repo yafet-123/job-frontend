@@ -23,7 +23,8 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
         />
         <meta property="og:image" content={`https://job-frontend-main.vercel.app/api/og?images=${news?.Image}`} />
         <meta property="og:image:secure_url" content={`https://job-frontend-main.vercel.app/api/og?images=${news?.Image}`} />
-
+        <meta property="og:image:width" content="400" />
+        <meta property="og:image:height" content="300" />
       </Head>
     </div>
   );
