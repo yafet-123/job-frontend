@@ -1,10 +1,11 @@
-import React from 'react';
 import Head from 'next/head';
- 
+import React,{useState,useEffect} from "react";
+
 export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
+  const [ogImageUrl, setOgImageUrl] = useState('');
   const ogurl = `https://job-frontend-main.vercel.app${shareUrl}`
   const ogImage=`https://job-frontend-main.vercel.app/api/og?images=${image}`
-  console.log(image)
+
   return (
     <div>
       <Head>
@@ -21,8 +22,8 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
           property="og:description"
           content={quotes}
         />
-        <meta property="og:image" content={`https://res.cloudinary.com/df7hlpjcj/image/upload/v1678945999/my_upload/uyf772fu1wo0jqmj97zo.jpg`} />
-        <meta property="og:image:secure_url" content={`https://job-frontend-main.vercel.app/api/og?images=${news?.Image}`} />
+        <meta property="og:image" content={`https://job-frontend-main.vercel.app/api/og?images=${image}`} />
+        <meta property="og:image:secure_url" content={`https://job-frontend-main.vercel.app/api/og?images=${image}`} />
         <meta property="og:image:width" content="400" />
         <meta property="og:image:height" content="300" />
       </Head>
