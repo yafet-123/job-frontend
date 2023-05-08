@@ -5,6 +5,16 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
   const [ogImageUrl, setOgImageUrl] = useState('');
   const ogurl = `https://job-frontend-main.vercel.app${shareUrl}`
   const ogImage=`https://job-frontend-main.vercel.app/api/og?images=${image}`
+  console.log(image)
+
+  useEffect(() => {
+    async function generateOgImage() {
+      const response = await fetch(`/api/og-image?data=${image}`);
+      const imageUrl = await response.text();
+      setOgImageUrl(imageUrl);
+    }
+    generateOgImage();
+  }, [image]);
 
   return (
     <div>
@@ -22,8 +32,8 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
           property="og:description"
           content={quotes}
         />
-        <meta property="og:image" content={`https://job-frontend-main.vercel.app/api/og?images=${image}`} />
-        <meta property="og:image:secure_url" content={`https://job-frontend-main.vercel.app/api/og?images=${image}`} />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:secure_url" content={ogImageUrl} />
         <meta property="og:image:width" content="400" />
         <meta property="og:image:height" content="300" />
       </Head>
