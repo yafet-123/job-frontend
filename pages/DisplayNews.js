@@ -48,6 +48,8 @@ export async function getServerSideProps(context){
     CreatedDate:data.CreatedDate,
     ModifiedDate:data.ModifiedDate,
   }
+
+  const imageData = data.Image
  
   const newsCategory = data.NewsCategoryRelationship
   const findCategory = []
@@ -123,12 +125,13 @@ export async function getServerSideProps(context){
       news:JSON.parse(JSON.stringify(onedata)),
       Alllatestnews:JSON.parse(JSON.stringify(Alllatestnews)),
       newsCategory:JSON.parse(JSON.stringify(newsCategory)),
-      AllcategoryNews:JSON.parse(JSON.stringify(uniqueallcategoryNews))
+      AllcategoryNews:JSON.parse(JSON.stringify(uniqueallcategoryNews)),
+      images : imageData,
     }
   }
 }
 
-export default function DisplayNews({news,Alllatestnews, AllcategoryNews, newsCategory}) {
+export default function DisplayNews({images, news,Alllatestnews, AllcategoryNews, newsCategory}) {
   const router = useRouter()
   const [shareUrl, setshareUrl] = useState("")
   const [image , setimage] = useState("") 
@@ -141,7 +144,7 @@ export default function DisplayNews({news,Alllatestnews, AllcategoryNews, newsCa
   console.log(news.Image)
   return (
   	<React.Fragment>
-      <MainHeader title="Hulu Media : Display News" type="News" image={news.Image} quotes={quotes} shareUrl={shareUrl} />
+      <MainHeader title="Hulu Media : Display News" type="News" image={images} quotes={quotes} shareUrl={shareUrl} />
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:pl-80 lg:px-32 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 	      <DisplayIndvidualNews news={news} AllcategoryNews={AllcategoryNews} newsCategory={newsCategory} shareUrl={shareUrl} quotes={quotes} />
         <DisplayLatestNews Alllatestnews={Alllatestnews} />          
