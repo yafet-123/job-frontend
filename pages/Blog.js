@@ -80,7 +80,7 @@ export async function getServerSideProps(context){
     }
   }
 }
-
+ 
 export default function News({allblogs, categories}) {
   return (
     <React.Fragment>
