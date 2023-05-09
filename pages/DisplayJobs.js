@@ -97,7 +97,7 @@ export default function DisplayJobs({job, categories}) {
        <meta property="fb:app_id" content="1233665570615472" />
        <meta
          property="og:title"
-         content="Hulu Media : Display News"
+         content="Hulu Media : Display Jobs"
        	/>
        	<meta name="twitter:card" content={job.ShortDescription} />
        	<meta
