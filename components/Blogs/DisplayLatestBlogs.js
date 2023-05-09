@@ -8,11 +8,11 @@ export function DisplayLatestBlogs({Alllatestblogs}) {
 
   	return (
 	    <div className="lg:sticky top-0 bottom-10 flex flex-col w-full lg:w-[28%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 scroll_width">
-			{Alllatestblogs.map(({news_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
+			{Alllatestblogs.map(({blogs_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
 			  	<Link 
 			  		href={{
-	     				pathname: '/DisplayNews',
-	     				query:{news_id:news_id}
+	     				pathname: '/DisplayBlogs',
+	     				query:{blogs_id:blogs_id}
 	    			}}
 			  		key={index}
 			  	>

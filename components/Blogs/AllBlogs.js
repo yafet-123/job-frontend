@@ -56,7 +56,7 @@ export function AllBlogs({allblogs,categories}) {
         {allblogs.map(({blogs_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <Link key={index} 
             href={`/DisplayBlogs?blogs_id=${blogs_id}`}
-          >
+          > 
             <a className="group">
               <div className="relative">
                 <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
