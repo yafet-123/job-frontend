@@ -125,7 +125,7 @@ export async function getServerSideProps(context){
     }
   }
 }
-
+ 
 export default function DisplayEntertemiment({entertainment, Allcategoryet ,Alllatestentertainment, entertainmentCategory}) {
   const router = useRouter()
 

@@ -4,6 +4,7 @@ import moment from 'moment';
 import { useRouter } from 'next/router'
 import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
+import Link from 'next/link'
 
 export function AllBlogs({allblogs,categories}) {
   const router = useRouter()
@@ -51,7 +52,7 @@ export function AllBlogs({allblogs,categories}) {
         </ul>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mb-5 w-full h-full">
+      <div className="allListGrid mt-10">
         {allblogs.map(({blogs_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <Link key={index} 
             href={`/DisplayBlogs?blogs_id=${blogs_id}`}

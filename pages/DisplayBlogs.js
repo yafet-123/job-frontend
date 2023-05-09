@@ -5,6 +5,7 @@ import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/common/MainHeader';
 import { DisplayIndvidualBlogs } from '../components/Blogs/DisplayIndvidualBlogs';
 import { DisplayLatestBlogs } from '../components/Blogs/DisplayLatestBlogs';
+import Head from 'next/head'
 
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
@@ -126,15 +127,33 @@ export async function getServerSideProps(context){
     }
   }
 }
-
+ 
 export default function DisplayBlogs({blogs,Alllatestblogs, blogsCategory,AllcategoryBlogs}) {
   const router = useRouter()
   const shareUrl = router.asPath
   return (
     <React.Fragment>
-      <MainHeader title="Hulu Media : Display Blogs" /> 
+      <Head>
+        <title>Hulu Media : Display Blogs</title>
+        <meta property="og:url" content={`https://job-frontend-main.vercel.app${router.asPath}`}/>
+        <meta property="og:type" content="website" />
+        <meta property="fb:app_id" content="1233665570615472" />
+        <meta
+          property="og:title"
+          content="Hulu Media : Display Blogs"
+        />
+        <meta name="twitter:card" content={blogs.ShortDescription} />
+        <meta
+          property="og:description"
+          content={blogs.ShortDescription}
+        />
+        <meta property="og:image" content={blogs.Image} />
+        <meta property="og:image:secure_url" content={blogs.Image} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="300" />
+      </Head>
       <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
-        <DisplayIndvidualBlogs blogs={blogs} blogsCategory={blogsCategory} AllcategoryBlogs={AllcategoryBlogs} shareUrl={shareUrl} />
+        <DisplayIndvidualBlogs blogs={blogs} blogsCategory={blogsCategory} AllcategoryBlogs={AllcategoryBlogs} shareUrl={router.asPath} />
         <DisplayLatestBlogs Alllatestblogs={Alllatestblogs}/>          
       </section>
     </React.Fragment>
