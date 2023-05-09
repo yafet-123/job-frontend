@@ -59,8 +59,8 @@ export function CompanyJobs({jobs,shareUrl}) {
 
 					<div className="!bg-transparent !text-black dark:!text-white mt-5 w-full" dangerouslySetInnerHTML={{ __html: shortDescreption }} />
 
-					<div className="flex flex-col lg:flex-row items-center justify-between text-sm my-5"> 
-						<h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
+					<div className="flex flex-col lg:flex-row items-center justify-between text-md my-5"> 
+						<h3 className="text-left font-normal text-md lg:text-lg dark:text-white text-slate-600">
                     		{moment(ModifiedDate).utc().format('MMM DD')}
                   		</h3>
 
@@ -77,7 +77,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 
 						<p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
                     		<AiOutlineEye size={20} />
-                    		<span className="ml-3 text-xs">{view}</span>
+                    		<span className="ml-3 text-md">{view}</span>
                   		</p>
             		</div>
 				</div>
