@@ -2,10 +2,10 @@ import React, {useState,useEffect} from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { prisma } from '../util/db.server.js'
-import { MainHeader } from '../components/common/MainHeader';
 import { DisplayIndvidualentertainment } from '../components/Entertemiment/DisplayIndvidualentertainment';
 import { DisplayLatestentertainment } from '../components/Entertemiment/DisplayLatestentertainment';
- 
+import Head from 'next/head';
+
 export async function getServerSideProps(context){
   	const {params,req,res,query} = context
   	const id = query.entertainment_id
