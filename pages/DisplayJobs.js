@@ -91,24 +91,24 @@ export default function DisplayJobs({job, categories}) {
   return (
 	 	<React.Fragment>
 	     <Head>
-       <title>Hulu Media : Display News</title>
-       <meta property="og:url" content={`https://job-frontend-main.vercel.app${router.asPath}`}/>
-       <meta property="og:type" content="website" />
-       <meta property="fb:app_id" content="1233665570615472" />
-       <meta
-         property="og:title"
-         content="Hulu Media : Display Jobs"
-       	/>
-       	<meta name="twitter:card" content={job.ShortDescription} />
-       	<meta
-        	property="og:description"
-        	content={job.ShortDescription}
-      	/>
-      	<meta property="og:image" content={job.image} />
-      	<meta property="og:image:secure_url" content={job.image} />
-      	<meta property="og:image:width" content="1200" />
-      	<meta property="og:image:height" content="300" />
-    	</Head>
+	       <title>Hulu Media : Display Jobs</title>
+	       <meta property="og:url" content={`https://job-frontend-main.vercel.app${router.asPath}`}/>
+	       <meta property="og:type" content="website" />
+	       <meta property="fb:app_id" content="1233665570615472" />
+	       <meta
+	         property="og:title"
+	         content="Hulu Media : Display Jobs"
+	       	/>
+	       	<meta name="twitter:card" content={job.ShortDescription} />
+	       	<meta
+	        	property="og:description"
+	        	content={job.ShortDescription}
+	      	/>
+	      	<meta property="og:image" content={job.image} />
+	      	<meta property="og:image:secure_url" content={job.image} />
+	      	<meta property="og:image:width" content="1200" />
+	      	<meta property="og:image:height" content="300" />
+	    	</Head>
 			<section className="flex flex-col w-full h-full px-5 lg:px-56 bg-[#e6e6e6] dark:bg-[#02201D] py-52">
 		  	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply} quotes={job.ShortDescription} shareUrl={router.asPath} />
 		  	<DisplayIndividualJobs job={job} categories={categories}/>

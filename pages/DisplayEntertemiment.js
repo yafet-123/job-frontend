@@ -128,20 +128,30 @@ export async function getServerSideProps(context){
 
 export default function DisplayEntertemiment({entertainment, Allcategoryet ,Alllatestentertainment, entertainmentCategory}) {
   const router = useRouter()
-  console.log(entertainment)
-  const [shareUrl, setshareUrl] = useState("")
-  const [image , setimage] = useState("") 
-  const [quotes, setquotes] = useState("")
-  useEffect(()=>{
-    setimage(entertainment.image)
-    setquotes(entertainment.ShortDescription)
-    setshareUrl(router.asPath)
-  },[])
+
   return (
   	<React.Fragment>
-      <MainHeader title="Hulu Media : Display Entertainment" image={image} quotes={quotes} shareUrl={shareUrl} />
+      <Head>
+        <title>Hulu Media : Display Entertainment</title>
+        <meta property="og:url" content={`https://job-frontend-main.vercel.app${router.asPath}`}/>
+        <meta property="og:type" content="website" />
+        <meta property="fb:app_id" content="1233665570615472" />
+        <meta
+          property="og:title"
+          content="Hulu Media : Display Entertainment"
+        />
+        <meta name="twitter:card" content={entertainment.ShortDescription} />
+        <meta
+          property="og:description"
+          content={entertainment.ShortDescription}
+        />
+        <meta property="og:image" content={entertainment.image} />
+        <meta property="og:image:secure_url" content={entertainment.image} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="300" />
+      </Head>
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:pl-80 lg:px-32 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
-		    <DisplayIndvidualentertainment Allcategoryet={Allcategoryet} entertainment={entertainment} entertainmentCategory={entertainmentCategory} shareUrl={shareUrl} quotes={quotes} />
+		    <DisplayIndvidualentertainment Allcategoryet={Allcategoryet} entertainment={entertainment} entertainmentCategory={entertainmentCategory} shareUrl={router.asPath} quotes={entertainment.ShortDescription} />
         <DisplayLatestentertainment Alllatestentertainment={Alllatestentertainment}/>          
 	    </section>
 	  </React.Fragment>
