@@ -6,7 +6,7 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
   const ogurl = `https://job-frontend-main.vercel.app${shareUrl}`
   const ogImage=`https://job-frontend-main.vercel.app/api/og?images=${image}`
   console.log(image)
-
+ 
   useEffect(() => {
     async function generateOgImage() {
       const response = await fetch(`../api/og-image?image=${image}`);

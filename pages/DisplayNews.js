@@ -5,7 +5,8 @@ import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/common/MainHeader';
 import { DisplayIndvidualNews } from '../components/News/DisplayIndvidualNews';
 import { DisplayLatestNews } from '../components/News/DisplayLatestNews';
- 
+import Head from 'next/head';
+
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const id = query.news_id
@@ -142,7 +143,25 @@ export default function DisplayNews({ news,Alllatestnews, AllcategoryNews, newsC
   console.log(news.Image)
   return (
   	<React.Fragment>
-      <MainHeader title="Hulu Media : Display News" news={news} type="News" image={image} quotes={quotes} shareUrl={shareUrl} />
+      <Head>
+        <title>Hulu Media : Display News</title>
+        <meta property="og:url" content={`https://job-frontend-main.vercel.app${router.asPath}`}/>
+        <meta property="og:type" content="website" />
+        <meta property="fb:app_id" content="1233665570615472" />
+        <meta
+          property="og:title"
+          content="Hulu Media : Display News"
+        />
+        <meta name="twitter:card" content={news.ShortDescription} />
+        <meta
+          property="og:description"
+          content={news.ShortDescription}
+        />
+        <meta property="og:image" content={news.Image} />
+        <meta property="og:image:secure_url" content={news.Image} />
+        <meta property="og:image:width" content="400" />
+        <meta property="og:image:height" content="300" />
+      </Head>
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:pl-80 lg:px-32 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
 	      <DisplayIndvidualNews news={news} AllcategoryNews={AllcategoryNews} newsCategory={newsCategory} shareUrl={shareUrl} quotes={quotes} />
         <DisplayLatestNews Alllatestnews={Alllatestnews} />          
