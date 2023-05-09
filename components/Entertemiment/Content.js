@@ -7,7 +7,7 @@ import {Share} from '../common/Share.js'
 import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 import Image from 'next/future/image'
  
-export function Content({entertainments,setimage}) {
+export function Content({entertainments}) {
     const router = useRouter()
     const shareUrl = router.asPath
     const [viewmodalOn, setviewModalOn] = useState(false)
@@ -87,7 +87,7 @@ export function Content({entertainments,setimage}) {
                                         {Header}
                                     </h1>
 
-                                    <div className="group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-2 text-sm" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
+                                    <div className="group-hover:text-[#009688] bg-transparent text-black dark:!text-white mt-2 text-md" dangerouslySetInnerHTML={{ __html: ShortDescription }} />
                                 </div>
                             </button>
 

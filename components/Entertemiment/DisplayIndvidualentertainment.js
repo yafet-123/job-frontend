@@ -9,7 +9,6 @@ import { AiOutlineShareAlt, AiOutlineEye } from 'react-icons/ai'
 import 'react-quill/dist/quill.snow.css';
 
 export function DisplayIndvidualentertainment({entertainment,entertainmentCategory, Allcategoryet,shareUrl,quotes}) {
-	const quoteRef = useRef(null)
 	const router = useRouter()
 	const [id, setid] = useState()
   	const [viewmodalOn, setviewModalOn] = useState(false)
@@ -63,7 +62,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
 	                  					query:{entertainment_id:data.Entertainment.entertainment_id}
 	                				})
 	              				}}
-	              				id={data.Entertainment.entertainment_id} ref={quoteRef} className="flex flex-col w-full group pt-5"
+	              				id={data.Entertainment.entertainment_id} className="flex flex-col w-full group pt-5"
 	            			>
 	            				<div className="w-full !h-52 lg:!h-72 relative">
 	                				<Image src={data.Entertainment.Image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>

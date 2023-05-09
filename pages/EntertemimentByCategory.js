@@ -10,7 +10,7 @@ import moment from 'moment';
 import { MainHeader } from '../components/common/MainHeader';
 import { ETSidebar } from '../components/Entertemiment/ETSidebar';
 import { Content } from '../components/Entertemiment/Content';
-
+ 
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
   	const category_id = query.category_id
@@ -82,8 +82,6 @@ export async function getServerSideProps(context){
 }
 
 export default function EntertemimentByCategory({Allentertainment, categories}) {
-	const [image , setimage] = useState("")
-  	console.log(image)
 	return(
 		<React.Fragment>
       		<MainHeader title="Hulu Media : Entertemiment" />
