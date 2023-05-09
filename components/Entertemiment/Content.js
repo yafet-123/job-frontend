@@ -65,7 +65,7 @@ export function Content({entertainments,setimage}) {
                                         query:{entertainment_id:entertainment_id}
                                     })
                                 }}
-                                id={entertainment_id} ref={quoteRef} key={index}  className="flex flex-col w-full lg:mt-5 group pt-5"
+                                id={entertainment_id} key={index}  className="flex flex-col w-full lg:mt-5 group pt-5"
                             > 
                                 <div className="w-full !h-52 lg:!h-72 relative">
                                     <Image src={image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest entertainment image"/>

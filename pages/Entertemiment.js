@@ -5,7 +5,7 @@ import { MainHeader } from '../components/common/MainHeader';
 import { ETSidebar } from '../components/Entertemiment/ETSidebar';
 import { Content } from '../components/Entertemiment/Content';
 import { prisma } from '../util/db.server.js'
-
+ 
 export async function getServerSideProps(context){
 	const data = await prisma.EntertainmentCategory.findMany({
 		orderBy : {
