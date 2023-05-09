@@ -132,15 +132,6 @@ export async function getServerSideProps(context){
 
 export default function DisplayNews({ news,Alllatestnews, AllcategoryNews, newsCategory}) {
   const router = useRouter()
-  const [shareUrl, setshareUrl] = useState("")
-  const [image , setimage] = useState("") 
-  const [quotes, setquotes] = useState("")
-  useEffect(()=>{
-    setimage(news.Image)
-    setquotes(news.ShortDescription)
-    setshareUrl(router.asPath)
-  },[news.Image, news.ShortDescription, router.asPath ])
-  console.log(news.Image)
   return (
   	<React.Fragment>
       <Head>
@@ -159,7 +150,7 @@ export default function DisplayNews({ news,Alllatestnews, AllcategoryNews, newsC
         />
         <meta property="og:image" content={news.Image} />
         <meta property="og:image:secure_url" content={news.Image} />
-        <meta property="og:image:width" content="400" />
+        <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="300" />
       </Head>
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:pl-80 lg:px-32 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
