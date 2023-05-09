@@ -104,8 +104,8 @@ export default function DisplayJobs({job, categories}) {
         	property="og:description"
         	content={job.ShortDescription}
       	/>
-      	<meta property="og:image" content={job.Image} />
-      	<meta property="og:image:secure_url" content={job.Image} />
+      	<meta property="og:image" content={job.image} />
+      	<meta property="og:image:secure_url" content={job.image} />
       	<meta property="og:image:width" content="1200" />
       	<meta property="og:image:height" content="300" />
     	</Head>
