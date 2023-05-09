@@ -159,7 +159,7 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
 		      			}
 		      		</div>
 		      	</div>
-	      		
+	      		 
 	      		<GroupLatestJobs Alllatestjobs={Alllatestjobs} />
 	     		</div>
 	    	</div>    	

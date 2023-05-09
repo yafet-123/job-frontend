@@ -25,7 +25,6 @@ export function CompanyJobs({jobs,shareUrl}) {
 						<Link href="/DisplayJobs">
 							<a className="text-sm lg:text-2xl text-[#009688] font-bold">Job Name: {JobsName} </a>
 						</Link>
-						<p className="text-xs lg:text-lg text-[#009688]">Posted: {moment(ModifiedDate).utc().format('MMM DD')}</p>
 					</div>
 
 					<div className="flex flex-col-reverse md:flex-row items-center">
@@ -61,10 +60,9 @@ export function CompanyJobs({jobs,shareUrl}) {
 					<div className="!bg-transparent !text-black dark:!text-white mt-5 w-full" dangerouslySetInnerHTML={{ __html: shortDescreption }} />
 
 					<div className="flex flex-col lg:flex-row items-center justify-between text-sm my-5"> 
-						<p className="mb-2 lg:mb-0 flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
-						  	<AiOutlineEye size={32} />
-						  	<span className="ml-3">{view}</span>
-						</p>
+						<h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
+                    		{moment(ModifiedDate).utc().format('MMM DD')}
+                  		</h3>
 
 						<Link 
 							href={{
@@ -77,22 +75,13 @@ export function CompanyJobs({jobs,shareUrl}) {
 							</a>
 						</Link>
 
-						<button
-						    onClick={() => {
-						        clickedForview()
-						        setid(index)
-						        setquotes(quote)
-						    }} 
-						    className="mt-2 lg:mt-0 text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 duration-1000 ease-in-out rounded ">
-						    <AiOutlineShareAlt size={32} />
-						</button>
+						<p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
+                    		<AiOutlineEye size={20} />
+                    		<span className="ml-3 text-xs">{view}</span>
+                  		</p>
             		</div>
 				</div>
 			))}
-
-			{viewmodalOn && 
-        		<Share setviewModalOn={setviewModalOn} shareUrl={shareUrl} id={id} quote={quotes} />
-      		}
 		</div>
 	);
 }
