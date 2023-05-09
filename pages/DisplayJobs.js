@@ -86,29 +86,33 @@ export async function getServerSideProps(context){
 
 export default function DisplayJobs({job, categories}) {
 	const router = useRouter()
-	const [shareUrl, setshareUrl] = useState()
-  const [image , setimage] = useState()
-  const [quotes, setquotes] = useState()
-  const [loading,setloading] = useState(true)
-  useEffect(()=>{
-    setimage(job.image)
-    setquotes(job.shortDescreption)
-    setshareUrl(router.asPath)
-    setloading(false)
-  },[])
 
-  
-  	return (
-	  	<React.Fragment>
-	      <MainHeader title="Hulu Media : Display Jobs" type="jobs" image={job.image} quotes={quotes} shareUrl={shareUrl} />
-		    <section className="flex flex-col w-full h-full px-5 lg:px-56 bg-[#e6e6e6] dark:bg-[#02201D] py-52">
-		      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply} quotes={quotes} shareUrl={shareUrl} />
-		      	<DisplayIndividualJobs job={job} categories={categories}/>
-		      	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply} quotes={quotes} shareUrl={shareUrl} />
-		    </section>
-		  </React.Fragment>
-  	);
- 
-
-  
+  return (
+	 	<React.Fragment>
+	     <Head>
+       <title>Hulu Media : Display News</title>
+       <meta property="og:url" content={`https://job-frontend-main.vercel.app${router.asPath}`}/>
+       <meta property="og:type" content="website" />
+       <meta property="fb:app_id" content="1233665570615472" />
+       <meta
+         property="og:title"
+         content="Hulu Media : Display News"
+       	/>
+       	<meta name="twitter:card" content={job.ShortDescription} />
+       	<meta
+        	property="og:description"
+        	content={job.ShortDescription}
+      	/>
+      	<meta property="og:image" content={job.Image} />
+      	<meta property="og:image:secure_url" content={job.Image} />
+      	<meta property="og:image:width" content="1200" />
+      	<meta property="og:image:height" content="300" />
+    	</Head>
+			<section className="flex flex-col w-full h-full px-5 lg:px-56 bg-[#e6e6e6] dark:bg-[#02201D] py-52">
+		  	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply} quotes={job.ShortDescription} shareUrl={router.asPath} />
+		  	<DisplayIndividualJobs job={job} categories={categories}/>
+		  	<TopAndBottomOfDisplayJobs DeadLine={job.DeadLine} Apply={job.Apply} quotes={job.ShortDescription} shareUrl={router.asPath} />
+			</section>
+		</React.Fragment>
+  );
 }

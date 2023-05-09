@@ -154,7 +154,7 @@ export default function DisplayNews({ news,Alllatestnews, AllcategoryNews, newsC
         <meta property="og:image:height" content="300" />
       </Head>
 	    <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:pl-80 lg:px-32 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
-	      <DisplayIndvidualNews news={news} AllcategoryNews={AllcategoryNews} newsCategory={newsCategory} shareUrl={router.asPath} quotes={quotes} />
+	      <DisplayIndvidualNews news={news} AllcategoryNews={AllcategoryNews} newsCategory={newsCategory} shareUrl={router.asPath} quotes={news.ShortDescription} />
         <DisplayLatestNews Alllatestnews={Alllatestnews} />          
 	    </section>
 	  </React.Fragment>
