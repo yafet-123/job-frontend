@@ -35,7 +35,7 @@ export const FollowingTheDream = ({jobcount,newCount,entertainmentcount}) => {
         </div>
         <div className="flex flex-col text-left justify-center lg:w-3/4  text-[#165248] dark:text-white">
           <p className="md:text-2xl font-semibold text-md text-lg text-left">
-            Hulumedia is one the most online recruitment provider in ethiopia, 
+            HuluNeger is one the most online recruitment provider in ethiopia, 
             The website advertises jobs across a wide range of job types by different employers, 
             inlcuding private, local, international, who are hiring in ethiopia.
           </p>

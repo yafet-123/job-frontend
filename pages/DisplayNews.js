@@ -138,6 +138,10 @@ export default function DisplayNews({ news,Alllatestnews, AllcategoryNews, newsC
         <meta property="og:url" content={`https://job-frontend-main.vercel.app${router.asPath}`}/>
         <meta property="og:type" content="website" />
         <meta property="fb:app_id" content="1233665570615472" />
+        <meta name="description" content="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia." 
+        />
         <meta
           property="og:title"
           content="Hulu Media : Display News"
