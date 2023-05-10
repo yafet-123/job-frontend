@@ -13,8 +13,8 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <link rel="apple-touch-icon" sizes="180x180" href="/logo3.png" />
+        <link rel="icon" type="image/png" sizes="64x64" href="/logo3.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/logo3.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/logo3.png" />
 
         <meta property="og:url" content={`https://job-frontend-main.vercel.app${shareUrl}`}/>
         <meta property="og:type" content="website" />
