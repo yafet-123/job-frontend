@@ -135,22 +135,22 @@ export default function DisplayNews({ news,Alllatestnews, AllcategoryNews, newsC
   	<React.Fragment>
       <Head>
         <title>Hulu Media : Display News</title>
-        <meta property="og:url" content={`https://job-frontend-main.vercel.app${router.asPath}`}/>
-        <meta property="og:type" content="website" />
-        <meta property="fb:app_id" content="1233665570615472" />
         <meta name="description" content="HuluNeger is one the most online recruitment provider in ethiopia, 
           The website advertises jobs across a wide range of job types by different employers, 
           inlcuding private, local, international, who are hiring in ethiopia." 
         />
-        <meta
-          property="og:title"
-          content="Hulu Media : Display News"
-        />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo3.png" />
+        <link rel="icon" type="image/png" sizes="64x64" href="/logo3.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/logo3.png" />
+
+        <meta property="og:url" content={`https://job-frontend-main.vercel.app${router.asPath}`}/>
+        <meta property="og:type" content="website" />
+        <meta property="fb:app_id" content="1233665570615472" />
+        <meta property="og:title" content="Hulu Media : Display News"/>
         <meta name="twitter:card" content={news.ShortDescription} />
-        <meta
-          property="og:description"
-          content={news.ShortDescription}
-        />
+        <meta property="og:description" content={news.ShortDescription}/>
         <meta property="og:image" content={news.Image} />
         <meta property="og:image:secure_url" content={news.Image} />
         <meta property="og:image:width" content="1200" />
