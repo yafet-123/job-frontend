@@ -7,7 +7,7 @@ import axios from "axios";
 import { useRouter } from 'next/router'
 import { prisma } from '../util/db.server.js'
 import Head from 'next/head';
-
+ 
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const id = query.job_id
