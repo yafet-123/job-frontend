@@ -22,8 +22,8 @@ export const MainHeader = ({ title, image , quotes, shareUrl, type, news }) => {
         <meta property="og:title" content={title} />
         <meta name="twitter:card" content={quotes} />
         <meta property="og:description" content={quotes} />
-        <meta property="og:image" content={ogImageUrl} />
-        <meta property="og:image:secure_url" content={ogImageUrl} />
+        <meta property="og:image" content={image} />
+        <meta property="og:image:secure_url" content={image} />
         <meta property="og:image:width" content="400" />
         <meta property="og:image:height" content="300" />
       </Head>
