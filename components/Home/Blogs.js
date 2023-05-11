@@ -72,9 +72,6 @@ export function Blogs({blogs}) {
                       </span>
                     ))}
                   </h3>
-                  <h3 className="text-md lg:text-lg text-slate-600 dark:text-white font-bold group-hover:text-xl group-hover:text-[#009688]">
-                    {moment(CreatedDate).utc().format('YYYY-MM-DD')}
-                  </h3>
                 </div>
                 <h1 className="group-hover:underline text-left text-xl lg:text-2xl font-extrabold text-slate-600 dark:text-[#009688] tracking-wide leading-snug w-full group-hover:text-3xl group-hover:text-[#009688]">
                   {Header}
@@ -83,11 +80,9 @@ export function Blogs({blogs}) {
               </button>
 
               <div className="flex items-center justify-between text-sm py-5"> 
-                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 rounded ">
-                  <AiOutlineEye size={32} />
-                  <span className="ml-3">{view}</span>
-                </p>
-
+                <h3 className="text-left font-normal text-sm lg:text-md dark:text-white text-slate-600">
+                  {moment(CreatedDate).utc().format('MMMM, Do YYYY')}
+                </h3>
                 <button
                     onClick = {()=>{
                       router.push({
@@ -99,15 +94,10 @@ export function Blogs({blogs}) {
                     Read More
                 </button>
 
-                <button
-                    onClick={() => {
-                        clickedForview()
-                        setid(Header)
-                        setquotes(quote)
-                    }} 
-                    className="text-black dark:text-white hover:text-[#009688] font-bold py-2 px-4 hover:scale-110 rounded ">
-                    <AiOutlineShareAlt size={32} />
-                </button>
+                <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
+                  <AiOutlineEye size={20} />
+                  <span className="ml-3 text-xs">{view}</span>
+                </p>
               </div>
             </div>
           </div>
