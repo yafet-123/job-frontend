@@ -28,7 +28,7 @@ export function CourseHead({handleChapter,handleCourse}) {
                   key={index} 
                   className={
                     router.query.CategoryName == data.title
-                      ? "bg-[#009688] mr-10 text-2xl font-bold text-black p-4 whitespace-nowrap"
+                      ? "bg-[#009688] text-2xl font-bold text-black p-4 whitespace-nowrap"
                       : "mx-5 text-2xl font-bold text-white hover:border-b-4 border-blue-800 whitespace-nowrap"
                     }
                   >
