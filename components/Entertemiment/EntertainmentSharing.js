@@ -38,7 +38,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <FacebookShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                quote="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <FacebookIcon size={40} round />
@@ -48,7 +50,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <TelegramShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                title={quotes}
+                title="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <TelegramIcon size={40} round />
@@ -58,7 +62,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <TwitterShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                quote="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <TwitterIcon size={40} round />
@@ -68,7 +74,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <PinterestShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                quote="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <PinterestIcon size={40} round />
@@ -78,7 +86,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <RedditShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                quote="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <RedditIcon size={40} round />
@@ -90,7 +100,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <ViberShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                quote="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <ViberIcon size={40} round />
@@ -100,7 +112,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <WhatsappShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                quote="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <WhatsappIcon size={40} round />
@@ -110,7 +124,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <LinkedinShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                quote="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <LinkedinIcon size={40} round />
@@ -120,7 +136,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <FacebookMessengerShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                quote="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <FacebookMessengerIcon size={40} round />
@@ -130,7 +148,9 @@ export function EntertainmentSharing({shareUrl,quotes}) {
             <div className="mx-1">
               <EmailShareButton
                 url={`https://job-frontend-main.vercel.app${shareUrl}`}
-                quote={quotes}
+                quote="HuluNeger is one the most online recruitment provider in ethiopia, 
+          The website advertises jobs across a wide range of job types by different employers, 
+          inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
                 <EmailIcon size={40} round />
