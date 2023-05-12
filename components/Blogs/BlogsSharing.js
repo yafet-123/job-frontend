@@ -42,7 +42,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <FacebookIcon size={40} round />
+                <FacebookIcon size={32} round />
               </FacebookShareButton>
             </div>
 
@@ -54,7 +54,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <PinterestIcon size={40} round />
+                <PinterestIcon size={32} round />
               </PinterestShareButton>
             </div>
 
@@ -66,7 +66,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <RedditIcon size={40} round />
+                <RedditIcon size={32} round />
               </RedditShareButton>
             </div>
 
@@ -78,7 +78,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <TelegramIcon size={40} round />
+                <TelegramIcon size={32} round />
               </TelegramShareButton>
             </div>
 
@@ -90,7 +90,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <TwitterIcon size={40} round />
+                <TwitterIcon size={32} round />
               </TwitterShareButton>
             </div>
           </div>
@@ -104,7 +104,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <ViberIcon size={40} round />
+                <ViberIcon size={32} round />
               </ViberShareButton>
             </div>
 
@@ -116,7 +116,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <WhatsappIcon size={40} round />
+                <WhatsappIcon size={32} round />
               </WhatsappShareButton>
             </div>
 
@@ -128,7 +128,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <LinkedinIcon size={40} round />
+                <LinkedinIcon size={32} round />
               </LinkedinShareButton>
             </div>
 
@@ -140,7 +140,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <FacebookMessengerIcon size={40} round />
+                <FacebookMessengerIcon size={32} round />
               </FacebookMessengerShareButton>
             </div>
 
@@ -152,7 +152,7 @@ export function BlogsSharing({shareUrl}) {
           inlcuding private, local, international, who are hiring in ethiopia."
                 hashtag={'#huluMedia'}
               >
-                <EmailIcon size={40} round />
+                <EmailIcon size={32} round />
               </EmailShareButton>
             </div>
           </div>

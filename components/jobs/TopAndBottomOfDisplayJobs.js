@@ -27,7 +27,6 @@ import {
   LineIcon,
 } from 'react-share';
 
-
 export function TopAndBottomOfDisplayJobs({DeadLine,Apply,quotes,shareUrl}) {
   return (
     <div className="bg-neutral-300 dark:bg-slate-700 flex flex-col lg:flex-row justify-between items-center w-full lg:h-28 border rounded-lg dark:border-slate-700 px-0 lg:px-3 py-20 my-2">
