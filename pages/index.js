@@ -86,7 +86,6 @@ export async function getStaticProps(){
       },
     }
   });
-
   const entertainments = await prisma.Entertainment.findMany({
     take:-5,
     orderBy : {
@@ -122,7 +121,6 @@ export async function getStaticProps(){
     ModifiedDate:data.ModifiedDate,
     Category:data.NewsCategoryRelationship
   }))
-
   const latestentertainments = entertainments.map((data)=>({
     entertainment_id:data.entertainment_id,
     Header:data.Header,
@@ -184,6 +182,7 @@ export async function getStaticProps(){
     blogs_id:data.blogs_id,
     Header:data.Header,
     image:data.Image,
+    view:data.view,
     ShortDescription:data.ShortDescription,
     userName:data.User.UserName,
     CreatedDate:data.CreatedDate,
