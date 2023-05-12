@@ -12,11 +12,7 @@ export function GroupLatestJobs({Alllatestjobs}) {
 					<AiOutlineClockCircle size={20} />
 					<span className="ml-2 lg:ml-5">Latest Jobs</span>
 				</div>
-				<Link href="">
-				  <a className="font-bold text-sm md:text-md lg:text-lg text-white p-4 bg-[#009688] capitalize border rounded-2xl">
-				    view all jobs
-				  </a>
-				</Link>
+				
 		     </div>
 
 			<div className="md:max-w-7xl md:mx-auto bg-neutral-200 dark:bg-slate-700 w-full h-[40rem] border rounded-lg md:mt-10 shadow-2xl shadow-sky-200 flex flex-col overflow-y-scroll">
