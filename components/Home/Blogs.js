@@ -95,7 +95,7 @@ export function Blogs({blogs}) {
                 </button>
 
                 <p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
-                  <AiOutlineEye size={20} />
+                  <AiOutlineEye size={30} />
                   <span className="ml-3 text-xs">{view}</span>
                 </p>
               </div>
