@@ -16,7 +16,7 @@ export const SearchBar = () => {
          />
         <div className="h-16 bg-[#009688] hover:bg-opacity-50 text-white dark:text-black lg:px-3 flex items-center justify-center border border[#6471DD] border-l-2 rounded-xl px-5 mt-5">
           <AiOutlineSearch size={20} />
-          <button className="font-bold text-xs md:text-xl text-white dark:text-black lg:px-3 flex items-center justify-center">
+          <button className="font-bold text-xs md:text-xl hover:text-black text-white dark:text-black lg:px-3 flex items-center justify-center">
             Search
           </button>
         </div>
