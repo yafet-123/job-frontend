@@ -76,7 +76,6 @@ export async function getServerSideProps(){
 export default function AiSearch({categories, allaiserachdata}) {
     const { status, data } = useSession();
     return (
-      
         <React.Fragment>
           <MainHeader title="Ai Search Dashboard" />
           <section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
