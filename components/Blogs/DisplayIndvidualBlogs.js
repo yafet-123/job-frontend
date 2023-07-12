@@ -59,7 +59,7 @@ export function DisplayIndvidualBlogs({blogs, blogsCategory,shareUrl,Allcategory
 	            			<button 
 	              				onClick = {()=>{
 	                				router.push({
-	                  					pathname:"/DisplayNews",
+	                  					pathname:"/Blogs/Display",
 	                  					query:{blogs_id:data.Blogs.blogs_id}
 	                				})
 	              				}}

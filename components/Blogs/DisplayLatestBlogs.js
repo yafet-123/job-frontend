@@ -11,7 +11,7 @@ export function DisplayLatestBlogs({Alllatestblogs}) {
 			{Alllatestblogs.map(({blogs_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
 			  	<Link 
 			  		href={{
-	     				pathname: '/DisplayBlogs',
+	     				pathname: '/Blogs/Display',
 	     				query:{blogs_id:blogs_id}
 	    			}}
 			  		key={index}

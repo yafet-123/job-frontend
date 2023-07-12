@@ -55,7 +55,7 @@ export function AllBlogs({allblogs,categories}) {
       <div className="allListGrid mt-10">
         {allblogs.map(({blogs_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <Link key={index} 
-            href={`/DisplayBlogs?blogs_id=${blogs_id}`}
+            href={`/Blogs/Display?blogs_id=${blogs_id}`}
           > 
             <a className="group">
               <div className="relative">
