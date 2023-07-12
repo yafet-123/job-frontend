@@ -51,7 +51,7 @@ export function SlideNews({allnews}) {
               <button 
                 onClick = {()=>{
                   router.push({
-                    pathname:"/DisplayNews",
+                    pathname:"/News/Display",
                     query:{news_id:news_id}
                   })
                 }}
@@ -80,7 +80,7 @@ export function SlideNews({allnews}) {
                 <button
                     onClick = {()=>{
                       router.push({
-                        pathname:"/DisplayNews",
+                        pathname:"/News/Display",
                         query:{news_id:news_id}
                       })
                     }}

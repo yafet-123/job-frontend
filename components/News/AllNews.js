@@ -20,7 +20,7 @@ export function AllNews({allnews , setimage, setquotes}) {
       <div className="allListGrid">
         {allnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <Link key={index} 
-            href={`/DisplayNews?news_id=${news_id}`}
+            href={`/News/Display?news_id=${news_id}`}
           >
             <a className="group">
               <div className="relative">

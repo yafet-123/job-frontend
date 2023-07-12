@@ -9,7 +9,7 @@ export function DisplayLatestNews({Alllatestnews}) {
 	    <div className="lg:sticky top-0 bottom-10 flex flex-col w-full lg:w-[28%] h-full lg:h-[90rem] border rounded-lg shadow-2xl shadow-sky-200 scroll_width">
 			{Alllatestnews.map(({news_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
 			  	<Link 
-			  		href={`/DisplayNews?news_id=${news_id}`}
+			  		href={`/News/Display?news_id=${news_id}`}
 			  		key={index}
 			  	>
 			    	<a className="flex flex-col px-2 py-3 hover:bg-[#009688] group hover:rounded-3xl">
