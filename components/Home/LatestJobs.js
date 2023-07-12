@@ -30,7 +30,7 @@ export function LatestJobs({latestjobs}) {
               type = "button"
               onClick = {()=>{
                 router.push({
-                  pathname:"/DisplayJobs",
+                  pathname:"/Jobs/Display",
                   query:{job_id:data.job_id}
                 })
               }}

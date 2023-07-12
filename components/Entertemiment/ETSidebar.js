@@ -27,7 +27,7 @@ export function ETSidebar({categories}) {
               <button 
                 onClick = {()=>{
                   router.push({
-                    pathname:"/EntertemimentByCategory",
+                    pathname:"/Entertemiment/Category",
                     query:{category_id:item.category_id}
                   })
                 }}

@@ -42,7 +42,7 @@ export function Content({entertainments}) {
                                  <button 
                                     onClick = {()=>{
                                         router.push({
-                                          pathname:"/Search",
+                                          pathname:"/Entertemiment/Search",
                                           query:{searchValue:getSearchValue}
                                         })
                                     }}
@@ -61,7 +61,7 @@ export function Content({entertainments}) {
                             <button 
                                 onClick = {()=>{
                                     router.push({
-                                        pathname:"/DisplayEntertemiment",
+                                        pathname:"/Entertemiment/Display",
                                         query:{entertainment_id:entertainment_id}
                                     })
                                 }}

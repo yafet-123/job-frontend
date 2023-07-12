@@ -20,7 +20,7 @@ export function GroupLatestJobs({Alllatestjobs}) {
 					{Alllatestjobs.map((data, index) => (
 					  	<Link 
 						  	href={{
-				     			pathname: '/DisplayJobs',
+				     			pathname: '/Jobs/Display',
 				     			query:{job_id:data.job_id}
 				    		}}
 						  	key={index}

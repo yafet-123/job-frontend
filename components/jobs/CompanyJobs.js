@@ -22,7 +22,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 			{ jobs.map(({job_id,JobsName,ModifiedDate,CompanyName,Location,CareerLevel,DeadLine,image,shortDescreption,view},index)=>(
 				<div id={index} key={index} ref={quoteRef} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
 					<div className="flex justify-between items-center mb-5">
-						<Link href="/DisplayJobs">
+						<Link href="/Jobs/Display">
 							<a className="text-sm lg:text-2xl text-[#009688] font-bold">Job Name: {JobsName} </a>
 						</Link>
 					</div>
@@ -66,7 +66,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 
 						<Link 
 							href={{
-					     		pathname: '/DisplayJobs',
+					     		pathname: '/Jobs/Display',
 					     		query:{job_id:job_id}
 					        }}
 						>

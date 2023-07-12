@@ -58,7 +58,7 @@ export function Entertainment({latestentertainments}) {
               <button 
                 onClick = {()=>{
                   router.push({
-                    pathname:"/DisplayEntertemiment",
+                    pathname:"/Entertemiment/Display",
                     query:{entertainment_id:entertainment_id}
                   })
                 }}
@@ -87,7 +87,7 @@ export function Entertainment({latestentertainments}) {
                 <button
                     onClick = {()=>{
                       router.push({
-                        pathname:"/DisplayEntertemiment",
+                        pathname:"/Entertemiment/Display",
                         query:{entertainment_id:entertainment_id}
                       })
                     }}

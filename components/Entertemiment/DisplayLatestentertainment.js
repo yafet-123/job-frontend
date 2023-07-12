@@ -12,7 +12,7 @@ export function DisplayLatestentertainment({Alllatestentertainment}) {
 			{Alllatestentertainment.map(({entertainment_id, CreatedDate, Header, ShortDescription, image, Category}, index) => (
 			  	<Link 
 			  		href={{
-	     				pathname: '/DisplayEntertemiment',
+	     				pathname: '/Entertemiment/Display',
 	     				query:{entertainment_id:entertainment_id}
 	    			}}
 			  		key={index}

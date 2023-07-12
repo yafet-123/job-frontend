@@ -58,7 +58,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
 	        				<button 
 	              				onClick = {()=>{
 	                				router.push({
-	                  					pathname:"/DisplayEntertemiment",
+	                  					pathname:"/Entertemiment/Display",
 	                  					query:{entertainment_id:data.Entertainment.entertainment_id}
 	                				})
 	              				}}
