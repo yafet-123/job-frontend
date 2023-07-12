@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from "react";
 import Link from "next/link";
-import { JobRequirement } from "../data/JobRequirement";
-import { TopAndBottomOfDisplayJobs } from "../components/jobs/TopAndBottomOfDisplayJobs";
-import { DisplayIndividualJobs } from "../components/jobs/DisplayIndividualJobs";
+import { JobRequirement } from "../../../data/JobRequirement";
+import { TopAndBottomOfDisplayJobs } from "../../../components/jobs/TopAndBottomOfDisplayJobs";
+import { DisplayIndividualJobs } from "../../../components/jobs/DisplayIndividualJobs";
 import axios from "axios";
 import { useRouter } from 'next/router'
-import { prisma } from '../util/db.server.js'
+import { prisma } from '../../../util/db.server.js'
 import Head from 'next/head';
  
 export async function getServerSideProps(context){

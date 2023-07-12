@@ -1,9 +1,9 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { prisma } from '../util/db.server.js'
-import { DisplayIndvidualNews } from '../components/News/DisplayIndvidualNews';
-import { DisplayLatestNews } from '../components/News/DisplayLatestNews';
+import { prisma } from '../../../util/db.server.js'
+import { DisplayIndvidualNews } from '../../../components/News/DisplayIndvidualNews';
+import { DisplayLatestNews } from '../../../components/News/DisplayLatestNews';
 import Head from 'next/head';
  
 export async function getServerSideProps(context){

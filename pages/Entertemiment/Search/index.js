@@ -3,10 +3,10 @@ import Link from "next/link";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import moment from 'moment';
-import { MainHeader } from '../components/common/MainHeader';
-import { ETSidebar } from '../components/Entertemiment/ETSidebar';
-import { Content } from '../components/Entertemiment/Content';
-import { prisma } from '../util/db.server.js'
+import { MainHeader } from '../../../components/common/MainHeader';
+import { ETSidebar } from '../../../components/Entertemiment/ETSidebar';
+import { Content } from '../../../components/Entertemiment/Content';
+import { prisma } from '../../../util/db.server.js'
 
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
