@@ -65,7 +65,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                     type = "button"
                     onClick = {()=>{
                       router.push({
-                        pathname:"/JobsByLocation",
+                        pathname:"/Jobs/Location",
                         query:{location:data.LocationName, howmany:data._count.Job, image:data.Image, location_id:data.location_id}
                       })
                     }}
@@ -93,7 +93,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                     type = "button"
                     onClick = {()=>{
                       router.push({
-                        pathname:"/JobsByCategory",
+                        pathname:"/Jobs/Category",
                         query:{category: data.CategoryName, howmany:data._count.JobCategory, category_id: data.category_id}
                       })
                     }}

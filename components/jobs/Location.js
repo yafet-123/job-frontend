@@ -13,7 +13,7 @@ export function Location({locations}) {
 	   <div className="flex flex-col overflow-y-scroll scroll_width p-3">
 			{locations.map((data, index) => (
 			    <button 
-			    	className={` ${data.LocationName == location ? "bg-[#009688] dark:bg-[#009688] text-white" : "hover:bg-neutral-500 group-hover:text-white" } flex items-center group hover:bg-white px-4 py-3 mb-5`} 
+			    	className={` ${data.LocationName == location ? "bg-[#009688] dark:bg-[#009688] text-white" : "hover:bg-neutral-500" } flex items-center group hover:bg-white px-4 py-3 mb-5`} 
 			    	key={index}
 			    	onClick = {()=>{
 		                router.push({
