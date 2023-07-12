@@ -17,7 +17,7 @@ export function Location({locations}) {
 			    	key={index}
 			    	onClick = {()=>{
 		                router.push({
-		                    pathname:"/JobsByLocation",
+		                    pathname:"/Jobs/Location",
 		                    query:{location:data.LocationName, howmany:data._count.Job, image:data.Image, location_id:data.location_id}
 		                })
 		            }}

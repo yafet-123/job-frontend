@@ -1,13 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import { useState } from "react";
-import { prisma } from '../util/db.server.js'
-import { MainHeader } from '../components/common/MainHeader';
-import { Hero } from "../components/jobs/Hero";
-import { Searchjobs } from "../components/jobs/Searchjobs";
+import { prisma } from '../../util/db.server.js'
+import { MainHeader } from '../../components/common/MainHeader';
+import { Hero } from "../../components/jobs/Hero";
+import { Searchjobs } from "../../components/jobs/Searchjobs";
 
 export async function getServerSideProps(){
   const categories = await prisma.Category.findMany({
+    orderBy: {
+      ModifiedDate:"asc"
+    },
     include:{
        _count:{
         select:{
@@ -17,6 +20,9 @@ export async function getServerSideProps(){
     }
   });
   const locations = await prisma.Location.findMany({
+    orderBy: {
+      ModifiedDate:"asc"
+    },
     include:{
        _count:{
         select:{

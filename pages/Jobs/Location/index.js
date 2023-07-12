@@ -1,17 +1,16 @@
 import React from "react";
 import Link from "next/link";
-import { JobRequirement } from "../data/JobRequirement";
 import { AiOutlineMenu } from "react-icons/ai";
 import Image from 'next/image'
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useRouter } from 'next/router'
 import axios from 'axios';
-import { prisma } from '../util/db.server.js'
+import { prisma } from '../../../util/db.server.js'
 import moment from 'moment';
-import { MainHeader } from '../components/common/MainHeader';
-import { GroupLatestJobs } from '../components/jobs/GroupLatestJobs'
-import { CompanyJobs } from '../components/jobs/CompanyJobs'
-import { Location } from '../components/jobs/Location'
+import { MainHeader } from '../../../components/common/MainHeader';
+import { GroupLatestJobs } from '../../../components/jobs/GroupLatestJobs'
+import { CompanyJobs } from '../../../components/jobs/CompanyJobs'
+import { Location } from '../../../components/jobs/Location'
 
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context

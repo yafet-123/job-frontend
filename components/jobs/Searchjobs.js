@@ -5,7 +5,7 @@ import { BiCategory } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
 import { FaClock } from "react-icons/fa";
 import moment from 'moment';
-
+ 
 export function Searchjobs({categories,locations,latestjobs}) {
   const router = useRouter();
   const [jobs, setJobs] = useState("latest");

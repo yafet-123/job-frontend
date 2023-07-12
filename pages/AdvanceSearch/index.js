@@ -5,8 +5,8 @@ import { useRouter } from 'next/router'
 import { AiOutlineSearch, AiOutlineFacebook } from "react-icons/ai";
 import axios from 'axios';
 import moment from 'moment';
-import { MainHeader } from '../components/common/MainHeader';
-import { CompanyJobs } from '../components/jobs/CompanyJobs'
+import { MainHeader } from '../../components/common/MainHeader';
+import { CompanyJobs } from '../../components/jobs/CompanyJobs'
 import RiseLoader from "react-spinners/RiseLoader";
 
 export default function AdvanceSearch() {

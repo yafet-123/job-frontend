@@ -3,14 +3,14 @@ import Link from "next/link";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import axios from 'axios';
-import { prisma } from '../util/db.server.js'
+import { prisma } from '../../util/db.server.js'
 import moment from 'moment';
-import { MainHeader } from '../components/common/MainHeader';
+import { MainHeader } from '../../components/common/MainHeader';
 import { useState, useEffect, useRef} from 'react'
-import {Share} from '../components/common/Share.js'
-import { GroupLatestJobs } from '../components/jobs/GroupLatestJobs'
-import { CompanyJobs } from '../components/jobs/CompanyJobs'
-import { Company } from '../components/jobs/Company'
+import {Share} from '../../components/common/Share.js'
+import { GroupLatestJobs } from '../../components/jobs/GroupLatestJobs'
+import { CompanyJobs } from '../../components/jobs/CompanyJobs'
+import { Company } from '../../components/jobs/Company'
   
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context

@@ -5,7 +5,7 @@ import { GoLocation } from "react-icons/go";
 import { useState } from "react";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-
+ 
 export function SearchJobs({categories, locations}) {
   const [jobs, setJobs] = useState("category");
   const router = useRouter(); 
@@ -27,7 +27,7 @@ export function SearchJobs({categories, locations}) {
                     type = "button"
                     onClick = {()=>{
                       router.push({
-                        pathname:"/JobsByCategory",
+                        pathname:"/Jobs/Category",
                         query:{category: data.CategoryName, howmany:data._count.JobCategory, category_id: data.category_id}
                       })
                     }}
@@ -50,7 +50,7 @@ export function SearchJobs({categories, locations}) {
                     type = "button"
                     onClick = {()=>{
                       router.push({
-                        pathname:"/JobsByLocation",
+                        pathname:"/Jobs/Location",
                         query:{location:data.LocationName, howmany:data._count.JobLocation, image:data.Image, location_id:data.location_id}
                       })
                     }}
