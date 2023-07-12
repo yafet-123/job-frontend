@@ -1,14 +1,14 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { AddBlogs } from "../../components/Admin/Blog/AddBlogs";
-import { DisplayBlogs } from "../../components/Admin/Blog/DisplayBlogs";
+import { AddNews } from "../../../components/Admin/News/AddNews";
+import { DisplayNews } from "../../../components/Admin/News/DisplayNews";
 import { useSession } from "next-auth/react";
-import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/common/MainHeader';
-import { prisma } from '../../util/db.server.js'
+import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
+import { MainHeader } from '../../../components/common/MainHeader';
+import { prisma } from '../../../util/db.server.js'
 
 export async function getServerSideProps(){
-  const blogs = await prisma.Blogs.findMany({
+  const news = await prisma.News.findMany({
     orderBy : {
       ModifiedDate:'desc'
     },
@@ -18,9 +18,9 @@ export async function getServerSideProps(){
           UserName:true
         }
       },
-      BlogsCategoryRelationship:{
+      NewsCategoryRelationship:{
         include:{
-          BlogsCategory:{
+          NewsCategory:{
             select:{
               category_id:true,
               CategoryName:true
@@ -31,8 +31,8 @@ export async function getServerSideProps(){
     }
   });
 
-  const allblogs = blogs.map((data)=>({
-    blogs_id:data.blogs_id,
+  const allnews = news.map((data)=>({
+    news_id:data.news_id,
     Header:data.Header,
     image:data.Image,
     ShortDescription:data.ShortDescription,
@@ -43,7 +43,7 @@ export async function getServerSideProps(){
     Category:data.NewsCategoryRelationship
   }))
 
-  const blogscategories = await prisma.BlogsCategory.findMany({
+  const newscategories = await prisma.NewsCategory.findMany({
     orderBy: {
       category_id:"asc"
     },
@@ -56,7 +56,7 @@ export async function getServerSideProps(){
     }
   })
 
-  const Allblogscategories = blogscategories.map((data)=>({
+  const AllNewscategories = newscategories.map((data)=>({
       category_id:data.category_id,
       CategoryName:data.CategoryName,
       CreatedDate:data.CreatedDate,
@@ -66,24 +66,24 @@ export async function getServerSideProps(){
 
   return{
     props:{
-      categories:JSON.parse(JSON.stringify(Allblogscategories)),
-      blogs:JSON.parse(JSON.stringify(allblogs)),
+      categories:JSON.parse(JSON.stringify(AllNewscategories)),
+      news:JSON.parse(JSON.stringify(allnews)),
     }
   }
 }
 
-export default function Blogs({categories, blogs}) {
+export default function News({categories, news}) {
     const { status, data } = useSession();
     return (
     	
         <React.Fragment>
-          <MainHeader title="Blogs Dashboard" />
+          <MainHeader title="News Dashboard" />
         	<section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
     		    <div className='w-full h-full flex flex-row'>
     		        <VerticalNavbar data={data} />
     		        <div className="w-full">
-            		    <AddBlogs categories={categories} />
-                    <DisplayBlogs blogs={blogs} categories={categories} />
+            		    <AddNews categories={categories} />
+                    <DisplayNews news={news} categories={categories} />
             	    </div>
     		    </div> 
   			</section>

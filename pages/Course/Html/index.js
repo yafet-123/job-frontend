@@ -2,11 +2,11 @@ import React, {useState,useEffect} from "react";
 import Link from "next/link";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { prisma } from '../../util/db.server.js'
-import { CourseHead } from '../../components/Course/CourseHead'
-import { MobileViewCourse } from '../../components/Course/MobileViewCourse';
-import { Main } from '../../components/Course/Main'
-import { MainHeader } from '../../components/common/MainHeader';
+import { prisma } from '../../../util/db.server.js'
+import { CourseHead } from '../../../components/Course/CourseHead'
+import { MobileViewCourse } from '../../../components/Course/MobileViewCourse';
+import { Main } from '../../../components/Course/Main'
+import { MainHeader } from '../../../components/common/MainHeader';
 
 export async function getServerSideProps(context){
   const {params,req,res,query} = context

@@ -1,11 +1,11 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../util/db.server.js'
-import { AddEntertainmentCategory } from "../../components/Admin/EntertainmentCategory/AddEntertainmentCategory";
-import { DisplayEntertainmentCategory } from "../../components/Admin/EntertainmentCategory/DisplayEntertainmentCategory";
+import { prisma } from '../../../util/db.server.js'
+import { AddEntertainmentCategory } from "../../../components/Admin/EntertainmentCategory/AddEntertainmentCategory";
+import { DisplayEntertainmentCategory } from "../../../components/Admin/EntertainmentCategory/DisplayEntertainmentCategory";
 import { useSession } from "next-auth/react";
-import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/common/MainHeader';
+import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
+import { MainHeader } from '../../../components/common/MainHeader';
 export async function getServerSideProps(){
 
   const entertainmentcategories = await prisma.EntertainmentCategory.findMany({

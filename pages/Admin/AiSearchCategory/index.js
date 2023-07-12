@@ -1,11 +1,11 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../util/db.server.js'
-import { AddAiSearchCategory } from "../../components/Admin/AiSearchCategory/AddAiSearchCategory";
-import { DisplayAiSearchCategory } from "../../components/Admin/AiSearchCategory/DisplayAiSearchCategory";
+import { prisma } from '../../../util/db.server.js'
+import { AddAiSearchCategory } from "../../../components/Admin/AiSearchCategory/AddAiSearchCategory";
+import { DisplayAiSearchCategory } from "../../../components/Admin/AiSearchCategory/DisplayAiSearchCategory";
 import { useSession } from "next-auth/react";
-import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/common/MainHeader';
+import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
+import { MainHeader } from '../../../components/common/MainHeader';
 export async function getServerSideProps(){
 
   const categories = await prisma.AiCategory.findMany({

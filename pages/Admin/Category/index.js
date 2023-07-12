@@ -1,14 +1,14 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../util/db.server.js'
-import { AddBlogsCategory } from "../../components/Admin/BlogsCategory/AddBlogsCategory";
-import { DisplayBlogsCategory } from "../../components/Admin/BlogsCategory/DisplayBlogsCategory";
+import { prisma } from '../../../util/db.server.js'
+import { AddCategory } from "../../../components/Admin/Category/AddCategory";
+import { DisplayCategory } from "../../../components/Admin/Category/DisplayCategory";
 import { useSession } from "next-auth/react";
-import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/common/MainHeader';
-
+import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
+import { MainHeader } from '../../../components/common/MainHeader';
 export async function getServerSideProps(){
-  const newscategories = await prisma.BlogsCategory.findMany({
+
+  const categories = await prisma.Category.findMany({
     orderBy: {
       category_id:"asc"
     },
@@ -21,7 +21,7 @@ export async function getServerSideProps(){
     }
   })
 
-  const AllNewscategories = newscategories.map((data)=>({
+  const Allcategories = categories.map((data)=>({
       category_id:data.category_id,
       CategoryName:data.CategoryName,
       CreatedDate:data.CreatedDate,
@@ -31,22 +31,22 @@ export async function getServerSideProps(){
 
   return{
     props:{
-      categories:JSON.parse(JSON.stringify(AllNewscategories)),
+      categories:JSON.parse(JSON.stringify(Allcategories)),
     }
   }
 }
 
-export default function BlogsCategory({categories}) {
+export default function Category({categories}) {
     const { status, data } = useSession();
     return (
     	<React.Fragment>
-      	<MainHeader title="Blogs Category Dashboard" />
+      	<MainHeader title="Entertemiment Category Dashboard" />
         	<section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
     				<div className='w-full h-full flex flex-row'>
     		      <VerticalNavbar data={data} />
     		      <div className="w-full">
-            		<AddBlogsCategory />
-            		<DisplayBlogsCategory categories={categories} />
+            		<AddCategory />
+            		<DisplayCategory categories={categories} />
             	</div>
     		    </div> 
   			  </section>

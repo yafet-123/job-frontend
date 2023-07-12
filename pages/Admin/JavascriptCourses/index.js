@@ -1,11 +1,11 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../util/db.server.js'
-import { AddCourse } from "../../components/Admin/jsCourses/AddCourse";
-import { DisplayCourse} from "../../components/Admin/jsCourses/DisplayCourse";
+import { prisma } from '../../../util/db.server.js'
+import { AddCourse } from "../../../components/Admin/jsCourses/AddCourse";
+import { DisplayCourse} from "../../../components/Admin/jsCourses/DisplayCourse";
 import { useSession } from "next-auth/react";
-import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/common/MainHeader';
+import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
+import { MainHeader } from '../../../components/common/MainHeader';
 
 export async function getServerSideProps(){
   const courses = await prisma.JavascriptCourse.findMany({

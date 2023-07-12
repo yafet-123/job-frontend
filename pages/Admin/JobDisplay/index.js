@@ -1,10 +1,10 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../util/db.server.js'
-import { DisplayJob } from "../../components/Admin/Job/DisplayJob";
+import { prisma } from '../../../util/db.server.js'
+import { DisplayJob } from "../../../components/Admin/Job/DisplayJob";
 import { useSession } from "next-auth/react";
-import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
-import { MainHeader } from '../../components/common/MainHeader';
+import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
+import { MainHeader } from '../../../components/common/MainHeader';
 
 export async function getServerSideProps(){
   const jobs = await prisma.Job.findMany({

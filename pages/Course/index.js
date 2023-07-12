@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { MainHeader } from '../components/common/MainHeader';
-import { CourseHeadData } from '../data/courseHead'
+import { MainHeader } from '../../components/common/MainHeader';
+import { CourseHeadData } from '../../data/courseHead'
 
 export default function Courses() {
 	const router = useRouter()

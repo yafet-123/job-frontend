@@ -22,7 +22,7 @@ export function Navbar() {
     { path: "/Jobs", name: "Jobs" },
     { path: "/News", name: "News"},
     { path: "/Entertemiment", name: "Entertemiment" },
-    { path: "/Courses", name: "Courses" },
+    { path: "/Course", name: "Courses" },
     { path: "/AiSearch", name: "AiSearch" },
     { path: "/Blogs", name: "Blogs" },
   ];
@@ -93,8 +93,8 @@ export function Navbar() {
                         router.pathname == link.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == link.path ) || 
                         ( router.pathname == "/Jobs/Category" && "/Jobs" == link.path ) || ( router.pathname == "/Jobs/Location" && "/Jobs" == link.path ) ||
                         ( router.pathname == "/AdvanceSearch" && "/Jobs" == link.path ) || ( router.pathname == "/AiSearch" && "/AiSearch" == link.path )  ||
-                        ( router.pathname == "/Course/Html" && "/Courses" == link.path ) || ( router.pathname == "/Course/Css" && "/Courses" == link.path ) ||
-                        ( router.pathname == "/Course/javascript" && "/Courses" == link.path ) || ( router.pathname == "/Course/python" && "/Courses" == link.path ) ||
+                        ( router.pathname == "/Course/Html" && "/Course" == link.path ) || ( router.pathname == "/Course/Css" && "/Course" == link.path ) ||
+                        ( router.pathname == "/Course/javascript" && "/Course" == link.path ) || ( router.pathname == "/Course/python" && "/Course" == link.path ) ||
                         ( router.pathname == "/Advice" && "/Advices" == link.path ) || ( router.pathname == "/DisplayNews" && "/News" == link.path ) ||
                         ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path ) || ( router.pathname == "/DisplayEntertemiment" && "/Entertemiment" == link.path ) ||
                         ( router.pathname == "/Search" && "/Entertemiment" == link.path ) || ( router.pathname == "/DisplayBlogs" && "/Blogs" == link.path )
