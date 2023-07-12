@@ -1,9 +1,9 @@
 import React from "react";
-import { MainHeader } from '../components/common/MainHeader';
-import { Hero } from '../components/AiSearch/Hero';
-import { SearchBar } from '../components/AiSearch/SearchBar';
-import { Category } from '../components/AiSearch/Category';
-import { prisma } from '../util/db.server.js'
+import { MainHeader } from '../../components/common/MainHeader';
+import { Hero } from '../../components/AiSearch/Hero';
+import { SearchBar } from '../../components/AiSearch/SearchBar';
+import { Category } from '../../components/AiSearch/Category';
+import { prisma } from '../../util/db.server.js'
 
 export async function getServerSideProps(){
   const categorys = await prisma.AiCategory.findMany({
