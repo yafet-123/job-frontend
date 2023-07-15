@@ -15,4 +15,4 @@ export default withAuth({
 })
 
 
-export const config = { matcher: ["/Admin","/Admin/User","/Admin/JobAdd","/Admin/JobDisplay","/Admin/Category","/Admin/Location",,,,,,] };
+export const config = { matcher: ["/Admin","/Admin/User","/Admin/JobAdd","/Admin/JobDisplay","/Admin/Category","/Admin/Location","/Admin/NewsCategory","/Admin/News","/Admin/EntertainmentCategory","/Admin/Entertainment","/Admin/HTmlCourse","/Admin/CSSCourse","/Admin/JavascriptCourses","/Admin/PythonCourses","/Admin/BlogsCategory","/Admin/Blogs","/Admin/AiSearchCategory","/Admin/AiSearch"] };
