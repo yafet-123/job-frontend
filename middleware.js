@@ -15,4 +15,4 @@ export default withAuth({
 })
 
 
-export const config = { matcher: ["/Admin","/Admin/User"] };
+export const config = { matcher: ["/Admin","/Admin/User","/Admin/JobAdd","/Admin/JobDisplay","/Admin/Category","/Admin/Location",,,,,,] };
