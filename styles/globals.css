@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.fontSize,h1,h2,h3,h4,h5,h6{
+  font-size: revert;
+  font-weight: revert;
+}
 .about-us-background {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('../public/images/bgImage1.avif');
