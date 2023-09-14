@@ -90,14 +90,15 @@ export function Navbar() {
                       onClick={(e) => setNavabarText(link.text)}
                       className={
                         
-                        router.pathname == link.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == link.path ) || 
+                        router.pathname == link.path || ( router.pathname == "/DisplayJobs" && "/Jobs" == link.path ) || ( router.pathname == "/Jobs/Display" && "/Jobs" == link.path ) ||
                         ( router.pathname == "/Jobs/Category" && "/Jobs" == link.path ) || ( router.pathname == "/Jobs/Location" && "/Jobs" == link.path ) ||
                         ( router.pathname == "/AdvanceSearch" && "/Jobs" == link.path ) || ( router.pathname == "/AiSearch" && "/AiSearch" == link.path )  ||
                         ( router.pathname == "/Course/Html" && "/Course" == link.path ) || ( router.pathname == "/Course/Css" && "/Course" == link.path ) ||
                         ( router.pathname == "/Course/javascript" && "/Course" == link.path ) || ( router.pathname == "/Course/python" && "/Course" == link.path ) ||
                         ( router.pathname == "/Advice" && "/Advices" == link.path ) || ( router.pathname == "/DisplayNews" && "/News" == link.path ) ||
                         ( router.pathname == "/EntertemimentByCategory" && "/Entertemiment" == link.path ) || ( router.pathname == "/DisplayEntertemiment" && "/Entertemiment" == link.path ) ||
-                        ( router.pathname == "/Search" && "/Entertemiment" == link.path ) || ( router.pathname == "/DisplayBlogs" && "/Blogs" == link.path )
+                        ( router.pathname == "/Search" && "/Entertemiment" == link.path ) || ( router.pathname == "/DisplayBlogs" && "/Blogs" == link.path )|| 
+                        ( router.pathname == "/Entertemiment/Display" && "/Entertemiment" == link.path )
                           ? "border-b-4 border-[#009688] text-[#009688] dark:border-white md:ml-2 lg:ml-3 text-md lg:text-lg font-extrabold"
                           : "md:ml-2 lg:ml-3 text-md lg:text-lg font-extrabold hover:border-b-4 border-[#009688] dark:border-[#009688]"
                       }

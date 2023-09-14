@@ -45,7 +45,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
 	                </h3>
 	            </div>
 	       
-	            <div className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: entertainment.Description }} />
+	            <div className="fontSize bg-transparent text-black dark:!text-white mt-5 ql-editor " dangerouslySetInnerHTML={{ __html: entertainment.Description }} />
 	        </div>
 
 	        <EntertainmentSharing shareUrl={shareUrl} quotes={quotes}/>
