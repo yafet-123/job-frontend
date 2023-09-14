@@ -1,11 +1,11 @@
-import { VerticalNavbar } from "../components/Admin/VerticalNavbar";
-import { DashBoard } from "../components/Admin/DashBoard";
+import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
+import { DashBoard } from "../../components/Admin/DashBoard";
 import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
 import { useRouter } from 'next/router'
-import { MainHeader } from '../components/common/MainHeader';
+import { MainHeader } from '../../components/common/MainHeader';
 import React from 'react'
-import { prisma } from '../util/db.server.js'
+import { prisma } from '../../util/db.server.js'
 
 export async function getServerSideProps(){
   const categories = await prisma.Category.findMany({
