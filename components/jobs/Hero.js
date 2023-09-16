@@ -21,7 +21,7 @@ export function Hero() {
 
 
   return (
-    <div className="w-full h-[20rem] lg:h-[25rem] bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D] relative">
+    <div className="w-full h-[20rem] lg:h-[20rem] bg-[#e6e6e6] bg-opacity-100 dark:bg-[#02201D] relative">
       <div className="absolute top-0 lg:top-20 flex flex-col justify-between left-0 right-0 m-auto w-full lg:w-[70%]">
         <h1 className={`px-3 lg:px-0 text-lg mb-3 lg:mb-10 font-bold md:text-2xl text-center lg:text-5xl italic text-[#445960] dark:text-white opacity-100`}>
           All Ethiopian Jobs in One Place.
