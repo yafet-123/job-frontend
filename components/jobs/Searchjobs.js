@@ -12,7 +12,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
   return (
     <div className="px-0 md:px-24 bg-[#e6e6e6] dark:bg-[#02201D] pt-5 pb-10">
       <div className="flex flex-row justify-between items-center h-full lg:h-16 w-full mb-5 px-2 lg:px-0">
-        <h1 className="font-semibold text-[#009688] dark:text-white text-md md:text-3xl lg:text-4xl capitalize w-full">
+        <h1 className="font-semibold text-[#009688] dark:text-white text-lg md:text-4xl lg:text-5xl capitalize w-full">
           Search and Find Jobs in Ethiopia
         </h1>
       </div>
