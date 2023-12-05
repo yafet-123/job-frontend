@@ -16,7 +16,7 @@ export function Footer() {
     { link: "Jobs", path: "/Jobs" },
     { link: "News", path: "/News" },
     { link: "Entertemiment", path: "/Entertemiment"},
-    { link: "Courses", path: "/Courses"},
+    { link: "Courses", path: "/Course"},
     { link: "Blogs", path:"/Blogs" },
     { link: "About", path: "/About" },
   ];
