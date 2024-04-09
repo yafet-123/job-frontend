@@ -1,5 +1,6 @@
 import { VerticalNavbar } from "../../components/Admin/VerticalNavbar";
 import { DashBoard } from "../../components/Admin/DashBoard";
+import Profile  from "../../components/Admin/Profile";
 import { useSession } from "next-auth/react";
 import { useState,useEffect} from 'react'
 import { useRouter } from 'next/router'
@@ -19,6 +20,20 @@ export async function getServerSideProps(context){
       },
     };
   }
+
+  const admin = await prisma.User.findUnique({
+    where:{ user_id: Number(session.user.user_id) },
+  });
+  
+  const admins = {
+    user_id: admin.user_id,
+    firstName: admin.firstName,
+    lastName: admin.lastName,
+    age: admin.age,
+    UserName: admin.UserName,
+    email: admin.email
+  };
+
   const categories = await prisma.Category.findMany({
     orderBy: {
       category_id:"asc"
@@ -61,11 +76,12 @@ export async function getServerSideProps(context){
       jobs:JSON.parse(JSON.stringify(jobs)),
       news:JSON.parse(JSON.stringify(news)),
       entertainments:JSON.parse(JSON.stringify(entertainments)),
+      admins
     }
   }
 }
 
-export default function Admin({categories,jobs,news,entertainments}){
+export default function Admin({categories,jobs,news,entertainments,admins}){
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
   const router = useRouter();
@@ -97,7 +113,8 @@ export default function Admin({categories,jobs,news,entertainments}){
         <MainHeader title="Hulu Media : Admin" />
         <div className="flex bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
           <VerticalNavbar onChange={handleChange} data={data} />
-          <div className="w-full">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2">
+            <Profile admins={admins} />
             <DashBoard categories={categories} />
           </div>
         </div>

@@ -23,7 +23,7 @@ export function Navbar() {
     { path: "/News", name: "News"},
     { path: "/Entertemiment", name: "Entertemiment" },
     { path: "/Course", name: "Courses" },
-    { path: "/AiSearch", name: "AiSearch" },
+    // { path: "/AiSearch", name: "AiSearch" },
     { path: "/Blogs", name: "Blogs" },
   ];
 

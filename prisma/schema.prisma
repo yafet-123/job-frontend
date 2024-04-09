@@ -67,6 +67,9 @@ model JobLocation {
 model User {
   user_id      Int           @id @default(autoincrement())
   UserName     String        @unique @db.VarChar(255)
+  firstName    String?       @db.VarChar(255)
+  lastName     String?       @db.VarChar(255)
+  age          String?       @db.VarChar(255)
   email        String?       @unique @db.VarChar(255)
   resetToken   String?       @unique @db.VarChar(255)
   Password     String        @db.VarChar(255)
