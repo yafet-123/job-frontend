@@ -1,37 +1,37 @@
 import { ImageResponse } from '@vercel/og';
- 
+import Image from 'next/image'; // Import Image component from next/image
+
 export const config = {
   runtime: 'experimental-edge',
 };
- 
-export default function (req) {
+
+// Give your function a name
+export default function ImageHandler(req) {
   const { searchParams } = req.nextUrl;
-  const image = searchParams.get('images')
-  console.log(searchParams)
+  const image = searchParams.get('images');
+  console.log(searchParams);
 
   return new ImageResponse(
     (
       <div
         style={{
-          fontSize:128,
-          background:'white',
-          width:'100%',
-          height:'100%',
-          display:'flex',
-          textAlign:'center',
-          alignItems:'center',
-          justifyContent:'center',
+          fontSize: 128,
+          background: 'white',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          textAlign: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        <img
+        {/* Use Image component instead of <img> */}
+        <Image
           alt="background image that will be shared"
           src={image}
-          style={{
-            width:"100%",
-            height:"100%",
-            backgroundPosition:"center",
-            backgroundSize: "cover",
-          }}
+          layout="fill" // Maintain the aspect ratio and fill the container
+          objectFit="cover" // Similar to backgroundSize: cover
+          objectPosition="center" // Similar to backgroundPosition: center
         />
       </div>
     ),
@@ -39,5 +39,5 @@ export default function (req) {
       width: 1200,
       height: 600,
     },
-  );
+  ); 
 }

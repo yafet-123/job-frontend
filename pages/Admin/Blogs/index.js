@@ -7,7 +7,19 @@ import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { prisma } from '../../../util/db.server.js'
 
-export async function getServerSideProps(){
+import { getSession } from "next-auth/react";
+
+export async function getServerSideProps(context){
+  const session = await getSession(context);
+  const userRole = await session?.user?.role
+  if (userRole !== 'admin') {
+    return {
+      redirect: {
+        destination: '/auth/error', // Redirect to the error page for unauthorized access
+        permanent: false,
+      },
+    };
+  }
   const blogs = await prisma.Blogs.findMany({
     orderBy : {
       ModifiedDate:'desc'

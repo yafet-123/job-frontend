@@ -7,15 +7,14 @@ import { useSession } from "next-auth/react";
 import { MainHeader } from '../../components/common/MainHeader';
 import React from 'react'
 import Link from 'next/link'
+import { getSession } from "next-auth/react";
+
+
 export default function SignIn({ csrfToken }) {
     const router = useRouter();
     const [error, setError] = useState(null);
     const { status, data } = useSession();
-    useEffect(() => {
-        if (status === "authenticated") router.replace("/Admin");
-    }, [status, router]);
 
-    if (status === "unauthenticated")
         return (
             <React.Fragment>
                 <MainHeader title="Login" />
@@ -104,13 +103,23 @@ export default function SignIn({ csrfToken }) {
                     )}
                 </Formik>
             </React.Fragment>
-    );
+        );
 }
 
 export async function getServerSideProps(context) {
-  return {
-    props: {
-      csrfToken: await getCsrfToken(context),
-    },
-  };
+    const session = await getSession(context);
+    const userRole = await session?.user?.role
+    if (userRole == 'admin') {
+        return {
+            redirect: {
+                destination: '/Admin', // Redirect to the error page for unauthorized access
+                permanent: false,
+            },
+        };
+    }
+    return {
+        props: {
+            csrfToken: await getCsrfToken(context),
+        },
+    };
 }

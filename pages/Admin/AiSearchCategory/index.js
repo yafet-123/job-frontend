@@ -6,7 +6,19 @@ import { DisplayAiSearchCategory } from "../../../components/Admin/AiSearchCateg
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
-export async function getServerSideProps(){
+import { getSession } from "next-auth/react";
+
+export async function getServerSideProps(context){
+  const session = await getSession(context);
+  const userRole = await session?.user?.role
+  if (userRole !== 'admin') {
+    return {
+      redirect: {
+        destination: '/auth/error', // Redirect to the error page for unauthorized access
+        permanent: false,
+      },
+    };
+  }
 
   const categories = await prisma.AiCategory.findMany({
     orderBy: {

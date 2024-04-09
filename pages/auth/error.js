@@ -10,7 +10,7 @@ export default function Error () {
       <MainHeader title="SignIn Error Page" />
       <div className="w-full h-screen bg-gray-100 dark:bg-slate-700 pt-24 grid justify-center content-center ">
         <div className="flex flex-col">
-          <p className="text-center text-md lg:text-4xl font-bold">Error : {error}</p>
+          <p className="text-center text-md lg:text-4xl font-bold">Authentication error. Unable to login at this time. </p>
           <button 
               className="mt-10 text-xl md:text-2xl lg:text-3xl bg-blue-400 focus:text-white focus:bg-blue-600 p-4 rounded-xl"
               onClick={() => router.push("/auth/signin")}
