@@ -63,7 +63,7 @@ model JobLocation {
   User             User?     @relation(fields: [user_id], references: [user_id], onUpdate: NoAction)
 }
 
-
+ 
 model User {
   user_id      Int           @id @default(autoincrement())
   UserName     String        @unique @db.VarChar(255)

@@ -5,15 +5,16 @@ import { StatusCodes } from "http-status-codes";
 
 export default async function handleupdateuser(req, res){
 	const {updateuserid} = req.query
-	const {UserName,email,firstName,lastName,age} = req.body
+	console.log(req.body)
+	const {firstName,lastName,age,UserName,email} = req.body
 	const data = await prisma.User.update({
 		where:{user_id:Number(updateuserid)},
 		data:{
-			UserName,
-			email,
 			firstName,
 			lastName,
-			age
+			age:age,
+			UserName,
+			email
 		},
 	});
 	res.json(data)

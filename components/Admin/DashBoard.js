@@ -104,7 +104,7 @@ export function DashBoard({categories}) {
     }
 
     return (
-        <div className="mt-10 mx-1 lg:mx-3 lg:mx-10 h-full pt-20">
+        <div className="w-full h-full ml-0 lg:ml-5">
             <div className="max-w-7xl mx-auto ">
                 <div className="flex flex-col lg:flex-row my-10 w-full">
                     <div className="relative flex-1">

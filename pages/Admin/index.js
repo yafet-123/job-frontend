@@ -8,9 +8,11 @@ import { MainHeader } from '../../components/common/MainHeader';
 import React from 'react'
 import { prisma } from '../../util/db.server.js'
 import { getSession } from "next-auth/react";
+import MyCalendar from '../../components/common/MyCalendar' 
 
 export async function getServerSideProps(context){
   const session = await getSession(context);
+  const serverdate = new Date();
   const userRole = await session?.user?.role
   if (userRole !== 'admin') {
     return {
@@ -81,7 +83,7 @@ export async function getServerSideProps(context){
   }
 }
 
-export default function Admin({categories,jobs,news,entertainments,admins}){
+export default function Admin({serverdate,categories,jobs,news,entertainments,admins}){
   const [selected , setselected] = useState("dashboard")
   const { status, data } = useSession();
   const router = useRouter();
@@ -113,8 +115,11 @@ export default function Admin({categories,jobs,news,entertainments,admins}){
         <MainHeader title="Hulu Media : Admin" />
         <div className="flex bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
           <VerticalNavbar onChange={handleChange} data={data} />
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2">
-            <Profile admins={admins} />
+          <div className="w-full flex justify-between mx-1 lg:mx-3 lg:mx-10 mt-20">
+            <div className="flex flex-col items-center">
+              <Profile admins={admins} />
+              <MyCalendar serverdate={serverdate} />
+            </div>
             <DashBoard categories={categories} />
           </div>
         </div>

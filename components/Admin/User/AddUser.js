@@ -15,6 +15,9 @@ export function AddUser() {
     const [loading, setLoading] = useState(false);
     const [UserName, setUserName] =useState("")
     const [email, setemail] = useState("")
+    const [firstName, setfirstName] =useState("")
+    const [lastName, setlastName] = useState("")
+    const [age, setage] =useState("")
     const [password,setpassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [passworderror,setpassworderror] = useState("")
@@ -27,6 +30,9 @@ export function AddUser() {
             setLoading(true)
             const data = await axios.post(`../api/registerUser`,{
                 'UserName':UserName,
+                'firstName':firstName,
+                'lastName':lastName,
+                'age':age,
                 'Password':password,
                 'email':email,
                 'role':'admin'
@@ -53,6 +59,56 @@ export function AddUser() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10 mx-2">
                     <div className="relative">
                         <input 
+                            id="firstName" 
+                            type="text" 
+                            value={firstName}
+                            required
+                            className="block w-full px-3 text-sm lg:text-xl text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            onChange={(e) => setfirstName(e.target.value)}
+                        />
+                        <label 
+                            htmlFor="floating_outlined" 
+                            className="absolute text-sm lg:text-xl text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >
+                            First Name
+                        </label>
+                    </div>
+                    <div className="relative">
+                        <input 
+                            id="lastName" 
+                            type="text" 
+                            value={lastName}
+                            required
+                            className="block w-full px-3 text-sm lg:text-xl text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            onChange={(e) => setlastName(e.target.value)}
+                        />
+                        <label 
+                            htmlFor="floating_outlined" 
+                            className="absolute text-sm lg:text-xl text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >
+                            Last Name
+                        </label>
+                    </div>
+
+                    <div className="relative">
+                        <input 
+                            id="age" 
+                            type="text" 
+                            value={age}
+                            required
+                            className="block w-full px-3 text-sm lg:text-xl text-black bg-white py-4 border-2 border-black rounded-xl appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" "
+                            onChange={(e) => setage(e.target.value)}
+                        />
+                        <label 
+                            htmlFor="floating_outlined" 
+                            className="absolute text-sm lg:text-xl text-black duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                        >
+                            Age
+                        </label>
+                    </div>
+
+                    <div className="relative">
+                        <input 
                             id="username" 
                             type="text" 
                             value={UserName}
@@ -67,7 +123,9 @@ export function AddUser() {
                             UserName
                         </label>
                     </div>
+                </div>
 
+                <div className="grid grid-cols-1 gap-10 my-10 mx-2">
                     <div className="relative">
                         <input 
                             id="email" 
@@ -85,7 +143,9 @@ export function AddUser() {
                             Email
                         </label>
                     </div>
+                </div>
 
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10 mx-2">
                     <div className="relative">
                         <input 
                             id="password" 

@@ -23,6 +23,9 @@ export async function getServerSideProps(context){
   const Allusers = users.map((data)=>({
       user_id:data.user_id,
       email:data.email,
+      firstName:data.firstName,
+      lastName:data.lastName,
+      age:data.age,
       role:data.role,
       CreatedDate:data.CreatedDate,
       ModifiedDate:data.ModifiedDate,

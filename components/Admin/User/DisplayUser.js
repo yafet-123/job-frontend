@@ -12,6 +12,9 @@ export function DisplayUser({users}) {
     const [deleteuserid,setdeleteuserid] = useState()
     const [updateuserid,setupdateuserid] = useState()
     const [updateemail, setupdateemail] = useState("")
+    const [updatefirstName, setupdatefirstName] = useState("")
+    const [updatelastName, setupdatelastName] = useState("")
+    const [updateage, setupdateage] = useState("")
     const [updateusername,setupdateusername] = useState("")
 
     const clickedFordelete = () => {
@@ -31,6 +34,9 @@ export function DisplayUser({users}) {
                             <tr>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">User Name</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">First Name</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Last Name</th>
+                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Age</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Email</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
@@ -46,6 +52,16 @@ export function DisplayUser({users}) {
                                         {data.UserName}
                                     </td>
 
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                        {data.firstName}
+                                    </td>
+
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                        {data.lastName}
+                                    </td>
+                                    <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
+                                        {data.age}
+                                    </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white whitespace-nowrap">
                                         <h1 className="text-black dark:text-white flex justify-between my-5 font-bold text-lg md:text-xl">
                                             <span className={ `font-normal font-medium ${data.email ? " " : "text-red-800"}`}>
@@ -68,6 +84,9 @@ export function DisplayUser({users}) {
                                                 setupdateuserid(data.user_id)
                                                 setupdateusername(data.UserName)
                                                 setupdateemail(data.email)
+                                                setupdatefirstName(data.firstName)
+                                                setupdatelastName(data.lastName)
+                                                setupdateage(data.age)
                                             }} 
                                             className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                             Edit
@@ -126,6 +145,9 @@ export function DisplayUser({users}) {
                                         setupdateuserid(data.user_id)
                                         setupdateusername(data.UserName)
                                         setupdateemail(data.email)
+                                        setupdatefirstName(data.firstName)
+                                        setupdatelastName(data.lastName)
+                                        setupdateage(data.age)
                                     }}  
                                     className="bg-[#009688] text-white font-bold py-2 px-4 border-b-4 border-[#009688] hover:scale-110 duration-1000 ease-in-out rounded">
                                     Edit
@@ -151,7 +173,20 @@ export function DisplayUser({users}) {
             }
 
             {updatemodalOn && 
-                <UpdateUser setupdateModalOn={setupdateModalOn} updateuserid={updateuserid} updateemail={updateemail} updateusername={updateusername} setupdateemail={setupdateemail} setupdateusername={setupdateusername} />
+                <UpdateUser 
+                    updatefirstName={updatefirstName}
+                    updatelastName={updatelastName}
+                    updateage={updateage}
+                    setupdateModalOn={setupdateModalOn} 
+                    updateuserid={updateuserid} 
+                    updateemail={updateemail} 
+                    updateusername={updateusername} 
+                    setupdateemail={setupdateemail} 
+                    setupdateusername={setupdateusername} 
+                    setupdatefirstName={setupdatefirstName}
+                    setupdatelastName={setupdatelastName}
+                    setupdateage={setupdateage}
+                />
             }
         </div>
     );

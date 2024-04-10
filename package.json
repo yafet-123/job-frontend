@@ -44,6 +44,7 @@
     "react-draft-wysiwyg": "^1.15.0",
     "react-gravatar": "^2.6.3",
     "react-icons": "^4.6.0",
+    "react-loading": "^2.0.3",
     "react-modal": "^3.16.1",
     "react-player": "^2.11.2",
     "react-quill": "^2.0.0",

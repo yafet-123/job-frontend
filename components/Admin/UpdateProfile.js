@@ -2,14 +2,15 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import { useState,useEffect, useContext} from 'react'
 import ReactModal from "react-modal";
+import Loader from '../common/Loading'
 
-export function UpdateProfile({updatestudentsid,updatefirstName,updatelastName,updateage,updateUserName,updateemail,setupdateModalOn,setupdatefirstName,setupdatelastName,setupdateage,setupdateUserName,setupdateemail}) {
+export function UpdateProfile({updateuserid,updatefirstName,updatelastName,updateage,updateUserName,updateemail,setupdateModalOn,setupdatefirstName,setupdatelastName,setupdateage,setupdateUserName,setupdateemail}) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [LoadingmodalIsOpen, setLoadingModalIsOpen] = useState(false);
     const handleOKClickForupdate = async() => {
         setLoadingModalIsOpen(true)
-        const data = await axios.patch(`../api/student/updateProfile/${updatestudentsid}`,{
+        const data = await axios.patch(`../api/updateProfile/${updateuserid}`,{
             "firstName": updatefirstName,
             "lastName":updatelastName,
 			"age":updateage,
@@ -17,7 +18,7 @@ export function UpdateProfile({updatestudentsid,updatefirstName,updatelastName,u
 			"email":updateemail,
         }).then(function (response) {
             console.log(response.data);
-            router.reload()
+            router.push('/Admin')
         }).catch(function (error) {
             console.log(error);
             setLoadingModalIsOpen(false)
