@@ -24,6 +24,11 @@ const QuillNoSSRWrapper = dynamic(
 
 export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, locations}){
     const router = useRouter();
+
+    // const classIds = updateClassId.map((classDetail) => classDetail.class_id);
+    // const classIds = updateClassId.map((classDetail) => classDetail.class_id);
+    
+
     const [typechange , settypechange] = useState(true)
     const [updatejobid,setupdatejobid] = useState()
     const [CompanyName, setCompanyName] = useState("")
@@ -43,10 +48,8 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     const UserData = data?.user;
 
     useEffect(()=>{
-        const category = []
-        const locations = []
-        category.push(dataposttojob.categories)
-        locations.push(dataposttojob.Location)
+        const category = dataposttojob.categories
+        const locations = dataposttojob.Location
         setupdatejobid(dataposttojob.job_id)
         setCompanyName(dataposttojob.CompanyName)
         setImage(dataposttojob.image)
@@ -56,11 +59,14 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
         setDescription(dataposttojob.Descreption)
         setshortDescription(dataposttojob.shortDescreption)
         setDeadLine(dataposttojob.DeadLine)
-        // for(var i=0; i<category.length;i++){
-        //     console.log(category[i].Category)
-        //     setCategoryId(category => [...categoryId,category[i].Category])
-        // } 
-        
+        console.log(locations)
+
+        const locationsId = locations.map(item => item.location_id);
+        const categorysId = category.map(cate => cate.category_id);
+        setLocationId(locationsId)
+        setCategoryId(categorysId)
+        console.log(LocationId);
+        console.log(categoryId)
         
     },[dataposttojob ])
     
@@ -283,6 +289,7 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
                                    setLocationId([...LocationId, data.location_id])
                                 ))
                             }}
+                            selectedValues={locations.filter((option) => LocationId.includes(option.location_id))}
                             options={locations}
                         />
                     </div>
@@ -295,11 +302,15 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
                             onKeyPressFn={function noRefCheck(){}}
                             onRemove={function noRefCheck(){}}
                             onSearch={function noRefCheck(){}}
-                            onSelect={(e)=>{
-                                e.map((data,index)=>(
-                                   setCategoryId([...categoryId, data.category_id])
-                                ))
-                            }}
+                            onSelect={(selectedItems) => {
+    selectedItems.forEach((item) => {
+        if (!categoryId.includes(item.category_id)) {
+            setCategoryId((prevIds) => [...prevIds, item.category_id]);
+        }
+    });
+}}
+
+                            selectedValues={categories.filter((option) => categoryId.includes(option.category_id))}
                             options={categories}
                         />
                     </div>

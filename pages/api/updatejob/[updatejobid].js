@@ -19,7 +19,7 @@ export default async function handleupdatejob(req, res){
 		user_id
 	} = req.body
 
-	console.log(categoryId)
+	console.log(req.body)
 
 	const data = await prisma.Job.update({
 		where:{job_id:Number(updatejobid)},

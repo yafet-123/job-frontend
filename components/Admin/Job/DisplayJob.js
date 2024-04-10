@@ -12,7 +12,7 @@ export function DisplayJob({jobs, categories, locations}) {
     const [viewmodalOn, setviewModalOn] = useState(false)
     const [dataposttojob, setdataposttojob] = useState()
     const [view,setview] = useState()
-
+    
     const clickedForview = () => {
         setviewModalOn(true)
     }
