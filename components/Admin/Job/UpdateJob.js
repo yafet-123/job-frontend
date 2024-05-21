@@ -28,7 +28,10 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     // const classIds = updateClassId.map((classDetail) => classDetail.class_id);
     // const classIds = updateClassId.map((classDetail) => classDetail.class_id);
     
-
+    const categorys = dataposttojob.categories
+    const locationss = dataposttojob.Location
+    const locationsId = locationss.map(item => item.location_id);
+    const categorysId = categorys.map(cate => cate.category_id);
     const [typechange , settypechange] = useState(true)
     const [updatejobid,setupdatejobid] = useState()
     const [CompanyName, setCompanyName] = useState("")
@@ -48,8 +51,6 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     const UserData = data?.user;
 
     useEffect(()=>{
-        const category = dataposttojob.categories
-        const locations = dataposttojob.Location
         setupdatejobid(dataposttojob.job_id)
         setCompanyName(dataposttojob.CompanyName)
         setImage(dataposttojob.image)
@@ -61,36 +62,32 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
         setDeadLine(dataposttojob.DeadLine)
         console.log(locations)
 
-        const locationsId = locations.map(item => item.location_id);
-        const categorysId = category.map(cate => cate.category_id);
-        setLocationId(locationsId)
-        setCategoryId(categorysId)
-        console.log(LocationId);
-        console.log(categoryId)
         
     },[dataposttojob ])
     
     const handleOKClickForupdate = async() => {
-        setLoading(true)
-        const data = await axios.patch(`../api/updatejob/${updatejobid}`,{
-            "CompanyName":CompanyName,
-            "JobsName":JobsName,
-            "CareerLevel":CareerLevel,
-            "Salary":Salary,
-            "Descreption":Description,
-            "shortDescreption":shortDescription,
-            "DeadLine":DeadLine,
-            "categoryId":categoryId,
-            "LocationId":LocationId,
-            "user_id":UserData.user_id
-        }).then(function (response) {
-            console.log(response.data);
-            router.reload()
-        }).catch(function (error) {
-            console.log(error);
-            setLoading(false)
-        });
-        setupdateModalOn(false)
+        console.log(LocationId)
+        console.log(categoryId)
+        // setLoading(true)
+        // const data = await axios.patch(`../api/updatejob/${updatejobid}`,{
+        //     "CompanyName":CompanyName,
+        //     "JobsName":JobsName,
+        //     "CareerLevel":CareerLevel,
+        //     "Salary":Salary,
+        //     "Descreption":Description,
+        //     "shortDescreption":shortDescription,
+        //     "DeadLine":DeadLine,
+        //     "categoryId":categoryId,
+        //     "LocationId":LocationId,
+        //     "user_id":UserData.user_id
+        // }).then(function (response) {
+        //     console.log(response.data);
+        //     router.reload()
+        // }).catch(function (error) {
+        //     console.log(error);
+        //     setLoading(false)
+        // });
+        // setupdateModalOn(false)
         
     }
 
@@ -302,14 +299,11 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
                             onKeyPressFn={function noRefCheck(){}}
                             onRemove={function noRefCheck(){}}
                             onSearch={function noRefCheck(){}}
-                            onSelect={(selectedItems) => {
-    selectedItems.forEach((item) => {
-        if (!categoryId.includes(item.category_id)) {
-            setCategoryId((prevIds) => [...prevIds, item.category_id]);
-        }
-    });
-}}
-
+                            onSelect={(e)=>{
+                                e.map((data,index)=>(
+                                   setCategoryId([...categoryId, data.category_id])
+                                ))
+                            }}
                             selectedValues={categories.filter((option) => categoryId.includes(option.category_id))}
                             options={categories}
                         />
