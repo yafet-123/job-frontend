@@ -42,38 +42,38 @@ export default function SignIn({ csrfToken }) {
                 >
                     {(formik) => (
                       <form onSubmit={formik.handleSubmit}>
-                        <div className="bg-gray-800 text-white py-10 px-20 rounded-3xl shadow-2xl animate-bg text-center">
-                            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                        <div className="bg-gray-900 flex items-center justify-center min-h-screen">
+                            <div className="bg-gray-800 text-white py-10 px-20 rounded-3xl shadow-2xl animate-bg text-center">
                                 <input name="csrfToken" type="hidden" defaultValue={csrfToken}/>
                                 <div className="text-red-400 text-md text-center rounded p-2">
                                     {error}
                                 </div>
                                 <h1 class="text-2xl mb-6">Login</h1>
                                 <div className="mb-4">
-                                    <label htmlFor="username" className="uppercase text-sm text-gray-600 font-bold">
+                                    <label htmlFor="username" className="uppercase text-sm text-white font-bold">
                                         User Name
                                         <Field
                                             name="username"
                                             aria-label="enter your username"
                                             aria-required="true"
                                             type="text"
-                                            className="w-full bg-gray-300 text-gray-900 mt-2 p-3"
+                                            className="block text-black w-full mx-auto my-2 p-3 border-4 border-blue-500 rounded-full focus:outline-none focus:w-full focus:border-cyan-300 transition-all duration-300"
                                         />
                                     </label>
 
                                     <div className="text-red-600 text-sm">
-                                        <ErrorMessage name="email" />
+                                        <ErrorMessage name="username" />
                                     </div>
                                 </div>
                                 <div className="mb-6">
-                                    <label htmlFor="password" className="uppercase text-sm text-gray-600 font-bold">
+                                    <label htmlFor="password" className="uppercase text-sm text-white font-bold">
                                         password
                                         <Field
                                             name="password"
                                             aria-label="enter your password"
                                             aria-required="true"
                                             type="password"
-                                            className="w-full bg-gray-300 text-gray-900 mt-2 p-3"
+                                            className="block text-black w-full mx-auto my-2 p-3 border-4 border-blue-500 rounded-full focus:outline-none focus:w-full focus:border-cyan-300 transition-all duration-300"
                                         />
                                     </label>
 
@@ -82,7 +82,7 @@ export default function SignIn({ csrfToken }) {
                                     </div>
                                 </div>
 
-                                <Link href="/Forgotpassword" >
+                                <Link href="/Teacher/Forgotpassword" >
                                     <a
                                         className="font-bold flex justify-end text-lg lg:text-xl text-red-600 mb-5"
                                     >
@@ -93,7 +93,7 @@ export default function SignIn({ csrfToken }) {
                                 <div className="flex items-center justify-center">
                                     <button
                                         type="submit"
-                                        className={formik.isSubmitting ? 'bg-green-200 text-gray-100 p-3 rounded-lg w-full' : 'bg-green-600 text-gray-100 p-3 rounded-lg w-full'} 
+                                        className={formik.isSubmitting ? 'bg-green-200 text-gray-100 p-3 rounded-lg w-full' : 'block w-3/4 mx-auto my-4 p-3 bg-transparent border-4 border-green-500 rounded-full text-white cursor-pointer hover:bg-green-500 transition-all duration-300'} 
                                     >
                                         {formik.isSubmitting ? 'Please wait...' : 'Sign In'}
                                     </button>
