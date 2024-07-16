@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 export function SearchJobs({categories, locations}) {
   const [jobs, setJobs] = useState("category");
   const router = useRouter(); 
+  console.log(categories)
   return (
     <div className="flex flex-col w-full h-full py-20 px-0 md:px-32 bg-[#e6e6e6] dark:bg-[#02201D] ">
       <h1 className="font-semibold text-[#009688] dark:text-white text-md md:text-3xl lg:text-4xl capitalize w-full">
@@ -28,7 +29,7 @@ export function SearchJobs({categories, locations}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/Jobs/Category",
-                        query:{category: data.CategoryName, howmany:data._count.JobCategory, category_id: data.category_id}
+                        query:{category: data.CategoryName, howmany:data.JobCategoryCount, category_id: data.category_id}
                       })
                     }}
                   >
@@ -36,7 +37,7 @@ export function SearchJobs({categories, locations}) {
                       {data.CategoryName}
                     </h1>
                     <h1 className="w-1/4 px-2 lg:px-5 py-2 text-black dark:text-white border rounded-xl border-[#009688] text-[#009688] font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:text-white group-hover:border-white">
-                      {data._count.JobCategory}
+                      {data.JobCategoryCount}
                     </h1>
                   </button>
                 ))}
@@ -51,7 +52,7 @@ export function SearchJobs({categories, locations}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/Jobs/Location",
-                        query:{location:data.LocationName, howmany:data._count.JobLocation, image:data.Image, location_id:data.location_id}
+                        query:{location:data.LocationName, howmany:data.JobLocation, image:data.Image, location_id:data.location_id}
                       })
                     }}
                   >
@@ -61,7 +62,7 @@ export function SearchJobs({categories, locations}) {
                         jobs in {data.LocationName}
                       </h1>
                       <h1 className="text-black dark:text-white text-left text-[#009688] font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:border-orange-200">
-                        {data._count.JobLocation}
+                        {data.JobLocation}
                       </h1>
                     </div>
                   </button>

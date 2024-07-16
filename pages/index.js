@@ -3,202 +3,166 @@ import { LatestJobs } from "../components/Home/LatestJobs";
 import { SearchJobs } from "../components/Home/SearchJobs";
 import { Slide } from "../components/Home/Slide";
 import React from 'react'
-import { prisma } from '../util/db.server.js'
 import { MainHeader } from '../components/common/MainHeader';
 import { useSession } from "next-auth/react";
 
+import pool from '../db';
 
-export async function getStaticProps(){
-  const locations = await prisma.Location.findMany({
-    include:{
-       _count:{
-        select:{
-          JobLocation:true
-        }
-      },
-    }
-  });
-  const categories = await prisma.Category.findMany({
-    include:{
-       _count:{
-        select:{
-          JobCategory:true
-        }
-      },
-    }
-  });
-  const latestjobs = await prisma.Job.findMany({ 
-    take:-5,
-    orderBy: {
-      ModifiedDate:"asc"
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      JobLocation:{
-        include:{
-          Location:{
-            select:{
-              location_id:true,
-              LocationName:true
-            }
-          }
-        }
-      },
-      JobCategory:{
-        include:{
-          Category:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },  
-    } 
-  });
-  
-  const news = await prisma.News.findMany({
-    take:-5,
-    orderBy : {
-      CreatedDate:'desc'
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      NewsCategoryRelationship:{
-        include:{
-          NewsCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
-    }
-  });
-  const entertainments = await prisma.Entertainment.findMany({
-    take:-5,
-    orderBy : {
-      CreatedDate:'desc'
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      EntertainmentCategoryRelationship:{
-        include:{
-          EntertainmentCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
-    }
-  });
+export async function getStaticProps() {
+  const locationsQuery = `
+    SELECT 
+      l.*, 
+      COUNT(jl."location_id") AS "JobLocationCount"
+    FROM "Location" l
+    LEFT JOIN "JobLocation" jl ON l."location_id" = jl."location_id"
+    GROUP BY l."location_id"
+  `;
 
-  const latestnews = news.map((data)=>({
-    news_id:data.news_id,
-    Header:data.Header,
-    image:data.Image,
-    view:data.view,
-    ShortDescription:data.ShortDescription,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Category:data.NewsCategoryRelationship
-  }))
-  const latestentertainments = entertainments.map((data)=>({
-    entertainment_id:data.entertainment_id,
-    Header:data.Header,
-    image:data.Image,
-    view:data.view,
-    ShortDescription:data.ShortDescription,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Category:data.EntertainmentCategoryRelationship
-  }))
+  const categoriesQuery = `
+    SELECT 
+      c.*, 
+      COUNT(jc."category_id") AS "JobCategoryCount"
+    FROM "Category" c
+    LEFT JOIN "JobCategory" jc ON c."category_id" = jc."category_id"
+    GROUP BY c."category_id"
+  `;
 
-  const Alllatestjobs = latestjobs.map((data)=>({
-    job_id:data.job_id,
-    CompanyName:data.CompanyName,
-    image:data.Image,
-    JobsName:data.JobsName,
-    CareerLevel:data.CareerLevel,
-    Salary:data.Salary,
-    Descreption:data.Descreption,
-    shortDescreption:data.shortDescreption,
-    DeadLine:data.DeadLine,
-    Apply:data.Apply,
-    view:data.view,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    categories:data.JobCategory,
-    Location:data.JobLocation,
-  }))
-  
-  const latestreversejob = Alllatestjobs.reverse();
+  const latestJobsQuery = `
+    SELECT 
+      j.*, 
+      u."UserName",
+      json_agg(
+        json_build_object(
+          'location_id', l."location_id",
+          'LocationName', l."LocationName"
+        )
+      ) AS "JobLocations",
+      json_agg(
+        json_build_object(
+          'category_id', c."category_id",
+          'CategoryName', c."CategoryName"
+        )
+      ) AS "JobCategories"
+    FROM "Job" j
+    LEFT JOIN "User" u ON j."user_id" = u."user_id"
+    LEFT JOIN "JobLocation" jl ON j."job_id" = jl."job_id"
+    LEFT JOIN "Location" l ON jl."location_id" = l."location_id"
+    LEFT JOIN "JobCategory" jc ON j."job_id" = jc."job_id"
+    LEFT JOIN "Category" c ON jc."category_id" = c."category_id"
+    GROUP BY j."job_id", u."UserName"
+    ORDER BY j."ModifiedDate" DESC
+    LIMIT 5
+  `;
 
-  const latestblogs = await prisma.Blogs.findMany({
-    take:-6,
-    orderBy: {
-      blogs_id:"desc"
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
+  const newsQuery = `
+    SELECT 
+      n.*, 
+      u."UserName",
+      json_agg(
+        json_build_object(
+          'category_id', nc."category_id",
+          'CategoryName', nc."CategoryName"
+        )
+      ) AS "NewsCategories"
+    FROM "News" n
+    LEFT JOIN "User" u ON n."user_id" = u."user_id"
+    LEFT JOIN "NewsCategoryRelationship" ncr ON n."news_id" = ncr."news_id"
+    LEFT JOIN "NewsCategory" nc ON ncr."category_id" = nc."category_id"
+    GROUP BY n."news_id", u."UserName"
+    ORDER BY n."CreatedDate" DESC
+    LIMIT 5
+  `;
+
+  const entertainmentsQuery = `
+    SELECT 
+      e.*, 
+      u."UserName",
+      json_agg(
+        json_build_object(
+          'category_id', ec."category_id",
+          'CategoryName', ec."CategoryName"
+        )
+      ) AS "EntertainmentCategories"
+    FROM "Entertainment" e
+    LEFT JOIN "User" u ON e."user_id" = u."user_id"
+    LEFT JOIN "EntertainmentCategoryRelationship" ecr ON e."entertainment_id" = ecr."entertainment_id"
+    LEFT JOIN "EntertainmentCategory" ec ON ecr."category_id" = ec."category_id"
+    GROUP BY e."entertainment_id", u."UserName"
+    ORDER BY e."CreatedDate" DESC
+    LIMIT 5
+  `;
+
+  const blogsQuery = `
+    SELECT 
+      b.*, 
+      u."UserName",
+      json_agg(
+        json_build_object(
+          'category_id', bc."category_id",
+          'CategoryName', bc."CategoryName"
+        )
+      ) AS "BlogsCategories"
+    FROM "Blogs" b
+    LEFT JOIN "User" u ON b."user_id" = u."user_id"
+    LEFT JOIN "BlogsCategoryRelationship" bcr ON b."blogs_id" = bcr."blogs_id"
+    LEFT JOIN "BlogsCategory" bc ON bcr."category_id" = bc."category_id"
+    GROUP BY b."blogs_id", u."UserName"
+    ORDER BY b."blogs_id" DESC
+    LIMIT 6
+  `;
+
+  try {
+    const client = await pool.connect();
+    const [locationsResult, categoriesResult, latestJobsResult, newsResult, entertainmentsResult, blogsResult] = await Promise.all([
+      client.query(locationsQuery),
+      client.query(categoriesQuery),
+      client.query(latestJobsQuery),
+      client.query(newsQuery),
+      client.query(entertainmentsQuery),
+      client.query(blogsQuery)
+    ]);
+    const locations = locationsResult.rows;
+    const categories = categoriesResult.rows;
+    const latestjobs = latestJobsResult.rows.reverse(); // Reverse as per your original code
+    const latestnews = newsResult.rows.map(data => ({
+      ...data,
+      Category: data.NewsCategories
+    }));
+    const latestentertainments = entertainmentsResult.rows.map(data => ({
+      ...data,
+      Category: data.EntertainmentCategories
+    }));
+    const Alllatestblogs = blogsResult.rows.map(data => ({
+      ...data,
+      Category: data.BlogsCategories
+    }));
+
+    client.release();
+
+    return {
+      props: {
+        categories: JSON.parse(JSON.stringify(categories)),
+        locations: JSON.parse(JSON.stringify(locations)),
+        latestjobs: JSON.parse(JSON.stringify(latestjobs)),
+        Alllatestblogs: JSON.parse(JSON.stringify(Alllatestblogs)),
+        latestnews: JSON.parse(JSON.stringify(latestnews)),
+        latestentertainments: JSON.parse(JSON.stringify(latestentertainments))
+      }
+    };
+    }catch (err) {
+      console.error('Database Query Error:', err);
+      return {
+        props: {
+          categories: [],
+          locations: [],
+          latestjobs: [],
+          Alllatestblogs: [],
+          latestnews: [],
+          latestentertainments: []
         }
-      },
-      BlogsCategoryRelationship:{
-        include:{
-          BlogsCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
-    }
-  });
-
-  const Alllatestblogs = latestblogs.map((data)=>({
-    blogs_id:data.blogs_id,
-    Header:data.Header,
-    image:data.Image,
-    view:data.view,
-    ShortDescription:data.ShortDescription,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Category:data.BlogsCategoryRelationship
-  }))
-
-  return{
-    props:{
-      categories:JSON.parse(JSON.stringify(categories)),
-      locations:JSON.parse(JSON.stringify(locations)),
-      latestjobs:JSON.parse(JSON.stringify(latestreversejob)),
-      Alllatestblogs:JSON.parse(JSON.stringify(Alllatestblogs)),
-      latestnews:JSON.parse(JSON.stringify(latestnews)),
-      latestentertainments:JSON.parse(JSON.stringify(latestentertainments))
+      };
     }
   }
-}
 
 export default function Home({categories, locations, latestjobs, Alllatestblogs, latestnews, latestentertainments}) {
   const { status, data } = useSession();

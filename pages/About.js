@@ -6,32 +6,35 @@ import { OurVision } from '../components/AboutUs/OurVision';
 import { MainHeader } from '../components/common/MainHeader';
 import { HtmlIntroduction } from "../components/HTML/HtmlIntroduction"
 import React from 'react'
-import { prisma } from '../util/db.server.js'
 
-export async function getServerSideProps(){
-  const jobs = await prisma.Job.count()
-
-  const news = await prisma.News.count()
-
-  const entertainments = await prisma.Entertainment.count()
-
-  return{
-    props:{
-      jobs:JSON.parse(JSON.stringify(jobs)),
-      news:JSON.parse(JSON.stringify(news)),
-      entertainments:JSON.parse(JSON.stringify(entertainments)),
-    }
+import pool from '../db'
+        // <FollowingTheDream jobcount={jobs} newCount={news} entertainmentcount={entertainments} />
+export async function getServerSideProps() {
+  let results = [];
+  try {
+    const client = await pool.connect();
+    const res = await client.query('SELECT * FROM "User"'); // Ensure table name is case-sensitive
+    console.log('Query Result:', res); // Log entire response
+    results = res.rows;
+    client.release();
+  } catch (err) {
+    console.error('Database Query Error:', err); // Improved error logging
   }
+  console.log('Results:', results); // Log results to ensure data is correct
+  return {
+    props: {
+      data: "results",
+    },
+  };
 }
 
-export default function About({jobs,news,entertainments}) {
-  console.log(news)
+export default function About() {
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : About" />
       <div className="flex flex-col bg-[#e6e6e6] dark:bg-[#02201D]">
         <AboutUsHero />
-        <FollowingTheDream jobcount={jobs} newCount={news} entertainmentcount={entertainments} />
+
       </div>
     </React.Fragment>
   );
