@@ -66,7 +66,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/Jobs/Location",
-                        query:{location:data.LocationName, howmany:data._count.Job, image:data.Image, location_id:data.location_id}
+                        query:{location:data.LocationName, howmany:data.JobLocationCount, image:data.Image, location_id:data.location_id}
                       })
                     }}
                   >
@@ -76,7 +76,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                         jobs in {data.LocationName}
                       </h1>
                       <h1 className="text-black dark:text-white text-left text-[#009688] font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:border-white">
-                        {data._count.JobLocation}
+                        {data.JobLocationCount}
                       </h1>
                     </div>
                   </button>
@@ -94,7 +94,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                     onClick = {()=>{
                       router.push({
                         pathname:"/Jobs/Category",
-                        query:{category: data.CategoryName, howmany:data._count.JobCategory, category_id: data.category_id}
+                        query:{category: data.CategoryName, howmany:data.JobCategoryCount, category_id: data.category_id}
                       })
                     }}
                   >
@@ -102,7 +102,7 @@ export function Searchjobs({categories,locations,latestjobs}) {
                       {data.CategoryName}
                     </h1>
                     <h1 className="w-1/4 px-2 lg:px-5 py-2 text-black dark:text-white border rounded-xl border-[#009688] text-[#009688] font-bold text-xs md:text-lg lg:text-xl group-hover:text-white group-hover:border-white">
-                      {data._count.JobCategory}
+                      {data.JobCategoryCount}
                     </h1>
                   </button>
                 ))}

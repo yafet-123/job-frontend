@@ -1,89 +1,101 @@
 import React from "react";
 import Link from "next/link";
 import { useState } from "react";
-import { prisma } from '../../util/db.server.js'
 import { MainHeader } from '../../components/common/MainHeader';
 import { Hero } from "../../components/jobs/Hero";
 import { Searchjobs } from "../../components/jobs/Searchjobs";
 
-export async function getServerSideProps(){
-  const categories = await prisma.Category.findMany({
-    orderBy: {
-      ModifiedDate:"asc"
-    },
-    include:{
-       _count:{
-        select:{
-          JobCategory:true
-        }
-      },
-    }
-  });
-  const locations = await prisma.Location.findMany({
-    orderBy: {
-      ModifiedDate:"asc"
-    },
-    include:{
-       _count:{
-        select:{
-          JobLocation:true
-        }
-      },
-    }
-  });
-  const jobs = await prisma.Job.findMany({ 
-    orderBy: {
-      ModifiedDate:"asc"
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      JobLocation:{
-        include:{
-          Location:{
-            select:{
-              location_id:true,
-              LocationName:true
-            }
-          }
-        }
-      },
-    } 
-  });
+// pages/index.js
+import pool from '../../db';
 
-  const Alljobs = jobs.map((data)=>({
-    job_id:data.job_id,
-    CompanyName:data.CompanyName,
-    image:data.Image,
-    JobsName:data.JobsName,
-    CareerLevel:data.CareerLevel,
-    Salary:data.Salary,
-    Descreption:data.Descreption,
-    shortDescreption:data.shortDescreption,
-    DeadLine:data.DeadLine,
-    Apply:data.Apply,
-    view:data.view,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Location:data.JobLocation,
-  }))
-  
-  const reversejob = Alljobs.reverse();
+export async function getServerSideProps() {
+  const categoriesQuery = `
+    SELECT 
+      c.*, 
+      (SELECT COUNT(*) FROM "JobCategory" WHERE "category_id" = c."category_id") AS "JobCategoryCount"
+    FROM "Category" c
+    ORDER BY c."ModifiedDate" ASC
+  `;
 
-  return{
-    props:{
-      categories:JSON.parse(JSON.stringify(categories)),
-      locations:JSON.parse(JSON.stringify(locations)),
-      latestjobs:JSON.parse(JSON.stringify(reversejob)),
-    }
+  const locationsQuery = `
+    SELECT 
+      l.*, 
+      (SELECT COUNT(*) FROM "JobLocation" WHERE "location_id" = l."location_id") AS "JobLocationCount"
+    FROM "Location" l
+    ORDER BY l."ModifiedDate" ASC
+  `;
+
+  const jobsQuery = `
+    SELECT 
+      j.*, 
+      u."UserName",
+      json_build_object(
+        'location_id', jl."location_id",
+        'LocationName', loc."LocationName"
+      ) AS "JobLocation"
+    FROM "Job" j
+    LEFT JOIN "User" u ON j."user_id" = u."user_id"
+    LEFT JOIN "JobLocation" jl ON j."job_id" = jl."job_id"
+    LEFT JOIN "Location" loc ON jl."location_id" = loc."location_id"
+    ORDER BY j."ModifiedDate" ASC
+  `;
+
+  try {
+    const client = await pool.connect();
+
+    const [categoriesResult, locationsResult, jobsResult] = await Promise.allSettled([
+      client.query(categoriesQuery),
+      client.query(locationsQuery),
+      client.query(jobsQuery)
+    ]);
+
+    const categories = categoriesResult.status === 'fulfilled' ? categoriesResult.value.rows : [];
+    const locations = locationsResult.status === 'fulfilled' ? locationsResult.value.rows : [];
+    const jobs = jobsResult.status === 'fulfilled' ? jobsResult.value.rows : [];
+
+    const Alljobs = jobs.map(data => ({
+      job_id: data.job_id,
+      CompanyName: data.CompanyName,
+      image: data.Image,
+      JobsName: data.JobsName,
+      CareerLevel: data.CareerLevel,
+      Salary: data.Salary,
+      Descreption: data.Descreption,
+      shortDescreption: data.shortDescreption,
+      DeadLine: data.DeadLine,
+      Apply: data.Apply,
+      view: data.view,
+      userName: data.UserName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      Location: data.JobLocation,
+    }));
+
+    const reversejob = Alljobs.reverse();
+
+    client.release();
+
+    return {
+      props: {
+        categories: JSON.parse(JSON.stringify(categories)),
+        locations: JSON.parse(JSON.stringify(locations)),
+        latestjobs: JSON.parse(JSON.stringify(reversejob)),
+      },
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        categories: [],
+        locations: [],
+        latestjobs: [],
+      },
+    };
   }
 }
 
 export default function Jobs({categories, locations, latestjobs}) {
+  console.log(categories)
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : Jobs" />
