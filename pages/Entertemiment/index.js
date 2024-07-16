@@ -4,65 +4,85 @@ import ReactPlayer from 'react-player'
 import { MainHeader } from '../../components/common/MainHeader';
 import { ETSidebar } from '../../components/Entertemiment/ETSidebar';
 import { Content } from '../../components/Entertemiment/Content';
-import { prisma } from '../../util/db.server.js'
  
-export async function getServerSideProps(context){
-	const data = await prisma.EntertainmentCategory.findMany({
-		orderBy : {
-      		category_id:'desc'
-    	},
-	})
+// pages/index.js
+import pool from '../../db';
 
-	const entertainments = await prisma.Entertainment.findMany({
-		orderBy : {
-      		entertainment_id:'desc'
-    	},
-    	include:{
-	      	User:{
-	        	select:{
-	          		UserName:true
-	        	}
-	      	},
-      		EntertainmentCategoryRelationship:{
-        		include:{
-          			EntertainmentCategory:{
-                        select:{
-                        	category_id:true,
-              				CategoryName:true
-            			}
-          			}
-        		}
-      		},
-    	}
-	})
-	
-	const categories = data.map((data)=>({
-		category_id:data.category_id,
-		CategoryName:data.CategoryName,
-		CreatedDate:data.CreatedDate,
-		ModifiedDate:data.ModifiedDate
-	}))
+export async function getServerSideProps(context) {
+  const entertainmentCategoriesQuery = `
+    SELECT * FROM "EntertainmentCategory"
+    ORDER BY "category_id" DESC
+  `;
 
-	const entertainmentsdata = entertainments.map((data)=>({
-		entertainment_id : data.entertainment_id,
-		Header:data.Header,
-    image:data.Image,
-    view:data.view,
-    ShortDescription:data.ShortDescription,
-    Description:data.Description,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-		Category:data.EntertainmentCategoryRelationship
-	}))
+  const entertainmentsQuery = `
+    SELECT 
+      e.*, 
+      u."UserName",
+      json_agg(
+        json_build_object(
+          'category_id', ec."category_id",
+          'CategoryName', ec."CategoryName"
+        )
+      ) AS "EntertainmentCategories"
+    FROM "Entertainment" e
+    LEFT JOIN "User" u ON e."user_id" = u."user_id"
+    LEFT JOIN "EntertainmentCategoryRelationship" ecr ON e."entertainment_id" = ecr."entertainment_id"
+    LEFT JOIN "EntertainmentCategory" ec ON ecr."category_id" = ec."category_id"
+    GROUP BY e."entertainment_id", u."UserName"
+    ORDER BY e."entertainment_id" DESC
+  `;
 
-  return{
-    props:{
-      categories:JSON.parse(JSON.stringify(categories)),
-      entertainments:JSON.parse(JSON.stringify(entertainmentsdata))
-    }
+  try {
+    const client = await pool.connect();
+    
+    const [entertainmentCategoriesResult, entertainmentsResult] = await Promise.allSettled([
+      client.query(entertainmentCategoriesQuery),
+      client.query(entertainmentsQuery)
+    ]);
+
+    const entertainmentCategories = entertainmentCategoriesResult.status === 'fulfilled' ? entertainmentCategoriesResult.value.rows : [];
+    const entertainments = entertainmentsResult.status === 'fulfilled' ? entertainmentsResult.value.rows : [];
+
+    const categories = entertainmentCategories.map(data => ({
+      category_id: data.category_id,
+      CategoryName: data.CategoryName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+    }));
+
+    const entertainmentsData = entertainments.map(data => ({
+      entertainment_id: data.entertainment_id,
+      Header: data.Header,
+      image: data.Image,
+      view: data.view,
+      ShortDescription: data.ShortDescription,
+      Description: data.Description,
+      userName: data.UserName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      Category: data.EntertainmentCategories,
+    }));
+
+    client.release();
+
+    return {
+      props: {
+        categories: JSON.parse(JSON.stringify(categories)),
+        entertainments: JSON.parse(JSON.stringify(entertainmentsData)),
+      },
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        categories: [],
+        entertainments: [],
+      },
+    };
   }
 }
+
+
 
 export default function Entertemiment({categories,entertainments}){
 	return(

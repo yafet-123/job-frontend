@@ -1,71 +1,85 @@
 import React from "react";
 import { MainHeader } from '../../components/common/MainHeader';
 import { AllBlogs } from '../../components/Blogs/AllBlogs';
-import { prisma } from '../../util/db.server.js'
 
-export async function getServerSideProps(context){
-  const blogscategories = await prisma.BlogsCategory.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  })
+import pool from '../../db';
 
-  const Allblogscategories = blogscategories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
+export async function getServerSideProps(context) {
+  const blogCategoriesQuery = `
+    SELECT 
+      bc.*, 
+      u."UserName"
+    FROM "BlogsCategory" bc
+    LEFT JOIN "User" u ON bc."user_id" = u."user_id"
+    ORDER BY bc."category_id" ASC
+  `;
 
-  const blogs = await prisma.Blogs.findMany({
-    orderBy : {
-      ModifiedDate:'desc'
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
+  const blogsQuery = `
+    SELECT 
+      b.*, 
+      u."UserName",
+      json_agg(
+        json_build_object(
+          'category_id', bc."category_id",
+          'CategoryName', bc."CategoryName"
+        )
+      ) AS "BlogsCategories"
+    FROM "Blogs" b
+    LEFT JOIN "User" u ON b."user_id" = u."user_id"
+    LEFT JOIN "BlogsCategoryRelationship" bcr ON b."blogs_id" = bcr."blogs_id"
+    LEFT JOIN "BlogsCategory" bc ON bcr."category_id" = bc."category_id"
+    GROUP BY b."blogs_id", u."UserName"
+    ORDER BY b."ModifiedDate" DESC
+  `;
+
+  try {
+    const client = await pool.connect();
+    const [blogCategoriesResult, blogsResult] = await Promise.allSettled([
+      client.query(blogCategoriesQuery),
+      client.query(blogsQuery)
+    ]);
+
+    const blogCategories = blogCategoriesResult.status === 'fulfilled' ? blogCategoriesResult.value.rows : [];
+    const blogs = blogsResult.status === 'fulfilled' ? blogsResult.value.rows : [];
+
+    const allBlogCategories = blogCategories.map(data => ({
+      category_id: data.category_id,
+      CategoryName: data.CategoryName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      userName: data.UserName,
+    }));
+
+    const allBlogs = blogs.map(data => ({
+      blogs_id: data.blogs_id,
+      Header: data.Header,
+      image: data.Image,
+      view: data.view,
+      ShortDescription: data.ShortDescription,
+      Description: data.Description,
+      userName: data.UserName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      Category: data.BlogsCategories,
+    }));
+
+    client.release();
+
+    return {
+      props: {
+        categories: JSON.parse(JSON.stringify(allBlogCategories)),
+        allblogs: JSON.parse(JSON.stringify(allBlogs)),
       },
-      BlogsCategoryRelationship:{
-        include:{
-          BlogsCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
+    };
+  } 
+  catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        categories: [],
+        allblogs: [],
       },
-    }
-  });
-
-  const allblogs = blogs.map((data)=>({
-    blogs_id:data.blogs_id,
-    Header:data.Header,
-    image:data.Image,
-    view : data.view,
-    ShortDescription:data.ShortDescription,
-    Description : data.Description,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Category:data.BlogsCategoryRelationship
-  }))
-
-  return{
-    props:{
-      categories:JSON.parse(JSON.stringify(Allblogscategories)),
-      allblogs:JSON.parse(JSON.stringify(allblogs)),
-    }
+    };
   }
 }
  

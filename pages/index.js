@@ -113,7 +113,15 @@ export async function getStaticProps() {
 
   try {
     const client = await pool.connect();
-    const [locationsResult, categoriesResult, latestJobsResult, newsResult, entertainmentsResult, blogsResult] = await Promise.all([
+    
+    const [
+      locationsResult,
+      categoriesResult,
+      latestJobsResult,
+      newsResult,
+      entertainmentsResult,
+      blogsResult
+    ] = await Promise.allSettled([
       client.query(locationsQuery),
       client.query(categoriesQuery),
       client.query(latestJobsQuery),
@@ -121,21 +129,22 @@ export async function getStaticProps() {
       client.query(entertainmentsQuery),
       client.query(blogsQuery)
     ]);
-    const locations = locationsResult.rows;
-    const categories = categoriesResult.rows;
-    const latestjobs = latestJobsResult.rows.reverse(); // Reverse as per your original code
-    const latestnews = newsResult.rows.map(data => ({
+
+    const locations = locationsResult.status === 'fulfilled' ? locationsResult.value.rows : [];
+    const categories = categoriesResult.status === 'fulfilled' ? categoriesResult.value.rows : [];
+    const latestjobs = latestJobsResult.status === 'fulfilled' ? latestJobsResult.value.rows.reverse() : [];
+    const latestnews = newsResult.status === 'fulfilled' ? newsResult.value.rows.map(data => ({
       ...data,
       Category: data.NewsCategories
-    }));
-    const latestentertainments = entertainmentsResult.rows.map(data => ({
+    })) : [];
+    const latestentertainments = entertainmentsResult.status === 'fulfilled' ? entertainmentsResult.value.rows.map(data => ({
       ...data,
       Category: data.EntertainmentCategories
-    }));
-    const Alllatestblogs = blogsResult.rows.map(data => ({
+    })) : [];
+    const Alllatestblogs = blogsResult.status === 'fulfilled' ? blogsResult.value.rows.map(data => ({
       ...data,
       Category: data.BlogsCategories
-    }));
+    })) : [];
 
     client.release();
 
@@ -149,20 +158,21 @@ export async function getStaticProps() {
         latestentertainments: JSON.parse(JSON.stringify(latestentertainments))
       }
     };
-    }catch (err) {
-      console.error('Database Query Error:', err);
-      return {
-        props: {
-          categories: [],
-          locations: [],
-          latestjobs: [],
-          Alllatestblogs: [],
-          latestnews: [],
-          latestentertainments: []
-        }
-      };
-    }
+  } 
+  catch (err) {
+    console.error('Database Connection Error:', err);
+    return {
+      props: {
+        categories: [],
+        locations: [],
+        latestjobs: [],
+        Alllatestblogs: [],
+        latestnews: [],
+        latestentertainments: []
+      }
+    };
   }
+}
 
 export default function Home({categories, locations, latestjobs, Alllatestblogs, latestnews, latestentertainments}) {
   const { status, data } = useSession();
