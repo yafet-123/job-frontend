@@ -1,18 +1,32 @@
-import { prisma } from '../../../util/db.server.js'
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
+import pool from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
 
-export default async function handleupdatecategory(req, res){
-	const {updatecourseid} = req.query
-	const {title , content, user_id} = req.body
-	const data = await prisma.CSSCourse.update({
-		where:{course_id:Number(updatecourseid)},
-		data:{
-			title,
-			content,
-		},
-	});
+export default async function handleupdatecourse(req, res) {
+  const { updatecourseid } = req.query;
+  const { title, content } = req.body;
 
-	res.json(data)
+  const updateCourseQuery = `
+    UPDATE "CSSCourse"
+    SET title = $1, content = $2
+    WHERE course_id = $3
+    RETURNING *;
+  `;
+
+  const values = [title, content, Number(updatecourseid)];
+
+  const client = await pool.connect();
+
+  try {
+    const result = await client.query(updateCourseQuery, values);
+    const updatedCourse = result.rows[0];
+
+    res.json(updatedCourse);
+  } catch (err) {
+    console.error('Error updating course:', err);
+    res.status(500).json({ error: 'Failed to update course' });
+  } finally {
+    client.release(); // Release client back to the pool
+  }
 }
