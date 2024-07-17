@@ -34,7 +34,6 @@ export function DisplayEntertainment({categories, entertainment}) {
                             <tr>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Id</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Header</th>
-                              <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Link</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Modified Date</th>
                               <th className="text-black dark:text-white p-3 text-lg font-semibold tracking-wide text-left">Created By</th>
@@ -48,9 +47,6 @@ export function DisplayEntertainment({categories, entertainment}) {
                                     </td>
                                     <td className="p-2 text-lg text-gray-700 dark:text-white">
                                         {data.Header}
-                                    </td>
-                                     <td className="p-2 text-lg text-gray-700 dark:text-white">
-                                        {data.link}
                                     </td>
                                     <td className="p-2 text-lg text-gray-700 dark:text-white">
                                         {moment(data.createDate).utc().format('YYYY-MM-DD')}

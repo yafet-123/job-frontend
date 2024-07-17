@@ -1,6 +1,5 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../../util/db.server.js'
 import { AddEntertainment } from "../../../components/Admin/Entertainment/AddEntertainment";
 import { DisplayEntertainment } from "../../../components/Admin/Entertainment/DisplayEntertainment";
 import { useSession } from "next-auth/react";
@@ -13,6 +12,7 @@ import pool from '../../../db.js'; // Make sure to import your database connecti
 export async function getServerSideProps(context) {
   const session = await getSession(context);
   const userRole = session?.user?.role;
+  
   if (userRole !== 'admin') {
     return {
       redirect: {
@@ -22,44 +22,74 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const getCategoriesQuery = `
+  const getEnterinmentQuery = `
     SELECT 
-      c.category_id, 
-      c."CategoryName", 
-      c."CreatedDate", 
-      c."ModifiedDate", 
-      u."UserName" 
-    FROM "Category" c
-    LEFT JOIN "User" u ON c.user_id = u.user_id
-    ORDER BY c.category_id ASC;
+      n.entertainment_id, n."Header", n."Image", n."ShortDescription", n."Description",
+      n."CreatedDate", n."ModifiedDate",
+      u."UserName" AS userName,
+      json_agg(json_build_object(
+        'category_id', nc.category_id,
+        'CategoryName', nc."CategoryName"
+      )) AS "Category"
+    FROM "Entertainment" n
+    LEFT JOIN "User" u ON n.user_id = u.user_id
+    LEFT JOIN "EntertainmentCategoryRelationship" ncr ON n.entertainment_id = ncr.entertainment_id
+    LEFT JOIN "EntertainmentCategory" nc ON ncr.category_id = nc.category_id
+    GROUP BY n.entertainment_id, u."UserName"
+    ORDER BY n."ModifiedDate" DESC;
   `;
 
-  try {
-    const client = await pool.connect();
-    const categoriesResult = await client.query(getCategoriesQuery);
+  const getEnterinmentCategoriesQuery = `
+    SELECT 
+      nc.category_id, nc."CategoryName", nc."CreatedDate", nc."ModifiedDate",
+      u."UserName" AS userName
+    FROM "EntertainmentCategory" nc
+    LEFT JOIN "User" u ON nc.user_id = u.user_id
+    ORDER BY nc.category_id ASC;
+  `;
 
-    const Allcategories = categoriesResult.rows.map((data) => ({
+  const client = await pool.connect();
+
+  try {
+    const etResult = await client.query(getEnterinmentQuery);
+    const categoriesCategoriesResult = await client.query(getEnterinmentCategoriesQuery);
+
+    const entertainment = etResult.rows.map((data) => ({
+      entertainment_id: data.entertainment_id,
+      Header: data.Header,
+      image: data.Image,
+      ShortDescription: data.ShortDescription,
+      Description: data.Description,
+      userName: data.userName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      Category: data.Category
+    }));
+
+    const categories = categoriesCategoriesResult.rows.map((data) => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
       ModifiedDate: data.ModifiedDate,
-      userName: data.UserName
+      userName: data.userName
     }));
 
-    client.release();
-
     return {
       props: {
-        categories: JSON.parse(JSON.stringify(Allcategories)),
-      }
-    };
-  } catch (err) {
-    console.error('Database Query Error:', err);
-    return {
-      props: {
-        error: 'An error occurred while fetching data',
+        entertainment: JSON.parse(JSON.stringify(entertainment)),
+        categories: JSON.parse(JSON.stringify(categories)),
       },
     };
+  } catch (err) {
+    console.error('Error retrieving news or categories:', err);
+    return {
+      props: {
+        news: [],
+        categories: [],
+      },
+    };
+  } finally {
+    client.release(); // Release the client back to the pool
   }
 }
 
