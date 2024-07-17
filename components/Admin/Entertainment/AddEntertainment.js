@@ -122,7 +122,7 @@ export function AddEntertainment ({categories}) {
             setLoading(false)
         });
     }
-
+ 
     function registerNews(e){
         e.preventDefault()
         addnews()

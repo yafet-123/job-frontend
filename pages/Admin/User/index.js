@@ -1,6 +1,6 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../../util/db.server.js'
+import pool from '../../../db.js'
 import { AddUser } from "../../../components/Admin/User/AddUser";
 import {DisplayUser} from "../../../components/Admin/User/DisplayUser";
 import { useSession } from "next-auth/react";
@@ -8,9 +8,10 @@ import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { getSession } from "next-auth/react";
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const userRole = await session?.user?.role
+  const userRole = session?.user?.role;
+
   if (userRole !== 'admin') {
     return {
       redirect: {
@@ -19,23 +20,43 @@ export async function getServerSideProps(context){
       },
     };
   }
-  const users = await prisma.User.findMany({orderBy : {ModifiedDate:'desc'}});
-  const Allusers = users.map((data)=>({
-      user_id:data.user_id,
-      email:data.email,
-      firstName:data.firstName,
-      lastName:data.lastName,
-      age:data.age,
-      role:data.role,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      UserName:data.UserName
-  }))
 
-  return{
-    props:{
-      users:JSON.parse(JSON.stringify(Allusers)),
-    }
+  const usersQuery = `
+    SELECT 
+      user_id, email, "firstName", "lastName", age, role, "CreatedDate", "ModifiedDate", "UserName"
+    FROM "User"
+    ORDER BY "ModifiedDate" DESC
+  `;
+
+  try {
+    const client = await pool.connect();
+    const usersResult = await client.query(usersQuery);
+    const users = usersResult.rows.map((data) => ({
+      user_id: data.user_id,
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      age: data.age,
+      role: data.role,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      UserName: data.UserName
+    }));
+
+    client.release();
+
+    return {
+      props: {
+        users: JSON.parse(JSON.stringify(users)),
+      },
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        users: [],
+      },
+    };
   }
 }
 

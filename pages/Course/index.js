@@ -28,7 +28,7 @@ export default function Courses() {
 
 	                })
 	              }}
-		    				className="py-3 border rounded-3xl w-52 text-xl font-bold bg-white text-black"
+		    				className="py-3 border rounded-3xl w-52 text-xl font-bold bg-white text-black hover:text-white hover:bg-black hover:border-black"
 		    			>
 		    				Learn {data.title}
 		    			</button>
