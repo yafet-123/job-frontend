@@ -5,13 +5,14 @@ import { DisplayNews } from "../../../components/Admin/News/DisplayNews";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
-import { prisma } from '../../../util/db.server.js'
 
-import { getSession } from "next-auth/react";
+import { getSession } from 'next-auth/react';
+import pool from '../../../db.js'; // Import your PostgreSQL connection pool
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const userRole = await session?.user?.role
+  const userRole = session?.user?.role;
+  
   if (userRole !== 'admin') {
     return {
       redirect: {
@@ -20,67 +21,75 @@ export async function getServerSideProps(context){
       },
     };
   }
-  const news = await prisma.News.findMany({
-    orderBy : {
-      ModifiedDate:'desc'
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
+
+  const getNewsQuery = `
+    SELECT 
+      n.news_id, n."Header", n."Image", n."ShortDescription", n."Description",
+      n."CreatedDate", n."ModifiedDate",
+      u."UserName" AS userName,
+      json_agg(json_build_object(
+        'category_id', nc.category_id,
+        'CategoryName', nc."CategoryName"
+      )) AS "Category"
+    FROM "News" n
+    LEFT JOIN "User" u ON n.user_id = u.user_id
+    LEFT JOIN "NewsCategoryRelationship" ncr ON n.news_id = ncr.news_id
+    LEFT JOIN "NewsCategory" nc ON ncr.category_id = nc.category_id
+    GROUP BY n.news_id, u."UserName"
+    ORDER BY n."ModifiedDate" DESC;
+  `;
+
+  const getNewsCategoriesQuery = `
+    SELECT 
+      nc.category_id, nc."CategoryName", nc."CreatedDate", nc."ModifiedDate",
+      u."UserName" AS userName
+    FROM "NewsCategory" nc
+    LEFT JOIN "User" u ON nc.user_id = u.user_id
+    ORDER BY nc.category_id ASC;
+  `;
+
+  const client = await pool.connect();
+
+  try {
+    const newsResult = await client.query(getNewsQuery);
+    const newsCategoriesResult = await client.query(getNewsCategoriesQuery);
+
+    const news = newsResult.rows.map((data) => ({
+      news_id: data.news_id,
+      Header: data.Header,
+      image: data.Image,
+      ShortDescription: data.ShortDescription,
+      Description: data.Description,
+      userName: data.userName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      Category: data.Category
+    }));
+
+    const newsCategories = newsCategoriesResult.rows.map((data) => ({
+      category_id: data.category_id,
+      CategoryName: data.CategoryName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      userName: data.userName
+    }));
+
+    return {
+      props: {
+        news: JSON.parse(JSON.stringify(news)),
+        categories: JSON.parse(JSON.stringify(newsCategories)),
       },
-      NewsCategoryRelationship:{
-        include:{
-          NewsCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
+    };
+  } catch (err) {
+    console.error('Error retrieving news or categories:', err);
+    return {
+      props: {
+        news: [],
+        categories: [],
       },
-    }
-  });
-
-  const allnews = news.map((data)=>({
-    news_id:data.news_id,
-    Header:data.Header,
-    image:data.Image,
-    ShortDescription:data.ShortDescription,
-    Description : data.Description,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Category:data.NewsCategoryRelationship
-  }))
-
-  const newscategories = await prisma.NewsCategory.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  })
-
-  const AllNewscategories = newscategories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
-
-  return{
-    props:{
-      categories:JSON.parse(JSON.stringify(AllNewscategories)),
-      news:JSON.parse(JSON.stringify(allnews)),
-    }
+    };
+  } finally {
+    client.release(); // Release the client back to the pool
   }
 }
 
