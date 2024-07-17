@@ -11,7 +11,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
     const [category, setcategory] = useState(dataposttojob.categories)
     const [location, setlocation] = useState(dataposttojob.Location)
     const [categorydata, setcategorydata] = useState([])
-
+    console.log(category)
     // for (var i=0;i<category.length;i++){
     //     setcategorydata((categorydata) => [...categorydata, category[i].Category])
     // }
@@ -90,7 +90,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                                 <div className="flex flex-col">
                                     { category.map((data,index)=>(
                                         <span key={index} className="text-xs lg:text-lg text-black dark:text-white text-left break-words">
-                                            {data.Category.CategoryName}
+                                            {data.CategoryName}
                                         </span>
                                     ))}
                                 </div>
@@ -101,7 +101,7 @@ export function ViewIndividualjob({dataposttojob, setviewModalOn, categories, lo
                                 <div className="flex flex-col">
                                     { location.map((data,index)=>(
                                         <span key={index} className="text-xs lg:text-lg text-black dark:text-white text-left break-words">
-                                            {data.Location.LocationName}
+                                            {data.LocationName}
                                         </span>
                                     ))}
                                 </div>

@@ -1,72 +1,86 @@
-import { prisma } from '../../util/db.server.js'
+import pool from '../../db.js'
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
-export default async function handleaddjob(req, res){
-	const { 
-		CompanyName,
-		Image,
-		JobsName,
-		CareerLevel,
-		Salary,
-		Descreption,
-		shortDescreption,
-		DeadLine,
-		categoryId,
-		LocationId,
-		user_id
-	} = req.body
+export default async function handleaddjob(req, res) {
+  const {
+    CompanyName,
+    Image,
+    JobsName,
+    CareerLevel,
+    Salary,
+    Descreption,
+    shortDescreption,
+    DeadLine,
+    categoryId,
+    LocationId,
+    user_id
+  } = req.body;
 
-	let createJobCategory = []
-	let createLocationCategory = []
+  const createJobQuery = `
+    INSERT INTO "Job" ("CompanyName", "Image", "JobsName", "CareerLevel", "Salary", 
+                      "Descreption", "shortDescreption", "DeadLine", "user_id")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    RETURNING "job_id";
+  `;
 
-	for (let j = 0; j < categoryId.length; j++) {
-		createJobCategory.push({
-			user_id : Number(user_id),
-			category_id : Number(categoryId[j]),
-		})
-	}
+  const createJobCategoryQuery = `
+    INSERT INTO "JobCategory" ("user_id", "category_id", "job_id")
+    VALUES ($1, $2, $3);
+  `;
 
-	for (let i = 0; i < LocationId.length; i++) {
-		createLocationCategory.push({
-			user_id : Number(user_id),
-			location_id : Number(LocationId[i]),
-		})
-	}
+  const createJobLocationQuery = `
+    INSERT INTO "JobLocation" ("user_id", "location_id", "job_id")
+    VALUES ($1, $2, $3);
+  `;
 
-	const Jobdata = await prisma.Job.create({
-		data:{
-			CompanyName,
-			Image,
-			JobsName,
-			CareerLevel,
-			Salary,
-			Descreption,
-			shortDescreption,
-			DeadLine,
-			user_id:Number(user_id),
-			JobCategory:{
-				create: createJobCategory
-			},
-			JobLocation:{
-				create: createLocationCategory
-			}
-		}
-	});
+  const client = await pool.connect();
 
+  try {
+    await client.query('BEGIN'); // Start transaction
 
+    // Insert job data
+    const jobInsertResult = await client.query(createJobQuery, [
+      CompanyName,
+      Image,
+      JobsName,
+      CareerLevel,
+      Salary,
+      Descreption,
+      shortDescreption,
+      DeadLine,
+      user_id
+    ]);
 
-	// for (let j = 0; j < categoryId.length; j++) {
-	//   	const jobcategory = await prisma.JobCategory.create({
-	// 	    data:{
-	// 	      user_id : Number(user_id),
-	// 	      category_id : Number(categoryId[j]),
-	// 	      job_id : Number(Jobdata.job_id)
-	// 	    }
-	//   	})
-	// }
+    const job_id = jobInsertResult.rows[0].job_id;
 
-	res.json(Jobdata)
-	
+    // Insert job categories
+    for (let j = 0; j < categoryId.length; j++) {
+      await client.query(createJobCategoryQuery, [
+        user_id,
+        categoryId[j],
+        job_id
+      ]);
+    }
+
+    // Insert job locations
+    for (let i = 0; i < LocationId.length; i++) {
+      await client.query(createJobLocationQuery, [
+        user_id,
+        LocationId[i],
+        job_id
+      ]);
+    }
+
+    await client.query('COMMIT'); // Commit transaction
+
+    res.json({ message: 'Job added successfully' });
+  } catch (err) {
+    await client.query('ROLLBACK'); // Rollback transaction on error
+    console.error('Error adding job:', err);
+    res.status(500).json({ error: 'Failed to add job' });
+  } finally {
+    client.release(); // Release client back to the pool
+  }
 }

@@ -1,70 +1,109 @@
-import { prisma } from '../../../util/db.server.js'
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
+import pool from '../../../db.js';
 
-export default async function handleupdatejob(req, res){
-	const {updatejobid} = req.query
-	const { 
-		CompanyName,
-		Image,
-		JobsName,
-		CareerLevel,
-		Salary,
-		Descreption,
-		shortDescreption,
-		DeadLine,
-		categoryId,
-		LocationId,
-		user_id
-	} = req.body
+export default async function handleupdatejob(req, res) {
+  const { updatejobid } = req.query;
+  const {
+    CompanyName,
+    Image,
+    JobsName,
+    CareerLevel,
+    Salary,
+    Descreption,
+    shortDescreption,
+    DeadLine,
+    categoryId,
+    LocationId,
+    user_id
+  } = req.body;
 
-	console.log(req.body)
+  const updateJobQuery = `
+    UPDATE "Job"
+    SET "CompanyName" = $1,
+        "Image" = $2,
+        "JobsName" = $3,
+        "CareerLevel" = $4,
+        "Salary" = $5,
+        "Descreption" = $6,
+        "shortDescreption" = $7,
+        "DeadLine" = $8,
+        "user_id" = $9
+    WHERE "job_id" = $10;
+  `;
 
-	const data = await prisma.Job.update({
-		where:{job_id:Number(updatejobid)},
-		data:{
-			CompanyName,
-			Image,
-			JobsName,
-			CareerLevel,
-			Salary,
-			Descreption,
-			shortDescreption,
-			DeadLine,
-			user_id:Number(user_id),
-		}
-	});
+  const deleteJobCategoryQuery = `
+    DELETE FROM "JobCategory"
+    WHERE "job_id" = $1;
+  `;
 
-	const deletecategorydata = await prisma.JobCategory.deleteMany({
-		where:{job_id:Number(updatejobid)},
-	});
-	
-	const deletelocationdata = await prisma.JobLocation.deleteMany({
-		where:{job_id:Number(updatejobid)},
-	});
+  const deleteJobLocationQuery = `
+    DELETE FROM "JobLocation"
+    WHERE "job_id" = $1;
+  `;
 
-	for (let j = 0; j < categoryId.length; j++) {
-	  	const jobcategory = await prisma.JobCategory.create({
-		    data:{
-		      user_id : Number(user_id),
-		      category_id : Number(categoryId[j]),
-		      job_id : Number(updatejobid)
-		    }
-	  	})
-	}
+  const createJobCategoryQuery = `
+    INSERT INTO "JobCategory" ("user_id", "category_id", "job_id")
+    VALUES ($1, $2, $3);
+  `;
 
-	for (let j = 0; j < LocationId.length; j++) {
-	  	const locationcategory = await prisma.JobLocation.create({
-		    data:{
-		      user_id : Number(user_id),
-		      location_id : Number(LocationId[j]),
-		      job_id : Number(updatejobid)
-		    }
-	  	})
-	}
+  const createJobLocationQuery = `
+    INSERT INTO "JobLocation" ("user_id", "location_id", "job_id")
+    VALUES ($1, $2, $3);
+  `;
 
+  const client = await pool.connect();
 
+  try {
+    await client.query('BEGIN'); // Start transaction
 
-	res.json(data)
+    // Update job data
+    await client.query(updateJobQuery, [
+      CompanyName,
+      Image,
+      JobsName,
+      CareerLevel,
+      Salary,
+      Descreption,
+      shortDescreption,
+      DeadLine,
+      user_id,
+      updatejobid // this should be the last parameter
+    ]);
+
+    // Delete existing job categories
+    await client.query(deleteJobCategoryQuery, [updatejobid]);
+
+    // Delete existing job locations
+    await client.query(deleteJobLocationQuery, [updatejobid]);
+
+    // Insert new job categories
+    for (let j = 0; j < categoryId.length; j++) {
+      await client.query(createJobCategoryQuery, [
+        user_id,
+        categoryId[j],
+        updatejobid
+      ]);
+    }
+
+    // Insert new job locations
+    for (let j = 0; j < LocationId.length; j++) {
+      await client.query(createJobLocationQuery, [
+        user_id,
+        LocationId[j],
+        updatejobid
+      ]);
+    }
+
+    await client.query('COMMIT'); // Commit transaction
+
+    res.json({ message: 'Job updated successfully' });
+  } catch (err) {
+    await client.query('ROLLBACK'); // Rollback transaction on error
+    console.error('Error updating job:', err);
+    res.status(500).json({ error: 'Failed to update job' });
+  } finally {
+    client.release(); // Release client back to the pool
+  }
 }

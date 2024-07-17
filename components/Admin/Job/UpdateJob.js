@@ -27,11 +27,13 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
 
     // const classIds = updateClassId.map((classDetail) => classDetail.class_id);
     // const classIds = updateClassId.map((classDetail) => classDetail.class_id);
-    
-    const categorys = dataposttojob.categories
-    const locationss = dataposttojob.Location
-    const locationsId = locationss.map(item => item.location_id);
-    const categorysId = categorys.map(cate => cate.category_id);
+    // let categorys=[]
+    // let locationss =[]
+    // console.log(dataposttojob.categories)
+    // categorys = []
+    // locationss = dataposttojob.Location
+    // const locationsId = locationss.map(item => item.location_id);
+    // const categorysId = categorys.map(cate => cate.category_id);
     const [typechange , settypechange] = useState(true)
     const [updatejobid,setupdatejobid] = useState()
     const [CompanyName, setCompanyName] = useState("")
@@ -68,26 +70,27 @@ export function UpdateJob({setupdateModalOn ,dataposttojob ,categories, location
     const handleOKClickForupdate = async() => {
         console.log(LocationId)
         console.log(categoryId)
-        // setLoading(true)
-        // const data = await axios.patch(`../api/updatejob/${updatejobid}`,{
-        //     "CompanyName":CompanyName,
-        //     "JobsName":JobsName,
-        //     "CareerLevel":CareerLevel,
-        //     "Salary":Salary,
-        //     "Descreption":Description,
-        //     "shortDescreption":shortDescription,
-        //     "DeadLine":DeadLine,
-        //     "categoryId":categoryId,
-        //     "LocationId":LocationId,
-        //     "user_id":UserData.user_id
-        // }).then(function (response) {
-        //     console.log(response.data);
-        //     router.reload()
-        // }).catch(function (error) {
-        //     console.log(error);
-        //     setLoading(false)
-        // });
-        // setupdateModalOn(false)
+        setLoading(true)
+        const data = await axios.patch(`../api/updatejob/${updatejobid}`,{
+            "CompanyName":CompanyName,
+            "JobsName":JobsName,
+            "CareerLevel":CareerLevel,
+            "Salary":Salary,
+            "Image":image,
+            "Descreption":Description,
+            "shortDescreption":shortDescription,
+            "DeadLine":DeadLine,
+            "categoryId":categoryId,
+            "LocationId":LocationId,
+            "user_id":UserData.user_id
+        }).then(function (response) {
+            console.log(response.data);
+            router.reload()
+        }).catch(function (error) {
+            console.log(error);
+            setLoading(false)
+        });
+        setupdateModalOn(false)
         
     }
 

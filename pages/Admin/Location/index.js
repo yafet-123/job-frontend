@@ -1,16 +1,17 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../../util/db.server.js'
 import { AddLocation } from "../../../components/Admin/Location/AddLocation";
 import {DisplayLocation} from "../../../components/Admin/Location/DisplayLocation";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { getSession } from "next-auth/react";
+import pool from '../../../db.js'; // Import your PostgreSQL connection pool
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const userRole = await session?.user?.role
+  const userRole = session?.user?.role;
+  
   if (userRole !== 'admin') {
     return {
       redirect: {
@@ -19,34 +20,49 @@ export async function getServerSideProps(context){
       },
     };
   }
-  const locations = await prisma.Location.findMany({
-    orderBy: {
-      location_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  });
 
-  const Alllocations = locations.map((data)=>({
-      location_id:data.location_id,
-      LocationName:data.LocationName,
-      Image:data.Image,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
+  const getLocationsQuery = `
+    SELECT 
+      l.location_id, l."LocationName", l."Image", 
+      l."CreatedDate", l."ModifiedDate", 
+      u."UserName" AS userName
+    FROM "Location" l
+    LEFT JOIN "User" u ON l.user_id = u.user_id
+    ORDER BY l.location_id ASC;
+  `;
 
-  return{
-    props:{
-      locations:JSON.parse(JSON.stringify(Alllocations)),
-    }
+  const client = await pool.connect();
+
+  try {
+    const result = await client.query(getLocationsQuery);
+    const locations = result.rows;
+
+    const Alllocations = locations.map((data) => ({
+      location_id: data.location_id,
+      LocationName: data.LocationName,
+      Image: data.Image,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      userName: data.userName
+    }));
+
+    return {
+      props: {
+        locations: JSON.parse(JSON.stringify(Alllocations)),
+      },
+    };
+  } catch (err) {
+    console.error('Error retrieving locations:', err);
+    return {
+      props: {
+        locations: [],
+      },
+    };
+  } finally {
+    client.release(); // Release the client back to the pool
   }
 }
+
 
 export default function Location({locations}) {
     const { status, data } = useSession();

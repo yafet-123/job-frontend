@@ -1,15 +1,16 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../../util/db.server.js'
+import pool from '../../../db.js'
 import { AddJob } from "../../../components/Admin/Job/AddJob";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { getSession } from "next-auth/react";
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const userRole = await session?.user?.role
+  const userRole = await session?.user?.role;
+
   if (userRole !== 'admin') {
     return {
       redirect: {
@@ -18,54 +19,61 @@ export async function getServerSideProps(context){
       },
     };
   }
-  const categories = await prisma.Category.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  })
 
-  const Allcategories = categories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
+  const getCategoriesQuery = `
+    SELECT c.category_id, c."CategoryName", c."CreatedDate", c."ModifiedDate", u."UserName"
+    FROM "Category" c
+    LEFT JOIN "User" u ON c.user_id = u.user_id
+    ORDER BY c.category_id ASC
+  `;
 
-  const locations = await prisma.Location.findMany({
-    orderBy: {
-      location_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
-      }
-    }
-  });
+  const getLocationsQuery = `
+    SELECT l.location_id, l."LocationName", l."Image", l."CreatedDate", l."ModifiedDate", u."UserName"
+    FROM "Location" l
+    LEFT JOIN "User" u ON l.user_id = u.user_id
+    ORDER BY l.location_id ASC
+  `;
 
-  const Alllocations = locations.map((data)=>({
-      location_id:data.location_id,
-      LocationName:data.LocationName,
-      Image:data.Image,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
+  try {
+    const client = await pool.connect();
 
-  return{
-    props:{
-      categories:JSON.parse(JSON.stringify(Allcategories)),
-      locations:JSON.parse(JSON.stringify(Alllocations)),
-    }
+    const [categoriesResult, locationsResult] = await Promise.all([
+      client.query(getCategoriesQuery),
+      client.query(getLocationsQuery),
+    ]);
+
+    const categories = categoriesResult.rows.map((data) => ({
+      category_id: data.category_id,
+      CategoryName: data.CategoryName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      userName: data.UserName,
+    }));
+
+    const locations = locationsResult.rows.map((data) => ({
+      location_id: data.location_id,
+      LocationName: data.LocationName,
+      Image: data.Image,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      userName: data.UserName,
+    }));
+
+    client.release();
+
+    return {
+      props: {
+        categories: JSON.parse(JSON.stringify(categories)),
+        locations: JSON.parse(JSON.stringify(locations)),
+      },
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        error: 'An error occurred while fetching data',
+      },
+    };
   }
 }
 
@@ -86,3 +94,7 @@ export default function JobAdd({categories,locations}) {
         
     );
 }
+
+
+
+
