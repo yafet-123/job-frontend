@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken"; 
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 import pool from '../../db.js'; // Import your PostgreSQL connection pool

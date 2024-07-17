@@ -1,6 +1,5 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import { prisma } from '../../../util/db.server.js'
 import { AddNewsCategory } from "../../../components/Admin/NewsCategory/AddNewsCategory";
 import { DisplayNewsCategory } from "../../../components/Admin/NewsCategory/DisplayNewsCategory";
 import { useSession } from "next-auth/react";
@@ -8,9 +7,11 @@ import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { getSession } from "next-auth/react";
 
-export async function getServerSideProps(context){
+import pool from '../../../db.js'; // Make sure to import your database connection
+
+export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const userRole = await session?.user?.role
+  const userRole = session?.user?.role;
   if (userRole !== 'admin') {
     return {
       redirect: {
@@ -19,36 +20,51 @@ export async function getServerSideProps(context){
       },
     };
   }
-  const newscategories = await prisma.NewsCategory.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
+
+  const getCategoriesQuery = `
+    SELECT 
+      c.category_id, 
+      c."CategoryName", 
+      c."CreatedDate", 
+      c."ModifiedDate", 
+      u."UserName" 
+    FROM "NewsCategory" c
+    LEFT JOIN "User" u ON c.user_id = u.user_id
+    ORDER BY c.category_id ASC;
+  `;
+
+  try {
+    const client = await pool.connect();
+    const categoriesResult = await client.query(getCategoriesQuery);
+
+    const Allcategories = categoriesResult.rows.map((data) => ({
+      category_id: data.category_id,
+      CategoryName: data.CategoryName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      userName: data.UserName
+    }));
+
+    client.release();
+
+    return {
+      props: {
+        categories: JSON.parse(JSON.stringify(Allcategories)),
       }
-    }
-  })
-
-  const AllNewscategories = newscategories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
-
-  return{
-    props:{
-      categories:JSON.parse(JSON.stringify(AllNewscategories)),
-    }
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        error: 'An error occurred while fetching data',
+      },
+    };
   }
 }
 
 export default function NewsCategory({categories}) {
     const { status, data } = useSession();
+    console.log(categories)
     return (
     	<React.Fragment>
       	<MainHeader title="News Category Dashboard" />
