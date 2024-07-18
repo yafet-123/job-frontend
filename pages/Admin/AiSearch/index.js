@@ -5,13 +5,12 @@ import { DisplayAiSearch } from "../../../components/Admin/AiSearch/DisplayAiSea
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
-import { prisma } from '../../../util/db.server.js'
+import { getSession } from 'next-auth/react';
+import pool from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
 
-import { getSession } from "next-auth/react";
-
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const userRole = await session?.user?.role
+  const userRole = await session?.user?.role;
   if (userRole !== 'admin') {
     return {
       redirect: {
@@ -20,70 +19,85 @@ export async function getServerSideProps(context){
       },
     };
   }
-  const details = await prisma.Detail.findMany({
-    orderBy : {
-      updatedAt:'desc'
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      DetailCategory:{
-        include:{
-          AiCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
-    }
-  });
 
-  const allaiserachdata = details.map((data)=>({
-    detail_id:data.detail_id,
-    Header:data.Header,
-    description:data.description,
-    like:data.like,
-    link : data.link,
-    service:data.service,
-    userName:data.User.UserName,
-    createdAt:data.createdAt,
-    updatedAt:data.updatedAt,
-    Category:data.DetailCategory
-  }))
+  const client = await pool.connect();
 
-  const categories = await prisma.AiCategory.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
+  try {
+    const detailsQuery = `
+      SELECT d.detail_id, d."Header", d."description", d."like", d."link", d."service", d."createdAt", d."updatedAt",
+             u."UserName",
+             ac.category_id, ac."CategoryName"
+      FROM "Detail" d
+      LEFT JOIN "User" u ON d.user_id = u.user_id
+      LEFT JOIN "DetailCategory" dc ON d.detail_id = dc.detail_id
+      LEFT JOIN "AiCategory" ac ON dc.category_id = ac.category_id
+      ORDER BY d."updatedAt" DESC;
+    `;
+
+    const categoriesQuery = `
+      SELECT ac.category_id, ac."CategoryName", ac."createdAt", ac."updatedAt", u."UserName"
+      FROM "AiCategory" ac
+      LEFT JOIN "User" u ON ac.user_id = u.user_id
+      ORDER BY ac.category_id ASC;
+    `;
+
+    const detailsResult = await client.query(detailsQuery);
+    const categoriesResult = await client.query(categoriesQuery);
+
+    const details = detailsResult.rows.reduce((acc, row) => {
+      const detail = acc.find(d => d.detail_id === row.detail_id);
+      const category = {
+        category_id: row.category_id,
+        CategoryName: row.CategoryName
+      };
+
+      if (detail) {
+        detail.Category.push(category);
+      } else {
+        acc.push({
+          detail_id: row.detail_id,
+          Header: row.Header,
+          description: row.description,
+          like: row.like,
+          link: row.link,
+          service: row.service,
+          userName: row.UserName,
+          createdAt: row.createdAt,
+          updatedAt: row.updatedAt,
+          Category: row.category_id ? [category] : []
+        });
       }
-    }
-  })
 
-  const AllAiSearchcategories = categories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      createdAt:data.createdAt,
-      updatedAt:data.updatedAt,
-      userName:data.User.UserName
-  }))
+      return acc;
+    }, []);
 
-  return{
-    props:{
-      categories:JSON.parse(JSON.stringify(AllAiSearchcategories)),
-      allaiserachdata:JSON.parse(JSON.stringify(allaiserachdata)),
-    }
+    const allCategories = categoriesResult.rows.map(row => ({
+      category_id: row.category_id,
+      CategoryName: row.CategoryName,
+      createdAt: row.createdAt,
+      updatedAt: row.updatedAt,
+      userName: row.UserName
+    }));
+
+    return {
+      props: {
+        categories: JSON.parse(JSON.stringify(allCategories)),
+        allaiserachdata: JSON.parse(JSON.stringify(details)),
+      },
+    };
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    return {
+      props: {
+        categories: [],
+        allaiserachdata: [],
+      },
+    };
+  } finally {
+    client.release();
   }
 }
+
 
 export default function AiSearch({categories, allaiserachdata}) {
     const { status, data } = useSession();

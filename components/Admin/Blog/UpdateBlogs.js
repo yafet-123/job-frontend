@@ -87,7 +87,7 @@ export function UpdateBlogs({categories ,updateblogsid ,setupdateblogsid ,update
         }).catch(function (error) {
             console.log(error);
             setLoading(false)
-        });
+        }); 
         setupdateModalOn(false)
         
     }

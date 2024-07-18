@@ -42,7 +42,7 @@ export function Entertainment({latestentertainments}) {
         {latestentertainments.map(({entertainment_id, CreatedDate, Header, ShortDescription, image, Category, view},index)=>(
           <div 
             key={index}
-            id={Header}
+            id={entertainment_id}
             className="!flex flex-col lg:flex-row px-2 w-full h-full lg:mt-5 py-5"
           >
             <div className="w-full lg:w-[40%] h-52 lg:!h-96 relative">
@@ -68,7 +68,7 @@ export function Entertainment({latestentertainments}) {
                   <h3 className="flex flex-col justify-between">
                     { Category.map((data,index)=>(
                       <span key={index} className="text-left text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-2 group-hover:text-lg group-hover:text-[#009688]">
-                        {data.EntertainmentCategory.CategoryName}
+                        {data.CategoryName}
                       </span>
                     ))}
                   </h3>

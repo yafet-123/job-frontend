@@ -138,11 +138,21 @@ export async function getStaticProps() {
       Category: data.NewsCategories
     })) : [];
     const latestentertainments = entertainmentsResult.status === 'fulfilled' ? entertainmentsResult.value.rows.map(data => ({
-      ...data,
+      entertainment_id:data.entertainment_id,
+      CreatedDate:data.CreatedDate,
+      Header:data.Header,
+      ShortDescription:data.ShortDescription,
+      image:data.Image,
+      view:data.view,
       Category: data.EntertainmentCategories
     })) : [];
     const Alllatestblogs = blogsResult.status === 'fulfilled' ? blogsResult.value.rows.map(data => ({
-      ...data,
+      blogs_id:data.blogs_id,
+      CreatedDate:data.CreatedDate,
+      Header:data.Header,
+      ShortDescription:data.ShortDescription,
+      image:data.Image,
+      view:data.view,
       Category: data.BlogsCategories
     })) : [];
 

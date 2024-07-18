@@ -28,15 +28,9 @@ export async function getServerSideProps() {
   const jobsQuery = `
     SELECT 
       j.*, 
-      u."UserName",
-      json_build_object(
-        'location_id', jl."location_id",
-        'LocationName', loc."LocationName"
-      ) AS "JobLocation"
+      u."UserName"
     FROM "Job" j
     LEFT JOIN "User" u ON j."user_id" = u."user_id"
-    LEFT JOIN "JobLocation" jl ON j."job_id" = jl."job_id"
-    LEFT JOIN "Location" loc ON jl."location_id" = loc."location_id"
     ORDER BY j."ModifiedDate" ASC
   `;
 
@@ -48,11 +42,11 @@ export async function getServerSideProps() {
       client.query(locationsQuery),
       client.query(jobsQuery)
     ]);
-
+    
     const categories = categoriesResult.status === 'fulfilled' ? categoriesResult.value.rows : [];
     const locations = locationsResult.status === 'fulfilled' ? locationsResult.value.rows : [];
     const jobs = jobsResult.status === 'fulfilled' ? jobsResult.value.rows : [];
-
+    console.log(jobs)
     const Alljobs = jobs.map(data => ({
       job_id: data.job_id,
       CompanyName: data.CompanyName,
@@ -95,7 +89,7 @@ export async function getServerSideProps() {
 }
 
 export default function Jobs({categories, locations, latestjobs}) {
-  console.log(categories)
+  console.log(latestjobs)
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : Jobs" />

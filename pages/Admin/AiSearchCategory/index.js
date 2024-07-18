@@ -25,8 +25,8 @@ export async function getServerSideProps(context) {
     SELECT 
       c.category_id, 
       c."CategoryName", 
-      c."CreatedDate", 
-      c."ModifiedDate", 
+      c."createdAt", 
+      c."updatedAt", 
       u."UserName" 
     FROM "AiCategory" c
     LEFT JOIN "User" u ON c.user_id = u.user_id
@@ -64,6 +64,7 @@ export async function getServerSideProps(context) {
 
 export default function AiSearchCategory({categories}) {
     const { status, data } = useSession();
+    console.log(categories)
     return (
     	<React.Fragment>
       	<MainHeader title="Ai Search Category Dashboard" />

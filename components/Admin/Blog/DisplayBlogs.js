@@ -48,7 +48,7 @@ export function DisplayBlogs({blogs, categories}) {
                                         <p className="font-bold text-[#009688] dark:text-white hover:underline">{data.blogs_id}</p>
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white">
-                                        <Image src={data.image == "" || data.image == null ? "/images/logo2.png" : data.image} width={50} height={50} alt="image that will be displayed" />
+                                        <Image src={data.Image == "" || data.Image == null ? "/images/logo2.png" : data.Image} width={50} height={50} alt="image that will be displayed" />
                                     </td>
                                     <td className="p-3 text-lg text-gray-700 dark:text-white">
                                         {data.Header}

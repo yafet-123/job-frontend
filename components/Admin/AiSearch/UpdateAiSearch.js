@@ -32,8 +32,8 @@ export function UpdateAiSearch({
     ))
 
     const categorydata = updatecategory.map((data)=>(
-        { category_id: data.AiCategory.category_id },
-        { CategoryName: data.AiCategory.CategoryName }
+        { category_id: data.category_id },
+        { CategoryName: data.CategoryName }
     ))
 	const handleOKClickForupdate = async() => {
         setLoading(true)
