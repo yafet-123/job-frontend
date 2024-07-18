@@ -76,7 +76,7 @@ export function Content({entertainments}) {
                                         <h3 className="flex flex-col justify-between w-full">
                                             { Category.map((data,index)=>(
                                                 <span key={index} className="text-xs font-bold dark:text-white text-slate-600 mb-1 w-full group-hover:text-[#009688]">
-                                                    {data.EntertainmentCategory.CategoryName}
+                                                    {data.CategoryName}
                                                 </span>
                                             ))}
                                         </h3>

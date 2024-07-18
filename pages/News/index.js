@@ -42,7 +42,7 @@ export async function getServerSideProps(context) {
       CreatedDate: data.CreatedDate,
       ModifiedDate: data.ModifiedDate,
       Category: data.NewsCategories,
-    }));
+    })); 
 
     client.release();
 

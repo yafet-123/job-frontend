@@ -1,11 +1,12 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { prisma } from '../../../util/db.server.js'
+import pool from '../../../db.js'
 import { DisplayIndvidualNews } from '../../../components/News/DisplayIndvidualNews';
 import { DisplayLatestNews } from '../../../components/News/DisplayLatestNews';
 import Head from 'next/head';
  
+
 export async function getServerSideProps(context){
   const {params,req,res,query} = context
   const id = query.news_id
@@ -15,11 +16,11 @@ export async function getServerSideProps(context){
     data: { view: { increment: 1 }, },
   })
   
-	const data = await prisma.News.findUnique({
-		where:{
-			news_id: Number(id),
-		},
-		include:{
+  const data = await prisma.News.findUnique({
+    where:{
+      news_id: Number(id),
+    },
+    include:{
       User:{
         select:{
           UserName:true
@@ -36,9 +37,9 @@ export async function getServerSideProps(context){
         }
       },
     }
-	});
-	
-	const onedata = {
+  });
+  
+  const onedata = {
     news_id:data.news_id,
     Header:data.Header,
     Image:data.Image,
@@ -77,7 +78,7 @@ export async function getServerSideProps(context){
   });
 
   const latestnews = await prisma.News.findMany({
-  	take:-6,
+    take:-6,
     orderBy: {
       news_id:"desc"
     },
@@ -129,8 +130,11 @@ export async function getServerSideProps(context){
   }
 }
 
+
+
 export default function DisplayNews({ news,Alllatestnews, AllcategoryNews, newsCategory}) {
   const router = useRouter()
+  console.log(news)
   return (
   	<React.Fragment>
       <Head>
