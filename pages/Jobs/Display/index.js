@@ -5,85 +5,110 @@ import { TopAndBottomOfDisplayJobs } from "../../../components/jobs/TopAndBottom
 import { DisplayIndividualJobs } from "../../../components/jobs/DisplayIndividualJobs";
 import axios from "axios";
 import { useRouter } from 'next/router'
-import { prisma } from '../../../util/db.server.js'
+import pool from '../../../db.js'
 import Head from 'next/head';
- 
-export async function getServerSideProps(context){
-  const {params,req,res,query} = context
-  const id = query.job_id
 
-  const updateview = await prisma.Job.update({
-  	where:{job_id : Number(id),},
-	  data: { view: { increment: 1 }, },
-	})
- 
-	const data = await prisma.Job.findUnique({
-		where:{
-			job_id: Number(id),
-		},
-		include:{
-			User:{
-				select:{
-					UserName:true,
-				},
-			},
-			JobLocation:{
-        include:{
-          Location:{
-            select:{
-              location_id:true,
-              LocationName:true
-            }
-          }
-        }
-      },
-		},
 
-	});
 
-	const categoriesdata = await prisma.JobCategory.findMany({
-		where:{
-			job_id: Number(id),
-		},
+export async function getServerSideProps(context) {
+  const { params, req, res, query } = context;
+  const id = query.job_id;
 
-		include:{
-			Category:{
-				select:{
-					CategoryName:true,
-				},
-			},
-		},
-	})
-	
-	const onedata = {
-		job_id:data.job_id,
-    CompanyName:data.CompanyName,
-    image:data.Image,
-    JobsName:data.JobsName,
-    CareerLevel:data.CareerLevel,
-    Salary:data.Salary,
-    Descreption:data.Descreption,
-    shortDescreption:data.shortDescreption,
-    DeadLine:data.DeadLine,
-    Apply:data.Apply,
-    view:data.view,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Location:data.JobLocation,
-	}
+  const updateViewQuery = `
+    UPDATE "Job"
+    SET view = view + 1
+    WHERE job_id = $1
+  `;
 
-	const Allcategories = categoriesdata.map((data)=>({
-    CategoryName:data.Category.CategoryName,
-  }))
+  const jobQuery = `
+      SELECT 
+        j.job_id, j."CompanyName", j."Image", j."JobsName", j."CareerLevel", j."Salary", 
+        j."Descreption", j."shortDescreption", j."DeadLine", j."view", 
+        j."CreatedDate", j."ModifiedDate",
+        u."UserName" AS "userName",
+        json_agg(json_build_object('location_id', l.location_id, 'LocationName', l."LocationName")) AS "Location",
+        (
+          SELECT json_agg(json_build_object('category_id', c.category_id, 'CategoryName', c."CategoryName"))
+          FROM "JobCategory" jc
+          LEFT JOIN "Category" c ON jc.category_id = c.category_id
+          WHERE jc.job_id = j.job_id
+        ) AS "categories"
+      FROM "Job" j
+      LEFT JOIN "User" u ON j.user_id = u.user_id
+      LEFT JOIN "JobLocation" jl ON j.job_id = jl.job_id
+      LEFT JOIN "Location" l ON jl.location_id = l.location_id
+      WHERE j.job_id = $1
+      GROUP BY j.job_id, u."UserName"
+      ORDER BY j.job_id ASC;
+    `;
 
-  return{
-    props:{
-      job:JSON.parse(JSON.stringify(onedata)),
-      categories:JSON.parse(JSON.stringify(Allcategories)),
+  const categoriesQuery = `
+    SELECT c."CategoryName"
+    FROM "JobCategory" jc
+    INNER JOIN "Category" c ON jc.category_id = c.category_id
+    WHERE jc.job_id = $1
+  `;
+
+  try {
+    
+    const client = await pool.connect();
+
+    // Increment the view count
+    await client.query(updateViewQuery, [Number(id)]);
+
+    // Fetch job details
+    const jobResult = await client.query(jobQuery, [Number(id)]);
+    const jobData = jobResult.rows[0];
+    
+    if (!jobData) {
+      throw new Error(`Job with ID ${id} not found.`);
     }
+
+    console.log(jobData)
+
+    const onedata = {
+      job_id: jobData.job_id,
+      CompanyName: jobData.CompanyName,
+      image: jobData.Image,
+      JobsName: jobData.JobsName,
+      CareerLevel: jobData.CareerLevel,
+      Salary: jobData.Salary,
+      Descreption: jobData.Descreption,
+      shortDescreption: jobData.shortDescreption,
+      DeadLine: jobData.DeadLine,
+      Apply: jobData.Apply,
+      view: jobData.view,
+      userName: jobData.UserName,
+      CreatedDate: jobData.CreatedDate,
+      ModifiedDate: jobData.ModifiedDate,
+      Location: jobData.Location
+    };
+
+    // Fetch categories
+    const categoriesResult = await client.query(categoriesQuery, [Number(id)]);
+    const categoriesData = categoriesResult.rows.map(row => ({
+      CategoryName: row.CategoryName,
+    }));
+
+    await client.end();
+
+    return {
+      props: {
+        job: JSON.parse(JSON.stringify(onedata)),
+        categories: JSON.parse(JSON.stringify(categoriesData)),
+      },
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        job: {},
+        categories: [],
+      },
+    };
   }
 }
+
 
 export default function DisplayJobs({job, categories}) {
 	const router = useRouter()

@@ -42,7 +42,7 @@ export function DisplayIndividualJobs({job,categories}) {
                     <h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Location:</h1>
                     <div className="flex flex-col gap-5 w-1/2">
                         { location.map((data,index)=>(
-                            <p key={index} className="text-xs lg:text-lg text-left ">{data.Location.LocationName}</p>
+                            <p key={index} className="text-xs lg:text-lg text-left ">{data.LocationName}</p>
                         ))}
                     </div>
                 </li> 

@@ -38,7 +38,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 					  			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Location:</h1>
 			                    <div className="flex flex-col w-1/2">
 			                        { Location.map((data,index)=>(
-			                            <p key={index} className="text-xs lg:text-lg text-left mb-2">{data.Location.LocationName}</p>
+			                            <p key={index} className="text-xs lg:text-lg text-left mb-2">{data.LocationName}</p>
 			                        ))}
 			                    </div>
 					  		</li>

@@ -5,12 +5,83 @@ import Image from 'next/image'
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useRouter } from 'next/router'
 import axios from 'axios';
-import { prisma } from '../../../util/db.server.js'
+import { prisma } from '../../../db.js'
 import moment from 'moment';
 import { MainHeader } from '../../../components/common/MainHeader';
 import { GroupLatestJobs } from '../../../components/jobs/GroupLatestJobs'
 import { CompanyJobs } from '../../../components/jobs/CompanyJobs'
 import { Location } from '../../../components/jobs/Location'
+
+export async function getServerSideProps(context) {
+  const { query } = context;
+  const location_id = query.location_id;
+
+  // Define the queries
+  const locationsQuery = `
+    SELECT l.*, COUNT(jl.job_id) AS job_count
+    FROM "Location" l
+    LEFT JOIN "JobLocation" jl ON l.location_id = jl.location_id
+    GROUP BY l.location_id
+  `;
+
+  const jobsByLocationQuery = `
+    SELECT j.*, u."UserName", l.location_id, l."LocationName"
+    FROM "Job" j
+    INNER JOIN "User" u ON j.user_id = u.user_id
+    LEFT JOIN "JobLocation" jl ON j.job_id = jl.job_id
+    LEFT JOIN "Location" l ON jl.location_id = l.location_id
+    WHERE l.location_id = $1
+    ORDER BY j.job_id ASC
+  `;
+
+  const latestJobsQuery = `
+    SELECT j.*
+    FROM "Job" j
+    ORDER BY j."ModifiedDate" DESC
+    LIMIT 5
+  `;
+
+  try {
+    const client = await pool.connect();
+
+    // Fetch locations
+    const locationsResult = await client.query(locationsQuery);
+    const locations = locationsResult.rows;
+
+    // Fetch jobs by location
+    const jobsByLocationResult = await client.query(jobsByLocationQuery, [Number(location_id)]);
+    const jobsByLocation = jobsByLocationResult.rows;
+
+    // Fetch latest jobs
+    const latestJobsResult = await client.query(latestJobsQuery);
+    const latestJobs = latestJobsResult.rows;
+
+    // Reverse the job arrays
+    const reverseJobsByLocation = jobsByLocation.reverse();
+    const reverseLatestJobs = latestJobs.reverse();
+
+    // Close the client connection
+    client.release();
+
+    return {
+      props: {
+        Alllatestjobs: JSON.parse(JSON.stringify(reverseLatestJobs)),
+        jobsbylocation: JSON.parse(JSON.stringify(reverseJobsByLocation)),
+        locations: JSON.parse(JSON.stringify(locations)),
+      },
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        Alllatestjobs: [],
+        jobsbylocation: [],
+        locations: [],
+      },
+    };
+  }
+}
+
 
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context

@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import axios from 'axios';
-import { prisma } from '../../../util/db.server.js'
 import moment from 'moment';
 import { MainHeader } from '../../../components/common/MainHeader';
 import { useState, useEffect, useRef} from 'react'
@@ -11,7 +10,7 @@ import {Share} from '../../../components/common/Share.js'
 import { GroupLatestJobs } from '../../../components/jobs/GroupLatestJobs'
 import { CompanyJobs } from '../../../components/jobs/CompanyJobs'
 import { Company } from '../../../components/jobs/Company'
-import pool from '../../db';
+import pool from '../../../db';
 
 export async function getServerSideProps(context) {
   const { query } = context;
@@ -29,8 +28,7 @@ export async function getServerSideProps(context) {
       j."Salary", 
       j."Descreption", 
       j."shortDescreption", 
-      j."DeadLine", 
-      j."Apply", 
+      j."DeadLine",  
       j."view", 
       j."CreatedDate", 
       j."ModifiedDate", 
@@ -95,14 +93,13 @@ export async function getServerSideProps(context) {
   try {
     const client = await pool.connect();
     // Execute queries
-    const jobsByCategory = await client.query(jobsByCategoryQuery, [category_id]);
-    const categories = await client.query(categoriesQuery);
-    const latestJobs = await client.query(latestJobsQuery);
+    const jobsByCat = await client.query(jobsByCategoryQuery, [category_id]);
+    const catego = await client.query(categoriesQuery);
+    const latestJ = await client.query(latestJobsQuery);
 
-    const jobsByCategory = await client.query(jobsByCategoryQuery, [category_id]);
-    const categories = await client.query(categoriesQuery);
-    const latestJobs = await client.query(latestJobsQuery);
-
+    const jobsByCategory = jobsByCat.rows
+    const categories = catego.rows
+    const latestJobs = latestJ.rows
     // Process data
     const Alljobs = jobsByCategory.map((data) => ({
       job_id: data.job_id,
@@ -156,120 +153,120 @@ export async function getServerSideProps(context) {
   }
 }
 
-export async function getServerSideProps(context){
-	const {params,req,res,query} = context
-  const category_id = query.category_id
-  console.log(category_id)
+// export async function getServerSideProps(context){
+// 	const {params,req,res,query} = context
+//   const category_id = query.category_id
+//   console.log(category_id)
 
-  const jobsBycategories = await prisma.Job.findMany({
-  	where:{
-  		JobCategory:{
-  			some: {
-	  			Category:{
-	  				category_id: Number(category_id)
-	  			}
-	  		}
-  		}	
-  	},
-    orderBy: {
-      job_id:"asc"
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      JobLocation:{
-        include:{
-          Location:{
-            select:{
-              location_id:true,
-              LocationName:true
-            }
-          }
-        }
-      },
-    } 
-  });
+//   const jobsBycategories = await prisma.Job.findMany({
+//   	where:{
+//   		JobCategory:{
+//   			some: {
+// 	  			Category:{
+// 	  				category_id: Number(category_id)
+// 	  			}
+// 	  		}
+//   		}	
+//   	},
+//     orderBy: {
+//       job_id:"asc"
+//     },
+//     include:{
+//       User:{
+//         select:{
+//           UserName:true
+//         }
+//       },
+//       JobLocation:{
+//         include:{
+//           Location:{
+//             select:{
+//               location_id:true,
+//               LocationName:true
+//             }
+//           }
+//         }
+//       },
+//     } 
+//   });
 
-  console.log(jobsBycategories)
+//   console.log(jobsBycategories)
 
-  const Alljobs = jobsBycategories.map((data)=>({
-    job_id:data.job_id,
-    CompanyName:data.CompanyName,
-    image:data.Image,
-    JobsName:data.JobsName,
-    CareerLevel:data.CareerLevel,
-    Salary:data.Salary,
-    Descreption:data.Descreption,
-    shortDescreption:data.shortDescreption,
-    DeadLine:data.DeadLine,
-    Apply:data.Apply,
-    view:data.view,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    categories:data.JobCategory,
-    Location:data.JobLocation,
-  }))
+//   const Alljobs = jobsBycategories.map((data)=>({
+//     job_id:data.job_id,
+//     CompanyName:data.CompanyName,
+//     image:data.Image,
+//     JobsName:data.JobsName,
+//     CareerLevel:data.CareerLevel,
+//     Salary:data.Salary,
+//     Descreption:data.Descreption,
+//     shortDescreption:data.shortDescreption,
+//     DeadLine:data.DeadLine,
+//     Apply:data.Apply,
+//     view:data.view,
+//     userName:data.User.UserName,
+//     CreatedDate:data.CreatedDate,
+//     ModifiedDate:data.ModifiedDate,
+//     categories:data.JobCategory,
+//     Location:data.JobLocation,
+//   }))
   
-  const reversejob = Alljobs.reverse();
+//   const reversejob = Alljobs.reverse();
 
-  const categories = await prisma.Category.findMany({
-  	include:{
-       _count:{
-        select:{
-          JobCategory:true
-        }
-      },
-    }
-  })
+//   const categories = await prisma.Category.findMany({
+//   	include:{
+//        _count:{
+//         select:{
+//           JobCategory:true
+//         }
+//       },
+//     }
+//   })
   
-  const latestjobs = await prisma.Job.findMany({
-  	take:-5,
-    orderBy: {
-      ModifiedDate:"asc"
-    },
-    include:{
-      JobLocation:{
-        include:{
-          Location:{
-            select:{
-              location_id:true,
-              LocationName:true
-            }
-          }
-        }
-      },
-    } 
-  });
+//   const latestjobs = await prisma.Job.findMany({
+//   	take:-5,
+//     orderBy: {
+//       ModifiedDate:"asc"
+//     },
+//     include:{
+//       JobLocation:{
+//         include:{
+//           Location:{
+//             select:{
+//               location_id:true,
+//               LocationName:true
+//             }
+//           }
+//         }
+//       },
+//     } 
+//   });
 
-  const Alllatestjobs = latestjobs.map((data)=>({
-    job_id:data.job_id,
-    CompanyName:data.CompanyName,
-    JobsName:data.JobsName,
-    CreatedDate:data.CreatedDate,
-    image:data.Image,
-    ModifiedDate:data.ModifiedDate
-  }))
+//   const Alllatestjobs = latestjobs.map((data)=>({
+//     job_id:data.job_id,
+//     CompanyName:data.CompanyName,
+//     JobsName:data.JobsName,
+//     CreatedDate:data.CreatedDate,
+//     image:data.Image,
+//     ModifiedDate:data.ModifiedDate
+//   }))
 
-  const reversejoblatest = Alllatestjobs.reverse();
+//   const reversejoblatest = Alllatestjobs.reverse();
 
-  return{
-    props:{
-    	jobsbycategory:JSON.parse(JSON.stringify(reversejob)),
-    	Alllatestjobs:JSON.parse(JSON.stringify(reversejoblatest)),
-      categories:JSON.parse(JSON.stringify(categories)),
-    }
-  }
-}
+//   return{
+//     props:{
+//     	jobsbycategory:JSON.parse(JSON.stringify(reversejob)),
+//     	Alllatestjobs:JSON.parse(JSON.stringify(reversejoblatest)),
+//       categories:JSON.parse(JSON.stringify(categories)),
+//     }
+//   }
+// }
 
 export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory}) {
 	const router = useRouter();
   const shareUrl = router.asPath
  	const { category, howmany } = router.query
- 
+  console.log(categories)
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Jobs By Category" />

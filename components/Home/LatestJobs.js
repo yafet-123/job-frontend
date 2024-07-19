@@ -36,7 +36,7 @@ export function LatestJobs({latestjobs}) {
               }}
             >
               <div className="flex flex-row w-full">
-                <Image src={data.image == "" || data.image == null ? "/images/bgImage1.avif" : data.image} width={100} height={100} alt="image" required className="my-5" />
+                <Image src={data.Image == "" || data.Image == null ? "/images/bgImage1.avif" : data.Image} width={100} height={100} alt="image" required className="my-5" />
                 <div className="flex flex-col pt-2 lg:pt-0 ml-2 lg:ml-5">
                   <h1 className="text-left font-bold text-sm md:text-lg lg:text-xl text-[#009688] dark:text-white group-hover:text-white">
                     {data.JobsName}

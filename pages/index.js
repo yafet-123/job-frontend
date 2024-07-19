@@ -129,8 +129,8 @@ export async function getStaticProps() {
       client.query(entertainmentsQuery),
       client.query(blogsQuery)
     ]);
-
     const locations = locationsResult.status === 'fulfilled' ? locationsResult.value.rows : [];
+    console.log(locations)
     const categories = categoriesResult.status === 'fulfilled' ? categoriesResult.value.rows : [];
     const latestjobs = latestJobsResult.status === 'fulfilled' ? latestJobsResult.value.rows.reverse() : [];
     const latestnews = newsResult.status === 'fulfilled' ? newsResult.value.rows.map(data => ({
@@ -160,7 +160,6 @@ export async function getStaticProps() {
       view:data.view,
       Category: data.BlogsCategories
     })) : [];
-
     client.release();
 
     return {
@@ -191,6 +190,7 @@ export async function getStaticProps() {
 
 export default function Home({categories, locations, latestjobs, Alllatestblogs, latestnews, latestentertainments}) {
   const { status, data } = useSession();
+  console.log(locations)
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : Home" />
