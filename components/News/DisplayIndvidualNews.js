@@ -35,7 +35,7 @@ export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUr
 	                <h3 className="flex flex-col justify-between w-2/4">
 	                  	{ newsCategory.map((data,index)=>(
 	                    	<span key={index} className="text-sm lg:text-lg font-bold dark:text-[#009688] text-slate-600 mb-1 hover:text-[#009688]">
-	                      		{data.NewsCategory.CategoryName}
+	                      		{data.CategoryName}
 	                    	</span>
 	                  	))}
 	                </h3>
@@ -58,19 +58,19 @@ export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUr
 	              				onClick = {()=>{
 	                				router.push({
 	                  					pathname:"/DisplayNews",
-	                  					query:{news_id:data.News.news_id}
+	                  					query:{news_id:data.news_id}
 	                				})
 	              				}}
-	              				id={data.News.news_id} ref={quoteRef} className="flex flex-col w-full lg:mt-5 group pt-5"
+	              				id={data.news_id} ref={quoteRef} className="flex flex-col w-full lg:mt-5 group pt-5"
 	            			>
 	            				<div className="w-full !h-52 lg:!h-72 relative">
-	                				<Image src={data.News.Image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
+	                				<Image src={data.Image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
 	              				</div>
 
 	              				<h1 className="text-left group-hover:text-[#009688] group-hover:underline text-lg lg:text-xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">
-	                  				{data.News.Header}
+	                  				{data.Header}
 	                			</h1>
-	                			<div  className="text-lg group-hover:text-[#009688] bg-transparent text-black dark:!text-white text-left mt-2" dangerouslySetInnerHTML={{ __html: data.News.ShortDescription }} />
+	                			<div  className="text-lg group-hover:text-[#009688] bg-transparent text-black dark:!text-white text-left mt-2" dangerouslySetInnerHTML={{ __html: data.ShortDescription }} />
 	            			</button>
 
 	            			<div className="flex items-center justify-between text-sm"> 
@@ -80,7 +80,7 @@ export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUr
 
 	              				<p className="flex flex-row items-center text-black dark:text-white hover:text-[#009688] font-bold py-2 hover:scale-110 duration-1000 ease-in-out rounded ">
 	                				<AiOutlineEye size={32} />
-	                				<span className="ml-3">{data.News.view}</span>
+	                				<span className="ml-3">{data.view}</span>
 	              				</p>
 	            			</div>
 	            		</div>

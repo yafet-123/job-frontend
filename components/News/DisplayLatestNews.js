@@ -30,7 +30,7 @@ export function DisplayLatestNews({Alllatestnews}) {
                       			<h3 className="flex flex-col justify-between"> 
                         			{ Category.map((data,index)=>(
                           				<span key={index} className="group-hover:text-white text-xs lg:text-sm font-bold dark:text-white text-slate-600 mb-1">
-                            				{data.NewsCategory.CategoryName}
+                            				{data.CategoryName}
                           				</span>
                         			))}
                       			</h3>

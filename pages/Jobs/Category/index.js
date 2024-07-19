@@ -11,7 +11,151 @@ import {Share} from '../../../components/common/Share.js'
 import { GroupLatestJobs } from '../../../components/jobs/GroupLatestJobs'
 import { CompanyJobs } from '../../../components/jobs/CompanyJobs'
 import { Company } from '../../../components/jobs/Company'
-  
+import pool from '../../db';
+
+export async function getServerSideProps(context) {
+  const { query } = context;
+  const category_id = query.category_id;
+  console.log(category_id);
+
+  // Query to get jobs by category
+  const jobsByCategoryQuery = `
+    SELECT 
+      j.job_id, 
+      j."CompanyName", 
+      j."Image", 
+      j."JobsName", 
+      j."CareerLevel", 
+      j."Salary", 
+      j."Descreption", 
+      j."shortDescreption", 
+      j."DeadLine", 
+      j."Apply", 
+      j."view", 
+      j."CreatedDate", 
+      j."ModifiedDate", 
+      u."UserName" AS userName,
+      json_agg(
+        json_build_object(
+          'location_id', l.location_id,
+          'LocationName', l."LocationName"
+        )
+      ) AS "JobLocation",
+      json_agg(
+        json_build_object(
+          'category_id', c.category_id,
+          'CategoryName', c."CategoryName"
+        )
+      ) AS "JobCategory"
+    FROM "Job" j
+    LEFT JOIN "User" u ON j.user_id = u.user_id
+    LEFT JOIN "JobLocation" jl ON j.job_id = jl.job_id
+    LEFT JOIN "Location" l ON jl.location_id = l.location_id
+    LEFT JOIN "JobCategory" jc ON j.job_id = jc.job_id
+    LEFT JOIN "Category" c ON jc.category_id = c.category_id
+    WHERE c.category_id = $1
+    GROUP BY j.job_id, u."UserName"
+    ORDER BY j.job_id ASC;
+  `;
+
+  // Query to get categories
+  const categoriesQuery = `
+    SELECT 
+      c.category_id, 
+      c."CategoryName", 
+      COUNT(jc.job_id) AS "JobCount"
+    FROM "Category" c
+    LEFT JOIN "JobCategory" jc ON c.category_id = jc.category_id
+    GROUP BY c.category_id;
+  `;
+
+  // Query to get latest jobs
+  const latestJobsQuery = `
+    SELECT 
+      j.job_id, 
+      j."CompanyName", 
+      j."JobsName", 
+      j."Image", 
+      j."CreatedDate", 
+      j."ModifiedDate",
+      json_agg(
+        json_build_object(
+          'location_id', l.location_id,
+          'LocationName', l."LocationName"
+        )
+      ) AS "JobLocation"
+    FROM "Job" j
+    LEFT JOIN "JobLocation" jl ON j.job_id = jl.job_id
+    LEFT JOIN "Location" l ON jl.location_id = l.location_id
+    GROUP BY j.job_id
+    ORDER BY j."ModifiedDate" DESC
+    LIMIT 5;
+  `;
+
+  try {
+    const client = await pool.connect();
+    // Execute queries
+    const jobsByCategory = await client.query(jobsByCategoryQuery, [category_id]);
+    const categories = await client.query(categoriesQuery);
+    const latestJobs = await client.query(latestJobsQuery);
+
+    const jobsByCategory = await client.query(jobsByCategoryQuery, [category_id]);
+    const categories = await client.query(categoriesQuery);
+    const latestJobs = await client.query(latestJobsQuery);
+
+    // Process data
+    const Alljobs = jobsByCategory.map((data) => ({
+      job_id: data.job_id,
+      CompanyName: data.CompanyName,
+      image: data.Image,
+      JobsName: data.JobsName,
+      CareerLevel: data.CareerLevel,
+      Salary: data.Salary,
+      Descreption: data.Descreption,
+      shortDescreption: data.shortDescreption,
+      DeadLine: data.DeadLine,
+      Apply: data.Apply,
+      view: data.view,
+      userName: data.userName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      categories: data.JobCategory,
+      Location: data.JobLocation,
+    }));
+
+    const reverseJob = Alljobs.reverse();
+
+    const AlllatestJobs = latestJobs.map((data) => ({
+      job_id: data.job_id,
+      CompanyName: data.CompanyName,
+      JobsName: data.JobsName,
+      CreatedDate: data.CreatedDate,
+      image: data.Image,
+      ModifiedDate: data.ModifiedDate,
+    }));
+
+    const reverseJobLatest = AlllatestJobs.reverse();
+
+    return {
+      props: {
+        jobsbycategory: JSON.parse(JSON.stringify(reverseJob)),
+        Alllatestjobs: JSON.parse(JSON.stringify(reverseJobLatest)),
+        categories: JSON.parse(JSON.stringify(categories)),
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching server-side props:', error);
+    return {
+      props: {
+        jobsbycategory: [],
+        Alllatestjobs: [],
+        categories: [],
+        error: "An error occurred while fetching data."
+      },
+    };
+  }
+}
+
 export async function getServerSideProps(context){
 	const {params,req,res,query} = context
   const category_id = query.category_id
@@ -126,7 +270,6 @@ export default function JobsByCategory({categories,Alllatestjobs, jobsbycategory
   const shareUrl = router.asPath
  	const { category, howmany } = router.query
  
- 	
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Jobs By Category" />

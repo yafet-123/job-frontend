@@ -134,7 +134,12 @@ export async function getStaticProps() {
     const categories = categoriesResult.status === 'fulfilled' ? categoriesResult.value.rows : [];
     const latestjobs = latestJobsResult.status === 'fulfilled' ? latestJobsResult.value.rows.reverse() : [];
     const latestnews = newsResult.status === 'fulfilled' ? newsResult.value.rows.map(data => ({
-      ...data,
+      news_id:data.news_id,
+      CreatedDate:data.CreatedDate,
+      Header:data.Header,
+      ShortDescription:data.ShortDescription,
+      image:data.Image,
+      view:data.view,
       Category: data.NewsCategories
     })) : [];
     const latestentertainments = entertainmentsResult.status === 'fulfilled' ? entertainmentsResult.value.rows.map(data => ({

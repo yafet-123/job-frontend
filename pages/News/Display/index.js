@@ -5,136 +5,134 @@ import pool from '../../../db.js'
 import { DisplayIndvidualNews } from '../../../components/News/DisplayIndvidualNews';
 import { DisplayLatestNews } from '../../../components/News/DisplayLatestNews';
 import Head from 'next/head';
- 
 
-export async function getServerSideProps(context){
-  const {params,req,res,query} = context
-  const id = query.news_id
+export async function getServerSideProps(context) {
+  const { query: queryParams } = context;
+  const id = queryParams.news_id;
 
-  const updateview = await prisma.News.update({
-    where:{news_id : Number(id),},
-    data: { view: { increment: 1 }, },
-  })
-  
-  const data = await prisma.News.findUnique({
-    where:{
-      news_id: Number(id),
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
+  const newsQuery = `
+    SELECT 
+      n.*, 
+      u."UserName",
+      json_agg(
+        json_build_object(
+          'category_id', nc."category_id",
+          'CategoryName', nc."CategoryName"
+        )
+      ) AS "NewsCategories"
+    FROM "News" n
+    LEFT JOIN "User" u ON n."user_id" = u."user_id"
+    LEFT JOIN "NewsCategoryRelationship" ncr ON n."news_id" = ncr."news_id"
+    LEFT JOIN "NewsCategory" nc ON ncr."category_id" = nc."category_id"
+    WHERE n."news_id" = $1
+    GROUP BY n."news_id", u."UserName"
+  `;
+
+  const latestNewsQuery = `
+    SELECT 
+      n.*, 
+      u."UserName",
+      json_agg(
+        json_build_object(
+          'category_id', nc."category_id",
+          'CategoryName', nc."CategoryName"
+        )
+      ) AS "NewsCategories"
+    FROM "News" n
+    LEFT JOIN "User" u ON n."user_id" = u."user_id"
+    LEFT JOIN "NewsCategoryRelationship" ncr ON n."news_id" = ncr."news_id"
+    LEFT JOIN "NewsCategory" nc ON ncr."category_id" = nc."category_id"
+    GROUP BY n."news_id", u."UserName"
+    ORDER BY n."news_id" DESC
+    LIMIT 6
+  `;
+
+  const categoryNewsQuery = `
+    SELECT 
+      ncr.*, 
+      n.*, 
+      u."UserName", 
+      nc."category_id", 
+      nc."CategoryName"
+    FROM "NewsCategoryRelationship" ncr
+    JOIN "News" n ON ncr."news_id" = n."news_id"
+    JOIN "User" u ON n."user_id" = u."user_id"
+    JOIN "NewsCategory" nc ON ncr."category_id" = nc."category_id"
+    WHERE ncr."category_id" = ANY($1::int[])
+  `;
+
+  try {
+    const client = await pool.connect();
+
+    // Get the main news item
+    const newsResult = await client.query(newsQuery, [Number(id)]);
+    const news = newsResult.rows[0];
+    
+    const onedata = {
+      news_id: news.news_id,
+      Header: news.Header,
+      Image: news.Image,
+      ShortDescription: news.ShortDescription,
+      Description: news.Description,
+      userName: news.UserName,
+      CreatedDate: news.CreatedDate,
+      ModifiedDate: news.ModifiedDate,
+      NewsCategories: news.NewsCategories,
+    };
+
+    const findCategory = news.NewsCategories.map(category => category.category_id);
+
+    // Get related news items by category
+    const categoryNewsResult = await client.query(categoryNewsQuery, [findCategory]);
+    const categoryNews = categoryNewsResult.rows;
+
+    const AllcategoryNews = categoryNews.map(data => ({
+      ...data,
+    }));
+
+    const uniqueallcategoryNews = [...new Map(AllcategoryNews.map(v => [news.news_id, v])).values()];
+
+    // Get latest news items
+    const latestNewsResult = await client.query(latestNewsQuery);
+    const latestNews = latestNewsResult.rows;
+    console.log(onedata)
+    const Alllatestnews = latestNews.map(data => ({
+      news_id: data.news_id,
+      Header: data.Header,
+      image: data.Image,
+      ShortDescription: data.ShortDescription,
+      userName: data.UserName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      Category: data.NewsCategories,
+    }));
+
+    client.release();
+
+    return {
+      props: {
+        news: JSON.parse(JSON.stringify(onedata)),
+        Alllatestnews: JSON.parse(JSON.stringify(Alllatestnews)),
+        AllcategoryNews: JSON.parse(JSON.stringify(uniqueallcategoryNews)),
       },
-      NewsCategoryRelationship:{
-        include:{
-          NewsCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        news: {},
+        Alllatestnews: [],
+        newsCategory: [],
+        AllcategoryNews: [],
       },
-    }
-  });
-  
-  const onedata = {
-    news_id:data.news_id,
-    Header:data.Header,
-    Image:data.Image,
-    ShortDescription:data.ShortDescription,
-    Description:data.Description,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-  }
- 
-  const newsCategory = data.NewsCategoryRelationship
-  const findCategory = []
-  for(let i=0; i< newsCategory.length;i++){
-    findCategory.push(
-      Number(newsCategory[i].NewsCategory?.category_id)
-    )
-  }
-
-  const dataForCategoryNews = await prisma.NewsCategoryRelationship.findMany({
-    where:{
-        NewsCategory:{
-          category_id:{
-            in:findCategory
-          }
-        }
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      News:true,
-      NewsCategory:true
-    }
-  });
-
-  const latestnews = await prisma.News.findMany({
-    take:-6,
-    orderBy: {
-      news_id:"desc"
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      NewsCategoryRelationship:{
-        include:{
-          NewsCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
-    }
-  });
-
-  const AllcategoryNews = dataForCategoryNews.map((data)=>({
-    News:data.News
-  }))
-
-  const uniqueallcategoryNews = [...new Map(AllcategoryNews.map(v => [v.News.news_id,v])).values()]
-  console.log(uniqueallcategoryNews)
-
-  const Alllatestnews = latestnews.map((data)=>({
-    news_id:data.news_id,
-    Header:data.Header,
-    image:data.Image,
-    ShortDescription:data.ShortDescription,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Category:data.NewsCategoryRelationship
-  }))
-
-  return{
-    props:{
-      news:JSON.parse(JSON.stringify(onedata)),
-      Alllatestnews:JSON.parse(JSON.stringify(Alllatestnews)),
-      newsCategory:JSON.parse(JSON.stringify(newsCategory)),
-      AllcategoryNews:JSON.parse(JSON.stringify(uniqueallcategoryNews)),
-      
-    }
+    };
   }
 }
 
-
-
-export default function DisplayNews({ news,Alllatestnews, AllcategoryNews, newsCategory}) {
+export default function DisplayNews({ news,Alllatestnews, AllcategoryNews}) {
   const router = useRouter()
   console.log(news)
+  const newsCategory = news.NewsCategories
   return (
   	<React.Fragment>
       <Head>
