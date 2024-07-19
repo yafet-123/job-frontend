@@ -36,7 +36,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
 	                <h3 className="flex flex-col justify-between w-2/4">
 	                  	{ entertainmentCategory.map((data,index)=>(
 	                    	<span key={index} className="text-sm lg:text-lg font-bold dark:text-[#009688] text-slate-600 mb-1">
-	                      		{data.EntertainmentCategory.CategoryName}
+	                      		{data.CategoryName}
 	                    	</span>
 	                  	))}
 	                </h3>
@@ -65,7 +65,7 @@ export function DisplayIndvidualentertainment({entertainment,entertainmentCatego
 	              				id={data.Entertainment.entertainment_id} className="flex flex-col w-full group pt-5"
 	            			>
 	            				<div className="w-full !h-52 lg:!h-72 relative">
-	                				<Image src={data.Entertainment.Image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
+	                				<Image src={data.Entertainment.image} fill className="!bg-cover w-full !h-full border rounded-xl" alt="latest news image"/>
 	              				</div>
 
 	              				<h1 className="text-left group-hover:text-[#009688] group-hover:underline text-lg lg:text-xl font-extrabold dark:text-[#009688] text-slate-600 tracking-wide leading-snug">

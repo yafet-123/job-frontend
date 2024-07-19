@@ -10,6 +10,12 @@ export async function getServerSideProps(context) {
   const { query: queryParams } = context;
   const id = queryParams.news_id;
 
+  const updateViewQuery = `
+    UPDATE "News"
+    SET view = view + 1
+    WHERE news_id = $1
+  `;
+
   const newsQuery = `
     SELECT 
       n.*, 
@@ -68,6 +74,8 @@ export async function getServerSideProps(context) {
     const newsResult = await client.query(newsQuery, [Number(id)]);
     const news = newsResult.rows[0];
     
+    const update = await client.query(updateViewQuery, [Number(id)]);
+
     const onedata = {
       news_id: news.news_id,
       Header: news.Header,
@@ -122,7 +130,6 @@ export async function getServerSideProps(context) {
       props: {
         news: {},
         Alllatestnews: [],
-        newsCategory: [],
         AllcategoryNews: [],
       },
     };

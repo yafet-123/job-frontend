@@ -57,7 +57,7 @@ export function DisplayIndvidualNews({news, newsCategory,AllcategoryNews,shareUr
 	            			<button 
 	              				onClick = {()=>{
 	                				router.push({
-	                  					pathname:"/DisplayNews",
+	                  					pathname:"/News/Display",
 	                  					query:{news_id:data.news_id}
 	                				})
 	              				}}

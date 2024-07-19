@@ -6,70 +6,72 @@ import moment from 'moment';
 import { MainHeader } from '../../../components/common/MainHeader';
 import { ETSidebar } from '../../../components/Entertemiment/ETSidebar';
 import { Content } from '../../../components/Entertemiment/Content';
-import { prisma } from '../../../util/db.server.js'
+import pool from '../../../db.js'
 
-export async function getServerSideProps(context){
-  const {params,req,res,query} = context
-    const searchValue = query.searchValue
-    console.log(searchValue)
 
-    const searchData = await prisma.Entertainment.findMany({
-      where: {
-          Header: {
-              contains: searchValue,
-              mode: "insensitive",
-          },
+export async function getServerSideProps(context) {
+  const { params, req, res, query } = context;
+  const searchValue = query.searchValue;
+
+  const searchQuery = `
+    SELECT e.entertainment_id, e.Header, e.link, e.CreatedDate, e.ModifiedDate,
+           u.UserName,
+           ec.category_id, ec.CategoryName
+    FROM "Entertainment" e
+    INNER JOIN "Users" u ON e.user_id = u.user_id
+    LEFT JOIN "EntertainmentCategoryRelationship" ecr ON e.entertainment_id = ecr.entertainment_id
+    LEFT JOIN "EntertainmentCategory" ec ON ecr.category_id = ec.category_id
+    WHERE LOWER(e.Header) LIKE LOWER($1)
+  `;
+
+  const categoriesQuery = `
+    SELECT category_id, CategoryName, CreatedDate, ModifiedDate
+    FROM "EntertainmentCategory"
+    ORDER BY category_id ASC
+  `;
+  try {
+    const client = await pool.connect();
+    const searchValues = [`%${searchValue}%`];
+    const searchDataResult = await client.query(searchQuery, searchValues);
+
+    const AllData = searchDataResult.rows.map(row => ({
+      entertainment_id: row.entertainment_id,
+      Header: row.header,
+      link: row.link,
+      CreatedDate: row.createddate,
+      ModifiedDate: row.modifieddate,
+      Category: {
+        category_id: row.category_id,
+        CategoryName: row.categoryname,
       },
-      include:{
-        User:{
-          select:{
-              UserName:true
-          }
-        },
-        EntertainmentCategoryRelationship:{
-          include:{
-              EntertainmentCategory:{
-                      select:{
-                        category_id:true,
-                    CategoryName:true
-                }
-              }
-          }
-        },
+    }));
+  
+    const categoriesResult = await client.query(categoriesQuery);
+
+    const categories = categoriesResult.rows.map(row => ({
+      category_id: row.category_id,
+      CategoryName: row.categoryname,
+      CreatedDate: row.createddate,
+      ModifiedDate: row.modifieddate,
+    }));
+
+    client.release();
+
+    return {
+      props: {
+        AllData: JSON.parse(JSON.stringify(AllData)),
+        categories: JSON.parse(JSON.stringify(categories)),
       }
-    })
-
-    const AllData = searchData.map((data)=>({
-        entertainment_id:data.entertainment_id,
-        Header:data.Header,
-        link:data.link,
-        CreatedDate:data.CreatedDate,
-        ModifiedDate:data.ModifiedDate,
-        Category:data.EntertainmentCategoryRelationship
-    }))
-
-
-    const data = await prisma.EntertainmentCategory.findMany({
-      orderBy : {
-        category_id:'asc'
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        AllData:[],
+        categories:[]
       },
-    })
-
-    const categories = data.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate
-    }))
-
-    
-
-    return{
-      props:{
-        AllData:JSON.parse(JSON.stringify(AllData)),
-        categories:JSON.parse(JSON.stringify(categories))
-      }
-    }
+    };
+  }
 }
 
 export default function Search({categories, AllData}) {

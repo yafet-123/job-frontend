@@ -5,80 +5,81 @@ import Image from 'next/image'
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useRouter } from 'next/router'
 import axios from 'axios';
-import { prisma } from '../../../util/db.server.js'
+import pool from '../../../db.js'
 import moment from 'moment';
 import { MainHeader } from '../../../components/common/MainHeader';
 import { ETSidebar } from '../../../components/Entertemiment/ETSidebar';
 import { Content } from '../../../components/Entertemiment/Content';
- 
-export async function getServerSideProps(context){
-	const {params,req,res,query} = context
-  	const category_id = query.category_id
-  	console.log(category_id)
 
-  	const entertainmentsbycategory = await prisma.Entertainment.findMany({
-  		orderBy : {
-      		entertainment_id:'desc'
-    	},
-  		where:{
-  			EntertainmentCategoryRelationship:{
-  				some: {
-	  				EntertainmentCategory:{
-	  					category_id: Number(category_id)
-	  				}
-	  			}
-  			}		
-  		},
-	    include:{
-	      	User:{
-	        	select:{
-	          		UserName:true
-	        	}
-	      	},
-	      	EntertainmentCategoryRelationship:{
-        		include:{
-          			EntertainmentCategory:{
-                        select:{
-                        	category_id:true,
-              				CategoryName:true
-            			}
-          			}
-        		}
-      		},
-	    } 
-  	});
+export async function getServerSideProps(context) {
+  const { params, req, res, query } = context;
+  const category_id = query.category_id;
+  console.log(category_id);
 
-  	const data = await prisma.EntertainmentCategory.findMany({
-		orderBy : {
-      		category_id:'desc'
-    	},
-	})
+   const entertainmentsQuery = `
+    SELECT e.entertainment_id, e.Header, e.Image, e.view, e.ShortDescription, e.CreatedDate, e.ModifiedDate, 
+           u.UserName,
+           ec.category_id, ec.CategoryName
+    FROM "Entertainment" e
+    INNER JOIN "Users" u ON e.user_id = u.user_id
+    INNER JOIN "EntertainmentCategoryRelationship" ecr ON e.entertainment_id = ecr.entertainment_id
+    INNER JOIN "EntertainmentCategory" ec ON ecr.category_id = ec.category_id
+    WHERE ec.category_id = $1
+    ORDER BY e.entertainment_id DESC
+  `;
 
-	const categories = data.map((data)=>({
-		category_id:data.category_id,
-		CategoryName:data.CategoryName,
-		CreatedDate:data.CreatedDate,
-		ModifiedDate:data.ModifiedDate
-	}))
+  const categoriesQuery = `
+    SELECT category_id, CategoryName, CreatedDate, ModifiedDate 
+    FROM "EntertainmentCategory"
+    ORDER BY category_id DESC
+  `;
 
-  	const Allentertainment = entertainmentsbycategory.map((data)=>({
-    	entertainment_id:data.entertainment_id,
-    	Header:data.Header,
-    	image:data.Image,
-    	view:data.view,
-    	ShortDescription:data.ShortDescription,
-    	userName:data.User.UserName,
-    	CreatedDate:data.CreatedDate,
-    	ModifiedDate:data.ModifiedDate,
-    	Category:data.EntertainmentCategoryRelationship
-  	}))
+  try {
+    const client = await pool.connect();
 
-  	return{
-    	props:{
-    		Allentertainment:JSON.parse(JSON.stringify(Allentertainment)),
-    		categories:JSON.parse(JSON.stringify(categories))
-    	}
-  	}
+    const entertainmentsResult = await client.query(entertainmentsQuery, [Number(category_id)]);
+
+    const Allentertainment = entertainmentsResult.rows.map(row => ({
+      entertainment_id: row.entertainment_id,
+      Header: row.header,
+      image: row.image,
+      view: row.view,
+      ShortDescription: row.shortdescription,
+      userName: row.username,
+      CreatedDate: row.createddate,
+      ModifiedDate: row.modifieddate,
+      Category: {
+        category_id: row.category_id,
+        CategoryName: row.categoryname
+      }
+    }));
+  
+    const categoriesResult = await client.query(categoriesQuery);
+
+    const categories = categoriesResult.rows.map(row => ({
+      category_id: row.category_id,
+      CategoryName: row.categoryname,
+      CreatedDate: row.createddate,
+      ModifiedDate: row.modifieddate
+    }));
+
+    client.release();
+
+    return {
+      props: {
+        Allentertainment: JSON.parse(JSON.stringify(Allentertainment)),
+        categories: JSON.parse(JSON.stringify(categories))
+      }
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        Allentertainment:[]
+        categories: [],
+      },
+    };
+  }
 }
 
 export default function EntertemimentByCategory({Allentertainment, categories}) {
