@@ -14,7 +14,7 @@ export function Content({entertainments}) {
     const [id, setid] = useState()
     const [getSearchValue,setgetSearchValue] = useState("")
     const [affectRead, setaffectRead ] = useState()
- 
+    console.log(entertainments)
     const clickedForview = () => {
       setviewModalOn(true)
     }

@@ -14,18 +14,24 @@ export async function getServerSideProps(context) {
   const searchValue = query.searchValue;
 
   const searchQuery = `
-    SELECT e.entertainment_id, e.Header, e.link, e.CreatedDate, e.ModifiedDate,
-           u.UserName,
-           ec.category_id, ec.CategoryName
-    FROM "Entertainment" e
-    INNER JOIN "Users" u ON e.user_id = u.user_id
-    LEFT JOIN "EntertainmentCategoryRelationship" ecr ON e.entertainment_id = ecr.entertainment_id
-    LEFT JOIN "EntertainmentCategory" ec ON ecr.category_id = ec.category_id
-    WHERE LOWER(e.Header) LIKE LOWER($1)
-  `;
+  SELECT e.entertainment_id, e."Header", e."Image", e."CreatedDate", e."ModifiedDate",
+         u."UserName",
+         json_agg(
+           json_build_object(
+             'category_id', ec.category_id,
+             'CategoryName', ec."CategoryName"
+           )
+         ) AS "Categories"
+  FROM "Entertainment" e
+  INNER JOIN "User" u ON e.user_id = u.user_id
+  LEFT JOIN "EntertainmentCategoryRelationship" ecr ON e.entertainment_id = ecr.entertainment_id
+  LEFT JOIN "EntertainmentCategory" ec ON ecr.category_id = ec.category_id
+  WHERE LOWER(e."Header") LIKE LOWER($1)
+  GROUP BY e.entertainment_id, e."Header", e."Image", e."CreatedDate", e."ModifiedDate", u."UserName"
+`;
 
   const categoriesQuery = `
-    SELECT category_id, CategoryName, CreatedDate, ModifiedDate
+    SELECT category_id, "CategoryName", "CreatedDate", "ModifiedDate"
     FROM "EntertainmentCategory"
     ORDER BY category_id ASC
   `;
@@ -36,25 +42,22 @@ export async function getServerSideProps(context) {
 
     const AllData = searchDataResult.rows.map(row => ({
       entertainment_id: row.entertainment_id,
-      Header: row.header,
-      link: row.link,
-      CreatedDate: row.createddate,
-      ModifiedDate: row.modifieddate,
-      Category: {
-        category_id: row.category_id,
-        CategoryName: row.categoryname,
-      },
+      Header: row.Header,
+      image:row.Image,
+      CreatedDate: row.CreatedDate,
+      ModifiedDate: row.ModifiedDate,
+      Category:row.Categories
     }));
   
     const categoriesResult = await client.query(categoriesQuery);
 
     const categories = categoriesResult.rows.map(row => ({
       category_id: row.category_id,
-      CategoryName: row.categoryname,
-      CreatedDate: row.createddate,
-      ModifiedDate: row.modifieddate,
+      CategoryName: row.CategoryName,
+      CreatedDate: row.CreatedDate,
+      ModifiedDate: row.ModifiedDate,
     }));
-
+    console.log(categories)
     client.release();
 
     return {
