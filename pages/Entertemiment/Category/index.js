@@ -17,19 +17,25 @@ export async function getServerSideProps(context) {
   console.log(category_id);
 
    const entertainmentsQuery = `
-    SELECT e.entertainment_id, e.Header, e.Image, e.view, e.ShortDescription, e.CreatedDate, e.ModifiedDate, 
-           u.UserName,
-           ec.category_id, ec.CategoryName
-    FROM "Entertainment" e
-    INNER JOIN "Users" u ON e.user_id = u.user_id
-    INNER JOIN "EntertainmentCategoryRelationship" ecr ON e.entertainment_id = ecr.entertainment_id
-    INNER JOIN "EntertainmentCategory" ec ON ecr.category_id = ec.category_id
-    WHERE ec.category_id = $1
-    ORDER BY e.entertainment_id DESC
-  `;
+  SELECT e.entertainment_id, e."Header", e."Image", e."view", e."ShortDescription", e."CreatedDate", e."ModifiedDate", 
+         u."UserName",
+         json_agg(
+           json_build_object(
+             'category_id', ec.category_id,
+             'CategoryName', ec."CategoryName"
+           )
+         ) AS "Categories"
+  FROM "Entertainment" e
+  INNER JOIN "User" u ON e.user_id = u.user_id
+  INNER JOIN "EntertainmentCategoryRelationship" ecr ON e.entertainment_id = ecr.entertainment_id
+  INNER JOIN "EntertainmentCategory" ec ON ecr.category_id = ec.category_id
+  WHERE ec.category_id = $1
+  GROUP BY e.entertainment_id, e."Header", e."Image", e."view", e."ShortDescription", e."CreatedDate", e."ModifiedDate", u."UserName"
+  ORDER BY e.entertainment_id DESC
+`;
 
   const categoriesQuery = `
-    SELECT category_id, CategoryName, CreatedDate, ModifiedDate 
+    SELECT category_id, "CategoryName", "CreatedDate", "ModifiedDate" 
     FROM "EntertainmentCategory"
     ORDER BY category_id DESC
   `;
@@ -41,28 +47,25 @@ export async function getServerSideProps(context) {
 
     const Allentertainment = entertainmentsResult.rows.map(row => ({
       entertainment_id: row.entertainment_id,
-      Header: row.header,
-      image: row.image,
+      Header: row.Header,
+      image: row.Image,
       view: row.view,
-      ShortDescription: row.shortdescription,
-      userName: row.username,
-      CreatedDate: row.createddate,
-      ModifiedDate: row.modifieddate,
-      Category: {
-        category_id: row.category_id,
-        CategoryName: row.categoryname
-      }
+      ShortDescription: row.ShortDescription,
+      userName: row.UserName,
+      CreatedDate: row.CreatedDate,
+      ModifiedDate: row.ModifiedDate,
+      Category: row.Categories
     }));
-  
+    console.log(Allentertainment)
     const categoriesResult = await client.query(categoriesQuery);
 
     const categories = categoriesResult.rows.map(row => ({
       category_id: row.category_id,
-      CategoryName: row.categoryname,
-      CreatedDate: row.createddate,
-      ModifiedDate: row.modifieddate
+      CategoryName: row.CategoryName,
+      CreatedDate: row.CreatedDate,
+      ModifiedDate: row.ModifiedDate
     }));
-
+    console.log(categories)
     client.release();
 
     return {
@@ -75,8 +78,8 @@ export async function getServerSideProps(context) {
     console.error('Database Query Error:', err);
     return {
       props: {
-        Allentertainment:[]
-        categories: [],
+        Allentertainment:[],
+        categories: []
       },
     };
   }

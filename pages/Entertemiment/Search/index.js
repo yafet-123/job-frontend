@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         AllData: JSON.parse(JSON.stringify(AllData)),
-        categories: JSON.parse(JSON.stringify(categories)),
+        categories: JSON.parse(JSON.stringify(categories))
       }
     };
   } catch (err) {
@@ -88,7 +88,7 @@ export default function Search({categories, AllData}) {
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : AdvanceSearch" />
-      <section className="flex flex-col w-full h-full bg-[#ddd0c8] dark:bg-slate-700 pt-32">
+      <section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-slate-700 pt-32">
         <div className='w-full h-full flex flex-col lg:flex-row'>
           <ETSidebar categories={categories} />
           { error == "" ? 

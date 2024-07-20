@@ -187,7 +187,7 @@ export async function getStaticProps() {
     };
   }
 }
-
+ 
 export default function Home({categories, locations, latestjobs, Alllatestblogs, latestnews, latestentertainments}) {
   const { status, data } = useSession();
   console.log(locations)
