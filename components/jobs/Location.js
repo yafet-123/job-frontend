@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 export function Location({locations}) {
 	const router = useRouter();
 	const location = router.query.location
-
+	console.log(locations)
   	return (
 	   <div className="flex flex-col overflow-y-scroll scroll_width p-3">
 			{locations.map((data, index) => (
@@ -18,7 +18,7 @@ export function Location({locations}) {
 			    	onClick = {()=>{
 		                router.push({
 		                    pathname:"/Jobs/Location",
-		                    query:{location:data.LocationName, howmany:data._count.Job, image:data.Image, location_id:data.location_id}
+		                    query:{location:data.LocationName, howmany:data.jobcount, image:data.Image, location_id:data.location_id}
 		                })
 		            }}
 			    >

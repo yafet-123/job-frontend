@@ -2,55 +2,66 @@ import React, {useState,useEffect} from "react";
 import Link from "next/link";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { prisma } from '../../../util/db.server.js'
+import pool from '../../../db.js'
 import { CourseHead } from '../../../components/Course/CourseHead'
 import { MobileViewCourse } from '../../../components/Course/MobileViewCourse';
 import { Main } from '../../../components/Course/Main'
 import { MainHeader } from '../../../components/common/MainHeader';
 
-export async function getServerSideProps(context){
-  const {params,req,res,query} = context
-  const course_id = query.id
+export async function getServerSideProps(context) {
+  const { query } = context;
+  const course_id = query.id;
 
-  const courses = await prisma.CSSCourse.findMany({
-    orderBy: {
-      course_id:"asc"
-    },
+  const coursesQuery = `
+    SELECT jc.course_id, jc.title, jc."ModifiedDate", u."UserName"
+    FROM "CSSCourse" jc
+    INNER JOIN "User" u ON jc.user_id = u.user_id
+    ORDER BY jc.course_id ASC
+  `;
 
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
+  const individualCoursesQuery = `
+    SELECT jc.course_id, jc.title, jc."ModifiedDate", u."UserName"
+    FROM "CSSCourse" jc
+    INNER JOIN "User" u ON jc.user_id = u.user_id
+    WHERE jc.course_id = $1
+  `;
+
+  try {
+    const client = await pool.connect();
+
+    // Fetch all courses
+    const coursesResult = await client.query(coursesQuery);
+    const courses = coursesResult.rows;
+
+    // Fetch individual courses
+    const individualCoursesResult = await client.query(individualCoursesQuery, [Number(course_id)]);
+    const individualCourses = individualCoursesResult.rows;
+
+    // Process the data to match the required format
+    const allCourses = courses.map((data) => ({
+      course_id: data.course_id,
+      title: data.title,
+      ModifiedDate: data.ModifiedDate,
+      UserName: data.UserName, // Adding UserName directly as part of the result
+    }));
+
+    // Close the client connection
+    client.release();
+
+    return {
+      props: {
+        courses: JSON.parse(JSON.stringify(allCourses)),
+        individualCourses: JSON.parse(JSON.stringify(individualCourses)),
       },
-    }
-  })
-
-  const indvidualCourses = await prisma.CSSCourse.findMany({
-    where:{
-      course_id: Number(course_id),
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
+    };
+  } catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        courses: [],
+        individualCourses: [],
       },
-    }
-  })
-
-  const Allcourses = courses.map((data)=>({
-      course_id:data.course_id,
-      title:data.title,
-      ModifiedDate:data.ModifiedDate,
-      categories:data.CourseCategoryRelationship,
-  }))
-
-  return{
-    props:{
-      courses:JSON.parse(JSON.stringify(Allcourses)),
-      indvidualCourses:JSON.parse(JSON.stringify(indvidualCourses)),
-    }
+    };
   }
 }
 

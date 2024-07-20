@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useRouter } from 'next/router'
 import axios from 'axios';
-import { prisma } from '../../../db.js'
+import pool from '../../../db.js'
 import moment from 'moment';
 import { MainHeader } from '../../../components/common/MainHeader';
 import { GroupLatestJobs } from '../../../components/jobs/GroupLatestJobs'
@@ -18,19 +18,26 @@ export async function getServerSideProps(context) {
 
   // Define the queries
   const locationsQuery = `
-    SELECT l.*, COUNT(jl.job_id) AS job_count
+    SELECT l.*, COUNT(jl.job_id) JobCount
     FROM "Location" l
     LEFT JOIN "JobLocation" jl ON l.location_id = jl.location_id
     GROUP BY l.location_id
   `;
-
+ 
   const jobsByLocationQuery = `
-    SELECT j.*, u."UserName", l.location_id, l."LocationName"
+    SELECT j.job_id, j."CompanyName", j."Image", j."JobsName", j."CareerLevel", j."Salary", j."Descreption", j."shortDescreption", j."DeadLine", j."view", j."CreatedDate", j."ModifiedDate", u."UserName",
+      json_agg(
+        json_build_object(
+          'location_id', l.location_id,
+          'LocationName', l."LocationName"
+        )
+      ) AS "JobLocation"
     FROM "Job" j
     INNER JOIN "User" u ON j.user_id = u.user_id
     LEFT JOIN "JobLocation" jl ON j.job_id = jl.job_id
     LEFT JOIN "Location" l ON jl.location_id = l.location_id
     WHERE l.location_id = $1
+    GROUP BY j.job_id, u."UserName"
     ORDER BY j.job_id ASC
   `;
 
@@ -59,7 +66,7 @@ export async function getServerSideProps(context) {
     // Reverse the job arrays
     const reverseJobsByLocation = jobsByLocation.reverse();
     const reverseLatestJobs = latestJobs.reverse();
-
+    console.log(locations)
     // Close the client connection
     client.release();
 
@@ -83,110 +90,110 @@ export async function getServerSideProps(context) {
 }
 
 
-export async function getServerSideProps(context){
-	const {params,req,res,query} = context
-  const location_id = query.location_id
+// export async function getServerSideProps(context){
+// 	const {params,req,res,query} = context
+//   const location_id = query.location_id
 
-  const locations = await prisma.Location.findMany({
-  	include:{
-       _count:{
-        select:{
-          JobLocation:true
-        }
-      },
-    }
-  })
-  const jobsByLocation = await prisma.Job.findMany({
-  	where:{
-      JobLocation:{
-        some: {
-          Location:{
-            location_id: Number(location_id)
-          }
-        }
-      }
-  	},
-    orderBy: {
-      job_id:"asc"
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      JobLocation:{
-        include:{
-          Location:{
-            select:{
-              location_id:true,
-              LocationName:true
-            }
-          }
-        }
-      },
-    } 
-  });
+//   const locations = await prisma.Location.findMany({
+//   	include:{
+//        _count:{
+//         select:{
+//           JobLocation:true
+//         }
+//       },
+//     }
+//   })
+//   const jobsByLocation = await prisma.Job.findMany({
+//   	where:{
+//       JobLocation:{
+//         some: {
+//           Location:{
+//             location_id: Number(location_id)
+//           }
+//         }
+//       }
+//   	},
+//     orderBy: {
+//       job_id:"asc"
+//     },
+//     include:{
+//       User:{
+//         select:{
+//           UserName:true
+//         }
+//       },
+//       JobLocation:{
+//         include:{
+//           Location:{
+//             select:{
+//               location_id:true,
+//               LocationName:true
+//             }
+//           }
+//         }
+//       },
+//     } 
+//   });
 
-  const latestjobs = await prisma.Job.findMany({
-    take:-5,
-    orderBy: {
-      ModifiedDate:"asc"
-    },
-    include:{
-      JobLocation:{
-        include:{
-          Location:{
-            select:{
-              location_id:true,
-              LocationName:true
-            }
-          }
-        }
-      },
-    } 
-  });
+//   const latestjobs = await prisma.Job.findMany({
+//     take:-5,
+//     orderBy: {
+//       ModifiedDate:"asc"
+//     },
+//     include:{
+//       JobLocation:{
+//         include:{
+//           Location:{
+//             select:{
+//               location_id:true,
+//               LocationName:true
+//             }
+//           }
+//         }
+//       },
+//     } 
+//   });
 
-  const Alllatestjobs = latestjobs.map((data)=>({
-    job_id:data.job_id,
-    CompanyName:data.CompanyName,
-    JobsName:data.JobsName,
-    image: data.Image,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate
-  }))
+//   const Alllatestjobs = latestjobs.map((data)=>({
+//     job_id:data.job_id,
+//     CompanyName:data.CompanyName,
+//     JobsName:data.JobsName,
+//     image: data.Image,
+//     CreatedDate:data.CreatedDate,
+//     ModifiedDate:data.ModifiedDate
+//   }))
 
-  const Alljobs = jobsByLocation.map((data)=>({
-    job_id:data.job_id,
-    CompanyName:data.CompanyName,
-    image:data.Image,
-    JobsName:data.JobsName,
-    CareerLevel:data.CareerLevel,
-    Salary:data.Salary,
-    Descreption:data.Descreption,
-    shortDescreption:data.shortDescreption,
-    DeadLine:data.DeadLine,
-    Apply:data.Apply,
-    view:data.view,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    categories:data.JobCategory,
-    Location:data.JobLocation,
-  }))
+//   const Alljobs = jobsByLocation.map((data)=>({
+//     job_id:data.job_id,
+//     CompanyName:data.CompanyName,
+//     image:data.Image,
+//     JobsName:data.JobsName,
+//     CareerLevel:data.CareerLevel,
+//     Salary:data.Salary,
+//     Descreption:data.Descreption,
+//     shortDescreption:data.shortDescreption,
+//     DeadLine:data.DeadLine,
+//     Apply:data.Apply,
+//     view:data.view,
+//     userName:data.User.UserName,
+//     CreatedDate:data.CreatedDate,
+//     ModifiedDate:data.ModifiedDate,
+//     categories:data.JobCategory,
+//     Location:data.JobLocation,
+//   }))
   
-  const reversejob = Alljobs.reverse();
+//   const reversejob = Alljobs.reverse();
 
-  const reversejoblatest = Alllatestjobs.reverse();
+//   const reversejoblatest = Alllatestjobs.reverse();
 
-  return{
-    props:{
-    	Alllatestjobs:JSON.parse(JSON.stringify(reversejoblatest)),
-    	jobsbylocation:JSON.parse(JSON.stringify(reversejob)),
-      locations:JSON.parse(JSON.stringify(locations)),
-    }
-  }
-}
+//   return{
+//     props:{
+//     	Alllatestjobs:JSON.parse(JSON.stringify(reversejoblatest)),
+//     	jobsbylocation:JSON.parse(JSON.stringify(reversejob)),
+//       locations:JSON.parse(JSON.stringify(locations)),
+//     }
+//   }
+// }
 
 export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs}) {
 	const router = useRouter();

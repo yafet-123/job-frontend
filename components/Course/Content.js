@@ -34,7 +34,7 @@ export function Content({indvidualCourses}) {
     return (
             <div className="w-full h-full mt-10 lg:mt-0 px-3 lg:px-5 ">
                 <h1 className="text-center pt-3 lg:pt-10 group-hover:underline text-3xl lg:text-4xl font-extrabold dark:text-slate-300 text-slate-600 tracking-wide leading-snug my-10">
-                    {indvidualCourses[0]?.title}
+                    {indvidualCourses?.title}
                 </h1>
 
                 <div className="flex flex-row justify-between">
@@ -70,7 +70,7 @@ export function Content({indvidualCourses}) {
                 </div>
 
                 <div className="ql-snow">
-                    <div className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: indvidualCourses[0]?.content }} />
+                    <div className="bg-transparent text-black dark:!text-white mt-5 ql-editor ql-snow ql-video" dangerouslySetInnerHTML={{ __html: indvidualCourses?.content }} />
                 </div>
 
                 <div className="flex flex-row justify-between">

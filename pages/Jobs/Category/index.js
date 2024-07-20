@@ -111,7 +111,6 @@ export async function getServerSideProps(context) {
       Descreption: data.Descreption,
       shortDescreption: data.shortDescreption,
       DeadLine: data.DeadLine,
-      Apply: data.Apply,
       view: data.view,
       userName: data.userName,
       CreatedDate: data.CreatedDate,

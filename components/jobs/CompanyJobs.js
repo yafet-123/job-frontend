@@ -11,7 +11,6 @@ export function CompanyJobs({jobs,shareUrl}) {
   	const [quotes, setquotes] = useState()
   	const [viewmodalOn, setviewModalOn] = useState(false)
  	const [id, setid] = useState()
- 
 
   	const clickedForview = () => {
       setviewModalOn(true)
@@ -19,7 +18,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 
   	return (
 	   <div>
-			{ jobs.map(({job_id,JobsName,ModifiedDate,CompanyName,Location,CareerLevel,DeadLine,image,shortDescreption,view},index)=>(
+			{ jobs.map(({job_id,JobsName,ModifiedDate,CompanyName,JobLocation,CareerLevel,DeadLine,image,shortDescreption,view},index)=>(
 				<div id={index} key={index} ref={quoteRef} className="flex flex-col w-full bg-neutral-300 dark:bg-slate-800 mb-10 p-3 border rounded-lg">
 					<div className="flex justify-between items-center mb-5">
 						<Link href="/Jobs/Display">
@@ -37,7 +36,7 @@ export function CompanyJobs({jobs,shareUrl}) {
 					  		<li className="flex flex-row justify-between items-center w-full mb-5">
 					  			<h1 className="text-md lg:text-xl font-bold capitalize text-left w-1/2">Location:</h1>
 			                    <div className="flex flex-col w-1/2">
-			                        { Location.map((data,index)=>(
+			                        { JobLocation.map((data,index)=>(
 			                            <p key={index} className="text-xs lg:text-lg text-left mb-2">{data.LocationName}</p>
 			                        ))}
 			                    </div>
