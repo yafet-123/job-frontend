@@ -1,87 +1,83 @@
 import React from "react";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { AllBlogs } from '../../../components/Blogs/AllBlogs';
-import { prisma } from '../../../util/db.server.js'
+import pool from '../../../db.js'
 
-export async function getServerSideProps(context){
-  const {params,req,res,query} = context
-  const category_id = query.category_id
-  console.log(category_id)
-  const blogscategories = await prisma.BlogsCategory.findMany({
-    orderBy: {
-      category_id:"asc"
-    },
-    include:{
-      User:{
-          select:{
-              UserName:true
-          }
+export async function getServerSideProps(context) {
+  const { query } = context;
+  const blogs_id = query.blogs_id;
+  console.log(blogs_id);
+
+  try {
+    const client = await pool.connect();
+
+  // Fetch all blog categories
+    const blogscategoriesResult = await client.query(`
+      SELECT bc.category_id, bc."CategoryName", bc."CreatedDate", bc."ModifiedDate", u."UserName"
+      FROM "BlogsCategory" bc
+      LEFT JOIN "User" u ON bc.user_id = u.user_id
+      ORDER BY bc.category_id ASC
+    `);
+    
+    const Allblogscategories = blogscategoriesResult.rows.map(data => ({
+      category_id: data.category_id,
+      CategoryName: data.CategoryName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      userName: data.UserName
+    }));
+
+    console.log(Allblogscategories)
+  
+    // Fetch blogs for the given category
+    const blogsResult = await client.query(`
+      SELECT b.blogs_id, b."Header", b."Image", b."view", b."ShortDescription", b."Description", 
+             b."CreatedDate", b."ModifiedDate", u."UserName",
+             json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
+      FROM "Blogs" b
+      INNER JOIN "User" u ON b.user_id = u.user_id
+      INNER JOIN "BlogsCategoryRelationship" bcr ON b.blogs_id = bcr.blogs_id
+      INNER JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
+      WHERE bc.category_id = $1
+      GROUP BY b.blogs_id, u."UserName"
+      ORDER BY b."ModifiedDate" DESC
+    `, [blogs_id]);
+  
+    const allblogs = blogsResult.rows.map(data => ({
+      blogs_id: data.blogs_id,
+      Header: data.Header,
+      image: data.Image,
+      view: data.view,
+      ShortDescription: data.ShortDescription,
+      Description: data.Description,
+      userName: data.UserName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      Category: data.Categories
+    }));
+    
+    console.log(allblogs)
+    await client.end();
+  
+    return {
+      props: {
+        categories: JSON.parse(JSON.stringify(Allblogscategories)),
+        allblogs: JSON.parse(JSON.stringify(allblogs)),
       }
     }
-  })
-
-  const Allblogscategories = blogscategories.map((data)=>({
-      category_id:data.category_id,
-      CategoryName:data.CategoryName,
-      CreatedDate:data.CreatedDate,
-      ModifiedDate:data.ModifiedDate,
-      userName:data.User.UserName
-  }))
-
-  const blogs = await prisma.Blogs.findMany({
-    where:{
-      BlogsCategoryRelationship:{
-        some: {
-          BlogsCategory:{
-            category_id: Number(category_id)
-          }
-        }
-      }   
-    },
-    orderBy : {
-      ModifiedDate:'desc'
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
+  }catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        categories: [],
+        allblogs: [],
       },
-      BlogsCategoryRelationship:{
-        include:{
-          BlogsCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
-    }
-  });
-
-  const allblogs = blogs.map((data)=>({
-    blogs_id:data.blogs_id,
-    Header:data.Header,
-    image:data.Image,
-    view : data.view,
-    ShortDescription:data.ShortDescription,
-    Description : data.Description,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Category:data.BlogsCategoryRelationship
-  }))
-
-  return{
-    props:{
-      categories:JSON.parse(JSON.stringify(Allblogscategories)),
-      allblogs:JSON.parse(JSON.stringify(allblogs)),
-    }
+    };
   }
 }
  
 export default function News({allblogs, categories}) {
+  console.log(allblogs)
   return (
     <React.Fragment>
       <MainHeader title="Hulu Media : Blogs" />

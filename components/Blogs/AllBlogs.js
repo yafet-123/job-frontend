@@ -39,11 +39,11 @@ export function AllBlogs({allblogs,categories}) {
               <button 
                 onClick = {()=>{
                   router.push({
-                    pathname:"/Blog",
+                    pathname:"/Blogs/Category",
                     query:{category_id:item.category_id}
                   })
                 }}
-                className={ item.category_id == category_id ? 'text-center bg-[#009688] dark:bg-[#009688] py-3 w-full text-center text-white font-bold flex': 'text-center w-full text-black dark:text-white hover:text-[#009688] hover:text-center hover:bg-white dark:hover:bg-[#009688] px-2 py-3 font-bold flex' }
+                className={ item.category_id == category_id ? 'px-2 text-center bg-[#009688] dark:bg-[#009688] py-3 w-full text-center text-white font-bold flex': 'text-center w-full text-black dark:text-white hover:text-[#009688] hover:text-center hover:bg-white dark:hover:bg-[#009688] px-2 py-3 font-bold flex' }
               >
                 {item.CategoryName}
               </button>

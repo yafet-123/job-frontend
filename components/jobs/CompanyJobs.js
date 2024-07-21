@@ -13,7 +13,7 @@ export function CompanyJobs({jobs,shareUrl}) {
  	const [id, setid] = useState()
 
   	const clickedForview = () => {
-      setviewModalOn(true)
+       setviewModalOn(true)
   	}
 
   	return (

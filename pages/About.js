@@ -34,7 +34,10 @@ export default function About() {
       <MainHeader title="Hulu Media : About" />
       <div className="flex flex-col bg-[#e6e6e6] dark:bg-[#02201D]">
         <AboutUsHero />
-
+        <AboutUsDetail />
+        <FollowingTheDream />
+        <OurMission />
+        <OurVision />
       </div>
     </React.Fragment>
   );

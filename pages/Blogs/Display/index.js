@@ -1,132 +1,126 @@
 import React from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { prisma } from '../../../util/db.server.js'
+import pool from '../../../db.js'
 import { MainHeader } from '../../../components/common/MainHeader';
 import { DisplayIndvidualBlogs } from '../../../components/Blogs/DisplayIndvidualBlogs';
 import { DisplayLatestBlogs } from '../../../components/Blogs/DisplayLatestBlogs';
 import Head from 'next/head'
 
-export async function getServerSideProps(context){
-  const {params,req,res,query} = context
-  const id = query.blogs_id
+export async function getServerSideProps(context) {
+  const { query } = context;
+  const id = query.blogs_id;
 
-  const updateview = await prisma.Blogs.update({
-    where:{blogs_id : Number(id),},
-    data: { view: { increment: 1 }, },
-  })
   
-  const data = await prisma.Blogs.findUnique({
-    where:{
-      blogs_id: Number(id),
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
+  try {
+    const client = await pool.connect();
+
+    await client.query(`
+      UPDATE "Blogs"
+      SET view = view + 1
+      WHERE blogs_id = $1
+    `, [id]);
+
+      const blogData = await client.query(`
+        SELECT b.blogs_id, b."Header", b."Image", b."ShortDescription", b."Description", 
+               b."CreatedDate", b."ModifiedDate", u."UserName",
+               json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
+        FROM "Blogs" b
+        INNER JOIN "User" u ON b.user_id = u.user_id
+        LEFT JOIN "BlogsCategoryRelationship" bcr ON b.blogs_id = bcr.blogs_id
+        LEFT JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
+        WHERE b.blogs_id = $1
+        GROUP BY b.blogs_id, u."UserName"
+      `, [id]);
+
+      const data = blogData.rows[0];
+      
+      const onedata = {
+        blogs_id: data.blogs_id,
+        Header: data.Header,
+        Image: data.Image,
+        ShortDescription: data.ShortDescription,
+        Description: data.Description,
+        userName: data.UserName,
+        CreatedDate: data.CreatedDate,
+        ModifiedDate: data.ModifiedDate,
+        Categories:data.Categories
+      }
+
+      const blogsCategory = data.Categories;
+
+      const findCategory = blogsCategory.map(category => Number(category.category_id));
+
+      console.log(findCategory)
+      // Fetch related blogs based on category
+      const dataForCategoryBlogs = await client.query(`
+        SELECT b.blogs_id, b."Header", b."Image", b."ShortDescription", b."Description",
+               b."CreatedDate", b."ModifiedDate", u."UserName",
+               json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
+        FROM "BlogsCategoryRelationship" bcr
+        INNER JOIN "Blogs" b ON bcr.blogs_id = b.blogs_id
+        INNER JOIN "User" u ON b.user_id = u.user_id
+        INNER JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
+        WHERE bc.category_id = ANY($1)
+        GROUP BY b.blogs_id, u."UserName"
+      `, [findCategory]);
+
+      // Fetch latest blogs
+      const latestblogs = await client.query(`
+        SELECT b.blogs_id, b."Header", b."Image", b."ShortDescription", 
+               b."CreatedDate", b."ModifiedDate", u."UserName",
+               json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
+        FROM "Blogs" b
+        INNER JOIN "User" u ON b.user_id = u.user_id
+        LEFT JOIN "BlogsCategoryRelationship" bcr ON b.blogs_id = bcr.blogs_id
+        LEFT JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
+        GROUP BY b.blogs_id, u."UserName"
+        ORDER BY b.blogs_id DESC
+        LIMIT 6
+      `);
+
+      console.log(onedata)
+      
+      const AllcategoryBlogs = dataForCategoryBlogs.rows.map(row => ({
+        Blogs: row
+      }));
+
+      const uniqueallcategoryBlogs = [...new Map(AllcategoryBlogs.map(v => [v.Blogs.blogs_id, v])).values()];
+
+      const Alllatestblogs = latestblogs.rows.map(data => ({
+        blogs_id: data.blogs_id,
+        Header: data.Header,
+        image: data.Image,
+        ShortDescription: data.ShortDescription,
+        userName: data.UserName,
+        CreatedDate: data.CreatedDate,
+        ModifiedDate: data.ModifiedDate,
+        Category: data.Categories
+      }));
+
+      // Disconnect from the PostgreSQL database
+      await client.end();
+
+      return {
+        props: {
+          blogs: JSON.parse(JSON.stringify(onedata)),
+          Alllatestblogs: JSON.parse(JSON.stringify(Alllatestblogs)),
+          blogsCategory: JSON.parse(JSON.stringify(blogsCategory)),
+          AllcategoryBlogs: JSON.parse(JSON.stringify(uniqueallcategoryBlogs))
         }
-      },
-      BlogsCategoryRelationship:{
-        include:{
-          BlogsCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
+      }
     }
-  });
-  
-  const onedata = {
-    blogs_id:data.blogs_id,
-    Header:data.Header,
-    Image:data.Image,
-    ShortDescription:data.ShortDescription,
-    Description:data.Description,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-  }
-
-  const blogsCategory = data.BlogsCategoryRelationship
-  const findCategory = []
-  for(let i=0; i< blogsCategory.length;i++){
-    findCategory.push(
-      Number(blogsCategory[i].BlogsCategory?.category_id)
-    )
-  }
-
-  const dataForCategoryBlogs = await prisma.BlogsCategoryRelationship.findMany({
-    where:{
-        BlogsCategory:{
-          category_id:{
-            in:findCategory
-          }
-        }
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
+  catch (err) {
+    console.error('Database Query Error:', err);
+    return {
+      props: {
+        categories: [],
+        allblogs: [],
       },
-      Blogs:true,
-      BlogsCategory:true
-    }
-  });
-  const AllcategoryBlogs = dataForCategoryBlogs.map((data)=>({
-    Blogs:data.Blogs
-  }))
-
-  const uniqueallcategoryBlogs = [...new Map(AllcategoryBlogs.map(v => [v.Blogs.blogs_id,v])).values()]
-  console.log(uniqueallcategoryBlogs)
-
-  const latestblogs = await prisma.Blogs.findMany({
-    take:-6,
-    orderBy: {
-      blogs_id:"desc"
-    },
-    include:{
-      User:{
-        select:{
-          UserName:true
-        }
-      },
-      BlogsCategoryRelationship:{
-        include:{
-          BlogsCategory:{
-            select:{
-              category_id:true,
-              CategoryName:true
-            }
-          }
-        }
-      },
-    }
-  });
-
-  const Alllatestblogs = latestblogs.map((data)=>({
-    blogs_id:data.blogs_id,
-    Header:data.Header,
-    image:data.Image,
-    ShortDescription:data.ShortDescription,
-    userName:data.User.UserName,
-    CreatedDate:data.CreatedDate,
-    ModifiedDate:data.ModifiedDate,
-    Category:data.BlogsCategoryRelationship
-  }))
-
-  return{
-    props:{
-      blogs:JSON.parse(JSON.stringify(onedata)),
-      Alllatestblogs:JSON.parse(JSON.stringify(Alllatestblogs)),
-      blogsCategory:JSON.parse(JSON.stringify(blogsCategory)),
-      AllcategoryBlogs:JSON.parse(JSON.stringify(uniqueallcategoryBlogs))
-    }
+    };
   }
 }
+
  
 export default function DisplayBlogs({blogs,Alllatestblogs, blogsCategory,AllcategoryBlogs}) {
   const router = useRouter()
@@ -156,10 +150,10 @@ export default function DisplayBlogs({blogs,Alllatestblogs, blogsCategory,Allcat
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="300" />
       </Head>
-      <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:px-80 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
+      <section className="flex flex-col lg:flex-row w-full h-full px-1 lg:pl-80 lg:px-32 bg-[#e6e6e6] dark:bg-[#02201D] pt-32">
         <DisplayIndvidualBlogs blogs={blogs} blogsCategory={blogsCategory} AllcategoryBlogs={AllcategoryBlogs} shareUrl={router.asPath} />
         <DisplayLatestBlogs Alllatestblogs={Alllatestblogs}/>          
       </section>
     </React.Fragment>
   );
-}
+} 

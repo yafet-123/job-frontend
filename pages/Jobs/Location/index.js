@@ -89,116 +89,11 @@ export async function getServerSideProps(context) {
   }
 }
 
-
-// export async function getServerSideProps(context){
-// 	const {params,req,res,query} = context
-//   const location_id = query.location_id
-
-//   const locations = await prisma.Location.findMany({
-//   	include:{
-//        _count:{
-//         select:{
-//           JobLocation:true
-//         }
-//       },
-//     }
-//   })
-//   const jobsByLocation = await prisma.Job.findMany({
-//   	where:{
-//       JobLocation:{
-//         some: {
-//           Location:{
-//             location_id: Number(location_id)
-//           }
-//         }
-//       }
-//   	},
-//     orderBy: {
-//       job_id:"asc"
-//     },
-//     include:{
-//       User:{
-//         select:{
-//           UserName:true
-//         }
-//       },
-//       JobLocation:{
-//         include:{
-//           Location:{
-//             select:{
-//               location_id:true,
-//               LocationName:true
-//             }
-//           }
-//         }
-//       },
-//     } 
-//   });
-
-//   const latestjobs = await prisma.Job.findMany({
-//     take:-5,
-//     orderBy: {
-//       ModifiedDate:"asc"
-//     },
-//     include:{
-//       JobLocation:{
-//         include:{
-//           Location:{
-//             select:{
-//               location_id:true,
-//               LocationName:true
-//             }
-//           }
-//         }
-//       },
-//     } 
-//   });
-
-//   const Alllatestjobs = latestjobs.map((data)=>({
-//     job_id:data.job_id,
-//     CompanyName:data.CompanyName,
-//     JobsName:data.JobsName,
-//     image: data.Image,
-//     CreatedDate:data.CreatedDate,
-//     ModifiedDate:data.ModifiedDate
-//   }))
-
-//   const Alljobs = jobsByLocation.map((data)=>({
-//     job_id:data.job_id,
-//     CompanyName:data.CompanyName,
-//     image:data.Image,
-//     JobsName:data.JobsName,
-//     CareerLevel:data.CareerLevel,
-//     Salary:data.Salary,
-//     Descreption:data.Descreption,
-//     shortDescreption:data.shortDescreption,
-//     DeadLine:data.DeadLine,
-//     Apply:data.Apply,
-//     view:data.view,
-//     userName:data.User.UserName,
-//     CreatedDate:data.CreatedDate,
-//     ModifiedDate:data.ModifiedDate,
-//     categories:data.JobCategory,
-//     Location:data.JobLocation,
-//   }))
-  
-//   const reversejob = Alljobs.reverse();
-
-//   const reversejoblatest = Alllatestjobs.reverse();
-
-//   return{
-//     props:{
-//     	Alllatestjobs:JSON.parse(JSON.stringify(reversejoblatest)),
-//     	jobsbylocation:JSON.parse(JSON.stringify(reversejob)),
-//       locations:JSON.parse(JSON.stringify(locations)),
-//     }
-//   }
-// }
-
 export default function JobsByLocation({locations, jobsbylocation, Alllatestjobs}) {
 	const router = useRouter();
   const { location, howmany, image } = router.query
   const shareUrl = router.asPath
+  console.log(jobsbylocation)
   return (
   	<React.Fragment>
       <MainHeader title="Hulu Media : Jobs By Location" />

@@ -14,6 +14,8 @@ export function DisplayIndvidualBlogs({blogs, blogsCategory,shareUrl,Allcategory
 	const quote = quoteRef.current?.textContent ?? "";
   	const [quotes, setquotes] = useState()
   	const [viewmodalOn, setviewModalOn] = useState(false)
+  	const category = blogs.Categories
+  	console.log(category)
   	const clickedForview = () => {
       setviewModalOn(true)
   	}
@@ -35,9 +37,9 @@ export function DisplayIndvidualBlogs({blogs, blogsCategory,shareUrl,Allcategory
 	        <div className="w-full flex flex-col my-5">
 	            <div className="flex flex-row justify-between lg:mb-5 px-1 lg:px-2 w-full">
 	                <h3 className="flex flex-col justify-between w-2/4">
-	                  	{ blogsCategory.map((data,index)=>(
+	                  	{ category.map((data,index)=>(
 	                    	<span key={index} className="text-sm lg:text-lg font-bold dark:text-[#009688] text-slate-600 mb-1 hover:text-[#009688]">
-	                      		{data.BlogsCategory.CategoryName}
+	                      		{data.CategoryName}
 	                    	</span>
 	                  	))}
 	                </h3>
