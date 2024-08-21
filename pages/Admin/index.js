@@ -53,18 +53,15 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
 
-    const [adminResult, categoriesResult, jobsCountResult, newsCountResult, entertainmentsCountResult, groupByResult] = await Promise.all([
-      client.query(adminQuery, [Number(session.user.user_id)]),
-      client.query(categoriesQuery),
-      client.query(jobsCountQuery),
-      client.query(newsCountQuery),
-      client.query(entertainmentsCountQuery),
-      client.query(groupByQuery)
-    ]);
+    const adminResult = await db.query(adminQuery, [Number(session.user.user_id)]);
+    const categoriesResult = await db.query(categoriesQuery);
+    const jobsCountResult = await db.query(jobsCountQuery);
+    const newsCountResult = await db.query(newsCountQuery);
+    const entertainmentsCountResult = await db.query(entertainmentsCountQuery);
+    const groupByResult = await db.query(groupByQuery);
 
-    const admin = adminResult.rows[0];
+    const admin = adminResult;
     console.log('Admin Result:', admin); // Log the admin query result
 
     const admins = {
@@ -76,7 +73,7 @@ export async function getServerSideProps(context) {
       email: admin.email
     };
 
-    const categories = categoriesResult.rows.map((data) => ({
+    const categories = categoriesResult.map((data) => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
@@ -84,16 +81,13 @@ export async function getServerSideProps(context) {
       userName: data.UserName
     }));
 
-    const jobs = parseInt(jobsCountResult.rows[0].count, 10);
-    const news = parseInt(newsCountResult.rows[0].count, 10);
-    const entertainments = parseInt(entertainmentsCountResult.rows[0].count, 10);
+    const jobs = parseInt(jobsCountResult.count, 10);
+    const news = parseInt(newsCountResult.count, 10);
+    const entertainments = parseInt(entertainmentsCountResult.count, 10);
 
-    const groupBy = groupByResult.rows;
+    const groupBy = groupByResult;
 
     console.log(groupBy);
-
-    client.release();
-
     return {
       props: {
         categorie: JSON.parse(JSON.stringify(categories)),

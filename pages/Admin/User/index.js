@@ -1,6 +1,6 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import { AddUser } from "../../../components/Admin/User/AddUser";
 import {DisplayUser} from "../../../components/Admin/User/DisplayUser";
 import { useSession } from "next-auth/react";
@@ -29,9 +29,8 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
-    const usersResult = await client.query(usersQuery);
-    const users = usersResult.rows.map((data) => ({
+    const usersResult = await db.query(usersQuery);
+    const users = usersResult.map((data) => ({
       user_id: data.user_id,
       email: data.email,
       firstName: data.firstName,
@@ -42,8 +41,6 @@ export async function getServerSideProps(context) {
       ModifiedDate: data.ModifiedDate,
       UserName: data.UserName
     }));
-
-    client.release();
 
     return {
       props: {

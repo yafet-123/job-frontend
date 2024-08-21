@@ -31,11 +31,9 @@ export async function getServerSideProps(context) {
     ORDER BY l.location_id ASC;
   `;
 
-  const client = await pool.connect();
-
   try {
-    const result = await client.query(getLocationsQuery);
-    const locations = result.rows;
+    const result = await db.query(getLocationsQuery);
+    const locations = result;
 
     const Alllocations = locations.map((data) => ({
       location_id: data.location_id,
@@ -58,8 +56,6 @@ export async function getServerSideProps(context) {
         locations: [],
       },
     };
-  } finally {
-    client.release(); // Release the client back to the pool
   }
 }
 

@@ -7,7 +7,7 @@ import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 
 import { getSession } from 'next-auth/react';
-import pool from '../../../db.js'; // Import your PostgreSQL connection pool
+import db from '../../../db.js'; // Import your PostgreSQL connection pool
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -48,13 +48,11 @@ export async function getServerSideProps(context) {
     ORDER BY nc.category_id ASC;
   `;
 
-  const client = await pool.connect();
-
   try {
-    const newsResult = await client.query(getNewsQuery);
-    const newsCategoriesResult = await client.query(getNewsCategoriesQuery);
+    const newsResult = await db.query(getNewsQuery);
+    const newsCategoriesResult = await db.query(getNewsCategoriesQuery);
 
-    const news = newsResult.rows.map((data) => ({
+    const news = newsResult.map((data) => ({
       news_id: data.news_id,
       Header: data.Header,
       image: data.Image,
@@ -66,7 +64,7 @@ export async function getServerSideProps(context) {
       Category: data.Category
     }));
 
-    const newsCategories = newsCategoriesResult.rows.map((data) => ({
+    const newsCategories = newsCategoriesResult.map((data) => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
@@ -88,8 +86,6 @@ export async function getServerSideProps(context) {
         categories: [],
       },
     };
-  } finally {
-    client.release(); // Release the client back to the pool
   }
 }
 
