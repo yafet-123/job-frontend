@@ -10,98 +10,91 @@ import {Share} from '../../../components/common/Share.js'
 import { GroupLatestJobs } from '../../../components/jobs/GroupLatestJobs'
 import { CompanyJobs } from '../../../components/jobs/CompanyJobs'
 import { Company } from '../../../components/jobs/Company'
-import pool from '../../../db';
+import db from '../../../db';
 
 export async function getServerSideProps(context) {
   const { query } = context;
   const category_id = query.category_id;
   console.log(category_id);
 
-  // Query to get jobs by category
   const jobsByCategoryQuery = `
     SELECT 
       j.job_id, 
-      j."CompanyName", 
-      j."Image", 
-      j."JobsName", 
-      j."CareerLevel", 
-      j."Salary", 
-      j."Descreption", 
-      j."shortDescreption", 
-      j."DeadLine",  
-      j."view", 
-      j."CreatedDate", 
-      j."ModifiedDate", 
-      u."UserName" AS userName,
-      json_agg(
-        json_build_object(
+      j.CompanyName, 
+      j.Image, 
+      j.JobsName, 
+      j.CareerLevel, 
+      j.Salary, 
+      j.Descreption, 
+      j.shortDescreption, 
+      j.DeadLine,  
+      j.view, 
+      j.CreatedDate, 
+      j.ModifiedDate, 
+      u.UserName AS userName,
+      JSON_ARRAYAGG(
+        JSON_OBJECT(
           'location_id', l.location_id,
-          'LocationName', l."LocationName"
+          'LocationName', l.LocationName
         )
-      ) AS "JobLocation",
-      json_agg(
-        json_build_object(
+      ) AS JobLocation,
+      JSON_ARRAYAGG(
+        JSON_OBJECT(
           'category_id', c.category_id,
-          'CategoryName', c."CategoryName"
+          'CategoryName', c.CategoryName
         )
-      ) AS "JobCategory"
-    FROM "Job" j
-    LEFT JOIN "User" u ON j.user_id = u.user_id
-    LEFT JOIN "JobLocation" jl ON j.job_id = jl.job_id
-    LEFT JOIN "Location" l ON jl.location_id = l.location_id
-    LEFT JOIN "JobCategory" jc ON j.job_id = jc.job_id
-    LEFT JOIN "Category" c ON jc.category_id = c.category_id
-    WHERE c.category_id = $1
-    GROUP BY j.job_id, u."UserName"
+      ) AS JobCategory
+    FROM Job j
+    LEFT JOIN User u ON j.user_id = u.user_id
+    LEFT JOIN JobLocation jl ON j.job_id = jl.job_id
+    LEFT JOIN Location l ON jl.location_id = l.location_id
+    LEFT JOIN JobCategory jc ON j.job_id = jc.job_id
+    LEFT JOIN Category c ON jc.category_id = c.category_id
+    WHERE c.category_id = ?
+    GROUP BY j.job_id, u.UserName
     ORDER BY j.job_id ASC;
   `;
 
-  // Query to get categories
   const categoriesQuery = `
     SELECT 
       c.category_id, 
-      c."CategoryName", 
-      COUNT(jc.job_id) AS "JobCount"
-    FROM "Category" c
-    LEFT JOIN "JobCategory" jc ON c.category_id = jc.category_id
+      c.CategoryName, 
+      COUNT(jc.job_id) AS JobCount
+    FROM Category c
+    LEFT JOIN JobCategory jc ON c.category_id = jc.category_id
     GROUP BY c.category_id;
   `;
 
-  // Query to get latest jobs
   const latestJobsQuery = `
     SELECT 
       j.job_id, 
-      j."CompanyName", 
-      j."JobsName", 
-      j."Image", 
-      j."CreatedDate", 
-      j."ModifiedDate",
-      json_agg(
-        json_build_object(
+      j.CompanyName, 
+      j.JobsName, 
+      j.Image, 
+      j.CreatedDate, 
+      j.ModifiedDate,
+      JSON_ARRAYAGG(
+        JSON_OBJECT(
           'location_id', l.location_id,
-          'LocationName', l."LocationName"
+          'LocationName', l.LocationName
         )
-      ) AS "JobLocation"
-    FROM "Job" j
-    LEFT JOIN "JobLocation" jl ON j.job_id = jl.job_id
-    LEFT JOIN "Location" l ON jl.location_id = l.location_id
+      ) AS JobLocation
+    FROM Job j
+    LEFT JOIN JobLocation jl ON j.job_id = jl.job_id
+    LEFT JOIN Location l ON jl.location_id = l.location_id
     GROUP BY j.job_id
-    ORDER BY j."ModifiedDate" DESC
+    ORDER BY j.ModifiedDate DESC
     LIMIT 5;
   `;
 
-  try {
-    const client = await pool.connect();
-    // Execute queries
-    const jobsByCat = await client.query(jobsByCategoryQuery, [category_id]);
-    const catego = await client.query(categoriesQuery);
-    const latestJ = await client.query(latestJobsQuery);
 
-    const jobsByCategory = jobsByCat.rows
-    const categories = catego.rows
-    const latestJobs = latestJ.rows
-    // Process data
-    const Alljobs = jobsByCategory.map((data) => ({
+  try {
+
+    const [jobsByCat] = await db.query(jobsByCategoryQuery, [category_id]);
+    const [catego] = await db.query(categoriesQuery);
+    const [latestJ] = await db.query(latestJobsQuery);
+    console.log(catego)
+    const Alljobs = jobsByCat.map((data) => ({
       job_id: data.job_id,
       CompanyName: data.CompanyName,
       image: data.Image,
@@ -121,7 +114,7 @@ export async function getServerSideProps(context) {
 
     const reverseJob = Alljobs.reverse();
 
-    const AlllatestJobs = latestJobs.map((data) => ({
+    const AlllatestJobs = latestJ.map((data) => ({
       job_id: data.job_id,
       CompanyName: data.CompanyName,
       JobsName: data.JobsName,
@@ -132,6 +125,11 @@ export async function getServerSideProps(context) {
 
     const reverseJobLatest = AlllatestJobs.reverse();
 
+    const categories = catego.map((data) => ({
+      category_id:data.category_id,
+      CategoryName:data.CategoryName,
+      JobCount: data.JobCount
+    }))
     return {
       props: {
         jobsbycategory: JSON.parse(JSON.stringify(reverseJob)),

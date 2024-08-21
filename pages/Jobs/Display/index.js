@@ -5,7 +5,7 @@ import { TopAndBottomOfDisplayJobs } from "../../../components/jobs/TopAndBottom
 import { DisplayIndividualJobs } from "../../../components/jobs/DisplayIndividualJobs";
 import axios from "axios";
 import { useRouter } from 'next/router'
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import Head from 'next/head';
 
 
@@ -15,49 +15,65 @@ export async function getServerSideProps(context) {
   const id = query.job_id;
 
   const updateViewQuery = `
-    UPDATE "Job"
+    UPDATE Job
     SET view = view + 1
-    WHERE job_id = $1
+    WHERE job_id = ?
   `;
 
   const jobQuery = `
-      SELECT 
-        j.job_id, j."CompanyName", j."Image", j."JobsName", j."CareerLevel", j."Salary", 
-        j."Descreption", j."shortDescreption", j."DeadLine", j."view", 
-        j."CreatedDate", j."ModifiedDate",
-        u."UserName" AS "userName",
-        json_agg(json_build_object('location_id', l.location_id, 'LocationName', l."LocationName")) AS "Location",
-        (
-          SELECT json_agg(json_build_object('category_id', c.category_id, 'CategoryName', c."CategoryName"))
-          FROM "JobCategory" jc
-          LEFT JOIN "Category" c ON jc.category_id = c.category_id
-          WHERE jc.job_id = j.job_id
-        ) AS "categories"
-      FROM "Job" j
-      LEFT JOIN "User" u ON j.user_id = u.user_id
-      LEFT JOIN "JobLocation" jl ON j.job_id = jl.job_id
-      LEFT JOIN "Location" l ON jl.location_id = l.location_id
-      WHERE j.job_id = $1
-      GROUP BY j.job_id, u."UserName"
-      ORDER BY j.job_id ASC;
-    `;
+    SELECT 
+      j.job_id, 
+      j.CompanyName, 
+      j.Image, 
+      j.JobsName, 
+      j.CareerLevel, 
+      j.Salary, 
+      j.Descreption, 
+      j.shortDescreption, 
+      j.DeadLine, 
+      j.view, 
+      j.CreatedDate, 
+      j.ModifiedDate,
+      u.UserName AS userName,
+      JSON_ARRAYAGG(
+        JSON_OBJECT(
+          'location_id', l.location_id, 
+          'LocationName', l.LocationName
+        )
+      ) AS Location,
+      (
+        SELECT JSON_ARRAYAGG(
+          JSON_OBJECT(
+            'category_id', c.category_id, 
+            'CategoryName', c.CategoryName
+          )
+        )
+        FROM JobCategory jc
+        LEFT JOIN Category c ON jc.category_id = c.category_id
+        WHERE jc.job_id = j.job_id
+      ) AS categories
+    FROM Job j
+    LEFT JOIN User u ON j.user_id = u.user_id
+    LEFT JOIN JobLocation jl ON j.job_id = jl.job_id
+    LEFT JOIN Location l ON jl.location_id = l.location_id
+    WHERE j.job_id = ?
+    GROUP BY j.job_id, u.UserName
+    ORDER BY j.job_id ASC;
+  `;
 
   const categoriesQuery = `
-    SELECT c."CategoryName"
-    FROM "JobCategory" jc
-    INNER JOIN "Category" c ON jc.category_id = c.category_id
-    WHERE jc.job_id = $1
+    SELECT c.CategoryName
+    FROM JobCategory jc
+    INNER JOIN Category c ON jc.category_id = c.category_id
+    WHERE jc.job_id = ?
   `;
 
   try {
-    
-    const client = await pool.connect();
-
     // Increment the view count
-    await client.query(updateViewQuery, [Number(id)]);
+    await db.query(updateViewQuery, [Number(id)]);
 
     // Fetch job details
-    const jobResult = await client.query(jobQuery, [Number(id)]);
+    const jobResult = await db.query(jobQuery, [Number(id)]);
     const jobData = jobResult.rows[0];
     
     if (!jobData) {
@@ -85,12 +101,10 @@ export async function getServerSideProps(context) {
     };
 
     // Fetch categories
-    const categoriesResult = await client.query(categoriesQuery, [Number(id)]);
+    const categoriesResult = await db.query(categoriesQuery, [Number(id)]);
     const categoriesData = categoriesResult.rows.map(row => ({
       CategoryName: row.CategoryName,
     }));
-
-    await client.end();
 
     return {
       props: {

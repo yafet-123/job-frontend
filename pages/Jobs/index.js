@@ -4,50 +4,42 @@ import { useState } from "react";
 import { MainHeader } from '../../components/common/MainHeader';
 import { Hero } from "../../components/jobs/Hero";
 import { Searchjobs } from "../../components/jobs/Searchjobs";
-
-// pages/index.js
-import pool from '../../db';
+import db from '../../db';
 
 export async function getServerSideProps() {
   const categoriesQuery = `
     SELECT 
       c.*, 
-      (SELECT COUNT(*) FROM "JobCategory" WHERE "category_id" = c."category_id") AS "JobCategoryCount"
-    FROM "Category" c
-    ORDER BY c."ModifiedDate" ASC
+      (SELECT COUNT(*) FROM JobCategory WHERE category_id = c.category_id) AS JobCategoryCount
+    FROM Category c
+    ORDER BY c.ModifiedDate ASC
   `;
 
   const locationsQuery = `
     SELECT 
       l.*, 
-      (SELECT COUNT(*) FROM "JobLocation" WHERE "location_id" = l."location_id") AS "JobLocationCount"
-    FROM "Location" l
-    ORDER BY l."ModifiedDate" ASC
+      (SELECT COUNT(*) FROM JobLocation WHERE location_id = l.location_id) AS JobLocationCount
+    FROM Location l
+    ORDER BY l.ModifiedDate ASC
   `;
 
   const jobsQuery = `
     SELECT 
       j.*, 
-      u."UserName"
-    FROM "Job" j
-    LEFT JOIN "User" u ON j."user_id" = u."user_id"
-    ORDER BY j."ModifiedDate" ASC
+      u.UserName
+    FROM Job j
+    LEFT JOIN User u ON j.user_id = u.user_id
+    ORDER BY j.ModifiedDate ASC
   `;
 
-  try {
-    const client = await pool.connect();
 
-    const [categoriesResult, locationsResult, jobsResult] = await Promise.allSettled([
-      client.query(categoriesQuery),
-      client.query(locationsQuery),
-      client.query(jobsQuery)
-    ]);
-    
-    const categories = categoriesResult.status === 'fulfilled' ? categoriesResult.value.rows : [];
-    const locations = locationsResult.status === 'fulfilled' ? locationsResult.value.rows : [];
-    const jobs = jobsResult.status === 'fulfilled' ? jobsResult.value.rows : [];
-    console.log(jobs)
-    const Alljobs = jobs.map(data => ({
+  try {
+
+    const [categoriesResult] = await db.query(categoriesQuery);
+    const [locationsResult] = await db.query(locationsQuery);
+    const [jobsResult] = await db.query(jobsQuery);
+
+    const Alljobs = jobsResult.map(data => ({
       job_id: data.job_id,
       CompanyName: data.CompanyName,
       image: data.Image,
@@ -65,10 +57,27 @@ export async function getServerSideProps() {
       Location: data.JobLocation,
     }));
 
+    const locations = locationsResult.map(data => ({
+      location_id : data.location_id,
+      LocationName: data.LocationName,
+      Image: data.Image,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate : data.ModifiedDate,
+      JobLocationCount: data.JobLocationCount
+    }))
+    
+    const categories = categoriesResult.map(data=>({
+      category_id: data.category_id,
+      CategoryName: data.CategoryName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate : data.ModifiedDate,
+      JobCategoryCount: data.JobCategoryCount,
+      user_id:data.user_id
+    }))
+
     const reversejob = Alljobs.reverse();
 
-    client.release();
-
+    console.log(locations)
     return {
       props: {
         categories: JSON.parse(JSON.stringify(categories)),

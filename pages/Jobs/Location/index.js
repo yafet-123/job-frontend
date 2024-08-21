@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { useRouter } from 'next/router'
 import axios from 'axios';
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import moment from 'moment';
 import { MainHeader } from '../../../components/common/MainHeader';
 import { GroupLatestJobs } from '../../../components/jobs/GroupLatestJobs'
@@ -18,57 +18,66 @@ export async function getServerSideProps(context) {
 
   // Define the queries
   const locationsQuery = `
-    SELECT l.*, COUNT(jl.job_id) JobCount
-    FROM "Location" l
-    LEFT JOIN "JobLocation" jl ON l.location_id = jl.location_id
+    SELECT l.*, COUNT(jl.job_id) AS JobCount
+    FROM Location l
+    LEFT JOIN JobLocation jl ON l.location_id = jl.location_id
     GROUP BY l.location_id
   `;
- 
+
   const jobsByLocationQuery = `
-    SELECT j.job_id, j."CompanyName", j."Image", j."JobsName", j."CareerLevel", j."Salary", j."Descreption", j."shortDescreption", j."DeadLine", j."view", j."CreatedDate", j."ModifiedDate", u."UserName",
-      json_agg(
-        json_build_object(
+    SELECT 
+      j.job_id, 
+      j.CompanyName, 
+      j.Image, 
+      j.JobsName, 
+      j.CareerLevel, 
+      j.Salary, 
+      j.Descreption, 
+      j.shortDescreption, 
+      j.DeadLine, 
+      j.view, 
+      j.CreatedDate, 
+      j.ModifiedDate, 
+      u.UserName,
+      JSON_ARRAYAGG(
+        JSON_OBJECT(
           'location_id', l.location_id,
-          'LocationName', l."LocationName"
+          'LocationName', l.LocationName
         )
-      ) AS "JobLocation"
-    FROM "Job" j
-    INNER JOIN "User" u ON j.user_id = u.user_id
-    LEFT JOIN "JobLocation" jl ON j.job_id = jl.job_id
-    LEFT JOIN "Location" l ON jl.location_id = l.location_id
-    WHERE l.location_id = $1
-    GROUP BY j.job_id, u."UserName"
+      ) AS JobLocation
+    FROM Job j
+    INNER JOIN User u ON j.user_id = u.user_id
+    LEFT JOIN JobLocation jl ON j.job_id = jl.job_id
+    LEFT JOIN Location l ON jl.location_id = l.location_id
+    WHERE l.location_id = ?
+    GROUP BY j.job_id, u.UserName
     ORDER BY j.job_id ASC
   `;
 
   const latestJobsQuery = `
     SELECT j.*
-    FROM "Job" j
-    ORDER BY j."ModifiedDate" DESC
+    FROM Job j
+    ORDER BY j.ModifiedDate DESC
     LIMIT 5
   `;
 
-  try {
-    const client = await pool.connect();
 
-    // Fetch locations
-    const locationsResult = await client.query(locationsQuery);
-    const locations = locationsResult.rows;
+  try {
+    const locationsResult = await db.query(locationsQuery);
+    const locations = locationsResult;
 
     // Fetch jobs by location
-    const jobsByLocationResult = await client.query(jobsByLocationQuery, [Number(location_id)]);
-    const jobsByLocation = jobsByLocationResult.rows;
+    const jobsByLocationResult = await db.query(jobsByLocationQuery, [Number(location_id)]);
+    const jobsByLocation = jobsByLocationResult;
 
     // Fetch latest jobs
-    const latestJobsResult = await client.query(latestJobsQuery);
-    const latestJobs = latestJobsResult.rows;
+    const latestJobsResult = await db.query(latestJobsQuery);
+    const latestJobs = latestJobsResult;
 
     // Reverse the job arrays
     const reverseJobsByLocation = jobsByLocation.reverse();
     const reverseLatestJobs = latestJobs.reverse();
     console.log(locations)
-    // Close the client connection
-    client.release();
 
     return {
       props: {
