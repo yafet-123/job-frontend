@@ -2,30 +2,30 @@ import React from "react";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { AllBlogs } from '../../../components/Blogs/AllBlogs';
 
-import pool from '../../../db';
+import db from '../../../db';
 
 export async function getServerSideProps(context) {
   const { params, req, res, query } = context;
   const category_id = query.category_id;
   console.log(category_id);
 
-   const blogsquery = `
-  SELECT b.blogs_id, b."Header", b."Image", b."view", b."ShortDescription", b."CreatedDate", b."ModifiedDate", 
-         u."UserName",
-         json_agg(
-           json_build_object(
-             'category_id', bc.category_id,
-             'CategoryName', bc."CategoryName"
-           )
-         ) AS "Categories"
-  FROM "Blogs" b
-  INNER JOIN "User" u ON b.user_id = u.user_id
-  INNER JOIN "BlogsCategoryRelationship" bcr ON b.blogs_id = bcr.blogs_id
-  INNER JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
-  WHERE bc.category_id = $1
-  GROUP BY b.blogs_id, b."Header", b."Image", b."view", b."ShortDescription", b."CreatedDate", b."ModifiedDate", u."UserName"
-  ORDER BY b.blogs_id DESC
-`;
+  const blogsquery = `
+    SELECT b.blogs_id, b."Header", b."Image", b."view", b."ShortDescription", b."CreatedDate", b."ModifiedDate", 
+           u."UserName",
+           json_agg(
+             json_build_object(
+               'category_id', bc.category_id,
+               'CategoryName', bc."CategoryName"
+             )
+           ) AS "Categories"
+    FROM "Blogs" b
+    INNER JOIN "User" u ON b.user_id = u.user_id
+    INNER JOIN "BlogsCategoryRelationship" bcr ON b.blogs_id = bcr.blogs_id
+    INNER JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
+    WHERE bc.category_id = $1
+    GROUP BY b.blogs_id, b."Header", b."Image", b."view", b."ShortDescription", b."CreatedDate", b."ModifiedDate", u."UserName"
+    ORDER BY b.blogs_id DESC
+  `;
 
   const categoriesQuery = `
     SELECT category_id, "CategoryName", "CreatedDate", "ModifiedDate" 
@@ -34,11 +34,10 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
 
-    const blogsResult = await client.query(blogsquery, [Number(category_id)]);
+    const blogsResult = await db.query(blogsquery, [Number(category_id)]);
 
-    const Allblogs = blogsResult.rows.map(row => ({
+    const Allblogs = blogsResult.map(row => ({
       blogs_id: row.blogs_id,
       Header: row.Header,
       image: row.Image,
@@ -50,17 +49,16 @@ export async function getServerSideProps(context) {
       Category: row.Categories
     }));
     console.log(Allblogs)
-    const categoriesResult = await client.query(categoriesQuery);
+    const categoriesResult = await db.query(categoriesQuery);
 
-    const categories = categoriesResult.rows.map(row => ({
+    const categories = categoriesResult.map(row => ({
       category_id: row.category_id,
       CategoryName: row.CategoryName,
       CreatedDate: row.CreatedDate,
       ModifiedDate: row.ModifiedDate
     }));
     console.log(categories)
-    client.release();
-
+    
     return {
       props: {
         Allblogs: JSON.parse(JSON.stringify(Allblogs)),

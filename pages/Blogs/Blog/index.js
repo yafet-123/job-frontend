@@ -1,7 +1,7 @@
 import React from "react";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { AllBlogs } from '../../../components/Blogs/AllBlogs';
-import pool from '../../../db.js'
+import db from '../../../db.js'
 
 export async function getServerSideProps(context) {
   const { query } = context;
@@ -9,17 +9,16 @@ export async function getServerSideProps(context) {
   console.log(blogs_id);
 
   try {
-    const client = await pool.connect();
 
   // Fetch all blog categories
-    const blogscategoriesResult = await client.query(`
+    const blogscategoriesResult = await db.query(`
       SELECT bc.category_id, bc."CategoryName", bc."CreatedDate", bc."ModifiedDate", u."UserName"
       FROM "BlogsCategory" bc
       LEFT JOIN "User" u ON bc.user_id = u.user_id
       ORDER BY bc.category_id ASC
     `);
     
-    const Allblogscategories = blogscategoriesResult.rows.map(data => ({
+    const Allblogscategories = blogscategoriesResult.map(data => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
@@ -30,7 +29,7 @@ export async function getServerSideProps(context) {
     console.log(Allblogscategories)
   
     // Fetch blogs for the given category
-    const blogsResult = await client.query(`
+    const blogsResult = await db.query(`
       SELECT b.blogs_id, b."Header", b."Image", b."view", b."ShortDescription", b."Description", 
              b."CreatedDate", b."ModifiedDate", u."UserName",
              json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
@@ -43,7 +42,7 @@ export async function getServerSideProps(context) {
       ORDER BY b."ModifiedDate" DESC
     `, [blogs_id]);
   
-    const allblogs = blogsResult.rows.map(data => ({
+    const allblogs = blogsResult.map(data => ({
       blogs_id: data.blogs_id,
       Header: data.Header,
       image: data.Image,
@@ -57,8 +56,6 @@ export async function getServerSideProps(context) {
     }));
     
     console.log(allblogs)
-    await client.end();
-  
     return {
       props: {
         categories: JSON.parse(JSON.stringify(Allblogscategories)),

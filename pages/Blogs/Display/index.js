@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import { MainHeader } from '../../../components/common/MainHeader';
 import { DisplayIndvidualBlogs } from '../../../components/Blogs/DisplayIndvidualBlogs';
 import { DisplayLatestBlogs } from '../../../components/Blogs/DisplayLatestBlogs';
@@ -13,103 +13,99 @@ export async function getServerSideProps(context) {
 
   
   try {
-    const client = await pool.connect();
 
-    await client.query(`
+    await db.query(`
       UPDATE "Blogs"
       SET view = view + 1
       WHERE blogs_id = $1
     `, [id]);
 
-      const blogData = await client.query(`
-        SELECT b.blogs_id, b."Header", b."Image", b."ShortDescription", b."Description", 
-               b."CreatedDate", b."ModifiedDate", u."UserName",
-               json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
-        FROM "Blogs" b
-        INNER JOIN "User" u ON b.user_id = u.user_id
-        LEFT JOIN "BlogsCategoryRelationship" bcr ON b.blogs_id = bcr.blogs_id
-        LEFT JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
-        WHERE b.blogs_id = $1
-        GROUP BY b.blogs_id, u."UserName"
-      `, [id]);
+    const blogData = await db.query(`
+      SELECT b.blogs_id, b."Header", b."Image", b."ShortDescription", b."Description", 
+        b."CreatedDate", b."ModifiedDate", u."UserName",
+        json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
+      FROM "Blogs" b
+      INNER JOIN "User" u ON b.user_id = u.user_id
+      LEFT JOIN "BlogsCategoryRelationship" bcr ON b.blogs_id = bcr.blogs_id
+      LEFT JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
+      WHERE b.blogs_id = $1
+      GROUP BY b.blogs_id, u."UserName"
+    `, [id]);
 
-      const data = blogData.rows[0];
+    const data = blogData;
       
-      const onedata = {
-        blogs_id: data.blogs_id,
-        Header: data.Header,
-        Image: data.Image,
-        ShortDescription: data.ShortDescription,
-        Description: data.Description,
-        userName: data.UserName,
-        CreatedDate: data.CreatedDate,
-        ModifiedDate: data.ModifiedDate,
-        Categories:data.Categories
-      }
+    const onedata = {
+      blogs_id: data.blogs_id,
+      Header: data.Header,
+      Image: data.Image,
+      ShortDescription: data.ShortDescription,
+      Description: data.Description,
+      userName: data.UserName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      Categories:data.Categories
+    }
 
-      const blogsCategory = data.Categories;
+    const blogsCategory = data.Categories;
 
-      const findCategory = blogsCategory.map(category => Number(category.category_id));
+    const findCategory = blogsCategory.map(category => Number(category.category_id));
 
-      console.log(findCategory)
-      // Fetch related blogs based on category
-      const dataForCategoryBlogs = await client.query(`
-        SELECT b.blogs_id, b."Header", b."Image", b."ShortDescription", b."Description",
-               b."CreatedDate", b."ModifiedDate", u."UserName",
-               json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
-        FROM "BlogsCategoryRelationship" bcr
-        INNER JOIN "Blogs" b ON bcr.blogs_id = b.blogs_id
-        INNER JOIN "User" u ON b.user_id = u.user_id
-        INNER JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
-        WHERE bc.category_id = ANY($1)
-        GROUP BY b.blogs_id, u."UserName"
-      `, [findCategory]);
+    console.log(findCategory)
+    // Fetch related blogs based on category
+    const dataForCategoryBlogs = await db.query(`
+      SELECT b.blogs_id, b."Header", b."Image", b."ShortDescription", b."Description",
+             b."CreatedDate", b."ModifiedDate", u."UserName",
+             json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
+      FROM "BlogsCategoryRelationship" bcr
+      INNER JOIN "Blogs" b ON bcr.blogs_id = b.blogs_id
+      INNER JOIN "User" u ON b.user_id = u.user_id
+      INNER JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
+      WHERE bc.category_id = ANY($1)
+      GROUP BY b.blogs_id, u."UserName"
+    `, [findCategory]);
 
-      // Fetch latest blogs
-      const latestblogs = await client.query(`
-        SELECT b.blogs_id, b."Header", b."Image", b."ShortDescription", 
-               b."CreatedDate", b."ModifiedDate", u."UserName",
-               json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
-        FROM "Blogs" b
-        INNER JOIN "User" u ON b.user_id = u.user_id
-        LEFT JOIN "BlogsCategoryRelationship" bcr ON b.blogs_id = bcr.blogs_id
-        LEFT JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
-        GROUP BY b.blogs_id, u."UserName"
-        ORDER BY b.blogs_id DESC
+    // Fetch latest blogs
+    const latestblogs = await db.query(`
+      SELECT b.blogs_id, b."Header", b."Image", b."ShortDescription", 
+             b."CreatedDate", b."ModifiedDate", u."UserName",
+             json_agg(json_build_object('category_id', bc.category_id, 'CategoryName', bc."CategoryName")) AS "Categories"
+      FROM "Blogs" b
+      INNER JOIN "User" u ON b.user_id = u.user_id
+      LEFT JOIN "BlogsCategoryRelationship" bcr ON b.blogs_id = bcr.blogs_id
+      LEFT JOIN "BlogsCategory" bc ON bcr.category_id = bc.category_id
+      GROUP BY b.blogs_id, u."UserName"
+      ORDER BY b.blogs_id DESC
         LIMIT 6
-      `);
+    `);
+    console.log(onedata)
+    
+    const AllcategoryBlogs = dataForCategoryBlogs.map(row => ({
+      Blogs: row
+    }));
 
-      console.log(onedata)
-      
-      const AllcategoryBlogs = dataForCategoryBlogs.rows.map(row => ({
-        Blogs: row
-      }));
+    const uniqueallcategoryBlogs = [...new Map(AllcategoryBlogs.map(v => [v.Blogs.blogs_id, v])).values()];
 
-      const uniqueallcategoryBlogs = [...new Map(AllcategoryBlogs.map(v => [v.Blogs.blogs_id, v])).values()];
+    const Alllatestblogs = latestblogs.rows.map(data => ({
+      blogs_id: data.blogs_id,
+      Header: data.Header,
+      image: data.Image,
+      ShortDescription: data.ShortDescription,
+      userName: data.UserName,
+      CreatedDate: data.CreatedDate,
+      ModifiedDate: data.ModifiedDate,
+      Category: data.Categories
+    }));
+    // Disconnect from the PostgreSQL database
 
-      const Alllatestblogs = latestblogs.rows.map(data => ({
-        blogs_id: data.blogs_id,
-        Header: data.Header,
-        image: data.Image,
-        ShortDescription: data.ShortDescription,
-        userName: data.UserName,
-        CreatedDate: data.CreatedDate,
-        ModifiedDate: data.ModifiedDate,
-        Category: data.Categories
-      }));
-
-      // Disconnect from the PostgreSQL database
-      await client.end();
-
-      return {
-        props: {
-          blogs: JSON.parse(JSON.stringify(onedata)),
-          Alllatestblogs: JSON.parse(JSON.stringify(Alllatestblogs)),
-          blogsCategory: JSON.parse(JSON.stringify(blogsCategory)),
-          AllcategoryBlogs: JSON.parse(JSON.stringify(uniqueallcategoryBlogs))
-        }
+    return {
+      props: {
+        blogs: JSON.parse(JSON.stringify(onedata)),
+        Alllatestblogs: JSON.parse(JSON.stringify(Alllatestblogs)),
+        blogsCategory: JSON.parse(JSON.stringify(blogsCategory)),
+        AllcategoryBlogs: JSON.parse(JSON.stringify(uniqueallcategoryBlogs))
       }
     }
+  }
   catch (err) {
     console.error('Database Query Error:', err);
     return {

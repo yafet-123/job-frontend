@@ -2,7 +2,7 @@ import React from "react";
 import { MainHeader } from '../../components/common/MainHeader';
 import { AllBlogs } from '../../components/Blogs/AllBlogs';
 
-import pool from '../../db';
+import db from '../../db';
 
 export async function getServerSideProps(context) {
   const blogCategoriesQuery = `
@@ -33,16 +33,10 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
-    const [blogCategoriesResult, blogsResult] = await Promise.allSettled([
-      client.query(blogCategoriesQuery),
-      client.query(blogsQuery)
-    ]);
+    const blogCategoriesResult = await db.query(blogCategoriesQuery);
+    const blogsResult = await db.query(blogsQuery);
 
-    const blogCategories = blogCategoriesResult.status === 'fulfilled' ? blogCategoriesResult.value.rows : [];
-    const blogs = blogsResult.status === 'fulfilled' ? blogsResult.value.rows : [];
-
-    const allBlogCategories = blogCategories.map(data => ({
+    const allBlogCategories = blogCategoriesResult.map(data => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
@@ -50,7 +44,7 @@ export async function getServerSideProps(context) {
       userName: data.UserName,
     }));
 
-    const allBlogs = blogs.map(data => ({
+    const allBlogs = blogsResult.map(data => ({
       blogs_id: data.blogs_id,
       Header: data.Header,
       image: data.Image,
@@ -62,8 +56,6 @@ export async function getServerSideProps(context) {
       ModifiedDate: data.ModifiedDate,
       Category: data.BlogsCategories,
     }));
-
-    client.release();
 
     return {
       props: {
