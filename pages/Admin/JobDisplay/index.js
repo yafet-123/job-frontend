@@ -1,6 +1,6 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import { DisplayJob } from "../../../components/Admin/Job/DisplayJob";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
@@ -22,8 +22,6 @@ export async function getServerSideProps(context) {
   }
 
   try {
-    const client = await pool.connect();
-
     // Fetch jobs query
     const jobsQuery = `
       SELECT 
@@ -46,8 +44,8 @@ export async function getServerSideProps(context) {
       ORDER BY j.job_id ASC;
     `;
 
-    const jobsResult = await client.query(jobsQuery);
-    const jobs = jobsResult.rows.map((data) => ({
+    const jobsResult = await db.query(jobsQuery);
+    const jobs = jobsResult.map((data) => ({
       job_id: data.job_id,
       CompanyName: data.CompanyName,
       image: data.Image,
@@ -72,8 +70,8 @@ export async function getServerSideProps(context) {
       LEFT JOIN "User" u ON c.user_id = u.user_id
       ORDER BY c.category_id ASC;
     `;
-    const categoriesResult = await client.query(categoriesQuery);
-    const categories = categoriesResult.rows.map((data) => ({
+    const categoriesResult = await db.query(categoriesQuery);
+    const categories = categoriesResult.map((data) => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
@@ -88,8 +86,8 @@ export async function getServerSideProps(context) {
       LEFT JOIN "User" u ON l.user_id = u.user_id
       ORDER BY l.location_id ASC;
     `;
-    const locationsResult = await client.query(locationsQuery);
-    const locations = locationsResult.rows.map((data) => ({
+    const locationsResult = await db.query(locationsQuery);
+    const locations = locationsResult.map((data) => ({
       location_id: data.location_id,
       LocationName: data.LocationName,
       Image: data.Image,
@@ -97,8 +95,6 @@ export async function getServerSideProps(context) {
       ModifiedDate: data.ModifiedDate,
       userName: data.UserName,
     }));
-
-    client.release(); // Release the client back to the pool
 
     return {
       props: {

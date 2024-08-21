@@ -1,6 +1,6 @@
 import React from "react";
 import { useState,useEffect, useContext} from 'react'
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import { AddJob } from "../../../components/Admin/Job/AddJob";
 import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
@@ -35,14 +35,10 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
+    const categoriesResult = await db.query(getCategoriesQuery);
+    const locationsResult = await db.query(getLocationsQuery);
 
-    const [categoriesResult, locationsResult] = await Promise.all([
-      client.query(getCategoriesQuery),
-      client.query(getLocationsQuery),
-    ]);
-
-    const categories = categoriesResult.rows.map((data) => ({
+    const categories = categoriesResult.map((data) => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
@@ -50,7 +46,7 @@ export async function getServerSideProps(context) {
       userName: data.UserName,
     }));
 
-    const locations = locationsResult.rows.map((data) => ({
+    const locations = locationsResult.map((data) => ({
       location_id: data.location_id,
       LocationName: data.LocationName,
       Image: data.Image,
@@ -58,8 +54,6 @@ export async function getServerSideProps(context) {
       ModifiedDate: data.ModifiedDate,
       userName: data.UserName,
     }));
-
-    client.release();
 
     return {
       props: {
