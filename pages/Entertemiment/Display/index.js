@@ -5,7 +5,7 @@ import { DisplayIndvidualentertainment } from '../../../components/Entertemiment
 import { DisplayLatestentertainment } from '../../../components/Entertemiment/DisplayLatestentertainment';
 import Head from 'next/head';
  
-import pool from '../../../db.js';
+import db from '../../../db.js';
 
 export async function getServerSideProps(context) {
   const { params, req, res, query } = context;
@@ -53,10 +53,9 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
-    const update = await client.query(updateViewQuery, [Number(id)]);
-    const entertainmentResult = await client.query(fetchEntertainmentQuery, [Number(id)]);
-    const data = entertainmentResult.rows[0];
+    const update = await db.query(updateViewQuery, [Number(id)]);
+    const entertainmentResult = await db.query(fetchEntertainmentQuery, [Number(id)]);
+    const data = entertainmentResult;
 
     const onedata = {
       entertainment_id: data.entertainment_id,
@@ -71,12 +70,12 @@ export async function getServerSideProps(context) {
 
     console.log(onedata)
 
-    const categoryIdsResult = await client.query(fetchCategoryIdsQuery, [Number(id)]);
-    const findCategory = categoryIdsResult.rows.map(row => Number(row.category_id));
+    const categoryIdsResult = await db.query(fetchCategoryIdsQuery, [Number(id)]);
+    const findCategory = categoryIdsResult.map(row => Number(row.category_id));
     
-    const relatedEntertainmentsResult = await client.query(fetchRelatedEntertainmentsQuery, [findCategory]);
+    const relatedEntertainmentsResult = await db.query(fetchRelatedEntertainmentsQuery, [findCategory]);
 
-    const Allcategoryet = relatedEntertainmentsResult.rows.map(row => ({
+    const Allcategoryet = relatedEntertainmentsResult.map(row => ({
       Entertainment: {
         entertainment_id: row.entertainment_id,
         Header: row.Header,
@@ -90,9 +89,9 @@ export async function getServerSideProps(context) {
       }
     }));
   
-    const latestEntertainmentsResult = await client.query(fetchLatestEntertainmentsQuery);
+    const latestEntertainmentsResult = await db.query(fetchLatestEntertainmentsQuery);
 
-    const latestentertainments = latestEntertainmentsResult.rows
+    const latestentertainments = latestEntertainmentsResult
     console.log(latestentertainments)
     const Alllatestentertainment = latestentertainments.map(row => ({
       entertainment_id: row.entertainment_id,
@@ -105,11 +104,7 @@ export async function getServerSideProps(context) {
       Category: row.CategoryName,  // Assuming row contains the category relationship data
     }));
 
-    
-
     const uniqueallcategoryet = [...new Map(Allcategoryet.map(v => [v.Entertainment.entertainment_id, v])).values()];
-
-    client.release();
 
     return {
       props: {

@@ -6,7 +6,7 @@ import { ETSidebar } from '../../components/Entertemiment/ETSidebar';
 import { Content } from '../../components/Entertemiment/Content';
  
 // pages/index.js
-import pool from '../../db';
+import db from '../../db';
 
 export async function getServerSideProps(context) {
   const entertainmentCategoriesQuery = `
@@ -33,24 +33,18 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
-    
-    const [entertainmentCategoriesResult, entertainmentsResult] = await Promise.allSettled([
-      client.query(entertainmentCategoriesQuery),
-      client.query(entertainmentsQuery)
-    ]);
 
-    const entertainmentCategories = entertainmentCategoriesResult.status === 'fulfilled' ? entertainmentCategoriesResult.value.rows : [];
-    const entertainments = entertainmentsResult.status === 'fulfilled' ? entertainmentsResult.value.rows : [];
+    const entertainmentCategoriesResult = await db.query(entertainmentCategoriesQuery);
+    const entertainmentsResult = await db.query(entertainmentsQuery);
 
-    const categories = entertainmentCategories.map(data => ({
+    const categories = entertainmentCategoriesResult.map(data => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
       ModifiedDate: data.ModifiedDate,
     }));
 
-    const entertainmentsData = entertainments.map(data => ({
+    const entertainmentsData = entertainmentsResult.map(data => ({
       entertainment_id: data.entertainment_id,
       Header: data.Header,
       image: data.Image,
@@ -62,8 +56,6 @@ export async function getServerSideProps(context) {
       ModifiedDate: data.ModifiedDate,
       Category: data.EntertainmentCategories,
     }));
-
-    client.release();
 
     return {
       props: {

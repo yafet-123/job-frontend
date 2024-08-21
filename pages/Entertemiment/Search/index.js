@@ -6,7 +6,7 @@ import moment from 'moment';
 import { MainHeader } from '../../../components/common/MainHeader';
 import { ETSidebar } from '../../../components/Entertemiment/ETSidebar';
 import { Content } from '../../../components/Entertemiment/Content';
-import pool from '../../../db.js'
+import db from '../../../db.js'
 
 
 export async function getServerSideProps(context) {
@@ -14,33 +14,34 @@ export async function getServerSideProps(context) {
   const searchValue = query.searchValue;
 
   const searchQuery = `
-  SELECT e.entertainment_id, e."Header", e."Image", e."CreatedDate", e."ModifiedDate",
-         u."UserName",
-         json_agg(
-           json_build_object(
-             'category_id', ec.category_id,
-             'CategoryName', ec."CategoryName"
-           )
-         ) AS "Categories"
-  FROM "Entertainment" e
-  INNER JOIN "User" u ON e.user_id = u.user_id
-  LEFT JOIN "EntertainmentCategoryRelationship" ecr ON e.entertainment_id = ecr.entertainment_id
-  LEFT JOIN "EntertainmentCategory" ec ON ecr.category_id = ec.category_id
-  WHERE LOWER(e."Header") LIKE LOWER($1)
-  GROUP BY e.entertainment_id, e."Header", e."Image", e."CreatedDate", e."ModifiedDate", u."UserName"
-`;
+    SELECT e.entertainment_id, e."Header", e."Image", e."CreatedDate", e."ModifiedDate",
+           u."UserName",
+           json_agg(
+             json_build_object(
+               'category_id', ec.category_id,
+               'CategoryName', ec."CategoryName"
+             )
+           ) AS "Categories"
+    FROM "Entertainment" e
+    INNER JOIN "User" u ON e.user_id = u.user_id
+    LEFT JOIN "EntertainmentCategoryRelationship" ecr ON e.entertainment_id = ecr.entertainment_id
+    LEFT JOIN "EntertainmentCategory" ec ON ecr.category_id = ec.category_id
+    WHERE LOWER(e."Header") LIKE LOWER($1)
+    GROUP BY e.entertainment_id, e."Header", e."Image", e."CreatedDate", e."ModifiedDate", u."UserName"
+  `;
 
   const categoriesQuery = `
     SELECT category_id, "CategoryName", "CreatedDate", "ModifiedDate"
     FROM "EntertainmentCategory"
     ORDER BY category_id ASC
   `;
-  try {
-    const client = await pool.connect();
-    const searchValues = [`%${searchValue}%`];
-    const searchDataResult = await client.query(searchQuery, searchValues);
 
-    const AllData = searchDataResult.rows.map(row => ({
+  try {
+
+    const searchValues = [`%${searchValue}%`];
+    const searchDataResult = await db.query(searchQuery, searchValues);
+
+    const AllData = searchDataResult.map(row => ({
       entertainment_id: row.entertainment_id,
       Header: row.Header,
       image:row.Image,
@@ -49,7 +50,7 @@ export async function getServerSideProps(context) {
       Category:row.Categories
     }));
   
-    const categoriesResult = await client.query(categoriesQuery);
+    const categoriesResult = await db.query(categoriesQuery);
 
     const categories = categoriesResult.rows.map(row => ({
       category_id: row.category_id,
@@ -58,7 +59,6 @@ export async function getServerSideProps(context) {
       ModifiedDate: row.ModifiedDate,
     }));
     console.log(categories)
-    client.release();
 
     return {
       props: {
