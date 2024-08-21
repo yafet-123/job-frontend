@@ -4,7 +4,7 @@ import { AllNews } from '../../components/News/AllNews';
 import { SlideNews } from '../../components/News/SlideNews';
  
 // pages/index.js
-import pool from '../../db';
+import db from '../../db';
 
 export async function getServerSideProps(context) {
   const newsQuery = `
@@ -26,13 +26,10 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
 
-    const newsResult = await client.query(newsQuery);
+    const newsResult = await db.query(newsQuery);
     
-    const news = newsResult.rows;
-
-    const allnews = news.map(data => ({
+    const allnews = newsResult.map(data => ({
       news_id: data.news_id,
       Header: data.Header,
       image: data.Image,
@@ -43,8 +40,6 @@ export async function getServerSideProps(context) {
       ModifiedDate: data.ModifiedDate,
       Category: data.NewsCategories,
     })); 
-
-    client.release();
 
     return {
       props: {

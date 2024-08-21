@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import { DisplayIndvidualNews } from '../../../components/News/DisplayIndvidualNews';
 import { DisplayLatestNews } from '../../../components/News/DisplayLatestNews';
 import Head from 'next/head';
@@ -68,30 +68,26 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
+    const newsResult = await db.query(newsQuery, [Number(id)]);
 
-    // Get the main news item
-    const newsResult = await client.query(newsQuery, [Number(id)]);
-    const news = newsResult.rows[0];
-    
-    const update = await client.query(updateViewQuery, [Number(id)]);
+    const update = await db.query(updateViewQuery, [Number(id)]);
 
     const onedata = {
-      news_id: news.news_id,
-      Header: news.Header,
-      Image: news.Image,
-      ShortDescription: news.ShortDescription,
-      Description: news.Description,
-      userName: news.UserName,
-      CreatedDate: news.CreatedDate,
-      ModifiedDate: news.ModifiedDate,
-      NewsCategories: news.NewsCategories,
+      news_id: newsResult.news_id,
+      Header: newsResult.Header,
+      Image: newsResult.Image,
+      ShortDescription: newsResult.ShortDescription,
+      Description: newsResult.Description,
+      userName: newsResult.UserName,
+      CreatedDate: newsResult.CreatedDate,
+      ModifiedDate: newsResult.ModifiedDate,
+      NewsCategories: newsResult.NewsCategories,
     };
 
     const findCategory = news.NewsCategories.map(category => category.category_id);
 
     // Get related news items by category
-    const categoryNewsResult = await client.query(categoryNewsQuery, [findCategory]);
+    const categoryNewsResult = await db.query(categoryNewsQuery, [findCategory]);
     const categoryNews = categoryNewsResult.rows;
 
     const AllcategoryNews = categoryNews.map(data => ({
@@ -101,7 +97,7 @@ export async function getServerSideProps(context) {
     const uniqueallcategoryNews = [...new Map(AllcategoryNews.map(v => [news.news_id, v])).values()];
 
     // Get latest news items
-    const latestNewsResult = await client.query(latestNewsQuery);
+    const latestNewsResult = await db.query(latestNewsQuery);
     const latestNews = latestNewsResult.rows;
     console.log(onedata)
     const Alllatestnews = latestNews.map(data => ({
@@ -114,8 +110,6 @@ export async function getServerSideProps(context) {
       ModifiedDate: data.ModifiedDate,
       Category: data.NewsCategories,
     }));
-
-    client.release();
 
     return {
       props: {
