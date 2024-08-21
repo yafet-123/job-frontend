@@ -2,7 +2,7 @@ import React, {useState,useEffect} from "react";
 import Link from "next/link";
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import { CourseHead } from '../../../components/Course/CourseHead'
 import { MobileViewCourse } from '../../../components/Course/MobileViewCourse';
 import { Main } from '../../../components/Course/Main'
@@ -27,15 +27,14 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
 
     // Fetch all courses
-    const coursesResult = await client.query(coursesQuery);
-    const courses = coursesResult.rows;
+    const coursesResult = await db.query(coursesQuery);
+    const courses = coursesResult;
 
     // Fetch individual courses
-    const individualCoursesResult = await client.query(individualCoursesQuery, [Number(course_id)]);
-    const individualCourses = individualCoursesResult.rows;
+    const individualCoursesResult = await db.query(individualCoursesQuery, [Number(course_id)]);
+    const individualCourses = individualCoursesResult;
 
     // Process the data to match the required format
     const allCourses = courses.map((data) => ({
@@ -44,9 +43,6 @@ export async function getServerSideProps(context) {
       ModifiedDate: data.ModifiedDate,
       UserName: data.UserName, // Adding UserName directly as part of the result
     }));
-
-    // Close the client connection
-    client.release();
 
     return {
       props: {
