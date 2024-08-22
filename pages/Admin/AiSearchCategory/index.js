@@ -7,7 +7,7 @@ import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { getSession } from "next-auth/react";
 
-import pool from '../../../db.js'; // Make sure to import your database connection
+import db from '../../../db.js'; // Make sure to import your database connection
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -34,18 +34,15 @@ export async function getServerSideProps(context) {
   `;
 
   try {
-    const client = await pool.connect();
-    const categoriesResult = await client.query(getCategoriesQuery);
+    const categoriesResult = await db.query(getCategoriesQuery);
 
-    const Allcategories = categoriesResult.rows.map((data) => ({
+    const Allcategories = categoriesResult.map((data) => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
       ModifiedDate: data.ModifiedDate,
       userName: data.UserName
     }));
-
-    client.release();
 
     return {
       props: {

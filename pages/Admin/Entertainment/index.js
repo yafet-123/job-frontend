@@ -7,7 +7,7 @@ import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { getSession } from "next-auth/react";
 
-import pool from '../../../db.js'; // Make sure to import your database connection
+import db from '../../../db.js'; // Make sure to import your database connection
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -48,13 +48,11 @@ export async function getServerSideProps(context) {
     ORDER BY nc.category_id ASC;
   `;
 
-  const client = await pool.connect();
-
   try {
-    const etResult = await client.query(getEnterinmentQuery);
-    const categoriesCategoriesResult = await client.query(getEnterinmentCategoriesQuery);
+    const etResult = await db.query(getEnterinmentQuery);
+    const categoriesCategoriesResult = await db.query(getEnterinmentCategoriesQuery);
 
-    const entertainment = etResult.rows.map((data) => ({
+    const entertainment = etResult.map((data) => ({
       entertainment_id: data.entertainment_id,
       Header: data.Header,
       image: data.Image,
@@ -66,7 +64,7 @@ export async function getServerSideProps(context) {
       Category: data.Category
     }));
 
-    const categories = categoriesCategoriesResult.rows.map((data) => ({
+    const categories = categoriesCategoriesResult.map((data) => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
@@ -88,8 +86,6 @@ export async function getServerSideProps(context) {
         categories: [],
       },
     };
-  } finally {
-    client.release(); // Release the client back to the pool
   }
 }
 

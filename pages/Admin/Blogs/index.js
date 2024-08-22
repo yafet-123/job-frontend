@@ -7,7 +7,7 @@ import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { getSession } from "next-auth/react";
 
-import pool from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
+import db from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
 
 
 export async function getServerSideProps(context) {
@@ -22,8 +22,6 @@ export async function getServerSideProps(context) {
       },
     };
   }
-
-  const client = await pool.connect();
 
   try {
     const blogsQuery = `
@@ -43,10 +41,10 @@ export async function getServerSideProps(context) {
       ORDER BY bc.category_id ASC;
     `;
 
-    const blogsResult = await client.query(blogsQuery);
-    const blogCategoriesResult = await client.query(blogCategoriesQuery);
+    const blogsResult = await db.query(blogsQuery);
+    const blogCategoriesResult = await db.query(blogCategoriesQuery);
     console.log(blogCategoriesResult)
-    const blogs = blogsResult.rows.reduce((acc, row) => {
+    const blogs = blogsResult.reduce((acc, row) => {
       const blog = acc.find(b => b.blogs_id === row.blogs_id);
       const category = {
         category_id: row.category_id,
@@ -72,7 +70,7 @@ export async function getServerSideProps(context) {
       return acc;
     }, []);
 
-    const allBlogCategories = blogCategoriesResult.rows.map(row => ({
+    const allBlogCategories = blogCategoriesResult.map(row => ({
       category_id: row.category_id,
       CategoryName: row.CategoryName,
       CreatedDate: row.CreatedDate,
@@ -96,8 +94,6 @@ export async function getServerSideProps(context) {
         blogs: [],
       },
     };
-  } finally {
-    client.release();
   }
 }
 

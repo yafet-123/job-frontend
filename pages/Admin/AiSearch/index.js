@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { VerticalNavbar } from "../../../components/Admin/VerticalNavbar";
 import { MainHeader } from '../../../components/common/MainHeader';
 import { getSession } from 'next-auth/react';
-import pool from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
+import db from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
@@ -19,8 +19,6 @@ export async function getServerSideProps(context) {
       },
     };
   }
-
-  const client = await pool.connect();
 
   try {
     const detailsQuery = `
@@ -41,10 +39,10 @@ export async function getServerSideProps(context) {
       ORDER BY ac.category_id ASC;
     `;
 
-    const detailsResult = await client.query(detailsQuery);
-    const categoriesResult = await client.query(categoriesQuery);
+    const detailsResult = await db.query(detailsQuery);
+    const categoriesResult = await db.query(categoriesQuery);
 
-    const details = detailsResult.rows.reduce((acc, row) => {
+    const details = detailsResult.reduce((acc, row) => {
       const detail = acc.find(d => d.detail_id === row.detail_id);
       const category = {
         category_id: row.category_id,
@@ -71,7 +69,7 @@ export async function getServerSideProps(context) {
       return acc;
     }, []);
 
-    const allCategories = categoriesResult.rows.map(row => ({
+    const allCategories = categoriesResult.map(row => ({
       category_id: row.category_id,
       CategoryName: row.CategoryName,
       createdAt: row.createdAt,
@@ -93,8 +91,6 @@ export async function getServerSideProps(context) {
         allaiserachdata: [],
       },
     };
-  } finally {
-    client.release();
   }
 }
 
