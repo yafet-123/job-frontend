@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
-import pool from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
+import db from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
 
 export default async function handledeletecourse(req, res) {
   const { deletecourseid } = req.query;
@@ -14,11 +14,9 @@ export default async function handledeletecourse(req, res) {
 
   const values = [Number(deletecourseid)];
 
-  const client = await pool.connect();
-
   try {
-    const result = await client.query(deleteCourseQuery, values);
-    const deletedCourse = result.rows[0];
+    const result = await db.query(deleteCourseQuery, values);
+    const deletedCourse = result;
 
     if (deletedCourse) {
       res.json(deletedCourse);
@@ -28,7 +26,5 @@ export default async function handledeletecourse(req, res) {
   } catch (err) {
     console.error('Error deleting course:', err);
     res.status(500).json({ error: 'Failed to delete course' });
-  } finally {
-    client.release(); // Release client back to the pool
   }
 }

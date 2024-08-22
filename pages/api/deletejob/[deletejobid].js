@@ -1,4 +1,4 @@
-import pool from '../../../db.js';
+import db from '../../../db.js';
 import { StatusCodes } from 'http-status-codes';
 
 export default async function handledeletejob(req, res){
@@ -11,11 +11,9 @@ export default async function handledeletejob(req, res){
   `;
 
   try {
-    const client = await pool.connect();
-    const result = await client.query(deleteJobQuery, [Number(deletejobid)]);
-    client.release();
+    const result = await db.query(deleteJobQuery, [Number(deletejobid)]);
 
-    if (result.rows.length === 0) {
+    if (result.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({ error: 'Job not found' });
     }
 

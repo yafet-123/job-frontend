@@ -1,42 +1,41 @@
-import { prisma } from '../../util/db.server.js'
+import db from '../../db.js'; // Import your PostgreSQL connection pool
 
-export default async function handlehtmlbuttons(req, res){
-    const { searchName, type, Category } = req.body
-    console.log(Category)
-    console.log(searchName)
-    if(Category == 'javascript'){
-        if(type == 1){
-            const prev = await prisma.JavascriptCourse.findMany({
-                take: 1,
-                where: {
-                    course_id: {
-                        lt: Number(searchName),
-                    },
-                },
-                orderBy: {
-                    course_id: "asc",
-                },
-            });
-            console.log(prev)
-            res.json(prev)
+export default async function handlehtmlbuttons(req, res) {
+    const { searchName, type, Category } = req.body;
+    console.log(Category);
+    console.log(searchName);
 
+    if (Category === 'javascript') {
+        try {
+            let query = '';
+            let params = [];
 
-        } else if(type == 2){
-            const next = await prisma.JavascriptCourse.findMany({
-                take: 1,
-                where: {
-                    course_id: {
-                        gt: Number(searchName),
-                    },
-                },
-                orderBy: {
-                    course_id: "desc",
-                },  
-            });
-            console.log(next)
-            res.json(next)
-        } 
+            if (type === 1) {
+                query = `
+                    SELECT * FROM "JavascriptCourse"
+                    WHERE "course_id" < $1
+                    ORDER BY "course_id" ASC
+                    LIMIT 1
+                `;
+                params = [Number(searchName)];
+            } else if (type === 2) {
+                query = `
+                    SELECT * FROM "JavascriptCourse"
+                    WHERE "course_id" > $1
+                    ORDER BY "course_id" DESC
+                    LIMIT 1
+                `;
+                params = [Number(searchName)];
+            }
+
+            const result = await db.query(query, params);
+            const data = result;
+
+            console.log(data);
+            res.json(data);
+        } catch (err) {
+            console.error('Error executing query:', err);
+            res.status(500).json({ error: 'Failed to retrieve data' });
+        }
     }
-
-
 }

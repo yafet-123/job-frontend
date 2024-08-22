@@ -1,4 +1,4 @@
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
@@ -14,11 +14,9 @@ export default async function handledeleteuser(req, res) {
   `;
 
   try {
-    const client = await pool.connect();
-    const result = await client.query(deleteUserQuery, [Number(deleteuserid)]);
+    const result = await db.query(deleteUserQuery, [Number(deleteuserid)]);
 
-    const data = result.rows[0];
-    client.release();
+    const data = result;
 
     if (!data) {
       res.status(StatusCodes.NOT_FOUND).json({ error: 'User not found' });

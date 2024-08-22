@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
-import pool from '../../../db.js';
+import db from '../../../db.js';
 
 export default async function handleupdatejob(req, res) {
   const { updatejobid } = req.query;
@@ -53,13 +53,11 @@ export default async function handleupdatejob(req, res) {
     VALUES ($1, $2, $3);
   `;
 
-  const client = await pool.connect();
-
   try {
-    await client.query('BEGIN'); // Start transaction
+    await db.query('BEGIN'); // Start transaction
 
     // Update job data
-    await client.query(updateJobQuery, [
+    await db.query(updateJobQuery, [
       CompanyName,
       Image,
       JobsName,
@@ -73,14 +71,14 @@ export default async function handleupdatejob(req, res) {
     ]);
 
     // Delete existing job categories
-    await client.query(deleteJobCategoryQuery, [updatejobid]);
+    await db.query(deleteJobCategoryQuery, [updatejobid]);
 
     // Delete existing job locations
-    await client.query(deleteJobLocationQuery, [updatejobid]);
+    await db.query(deleteJobLocationQuery, [updatejobid]);
 
     // Insert new job categories
     for (let j = 0; j < categoryId.length; j++) {
-      await client.query(createJobCategoryQuery, [
+      await db.query(createJobCategoryQuery, [
         user_id,
         categoryId[j],
         updatejobid
@@ -89,21 +87,19 @@ export default async function handleupdatejob(req, res) {
 
     // Insert new job locations
     for (let j = 0; j < LocationId.length; j++) {
-      await client.query(createJobLocationQuery, [
+      await db.query(createJobLocationQuery, [
         user_id,
         LocationId[j],
         updatejobid
       ]);
     }
 
-    await client.query('COMMIT'); // Commit transaction
+    await db.query('COMMIT'); // Commit transaction
 
     res.json({ message: 'Job updated successfully' });
   } catch (err) {
-    await client.query('ROLLBACK'); // Rollback transaction on error
+    await db.query('ROLLBACK'); // Rollback transaction on error
     console.error('Error updating job:', err);
     res.status(500).json({ error: 'Failed to update job' });
-  } finally {
-    client.release(); // Release client back to the pool
   }
 }

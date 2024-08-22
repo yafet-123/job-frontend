@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
-import pool from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
+import db from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
 
 export default async function handledeletenews(req, res){
 	const { deletenewsid } = req.query;
@@ -12,11 +12,9 @@ export default async function handledeletenews(req, res){
 		RETURNING *;
 	`;
 
-	const client = await pool.connect();
-
 	try {
-		const result = await client.query(deleteNewsQuery, [deletenewsid]);
-		const deletedNews = result.rows[0]; // Assuming only one row is deleted
+		const result = await db.query(deleteNewsQuery, [deletenewsid]);
+		const deletedNews = result; // Assuming only one row is deleted
 
 		if (deletedNews) {
 			res.json({ message: 'News deleted successfully', deletedNews });
@@ -26,7 +24,5 @@ export default async function handledeletenews(req, res){
 	} catch (err) {
 		console.error('Error deleting news:', err);
 		res.status(500).json({ error: 'Failed to delete news' });
-	} finally {
-		client.release(); // Release client back to the pool
 	}
 }

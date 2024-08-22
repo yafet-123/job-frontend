@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
-import pool from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
+import db from '../../../db.js'; // Adjust the path to your PostgreSQL connection pool
 
 export default async function handleupdatecourse(req, res) {
   const { updatecourseid } = req.query;
@@ -16,17 +16,13 @@ export default async function handleupdatecourse(req, res) {
 
   const values = [title, content, Number(updatecourseid)];
 
-  const client = await pool.connect();
-
   try {
-    const result = await client.query(updateCourseQuery, values);
-    const updatedCourse = result.rows[0];
+    const result = await db.query(updateCourseQuery, values);
+    const updatedCourse = result;
 
     res.json(updatedCourse);
   } catch (err) {
     console.error('Error updating course:', err);
     res.status(500).json({ error: 'Failed to update course' });
-  } finally {
-    client.release(); // Release client back to the pool
   }
 }

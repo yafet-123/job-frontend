@@ -16,7 +16,7 @@ export default async function handleaddnews(req, res) {
 
   try {
     const result = await db.query(insertNewsQuery, values);
-    const newNews = result.rows[0];
+    const newNews = result;
 
     res.json(newNews);
   } catch (err) {

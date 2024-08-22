@@ -1,4 +1,4 @@
-import pool from '../../../db.js'
+import db from '../../../db.js'
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
@@ -15,8 +15,7 @@ export default async function handleupdateuser(req, res) {
   `;
 
   try {
-    const client = await pool.connect();
-    const result = await client.query(updateUserQuery, [
+    const result = await db.query(updateUserQuery, [
       UserName,
       email,
       firstName,
@@ -25,8 +24,7 @@ export default async function handleupdateuser(req, res) {
       Number(updateuserid),
     ]);
 
-    const data = result.rows[0];
-    client.release();
+    const data = result;
 
     res.status(StatusCodes.OK).json(data);
   } catch (err) {

@@ -1,58 +1,65 @@
-import { prisma } from '../../util/db.server.js'
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
+import db from '../../db.js'; // Import your PostgreSQL connection pool
 
-export default async function handleforgotpassword(req, res){
-	const {email} = req.body;
+export default async function handleforgotpassword(req, res) {
+    const { email } = req.body;
 
-	const oldUser = await prisma.User.findUnique({ 
-		where:{
-			email:email
-		},
-	});
+    try {
+        const queryUser = `
+            SELECT * FROM "User" WHERE email = $1
+        `;
+        const userResult = await db.query(queryUser, [email]);
+        const oldUser = userResult;
 
-	if (oldUser == null) {
-	  return res.json({ status: "user not exit" });
-	}
+        if (!oldUser) {
+            return res.json({ status: "user not exit" });
+        }
 
-	const secret = process.env.JWT_SECRET + oldUser.Password;
-	const token = jwt.sign({ email: oldUser.email, id: oldUser.user_id }, secret, {
-	  expiresIn: "5m",
-	});
-	    
-	const ResetToken = await prisma.User.update({ 
-		where:{
-			email:email
-		},
-		data:{resetToken : token}
-	});
+        const secret = process.env.JWT_SECRET + oldUser.Password;
+        const token = jwt.sign({ email: oldUser.email, id: oldUser.user_id }, secret, {
+            expiresIn: "5m",
+        });
 
-	const link = `${process.env.link}/ResetPassword?token=${token}`;
+        const updateTokenQuery = `
+            UPDATE "User" 
+            SET "resetToken" = $1 
+            WHERE email = $2
+            RETURNING *;
+        `;
 
-	var transporter = nodemailer.createTransport({
-	  	service: "gmail",
-	    auth: {
-	     	user: "hulumedia12@gmail.com",
-	     	pass: "mkhvelqnhlpkznji",
-	    },
-	});
+        await db.query(updateTokenQuery, [token, email]);
 
-	var mailOptions = {
-	  from: "hulumedia12@gmail.com",
-	  to: email,
-	  subject: "Password Reset",
-	  text: link,
-	};
+        const link = `${process.env.link}/ResetPassword?token=${token}`;
 
-	transporter.sendMail(mailOptions, function (error, info) {
-		if (error) {
-	    	console.log(error);
-	  	} else {
-	    	console.log("Email sent: " + info.response);
-	  	}
-	});
+        var transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "hulumedia12@gmail.com",
+                pass: "mkhvelqnhlpkznji",
+            },
+        });
 
-	return res.json({ status: "An Email send to your email address" });
+        var mailOptions = {
+            from: "hulumedia12@gmail.com",
+            to: email,
+            subject: "Password Reset",
+            text: link,
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log("Email sent: " + info.response);
+            }
+        });
+
+        return res.json({ status: "An Email send to your email address" });
+    } catch (error) {
+        console.error('Error handling forgot password:', error);
+        return res.status(500).json({ error: 'Failed to process forgot password request' });
+    }
 }
