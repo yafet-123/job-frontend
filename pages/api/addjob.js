@@ -19,20 +19,19 @@ export default async function handleaddjob(req, res) {
   } = req.body;
 
   const createJobQuery = `
-    INSERT INTO "Job" ("CompanyName", "Image", "JobsName", "CareerLevel", "Salary", 
-                      "Descreption", "shortDescreption", "DeadLine", "user_id")
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-    RETURNING "job_id";
+    INSERT INTO Job (CompanyName, Image, JobsName, CareerLevel, Salary, 
+                      Descreption, shortDescreption, DeadLine, user_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   const createJobCategoryQuery = `
-    INSERT INTO "JobCategory" ("user_id", "category_id", "job_id")
-    VALUES ($1, $2, $3);
+    INSERT INTO JobCategory (user_id, category_id, job_id)
+    VALUES (?, ?, ?);
   `;
 
   const createJobLocationQuery = `
-    INSERT INTO "JobLocation" ("user_id", "location_id", "job_id")
-    VALUES ($1, $2, $3);
+    INSERT INTO JobLocation (user_id,location_id, job_id)
+    VALUES (?, ?, ?);
   `;
 
   try {
@@ -50,27 +49,10 @@ export default async function handleaddjob(req, res) {
       DeadLine,
       user_id
     ]);
+    console.log(jobInsertResult)
+    const job_id = jobInsertResult[0].job_id;
 
-    const job_id = jobInsertResult.job_id;
-
-    // Insert job categories
-    for (let j = 0; j < categoryId.length; j++) {
-      await db.query(createJobCategoryQuery, [
-        user_id,
-        categoryId[j],
-        job_id
-      ]);
-    }
-
-    // Insert job locations
-    for (let i = 0; i < LocationId.length; i++) {
-      await db.query(createJobLocationQuery, [
-        user_id,
-        LocationId[i],
-        job_id
-      ]);
-    }
-
+    console.log(jobInsertResult)
     await db.query('COMMIT'); // Commit transaction
 
     res.json({ message: 'Job added successfully' });

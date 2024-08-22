@@ -23,14 +23,15 @@ export async function getServerSideProps(context) {
 
   const usersQuery = `
     SELECT 
-      user_id, email, "firstName", "lastName", age, role, "CreatedDate", "ModifiedDate", "UserName"
-    FROM "User"
-    ORDER BY "ModifiedDate" DESC
+      user_id, email, firstName, lastName, age, role, CreatedDate, ModifiedDate, UserName
+    FROM User
+    ORDER BY ModifiedDate DESC
   `;
 
   try {
     const usersResult = await db.query(usersQuery);
-    const users = usersResult.map((data) => ({
+    const usersRes = usersResult[0]
+    const users = usersRes.map((data) => ({
       user_id: data.user_id,
       email: data.email,
       firstName: data.firstName,
@@ -41,7 +42,8 @@ export async function getServerSideProps(context) {
       ModifiedDate: data.ModifiedDate,
       UserName: data.UserName
     }));
-
+    console.log(usersResult)
+    console.log(users)
     return {
       props: {
         users: JSON.parse(JSON.stringify(users)),
@@ -62,8 +64,8 @@ export default function User({users}) {
     return (
     	<React.Fragment>
       		<MainHeader title="User Dashboard" />
-      		<section className="flex flex-col w-full h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
-				    <div className='w-full h-full flex flex-row'>
+      		<section className="flex flex-col h-full bg-[#e6e6e6] dark:bg-[#02201D] pt-10">
+				    <div className=' h-full flex flex-row'>
 		        	<VerticalNavbar data={data} />
 		        	<div className="w-full">
             			<AddUser />

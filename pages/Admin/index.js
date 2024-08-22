@@ -6,7 +6,7 @@ import { useState,useEffect} from 'react'
 import { useRouter } from 'next/router'
 import { MainHeader } from '../../components/common/MainHeader';
 import React from 'react'
-import pool from "../../db.js"
+import db from "../../db.js"
 import { getSession } from "next-auth/react";
 import MyCalendar from '../../components/common/MyCalendar' 
 
@@ -25,30 +25,30 @@ export async function getServerSideProps(context) {
 
   const adminQuery = `
     SELECT 
-      user_id, "firstName", "lastName", age, "UserName", email 
-    FROM "User" 
-    WHERE user_id = $1
+      user_id, firstName, lastName, age, UserName, email 
+    FROM User  
+    WHERE user_id = ?
   `;
 
   const categoriesQuery = `
     SELECT 
       c.*, 
-      u."UserName" AS "UserName" 
-    FROM "Category" c
-    LEFT JOIN "User" u ON c.user_id = u.user_id
+      u.UserName AS UserName 
+    FROM Category c
+    LEFT JOIN User u ON c.user_id = u.user_id
     ORDER BY c.category_id ASC
   `;
 
-  const jobsCountQuery = `SELECT COUNT(*) FROM "Job"`;
+  const jobsCountQuery = `SELECT COUNT(*) FROM Job`;
 
-  const newsCountQuery = `SELECT COUNT(*) FROM "News"`;
+  const newsCountQuery = `SELECT COUNT(*) FROM News`;
 
-  const entertainmentsCountQuery = `SELECT COUNT(*) FROM "Entertainment"`;
+  const entertainmentsCountQuery = `SELECT COUNT(*) FROM Entertainment`;
 
   const groupByQuery = `
     SELECT 
       user_id, COUNT(news_id) AS news_count 
-    FROM "News" 
+    FROM News 
     GROUP BY user_id
   `;
 
@@ -60,19 +60,18 @@ export async function getServerSideProps(context) {
     const newsCountResult = await db.query(newsCountQuery);
     const entertainmentsCountResult = await db.query(entertainmentsCountQuery);
     const groupByResult = await db.query(groupByQuery);
-
-    const admin = adminResult;
+    const admin = adminResult[0];
     console.log('Admin Result:', admin); // Log the admin query result
 
     const admins = {
-      user_id: admin.user_id,
-      firstName: admin.firstName,
-      lastName: admin.lastName,
-      age: admin.age,
-      UserName: admin.UserName,
-      email: admin.email
+      user_id: admin[0].user_id,
+      firstName: admin[0].firstName,
+      lastName: admin[0].lastName,
+      age: admin[0].age,
+      UserName: admin[0].UserName,
+      email: admin[0].email
     };
-
+    console.log(admins)
     const categories = categoriesResult.map((data) => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,

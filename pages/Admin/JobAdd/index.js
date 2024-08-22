@@ -21,16 +21,16 @@ export async function getServerSideProps(context) {
   }
 
   const getCategoriesQuery = `
-    SELECT c.category_id, c."CategoryName", c."CreatedDate", c."ModifiedDate", u."UserName"
-    FROM "Category" c
-    LEFT JOIN "User" u ON c.user_id = u.user_id
+    SELECT c.category_id, c.CategoryName, c.CreatedDate, c.ModifiedDate, u.UserName
+    FROM Category c
+    LEFT JOIN User u ON c.user_id = u.user_id
     ORDER BY c.category_id ASC
   `;
 
   const getLocationsQuery = `
-    SELECT l.location_id, l."LocationName", l."Image", l."CreatedDate", l."ModifiedDate", u."UserName"
-    FROM "Location" l
-    LEFT JOIN "User" u ON l.user_id = u.user_id
+    SELECT l.location_id, l.LocationName, l.Image, l.CreatedDate, l.ModifiedDate, u.UserName
+    FROM Location l
+    LEFT JOIN User u ON l.user_id = u.user_id
     ORDER BY l.location_id ASC
   `;
 
@@ -38,7 +38,7 @@ export async function getServerSideProps(context) {
     const categoriesResult = await db.query(getCategoriesQuery);
     const locationsResult = await db.query(getLocationsQuery);
 
-    const categories = categoriesResult.map((data) => ({
+    const categories = categoriesResult[0].map((data) => ({
       category_id: data.category_id,
       CategoryName: data.CategoryName,
       CreatedDate: data.CreatedDate,
@@ -46,7 +46,7 @@ export async function getServerSideProps(context) {
       userName: data.UserName,
     }));
 
-    const locations = locationsResult.map((data) => ({
+    const locations = locationsResult[0].map((data) => ({
       location_id: data.location_id,
       LocationName: data.LocationName,
       Image: data.Image,

@@ -12,12 +12,12 @@ export default async function handleaddlogin(req, res) {
   }
 
   const userQuery = `
-    SELECT * FROM "User" WHERE "UserName" = $1
-  `;
+    SELECT * FROM User WHERE UserName = ?
+  `; 
 
   try {
     const userResult = await db.query(userQuery, [username]);
-    const user = userResult;
+    const user = userResult[0];
 
     // Log the user details
     console.log(user);
@@ -27,11 +27,12 @@ export default async function handleaddlogin(req, res) {
     }
 
     const comparePassword = async (candidatePassword) => {
-      const isMatch = await bcrypt.compare(candidatePassword, user.Password);
+      const isMatch = await bcrypt.compare(candidatePassword, user[0].Password);
       return isMatch;
     };
 
     const isPasswordCorrect = await comparePassword(password);
+    console.log(isPasswordCorrect);
 
     if (!isPasswordCorrect) {
       return res.status(StatusCodes.UNAUTHORIZED).json({ error: 'Invalid credentials' });
@@ -43,11 +44,13 @@ export default async function handleaddlogin(req, res) {
       { expiresIn: process.env.JWT_LIFETIME }
     );
 
+    console.log(token)
+
     res.status(StatusCodes.OK).json({
-      userId: user.user_id,
-      name: user.UserName,
-      role: user.role,
-      email: user.email,
+      userId: user[0].user_id,
+      name: user[0].UserName,
+      role: user[0].role,
+      email: user[0].email,
       token,
     });
   } catch (err) {
