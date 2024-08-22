@@ -1,5 +1,5 @@
 // pages/api/handleaddlogin.js
-import pool from '../../db.js';
+import db from '../../db.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { StatusCodes } from 'http-status-codes';
@@ -16,15 +16,13 @@ export default async function handleaddlogin(req, res) {
   `;
 
   try {
-    const client = await pool.connect();
-    const userResult = await client.query(userQuery, [username]);
-    const user = userResult.rows[0];
+    const userResult = await db.query(userQuery, [username]);
+    const user = userResult;
 
     // Log the user details
     console.log(user);
 
     if (!user) {
-      client.release();
       return res.status(StatusCodes.NOT_FOUND).json({ error: `No ${username} can be found` });
     }
 
@@ -36,7 +34,6 @@ export default async function handleaddlogin(req, res) {
     const isPasswordCorrect = await comparePassword(password);
 
     if (!isPasswordCorrect) {
-      client.release();
       return res.status(StatusCodes.UNAUTHORIZED).json({ error: 'Invalid credentials' });
     }
 
@@ -45,8 +42,6 @@ export default async function handleaddlogin(req, res) {
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_LIFETIME }
     );
-
-    client.release();
 
     res.status(StatusCodes.OK).json({
       userId: user.user_id,

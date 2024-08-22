@@ -1,4 +1,4 @@
-import pool from '../../db.js';
+import db from '../../db.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { StatusCodes } from 'http-status-codes';
@@ -16,9 +16,7 @@ export default async function handleadduser(req, res) {
       RETURNING user_id, "UserName"
     `;
 
-    const client = await pool.connect();
-
-    const result = await client.query(insertUserQuery, [
+    const result = await db.query(insertUserQuery, [
       UserName,
       email,
       firstName,
@@ -28,7 +26,7 @@ export default async function handleadduser(req, res) {
       role,
     ]);
 
-    const data = result.rows[0];
+    const data = result
 
     const token = jwt.sign(
       { userId: data.user_id, user: data.UserName },
@@ -36,7 +34,6 @@ export default async function handleadduser(req, res) {
       { expiresIn: process.env.JWT_LIFETIME }
     );
 
-    client.release();
 
     res.status(StatusCodes.CREATED).json({
       data: {

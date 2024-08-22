@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
-import pool from '../../db.js'; // Adjust the path to your PostgreSQL connection pool
+import db from '../../db.js'; // Adjust the path to your PostgreSQL connection pool
 
 export default async function handleaddnews(req, res) {
   const { title, content, user_id } = req.body;
@@ -14,17 +14,13 @@ export default async function handleaddnews(req, res) {
 
   const values = [title, content, Number(user_id)];
 
-  const client = await pool.connect();
-
   try {
-    const result = await client.query(insertNewsQuery, values);
+    const result = await db.query(insertNewsQuery, values);
     const newNews = result.rows[0];
 
     res.json(newNews);
   } catch (err) {
     console.error('Error adding news:', err);
     res.status(500).json({ error: 'Failed to add news' });
-  } finally {
-    client.release(); // Release client back to the pool
   }
 }

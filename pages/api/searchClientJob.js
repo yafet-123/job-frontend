@@ -1,4 +1,4 @@
-import pool from '../../db.js';
+import db from '../../db.js';
 
 export default async function handlesearchclientjob(req, res) {
     const { searchName } = req.body;
@@ -34,10 +34,9 @@ export default async function handlesearchclientjob(req, res) {
     `;
 
     try {
-        const client = await pool.connect();
         const searchValues = [`%${searchName}%`];
-        const searchResult = await client.query(searchQuery, searchValues);
-        const searchData = searchResult.rows;
+        const searchResult = await db.query(searchQuery, searchValues);
+        const searchData = searchResult;
 
         const AllData = searchData.map((data) => ({
             job_id: data.job_id,

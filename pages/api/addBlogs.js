@@ -1,4 +1,4 @@
-import pool from '../../db.js'; // Adjust the path to your PostgreSQL connection pool
+import db from '../../db.js'; // Adjust the path to your PostgreSQL connection pool
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
@@ -13,10 +13,8 @@ export default async function handleaddblogs(req, res) {
     categoryId
   } = req.body;
 
-  const client = await pool.connect();
-
   try {
-    await client.query('BEGIN');
+    await db.query('BEGIN');
 
     const insertBlogQuery = `
       INSERT INTO "Blogs" ("Header", "Image", "ShortDescription", "Description", user_id)
@@ -25,8 +23,8 @@ export default async function handleaddblogs(req, res) {
     `;
 
     const insertBlogValues = [Header, Image, ShortDescription, Description, Number(user_id)];
-    const blogResult = await client.query(insertBlogQuery, insertBlogValues);
-    const blogId = blogResult.rows[0].blogs_id;
+    const blogResult = await db.query(insertBlogQuery, insertBlogValues);
+    const blogId = blogResult.blogs_id;
 
     const insertBlogCategoryQuery = `
       INSERT INTO "BlogsCategoryRelationship" (user_id, category_id, blogs_id)
@@ -35,10 +33,10 @@ export default async function handleaddblogs(req, res) {
 
     for (let j = 0; j < categoryId.length; j++) {
       const insertBlogCategoryValues = [Number(user_id), Number(categoryId[j]), blogId];
-      await client.query(insertBlogCategoryQuery, insertBlogCategoryValues);
+      await db.query(insertBlogCategoryQuery, insertBlogCategoryValues);
     }
 
-    await client.query('COMMIT');
+    await db.query('COMMIT');
 
     const blogdata = {
       blogs_id: blogId,
@@ -55,10 +53,8 @@ export default async function handleaddblogs(req, res) {
 
     res.json(blogdata);
   } catch (err) {
-    await client.query('ROLLBACK');
+    await db.query('ROLLBACK');
     console.error('Error adding blog:', err);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'Failed to add blog' });
-  } finally {
-    client.release();
   }
 }
